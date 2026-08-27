@@ -7759,6 +7759,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.inBag = True
         self.tempBagPage = 1
         self.showMoveItem(True)
+
+        # TODO: Remove one or both of these special conditions. They are only
+        #       used once.
         if noclear or refresh:
             self.choicePage = self.bagPage
             if refresh:
@@ -7918,7 +7921,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText(f"You have obtained {tempNum}x {self.itemName(ID)}!", True)
         self.doEnd()
 
-   def checkOpenSlot(self, ID: int):  # This can become one loop
+   def checkOpenSlot(self, ID: int):
         for i in range(27):
             if (self.bagStackArray[i] < self.itemStackMax(ID) and self.bagArray[i] == ID):
                 return i
@@ -7944,2943 +7947,2964 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.stashStackArray[i] = 0
                 self.stashArray[i] = 0
 
-   # HERE
    def doDiscard(self, ID: int):
-      '''
-      Function to discard an item
-      '''
-      self.tempID = ID
-      self.choiceListButtons("Bag")
-      def doListen():
-         self.choiceListSelect("Bag")
-         if (self.buttonChoice == 12):
-            while self.tempID in self.itemGainArray:
-               self.itemGainArray.pop()
-            self.doProcess()
-         elif (self.buttonChoice == 4 or self.buttonChoice == 8):
-            self.choiceListButtons("Bag")
-         elif (self.canLose(self.choiceListResult[0])):
-            self.doMainText(f"{self.itemDescription(self.choiceListResult[0])}\n\n{self.itemDescription(self.tempID)}\n\nDo you want to replace {self.itemName(self.choiceListResult[0])} with {self.itemName(self.tempID)}?",True)
-            if (self.bagStackArray[self.choiceListResult[1]] > 1):
-               self.doMainText(f"\n\nYou will lose all {self.bagStackArray[self.choiceListResult[1]]} of {self.itemName(self.choiceListResult[0])} if you do.")
-            self.displayMainText()
-            self.buttonConfirm()
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.bagSlotClear(self.choiceListResult[1])
-                  self.gainItem(self.tempID)
-               else:
-                  self.doDiscard(self.tempID)
-            self.doListen = doListen
-         elif (not self.canLose(self.choiceListResult[0])):
-            self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.choiceListResult[0])}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.",True)
-            self.doDiscard(self.tempID)
-      self.doListen = doListen
+        '''
+        Function to discard an item
+        '''
+        self.tempID = ID
+        self.choiceListButtons("Bag")
 
-   def itemMove(self, slot:int):
-      '''
-      Function to move an item
-      '''
-      tempInt = self.moveItemID
-      tempInt2 = self.moveItemStack
-      tempI = slot + self.choicePage * 9 - 9
-      if slot < 12:
-         tempI -= Math.floor(slot / 4) + 1
-      if self.inBag:
-         if (self.moveItemID == self.bagArray[tempI] and self.bagStackArray[tempI] < self.itemStackMax(self.bagArray[tempI])):
-            if (self.moveItemStack + self.bagStackArray[tempI] <= self.itemStackMax(self.bagArray[tempI])):
-               self.bagStackArray[tempI] += self.moveItemStack
-               self.moveItemID = 0
-               self.moveItemStack = 0
+        def doListen():
+            self.choiceListSelect("Bag")
+            if (self.buttonChoice == 12):
+                while self.tempID in self.itemGainArray:
+                    self.itemGainArray.pop()
+                self.doProcess()
+            elif (self.buttonChoice == 4 or self.buttonChoice == 8):
+                self.choiceListButtons("Bag")
+            elif (self.canLose(self.choiceListResult[0])):
+                self.doMainText(f"{self.itemDescription(self.choiceListResult[0])}\n\n{self.itemDescription(self.tempID)}\n\nDo you want to replace {self.itemName(self.choiceListResult[0])} with {self.itemName(self.tempID)}?", True)
+                if (self.bagStackArray[self.choiceListResult[1]] > 1):
+                    self.doMainText(f"\n\nYou will lose all {self.bagStackArray[self.choiceListResult[1]]} of {self.itemName(self.choiceListResult[0])} if you do.")
+                self.displayMainText()
+                self.buttonConfirm()
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.bagSlotClear(self.choiceListResult[1])
+                        self.gainItem(self.tempID)
+                    else:
+                        self.doDiscard(self.tempID)
+                self.doListen = doListen
+            elif (not self.canLose(self.choiceListResult[0])):
+                self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.choiceListResult[0])}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
+                self.doDiscard(self.tempID)
+        self.doListen = doListen
+
+   def itemMove(self, slot: int):
+        '''
+        Function to move an item
+        '''
+        tempInt = self.moveItemID
+        tempInt2 = self.moveItemStack
+        tempI = slot + self.choicePage * 9 - 9
+        if slot < 12:
+            tempI -= Math.floor(slot / 4) + 1
+        if self.inBag:
+            if (self.moveItemID == self.bagArray[tempI] and self.bagStackArray[tempI] < self.itemStackMax(self.bagArray[tempI])):
+                if (self.moveItemStack + self.bagStackArray[tempI] <= self.itemStackMax(self.bagArray[tempI])):
+                    self.bagStackArray[tempI] += self.moveItemStack
+                    self.moveItemID = 0
+                    self.moveItemStack = 0
+                else:
+                    self.moveItemStack -= self.itemStackMax(self.bagArray[tempI]) - self.bagStackArray[tempI]
+                    self.bagStackArray[tempI] = self.itemStackMax(self.bagArray[tempI])
             else:
-               self.moveItemStack -= self.itemStackMax(self.bagArray[tempI]) - self.bagStackArray[tempI]
-               self.bagStackArray[tempI] = self.itemStackMax(self.bagArray[tempI])
-         else:
-            self.moveItemID = self.bagArray[tempI]
-            self.moveItemStack = self.bagStackArray[tempI]
-            self.bagArray[tempI] = tempInt
-            self.bagStackArray[tempI] = tempInt2
-            trace(tempI)
-            trace(self.bagArray)
-            trace(self.bagStackArray)
-      elif self.inStash:
-         if (self.moveItemID == self.stashArray[tempI] and self.stashStackArray[tempI] < self.itemStackMax(self.stashArray[tempI])):
-            if (self.moveItemStack + self.stashStackArray[tempI] <= self.itemStackMax(self.stashArray[tempI])):
-               self.stashStackArray[tempI] += self.moveItemStack
-               self.moveItemID = 0
-               self.moveItemStack = 0
+                self.moveItemID = self.bagArray[tempI]
+                self.moveItemStack = self.bagStackArray[tempI]
+                self.bagArray[tempI] = tempInt
+                self.bagStackArray[tempI] = tempInt2
+                trace(tempI)
+                trace(self.bagArray)
+                trace(self.bagStackArray)
+        elif self.inStash:
+            if (self.moveItemID == self.stashArray[tempI] and self.stashStackArray[tempI] < self.itemStackMax(self.stashArray[tempI])):
+                if (self.moveItemStack + self.stashStackArray[tempI] <= self.itemStackMax(self.stashArray[tempI])):
+                    self.stashStackArray[tempI] += self.moveItemStack
+                    self.moveItemID = 0
+                    self.moveItemStack = 0
+                else:
+                    self.moveItemStack -= self.itemStackMax(self.stashArray[tempI]) - self.stashStackArray[tempI]
+                    self.stashStackArray[tempI] = self.itemStackMax(self.stashArray[tempI])
             else:
-               self.moveItemStack -= self.itemStackMax(self.stashArray[tempI]) - self.stashStackArray[tempI]
-               self.stashStackArray[tempI] = self.itemStackMax(self.stashArray[tempI])
-         else:
-            self.moveItemID = self.stashArray[tempI]
-            self.moveItemStack = self.stashStackArray[tempI]
-            self.stashArray[tempI] = tempInt
-            self.stashStackArray[tempI] = tempInt2
-            trace(tempI)
-            trace(self.stashArray)
-            trace(self.stashStackArray)
-      if (self.moveItemID == 0):
-         self.showMoveItem(False)
-      else:
-         self.refreshMoveItem(self.moveItemID,self.moveItemStack)
-      if self.useNewStash and (self.inBag or self.inStash):
-         if self.moveItemID != 0 and self.buttonsVisible[12]:
-            self.buttonWrite(12,"Stash" if (self.inBag) else "Bag")
-      #self.hideAmountAll()
-      if (self.inBag):
-         self.doBag(True)
-      elif (self.inStash):
-         self.doStash(True)
+                self.moveItemID = self.stashArray[tempI]
+                self.moveItemStack = self.stashStackArray[tempI]
+                self.stashArray[tempI] = tempInt
+                self.stashStackArray[tempI] = tempInt2
+                trace(tempI)
+                trace(self.stashArray)
+                trace(self.stashStackArray)
+        if (self.moveItemID == 0):
+            self.showMoveItem(False)
+        else:
+            self.refreshMoveItem(self.moveItemID,self.moveItemStack)
+        if self.useNewStash and (self.inBag or self.inStash):
+            if self.moveItemID != 0 and self.buttonsVisible[12]:
+                self.buttonWrite(12, "Stash" if (self.inBag) else "Bag")
+        # self.hideAmountAll()
+        if (self.inBag):
+            self.doBag(True)
+        elif (self.inStash):
+            self.doStash(True)
 
-   def showMoveItem(self, which:bool):
-      '''
-      Function to show the item which is being moved in a box off to the side
-      '''
-      if (which):
-         if (self.moveItemID != 0):
-            self.moveItemShow()
-            if (self.moveItemStack > 1):
-               self.moveItemAmountShow()
-      else:
-         self.moveItemHide()
-         self.moveItemAmountHide()
+   def showMoveItem(self, which: bool):
+        '''
+        Function to show the item which is being moved in a box off to the side
+        '''
+        if (which):
+            if (self.moveItemID != 0):
+                self.moveItemShow()
+                if (self.moveItemStack > 1):
+                    self.moveItemAmountShow()
+        else:
+            self.moveItemHide()
+            self.moveItemAmountHide()
 
    @staticmethod
-   def itemName(ID:int):
-      '''
-      Function which returns the name of the item ID
-      '''
-      if (ID == 0):
-         return " "
-      if (ID == 1):
-         return "Test"
-      if (ID == 2):
-         return "Debug Stick"
-      if (ID == 3):
-         return "TS Any"
-      if (ID == 404):
-         return "Item Not Found"
-      if (ID == 418):
-         return "Teapot"
-      if (ID == 101):
-         return "Anc Claws"
-      if (ID == 102):
-         return "Imb Shoes"
-      if (ID == 103):
-         return "Dry Sand"
-      if (ID == 104):
-         return "Milker"
-      if (ID == 105):
-         return "Cat's Meow"
-      if (ID == 106):
-         return "Penis Pump"
-      if (ID == 108):
-         return "Blood Gge"
-      if (ID == 109):
-         return "Edu Egg"
-      if (ID == 110):
-         return "Reduction"
-      if (ID == 111):
-         return "Skin Balm"
-      if (ID == 112):
-         return "Bol Juice"
-      if (ID == 113):
-         return "Taint Leaf"
-      if (ID == 114):
-         return "Sweet Sap"
-      if (ID == 115):
-         return "Poultice"
-      if (ID == 116):
-         return "Dagger"
-      if (ID == 117):
-         return "Hammer"
-      if (ID == 118):
-         return "Saber"
-      if (ID == 119):
-         return "Whip"
-      if (ID == 120):
-         return "Neuter"
-      if (ID == 121):
-         return "TS Soft"
-      if (ID == 122):
-         return "TS Firm"
-      if (ID == 123):
-         return "TS Tied"
-      if (ID == 124):
-         return "TS Siz"
-      if (ID == 125):
-         return "TS Ovi"
-      if (ID == 126):
-         return "Oas Water"
-      if (ID == 127):
-         return "Tail Spike"
-      if (ID == 128):
-         return "TS Sanct"
-      if (ID == 200):
-         return "Lila's Gift"
-      if (ID == 201):
-         return "Milk C Pois"
-      if (ID == 202):
-         return "Co-Snak Ven"
-      if (ID == 203):
-         return "Wolf Fur"
-      if (ID == 204):
-         return "Sm Pouch"
-      if (ID == 205):
-         return "Sm Pouch"
-      if (ID == 206):
-         return "Trinket"
-      if (ID == 207):
-         return "Cock Carv"
-      if (ID == 208):
-         return "Blo Berry"
-      if (ID == 209):
-         return "Grain"
-      if (ID == 210):
-         return "Puss Fruit"
-      if (ID == 211):
-         return "DairE Pill"
-      if (ID == 212):
-         return "Red Mush"
-      if (ID == 213):
-         return "Wet Cloth"
-      if (ID == 214):
-         return "Lon Milk"
-      if (ID == 215):
-         return "Lon Pendant"
-      if (ID == 216):
-         return "Pink Ink"
-      if (ID == 217):
-         return "Egg Jelly"
-      if (ID == 218):
-         return "Bul Berry"
-      if (ID == 219):
-         return "Fresh Egg"
-      if (ID == 220):
-         return "Blondie"
-      if (ID == 221):
-         return "Puss Juice"
-      if (ID == 222):
-         return "Kinky Carr"
-      if (ID == 223):
-         return "Eq Snack"
-      if (ID == 224):
-         return "Lila's Milk"
-      if (ID == 225):
-         return "Body Wash"
-      if (ID == 226):
-         return "Felin Tea"
-      if (ID == 227):
-         return "Oral Wash"
-      if (ID == 228):
-         return "Body Oil"
-      if (ID == 229):
-         return "Leath Strap"
-      if (ID == 230):
-         return "Eggcelerator"
-      if (ID == 231):
-         return "Desi Sand"
-      if (ID == 232):
-         return "Flying Carp"
-      if (ID == 233):
-         return "A-Grav Rock"
-      if (ID == 234):
-         return "Rein Charm"
-      if (ID == 235):
-         return "Fell Rod"
-      if (ID == 236):
-         return "Recept Bell"
-      if (ID == 237):
-         return "Dewy Gift"
-      if (ID == 238):
-         return "Squ Cheese"
-      if (ID == 239):
-         return "Shiny Rock"
-      if (ID == 240):
-         return "Auburn Dye"
-      if (ID == 241):
-         return "Brown Dye"
-      if (ID == 242):
-         return "Grey Dye"
-      if (ID == 243):
-         return "White Dye"
-      if (ID == 244):
-         return "Snuggle Ball"
-      if (ID == 245):
-         return "Facial Mud"
-      if (ID == 246):
-         return "Fertile Gel"
-      if (ID == 247):
-         return "Supp Harness"
-      if (ID == 248):
-         return "Breeder Pot"
-      if (ID == 249):
-         return "Treant\'s Tear"
-      if (ID == 250):
-         return "Foomp Bomb"
-      if (ID == 251):
-         return "Plump Quat"
-      if (ID == 252):
-         return "Milky Pend"
-      if (ID == 253):
-         return "Bug Egg"
-      if (ID == 254):
-         return "Lantern"
-      if (ID == 255):
-         return "Frag Flower"
-      if (ID == 256):
-         return "Nectar Candy"
-      if (ID == 257):
-         return "Too Human"
-      if (ID == 258):
-         return "Tainted Pot"
-      if (ID == 259):
-         return "Sweet&Sour"
-      if (ID == 260):
-         return "Succ Draft"
-      if (ID == 500):
-         return "Milk Bottle"
-      if (ID == 501):
-         return "Milk Jug"
-      if (ID == 502):
-         return "Milk Barrel"
-      if (ID == 503):
-         return "Lust Draft"
-      if (ID == 504):
-         return "Rejuv Pot"
-      if (ID == 505):
-         return "Bad Exper"
-      if (ID == 506):
-         return "Exp Preg"
-      if (ID == 507):
-         return "Ball Sweller"
-      if (ID == 508):
-         return "S Lust Draft"
-      if (ID == 509):
-         return "S Rejuv Pot"
-      if (ID == 510):
-         return "S Bad Exper"
-      if (ID == 511):
-         return "S Exp Preg"
-      if (ID == 512):
-         return "S Ball Sweller"
-      if (ID == 513):
-         return "Gen Swap"
-      if (ID == 514):
-         return "Maso Pot"
-      if (ID == 515):
-         return "Black Dye"
-      if (ID == 516):
-         return "Baby Free"
-      if (ID == 517):
-         return "Pot Pot"
-      if (ID == 518):
-         return "S Gen Swap"
-      if (ID == 519):
-         return "S Maso Pot"
-      if (ID == 520):
-         return "Red Dye"
-      if (ID == 521):
-         return "S Baby Free"
-      if (ID == 522):
-         return "S Pot Pot"
-      if (ID == 523):
-         return "Cum Vial"
-      if (ID == 524):
-         return "Cum Bottle"
-      if (ID == 525):
-         return "Cum Jug"
-      if (ID == 526):
-         return "Cum Barrel"
-      if (ID == 527):
-         return "Good Egg"
-      if (ID == 528):
-         return "Bad Egg"
-      if (ID == 529):
-         return "Strange Egg"
-      if (ID == 530):
-         return "Charmed Egg"
-      if (ID == 531):
-         return "Divine Egg"
-      if (ID == 532):
-         return "Pheromone"
-      if (ID == 533):
-         return "Reduc Reduc"
-      if (ID == 534):
-         return "Male Enhance"
-      if (ID == 535):
-         return "Milk Suppress"
-      if (ID == 536):
-         return "Bazoomba!"
-      if (ID == 537):
-         return "Queen Egg"
-      if (ID == 538):
-         return "Soldier Egg"
-      if (ID == 539):
-         return "Drone Egg"
-      if (ID == 540):
-         return "Worker Egg"
-      return f"ITEM NAME ERROR {ID}"
+   def itemName(ID: int):
+        '''
+        Function which returns the name of the item ID
+        '''
+        if (ID == 0):
+            return " "
+        if (ID == 1):
+            return "Test"
+        if (ID == 2):
+            return "Debug Stick"
+        if (ID == 3):
+            return "TS Any"
+        if (ID == 404):
+            return "Item Not Found"
+        if (ID == 418):
+            return "Teapot"
+        if (ID == 101):
+            return "Anc Claws"
+        if (ID == 102):
+            return "Imb Shoes"
+        if (ID == 103):
+            return "Dry Sand"
+        if (ID == 104):
+            return "Milker"
+        if (ID == 105):
+            return "Cat's Meow"
+        if (ID == 106):
+            return "Penis Pump"
+        if (ID == 108):
+            return "Blood Gge"
+        if (ID == 109):
+            return "Edu Egg"
+        if (ID == 110):
+            return "Reduction"
+        if (ID == 111):
+            return "Skin Balm"
+        if (ID == 112):
+            return "Bol Juice"
+        if (ID == 113):
+            return "Taint Leaf"
+        if (ID == 114):
+            return "Sweet Sap"
+        if (ID == 115):
+            return "Poultice"
+        if (ID == 116):
+            return "Dagger"
+        if (ID == 117):
+            return "Hammer"
+        if (ID == 118):
+            return "Saber"
+        if (ID == 119):
+            return "Whip"
+        if (ID == 120):
+            return "Neuter"
+        if (ID == 121):
+            return "TS Soft"
+        if (ID == 122):
+            return "TS Firm"
+        if (ID == 123):
+            return "TS Tied"
+        if (ID == 124):
+            return "TS Siz"
+        if (ID == 125):
+            return "TS Ovi"
+        if (ID == 126):
+            return "Oas Water"
+        if (ID == 127):
+            return "Tail Spike"
+        if (ID == 128):
+            return "TS Sanct"
+        if (ID == 200):
+            return "Lila's Gift"
+        if (ID == 201):
+            return "Milk C Pois"
+        if (ID == 202):
+            return "Co-Snak Ven"
+        if (ID == 203):
+            return "Wolf Fur"
+        if (ID == 204):
+            return "Sm Pouch"
+        if (ID == 205):
+            return "Sm Pouch"
+        if (ID == 206):
+            return "Trinket"
+        if (ID == 207):
+            return "Cock Carv"
+        if (ID == 208):
+            return "Blo Berry"
+        if (ID == 209):
+            return "Grain"
+        if (ID == 210):
+            return "Puss Fruit"
+        if (ID == 211):
+            return "DairE Pill"
+        if (ID == 212):
+            return "Red Mush"
+        if (ID == 213):
+            return "Wet Cloth"
+        if (ID == 214):
+            return "Lon Milk"
+        if (ID == 215):
+            return "Lon Pendant"
+        if (ID == 216):
+            return "Pink Ink"
+        if (ID == 217):
+            return "Egg Jelly"
+        if (ID == 218):
+            return "Bul Berry"
+        if (ID == 219):
+            return "Fresh Egg"
+        if (ID == 220):
+            return "Blondie"
+        if (ID == 221):
+            return "Puss Juice"
+        if (ID == 222):
+            return "Kinky Carr"
+        if (ID == 223):
+            return "Eq Snack"
+        if (ID == 224):
+            return "Lila's Milk"
+        if (ID == 225):
+            return "Body Wash"
+        if (ID == 226):
+            return "Felin Tea"
+        if (ID == 227):
+            return "Oral Wash"
+        if (ID == 228):
+            return "Body Oil"
+        if (ID == 229):
+            return "Leath Strap"
+        if (ID == 230):
+            return "Eggcelerator"
+        if (ID == 231):
+            return "Desi Sand"
+        if (ID == 232):
+            return "Flying Carp"
+        if (ID == 233):
+            return "A-Grav Rock"
+        if (ID == 234):
+            return "Rein Charm"
+        if (ID == 235):
+            return "Fell Rod"
+        if (ID == 236):
+            return "Recept Bell"
+        if (ID == 237):
+            return "Dewy Gift"
+        if (ID == 238):
+            return "Squ Cheese"
+        if (ID == 239):
+            return "Shiny Rock"
+        if (ID == 240):
+            return "Auburn Dye"
+        if (ID == 241):
+            return "Brown Dye"
+        if (ID == 242):
+            return "Grey Dye"
+        if (ID == 243):
+            return "White Dye"
+        if (ID == 244):
+            return "Snuggle Ball"
+        if (ID == 245):
+            return "Facial Mud"
+        if (ID == 246):
+            return "Fertile Gel"
+        if (ID == 247):
+            return "Supp Harness"
+        if (ID == 248):
+            return "Breeder Pot"
+        if (ID == 249):
+            return "Treant\'s Tear"
+        if (ID == 250):
+            return "Foomp Bomb"
+        if (ID == 251):
+            return "Plump Quat"
+        if (ID == 252):
+            return "Milky Pend"
+        if (ID == 253):
+            return "Bug Egg"
+        if (ID == 254):
+            return "Lantern"
+        if (ID == 255):
+            return "Frag Flower"
+        if (ID == 256):
+            return "Nectar Candy"
+        if (ID == 257):
+            return "Too Human"
+        if (ID == 258):
+            return "Tainted Pot"
+        if (ID == 259):
+            return "Sweet&Sour"
+        if (ID == 260):
+            return "Succ Draft"
+        if (ID == 500):
+            return "Milk Bottle"
+        if (ID == 501):
+            return "Milk Jug"
+        if (ID == 502):
+            return "Milk Barrel"
+        if (ID == 503):
+            return "Lust Draft"
+        if (ID == 504):
+            return "Rejuv Pot"
+        if (ID == 505):
+            return "Bad Exper"
+        if (ID == 506):
+            return "Exp Preg"
+        if (ID == 507):
+            return "Ball Sweller"
+        if (ID == 508):
+            return "S Lust Draft"
+        if (ID == 509):
+            return "S Rejuv Pot"
+        if (ID == 510):
+            return "S Bad Exper"
+        if (ID == 511):
+            return "S Exp Preg"
+        if (ID == 512):
+            return "S Ball Sweller"
+        if (ID == 513):
+            return "Gen Swap"
+        if (ID == 514):
+            return "Maso Pot"
+        if (ID == 515):
+            return "Black Dye"
+        if (ID == 516):
+            return "Baby Free"
+        if (ID == 517):
+            return "Pot Pot"
+        if (ID == 518):
+            return "S Gen Swap"
+        if (ID == 519):
+            return "S Maso Pot"
+        if (ID == 520):
+            return "Red Dye"
+        if (ID == 521):
+            return "S Baby Free"
+        if (ID == 522):
+            return "S Pot Pot"
+        if (ID == 523):
+            return "Cum Vial"
+        if (ID == 524):
+            return "Cum Bottle"
+        if (ID == 525):
+            return "Cum Jug"
+        if (ID == 526):
+            return "Cum Barrel"
+        if (ID == 527):
+            return "Good Egg"
+        if (ID == 528):
+            return "Bad Egg"
+        if (ID == 529):
+            return "Strange Egg"
+        if (ID == 530):
+            return "Charmed Egg"
+        if (ID == 531):
+            return "Divine Egg"
+        if (ID == 532):
+            return "Pheromone"
+        if (ID == 533):
+            return "Reduc Reduc"
+        if (ID == 534):
+            return "Male Enhance"
+        if (ID == 535):
+            return "Milk Suppress"
+        if (ID == 536):
+            return "Bazoomba!"
+        if (ID == 537):
+            return "Queen Egg"
+        if (ID == 538):
+            return "Soldier Egg"
+        if (ID == 539):
+            return "Drone Egg"
+        if (ID == 540):
+            return "Worker Egg"
+        return f"ITEM NAME ERROR {ID}"
 
-   def itemDescription(self, ID:int):
-      '''
-      Function which returns the description of the item ID
-      '''
-      if ID == 2:
-         return "Debug Stick\n\nDebug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
-      if ID == 3:
-         return "Teleport Scroll: Any\n\nCreated for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."
-      if ID == 101:
-         return "Claws of the Lupine Ancestors\n\nHarkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."
-      if ID == 102:
-         return "Imbued Horseshoes\n\nCrafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
-      if ID == 103:
-         return "Magical Sands of the Dry Dunes\n\nApplying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
-      if ID == 104:
-         return "Milking Machine\n\nA compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."
-      if ID == 105:
-         return "'Cat's Meow' Potion\n\nFavored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
-      if ID == 106:
-         return "Penis Pump\n\nA simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."
-      if ID == 108:
-         return "Blood Gauge\n\nDue to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
-      if ID == 109:
-         return "Educated Eggdicator\n\nWith so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."
-      if ID == 110:
-         return "A Reduction of Reducer Agents\n\nThis is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."
-      if ID == 111:
-         return "Skin Balm\n\nUsed and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
-      if ID == 112:
-         return "Bolstering Juice\n\nThis white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
-      if ID == 113:
-         return "Tainted Leaf\n\nThis paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
-      if ID == 114:
-         return "Sweet Sap\n\nUsed and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
-      if ID == 115:
-         return "Poultice\n\nA generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
-      if ID == 116:
-         return "Dagger\n\nA relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"
-      if ID == 117:
-         return "Warhammer\n\nA rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"
-      if ID == 118:
-         return "Saber\n\nA well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"
-      if ID == 119:
-         return "Whip\n\nA somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"
-      if ID == 120:
-         return "Neuterizer\n\nDeveloped by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
-      if ID == 121:
-         return "Teleport Scroll: Softlik\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."
-      if ID == 122:
-         return "Teleport Scroll: Firmshaft\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."
-      if ID == 123:
-         return "Teleport Scroll: Tieden\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."
-      if ID == 124:
-         return "Teleport Scroll: Siz'Calit\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."
-      if ID == 125:
-         return "Teleport Scroll: Oviasis\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."
-      if ID == 126:
-         return "Oasis Water\n\nA vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
-      if ID == 127:
-         return "Tail Spike\n\nThis large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
-      if ID == 128:
-         return "Teleport Scroll: Sanctuary\n\nCreated for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."
-      if ID == 200:
-         return "Lila's Gift\n\nA small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."
-      if ID == 201:
-         return "Milk Creeper Poison\n\nObtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
-      if ID == 202:
-         return "Cock-Snake Venom\n\nObtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
-      if ID == 203:
-         return f"Tuft of Wolf Fur\n\nObtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {self.skinDesc()}."
-      if ID == 204:
-         return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
-      if ID == 205:
-         return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
-      if ID == 206:
-         return "Shiny Trinket\n\nOther than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
-      if ID == 207:
-         return "Wooden Cock Carving\n\nThis thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
-      if ID == 208:
-         return "Bloated Berry\n\nA berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
-      if ID == 209:
-         return "Handful of Grain\n\nA handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
-      if ID == 210:
-         return "Pussy Fruit\n\nIt is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
-      if ID == 211:
-         return "DairE Pill\n\nProduced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
-      if ID == 212:
-         return "Red Mushroom\n\nAn odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
-      if ID == 213:
-         return "Wet, Slimy Cloth\n\nThis piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
-      if ID == 214:
-         return "Malon's Milk\n\nUnlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
-      if ID == 215:
-         return "Malon's Pendant\n\nGiven to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."
-      if ID == 216:
-         return "Pink Ink\n\nOctopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
-      if ID == 217:
-         return "Octopus Egg Jelly\n\nThe jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
-      if ID == 218:
-         return "Bulging Berry\n\nA cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."
-      if ID == 219:
-         return "Fresh Egg\n\nAn unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
-      if ID == 220:
-         return "Blonde Dye\n\nA dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
-      if ID == 221:
-         return "Concentrated Pussy Fruit Juice\n\nCreated by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
-      if ID == 222:
-         return "Kinky Carrot\n\nUsed in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
-      if ID == 223:
-         return "Equan Snack\n\nA common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
-      if ID == 224:
-         return "Lila's Milk\n\nFrom the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
-      if ID == 225:
-         return "Body Wash\n\nThis nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
-      if ID == 226:
-         return "Felin Tea Mix\n\nA common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
-      if ID == 227:
-         return "Felin Oral Wash\n\nWith bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
-      if ID == 228:
-         return "Body Oil\n\nNice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
-      if ID == 229:
-         return "Leather Strap\n\nFound somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
-      if ID == 230:
-         return "Eggcelerator\n\nMeant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."
-      if ID == 231:
-         return "Desiccating Sand\n\nObtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."
-      if ID == 232:
-         return "Flying Carpet\n\nBorrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
-      if ID == 233:
-         return f"Anti-Gravity Rock\n\nBorrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {self.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
-      if ID == 234:
-         return "Reindeer Charm\n\nBorrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
-      if ID == 235:
-         return "Fellatio Rod\n\nBorrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
-      if ID == 236:
-         return "Reception Bell\n\nBorrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
-      if ID == 237:
-         return "Lila's Dewy Gift\n\nOriginally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."
-      if ID == 238:
-         return "Squeaky Cheese\n\nSome cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
-      if ID == 239:
-         return "Shiny Rock\n\nA rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
-      if ID == 240:
-         return "Auburn Dye\n\nA dark reddish color, this dye will turn your hair auburn when used, if you have hair"
-      if ID == 241:
-         return "Brown Dye\n\nA simple brownish, this dye will turn your hair brown when used, if you have hair"
-      if ID == 242:
-         return "Grey Dye\n\nA shade, this dye will turn your hair grey when used, if you have hair"
-      if ID == 243:
-         return "White Dye\n\nLacking any color, this dye will turn your hair pure white when used, if you have hair"
-      if ID == 244:
-         if (self.snuggleBall):
-            return "Snuggle Ball\n\nNot really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
-         return "Snuggle Ball\n\nSquishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
-      if ID == 245:
-         return "Facial Mud\n\nSome mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
-      if ID == 246:
-         return "Fertile Gel\n\nA soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
-      if ID == 247:
-         tempStr = "Support Harness\n\nThis contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
-         if (self.suppHarness):
-            tempStr += "\n\nYou currently have a harness equipped. Using it will unequip the harness."
-         return tempStr
-      if ID == 248:
-         return "Breeder Potion\n\nThis potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
-      if ID == 249:
-         return "Treant's Tear\n\nThis small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
-      if ID == 250:
-         return "Foomp Bomb\n\nMuch like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."
-      if ID == 251:
-         return "Plump Quat\n\nThe quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
-      if ID == 252:
-         return "Malon's Milky Pendant\n\nThis is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
-      if ID == 253:
-         tempStr = "Bug Egg\n\nRelatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
-         if (self.tail == 12):
-            tempStr += "\n\nHowever, you do notice that the egg is just about the right size for the ovipositor hanging off your backside."
-         return tempStr
-      if ID == 254:
-         return "Lantern\n\nThis is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
-      if ID == 255:
-         return "Fragrant Flower\n\nA very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
-      if ID == 256:
-         return "Nectar Candy\n\nA sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
-      if ID == 257:
-         return "Too Human Potion\n\nThis potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
-      if ID == 258:
-         return "Tainted Potion\n\nThis potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
-      if ID == 259:
-         return "Sweet & Sour Candy\n\nThis rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
-      if ID == 260:
-         return "Succubus Draft\n\nOne of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
-      if ID == 404:
-         temp = "Item Not Found\n\nItem Not Found"
-         if as3state.as3DebugEnable:
-            temp += " (This is a joke item referencing status code 404)"
-         return temp
-      if ID == 418:
-         temp = "Strange Teapot\n\nInscribed on the side are the words \"I'm a teapot\"."
-         if as3state.as3DebugEnable:
-            temp += " (This is a joke item referencing status code 418)"
-         return temp
-      if ID == 500:
-         return "Bottle of Milk\n\nA bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
-      if ID == 501:
-         return "Jug of Milk\n\nA large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
-      if ID == 502:
-         return "Barrel of Milk\n\nA barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
-      if ID == 503:
-         return "Lust Draft\n\nA potion that will increase your lust by 20 instantly when used."
-      if ID == 504:
-         return "Rejuvenating Potion\n\nA potion that will heal 30 HP and reduce your lust by 15 instantly when used."
-      if ID == 505:
-         return "Bad Experiment\n\nThis combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."
-      if ID == 506:
-         return "Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
-      if ID == 507:
-         return "Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
-      if ID == 508:
-         return "Superior Lust Draft\n\nA potion that will increase your lust by 50 instantly when used."
-      if ID == 509:
-         return "Superior Rejuvenating Potion\n\nA potion that will heal 70 HP and reduce your lust by 40 instantly when used."
-      if ID == 510:
-         return "Super Bad Experiment\n\nThis extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."
-      if ID == 511:
-         return "Superior Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
-      if ID == 512:
-         return "Superior Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
-      if ID == 513:
-         return "Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
-      if ID == 514:
-         return "Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
-      if ID == 515:
-         return "Black Dye\n\nThis will turn your hair black in color when used, if you have hair."
-      if ID == 516:
-         return "Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-      if ID == 517:
-         return "Potency Potion\n\nKicking your balls into gear, they will permanently produce 20% more cum, despite their size."
-      if ID == 518:
-         return "Superior Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
-      if ID == 519:
-         return "Superior Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
-      if ID == 520:
-         return "Red Dye\n\nThis will turn your hair red in color when used, if you have hair."
-      if ID == 521:
-         return "Superior Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-      if ID == 522:
-         return "Superior Potency Potion\n\nDrop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
-      if ID == 523:
-         return "Vial of Cum\n\nStill kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
-      if ID == 524:
-         return "Bottle of Cum\n\nA bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
-      if ID == 525:
-         return "Jug of Cum\n\nA jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
-      if ID == 526:
-         return "Barrel of Cum\n\nThere's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
-      if ID == 527:
-         return "Good Egg\n\nAn unfertilized fresh egg that is especially good for your health and body."
-      if ID == 528:
-         return "Bad Egg\n\nAn unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."
-      if ID == 529:
-         return "Strange Egg\n\nAn unfertilized fresh egg that can do... odd things to your body."
-      if ID == 530:
-         return "Charmed Egg\n\nAn unfertilized fresh egg that will make you quite alluring for 20 hours."
-      if ID == 531:
-         return "Divine Egg\n\nA very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
-      if ID == 532:
-         return "Strong Pheromone\n\nOriginally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
-      if ID == 533:
-         return "Reduced Reduction\n\nA weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
-      if ID == 534:
-         return "Male Enhancement Drug\n\nA simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."
-      if ID == 535:
-         return "Milk Suppressant\n\nThis drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
-      if ID == 536:
-         return "Bazoomba!\n\nThis glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."
-      if ID == 537:
-         return "Queen Egg\n\nNot the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
-      if ID == 538:
-         return "Soldier Egg\n\nNot the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
-      if ID == 539:
-         return "Drone Egg\n\nNot the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
-      if ID == 540:
-         return "Worker Egg\n\nNot the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
-      return f"ITEM DESCRIPTION ERROR {ID}"
-
-   @staticmethod
-   def usableItem(ID:int):
-      '''
-      Returns True if item ID can be used
-      '''
-      return ID in {2,3,104,106,108,109,116,117,118,119,127,232,235,244,247,418}
-
-   def canLose(self, ID:int, check:int=1):
-      '''
-      Returns True if item ID can be lost
-      '''
-      return not (ID == 244 and self.countItem(244) == check and self.snuggleBall or ID == 247 and self.countItem(247) == check and self.suppHarness)
+   def itemDescription(self, ID: int):
+        '''
+        Function which returns the description of the item ID
+        '''
+        if ID == 2:
+            return "Debug Stick\n\nDebug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
+        if ID == 3:
+            return "Teleport Scroll: Any\n\nCreated for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."
+        if ID == 101:
+            return "Claws of the Lupine Ancestors\n\nHarkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."
+        if ID == 102:
+            return "Imbued Horseshoes\n\nCrafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
+        if ID == 103:
+            return "Magical Sands of the Dry Dunes\n\nApplying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
+        if ID == 104:
+            return "Milking Machine\n\nA compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."
+        if ID == 105:
+            return "'Cat's Meow' Potion\n\nFavored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
+        if ID == 106:
+            return "Penis Pump\n\nA simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."
+        if ID == 108:
+            return "Blood Gauge\n\nDue to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
+        if ID == 109:
+            return "Educated Eggdicator\n\nWith so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."
+        if ID == 110:
+            return "A Reduction of Reducer Agents\n\nThis is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."
+        if ID == 111:
+            return "Skin Balm\n\nUsed and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
+        if ID == 112:
+            return "Bolstering Juice\n\nThis white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
+        if ID == 113:
+            return "Tainted Leaf\n\nThis paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
+        if ID == 114:
+            return "Sweet Sap\n\nUsed and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
+        if ID == 115:
+            return "Poultice\n\nA generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
+        if ID == 116:
+            return "Dagger\n\nA relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"
+        if ID == 117:
+            return "Warhammer\n\nA rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"
+        if ID == 118:
+            return "Saber\n\nA well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"
+        if ID == 119:
+            return "Whip\n\nA somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"
+        if ID == 120:
+            return "Neuterizer\n\nDeveloped by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
+        if ID == 121:
+            return "Teleport Scroll: Softlik\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 122:
+            return "Teleport Scroll: Firmshaft\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 123:
+            return "Teleport Scroll: Tieden\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 124:
+            return "Teleport Scroll: Siz'Calit\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 125:
+            return "Teleport Scroll: Oviasis\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 126:
+            return "Oasis Water\n\nA vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
+        if ID == 127:
+            return "Tail Spike\n\nThis large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
+        if ID == 128:
+            return "Teleport Scroll: Sanctuary\n\nCreated for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 200:
+            return "Lila's Gift\n\nA small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."
+        if ID == 201:
+            return "Milk Creeper Poison\n\nObtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
+        if ID == 202:
+            return "Cock-Snake Venom\n\nObtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
+        if ID == 203:
+            return f"Tuft of Wolf Fur\n\nObtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {self.skinDesc()}."
+        if ID == 204:
+            return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
+        if ID == 205:
+            return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
+        if ID == 206:
+            return "Shiny Trinket\n\nOther than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
+        if ID == 207:
+            return "Wooden Cock Carving\n\nThis thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
+        if ID == 208:
+            return "Bloated Berry\n\nA berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
+        if ID == 209:
+            return "Handful of Grain\n\nA handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
+        if ID == 210:
+            return "Pussy Fruit\n\nIt is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
+        if ID == 211:
+            return "DairE Pill\n\nProduced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
+        if ID == 212:
+            return "Red Mushroom\n\nAn odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
+        if ID == 213:
+            return "Wet, Slimy Cloth\n\nThis piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
+        if ID == 214:
+            return "Malon's Milk\n\nUnlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
+        if ID == 215:
+            return "Malon's Pendant\n\nGiven to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."
+        if ID == 216:
+            return "Pink Ink\n\nOctopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
+        if ID == 217:
+            return "Octopus Egg Jelly\n\nThe jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
+        if ID == 218:
+            return "Bulging Berry\n\nA cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."
+        if ID == 219:
+            return "Fresh Egg\n\nAn unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
+        if ID == 220:
+            return "Blonde Dye\n\nA dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
+        if ID == 221:
+            return "Concentrated Pussy Fruit Juice\n\nCreated by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
+        if ID == 222:
+            return "Kinky Carrot\n\nUsed in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
+        if ID == 223:
+            return "Equan Snack\n\nA common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
+        if ID == 224:
+            return "Lila's Milk\n\nFrom the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
+        if ID == 225:
+            return "Body Wash\n\nThis nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
+        if ID == 226:
+            return "Felin Tea Mix\n\nA common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
+        if ID == 227:
+            return "Felin Oral Wash\n\nWith bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
+        if ID == 228:
+            return "Body Oil\n\nNice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
+        if ID == 229:
+            return "Leather Strap\n\nFound somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
+        if ID == 230:
+            return "Eggcelerator\n\nMeant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."
+        if ID == 231:
+            return "Desiccating Sand\n\nObtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."
+        if ID == 232:
+            return "Flying Carpet\n\nBorrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
+        if ID == 233:
+            return f"Anti-Gravity Rock\n\nBorrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {self.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
+        if ID == 234:
+            return "Reindeer Charm\n\nBorrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
+        if ID == 235:
+            return "Fellatio Rod\n\nBorrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
+        if ID == 236:
+            return "Reception Bell\n\nBorrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
+        if ID == 237:
+            return "Lila's Dewy Gift\n\nOriginally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."
+        if ID == 238:
+            return "Squeaky Cheese\n\nSome cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
+        if ID == 239:
+            return "Shiny Rock\n\nA rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
+        if ID == 240:
+            return "Auburn Dye\n\nA dark reddish color, this dye will turn your hair auburn when used, if you have hair"
+        if ID == 241:
+            return "Brown Dye\n\nA simple brownish, this dye will turn your hair brown when used, if you have hair"
+        if ID == 242:
+            return "Grey Dye\n\nA shade, this dye will turn your hair grey when used, if you have hair"
+        if ID == 243:
+            return "White Dye\n\nLacking any color, this dye will turn your hair pure white when used, if you have hair"
+        if ID == 244:
+            if (self.snuggleBall):
+                return "Snuggle Ball\n\nNot really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
+            return "Snuggle Ball\n\nSquishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
+        if ID == 245:
+            return "Facial Mud\n\nSome mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
+        if ID == 246:
+            return "Fertile Gel\n\nA soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
+        if ID == 247:
+            tempStr = "Support Harness\n\nThis contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
+            if (self.suppHarness):
+                tempStr += "\n\nYou currently have a harness equipped. Using it will unequip the harness."
+            return tempStr
+        if ID == 248:
+            return "Breeder Potion\n\nThis potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
+        if ID == 249:
+            return "Treant's Tear\n\nThis small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
+        if ID == 250:
+            return "Foomp Bomb\n\nMuch like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."
+        if ID == 251:
+            return "Plump Quat\n\nThe quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
+        if ID == 252:
+            return "Malon's Milky Pendant\n\nThis is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
+        if ID == 253:
+            tempStr = "Bug Egg\n\nRelatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
+            if (self.tail == 12):
+                tempStr += "\n\nHowever, you do notice that the egg is just about the right size for the ovipositor hanging off your backside."
+            return tempStr
+        if ID == 254:
+            return "Lantern\n\nThis is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
+        if ID == 255:
+            return "Fragrant Flower\n\nA very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
+        if ID == 256:
+            return "Nectar Candy\n\nA sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
+        if ID == 257:
+            return "Too Human Potion\n\nThis potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
+        if ID == 258:
+            return "Tainted Potion\n\nThis potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
+        if ID == 259:
+            return "Sweet & Sour Candy\n\nThis rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
+        if ID == 260:
+            return "Succubus Draft\n\nOne of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
+        if ID == 404:
+            temp = "Item Not Found\n\nItem Not Found"
+            if as3state.as3DebugEnable:
+                temp += " (This is a joke item referencing status code 404)"
+            return temp
+        if ID == 418:
+            temp = "Strange Teapot\n\nInscribed on the side are the words \"I'm a teapot\"."
+            if as3state.as3DebugEnable:
+                temp += " (This is a joke item referencing status code 418)"
+            return temp
+        if ID == 500:
+            return "Bottle of Milk\n\nA bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
+        if ID == 501:
+            return "Jug of Milk\n\nA large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
+        if ID == 502:
+            return "Barrel of Milk\n\nA barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
+        if ID == 503:
+            return "Lust Draft\n\nA potion that will increase your lust by 20 instantly when used."
+        if ID == 504:
+            return "Rejuvenating Potion\n\nA potion that will heal 30 HP and reduce your lust by 15 instantly when used."
+        if ID == 505:
+            return "Bad Experiment\n\nThis combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."
+        if ID == 506:
+            return "Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
+        if ID == 507:
+            return "Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
+        if ID == 508:
+            return "Superior Lust Draft\n\nA potion that will increase your lust by 50 instantly when used."
+        if ID == 509:
+            return "Superior Rejuvenating Potion\n\nA potion that will heal 70 HP and reduce your lust by 40 instantly when used."
+        if ID == 510:
+            return "Super Bad Experiment\n\nThis extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."
+        if ID == 511:
+            return "Superior Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
+        if ID == 512:
+            return "Superior Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
+        if ID == 513:
+            return "Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
+        if ID == 514:
+            return "Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
+        if ID == 515:
+            return "Black Dye\n\nThis will turn your hair black in color when used, if you have hair."
+        if ID == 516:
+            return "Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
+        if ID == 517:
+            return "Potency Potion\n\nKicking your balls into gear, they will permanently produce 20% more cum, despite their size."
+        if ID == 518:
+            return "Superior Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
+        if ID == 519:
+            return "Superior Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
+        if ID == 520:
+            return "Red Dye\n\nThis will turn your hair red in color when used, if you have hair."
+        if ID == 521:
+            return "Superior Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
+        if ID == 522:
+            return "Superior Potency Potion\n\nDrop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
+        if ID == 523:
+            return "Vial of Cum\n\nStill kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
+        if ID == 524:
+            return "Bottle of Cum\n\nA bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
+        if ID == 525:
+            return "Jug of Cum\n\nA jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
+        if ID == 526:
+            return "Barrel of Cum\n\nThere's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
+        if ID == 527:
+            return "Good Egg\n\nAn unfertilized fresh egg that is especially good for your health and body."
+        if ID == 528:
+            return "Bad Egg\n\nAn unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."
+        if ID == 529:
+            return "Strange Egg\n\nAn unfertilized fresh egg that can do... odd things to your body."
+        if ID == 530:
+            return "Charmed Egg\n\nAn unfertilized fresh egg that will make you quite alluring for 20 hours."
+        if ID == 531:
+            return "Divine Egg\n\nA very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
+        if ID == 532:
+            return "Strong Pheromone\n\nOriginally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
+        if ID == 533:
+            return "Reduced Reduction\n\nA weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
+        if ID == 534:
+            return "Male Enhancement Drug\n\nA simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."
+        if ID == 535:
+            return "Milk Suppressant\n\nThis drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
+        if ID == 536:
+            return "Bazoomba!\n\nThis glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."
+        if ID == 537:
+            return "Queen Egg\n\nNot the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
+        if ID == 538:
+            return "Soldier Egg\n\nNot the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
+        if ID == 539:
+            return "Drone Egg\n\nNot the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
+        if ID == 540:
+            return "Worker Egg\n\nNot the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
+        return f"ITEM DESCRIPTION ERROR {ID}"
 
    @staticmethod
-   def conItem(ID:int):
-      '''
-      Returns True if item ID is consumable
-      '''
-      return ID in {103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}
+   def usableItem(ID: int):
+        '''
+        Returns True if item ID can be used
+        '''
+        return ID in {2, 3, 104, 106, 108, 109, 116, 117, 118, 119, 127, 232, 235, 244, 247, 418}
 
-   def passiveItemAdd(self, ID:int):
-      '''
-      Applies the passive effect for item ID
-      '''
-      if ID == 101:
-         self.rapeMod += 10
-      elif ID == 102:
-         self.runMod += 20
-      elif ID == 200:
-         self.vagMoistMod += 4
-         self.cockMoistMod += 4
-         self.statsMod(0,0,0,10)
-      elif ID == 215:
-         self.rapeMod += 5
-         self.runMod += 5
-         self.milkHPMod += 5
-      elif ID == 233:
-         self.carryMod += 75
-      elif ID == 234:
-         self.pregRate += 0.5
-         self.minLust += 10
-         self.hips += 10
-         self.doLust(0,0)
-      elif ID == 236:
-         self.SexPMod += 0.5
-         self.changeMod += 0.3
-      elif ID == 237:
-         self.vagMoistMod += 8
-         self.cockMoistMod += 8
-         self.statsMod(0,0,0,10)
-         if (self.heat < 1):
-            self.heatMaxTime = 96
-            self.heatTime = 96
-            self.heat += 1
-         elif (self.heat >= 1):
-            self.heatMaxTime -= 12
-            self.heat += 1
-      elif ID == 252:
-         self.rapeMod += 5
-         self.runMod += 5
-         self.milkHPMod += 5
-         self.carryMod += 10
-         self.milkCap += 3000
-
-   def passiveItemRemove(self, ID:int):
-      '''
-      Removes the passive effect for item ID
-      '''
-      if (ID == self.weapon):
-         self.weapon = 10
-      elif ID == 101:
-         self.rapeMod -= 10
-      elif ID == 102:
-         self.runMod -= 20
-      elif ID == 200:
-         self.vagMoistMod -= 4
-         self.cockMoistMod -= 4
-         self.statsMod(0,0,0,-10)
-      elif ID == 215:
-         self.rapeMod -= 5
-         self.runMod -= 5
-         self.milkHPMod -= 5
-      elif ID == 233:
-         self.carryMod -= 75
-      elif ID == 234:
-         self.pregRate -= 0.5
-         self.minLust -= 10
-         self.hips -= 10
-      elif ID == 236:
-         self.SexPMod -= 0.5
-         self.changeMod -= 0.3
-      elif ID == 237:
-         self.vagMoistMod -= 8
-         self.cockMoistMod -= 8
-         self.statsMod(0,0,0,-10)
-         if (self.heat >= 2):
-            self.heatMaxTime += 12
-         self.heat -= 1
-      elif ID == 252:
-         self.rapeMod -= 5
-         self.runMod -= 5
-         self.milkHPMod -= 5
-         self.carryMod -= 10
-         self.milkCap -= 3000
+   def canLose(self, ID: int, check: int = 1):
+        '''
+        Returns True if item ID can be lost
+        '''
+        return not (ID == 244 and self.countItem(244) == check and self.snuggleBall or ID == 247 and self.countItem(247) == check and self.suppHarness)
 
    @staticmethod
-   def itemValue(ID:int):
-      '''
-      Function which returns the value of the item ID
-      '''
-      if ID in {200, 215, 229, 232, 233, 234, 235, 236, 237, 252, 254}:
-         return 0
-      if ID in {204, 205}:
-         return 1
-      if ID in {523, 528}:
-         return 2
-      if ID in {209, 239, 253}:
-         return 3
-      if ID in {115, 203, 213, 214, 219, 226, 500, 526, 533, 540}:
-         return 5
-      if ID == 524:
-         return 7
-      if ID in {211, 224, 225, 227, 228, 238, 251, 503, 504, 505, 506, 507, 527, 534, 539}:
-         return 10
-      if ID == 1:
-         return 13
-      if ID == 212:
-         return 14
-      if ID in {111, 112, 113, 114, 121, 122, 123, 124, 125, 126, 201, 202, 208, 222, 223, 231, 245, 255, 501}:
-         return 15
-      if ID == 210:
-         return 17
-      if ID in {103, 110, 116, 207, 218, 246, 256, 513, 514, 515, 516, 517, 535, 536, 538}:
-         return 20
-      if ID in {128, 230, 248, 508, 509, 510, 511, 512, 525}:
-         return 25
-      if ID in {105, 117, 120, 206, 221, 241, 257, 258, 529, 537}:
-         return 30
-      if ID in {127, 244}:
-         return 35
-      if ID in {119, 217, 530}:
-         return 40
-      if ID in {242, 249, 250, 260}:
-         return 45
-      if ID in {101, 102, 108, 220, 259, 518, 519, 521, 522}:
-         return 50
-      if ID == 118:
-         return 55
-      if ID == 531:
-         return 69
-      if ID == 502:
-         return 70
-      if ID in {106, 240, 532}:
-         return 75
-      if ID == 247:
-         return 80
-      if ID in {104, 243}:
-         return 100
-      if ID == 109:
-         return 125
-      if ID in {216, 520}:
-         return 150
-      return 0
+   def conItem(ID: int):
+        '''
+        Returns True if item ID is consumable
+        '''
+        # HERE
+        return ID in {103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}
+
+   def passiveItemAdd(self, ID: int):
+        '''
+        Applies the passive effect for item ID
+        '''
+        if ID == 101:
+            self.rapeMod += 10
+        elif ID == 102:
+            self.runMod += 20
+        elif ID == 200:
+            self.vagMoistMod += 4
+            self.cockMoistMod += 4
+            self.statsMod(0, 0, 0, 10)
+        elif ID == 215:
+            self.rapeMod += 5
+            self.runMod += 5
+            self.milkHPMod += 5
+        elif ID == 233:
+            self.carryMod += 75
+        elif ID == 234:
+            self.pregRate += 0.5
+            self.minLust += 10
+            self.hips += 10
+            self.doLust(0, 0)
+        elif ID == 236:
+            self.SexPMod += 0.5
+            self.changeMod += 0.3
+        elif ID == 237:
+            self.vagMoistMod += 8
+            self.cockMoistMod += 8
+            self.statsMod(0, 0, 0, 10)
+            if (self.heat < 1):
+                self.heatMaxTime = 96
+                self.heatTime = 96
+                self.heat += 1
+            elif (self.heat >= 1):
+                self.heatMaxTime -= 12
+                self.heat += 1
+        elif ID == 252:
+            self.rapeMod += 5
+            self.runMod += 5
+            self.milkHPMod += 5
+            self.carryMod += 10
+            self.milkCap += 3000
+
+   def passiveItemRemove(self, ID: int):
+        '''
+        Removes the passive effect for item ID
+        '''
+        if (ID == self.weapon):
+            self.weapon = 10
+        elif ID == 101:
+            self.rapeMod -= 10
+        elif ID == 102:
+            self.runMod -= 20
+        elif ID == 200:
+            self.vagMoistMod -= 4
+            self.cockMoistMod -= 4
+            self.statsMod(0, 0, 0, -10)
+        elif ID == 215:
+            self.rapeMod -= 5
+            self.runMod -= 5
+            self.milkHPMod -= 5
+        elif ID == 233:
+            self.carryMod -= 75
+        elif ID == 234:
+            self.pregRate -= 0.5
+            self.minLust -= 10
+            self.hips -= 10
+        elif ID == 236:
+            self.SexPMod -= 0.5
+            self.changeMod -= 0.3
+        elif ID == 237:
+            self.vagMoistMod -= 8
+            self.cockMoistMod -= 8
+            self.statsMod(0, 0, 0, -10)
+            if (self.heat >= 2):
+                self.heatMaxTime += 12
+            self.heat -= 1
+        elif ID == 252:
+            self.rapeMod -= 5
+            self.runMod -= 5
+            self.milkHPMod -= 5
+            self.carryMod -= 10
+            self.milkCap -= 3000
 
    @staticmethod
-   def itemStackMax(ID:int):
-      '''
-      Function which returns the maximum number of the item ID that can be in a stack
-      '''
-      if ID in {1,2,3,101,102,104,106,108,109,116,117,118,119,127,200,215,229,232,233,234,235,236,237,244,247,252,254,404,418,502,526,531}:
-         return 1
-      if ID in {105,110,111,112,113,114,120,126,201,202,204,205,207,210,216,217,219,220,222,230,240,241,242,243,249,250,257,258,501,505,513,514,515,516,517,518,519,520,521,522,525,529,530,532,536,537}:
-         return 5
-      if ID in {115,121,122,123,124,125,128,206,208,212,213,214,218,221,223,224,225,227,228,231,246,248,259,260,500,503,504,506,507,508,509,510,511,512,524,527,528,534,535,538,539}:
-         return 10
-      if ID in {103,203,209,211,226,238,239,245,251,253,255,256,523,533,540}:
-         return 15
-      return 0
+   def itemValue(ID: int):
+        '''
+        Function which returns the value of the item ID
+        '''
+        if ID in {200, 215, 229, 232, 233, 234, 235, 236, 237, 252, 254}:
+            return 0
+        if ID in {204, 205}:
+            return 1
+        if ID in {523, 528}:
+            return 2
+        if ID in {209, 239, 253}:
+            return 3
+        if ID in {115, 203, 213, 214, 219, 226, 500, 526, 533, 540}:
+            return 5
+        if ID == 524:
+            return 7
+        if ID in {211, 224, 225, 227, 228, 238, 251, 503, 504, 505, 506, 507, 527, 534, 539}:
+            return 10
+        if ID == 1:
+            return 13
+        if ID == 212:
+            return 14
+        if ID in {111, 112, 113, 114, 121, 122, 123, 124, 125, 126, 201, 202, 208, 222, 223, 231, 245, 255, 501}:
+            return 15
+        if ID == 210:
+            return 17
+        if ID in {103, 110, 116, 207, 218, 246, 256, 513, 514, 515, 516, 517, 535, 536, 538}:
+            return 20
+        if ID in {128, 230, 248, 508, 509, 510, 511, 512, 525}:
+            return 25
+        if ID in {105, 117, 120, 206, 221, 241, 257, 258, 529, 537}:
+            return 30
+        if ID in {127, 244}:
+            return 35
+        if ID in {119, 217, 530}:
+            return 40
+        if ID in {242, 249, 250, 260}:
+            return 45
+        if ID in {101, 102, 108, 220, 259, 518, 519, 521, 522}:
+            return 50
+        if ID == 118:
+            return 55
+        if ID == 531:
+            return 69
+        if ID == 502:
+            return 70
+        if ID in {106, 240, 532}:
+            return 75
+        if ID == 247:
+            return 80
+        if ID in {104, 243}:
+            return 100
+        if ID == 109:
+            return 125
+        if ID in {216, 520}:
+            return 150
+        return 0
 
    @staticmethod
-   def itemFoodValue(ID:int):
-      '''
-      Function which returns the food value of the item ID
-      '''
-      tempNum = 0
-      if ID == 529:
-         tempNum = 1
-      elif ID == 503:
-         tempNum = 3
-      elif ID in {513, 514, 253}:
-         tempNum = 4
-      elif ID in {114, 211, 534, 504, 506}:
-         tempNum = 5
-      elif ID in {507, 508}:
-         tempNum = 7
-      elif ID in {208, 509, 518, 519}:
-         tempNum = 8
-      elif ID in {512, 226, 523, 209, 535, 218, 540, 222, 511}:
-         tempNum = 10
-      elif ID in {256, 516, 517, 527, 212, 536, 539, 219, 221}:
-         tempNum = 15
-      elif ID in {224, 521, 522, 238, 210, 530, 538}:
-         tempNum = 20
-      elif ID in {537, 259, 223}:
-         tempNum = 25
-      elif ID in {500, 524, 214}:
-         tempNum = 30
-      elif ID == 251:
-         tempNum = 40
-      elif ID == 531:
-         tempNum = 50
-      elif ID == 501:
-         tempNum = 70
-      return tempNum * 2
+   def itemStackMax(ID: int):
+        '''
+        Function which returns the maximum number of the item ID that can be in a stack
+        '''
+        # HERE
+        if ID in {1,2,3,101,102,104,106,108,109,116,117,118,119,127,200,215,229,232,233,234,235,236,237,244,247,252,254,404,418,502,526,531}:
+            return 1
+        if ID in {105,110,111,112,113,114,120,126,201,202,204,205,207,210,216,217,219,220,222,230,240,241,242,243,249,250,257,258,501,505,513,514,515,516,517,518,519,520,521,522,525,529,530,532,536,537}:
+            return 5
+        if ID in {115,121,122,123,124,125,128,206,208,212,213,214,218,221,223,224,225,227,228,231,246,248,259,260,500,503,504,506,507,508,509,510,511,512,524,527,528,534,535,538,539}:
+            return 10
+        if ID in {103,203,209,211,226,238,239,245,251,253,255,256,523,533,540}:
+            return 15
+        return 0
 
    @staticmethod
-   def useItemHidePage(ID:int):
-      return not ID in {101,102,200,206,215,229,233,234,236,237,252,254,404}
+   def itemFoodValue(ID: int):
+        '''
+        Function which returns the food value of the item ID
+        '''
+        tempNum = 0
+        if ID == 529:
+            tempNum = 1
+        elif ID == 503:
+            tempNum = 3
+        elif ID in {513, 514, 253}:
+            tempNum = 4
+        elif ID in {114, 211, 534, 504, 506}:
+            tempNum = 5
+        elif ID in {507, 508}:
+            tempNum = 7
+        elif ID in {208, 509, 518, 519}:
+            tempNum = 8
+        elif ID in {512, 226, 523, 209, 535, 218, 540, 222, 511}:
+            tempNum = 10
+        elif ID in {256, 516, 517, 527, 212, 536, 539, 219, 221}:
+            tempNum = 15
+        elif ID in {224, 521, 522, 238, 210, 530, 538}:
+            tempNum = 20
+        elif ID in {537, 259, 223}:
+            tempNum = 25
+        elif ID in {500, 524, 214}:
+            tempNum = 30
+        elif ID == 251:
+            tempNum = 40
+        elif ID == 531:
+            tempNum = 50
+        elif ID == 501:
+            tempNum = 70
+        return tempNum * 2
 
-   def doItemUse(self, ID:int): # TODO: optimize
-      '''
-      Does the behaviour of item "ID"
-      '''
-      self.tempNum = 0
-      self.dmg = 0
-      if ID == 418:
-         self.outputMainText("You pour yourself a cup of tea from the strange teapot and drink it. You feel very refreshed.",True)
-         self.doHP(100000)
-         self.doEnd()
-      elif ID == 2:
-         self.outputMainText("You have equipped the debug stick.",True)
-         self.weapon = 2
-         self.doEnd()
-      elif ID == 3:
-         if self.currentState != 2:
-            self.outputMainText("Where would you like to go?",True)
-            self.showButtons(ButtonList(1,0,1,0,1,0,1,1,0,1,0,0))
-            # TODO: Do something about this jank
-            temp = {1:"Tieden",3:"Softlik",5:"Siz'Calit",7:"Firmshaft",8:"Sanctuary",10:"Oviasis"}
-            temp.pop((0,3,7,1,5,0,10,0,0,0,0,0,8)[self.currentZone])
-            self.doButtonChoices(temp)
-            def doListen():
-               place = ('','Tieden','','Softlik','','Siz\'Calit','','Firmshaft','Sanctuary','','Oviasis')[self.buttonChoice]
-               self.outputMainText(f"Are you sure that you want to travel to {place}?",True)
-               self.tempNum = self.buttonChoice
-               self.buttonConfirm()
-               def doListen():
-                  if self.buttonChoice == 6:
-                     if self.tempNum == 1:
-                        self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!",True)
-                        regNum = 3
-                     elif self.tempNum == 3:
-                        self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!",True)
-                        regNum = 1
-                     elif self.tempNum == 5:
-                        self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!",True)
-                        regNum = 4
-                     elif self.tempNum == 7:
-                        self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!",True)
-                        regNum = 2
-                     elif self.tempNum == 8:
-                        self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a thump, they quickly disappear and you find yourself back in the city of Sanctuary!",True)
-                        regNum = 12
-                     elif self.tempNum == 10:
-                        self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!",True)
-                        regNum = 6
-                     self.currentState = 1
-                     self.inBag = False
-                     self.inDungeon = False
-                     self.regionChange(regNum)
-                     self.doEnd()
-                  else:
-                     self.doReturn()
-               self.doListen = doListen
-            self.doListen = doListen
-      elif ID == 103:
-         self.showButtons(ButtonList(0,0,0,0,1,0,1,0,1,0,1,1))
-         tempDict = {9:"Breasts", 12:"Cancel"}
-         if (self.cockTotal > 0):
-            tempDict[5] = "Penis"
-         if (self.vagTotal > 0):
-            tempDict[7] = "Pussy"
-         if (self.udders):
-            tempDict[11] = "Udder"
-         self.outputMainText("Which genitalia would you like to make a bit dryer?",True)
-         self.doButtonChoices(tempDict)
-         def doListen():
-            if self.buttonChoice == 5:
-               self.outputMainText(f"You dab the sand onto your cock-head{self.plural(1)}. It feels odd at first, but as you rub yourself to arousal a bit, you notice a decrease in pre.",True)
-               self.cockMoist -= 4
-               self.doEnd()
-            elif self.buttonChoice == 7:
-               self.outputMainText(f"You dab the sand onto your cunt{self.plural(2)}. It feels odd at first, but as you rub yourself to arousal a bit, you notice a decrease in lubrications.",True)
-               self.vagMoist -= 4
-               self.doEnd()
-            elif self.buttonChoice == 9:
-               self.doMainText("You dab the sand onto your nipples. It feels odd at first, but as you rub them until they are stiff, you notice a decrease in lactation.",True)
-               if (self.lactation - 75 < 0):
-                  self.milkMod += self.lactation - 75
-               self.lactChange(1,-75)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 11:
-               self.doMainText("You dab the sand onto your teats. It feels odd at first, but as you rub them until they are stiff, you notice a decrease in lactation.",True)
-               self.lactChange(2,-75)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 12:
-               self.itemAdd(103)
-               self.doProcess()
-         self.doListen = doListen
-      elif ID == 104:
-         if (self.currentState != 3):
-            self.outputMainText("You can only use a milker while masturbating.",True)
+   @staticmethod
+   def useItemHidePage(ID: int):
+        '''
+        Whether the page label should be hidden when using an item
+        '''
+        return not ID in {101, 102, 200, 206, 215, 229, 233, 234, 236, 237, 252, 254, 404}
+
+   def doItemUse(self, ID: int):
+        '''
+        Does the behaviour of item "ID"
+        '''
+        # TODO: optimize
+        self.tempNum = 0
+        self.dmg = 0
+        if ID == 418:
+            self.outputMainText("You pour yourself a cup of tea from the strange teapot and drink it. You feel very refreshed.", True)
+            self.doHP(100000)
             self.doEnd()
-         else:
-            self.tempNum = 0
-            self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-            tempDict = {5:"Breasts"}
+        elif ID == 2:
+            self.outputMainText("You have equipped the debug stick.", True)
+            self.weapon = 2
+            self.doEnd()
+        elif ID == 3:
+            if self.currentState != 2:
+                self.outputMainText("Where would you like to go?", True)
+                self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0))
+                # TODO: Do something about this jank
+                temp = {1:"Tieden",3:"Softlik",5:"Siz'Calit",7:"Firmshaft",8:"Sanctuary",10:"Oviasis"}
+                temp.pop((0,3,7,1,5,0,10,0,0,0,0,0,8)[self.currentZone])
+                self.doButtonChoices(temp)
+
+                def doListen():
+                    place = ('','Tieden','','Softlik','','Siz\'Calit','','Firmshaft','Sanctuary','','Oviasis')[self.buttonChoice]
+                    self.outputMainText(f"Are you sure that you want to travel to {place}?",True)
+                    self.tempNum = self.buttonChoice
+                    self.buttonConfirm()
+
+                    def doListen():
+                        if self.buttonChoice == 6:
+                            if self.tempNum == 1:
+                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!", True)
+                                regNum = 3
+                            elif self.tempNum == 3:
+                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!", True)
+                                regNum = 1
+                            elif self.tempNum == 5:
+                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!", True)
+                                regNum = 4
+                            elif self.tempNum == 7:
+                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!", True)
+                                regNum = 2
+                            elif self.tempNum == 8:
+                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a thump, they quickly disappear and you find yourself back in the city of Sanctuary!", True)
+                                regNum = 12
+                            elif self.tempNum == 10:
+                                self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!", True)
+                                regNum = 6
+                            self.currentState = 1
+                            self.inBag = False
+                            self.inDungeon = False
+                            self.regionChange(regNum)
+                            self.doEnd()
+                        else:
+                            self.doReturn()
+                    self.doListen = doListen
+                self.doListen = doListen
+        elif ID == 103:
+            self.showButtons(ButtonList(0,0,0,0,1,0,1,0,1,0,1,1))
+            tempDict = {9:"Breasts", 12:"Cancel"}
+            if (self.cockTotal > 0):
+                tempDict[5] = "Penis"
+            if (self.vagTotal > 0):
+                tempDict[7] = "Pussy"
             if (self.udders):
-               tempDict[7] = "Udder"
-            self.outputMainText("What would you like to pump?",True)
+                tempDict[11] = "Udder"
+            self.outputMainText("Which genitalia would you like to make a bit dryer?", True)
             self.doButtonChoices(tempDict)
+
             def doListen():
-               self.getMilk = 0
-               self.doMainText("You uncoil the tubes of your milker, stretching them out and starting up the pump. Attaching the appropriate cups, you slip them onto your ",True)
-               if (self.buttonChoice == 5):
-                  self.tempNum = 1
-                  self.doMainText(f"{self.nipDesc()} nipples, until the rims press up and seal onto your {self.boobDesc()} breasts with the gentle suction.")
-               elif (self.buttonChoice == 7):
-                  self.tempNum = 2
-                  self.doMainText(f"{self.teatDesc()} teats, until the rims press up and seal onto your {self.udderDesc()} udder with the gentle suction.")
-               self.doMainText("\n\nYou shudder a little as the stuttered pumping vibrates through your body. Warmth begins to envelop your ")
-               if (self.tempNum == 1):
-                  self.doMainText("chest")
-               elif (self.tempNum == 2):
-                  self.doMainText("belly")
-               self.doMainText(" feeling all tingly.")
-               if (self.tempNum == 1 and self.lactation > 0 or self.tempNum == 2 and self.udderLactation > 0):
-                  self.hrs += 1
-                  self.getMilk = self.milkAmount(self.tempNum)
-                  self.doMainText(" Droplets of milk begin to trickle around your ")
-                  if (self.tempNum == 1):
-                     self.doMainText("nipples")
-                  elif (self.tempNum == 2):
-                     self.doMainText("teats")
-                  self.doMainText(" and slurps through the tubes. Within moments, your ")
-                  if (self.tempNum == 1):
-                     self.doMainText("nipples")
-                  elif (self.tempNum == 2):
-                     self.doMainText("teats")
-                  self.doMainText(" throb along with the pulse, ")
-                  if self.getMilk <= 500:
-                     self.doMainText("small dribbles")
-                  elif self.getMilk <= 1000:
-                     self.doMainText("spurts")
-                  elif self.getMilk <= 2000:
-                     self.doMainText("sprays")
-                  elif self.getMilk <= 8000:
-                     self.doMainText("jets")
-                  elif self.getMilk <= 19000:
-                     self.doMainText("steady streams")
-                  else:
-                     self.doMainText("small floods")
-                  self.doMainText(" of milk swishing through the tubes and collecting at the machine.")
-               self.doMainText(" The pleasurable sensation lingers constantly, bringing you to a small orgasm")
-               if (self.getMilk > 0):
-                  self.doMainText(" while your flow of milk slows to a stop")
-               self.doMainText(".\n\nYou flip the machine off, the cups making a loud kissing sound as the vacuum is released. As they fall to the floor, you rub your aroused ")
-               if (self.tempNum == 1):
-                  self.doMainText(f"{self.nipDesc()} nipples")
-               elif (self.tempNum == 2):
-                  self.doMainText(f"{self.teatDesc()} teats")
-               self.doMainText(", shivering from their shortly increased sensitivity, slightly engorged and inflated.")
-               if (self.boobTotal > 2 or self.tempNum == 2):
-                  self.doMainText(" Then you move onto the next pair...")
-               self.doMainText(" Eventually you clean yourself up and put the machine away.")
-               if (self.tempNum == 1):
-                  self.nipPump += 10
-                  if (self.nipPump > 40):
-                     self.nipPump = 0
-                     self.nippleSize += 1
-                     self.doMainText("\n\nHowever, this time your nipples don't seem to relax back to their original state, permanently swollen larger...")
-               elif (self.tempNum == 2):
-                  self.teatPump += 10
-                  if (self.teatPump > 40):
-                     self.teatPump = 0
-                     self.teatSize += 1
-                     self.doMainText("\n\nHowever, this time your teats don't seem to relax back to their original state, permanently swollen larger...")
-               self.displayMainText()
-               self.doNext()
-               def doListen():
-                  if (self.getMilk < 1000):
-                     self.doMainText(f"You have produced {self.getMilk} ml of milk!",True)
-                  else:
-                     self.doMainText(f"You have produced {self.decGet(self.getMilk / 1000,1)} liters of milk!",True)
-                  if (self.tempNum == 1):
-                     if (self.breastSize > 14):
-                        self.doLust(-Math.floor(self.sen / 4),2,3)
-                     elif (self.breastSize < 4):
-                        self.doLust(-Math.floor(self.sen / 4),2,3)
-                     self.nipplePlay += 10
-                  elif (self.tempNum == 2):
-                     self.doLust(-Math.floor(self.sen / 4),2,4)
-                     self.udderPlay += 10
-                  if self.getMilk < 1000:
-                     self.doMainText("\n\nUnfortunately, you haven't produced enough milk to fill a full bottle yet.")
-                  elif self.getMilk < 3000:
-                     self.itemAdd(500)
-                  elif self.getMilk < 6000:
-                     self.itemAdd(501)
-                  elif self.getMilk < 17000:
-                     self.addManyItem(501, 2)
-                  elif self.getMilk < 25000:
-                     self.itemAdd(502)
-                  else:
-                     self.itemAdd(502)
-                     self.doMainText("\n\nHowever, you produced so much milk that the container in the milker couldn't hold it all and everything beyond a barrel-full splashed out around the edges, making a mess everywhere!")
-                  self.displayMainText()
-                  self.hrs += 1
-                  self.doEnd()
-               self.doListen = doListen
+                if self.buttonChoice == 5:
+                    self.outputMainText(f"You dab the sand onto your cock-head{self.plural(1)}. It feels odd at first, but as you rub yourself to arousal a bit, you notice a decrease in pre.", True)
+                    self.cockMoist -= 4
+                    self.doEnd()
+                elif self.buttonChoice == 7:
+                    self.outputMainText(f"You dab the sand onto your cunt{self.plural(2)}. It feels odd at first, but as you rub yourself to arousal a bit, you notice a decrease in lubrications.", True)
+                    self.vagMoist -= 4
+                    self.doEnd()
+                elif self.buttonChoice == 9:
+                    self.doMainText("You dab the sand onto your nipples. It feels odd at first, but as you rub them until they are stiff, you notice a decrease in lactation.", True)
+                    if (self.lactation - 75 < 0):
+                        self.milkMod += self.lactation - 75
+                    self.lactChange(1,-75)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 11:
+                    self.doMainText("You dab the sand onto your teats. It feels odd at first, but as you rub them until they are stiff, you notice a decrease in lactation.", True)
+                    self.lactChange(2,-75)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 12:
+                    self.itemAdd(103)
+                    self.doProcess()
             self.doListen = doListen
-      elif ID == 106:
-         if (self.currentState != 3):
-            self.outputMainText("You can only use the a penis pump while masturbating.",True)
-            self.doEnd()
-         else:
-            self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,1,0,0))
-            tempDict = {10:"None"}
-            if (self.cockTotal > 0):
-               tempDict[5] = "Penis"
-            if (self.vagTotal > 0):
-               tempDict[7] = "Clit"
-            self.outputMainText("What would you like to pump?",True)
-            self.doButtonChoices(tempDict)
-            def doListen():
-               if self.buttonChoice == 5:
-                  self.rndArray.clear()
-                  if (self.humanCocks > 0):
-                     self.rndArray.push(1)
-                  if (self.horseCocks > 0):
-                     self.rndArray.push(2)
-                  if (self.wolfCocks > 0):
-                     self.rndArray.push(3)
-                  if (self.catCocks > 0):
-                     self.rndArray.push(4)
-                  if (self.lizardCocks > 0):
-                     self.rndArray.push(6)
-                  if (self.rabbitCocks > 0):
-                     self.rndArray.push(7)
-                  if (self.bugCocks > 0):
-                     self.rndArray.push(12)
-                  tempInt = self.chooseFrom()
-                  whichCock = "WHICH COCK ERROR"
-                  if tempInt == 1:
-                     whichCock = "hard human rod"
-                  elif tempInt == 2:
-                     whichCock = "long equine flesh"
-                  elif tempInt == 3:
-                     whichCock = "pointy wolf meat"
-                  elif tempInt == 4:
-                     whichCock = "pink thorny cat prick"
-                  elif tempInt == 6:
-                     whichCock = "purple ribbed reptile rod"
-                  elif tempInt == 7:
-                     whichCock = "throbbing bunny carrot"
-                  elif tempInt == 12:
-                     whichCock = "bumpy-ridged spiked bug wang"
-                  self.doMainText(f"You pick out the appropriate cylinder size for {self.oneYour(1)} cock{self.plural(1)}. You slip it over your {whichCock} and attach the tube at the other end. Whether you were hard or not already, as soon as you flip on the pump's switch, your {self.hipDesc()} hips jerk as blood flushes through the {self.cockDesc()} member. The vacuum pressure makes it swell, growing stiffer and larger than before!\n\nThe pump then gently relaxes before giving you another nice suck, followed by another release, eventually building into a slow rhythm.",True)
-                  if (self.lust < 20):
-                     self.doMainText(" Yet, despite the pleasurable sensation, you're not really horny enough to climax, the pump merely sucking away at your engorgement for a while before you finally give up and put it away.")
-                     self.cockPump += 10
-                     if (self.cockPump > 40):
-                        self.cockPump = 0
-                        self.cockSize += 1
-                        self.doMainText(f"\n\nAlthough, the swelling from the suction doesn't seem to go down all the way, your cock{self.plural(1)} permanently slightly larger.")
-                     self.hrs = 1
-                  else:
-                     getCum = self.cumAmount()
-                     if (self.moistCalc(1) <= 3):
-                        self.doMainText(" The bottle within the machine fills a little with your pre as it seeps out, but it's hardly much.\n\n")
-                     elif (self.moistCalc(1) <= 7):
-                        self.doMainText(" The bottle within the machine fills nearly halfway with your pre as it dribbles out, so you quickly spill it out before you climax.\n\n")
-                     elif (self.moistCalc(1) <= 11):
-                        self.doMainText(" The bottle within the machine fills to the brim with your pre as it spurts from your cock, forcing you to quickly replace it with a fresh bottle before you climax.\n\n")
-                     elif (self.moistCalc(1) > 11):
-                        self.doMainText(" The bottle within the machine fills to the brim with your pre as it gushes from your cock, spilling over the rim. You pull the bottle out and let your slime spew across the floor until you're about to climax and replace it with a fresh one.\n\n")
-                     if (self.showBalls):
-                        self.doMainText(f"Eventually, your {self.ballDesc()} balls groan as the sensation gets the best of them. ")
-                     self.doMainText(f"You begin to buck as the machine does its job, your cum spurting from the tip of your {whichCock} and flowing through the tubes, despositing into the bottle. Spurt after spurt gets sucked out, milking your cock until it's dry.")
-                     if (getCum < 1000):
-                        self.doMainText(f"\n\nYou have produced {getCum} ml of spooge!")
-                     elif (getCum >= 1000):
-                        self.doMainText(f"\n\nYou have produced {self.decGet(getCum / 1000,1)} liters of spooge!")
-                     if (getCum <= 400):
-                        self.doMainText(" Although, the resulting amount is so small that you can't really do anything with it...")
-                     elif (getCum <= 600):
-                        self.doMainText(" The resulting amount of spunk is just enough to fill a vial!")
-                        self.itemAdd(523)
-                     elif (getCum <= 1200):
-                        self.doMainText(" The resulting amount of spunk is more than enough to fill a vial, with a quite a bit left to spill over the edge.")
-                        self.itemAdd(523)
-                     elif (getCum <= 2000):
-                        self.doMainText(" You come so much that you fill the whole bottle, great for resale!")
-                        self.itemAdd(524)
-                     elif (getCum <= 4500):
-                        self.doMainText(" You come so much that you fill the whole bottle, and more continues to gush out over the edge, making quite the mess.")
-                        self.itemAdd(524)
-                     elif (getCum <= 5500):
-                        self.doMainText(" Well prepared, you quickly swap out the bottle with a jug. Your cum floods inside, filling it up to the brim!")
-                        self.itemAdd(525)
-                     elif (getCum <= 21000):
-                        self.doMainText(" Prepared, you quickly swap out the bottle with a jug. Your cum floods inside, filling it up to the brim. However, you continue to gush, overfilling it until cum spills over the edge and floods around you, making quite the mess...")
-                        self.itemAdd(525)
-                     elif (getCum > 21000):
-                        self.doMainText(" Worried about drowing in your own cum, you quickly pull the bottle out and attach a hose to the item you came prepared with... a barrel. Though you still manage to overfill it, you haven't created quite the natural disaster. And since you can't quite get much for a whole barrel of cum, you top off a jug as well...")
-                        self.itemAdd(525)
-                        self.itemAdd(526)
-                     self.cockPump += 10
-                     if (self.cockPump > 40):
-                        self.cockPump = 0
-                        self.cockSize += 1
-                        self.doMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your cock{self.plural(1)} permanently slightly larger...")
-                     if (self.cockSize * self.cockSizeMod * 4 > self.tallness and self.gender == 3):
-                        self.doLust(-Math.floor(self.sen / 4),2,58,3,57,4)
-                     elif (self.cockSize * self.cockSizeMod * 4 > self.tallness):
-                        self.doLust(-Math.floor(self.sen / 4),2,58,1,57,4)
-                     elif (self.gender == 3):
-                        self.doLust(-Math.floor(self.sen / 4),2,3,57,4)
-                     else:
-                        self.doLust(-Math.floor(self.sen / 4),2,1,57,4)
-                     self.hrs = 2
-                  self.displayMainText()
-                  self.doEnd()
-               elif self.buttonChoice == 7:
-                  if (self.lust < 20):
-                     self.doMainText("You're not really in the mood to do it at the moment, opting to put the pump back in your bag for now...",True)
-                  else:
-                     if (self.clitSize <= 20):
-                        self.doMainText(f"Feeling a little kinky, you take the smallest available cylinder and push it over {self.oneYour(2)} clit{self.plural(2)}. Turning on the machine, you quickly notice you're still too small, having to manually seal the cylinder against your skin with your fingers. However, that isn't a problem, as you soon begin to enjoy the sucking on your clit, the button swelling from the vacuum while your fingers sliding through your {self.vulvaDesc()} lips and dipping into your hole{self.plural(2)}, moving in rhythm to the pumping.",True)
-                     elif (self.clitSize > 20):
-                        self.doMainText(f"Feeling a little kinky, you take some cylinders to slide over {self.oneYour(2)} clit{self.plural(2)}. Its so big that it easily fits into one of them, just like it were a cock. Turning on the machine, your {self.hipDesc()} hips squirm as the suction forces your button to swell, becoming even larger. Your fingers slide through your {self.vulvaDesc()} lips and dip into your hole{self.plural(2)}, moving in rhythm to the pumping.",True)
-                     if (self.moistCalc(2) > 11):
-                        self.doMainText(" The pump manages to suck up a good deal of your gushing feminine honey, filling a bottle in the machine that was meant for spunk instead. It's not something you can sell, but it amuses you nonetheless.")
-                     elif (self.moistCalc(2) > 7):
-                        self.doMainText(" The pump manages to suck up a bit of your flowing feminine honey, spurting it into a bottle meant for spunk instead.")
-                     elif (self.moistCalc(2) > 3):
-                        self.doMainText(" The pump manages to suck up some of your dribbling feminine honey, letting it drip lazily from into a bottle that was meant for spunk.")
-                     elif (self.moistCalc(2) > 0):
-                        self.doMainText(" The pump manages to suck up a few drops of your feminine honey as you masturbate, misting the tubes slightly.")
-                     self.doMainText(" You soon quiver and moan as you come to climax, sighing gently as you turn the pump off to enjoy your swollen clit by hand for a while.")
-                     self.clitPump += 10
-                     if (self.clitPump > 40):
-                        self.clitPump = 0
-                        self.clitSize += 1
-                        self.doMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your clit{self.plural(1)} permanently slightly larger...")
-                     if (self.clitSize * 24 > self.tallness and self.gender == 3):
-                        self.doLust(-Math.floor(self.sen / 4),2,1)
-                     elif (self.clitSize * 24 > self.tallness):
-                        self.doLust(-Math.floor(self.sen / 4),2,1)
-                     elif (self.gender == 3):
-                        self.doLust(-Math.floor(self.sen / 4),2,1)
-                     else:
-                        self.doLust(-Math.floor(self.sen / 4),2,1)
-                     self.hrs = 2
-                  self.displayMainText()
-                  self.doEnd()
-               elif self.buttonChoice == 10:
-                  self.outputMainText("You realize you didn't actually want to use the pump and put it back in your bag. You fickle bastard.",True)
-                  self.doEnd()
-            self.doListen = doListen
-      elif ID == 105:
-         self.doMainText(f"Bringing the vial filled with white liquid to your lips, you soon taste the sweet, milky stuff within. Downing it, your {self.boobDesc()} breasts feel warm. Small blotches of milk form through your {self.clothesTop()}, around your nipples. The tingling heat then permeates your body, making you feel slightly more aroused as well.",True)
-         self.stats(0,0,1,0)
-         self.doLust(5,0)
-         if (self.udders):
-            self.doMainText(" Even your udder begins to dribble a little, feeling slightly fuller.")
-            self.lactChange(2,20)
-         self.lactChange(1,15)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 108:
-         self.doMainText("You push the gauge against your pulse. It grows warm for a moment before a vague display shows up on the other side.",True)
-         if (self.humanAffinity > 0):
-            self.doMainText("\n\nHuman:\n" + "|"*self.humanAffinity)
-         if (self.horseAffinity > 0):
-            self.doMainText("\n\nHorse:\n" + "|"*self.horseAffinity)
-         if (self.wolfAffinity > 0):
-            self.doMainText("\n\nWolf:\n" + "|"*self.wolfAffinity)
-         if (self.catAffinity > 0):
-            self.doMainText("\n\nCat:\n" + "|"*self.catAffinity)
-         if (self.cowAffinity > 0):
-            self.doMainText("\n\nCow:\n" + "|"*self.cowAffinity)
-         if (self.lizardAffinity > 0):
-            self.doMainText("\n\nLizard:\n" + "|"*self.lizardAffinity)
-         if (self.rabbitAffinity > 0):
-            self.doMainText("\n\nRabbit:\n" + "|"*self.rabbitAffinity)
-         if (self.mouseAffinity > 0):
-            self.doMainText("\n\nMouse:\n" + "|"*self.mouseAffinity)
-         if (self.birdAffinity > 0):
-            self.doMainText("\n\nBird:\n" + "|"*self.birdAffinity)
-         if (self.pigAffinity > 0):
-            self.doMainText("\n\nPig:\n" + "|"*self.pigAffinity)
-         if (self.skunkAffinity > 0):
-            self.doMainText("\n\nSkunk:\n" + "|"*self.skunkAffinity)
-         if (self.bugAffinity > 0):
-            self.doMainText("\n\nBug:\n" + "|"*self.bugAffinity)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 109:
-         if (self.checkItem(219)):
-            if (self.knowPheromone and self.silRep < 1 and not (self.checkItem(530) or self.checkStash(530) or self.checkItem(532) or self.checkStash(532)) and self.pheromone < 1):
-               self.loseManyItem(219,1)
-               self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\nInto the reception bin rolls a white-shelled egg with pretty red hearts all over.",True)
-               self.itemAdd(530)
+        elif ID == 104:
+            if (self.currentState != 3):
+                self.outputMainText("You can only use a milker while masturbating.", True)
+                self.doEnd()
             else:
-               chance = self.percent()
-               self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\n",True)
-               self.loseManyItem(219,1)
-               if (chance <= 45):
-                  self.doMainText("Into the reception bin rolls a blue-shelled egg.")
-                  self.itemAdd(527)
-               elif (chance <= 85):
-                  self.doMainText("Into the reception bin rolls a red-shelled egg.")
-                  self.itemAdd(528)
-               elif (chance <= 92):
-                  self.doMainText("Into the reception bin rolls a pink-shelled egg with teal polka-dots.")
-                  self.itemAdd(529)
-               elif (chance <= 97):
-                  self.doMainText("Into the reception bin rolls a white-shelled egg with pretty red hearts all over.")
-                  self.itemAdd(530)
-               elif (chance <= 100):
-                  self.doMainText("Into the reception bin rolls a golden-shelled glowing egg.")
-                  self.itemAdd(531)
-         else:
-            self.doMainText("The well-educated eggdicator indicates a deficiency in your ovoid protein supply and thus cannot adequately correspond to your commands.\n\nI.e. - You need a Fresh Egg to use this.",True)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 110:
-         self.choiceListArray.clear()
-         if (self.breastSize > 0):
-            self.choiceListArray.push("Breasts")
-         if (self.nippleSize > 1):
-            self.choiceListArray.push("Nipples")
-         if (self.butt > 1):
-            self.choiceListArray.push("Butt")
-         if (self.hips > 1):
-            self.choiceListArray.push("Hips")
-         if (self.vagTotal > 0):
-            self.choiceListArray.push("Pussy")
-            if (self.vulvaSize > 0):
-               self.choiceListArray.push("Vulva")
-            if (self.clitSize > 1):
-               self.choiceListArray.push("Clit")
-         if (self.cockTotal > 0):
-            self.choiceListArray.push("Cock")
-            if (self.showBalls and self.ballSize > 1):
-               self.choiceListArray.push("Balls")
-         if (self.udders):
-            if (self.udderSize > 1):
-               self.choiceListArray.push("Udder")
-            if (self.teatSize > 2):
-               self.choiceListArray.push("Teats")
-         if (self.bellyMod > 0):
-            self.choiceListArray.push("Belly")
-         self.choiceListButtons("Reduction")
-         self.outputMainText("Select which body part you would like to halve in size. If you don't have that part, this elixer will do nothing but will still be consumed.",True)
-         def doListen():
-            self.choiceListSelect("Reduction")
-            self.doMainText("You splash the elixir out onto your ",True)
-            temp = self.choiceListResult[0]
-            if temp == "Cock":
-               self.doMainText(f"{self.cockDesc()} cock{self.plural(1)} and watch with a shiver as the flesh receeds.")
-               self.cockChange(-Math.ceil(self.cockSize / 2),0)
-            elif temp == "Balls":
-               self.doMainText(f"{self.ballDesc()} balls and watch with a shiver as the orbs shrink, becoming ")
-               self.ballSize -= Math.floor(self.ballSize / 2)
-               self.doMainText(f"{self.ballDesc()}.")
-            elif temp == "Pussy":
-               self.doMainText(f"vagina{self.plural(2)} and quiver as the fleshy walls within your body shrink.")
-               self.vagChange(Math.floor(-self.vagSize / 2),0)
-            elif temp == "Vulva":
-               self.doMainText(f"{self.vulvaDesc()} vulva and watch with a quiver as nether-lips shrink, becoming ")
-               self.vulvaSize -= Math.floor(self.vulvaSize / 2)
-               self.doMainText(f"{self.vulvaDesc()}.")
-            elif temp == "Clit":
-               self.doMainText(f"{self.clitDesc()} clit{self.plural(2)} and watch with a quiver as the button{self.plural(2)} shrink{self.plural(4)}, becoming ")
-               self.clitSize -= Math.floor(self.clitSize / 2)
-               self.doMainText(f"{self.clitDesc()}.")
-            elif temp == "Breasts":
-               self.doMainText(f"{self.boobDesc()} breasts and shudder as they shrink.")
-               self.breastSize -= Math.floor(self.breastSize / 2)
-            elif temp == "Nipples":
-               self.doMainText(f"{self.nipDesc()} nipples and shudder as they receed into your breasts.")
-               self.nippleSize -= Math.floor(self.nippleSize / 2)
-            elif temp == "Udder":
-               self.doMainText(f"{self.udderDesc()} udder and watch as it shrivels, becoming ")
-               self.udderSize -= Math.floor(self.udderSize / 2)
-               self.doMainText(f"{self.udderDesc()}.")
-            elif temp == "Teats":
-               self.doMainText(f"{self.teatDesc()} teats and watch as they recede, becoming ")
-               self.teatSize -= Math.floor(self.teatSize / 2)
-               self.doMainText(f"{self.teatDesc()}.")
-            elif temp == "Butt":
-               self.doMainText(f"{self.buttDesc()} butt and squirm as it shrinks, becoming ")
-               self.butt -= Math.floor(self.butt / 2)
-               self.doMainText(f"{self.buttDesc()}.")
-            elif temp == "Hips":
-               self.doMainText(f"{self.hipDesc()} hips and squirm as they narrow, becoming ")
-               self.hips -= Math.floor(self.hips / 2)
-               self.doMainText(f"{self.hipDesc()}.")
-            elif temp == "Belly":
-               self.doMainText(f"{self.bellyDesc()} belly and feel lighter as the chubbiness burns off, becoming ")
-               self.bellyMod -= Math.floor(self.bellyMod / 2)
-               self.doMainText(f"{self.bellyDesc()}.")
+                self.tempNum = 0
+                self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0))
+                tempDict = {5: "Breasts"}
+                if (self.udders):
+                    tempDict[7] = "Udder"
+                self.outputMainText("What would you like to pump?", True)
+                self.doButtonChoices(tempDict)
+
+                def doListen():
+                    self.getMilk = 0
+                    self.doMainText("You uncoil the tubes of your milker, stretching them out and starting up the pump. Attaching the appropriate cups, you slip them onto your ", True)
+                    if (self.buttonChoice == 5):
+                        self.tempNum = 1
+                        self.doMainText(f"{self.nipDesc()} nipples, until the rims press up and seal onto your {self.boobDesc()} breasts with the gentle suction.")
+                    elif (self.buttonChoice == 7):
+                        self.tempNum = 2
+                        self.doMainText(f"{self.teatDesc()} teats, until the rims press up and seal onto your {self.udderDesc()} udder with the gentle suction.")
+                    self.doMainText("\n\nYou shudder a little as the stuttered pumping vibrates through your body. Warmth begins to envelop your ")
+                    if (self.tempNum == 1):
+                        self.doMainText("chest")
+                    elif (self.tempNum == 2):
+                        self.doMainText("belly")
+                    self.doMainText(" feeling all tingly.")
+                    if (self.tempNum == 1 and self.lactation > 0 or self.tempNum == 2 and self.udderLactation > 0):
+                        self.hrs += 1
+                        self.getMilk = self.milkAmount(self.tempNum)
+                        self.doMainText(" Droplets of milk begin to trickle around your ")
+                        if (self.tempNum == 1):
+                            self.doMainText("nipples")
+                        elif (self.tempNum == 2):
+                            self.doMainText("teats")
+                        self.doMainText(" and slurps through the tubes. Within moments, your ")
+                        if (self.tempNum == 1):
+                            self.doMainText("nipples")
+                        elif (self.tempNum == 2):
+                            self.doMainText("teats")
+                        self.doMainText(" throb along with the pulse, ")
+                        if self.getMilk <= 500:
+                            self.doMainText("small dribbles")
+                        elif self.getMilk <= 1000:
+                            self.doMainText("spurts")
+                        elif self.getMilk <= 2000:
+                            self.doMainText("sprays")
+                        elif self.getMilk <= 8000:
+                            self.doMainText("jets")
+                        elif self.getMilk <= 19000:
+                            self.doMainText("steady streams")
+                        else:
+                            self.doMainText("small floods")
+                        self.doMainText(" of milk swishing through the tubes and collecting at the machine.")
+                    self.doMainText(" The pleasurable sensation lingers constantly, bringing you to a small orgasm")
+                    if (self.getMilk > 0):
+                        self.doMainText(" while your flow of milk slows to a stop")
+                    self.doMainText(".\n\nYou flip the machine off, the cups making a loud kissing sound as the vacuum is released. As they fall to the floor, you rub your aroused ")
+                    if (self.tempNum == 1):
+                        self.doMainText(f"{self.nipDesc()} nipples")
+                    elif (self.tempNum == 2):
+                        self.doMainText(f"{self.teatDesc()} teats")
+                    self.doMainText(", shivering from their shortly increased sensitivity, slightly engorged and inflated.")
+                    if (self.boobTotal > 2 or self.tempNum == 2):
+                        self.doMainText(" Then you move onto the next pair...")
+                    self.doMainText(" Eventually you clean yourself up and put the machine away.")
+                    if (self.tempNum == 1):
+                        self.nipPump += 10
+                        if (self.nipPump > 40):
+                            self.nipPump = 0
+                            self.nippleSize += 1
+                            self.doMainText("\n\nHowever, this time your nipples don't seem to relax back to their original state, permanently swollen larger...")
+                    elif (self.tempNum == 2):
+                        self.teatPump += 10
+                        if (self.teatPump > 40):
+                            self.teatPump = 0
+                            self.teatSize += 1
+                            self.doMainText("\n\nHowever, this time your teats don't seem to relax back to their original state, permanently swollen larger...")
+                    self.displayMainText()
+                    self.doNext()
+
+                    def doListen():
+                        if (self.getMilk < 1000):
+                            self.doMainText(f"You have produced {self.getMilk} ml of milk!", True)
+                        else:
+                            self.doMainText(f"You have produced {self.decGet(self.getMilk / 1000, 1)} liters of milk!", True)
+                        if (self.tempNum == 1):
+                            if (self.breastSize > 14):
+                                self.doLust(-Math.floor(self.sen / 4),2,3)
+                            elif (self.breastSize < 4):
+                                self.doLust(-Math.floor(self.sen / 4),2,3)
+                            self.nipplePlay += 10
+                        elif (self.tempNum == 2):
+                            self.doLust(-Math.floor(self.sen / 4),2,4)
+                            self.udderPlay += 10
+                        if self.getMilk < 1000:
+                            self.doMainText("\n\nUnfortunately, you haven't produced enough milk to fill a full bottle yet.")
+                        elif self.getMilk < 3000:
+                            self.itemAdd(500)
+                        elif self.getMilk < 6000:
+                            self.itemAdd(501)
+                        elif self.getMilk < 17000:
+                            self.addManyItem(501, 2)
+                        elif self.getMilk < 25000:
+                            self.itemAdd(502)
+                        else:
+                            self.itemAdd(502)
+                            self.doMainText("\n\nHowever, you produced so much milk that the container in the milker couldn't hold it all and everything beyond a barrel-full splashed out around the edges, making a mess everywhere!")
+                        self.displayMainText()
+                        self.hrs += 1
+                        self.doEnd()
+                    self.doListen = doListen
+                self.doListen = doListen
+        elif ID == 106:
+            if (self.currentState != 3):
+                self.outputMainText("You can only use the a penis pump while masturbating.", True)
+                self.doEnd()
+            else:
+                self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0))
+                tempDict = {10: "None"}
+                if (self.cockTotal > 0):
+                    tempDict[5] = "Penis"
+                if (self.vagTotal > 0):
+                    tempDict[7] = "Clit"
+                self.outputMainText("What would you like to pump?", True)
+                self.doButtonChoices(tempDict)
+
+                def doListen():
+                    if self.buttonChoice == 5:
+                        self.rndArray.clear()
+                        if (self.humanCocks > 0):
+                            self.rndArray.push(1)
+                        if (self.horseCocks > 0):
+                            self.rndArray.push(2)
+                        if (self.wolfCocks > 0):
+                            self.rndArray.push(3)
+                        if (self.catCocks > 0):
+                            self.rndArray.push(4)
+                        if (self.lizardCocks > 0):
+                            self.rndArray.push(6)
+                        if (self.rabbitCocks > 0):
+                            self.rndArray.push(7)
+                        if (self.bugCocks > 0):
+                            self.rndArray.push(12)
+                        tempInt = self.chooseFrom()
+                        whichCock = "WHICH COCK ERROR"
+                        if tempInt == 1:
+                            whichCock = "hard human rod"
+                        elif tempInt == 2:
+                            whichCock = "long equine flesh"
+                        elif tempInt == 3:
+                            whichCock = "pointy wolf meat"
+                        elif tempInt == 4:
+                            whichCock = "pink thorny cat prick"
+                        elif tempInt == 6:
+                            whichCock = "purple ribbed reptile rod"
+                        elif tempInt == 7:
+                            whichCock = "throbbing bunny carrot"
+                        elif tempInt == 12:
+                            whichCock = "bumpy-ridged spiked bug wang"
+                        self.doMainText(f"You pick out the appropriate cylinder size for {self.oneYour(1)} cock{self.plural(1)}. You slip it over your {whichCock} and attach the tube at the other end. Whether you were hard or not already, as soon as you flip on the pump's switch, your {self.hipDesc()} hips jerk as blood flushes through the {self.cockDesc()} member. The vacuum pressure makes it swell, growing stiffer and larger than before!\n\nThe pump then gently relaxes before giving you another nice suck, followed by another release, eventually building into a slow rhythm.", True)
+                        if (self.lust < 20):
+                            self.doMainText(" Yet, despite the pleasurable sensation, you're not really horny enough to climax, the pump merely sucking away at your engorgement for a while before you finally give up and put it away.")
+                            self.cockPump += 10
+                            if (self.cockPump > 40):
+                                self.cockPump = 0
+                                self.cockSize += 1
+                                self.doMainText(f"\n\nAlthough, the swelling from the suction doesn't seem to go down all the way, your cock{self.plural(1)} permanently slightly larger.")
+                            self.hrs = 1
+                        else:
+                            getCum = self.cumAmount()
+                            if (self.moistCalc(1) <= 3):
+                                self.doMainText(" The bottle within the machine fills a little with your pre as it seeps out, but it's hardly much.\n\n")
+                            elif (self.moistCalc(1) <= 7):
+                                self.doMainText(" The bottle within the machine fills nearly halfway with your pre as it dribbles out, so you quickly spill it out before you climax.\n\n")
+                            elif (self.moistCalc(1) <= 11):
+                                self.doMainText(" The bottle within the machine fills to the brim with your pre as it spurts from your cock, forcing you to quickly replace it with a fresh bottle before you climax.\n\n")
+                            elif (self.moistCalc(1) > 11):
+                                self.doMainText(" The bottle within the machine fills to the brim with your pre as it gushes from your cock, spilling over the rim. You pull the bottle out and let your slime spew across the floor until you're about to climax and replace it with a fresh one.\n\n")
+                            if (self.showBalls):
+                                self.doMainText(f"Eventually, your {self.ballDesc()} balls groan as the sensation gets the best of them. ")
+                            self.doMainText(f"You begin to buck as the machine does its job, your cum spurting from the tip of your {whichCock} and flowing through the tubes, despositing into the bottle. Spurt after spurt gets sucked out, milking your cock until it's dry.")
+                            if (getCum < 1000):
+                                self.doMainText(f"\n\nYou have produced {getCum} ml of spooge!")
+                            elif (getCum >= 1000):
+                                self.doMainText(f"\n\nYou have produced {self.decGet(getCum / 1000,1)} liters of spooge!")
+                            if (getCum <= 400):
+                                self.doMainText(" Although, the resulting amount is so small that you can't really do anything with it...")
+                            elif (getCum <= 600):
+                                self.doMainText(" The resulting amount of spunk is just enough to fill a vial!")
+                                self.itemAdd(523)
+                            elif (getCum <= 1200):
+                                self.doMainText(" The resulting amount of spunk is more than enough to fill a vial, with a quite a bit left to spill over the edge.")
+                                self.itemAdd(523)
+                            elif (getCum <= 2000):
+                                self.doMainText(" You come so much that you fill the whole bottle, great for resale!")
+                                self.itemAdd(524)
+                            elif (getCum <= 4500):
+                                self.doMainText(" You come so much that you fill the whole bottle, and more continues to gush out over the edge, making quite the mess.")
+                                self.itemAdd(524)
+                            elif (getCum <= 5500):
+                                self.doMainText(" Well prepared, you quickly swap out the bottle with a jug. Your cum floods inside, filling it up to the brim!")
+                                self.itemAdd(525)
+                            elif (getCum <= 21000):
+                                self.doMainText(" Prepared, you quickly swap out the bottle with a jug. Your cum floods inside, filling it up to the brim. However, you continue to gush, overfilling it until cum spills over the edge and floods around you, making quite the mess...")
+                                self.itemAdd(525)
+                            elif (getCum > 21000):
+                                self.doMainText(" Worried about drowing in your own cum, you quickly pull the bottle out and attach a hose to the item you came prepared with... a barrel. Though you still manage to overfill it, you haven't created quite the natural disaster. And since you can't quite get much for a whole barrel of cum, you top off a jug as well...")
+                                self.itemAdd(525)
+                                self.itemAdd(526)
+                            self.cockPump += 10
+                            if (self.cockPump > 40):
+                                self.cockPump = 0
+                                self.cockSize += 1
+                                self.doMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your cock{self.plural(1)} permanently slightly larger...")
+                            if (self.cockSize * self.cockSizeMod * 4 > self.tallness and self.gender == 3):
+                                self.doLust(-Math.floor(self.sen / 4),2,58,3,57,4)
+                            elif (self.cockSize * self.cockSizeMod * 4 > self.tallness):
+                                self.doLust(-Math.floor(self.sen / 4),2,58,1,57,4)
+                            elif (self.gender == 3):
+                                self.doLust(-Math.floor(self.sen / 4),2,3,57,4)
+                            else:
+                                self.doLust(-Math.floor(self.sen / 4),2,1,57,4)
+                            self.hrs = 2
+                        self.displayMainText()
+                        self.doEnd()
+                    elif self.buttonChoice == 7:
+                        if (self.lust < 20):
+                            self.doMainText("You're not really in the mood to do it at the moment, opting to put the pump back in your bag for now...", True)
+                        else:
+                            if (self.clitSize <= 20):
+                                self.doMainText(f"Feeling a little kinky, you take the smallest available cylinder and push it over {self.oneYour(2)} clit{self.plural(2)}. Turning on the machine, you quickly notice you're still too small, having to manually seal the cylinder against your skin with your fingers. However, that isn't a problem, as you soon begin to enjoy the sucking on your clit, the button swelling from the vacuum while your fingers sliding through your {self.vulvaDesc()} lips and dipping into your hole{self.plural(2)}, moving in rhythm to the pumping.", True)
+                            elif (self.clitSize > 20):
+                                self.doMainText(f"Feeling a little kinky, you take some cylinders to slide over {self.oneYour(2)} clit{self.plural(2)}. Its so big that it easily fits into one of them, just like it were a cock. Turning on the machine, your {self.hipDesc()} hips squirm as the suction forces your button to swell, becoming even larger. Your fingers slide through your {self.vulvaDesc()} lips and dip into your hole{self.plural(2)}, moving in rhythm to the pumping.", True)
+                            if (self.moistCalc(2) > 11):
+                                self.doMainText(" The pump manages to suck up a good deal of your gushing feminine honey, filling a bottle in the machine that was meant for spunk instead. It's not something you can sell, but it amuses you nonetheless.")
+                            elif (self.moistCalc(2) > 7):
+                                self.doMainText(" The pump manages to suck up a bit of your flowing feminine honey, spurting it into a bottle meant for spunk instead.")
+                            elif (self.moistCalc(2) > 3):
+                                self.doMainText(" The pump manages to suck up some of your dribbling feminine honey, letting it drip lazily from into a bottle that was meant for spunk.")
+                            elif (self.moistCalc(2) > 0):
+                                self.doMainText(" The pump manages to suck up a few drops of your feminine honey as you masturbate, misting the tubes slightly.")
+                            self.doMainText(" You soon quiver and moan as you come to climax, sighing gently as you turn the pump off to enjoy your swollen clit by hand for a while.")
+                            self.clitPump += 10
+                            if (self.clitPump > 40):
+                                self.clitPump = 0
+                                self.clitSize += 1
+                                self.doMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your clit{self.plural(1)} permanently slightly larger...")
+                            if (self.clitSize * 24 > self.tallness and self.gender == 3):
+                                self.doLust(-Math.floor(self.sen / 4),2,1)
+                            elif (self.clitSize * 24 > self.tallness):
+                                self.doLust(-Math.floor(self.sen / 4),2,1)
+                            elif (self.gender == 3):
+                                self.doLust(-Math.floor(self.sen / 4),2,1)
+                            else:
+                                self.doLust(-Math.floor(self.sen / 4),2,1)
+                            self.hrs = 2
+                        self.displayMainText()
+                        self.doEnd()
+                    elif self.buttonChoice == 10:
+                        self.outputMainText("You realize you didn't actually want to use the pump and put it back in your bag. You fickle bastard.", True)
+                        self.doEnd()
+                self.doListen = doListen
+        elif ID == 105:
+            self.doMainText(f"Bringing the vial filled with white liquid to your lips, you soon taste the sweet, milky stuff within. Downing it, your {self.boobDesc()} breasts feel warm. Small blotches of milk form through your {self.clothesTop()}, around your nipples. The tingling heat then permeates your body, making you feel slightly more aroused as well.", True)
+            self.stats(0, 0, 1, 0)
+            self.doLust(5, 0)
+            if (self.udders):
+                self.doMainText(" Even your udder begins to dribble a little, feeling slightly fuller.")
+                self.lactChange(2, 20)
+            self.lactChange(1, 15)
             self.displayMainText()
-            if self.buttonChoice in {4,8}:
-               self.choiceListButtons("Reduction")
-            elif self.buttonChoice == 12:
-               self.itemAdd(110)
-               self.doProcess()
+            self.doEnd()
+        elif ID == 108:
+            self.doMainText("You push the gauge against your pulse. It grows warm for a moment before a vague display shows up on the other side.", True)
+            if (self.humanAffinity > 0):
+                self.doMainText("\n\nHuman:\n" + "|"*self.humanAffinity)
+            if (self.horseAffinity > 0):
+                self.doMainText("\n\nHorse:\n" + "|"*self.horseAffinity)
+            if (self.wolfAffinity > 0):
+                self.doMainText("\n\nWolf:\n" + "|"*self.wolfAffinity)
+            if (self.catAffinity > 0):
+                self.doMainText("\n\nCat:\n" + "|"*self.catAffinity)
+            if (self.cowAffinity > 0):
+                self.doMainText("\n\nCow:\n" + "|"*self.cowAffinity)
+            if (self.lizardAffinity > 0):
+                self.doMainText("\n\nLizard:\n" + "|"*self.lizardAffinity)
+            if (self.rabbitAffinity > 0):
+                self.doMainText("\n\nRabbit:\n" + "|"*self.rabbitAffinity)
+            if (self.mouseAffinity > 0):
+                self.doMainText("\n\nMouse:\n" + "|"*self.mouseAffinity)
+            if (self.birdAffinity > 0):
+                self.doMainText("\n\nBird:\n" + "|"*self.birdAffinity)
+            if (self.pigAffinity > 0):
+                self.doMainText("\n\nPig:\n" + "|"*self.pigAffinity)
+            if (self.skunkAffinity > 0):
+                self.doMainText("\n\nSkunk:\n" + "|"*self.skunkAffinity)
+            if (self.bugAffinity > 0):
+                self.doMainText("\n\nBug:\n" + "|"*self.bugAffinity)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 109:
+            if (self.checkItem(219)):
+                if (self.knowPheromone and self.silRep < 1 and not (self.checkItem(530) or self.checkStash(530) or self.checkItem(532) or self.checkStash(532)) and self.pheromone < 1):
+                    self.loseManyItem(219,1)
+                    self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\nInto the reception bin rolls a white-shelled egg with pretty red hearts all over.", True)
+                    self.itemAdd(530)
+                else:
+                    chance = self.percent()
+                    self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\n", True)
+                    self.loseManyItem(219,1)
+                    if (chance <= 45):
+                        self.doMainText("Into the reception bin rolls a blue-shelled egg.")
+                        self.itemAdd(527)
+                    elif (chance <= 85):
+                        self.doMainText("Into the reception bin rolls a red-shelled egg.")
+                        self.itemAdd(528)
+                    elif (chance <= 92):
+                        self.doMainText("Into the reception bin rolls a pink-shelled egg with teal polka-dots.")
+                        self.itemAdd(529)
+                    elif (chance <= 97):
+                        self.doMainText("Into the reception bin rolls a white-shelled egg with pretty red hearts all over.")
+                        self.itemAdd(530)
+                    elif (chance <= 100):
+                        self.doMainText("Into the reception bin rolls a golden-shelled glowing egg.")
+                        self.itemAdd(531)
             else:
-               self.doEnd()
-         self.doListen = doListen
-      elif ID == 111:
-         self.outputMainText("Smearing the balm around your body, you feel slightly more sensitive and your curiousity is slightly piquied.",True)
-         self.stats(0,1,0,1)
-         self.aff(1,Math.floor(self.percent() / 15 + 2),-2)
-         self.doEnd()
-      elif ID == 112:
-         self.outputMainText("Downing the 'juice', you realize it's a lot thicker and stickier than you expected, and quite heady. Your heart beats a bit stronger and you shudder a bit.",True)
-         self.stats(1,0,1,0)
-         self.aff(2,Math.floor(self.percent() / 15 + 2),-2)
-         self.doEnd()
-      elif ID == 113:
-         self.outputMainText("Biting into the leaf, it feels oddly sour. However, afterward your mind feels a bit clearer and your body more prepared for whatever may come.",True)
-         self.stats(1,1,0,0)
-         self.aff(3,Math.floor(self.percent() / 15 + 2),-2)
-         self.doEnd()
-      elif ID == 114:
-         self.outputMainText("Drinking the slick, slimey, slightly sweet sap, you realize it probably isn't sap... The thought makes you tingle with arousal, your whole body slightly more sensitive.",True)
-         self.stats(0,0,1,1)
-         self.aff(4,Math.floor(self.percent() / 15 + 2),-2)
-         self.doEnd()
-      elif ID == 115:
-         self.doMainText("You rub the soothing poultice all over your wounds, quickly making them heal. Rubbing yourself down with the wet rag, you rub a little too much in some areas and become slightly more aroused.",True)
-         self.doHP(20)
-         self.doLust(5,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 116:
-         self.outputMainText("You have equipped the dagger.",True)
-         self.weapon = 116
-         self.doEnd()
-      elif ID == 117:
-         self.outputMainText("You have equipped the warhammer.",True)
-         self.weapon = 117
-         self.doEnd()
-      elif ID == 118:
-         self.outputMainText("You have equipped the saber.",True)
-         self.weapon = 118
-         self.doEnd()
-      elif ID == 119:
-         self.outputMainText("You have equipped the whip.",True)
-         self.weapon = 119
-         self.doEnd()
-      elif ID == 120:
-         self.showButtons(ButtonList(0,1,0,0,1,0,1,0,0,1,0,1))
-         tempDict = {2:"None", 12:"Cancel"}
-         if (self.cockTotal > 0):
-            tempDict[5] = "Cock"
-            if (self.showBalls and self.balls > 0):
-               tempDict[10] = "Balls"
-         if (self.vagTotal > 0):
-            tempDict[7] = "Cunt"
-         self.outputMainText("What would you like to remove?\n\nNote that removing balls removes one at a time. If try to remove them when you only have two left, neuterizer simply hides them, as it would severely damage your plumbing without them.",True)
-         self.doButtonChoices(tempDict)
-         def doListen():
-            if self.buttonChoice == 2:
-               self.outputMainText("You decide you'd rather keep what you got, for the moment, and put the neuterizer back in your bag.",True)
-               self.itemAdd(120)
-               self.doEnd()
-            elif self.buttonChoice == 5:
-               self.doMainText(f"You rub the neuterizer into {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}...",True)
-               self.cockChange(0,-1)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 7:
-               self.doMainText(f"You rub the neuterizer into {self.oneYour(2)} {self.vulvaDesc()} cunt{self.plural(1)}...",True)
-               self.vagChange(0,-1)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 10:
-               # TODO: respect showballs
-               if (self.balls > 2):
-                  self.outputMainText("You rub the neuterizer into your scrotum. You squirm a bit as one of your testicles wrenches a bit, shrinking down. Once it disappears into nothing, you feel perfectly fine again.",True)
-                  self.balls -= 1
-               else:
-                  self.outputMainText("Unfortunately, the neuterizer cannot simply make your testicles disappear while you still have any cocks. It would be... too dangerous. But, rubbing it onto your scrotum, your balls disappear up into your body, hidden from view.",True)
-                  self.neuterizerHideBalls = True
-                  self.showBalls = False
-               self.doEnd()
-            elif self.buttonChoice == 12:
-               self.itemAdd(120)
-               self.doProcess()
-         self.doListen = doListen
-      elif ID == 121:
-         self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!",True)
-         self.currentState = 1
-         self.inBag = False
-         self.inDungeon = False
-         self.regionChange(1)
-         self.doEnd()
-      elif ID == 122:
-         self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!",True)
-         self.currentState = 1
-         self.inBag = False
-         self.inDungeon = False
-         self.regionChange(2)
-         self.doEnd()
-      elif ID == 123:
-         self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!",True)
-         self.currentState = 1
-         self.inBag = False
-         self.inDungeon = False
-         self.regionChange(3)
-         self.doEnd()
-      elif ID == 124:
-         self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!",True)
-         self.currentState = 1
-         self.inBag = False
-         self.inDungeon = False
-         self.regionChange(4)
-         self.doEnd()
-      elif ID == 125:
-         self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!",True)
-         self.currentState = 1
-         self.inBag = False
-         self.inDungeon = False
-         self.regionChange(6)
-         self.doEnd()
-      elif ID == 126:
-         self.outputMainText("Sipping the refreshing water, you notice a slight aftertaste of something funny, like people have been bathing and doing... things in the water. It's kinda kinky when you think about it, but also feels nice inside of you.",True)
-         if (self.percent() <= 50):
-            self.stats(1,0,1,0)
-         else:
+                self.doMainText("The well-educated eggdicator indicates a deficiency in your ovoid protein supply and thus cannot adequately correspond to your commands.\n\nI.e. - You need a Fresh Egg to use this.", True)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 110:
+            self.choiceListArray.clear()
+            if (self.breastSize > 0):
+                self.choiceListArray.push("Breasts")
+            if (self.nippleSize > 1):
+                self.choiceListArray.push("Nipples")
+            if (self.butt > 1):
+                self.choiceListArray.push("Butt")
+            if (self.hips > 1):
+                self.choiceListArray.push("Hips")
+            if (self.vagTotal > 0):
+                self.choiceListArray.push("Pussy")
+                if (self.vulvaSize > 0):
+                    self.choiceListArray.push("Vulva")
+                if (self.clitSize > 1):
+                    self.choiceListArray.push("Clit")
+            if (self.cockTotal > 0):
+                self.choiceListArray.push("Cock")
+                if (self.showBalls and self.ballSize > 1):
+                    self.choiceListArray.push("Balls")
+            if (self.udders):
+                if (self.udderSize > 1):
+                    self.choiceListArray.push("Udder")
+                if (self.teatSize > 2):
+                    self.choiceListArray.push("Teats")
+            if (self.bellyMod > 0):
+                self.choiceListArray.push("Belly")
+            self.choiceListButtons("Reduction")
+            self.outputMainText("Select which body part you would like to halve in size. If you don't have that part, this elixer will do nothing but will still be consumed.", True)
+
+            def doListen():
+                self.choiceListSelect("Reduction")
+                self.doMainText("You splash the elixir out onto your ", True)
+                temp = self.choiceListResult[0]
+                if temp == "Cock":
+                    self.doMainText(f"{self.cockDesc()} cock{self.plural(1)} and watch with a shiver as the flesh receeds.")
+                    self.cockChange(-Math.ceil(self.cockSize / 2),0)
+                elif temp == "Balls":
+                    self.doMainText(f"{self.ballDesc()} balls and watch with a shiver as the orbs shrink, becoming ")
+                    self.ballSize -= Math.floor(self.ballSize / 2)
+                    self.doMainText(f"{self.ballDesc()}.")
+                elif temp == "Pussy":
+                    self.doMainText(f"vagina{self.plural(2)} and quiver as the fleshy walls within your body shrink.")
+                    self.vagChange(Math.floor(-self.vagSize / 2),0)
+                elif temp == "Vulva":
+                    self.doMainText(f"{self.vulvaDesc()} vulva and watch with a quiver as nether-lips shrink, becoming ")
+                    self.vulvaSize -= Math.floor(self.vulvaSize / 2)
+                    self.doMainText(f"{self.vulvaDesc()}.")
+                elif temp == "Clit":
+                    self.doMainText(f"{self.clitDesc()} clit{self.plural(2)} and watch with a quiver as the button{self.plural(2)} shrink{self.plural(4)}, becoming ")
+                    self.clitSize -= Math.floor(self.clitSize / 2)
+                    self.doMainText(f"{self.clitDesc()}.")
+                elif temp == "Breasts":
+                    self.doMainText(f"{self.boobDesc()} breasts and shudder as they shrink.")
+                    self.breastSize -= Math.floor(self.breastSize / 2)
+                elif temp == "Nipples":
+                    self.doMainText(f"{self.nipDesc()} nipples and shudder as they receed into your breasts.")
+                    self.nippleSize -= Math.floor(self.nippleSize / 2)
+                elif temp == "Udder":
+                    self.doMainText(f"{self.udderDesc()} udder and watch as it shrivels, becoming ")
+                    self.udderSize -= Math.floor(self.udderSize / 2)
+                    self.doMainText(f"{self.udderDesc()}.")
+                elif temp == "Teats":
+                    self.doMainText(f"{self.teatDesc()} teats and watch as they recede, becoming ")
+                    self.teatSize -= Math.floor(self.teatSize / 2)
+                    self.doMainText(f"{self.teatDesc()}.")
+                elif temp == "Butt":
+                    self.doMainText(f"{self.buttDesc()} butt and squirm as it shrinks, becoming ")
+                    self.butt -= Math.floor(self.butt / 2)
+                    self.doMainText(f"{self.buttDesc()}.")
+                elif temp == "Hips":
+                    self.doMainText(f"{self.hipDesc()} hips and squirm as they narrow, becoming ")
+                    self.hips -= Math.floor(self.hips / 2)
+                    self.doMainText(f"{self.hipDesc()}.")
+                elif temp == "Belly":
+                    self.doMainText(f"{self.bellyDesc()} belly and feel lighter as the chubbiness burns off, becoming ")
+                    self.bellyMod -= Math.floor(self.bellyMod / 2)
+                    self.doMainText(f"{self.bellyDesc()}.")
+                self.displayMainText()
+                if self.buttonChoice in {4,8}:
+                    self.choiceListButtons("Reduction")
+                elif self.buttonChoice == 12:
+                    self.itemAdd(110)
+                    self.doProcess()
+                else:
+                    self.doEnd()
+            self.doListen = doListen
+        elif ID == 111:
+            self.outputMainText("Smearing the balm around your body, you feel slightly more sensitive and your curiousity is slightly piquied.", True)
+            self.stats(0, 1, 0, 1)
+            self.aff(1, Math.floor(self.percent() / 15 + 2), -2)
+            self.doEnd()
+        elif ID == 112:
+            self.outputMainText("Downing the 'juice', you realize it's a lot thicker and stickier than you expected, and quite heady. Your heart beats a bit stronger and you shudder a bit.", True)
+            self.stats(1, 0, 1, 0)
+            self.aff(2, Math.floor(self.percent() / 15 + 2), -2)
+            self.doEnd()
+        elif ID == 113:
+            self.outputMainText("Biting into the leaf, it feels oddly sour. However, afterward your mind feels a bit clearer and your body more prepared for whatever may come.", True)
+            self.stats(1,1,0,0)
+            self.aff(3, Math.floor(self.percent() / 15 + 2), -2)
+            self.doEnd()
+        elif ID == 114:
+            self.outputMainText("Drinking the slick, slimey, slightly sweet sap, you realize it probably isn't sap... The thought makes you tingle with arousal, your whole body slightly more sensitive.", True)
             self.stats(0,0,1,1)
-         self.aff(6,Math.floor(self.percent() / 15 + 2),-2)
-         self.doEnd()
-      elif ID == 127:
-         if self.tail in {4,5,6,8}:
-            self.outputMainText("You strap the tail spike to your tail, equipping it as your weapon.",True)
-            self.weapon = 127
-         else:
-            self.outputMainText("You do not have an appropriate tail to strap this onto and thus cannot equip it.",True)
-         self.doEnd()
-      elif ID == 128:
-         self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a thump, they quickly disappear and you find yourself back in the city of Sanctuary!",True)
-         self.currentState = 1
-         self.inBag = False
-         self.inDungeon = False
-         self.regionChange(12)
-         self.doEnd()
-      elif ID == 201:
-         self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,1))
-         tempDict = {5:"Breasts", 12:"Cancel"}
-         if (self.udders):
-            tempDict[7] = "Udder"
-         self.outputMainText("What would you like to rub the Milk Creeper Poison into?",True)
-         self.doButtonChoices(tempDict)
-         def doListen():
-            if self.buttonChoice == 5:
-               self.doMainText(f"You pour out the vial of poison and rub the pearlescant fluid all over your {self.boobDesc()} breasts. You shiver a little as they tingle, a subtle warmth permeating your bosom as the poison sets in and remains.",True)
-               self.milkCPoisonNip += 5
-               self.doLust(self.percent() / 10,0)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 7:
-               self.doMainText(f"You pour out the vial of poison and rub the pearlescant fluid all over your {self.udderDesc()} udder. Your hips twitch a little as the fleshy bag tingles, a subtle warmth permeating your udder as the poison sets in and remains.",True)
-               self.milkCPoisonUdd += 5
-               self.doLust(self.percent() / 10,0)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 12:
-               self.itemAdd(201) 
-               self.doProcess()
-         self.doListen = doListen
-      elif ID == 202:
-         if (self.cockTotal > 0):
-            self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your cock{self.plural(1)}. Within seconds, you begin to shudder erotically as warmth fills your cock{self.plural(1)}, becoming erect. After waiting a few moments, the erection settles somewhat, but the warmth of the venom within persists, as though lying in wait...",True)
-            self.doLust(4 * self.cockTotal,0)
-            self.cockSnakeVenom += 5
-         elif (self.vagTotal > 0):
-            self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your groin. Within seconds, you begin to shudder...",True)
-            if (self.clitSize > 20 and self.percent() <= 5):
-               self.doMainText(f" You feel {self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)} swell and shift within your {self.clothesBottom()}, your lips starting to grow quite oddly as well...")
-               self.vagChange(0,-1)
-               self.cockChange(Math.ceil(self.clitSize * 5 / 2),1)
-               self.doLust(4,0)
-            else:
-               self.doMainText(f" You feel your {self.clitDesc()} clit{self.plural(2)} grow warm. Within seconds, you begin to shudder erotically as you clit{self.plural(2)} grow hot and erect. After waiting a few moments, the initial intensity passes, but the warmth of the venom within persists, as though lying in wait...")
-               self.cockSnakeVenom += 5
-               self.doLust(4 * self.vagTotal,0)
-         else:
-            self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your groin. You wait for several seconds and... nothing seems to happen. What a waste.",True)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 203:
-         self.outputMainText(f"You rub the tuft of coarse wolf fur into your {self.skinDesc()}. The roughness desensitizes you a bit.",True)
-         self.stats(0,0,0,-3)
-         self.doEnd()
-      elif ID == 204:
-         chance = self.percent()
-         if (chance <= 30):
-            self.outputMainText("You find some coins inside!",True)
-            self.doCoin(Math.floor(self.percent() / 5))
-         elif (chance <= 40):
-            self.itemAdd(246)
-         elif (chance <= 55):
-            self.itemAdd(105)
-         elif (chance <= 75):
-            self.itemAdd(103)
-         elif (chance <= 90):
-            self.itemAdd(114)
-         else:
-            self.outputMainText("Daww, turns out the pouch was empty...",True)
-         if chance > 30 and chance <= 90:
-            self.doProcess()
-         else:
+            self.aff(4, Math.floor(self.percent() / 15 + 2), -2)
             self.doEnd()
-      elif ID == 205:
-         chance = self.percent()
-         if (chance <= 50):
-            self.outputMainText("You find some coins inside!",True)
-            self.doCoin(Math.floor(self.percent() / 5 + 5))
-         elif (chance <= 65):
-            self.itemAdd(112)
-         elif (chance <= 85):
-            self.itemAdd(115)
-         else:
-            self.outputMainText("Daww, turns out the pouch was empty...",True)
-         if chance > 50 and chance <= 85:
-            self.doProcess()
-         else:
-            self.doEnd()
-      elif ID == 207:
-         chance = self.percent()
-         self.doMainText("You crack open the wooden cock. ",True)
-         if (chance <= 15):
-            self.doMainText(f" Sparkling lights erupt from the crack, swirling around in the air until they come together to form the outline of a disembodied glowing cock, looking much like the carving. Before you react, it flips around and dives down, before driving back up {self.legWhere(1)} your {self.legDesc(2)} and disappearing into the crotch of your {self.clothesBottom()}.")
-            self.vagChange(0,1)
-            self.doLust(self.percent() / 5,0)
-         elif (chance <= 30):
-            self.doMainText(f" Sparkling lights erupt from the crack, swirling around in the air until they come together to form the outline of a disembodied glowing cock, looking much like the carving. Before you react, it flips around and charges at your groin, ramming right above your crotch and disappearing into the front of your {self.clothesBottom()}.")
-            self.cockChange(0,1)
-            self.doLust(self.percent() / 5,0)
-         else:
-            self.doMainText(" There's nothing inside... Either this thing was just some kinky woman's play-toy, or it was a dud.")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 208:
-         self.doMainText("You pop the berry into your mouth. As it pops and gushes with juice within your mouth, your face cringes at how un-sweet it is. Tasting more salty with a thick texture, you swallow it as fast as possible.",True)
-         if (self.balls > 0 and self.ballSize > 0 and self.hunger >= 60):
-            if (self.showBalls):
-               self.doMainText(" Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your testicles swell within their scrotum, growing hot with seed... Seems as though this berry has increased the size of your balls, somehow, and now you feel a little hungry again.")
-               self.ballSize += Math.floor(self.percent() / 33)
-               self.hunger -= 20
-            else:
-               self.doMainText(" Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your cum churning within your body, something swelling within... Seems as though this berry has increased the size of your non-visible balls, somehow, and now you feel a little hungry again.")
-               self.ballSize += Math.floor(self.percent() / 33)
-               self.doLust(self.percent() / 10,0)
-               self.hunger -= 20
-         else:
-            self.doMainText(" Moments later, you feel a bit of warmth in your groin, but it quickly passes. Now all you're left with is the aftertaste...")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 209:
-         self.doMainText("You pop the handful into your mouth and munch on them. Doesn't taste too bad. Although, the thought of mixing them in a bowl with some milk for breakfast does cross your mind, but passes shortly as you feel like you can get through the day better anyways.",True)
-         self.exhaustion -= 4
-         if (self.hunger >= 80):
-            self.doMainText(f"\n\nUnfortunately, it seems the food you have been eating has gone straight to your {self.buttDesc()} ass, making your {self.clothesBottom()} feel slightly tight around it as it swells.")
-            self.butt += Math.floor(self.percent() / 33)
-            self.hunger -= 20
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 210:
-         chance = self.percent()
-         self.doMainText("You bite into the fold-like cleft of the pussy fruit, sweet juices spilling out around your face and drooling from your chin in long, slimy strands. You devour it shortly and feel great!",True)
-         self.doHP(15)
-         if (self.vagTotal > 0):
-            if (self.hunger >= 90):
-               self.doMainText(f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nThe cramping shortly passes, but you walk awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again...")
-               self.vulvaSize += Math.floor(self.percent() / 20)
-               self.vagChange(Math.floor(self.percent() / 20),0)
-               self.doLust(self.percent() / 5,0)
-               self.hunger -= 30
-            elif (self.hunger >= 70):
-               if (chance <= 50):
-                  self.doMainText(f"\n\nHowever, it feels as though the food energy has run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nYou walk a bit awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again...")
-                  self.vulvaSize += Math.floor(self.percent() / 20)
-                  self.doLust(self.percent() / 10,0)
-                  self.hunger -= 20
-               else:
-                  self.doMainText(f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within...\n\nThe cramping shortly passes, but the increased size is real and you feel slightly hungry again...")
-                  self.vagChange(Math.floor(self.percent() / 20),0)
-                  self.doLust(self.percent() / 10,0)
-                  self.hunger -= 20
-         self.doLust(self.percent() / 10,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 211:
-         self.doMainText(f"Considering you don't have any cows to give it to, you pop the pill into your mouth and gulp it down. Within some moments your {self.boobDesc()} chest feels rather warm...",True)
-         if (self.udders):
-            self.doMainText(" And so does your udder.")
-            if (self.udderPlay >= 60):
-               self.lactChange(2,35)
-            else:
-               self.udderPlay += 20
-         if (self.nipplePlay >= 60):
-            self.lactChange(1,25)
-         else:
-            self.nipplePlay += 20
-         self.doLust(self.percent() / 10,0)
-         self.aff(5,Math.floor(self.percent() / 20 + 2),-1)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 212:
-         self.doMainText("You munch on the red mushroom. It doesn't taste terribly good or bad, but a blush quickly heats up your face as your chest turns intensely warm.",True)
-         if (self.hunger >= 80):
-            self.doMainText(f" Your {self.clothesTop()} feels unexpectedly tight, thanks to all the food you've been eating.\n\nAs you look down, you let out a gasp as your {self.boobDesc()} chest swells beneath your {self.clothesTop()}, your {self.nipDesc()}nipples pushing against the fabric. You grab the mounds and feel them grow larger, heavier, and more wobbly...\n\nThe warmth soon passes, leaving you bent over slightly as you adjust to the increased weight. You don't feel quite as full anymore though, much of your excess energy used up by this sudden growth.")
-            self.boobChange(Math.ceil(self.percent() / 33))
-            self.hunger -= 20
-         else:
-            self.doMainText(" Then the warmth subsides and your stomach grumbles from the strange food. You do feel less hungry though.")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 213:
-         self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,1,0,1))
-         tempDict = {10:"Breasts", 12:"Cancel"}
-         if (self.cockTotal > 0):
-            tempDict[5] = f"Cock{self.plural(1)}"
-         if (self.vagTotal > 0):
-            tempDict[7] = f"Cunt{self.plural(2)}"
-         self.outputMainText("What would you like to rub the wet, slimy cloth on?",True)
-         self.doButtonChoices(tempDict)
-         def doListen():
-            if self.buttonChoice == 5:
-               self.doMainText(f"You rub the slimy cloth around the head{self.plural(1)} of your {self.cockDesc()} cock{self.plural(1)}, polishing until there's a nice sheen. You feel a bit aroused from doing so, yet the cloth seems to have finally dried off.\n\nHowever, your cock{self.plural(1)} begin{self.plural(3)} dripping with the slime of the cloth instead...",True)
-               self.cockMoist += 1
-               if (self.cockMoist > 12):
-                  self.doMainText("\n\nHowever, that's not really any different than normal, leaving you fairly unaffected.")
-               self.doLust(self.percent() / 10,0)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 7:
-               self.doMainText(f"You rub the slimy cloth through the lips of your {self.vulvaDesc()} cunt{self.plural(2)} until your thighs are completely wet. You feel a bit aroused from doing so, yet the cloth seems to have finally dried off.\n\nHowever, your cunt{self.plural(2)} begin{self.plural(4)} dripping with the slime of the cloth instead...",True)
-               self.vagMoist += 1
-               if (self.vagMoist > 12):
-                  self.doMainText("\n\nHowever, that's not really any different than normal, leaving you fairly unaffected.")
-               self.doLust(self.percent() / 10,0)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 10:
-               self.doMainText(f"You rub the slimy cloth over your {self.boobDesc()} breasts and {self.nipDesc()}nipples until they're all completely wet. You feel a bit aroused from doing so, yet the cloth seems to have finally dried off.\n\nHowever, other than make your chest shine erotically, it doesn't really do much.",True)
-               self.doLust(self.percent() / 10,0)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 12:
-               self.itemAdd(213)
-               self.doProcess()
-         self.doListen = doListen
-      elif ID == 214:
-         self.doMainText("You down the bottle of milk and feel refreshed!",True)
-         self.doHP(15 + self.milkHPMod)
-         self.displayMainText()
-         self.aff(5,Math.floor(self.percent() / 10),0)
-         self.exhaustion -= 3
-         self.doEnd()
-      elif ID == 216:
-         self.dyeThing(ID,5)
-      elif ID == 217:
-         self.doMainText("You smear the jelly around your genitals. It's so slick and hot, you can't help but feel immensely aroused.",True)
-         if (self.vagTotal > 0):
-            self.doMainText(f" And as you rub it into your nether-lips, you feel it absorb into the walls of your vagina{self.plural(2)}. Slipping a finger in, it doesn't feel much different, until you actually prod a wall. It bends much more easily, as though it were more elastic than before. You could probably shove even larger things in there without feeling pain...")
-            self.vagElastic += 0.1
-         self.doLust(50,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 218:
-         self.doMainText("You pop the berry into your mouth. As it pops and gushes with juice within your mouth, your face cringes at how un-sweet it is. Tasting more salty with a thick texture, you swallow it as fast as possible.",True)
-         if (self.balls > 0 and self.ballSize > 0):
-            if (self.showBalls):
-               self.doMainText(" Moments later, you feel a warmth in your groin. You squirm as your testicles feel crowded, your scrotum growing tight. You look to see and find an extra testicle in your sack!")
-            else:
-               self.doMainText(" Moments later, you feel a warmth in your groin. You squirm as you feel your cum churning within your body, something extra growing within... Seems as though this berry caused you to grow an extra internal testicle, somehow.")
-            self.balls += 1
-            self.doLust(self.percent() / 10,0)
-         else:
-            self.doMainText(" Moments later, you feel a bit of warmth in your groin, but it quickly passes. Now all you're left with is the aftertaste...")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 219:
-         self.doMainText("You crack the egg open and swallow its contents, your belly thanking you for the food.",True)
-         self.doHP(5)
-         if (self.hunger >= 70):
-            self.doMainText("\n\nHowever, the fertile nature of the egg (and lots of protein) seem to go straight to your hips, making them grow wider.")
-            self.hips += Math.floor(self.percent() / 50)
-            self.hunger -= 25
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 220:
-         self.dyeThing(ID,2)
-      elif ID == 221:
-         self.doMainText("You down the vial. It's so sweet that your face puckers a bit, the concentrated syrup slowly dripping down your throat.",True)
-         if (self.vagTotal > 0):
-            self.doMainText(f"\n\nYour loins begin to grow hot. Your hand jerks down to your crotch, rubbing yourself feverishly through your {self.clothesBottom()}. The garment quickly grows moist, your arousal spreading {self.legWhere(1)} your {self.legDesc(2)}. You can feel your labia swell beneath your grip, your lips bulging out of your grasp, while your belly aches slightly with a bloating sensation. Your clit{self.plural(2)} squeeze{self.plural(4)} between your fingers.\n\nThe change soon passes, but the changing in the size of your nethers is easily noticeable, making you walk awkwardly at first as you become accustomed.")
-            self.vagChange(Math.floor(self.percent() / 20) + 2,0)
-            self.vulvaSize += Math.floor(self.percent() / 20) + 2
-            self.clitSize += Math.floor(self.percent() / 20) + 2
-            self.vagMoist += 1
-         else:
-            self.doMainText("\n\nYour loins feel quite warm for a moment, but the sensation quickly passes. It does nothing for you other than overwhelm your sweet-tooth.")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 222:
-         self.doMainText("Happy with how clean you've gotten it, you munch on the tasty vegetable. It makes you feel healthier to the point where you're nearly hopping with energy.",True)
-         self.aff(7,Math.floor(self.percent() / 15 + 2),-2)
-         self.doHP(4)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 223:
-         self.doMainText("The tasty morsel crumbles delightfully in your mouth.",True)
-         self.doHP(5)
-         if (self.vagTotal > 0 and self.hunger >= 90):
-            self.doMainText(" Though it settles in your stomach rather oddly, as you feel some squirming slightly below that, the snack quickly digesting into something else...")
-            self.vagChange(1,0)
-            self.hunger -= 25
-         if (self.percent() <= 25):
-            self.doMainText("\n\nAnd you don't quite feel stronger, you feel as though you could hold up more weight.")
-            self.carryMod += 1
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 224:
-         self.doMainText("Lila's breastmilk tastes quite sweet, with a slight aftertaste of her other fluids. It makes you feel a bit... tender, so to speak.",True)
-         if (self.percent() <= 25 and self.vagMoist < 12 and self.vagTotal > 0):
-            self.doMainText(" You feel some extra moistness in your loins as well, the liquid seeming to imprint some of the girl's wetness upon you.")
-            self.vagMoist += 1
-         if (self.heat > 0):
-            if (self.heatTime > 0):
-               self.doMainText(" There's also a slight sensation of coming closer to your fertile period...")
-               if (self.heatTime > 5):
-                  self.heatTime -= 5
-               else:
-                  self.heatTime = 1
-            elif (self.heatTime < 0):
-               self.doMainText(" There's also a slight tinge of heat that flows through your body, strengthening your estrus for a little longer...")
-               self.heatTime -= 5
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 225:
-         self.doMainText("You quickly scrub yourself down with the body wash, feeling so fresh and so clean. Which is kinda odd, considering that you're currently playing a porn game.",True)
-         self.exhaustion -= 8
-         self.stats(0,1,0,2)
-         self.doLust(-10,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 226:
-         self.doMainText("You mix the tea with a nice cup of hot water, producing a nice calming aroma. You sip it down and quite quickly feel much more relaxed.",True)
-         self.exhaustion -= 6
-         self.doLust(-10,0)
-         if (self.heat > 0):
-            if (self.heatTime > 0):
-               self.heatTime += 3
-            elif (self.heatTime < 0):
-               if (self.heatTime < -3):
-                  self.heatTime += 3
-               else:
-                  self.heatTime = -1
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 227:
-         self.doMainText("Taking a swig of the sweet-smelling stuff, you feel it tingle all the way down your throat and spread throughout your body from the inside.",True)
-         self.doLust(10,0)
-         self.stats(0,0,1,0)
-         if (self.skinType == 2):
-            self.doMainText(" You then proceed to lick as much of your fur as possible, making it look sleek and shiny")
-            self.stats(0,0,0,1)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 228:
-         self.doMainText(f"You rub the oil all over your {self.skinDesc()}, making yourself look shiny and attractive, bringing attention to all the contours of your body.",True)
-         if (self.bodyOil > 0):
-            self.bodyOil = 5
-         else:
-            self.enticeMod += 5
-            self.bodyOil = 5
-         if (self.skinType == 1 or self.skinType == 3):
-            self.doMainText(f" It also makes your {self.skinDesc()} feel so good to the touch~")
-            self.stats(0,0,0,1)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 230:
-         if (self.vagTotal < 1):
-            self.doMainText("You take out the eggcelerator, realize you don't have an appropriate orifice, and put it back away...",True)
-            self.itemAdd(230)
-         else:
-            self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} and squat down to help spread your {self.vulvaDesc()} lips. Grabbing the eggcelerator with your fingertips, you slip it into {self.oneYour(2)} slit{self.plural(2)}, pointy end first. It doesn't take much before physics takes over and the suppository slips up into your deeper spaces where you can feel a slight tingle as it dissolves.",True)
-            if (self.eggLaying > 0):
-               if (self.eggceleratorDose > 6 + Math.ceil(self.percent() / 20)):
-                  self.doMainText(f"\n\nYou can feel your next egg starting to come along more quickly than before... but it continues to build. Your {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. You fall back onto your hands, your {self.legDesc(6)} in the air as you lay it with such expediency that your thighs quiver and your pussy gasps in surprise. Yet, the sensation doesn't end, as more eggs begin to develop almost instantly inside your womb, one by one forcing their way through your passageway. Your {self.hipDesc()} hips jerk and your {self.clitDesc()} clit{self.plural(2)} stand{self.plural(4)} tall with a strange arousal as you thrust into the air again and again to plop out egg after egg. Part of you wants to furiously rub yourself as the eggs nearly launch from your spread cunt, but the rapid pace of the laying makes your body a twitching, seizing mess as you cry out in desparation. So many eggs fly out of you into a pile that you can hardly save them all; quite a few crack and ooze over the others. The round, smooth, slick object having their way with your sensitive flesh eventually makes you quake with an odd orgasm, somewhat powerful but not quite fulfilling, making you collapse back onto the ground as your womb pops out the rest...\n\nOver half an hour passes after your egg-laying extravaganza before you can collect yourself. You sit up to wipe the slime from your pussy, gazing upon the pile of eggs you have laid until you finally go through and pull out the good ones. You also notice that your womb seems to have completely calmed down afterwards, the eggcelerator having been purged from your system. It seems you had taken so many doses that your body could no longer handle it...")
-                  self.addManyItem(219,self.eggceleratorDose)
-                  self.doLust(Math.floor(-self.sen / 3),2,2)
-                  self.eggceleratorTime = 0
-                  self.eggRate -= self.eggceleratorDose
-                  self.eggceleratorDose = 0
-                  self.hrs = 1
-               else:
-                  self.doMainText("\n\nAlready you can somewhat feel that the next egg will be coming along more quickly than before and hope you'll be prepared for it.")
-                  self.eggRate += 1
-                  self.eggceleratorTime = 30
-                  self.eggceleratorDose += 1
-            else:
-               self.doMainText("\n\nOther than the tingling, it doesn't seem to do much... It would probably be more useful if you could actually lay eggs.")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 231:
-         if (self.currentState != 2):
-            self.outputMainText("You can only use this dangerous sand in battle. You put the sand back into your bag.",True)
-            self.itemAdd(231)
-            self.doEnd()
-         else:
-            self.dmg = Math.floor(Math.random() * 21) + 20
-            self.doMainText(f"You throw the pile of sand at the {self.enemyName()}. It cringes and winces as the sand sucks the moisture from its body, dealing {self.dmg} damage!",True)
-            self.doeHP(-self.dmg)
-            if (self.percent() <= 25):
-               self.doMainText("\n\nHowever, the wind catches some of the sand and it blow back at you! ")
-               self.rndArray.clear()
-               if (self.cockSizeMod > 0.5 and self.cockTotal > 0):
-                  self.rndArray.push(1)
-               if (self.vagSizeMod > 0.5 and self.vagTotal > 0):
-                  self.rndArray.push(2)
-               if (self.cumMod > 0.5 and self.showBalls and self.cockTotal > 0):
-                  self.rndArray.push(3)
-               if (self.milkMod > 0):
-                  self.rndArray.push(4)
-               if (self.pregnancyTime > 200):
-                  self.rndArray.push(5)
-               self.rndArray.push(6)
-               self.chooseFrom()
-               if self.rndResult == 1:
-                  self.doMainText(f"The stuff rushes across your {self.cockDesc()} cock{self.plural(1)}, seeping in deep and causing some permanent shrinkage.")
-                  self.cockSizeMod -= 0.05
-               elif self.rndResult == 2:
-                  self.doMainText(f"The stuff rushes between your legs and you can feel some slip up into your passage{self.plural(2)}, seeping in deep and resulting in some permanent shriveling.")
-                  self.vagSizeMod -= 0.05
-               elif self.rndResult == 3:
-                  self.doMainText(f"The stuff rushes across your {self.ballDesc()} balls, sinking through the scrotum and causing them to lose some of their efficiency.")
-                  self.cumMod -= 0.1
-               elif self.rndResult == 4:
-                  self.doMainText(f"The stuff rushes across your {self.boobDesc()} breasts, sinking into your mammary glands and reducing their power.")
-                  self.milkMod -= 5
-               elif self.rndResult == 5:
-                  self.doMainText(f"The stuff rushes across your {self.bellyDesc()} belly. It doesn't affect the life within, but you can feel your womb wane as it loses some of its future fertility.")
-                  self.pregRate -= 0.05
-                  self.pregChanceMod -= 1
-                  self.extraPregChance -= 1
-               else:
-                  self.doMainText("Thankfully, it barely touches you and you're left unaffected.")
+        elif ID == 115:
+            self.doMainText("You rub the soothing poultice all over your wounds, quickly making them heal. Rubbing yourself down with the wet rag, you rub a little too much in some areas and become slightly more aroused.", True)
+            self.doHP(20)
+            self.doLust(5, 0)
             self.displayMainText()
-            if (self.currentState == 2):
-               self.doEnd()
-      elif ID == 232:
-         if (self.currentState != 1):
-            self.outputMainText("You cannot activate the flying carpet during battle or while attempting to masturbate. It takes too long to set up during battle and it is not the kind of 'carpet-munching' you should be doing while masturbating.",True)
             self.doEnd()
-         else:
-            tempDict = {6:"Stay Here"}
-            self.outputMainText("Where would you like to go?",True)
-            buttonlist = ButtonList(0,0,0,0,0,1,0,0,0,0,0,0)
-            if self.currentZone == 1:
-               if (self.foundTieden):
-                  tempDict[1] = "Tieden"
-                  buttonlist[1] = 1
-               if (self.foundFirmshaft):
-                  tempDict[10] = "Firmshaft"
-                  buttonlist[10] = 1
-            elif self.currentZone == 2:
-               if (self.foundSoftlik):
-                  tempDict[3] = "Softlik"
-                  buttonlist[3] = 1
-               if (self.foundSizCalit):
-                  tempDict[5] = "Siz'Calit"
-                  buttonlist[5] = 1
-               if (self.foundOviasis):
-                  tempDict[10] = "Oviasis"
-                  buttonlist[10] = 1
-               if (self.foundSanctuary):
-                  tempDict[11] = "Sanctuary"
-                  buttonlist[11] = 1
-            elif self.currentZone == 3:
-               if (self.foundSoftlik):
-                  tempDict[7] = "Softlik"
-                  buttonlist[7] = 1
-               if (self.foundSizCalit):
-                  tempDict[9] = "Siz'Calit"
-                  buttonlist[9] = 1
-            elif self.currentZone == 4:
-               if (self.foundTieden):
-                  tempDict[2] = "Tieden"
-                  buttonlist[2] = 1
-               if (self.foundFirmshaft):
-                  tempDict[7] = "Firmshaft"
-                  buttonlist[7] = 1
-               if (self.foundOviasis):
-                  tempDict[11] = "Oviasis"
-                  buttonlist[11] = 1
-            elif self.currentZone == 6:
-               if (self.foundSizCalit):
-                  tempDict[1] = "Siz'Calit"
-                  buttonlist[1] = 1
-               if (self.foundFirmshaft):
-                  tempDict[2] = "Firmshaft"
-                  buttonlist[2] = 1
-            elif self.currentZone == 12:
-               if (self.foundFirmshaft):
-                  tempDict[5] = "Firmshaft"
-                  buttonlist[5] = 1
-            self.showButtons(buttonlist)
-            self.doButtonChoices(tempDict)
-            def doListen():
-               self.inDungeon = False
-               if self.currentZone == 1:
-                  if self.buttonChoice == 1:
-                     self.regionChange(3)
-                  elif self.buttonChoice == 10:
-                     self.regionChange(2)
-               elif self.currentZone == 2:
-                  if self.buttonChoice == 3:
-                     self.regionChange(1)
-                  elif self.buttonChoice == 5:
-                     self.regionChange(4)
-                  elif self.buttonChoice == 10:
-                     self.regionChange(6)
-                  elif self.buttonChoice == 11:
-                        self.regionChange(12)
-               elif self.currentZone == 3:
-                  if self.buttonChoice == 7:
-                     self.regionChange(1)
-                  elif self.buttonChoice == 9:
-                     self.regionChange(4)
-               elif self.currentZone == 4:
-                  if self.buttonChoice == 2:
-                     self.regionChange(3)
-                  elif self.buttonChoice == 7:
-                     self.regionChange(2)
-                  elif self.buttonChoice == 11:
-                     self.regionChange(6)
-               elif self.currentZone == 6:
-                  if self.buttonChoice == 1:
-                     self.regionChange(4)
-                  elif self.buttonChoice == 2:
-                     self.regionChange(2)
-               elif self.currentZone == 12:
-                  if self.buttonChoice == 5:
-                     self.regionChange(2)
-               if self.buttonChoice == 6:
-                  self.doProcess()
-               else:
-                  self.outputMainText(f"You step onto the carpet and with a gentle woosh, it lifts into the air and darts off in the direction of your desired location. Within just a couple of hours, you land in {self.regionName(self.currentZone)}, just like you wanted.",True)
-                  self.hrs = 2
-                  self.doEnd()
-            self.doListen = doListen
-      elif ID == 235:
-         self.outputMainText("You have equipped the fellatio rod.",True)
-         self.weapon = 235
-         self.doEnd()
-      elif ID == 238:
-         self.outputMainText("Nibbling the cheese, the delicious flavor melts in your mouth and feels so good going down. It feels good just eating it, like you could go hunting for lots more. Though... Hey, did your clothes get looser, or is it just your imagination?",True)
-         self.tallness -= 1
-         self.aff(8,Math.floor(self.percent() / 15 + 2),-2)
-         self.doEnd()
-      elif ID == 239:
-         self.outputMainText("You take out the rock and stare at it, intently focused on how shiny it is. Your mind grows sharper, allowing you to focus even harder and... Wait, what? One last glint of shininess and the rock suddenly became dull. Maybe you stared too hard? Either way, you toss the now dull rock, no longer interested in it.",True)
-         self.stats(0,1,0,0)
-         self.aff(9,Math.floor(self.percent() / 15 + 2),-2)
-         self.doEnd()
-      elif ID == 240:
-         self.dyeThing(ID,6)
-      elif ID == 241:
-         self.dyeThing(ID,7)
-      elif ID == 242:
-         self.dyeThing(ID,8)
-      elif ID == 243:
-         self.dyeThing(ID,9)
-      elif ID == 244:
-         if (not self.snuggleBall):
-            self.outputMainText(f"You take out the snuggle ball and squeeze it against your chest, hugging it gleefully. So squishy and soft, the pleasant sensation of it forming around your body as you compress it is oh so nice~ Though it doesn't stop forming around your body...\n\nLiquidy tendrils lash out from the ball, sticking to your face and arms, belly and {self.legDesc(2)}. You don't have time to resist as it wraps around your body, seeping past your {self.currentClothes()} and coating your {self.skinDesc()}.\n\nOver within moments, you stand there and gradually try to move. A plush and soft layer, slightly shiny and malleable just like the ball, covers all your {self.skinDesc()}. It doesn't impede your movement or actions, almost like it was an extra layer of skin, and doesn't do much but make you... snuggly.",True)
-            self.snuggleBall = True
+        elif ID == 116:
+            self.outputMainText("You have equipped the dagger.", True)
+            self.weapon = 116
             self.doEnd()
-         else:
-            self.outputMainText(f"Would you like to try and remove the plush shiny layer of cuddliness that covers your {self.skinDesc()}?",True)
-            self.buttonConfirm()
-            def doListen():
-               if (self.buttonChoice == 6):
-                  if (self.percent() / 2 > self.str):
-                     self.outputMainText("You pull and tug at the extra layer of 'skin'. It stretches from your body, but yanks itself out of your grip and snaps back in place. The little bugger just doesn't want to let go!",True)
-                  else:
-                     self.outputMainText(f"You pull and tug at the extra layer of 'skin'. It stretches from your body and with a bit more exertion it snaps off, coalescing back down into a little ball in your hand. Your {self.skinDesc()} now free of the little bugger, you put it back in your bag to deal with later.",True)
-                     self.snuggleBall = False
-                  self.doEnd()
-               else:
-                  self.doProcess()
-            self.doListen = doListen
-      elif ID == 245:
-         self.outputMainText(f"You pour the mud out into your hands and slather it all over your face. You let it sit there for a few moments, enjoying the warm sensation and feeling it creep into your pores and make your {self.skinDesc()} feel nice.\n\nYou soon wipe it off once it has had its effect, but tickle your nose a little in the process and make you laugh until you oink- err... snort.",True)
-         self.stats(0,0,0,1)
-         self.aff(10,Math.floor(self.percent() / 15 + 2),-2)
-         self.doEnd()
-      elif ID == 246:
-         self.doMainText("You pour out the gel into your hand and rub it into your loins, making sure it gets in niiice and deeeep.",True)
-         if (self.vagTotal > 0):
-            self.doMainText(" Your womb seems to soak up the warmth of the gel, feeling more receptive to semen~")
-            if (self.fertileGel == 0):
-               self.pregChanceMod += 10
-            self.fertileGel += 24
-         else:
-            self.doMainText(" However, you're not sure why you did that, since you don't exactly have a womb to make more fertile... Oh well, you're a pervert anyways.")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 247:
-         if (not self.suppHarness):
-            self.outputMainText("You wrap the harness around your back with the latches in front of you so you can see what you're doing. You gauge how tight they should be for your chest, crotch, and other various anatomy to fit before twisting it around. Then you stuff your chest into the appropriate sling, and continue on down until the multiple slings hold up your various weighty bits snugly, giving you a good deal more support. You can't exactly carry the world on your shoulders, but you can at least carry a bit more of yourself now.",True)
-            self.carryMod += 50
-            self.suppHarness = True
-         else:
-            self.carryMod -= 50
-            if (self.doWeight()):
-               self.outputMainText("You reach around behind back and fiddle with the latches of the harness, forcing them open. Your anatomy immediately falls out of the slings, taken you with it as you crash to the ground, completely anchored by your own body. You at least manage to finish unequipping the harness and put it in your bag, but now you've got some issues...",True)
-               self.doWeight()
-            else:
-               self.outputMainText("You reach around behind back and fiddle with the latches of the harness, forcing them open. Your bits bounce out as they're set free, making you jerk as the weight falls back upon your body. You then stuff the harness back into your bag, no longer equipped, and prepare yourself to continue on with the unsupported weight.")
-            self.suppHarness = False
-         self.doEnd()
-      elif ID == 248:
-         self.doMainText("You gulp down the potion yourself, rather than giving it to some animal that it was intended for.",True)
-         if (self.vagTotal > 0):
-            self.doMainText(" Your womb immediately begins to warm up a little, your ovaries 'feeling' like they're working harder. It's strange to describe, but your body quickly adapts and the warmth settles down.")
-            self.extraPregChance += 3
-         else:
-            self.doMainText(" However, you don't really notice any effect when it comes to having a larger litter... You kinda can't have litters without a womb to birth them from, come to think of it.")
-         if (self.heat > 0):
-            self.doMainText(" Whereas your loins seem to feel flushed. Not exactly going into heat just from the potion, but more feeling like they will do so more readily now...")
-            self.heatMaxTime -= Math.floor(self.heatMaxTime * 0.1)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 249:
-         self.doMainText("You drop the small tear into your mouth, swallowing it easily with a quick gulp. You don't even feel it in your stomach; it doesn't seem to do anything at first.\n\nHowever, a sensation of wilting envelopes your appendages, like they're growing weaker.",True)
-         if (self.cockTotal > 0 or self.vagTotal > 0):
-            self.doMainText(" The sensation coalesces into your crotch, focusing within your extra genitalia.")
+        elif ID == 117:
+            self.outputMainText("You have equipped the warhammer.", True)
+            self.weapon = 117
+            self.doEnd()
+        elif ID == 118:
+            self.outputMainText("You have equipped the saber.", True)
+            self.weapon = 118
+            self.doEnd()
+        elif ID == 119:
+            self.outputMainText("You have equipped the whip.", True)
+            self.weapon = 119
+            self.doEnd()
+        elif ID == 120:
+            self.showButtons(ButtonList(0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1))
+            tempDict = {2: "None", 12: "Cancel"}
             if (self.cockTotal > 0):
-               self.tallness += Math.ceil(self.cockTotal / 4) * 2
-               self.cockChange(0,-Math.ceil(self.cockTotal / 4))
-            if (self.balls > 2):
-               self.tallness += Math.ceil(self.balls / 4)
-               if (self.showBalls):
-                  self.doMainText(f"\n\n{Math.ceil(self.balls / 4)} of your testicles also shrivel up inside your scrotum, being absorbed back into your body.")
-               self.balls -= Math.ceil(self.balls / 4)
+                tempDict[5] = "Cock"
+                if (self.showBalls and self.balls > 0):
+                    tempDict[10] = "Balls"
             if (self.vagTotal > 0):
-               self.tallness += Math.ceil(self.vagTotal / 4) * 2
-               self.vagChange(0,-Math.ceil(self.vagTotal / 4))
-            self.doMainText("\n\nThen, once you have lost the extra genitals, the ground below you falls away! Or, more accurately, your heads shoots upward as your body rapidly begins to grow, taller and taller to compensate for the genitals you have lost! You have shed your extra 'limbs' and grown towards the sky.")
-         else:
-            self.doMainText(" The sensation coalesces into your crotch for an instance, but quickly dissolves. Then... that's it.\n\nSeems whatever the tear was supposed to do didn't affect you. So much for that.")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 250:
-         if (self.currentState != 2):
-            self.outputMainText("You can only use this escape bomb in battle, it's not really useful otherwise. You put the foomp bomb back into your bag.",True)
-            self.itemAdd(250)
-            self.doEnd()
-         else:
-            self.doMainText(f"Needing a quick escape, you throw the foomp bomb at the enemy. It explodes on contact with a cloud of magical dust and, just as its name implies, there's a sort of \"foomp!\" sound. As the dust clears, you can't help but giggle at the results. The {self.enemyName()}'s whole body has ballooned to amusing proportions; inflated by the bomb.",True)
-            if (self.eGen == 1 or self.eGen == 3):
-               self.doMainText(f" The {self.enemyName()}'s cock propels forward with the growth, flopping down onto the ground many times larger than it was, anchoring itself do the ground and preventing its owner from moving.")
-            if (self.eGen == 2 or self.eGen == 3):
-               self.doMainText(f" The {self.enemyName()}'s breasts swell to obscene sizes, making her fall forward and be cushioned by the pillowy masses, unable to stand.")
-            if (self.eGen == 4):
-               self.doMainText(f" The {self.enemyName()}'s midsection grows so large and round that it is unable to move at all.")
-            self.outputMainText(f"\n\nHowever, the bomb's effects are already beginning to wear off as you stare at its results. Taking advantage of this short opportunity, you turn and dash away before the {self.enemyName()} can shrink back down to a manageable size and continue the fight.")
+                tempDict[7] = "Cunt"
+            self.outputMainText("What would you like to remove?\n\nNote that removing balls removes one at a time. If try to remove them when you only have two left, neuterizer simply hides them, as it would severely damage your plumbing without them.", True)
+            self.doButtonChoices(tempDict)
+
+            def doListen():
+                if self.buttonChoice == 2:
+                    self.outputMainText("You decide you'd rather keep what you got, for the moment, and put the neuterizer back in your bag.", True)
+                    self.itemAdd(120)
+                    self.doEnd()
+                elif self.buttonChoice == 5:
+                    self.doMainText(f"You rub the neuterizer into {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}...", True)
+                    self.cockChange(0,-1)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 7:
+                    self.doMainText(f"You rub the neuterizer into {self.oneYour(2)} {self.vulvaDesc()} cunt{self.plural(1)}...", True)
+                    self.vagChange(0,-1)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 10:
+                    # TODO: respect showballs
+                    if (self.balls > 2):
+                        self.outputMainText("You rub the neuterizer into your scrotum. You squirm a bit as one of your testicles wrenches a bit, shrinking down. Once it disappears into nothing, you feel perfectly fine again.", True)
+                        self.balls -= 1
+                    else:
+                        self.outputMainText("Unfortunately, the neuterizer cannot simply make your testicles disappear while you still have any cocks. It would be... too dangerous. But, rubbing it onto your scrotum, your balls disappear up into your body, hidden from view.", True)
+                        self.neuterizerHideBalls = True
+                        self.showBalls = False
+                    self.doEnd()
+                elif self.buttonChoice == 12:
+                    self.itemAdd(120)
+                    self.doProcess()
+            self.doListen = doListen
+        elif ID == 121:
+            self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!", True)
             self.currentState = 1
-            self.hrs += 1
+            self.inBag = False
+            self.inDungeon = False
+            self.regionChange(1)
             self.doEnd()
-      elif ID == 251:
-         self.outputMainText("Biting into the plump fruit, the sweet flesh melts delightfully in your mouth with a nice citrusy sour tinge. Gulping it down and feeling it splash into your stomach and warm your insides makes you crave even more. Your mouth immediately bites off another chunk of the fruit, then another, insatiably devouring the delicious thing. The flesh slips down your throat and sinks into your stomach, filling you up so delightfully~\n\nBut before you know it, you've already eaten the whole thing. You glutton. Though there's no more left, you can still feel it digesting inside, which in itself is rather pleasant...",True)
-         self.bellyMod += 10
-         self.plumpQuats += 6
-         self.doEnd()
-      elif ID == 253:
-         if (self.tail == 12):
-            self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,0,0,0))
-            self.outputMainText("Considering the egg is just about the right size for the hole in your large ovipositor tail, what would you like to do with it?",True)
-            self.doButtonChoices({5:"Eat", 7:"Ovipositor", 10:"Do Nothing"})
+        elif ID == 122:
+            self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!", True)
+            self.currentState = 1
+            self.inBag = False
+            self.inDungeon = False
+            self.regionChange(2)
+            self.doEnd()
+        elif ID == 123:
+            self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!", True)
+            self.currentState = 1
+            self.inBag = False
+            self.inDungeon = False
+            self.regionChange(3)
+            self.doEnd()
+        elif ID == 124:
+            self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!", True)
+            self.currentState = 1
+            self.inBag = False
+            self.inDungeon = False
+            self.regionChange(4)
+            self.doEnd()
+        elif ID == 125:
+            self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!", True)
+            self.currentState = 1
+            self.inBag = False
+            self.inDungeon = False
+            self.regionChange(6)
+            self.doEnd()
+        elif ID == 126:
+            self.outputMainText("Sipping the refreshing water, you notice a slight aftertaste of something funny, like people have been bathing and doing... things in the water. It's kinda kinky when you think about it, but also feels nice inside of you.", True)
+            if (self.percent() <= 50):
+                self.stats(1, 0, 1, 0)
+            else:
+                self.stats(0, 0, 1, 1)
+            self.aff(6, Math.floor(self.percent() / 15 + 2), -2)
+            self.doEnd()
+        elif ID == 127:
+            if self.tail in {4, 5, 6, 8}:
+                self.outputMainText("You strap the tail spike to your tail, equipping it as your weapon.", True)
+                self.weapon = 127
+            else:
+                self.outputMainText("You do not have an appropriate tail to strap this onto and thus cannot equip it.", True)
+            self.doEnd()
+        elif ID == 128:
+            self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a thump, they quickly disappear and you find yourself back in the city of Sanctuary!", True)
+            self.currentState = 1
+            self.inBag = False
+            self.inDungeon = False
+            self.regionChange(12)
+            self.doEnd()
+        elif ID == 201:
+            self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1))
+            tempDict = {5: "Breasts", 12: "Cancel"}
+            if (self.udders):
+                tempDict[7] = "Udder"
+            self.outputMainText("What would you like to rub the Milk Creeper Poison into?", True)
+            self.doButtonChoices(tempDict)
+
             def doListen():
-               if self.buttonChoice == 5:
-                  self.doMainText("You pop the egg into your mouth and bite down. The gooey stuff splorts about your mouth and... isn't exactly tasty. Even swallowing it makes your belly want to rebel. The act kills off some of your arousal, at least.",True)
-                  self.doLust(-3,0)
-                  self.displayMainText()
-                  self.doEnd()
-               elif self.buttonChoice == 7:
-                  self.doMainText(f"Taking the chance, you bend around yourself and press the squishy egg up against the hole at the end of your blunted tail. You wince and shudder as you push it in, the passage inside sensitive as it quickly engulfs the sphere, arousing you slightly. Then it's gone.\n\nYou jiggle your {self.buttDesc()} butt, feeling the wide fleshy tail flop up and down on it, and wait a few moments as you hear and sense some groaning within, similar to the sounds of digestion. Eventually you feel a pressure against the inside of the hole and you press down, your hand ready at the tip to catch the slimy thing as it pops back out.\n\n",True)
-                  chance = self.percent()
-                  if (chance <= 8):
-                     self.doMainText("The egg now glows with a sort of regal luster, slightly larger than before with a heavier weight.")
-                     self.itemAdd(537)
-                  elif (chance <= 25):
-                     self.doMainText("The egg now feels tougher, less squishy in your hand than before.")
-                     self.itemAdd(538)
-                  elif (chance <= 55):
-                     self.doMainText("The egg now looks somewhat dimmer, but also has some more warmth to it than before.")
-                     self.itemAdd(539)
-                  else:
-                     self.doMainText("The egg now seems rather bland, not as gooey and more starchy than before.")
-                     self.itemAdd(540)
-                  self.displayMainText()
-                  self.doEnd()
-               elif self.buttonChoice == 10:
-                  self.outputMainText("You decide to do nothing and put the egg away.", True)
-                  self.itemAdd(253)
-                  self.doEnd()
+                if self.buttonChoice == 5:
+                    self.doMainText(f"You pour out the vial of poison and rub the pearlescant fluid all over your {self.boobDesc()} breasts. You shiver a little as they tingle, a subtle warmth permeating your bosom as the poison sets in and remains.", True)
+                    self.milkCPoisonNip += 5
+                    self.doLust(self.percent() / 10,0)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 7:
+                    self.doMainText(f"You pour out the vial of poison and rub the pearlescant fluid all over your {self.udderDesc()} udder. Your hips twitch a little as the fleshy bag tingles, a subtle warmth permeating your udder as the poison sets in and remains.", True)
+                    self.milkCPoisonUdd += 5
+                    self.doLust(self.percent() / 10,0)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 12:
+                    self.itemAdd(201)
+                    self.doProcess()
             self.doListen = doListen
-         else:
-            self.doMainText("You pop the egg into your mouth and bite down. The gooey stuff splorts about your mouth and... isn't exactly tasty. Even swallowing it makes your belly want to rebel. The act kills off some of your arousal, at least.",True)
-            self.doLust(-3,0)
+        elif ID == 202:
+            if (self.cockTotal > 0):
+                self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your cock{self.plural(1)}. Within seconds, you begin to shudder erotically as warmth fills your cock{self.plural(1)}, becoming erect. After waiting a few moments, the erection settles somewhat, but the warmth of the venom within persists, as though lying in wait...", True)
+                self.doLust(4 * self.cockTotal, 0)
+                self.cockSnakeVenom += 5
+            elif (self.vagTotal > 0):
+                self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your groin. Within seconds, you begin to shudder...", True)
+                if (self.clitSize > 20 and self.percent() <= 5):
+                    self.doMainText(f" You feel {self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)} swell and shift within your {self.clothesBottom()}, your lips starting to grow quite oddly as well...")
+                    self.vagChange(0, -1)
+                    self.cockChange(Math.ceil(self.clitSize * 5 / 2), 1)
+                    self.doLust(4,0)
+                else:
+                    self.doMainText(f" You feel your {self.clitDesc()} clit{self.plural(2)} grow warm. Within seconds, you begin to shudder erotically as you clit{self.plural(2)} grow hot and erect. After waiting a few moments, the initial intensity passes, but the warmth of the venom within persists, as though lying in wait...")
+                    self.cockSnakeVenom += 5
+                    self.doLust(4 * self.vagTotal, 0)
+            else:
+                self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your groin. You wait for several seconds and... nothing seems to happen. What a waste.", True)
             self.displayMainText()
             self.doEnd()
-      elif ID == 255:
-         self.outputMainText("You bring the flower to your nose and inhale deeply. It smells so good, the delightful scent filling your nostils and your lungs and leaving you feeling quite tingly all over.\n\nHowever, once you look back down afterwards, the flower has wilted and no longer has any scent at all...",True)
-         self.stats(0,0,0,2)
-         self.aff(11,Math.floor(self.percent() / 15 + 2),-2)
-         self.doEnd()
-      elif ID == 256:
-         self.doMainText("You suck on the hard candy, the nutrient-rich ingredients making you feel stronger as the sweet flavors fill your belly.",True)
-         if (self.eggLaying > 0):
-            if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
-               self.doMainText(" And your womb gets a good workout, the pro-something bacteria or whatever helping with its functions. Or something.")
-            self.eggTime -= 4
-         self.stats(1,0,0,0)
-         self.aff(12,Math.floor(self.percent() / 15 + 2),-2)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 257:
-         self.doMainText("You drink down the potion. You immediately begin to feel very odd...",True)
-         if (self.legType != 1002):
-            self.humanTaurAffinity = 100
-            self.legChange(1002)
-            self.doMainText("\n\nFor a normal human, having a second body would -technically- be more human than a human. Though you can see why it was a failure...")
-         else:
-            self.doMainText("\n\nBut the feeling passes as nothing happens.")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 258:
-         self.doMainText("You drink down the potion. You immediately begin to feel very odd...",True)
-         if (self.legType != 1001):
-            self.cowTaurAffinity = 100
-            self.legChange(1001)
-            self.doMainText("\n\nIt's probably best that alchemist didn't sell it to others...")
-         else:
-            self.doMainText("\n\nBut the feeling passes as nothing happens.")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 259:
-         self.doMainText("You pop the candy into your mouth and let it slowly dissolve. You immediately realize that the 'sour' comes before the 'sweet', despite the name, and your face puckers up with the intensity, your pain subsiding in relation.",True)
-         if (self.vagTotal > 0):
-            self.doMainText(f" You pucker so hard that you can feel your cunt{self.plural(2)} stretch further into your body from the force, permanently slightly larger...")
-            self.vagSizeMod += 0.05
-         self.doMainText("\n\nThen the sweetness comes along, your body relaxing and tingling from the blissful flavor.")
-         if (self.cockTotal > 0):
-            self.doMainText(f" You relax your body so much that your cock{self.plural(1)} droop out even further than usual, so far that they're permanently slightly longer...")
-            self.cockSizeMod += 0.05
-         self.doHP(5)
-         self.doLust(5,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 260:
-         self.doMainText("You gulp down the draft. The stuff is very thick and heady, nearly burning your throat on the way down. The warmth spreads from your belly, your mind becoming more focused while your body grows stronger, more mature, and taller.",True)
-         if (self.cockTotal > 0):
-            self.doMainText(f" Your {self.cockDesc()} cock{self.plural(1)} also grow{self.plural(3)} from the concentrated masculinity, bulging in your {self.clothesBottom()}.")
-            self.cockChange(2,0)
-         if (self.vagTotal > 0):
-            self.doMainText(f" However, unexpectedly, the concentrated masculinity causes your {self.clitDesc()} clit{self.plural(2)} to grow as well, pushing out your {self.clothesBottom()} further...")
-            self.clitSize += 2
-         self.body += 1
-         self.tallness += 1
-         self.displayMainText()
-         self.stats(2,1,0,0)
-         self.doEnd()
-      elif ID == 500:
-         self.doMainText("You down the bottle of milk and feel refreshed!",True)
-         self.doHP(10 + self.milkHPMod)
-         self.displayMainText()
-         self.exhaustion -= 2
-         self.doEnd()
-      elif ID == 501:
-         self.doMainText("You guzzle down the jug of milk and feel very refreshed! And you feel like you have a rather full bladder...",True)
-         self.doHP(40 + self.milkHPMod)
-         self.exhaustion -= 6
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 502:
-         self.outputMainText("You pour the milk out of the barrel into 4 jugs...",True)
-         self.addManyItem(501, 4)
-         self.doEnd()
-      elif ID == 503:
-         self.doMainText("You take a swig of the draft, your loins warming within seconds.",True)
-         self.doLust(20,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 504:
-         self.doMainText("You down the potion, your body feeling much better than before.",True)
-         self.doHP(30)
-         self.doLust(-15,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 505:
-         if (self.currentState != 2):
-            self.outputMainText("You can only use this explosive potion in battle. You put the bad experiment back into your bag.",True)
-            self.itemAdd(505)
+        elif ID == 203:
+            self.outputMainText(f"You rub the tuft of coarse wolf fur into your {self.skinDesc()}. The roughness desensitizes you a bit.", True)
+            self.stats(0, 0, 0, -3)
             self.doEnd()
-         else:
-            self.dmg = Math.floor(Math.random() * 11) + 10
-            self.outputMainText(f"You pull the bad experiment from your bag and toss it at the {self.enemyName()}. The crude stuff explodes, far enough away to not harm you, dealing {self.dmg} damage!",True)
-            self.doeHP(-self.dmg)
-            self.doBattle()
-      elif ID == 506:
-         if (self.pregCheck(0)):
-            self.doMainText(f"Drinking this potion, you can feel your {self.bellyDesc()} belly quiver, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You can almost hear the {self.skinDesc()} creak, growing taut!",True)
-            for i in range(0,self.pregArray.length,5):
-               if (self.pregArray[i]):
-                  self.pregArray[i + 3] += 50
-            self.doMainText(f"\n\nA few moments pass before you gather yourself, standing upright once more. You are slightly more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though it'll take a bit to get used to the sudden increase in size.")
-         else:
-            self.doMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely feel like you have to go to the bathroom all of a sudden...",True)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 507:
-         if (self.balls > 0):
-            if (self.showBalls):
-               self.doMainText(f"Downing the potion, you quickly begin to feel a slight ache in your {self.ballDesc()} testicles, like you haven't had an orgasm in a while...",True)
-               self.blueBalls += 30
-            else:
-               self.doMainText("Downing the potion, you quickly begin to feel a slight ache in your abdomen, like you haven't had an orgasm in a while...",True)
-               self.blueBalls += 30
-         else:
-            self.doMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.",True)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 508:
-         self.doMainText("You take a swig of the draft, your loins burning hot within seconds.",True)
-         self.doLust(50,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 509:
-         self.doMainText("You down the potion, your body feeling immensely better than before.",True)
-         self.doHP(70)
-         self.doLust(-40,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 510:
-         if (self.currentState != 2):
-            self.outputMainText("You can only use this explosive potion in battle. You put the bad experiment back into your bag.",True)
-            self.itemAdd(510)
-            self.doEnd()
-         else:
-            self.dmg = Math.floor(Math.random() * 21) + 20
-            self.outputMainText(f"You pull the super bad experiment from your bag and toss it at the {self.enemyName()}. The super crude stuff explodes superbly, far enough away to not harm you, dealing a super {self.dmg} damage!",True)
-            self.doeHP(-self.dmg)
-            self.doBattle()
-      elif ID == 511:
-         if (self.pregCheck(0)):
-            self.doMainText(f"Drinking this potion, you can feel your {self.bellyDesc()} belly shake, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You're pretty sure you can hear the {self.skinDesc()} creak, growing taut, to the point where you fear it will tear!",True)
-            for i in range(0,self.pregArray.length,5):
-               if (self.pregArray[i]):
-                  self.pregArray[i + 3] += 120
-            self.doMainText(f"\n\nA few moments pass before you gather yourself, standing upright once more, having a bit of difficulty doing so. You are much more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though you're unsure if you'll be able to get used to this sudden increase in size...")
-         else:
-            self.doMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely wish there was a bathroom here all of a sudden...",True)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 512:
-         if (self.balls > 0):
-            if (self.showBalls):
-               self.doMainText(f"Downing the potion, you quickly begin to feel a great ache in your {self.ballDesc()} testicles, like you haven't had an orgasm in sooo long!",True)
-               self.blueBalls += 70
-            else:
-               self.doMainText("Downing the potion, you quickly begin to feel a great ache in your abdomen, like you haven't had an orgasm in sooo long!",True)
-               self.blueBalls += 70
-         else:
-            self.doMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.",True)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 513:
-         if self.gender == 1:
-            self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for a small amount of vaginal flesh inside.",True)
-            if (self.showBalls):
-               self.doMainText(f" Your {self.ballDesc()} balls squeeze up {self.legWhere(1)} your {self.legDesc(2)} before eventually melding into your {self.skinDesc()}, leaving behind 1 tiny pair of feminine lips.")
-            else:
-               self.doMainText(f" The skin {self.legWhere(1)} your {self.legDesc(2)} swells slightly, forming two tiny mounds, 1 pair of new feminine lips.")
-            self.doMainText(" The lips part, the fresh air making you shiver as it passes across the moist flesh within. Your hand passes over your clitoris, making you shiver slightly, before you dip your finger into your new cunny, amazed at the sensation of being penetrated like that. For all intents and purposes, you are now a girl.")
-            self.balls = 0
-            self.ballSize = 0
-            self.cockSize = 0
-            self.stats(0,0,-(2 * (self.cockTotal - 1)),0)
-            self.cockTotal = 0
-            self.humanCocks = 0
-            self.horseCocks = 0
-            self.wolfCocks = 0
-            self.catCocks = 0
-            self.lizardCocks = 0
-            self.rabbitCocks = 0
-            self.bugCocks = 0
-            self.vagBellyChange(1,1)
-            self.vagTotal = 1
-            self.pregArray = Array(False,0,0,0,0)
-            self.vagSize = 1
-            self.vulvaSize = 1
-            self.clitSize = 1
-            self.gender = 2
-         elif self.gender == 2:
-            self.doMainText("You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within.",True)
-            self.cockChange(1,1)
-            self.doMainText(f"\n\nHowever, it doesn't last long as the last of your vagina{self.plural(2)} shrink{self.plural(4)} to nothing, your {self.vulvaDesc()} lips disintegrating back against your groin before finally vanishing, making you a boy for all intents and purposes.")
-            self.vagChange(-1,0)
-            self.vagBellyChange(-self.vagSize,-self.vagTotal)
-            self.stats(0,0,-(2 * (self.vagTotal - 1)),0)
-            self.vagSize = 0
-            self.vagTotal = 0
-            i = 0
-            while (i < self.pregArray.length):
-               if (self.pregArray[i]):
-                  i += 5
-               else:
-                  self.pregArray.splice(i,5)
-            self.vulvaSize = 0
-            self.clitSize = 0
-            self.gender = 1
-         elif self.gender == 3:
-            self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within. Your {self.clothesBottom()} feels loser as your {self.cockDesc()} bulges dwindle as well.",True)
-            if (self.showBalls):
-               self.doMainText(" Even your testicles shrivel up, growing smaller and smaller.")
-            self.doMainText(f"\n\nBy the time you finally pull {self.pullUD(2)} your {self.clothesBottom()}, all your attributes are like that of a childs...")
-            self.vagChange(-1,0)
-            self.vagBellyChange(-(self.vagSize - 1),0)
-            self.ballSize = 1
-            self.cockSize = 1
-            self.vagSize = 1
-            self.vulvaSize = 1
-            self.clitSize = 1
-         elif self.gender == 0:
+        elif ID == 204:
             chance = self.percent()
-            self.doMainText("You ingest the potion and quickly begin to feel its effects.",True)
-            if (chance <= 40):
-               self.cockChange(1,1)
-            elif (chance <= 80):
-               self.vagChange(1,1)
-            elif (chance > 80):
-               self.cockChange(1,1)
-               self.vagChange(1,1)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 514:
-         self.outputMainText("After drinking the potion, your body feels tingly all over. You have the odd feeling like it would be fun to be whipped right about now...",True)
-         self.masoPot += 24
-         self.doEnd()
-      elif ID == 515:
-         self.dyeThing(ID,1)
-      elif ID == 516:
-         self.outputMainText("Taking the potion, you sudden feel less... fertile than before. You might still be a little fertile, but you suspect you can go out 'clubbing' for the next few days and not have to worry so much about a little extra weight in a few more. If you knew what any of that even meant.",True)
-         self.babyFree += 72
-         self.doEnd()
-      elif ID == 517:
-         if (self.balls > 0):
-            if (self.showBalls):
-               self.doMainText(f"Within seconds of drinking this potion, you can feel your balls grow slightly warmer. You can almost hear them hum as they work harder to produce more fun goop for your cock{self.plural(1)}.",True)
+            if (chance <= 30):
+                self.outputMainText("You find some coins inside!", True)
+                self.doCoin(Math.floor(self.percent() / 5))
+            elif (chance <= 40):
+                self.itemAdd(246)
+            elif (chance <= 55):
+                self.itemAdd(105)
+            elif (chance <= 75):
+                self.itemAdd(103)
+            elif (chance <= 90):
+                self.itemAdd(114)
             else:
-               self.doMainText(f"Within seconds of drinking this potion, you can feel your abdomen grow slightly warmer. You can almost hear something inside hum as it works harder to produce more fun goop for your cock{self.plural(1)}.",True)
-         else:
-            self.doMainText("If you had balls to be kicked in, they'd probably be feeling more active right now. Not that you would know, you ball-less freak.",True)
-         self.cumMod += 0.2
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 518:
-         if self.gender == 1:
-            self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for an equal amount of vaginal flesh inside.",True)
-            if (self.showBalls):
-               self.doMainText(f" Your {self.ballDesc()} balls squeeze up {self.legWhere(1)} your {self.legDesc(2)} before eventually melding into your {self.skinDesc()}, forming mounds of equal size until you have {self.cockTotal} pair{self.plural(1)} of feminine lips.")
+                self.outputMainText("Daww, turns out the pouch was empty...", True)
+            if chance > 30 and chance <= 90:
+                self.doProcess()
             else:
-               self.doMainText(f" The skin {self.legWhere(1)} your {self.legDesc(2)} swells slightly, forming mounds of plush flesh, {self.cockTotal} pair{self.plural(1)} of new feminine lips.")
-            self.doMainText(f" The lips part, the fresh air making you shiver as it passes across the moist flesh within. Your hand passes over your new clit{self.plural(1)}, making you shiver slightly, before you dip your finger into {self.oneYour(1)} new cunt{self.plural(1)}, amazed at the sensation of being penetrated like that. For all intents and purposes, you are now a girl.")
-            self.vagBellyChange(self.cockSize,self.cockTotal)
-            self.vagTotal = self.cockTotal
-            for i in range(self.vagTotal):
-               if (self.pregArray.length / 5 < 1):
-                  self.pregArray = Array(False,0,0,0,0)
-               elif (self.pregArray.length / 5 < self.vagTotal):
-                  self.pregArray.push(False,0,0,0,0)
-            self.vagSize = self.cockSize
-            self.vulvaSize = self.ballSize
-            self.clitSize = self.ballSize
-            self.balls = 0
-            self.ballSize = 0
-            self.cockSize = 0
-            self.cockTotal = 0
-            self.humanCocks = 0
-            self.horseCocks = 0
-            self.wolfCocks = 0
-            self.catCocks = 0
-            self.lizardCocks = 0
-            self.rabbitCocks = 0
-            self.bugCocks = 0
-            self.gender = 2
-         elif self.gender == 2:
-            self.doMainText("You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within.",True)
-            self.cockChange(self.vagSize,self.vagTotal)
-            self.doMainText(f"\n\nHowever, it doesn't last long as the last of your vagina{self.plural(2)} shrink{self.plural(4)} to nothing, your {self.vulvaDesc()} lips disintegrating into your new scrotum, your testicles growing larger and larger before your lips finally vanish, making you a boy for all intents and purposes.")
-            self.ballSize = self.vulvaSize
-            self.vagBellyChange(-self.vagSize,-self.vagTotal)
-            self.vagSize = 0
-            self.vagTotal = 0
-            i = 0
-            while (i < self.pregArray.length):
-               if (self.pregArray[i]):
-                  i += 5
-               else:
-                  self.pregArray.splice(i,5)
-            self.vulvaSize = 0
-            self.clitSize = 0
-            self.gender = 1
-         elif self.gender == 3:
-            self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh attempting to match the size of your male anatomy. Your {self.clothesBottom()} shakes as your {self.cockDesc()} bulges try to mimic your female anatomy as well.",True)
-            if (self.showBalls):
-               self.doMainText(f" Even your testicles shift, growing to match your pussy lips, while those lips do the same. Your clit{self.plural(2)} also change{self.plural(4)} to more closely match the size of your different vulva.")
-            else:
-               self.doMainText(f"Even your pussy lips shift, trying to match the size of what's in your abdomen. Your clit{self.plural(2)} also change{self.plural(4)} to more closely match the size of your different vulva.")
-            self.doMainText(" In the end, your whole body feels a little off balanced, having to adjust to the backwards genitals...")
-            tempCockSize = self.cockSize
-            tempBallSize = self.ballSize
-            self.cockSize = self.vagSize
-            self.ballSize = self.vulvaSize
-            self.vagBellyChange(tempCockSize - self.vagSize,0)
-            self.vagChange(-1,0)
-            self.vagSize = tempCockSize
-            self.vulvaSize = tempBallSize
-            self.clitSize = tempBallSize
-         elif self.gender == 0:
+                self.doEnd()
+        elif ID == 205:
             chance = self.percent()
-            self.doMainText("You ingest the potion and quickly begin to feel its effects.",True)
-            if (chance <= 40):
-               self.cockChange(Math.ceil(self.percent() / 5),1)
-               self.ballSize = Math.ceil(self.percent() / 5)
-            elif (chance <= 80):
-               self.vagChange(Math.ceil(self.percent() / 5),1)
-               self.vulvaSize = Math.ceil(self.percent() / 5)
-               self.clitSize = Math.ceil(self.percent() / 5)
-            elif (chance > 80):
-               self.cockChange(Math.ceil(self.percent() / 5),1)
-               self.vagChange(Math.ceil(self.percent() / 5),1)
-               self.ballSize = Math.ceil(self.percent() / 5)
-               self.vulvaSize = Math.ceil(self.percent() / 5)
-               self.clitSize = Math.ceil(self.percent() / 5)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 519:
-         self.outputMainText("After drinking the potion, your body feels like electricity is sparking all over. You have the odd feeling like it would be fun to be beaten to a pulp right about now...",True)
-         self.sMasoPot += 24
-         self.doEnd()
-      elif ID == 520:
-         self.dyeThing(ID,3)
-      elif ID == 521:
-         self.outputMainText("Taking the potion, you sudden feel less... fertile than before. You might still be a little fertile, but you suspect you can go out 'clubbing' for the next several days and not have to worry so much about a little extra weight afterwards. If you knew what any of that even meant.",True)
-         self.babyFree += 216
-         self.doEnd()
-      elif ID == 522:
-         if (self.balls > 0):
-            if (self.showBalls):
-               self.doMainText(f"Within seconds of drinking this potion, you can feel your balls grow slightly hotter. You can almost hear them whir as they work harder to produce more fun goop for your cock{self.plural(1)}.",True)
+            if (chance <= 50):
+                self.outputMainText("You find some coins inside!", True)
+                self.doCoin(Math.floor(self.percent() / 5 + 5))
+            elif (chance <= 65):
+                self.itemAdd(112)
+            elif (chance <= 85):
+                self.itemAdd(115)
             else:
-               self.doMainText(f"Within seconds of drinking this potion, you can feel your abdomen grow slightly hotter. You can almost hear something inside whir as it works harder to produce more fun goop for your cock{self.plural(1)}.",True)
-         else:
-            self.doMainText("If you had balls to be kicked in, they'd probably be feeling much more active right now. Not that you would know, you ball-less freak.",True)
-         self.cumMod += 0.5
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 523:
-         self.doMainText("You pop open the vial of cum and let it ooze down your throat, shivering a bit from the heady taste.",True)
-         self.doHP(2)
-         self.doLust(5,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 524:
-         self.doMainText("You gulp down the thick, creamy, sticky cum, having difficulty getting down the large amount of hot spunk with its heady taste.",True)
-         self.doHP(5)
-         self.doLust(15,0)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 525:
-         self.outputMainText("You pour the jug of cum out into 3 bottles...",True)
-         self.addManyItem(524,3)
-         self.doEnd()
-      elif ID == 526:
-         if (self.currentState == 2):
-            self.doMainText("You have no use for a barrel full of cum in the midst of battle, so you... tuck it away somewhere in your bag?",True)
-            self.itemAdd(526)
-         else:
-            self.doMainText(f"Without much of a use for it otherwise, you decide to... strip down naked and jump in!\n\nThe cum is nice and warm and feels so good on your {self.skinDesc()}. You scrub yourself nice and thoroughly, making sure to get all the nooks and crannies. And with the slimy goop, you really focus on those crannies~\n\nAfter cleaning yourself up a bit, you sit back and relax, pulling out a toy to play with.\n\n\n'Oh rubber ducky, you're the one. You make bath-time lots of fun~'",True)
-            self.stats(0,0,1,1)
-            self.hrs += 1
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 527:
-         self.doMainText("You crack open the good egg and down its contents, feeling healthier and stronger already.",True)
-         self.doHP(15)
-         self.displayMainText()
-         self.stats(1,0,0,0)
-         self.doEnd()
-      elif ID == 528:
-         if (self.currentState != 2):
-            self.outputMainText("You can only use this dangerous egg in battle. You put the bad egg back into your bag.",True)
-            self.itemAdd(528)
+                self.outputMainText("Daww, turns out the pouch was empty...", True)
+            if chance > 50 and chance <= 85:
+                self.doProcess()
+            else:
+                self.doEnd()
+        elif ID == 207:
+            chance = self.percent()
+            self.doMainText("You crack open the wooden cock. ", True)
+            if (chance <= 15):
+                self.doMainText(f" Sparkling lights erupt from the crack, swirling around in the air until they come together to form the outline of a disembodied glowing cock, looking much like the carving. Before you react, it flips around and dives down, before driving back up {self.legWhere(1)} your {self.legDesc(2)} and disappearing into the crotch of your {self.clothesBottom()}.")
+                self.vagChange(0,1)
+                self.doLust(self.percent() / 5, 0)
+            elif (chance <= 30):
+                self.doMainText(f" Sparkling lights erupt from the crack, swirling around in the air until they come together to form the outline of a disembodied glowing cock, looking much like the carving. Before you react, it flips around and charges at your groin, ramming right above your crotch and disappearing into the front of your {self.clothesBottom()}.")
+                self.cockChange(0,1)
+                self.doLust(self.percent() / 5, 0)
+            else:
+                self.doMainText(" There's nothing inside... Either this thing was just some kinky woman's play-toy, or it was a dud.")
+            self.displayMainText()
             self.doEnd()
-         else:
-            self.dmg = Math.floor(Math.random() * 11) + 10
-            self.outputMainText(f"You pull the bad egg from your bag and toss it at the {self.enemyName()}. It explodes in a burst of fire, somehow, dealing {self.dmg} damage!",True)
-            self.doeHP(-self.dmg)
-            if (self.currentState == 2):
-               self.doEnd()
-      elif ID == 529:
-         self.doMainText("You crack open the strange egg and down its contents, feeling odd...",True)
-         # TODO: Maybe make this its own gametweak
-         if self.gameTweaksMisc:
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYou grow an inch taller.")
-               self.tallness += 1
-            elif (self.percent() <= 10):
-               self.doMainText("\n\nYou shrink by an inch.")
-               self.tallness -= 1
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYour chest springs out, swelling in size.")
-               self.breastSize += Math.ceil(self.percent() / 10)
-            elif (self.percent() <= 10 and self.breastSize > 1):
-               self.doMainText("\n\nYour breasts recoil back, deflating.")
-               self.breastSize -= Math.ceil(self.percent() / 10)
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYour crotch feels strange as some feminine bits begin to appear...")
-               self.vagChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYour crotch feels strange as some masculine bits begin to appear...")
-               self.cockChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
-            if (self.cockTotal > 0):
-               if (self.percent() <= 10):
-                  self.doMainText(f"\n\nYour cock{self.plural(1)} grow{self.plural(3)} sporadically.")
-                  self.cockChange(Math.ceil(self.percent() / 10),0)
-               elif (self.percent() <= 10):
-                  self.doMainText(f"\n\nYour cock{self.plural(1)} shrink{self.plural(3)} sporadically.")
-                  self.cockChange(-Math.ceil(self.percent() / 10),0)
+        elif ID == 208:
+            self.doMainText("You pop the berry into your mouth. As it pops and gushes with juice within your mouth, your face cringes at how un-sweet it is. Tasting more salty with a thick texture, you swallow it as fast as possible.", True)
+            if (self.balls > 0 and self.ballSize > 0 and self.hunger >= 60):
+                if (self.showBalls):
+                    self.doMainText(" Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your testicles swell within their scrotum, growing hot with seed... Seems as though this berry has increased the size of your balls, somehow, and now you feel a little hungry again.")
+                    self.ballSize += Math.floor(self.percent() / 33)
+                    self.hunger -= 20
+                else:
+                    self.doMainText(" Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your cum churning within your body, something swelling within... Seems as though this berry has increased the size of your non-visible balls, somehow, and now you feel a little hungry again.")
+                    self.ballSize += Math.floor(self.percent() / 33)
+                    self.doLust(self.percent() / 10,0)
+                    self.hunger -= 20
+            else:
+                self.doMainText(" Moments later, you feel a bit of warmth in your groin, but it quickly passes. Now all you're left with is the aftertaste...")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 209:
+            self.doMainText("You pop the handful into your mouth and munch on them. Doesn't taste too bad. Although, the thought of mixing them in a bowl with some milk for breakfast does cross your mind, but passes shortly as you feel like you can get through the day better anyways.", True)
+            self.exhaustion -= 4
+            if (self.hunger >= 80):
+                self.doMainText(f"\n\nUnfortunately, it seems the food you have been eating has gone straight to your {self.buttDesc()} ass, making your {self.clothesBottom()} feel slightly tight around it as it swells.")
+                self.butt += Math.floor(self.percent() / 33)
+                self.hunger -= 20
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 210:
+            chance = self.percent()
+            self.doMainText("You bite into the fold-like cleft of the pussy fruit, sweet juices spilling out around your face and drooling from your chin in long, slimy strands. You devour it shortly and feel great!", True)
+            self.doHP(15)
             if (self.vagTotal > 0):
-               if (self.percent() <= 10):
-                  self.doMainText(f"\n\nYour vulva{self.plural(2)} grow{self.plural(4)} sporadically.")
-                  self.vagChange(Math.ceil(self.percent() / 10),0)
-                  self.vulvaSize += Math.ceil(self.percent() / 10)
-                  self.clitSize += Math.ceil(self.percent() / 10)
-               elif (self.percent() <= 10):
-                  self.doMainText(f"\n\nYour vulva{self.plural(2)} shrink{self.plural(4)} sporadically.")
-                  self.vagChange(-Math.ceil(self.percent() / 10),0)
-                  self.vulvaSize -= Math.ceil(self.percent() / 10)
-                  self.clitSize -= Math.ceil(self.percent() / 10)
-               if (self.percent() <= 10):
-                  self.doMainText(f"\n\nYou grunt and squat, {self.legVerb(1)} your {self.legDesc(2)} and pulling {self.pullUD(2)} your {self.clothesBottom()} in time for more fresh eggs to come sliding out of your slit{self.plural(2)} from nowhere!")
-                  self.addManyItem(219,3)
-            if (self.percent() <= 10):
-               self.doMainText("\n\nIt feels as though your blood has thinned out a bit.")
-               self.aff(0,0,-10)
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYou suddenly feel very aroused.")
-               self.doLust(50,0)
-            elif (self.percent() <= 10):
-               self.doMainText("\n\nYour arousal suddenly dies down.")
-               self.doLust(-50,0)
-            if (self.percent() <= 10):
-               self.doMainText("\n\n10 coins pop out of your ears.")
-               self.doCoin(10)
-         else:
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYou grow an inch taller.")
-               self.tallness += 1
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYou shrink by an inch.")
-               self.tallness -= 1
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYour chest springs out, swelling in size.")
-               self.breastSize += Math.ceil(self.percent() / 10)
-            if (self.percent() <= 10 and self.breastSize > 1):
-               self.doMainText("\n\nYour breasts recoil back, deflating.")
-               self.breastSize -= Math.ceil(self.percent() / 10)
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYour crotch feels strange as some feminine bits begin to appear...")
-               self.vagChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYour crotch feels strange as some masculine bits begin to appear...")
-               self.cockChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
+                if (self.hunger >= 90):
+                    self.doMainText(f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nThe cramping shortly passes, but you walk awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again...")
+                    self.vulvaSize += Math.floor(self.percent() / 20)
+                    self.vagChange(Math.floor(self.percent() / 20), 0)
+                    self.doLust(self.percent() / 5, 0)
+                    self.hunger -= 30
+                elif (self.hunger >= 70):
+                    if (chance <= 50):
+                        self.doMainText(f"\n\nHowever, it feels as though the food energy has run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You squeeze your {self.vulvaDesc()} groin through your {self.clothesBottom()}, feeling it swell larger...\n\nYou walk a bit awkwardly afterward, getting used to your now extra-swollen lips and feeling slightly hungry again...")
+                        self.vulvaSize += Math.floor(self.percent() / 20)
+                        self.doLust(self.percent() / 10, 0)
+                        self.hunger -= 20
+                    else:
+                        self.doMainText(f"\n\nHowever, it feels as though the juices have run straight to your crotch as a warmth spreads around your cunt{self.plural(2)}. You double over as your stomach cramps a little. It feels like your insides are being compressed, your cunt{self.plural(2)} feeling larger within...\n\nThe cramping shortly passes, but the increased size is real and you feel slightly hungry again...")
+                        self.vagChange(Math.floor(self.percent() / 20), 0)
+                        self.doLust(self.percent() / 10, 0)
+                        self.hunger -= 20
+            self.doLust(self.percent() / 10, 0)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 211:
+            self.doMainText(f"Considering you don't have any cows to give it to, you pop the pill into your mouth and gulp it down. Within some moments your {self.boobDesc()} chest feels rather warm...", True)
+            if (self.udders):
+                self.doMainText(" And so does your udder.")
+                if (self.udderPlay >= 60):
+                    self.lactChange(2, 35)
+                else:
+                    self.udderPlay += 20
+            if (self.nipplePlay >= 60):
+                self.lactChange(1, 25)
+            else:
+                self.nipplePlay += 20
+            self.doLust(self.percent() / 10, 0)
+            self.aff(5, Math.floor(self.percent() / 20 + 2), -1)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 212:
+            self.doMainText("You munch on the red mushroom. It doesn't taste terribly good or bad, but a blush quickly heats up your face as your chest turns intensely warm.", True)
+            if (self.hunger >= 80):
+                self.doMainText(f" Your {self.clothesTop()} feels unexpectedly tight, thanks to all the food you've been eating.\n\nAs you look down, you let out a gasp as your {self.boobDesc()} chest swells beneath your {self.clothesTop()}, your {self.nipDesc()}nipples pushing against the fabric. You grab the mounds and feel them grow larger, heavier, and more wobbly...\n\nThe warmth soon passes, leaving you bent over slightly as you adjust to the increased weight. You don't feel quite as full anymore though, much of your excess energy used up by this sudden growth.")
+                self.boobChange(Math.ceil(self.percent() / 33))
+                self.hunger -= 20
+            else:
+                self.doMainText(" Then the warmth subsides and your stomach grumbles from the strange food. You do feel less hungry though.")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 213:
+            self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1))
+            tempDict = {10: "Breasts", 12: "Cancel"}
             if (self.cockTotal > 0):
-               if (self.percent() <= 10):
-                  self.doMainText(f"\n\nYour cock{self.plural(1)} grow{self.plural(3)} sporadically.")
-                  self.cockChange(Math.ceil(self.percent() / 10),0)
-               if (self.percent() <= 10):
-                  self.doMainText(f"\n\nYour cock{self.plural(1)} shrink{self.plural(3)} sporadically.")
-                  self.cockChange(-Math.ceil(self.percent() / 10),0)
+                tempDict[5] = f"Cock{self.plural(1)}"
             if (self.vagTotal > 0):
-               if (self.percent() <= 10):
-                  self.doMainText(f"\n\nYour vulva{self.plural(2)} grow{self.plural(4)} sporadically.")
-                  self.vagChange(Math.ceil(self.percent() / 10),0)
-                  self.vulvaSize += Math.ceil(self.percent() / 10)
-                  self.clitSize += Math.ceil(self.percent() / 10)
-               if (self.percent() <= 10):
-                  self.doMainText(f"\n\nYour vulva{self.plural(2)} shrink{self.plural(4)} sporadically.")
-                  self.vagChange(-Math.ceil(self.percent() / 10),0)
-                  self.vulvaSize -= Math.ceil(self.percent() / 10)
-                  self.clitSize -= Math.ceil(self.percent() / 10)
-               if (self.percent() <= 10):
-                  self.doMainText(f"\n\nYou grunt and squat, {self.legVerb(1)} your {self.legDesc(2)} and pulling {self.pullUD(2)} your {self.clothesBottom()} in time for more fresh eggs to come sliding out of your slit{self.plural(2)} from nowhere!")
-                  self.addManyItem(219,3)
-            if (self.percent() <= 10):
-               self.doMainText("\n\nIt feels as though your blood has thinned out a bit.")
-               self.aff(0,0,-10)
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYou suddenly feel very aroused.")
-               self.doLust(50,0)
-            if (self.percent() <= 10):
-               self.doMainText("\n\nYour arousal suddenly dies down.")
-               self.doLust(-50,0)
-            if (self.percent() <= 10):
-               self.doMainText("\n\n10 coins pop out of your ears.")
-               self.doCoin(10)
-         self.doMainText("\n\nQuite strange indeed...")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 530:
-         self.outputMainText("You crack the charmed egg open and gulp its contents. You suddenly feel charming, oh so charming, it's alarming how charming you feeeeel~",True)
-         if (self.charmTime <= 0):
-            self.enticeMod += 13
-            self.charmTime = 20
-         else:
-            self.charmTime += 20
-         self.stats(0,1,0,0)
-         self.doEnd()
-      elif ID == 531:
-         self.doMainText("You can nearly hear the sounds of an angelic chorus as you crack the divine egg open, its gooey contents slipping down your throat.",True)
-         if (self.cockTotal > 0):
-            self.doMainText(f" Your {self.cockDesc()} cock{self.plural(1)} pulse{self.plural(3)} and bulge{self.plural(3)} in your {self.clothesBottom()}, swelling in size.")
-            if (self.showBalls):
-               self.doMainText(" Your balls groan to match the amount of growth, expanding in their confines.")
-            self.doMainText(" You can feel the cum churn within your body, trying to make room for more.")
-            self.cockChange(5,0)
-            self.ballSize += 5
+                tempDict[7] = f"Cunt{self.plural(2)}"
+            self.outputMainText("What would you like to rub the wet, slimy cloth on?", True)
+            self.doButtonChoices(tempDict)
+
+            def doListen():
+                if self.buttonChoice == 5:
+                    self.doMainText(f"You rub the slimy cloth around the head{self.plural(1)} of your {self.cockDesc()} cock{self.plural(1)}, polishing until there's a nice sheen. You feel a bit aroused from doing so, yet the cloth seems to have finally dried off.\n\nHowever, your cock{self.plural(1)} begin{self.plural(3)} dripping with the slime of the cloth instead...", True)
+                    self.cockMoist += 1
+                    if (self.cockMoist > 12):
+                        self.doMainText("\n\nHowever, that's not really any different than normal, leaving you fairly unaffected.")
+                    self.doLust(self.percent() / 10, 0)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 7:
+                    self.doMainText(f"You rub the slimy cloth through the lips of your {self.vulvaDesc()} cunt{self.plural(2)} until your thighs are completely wet. You feel a bit aroused from doing so, yet the cloth seems to have finally dried off.\n\nHowever, your cunt{self.plural(2)} begin{self.plural(4)} dripping with the slime of the cloth instead...", True)
+                    self.vagMoist += 1
+                    if (self.vagMoist > 12):
+                        self.doMainText("\n\nHowever, that's not really any different than normal, leaving you fairly unaffected.")
+                    self.doLust(self.percent() / 10, 0)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 10:
+                    self.doMainText(f"You rub the slimy cloth over your {self.boobDesc()} breasts and {self.nipDesc()}nipples until they're all completely wet. You feel a bit aroused from doing so, yet the cloth seems to have finally dried off.\n\nHowever, other than make your chest shine erotically, it doesn't really do much.", True)
+                    self.doLust(self.percent() / 10, 0)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 12:
+                    self.itemAdd(213)
+                    self.doProcess()
+            self.doListen = doListen
+        elif ID == 214:
+            self.doMainText("You down the bottle of milk and feel refreshed!", True)
+            self.doHP(15 + self.milkHPMod)
+            self.displayMainText()
+            self.aff(5, Math.floor(self.percent() / 10), 0)
+            self.exhaustion -= 3
+            self.doEnd()
+        elif ID == 216:
+            self.dyeThing(ID, 5)
+        elif ID == 217:
+            self.doMainText("You smear the jelly around your genitals. It's so slick and hot, you can't help but feel immensely aroused.", True)
+            if (self.vagTotal > 0):
+                self.doMainText(f" And as you rub it into your nether-lips, you feel it absorb into the walls of your vagina{self.plural(2)}. Slipping a finger in, it doesn't feel much different, until you actually prod a wall. It bends much more easily, as though it were more elastic than before. You could probably shove even larger things in there without feeling pain...")
+                self.vagElastic += 0.1
+            self.doLust(50, 0)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 218:
+            self.doMainText("You pop the berry into your mouth. As it pops and gushes with juice within your mouth, your face cringes at how un-sweet it is. Tasting more salty with a thick texture, you swallow it as fast as possible.", True)
+            if (self.balls > 0 and self.ballSize > 0):
+                if (self.showBalls):
+                    self.doMainText(" Moments later, you feel a warmth in your groin. You squirm as your testicles feel crowded, your scrotum growing tight. You look to see and find an extra testicle in your sack!")
+                else:
+                    self.doMainText(" Moments later, you feel a warmth in your groin. You squirm as you feel your cum churning within your body, something extra growing within... Seems as though this berry caused you to grow an extra internal testicle, somehow.")
+                self.balls += 1
+                self.doLust(self.percent() / 10,0)
+            else:
+                self.doMainText(" Moments later, you feel a bit of warmth in your groin, but it quickly passes. Now all you're left with is the aftertaste...")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 219:
+            self.doMainText("You crack the egg open and swallow its contents, your belly thanking you for the food.", True)
+            self.doHP(5)
+            if (self.hunger >= 70):
+                self.doMainText("\n\nHowever, the fertile nature of the egg (and lots of protein) seem to go straight to your hips, making them grow wider.")
+                self.hips += Math.floor(self.percent() / 50)
+                self.hunger -= 25
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 220:
+            self.dyeThing(ID, 2)
+        elif ID == 221:
+            self.doMainText("You down the vial. It's so sweet that your face puckers a bit, the concentrated syrup slowly dripping down your throat.", True)
+            if (self.vagTotal > 0):
+                self.doMainText(f"\n\nYour loins begin to grow hot. Your hand jerks down to your crotch, rubbing yourself feverishly through your {self.clothesBottom()}. The garment quickly grows moist, your arousal spreading {self.legWhere(1)} your {self.legDesc(2)}. You can feel your labia swell beneath your grip, your lips bulging out of your grasp, while your belly aches slightly with a bloating sensation. Your clit{self.plural(2)} squeeze{self.plural(4)} between your fingers.\n\nThe change soon passes, but the changing in the size of your nethers is easily noticeable, making you walk awkwardly at first as you become accustomed.")
+                self.vagChange(Math.floor(self.percent() / 20) + 2, 0)
+                self.vulvaSize += Math.floor(self.percent() / 20) + 2
+                self.clitSize += Math.floor(self.percent() / 20) + 2
+                self.vagMoist += 1
+            else:
+                self.doMainText("\n\nYour loins feel quite warm for a moment, but the sensation quickly passes. It does nothing for you other than overwhelm your sweet-tooth.")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 222:
+            self.doMainText("Happy with how clean you've gotten it, you munch on the tasty vegetable. It makes you feel healthier to the point where you're nearly hopping with energy.", True)
+            self.aff(7, Math.floor(self.percent() / 15 + 2), -2)
+            self.doHP(4)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 223:
+            self.doMainText("The tasty morsel crumbles delightfully in your mouth.", True)
+            self.doHP(5)
+            if (self.vagTotal > 0 and self.hunger >= 90):
+                self.doMainText(" Though it settles in your stomach rather oddly, as you feel some squirming slightly below that, the snack quickly digesting into something else...")
+                self.vagChange(1, 0)
+                self.hunger -= 25
+            if (self.percent() <= 25):
+                self.doMainText("\n\nAnd you don't quite feel stronger, you feel as though you could hold up more weight.")
+                self.carryMod += 1
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 224:
+            self.doMainText("Lila's breastmilk tastes quite sweet, with a slight aftertaste of her other fluids. It makes you feel a bit... tender, so to speak.", True)
+            if (self.percent() <= 25 and self.vagMoist < 12 and self.vagTotal > 0):
+                self.doMainText(" You feel some extra moistness in your loins as well, the liquid seeming to imprint some of the girl's wetness upon you.")
+                self.vagMoist += 1
+            if (self.heat > 0):
+                if (self.heatTime > 0):
+                    self.doMainText(" There's also a slight sensation of coming closer to your fertile period...")
+                    if (self.heatTime > 5):
+                        self.heatTime -= 5
+                    else:
+                        self.heatTime = 1
+                elif (self.heatTime < 0):
+                    self.doMainText(" There's also a slight tinge of heat that flows through your body, strengthening your estrus for a little longer...")
+                    self.heatTime -= 5
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 225:
+            self.doMainText("You quickly scrub yourself down with the body wash, feeling so fresh and so clean. Which is kinda odd, considering that you're currently playing a porn game.", True)
+            self.exhaustion -= 8
+            self.stats(0, 1, 0, 2)
+            self.doLust(-10,0)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 226:
+            self.doMainText("You mix the tea with a nice cup of hot water, producing a nice calming aroma. You sip it down and quite quickly feel much more relaxed.", True)
+            self.exhaustion -= 6
+            self.doLust(-10, 0)
+            if (self.heat > 0):
+                if (self.heatTime > 0):
+                    self.heatTime += 3
+                elif (self.heatTime < 0):
+                    if (self.heatTime < -3):
+                        self.heatTime += 3
+                    else:
+                        self.heatTime = -1
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 227:
+            self.doMainText("Taking a swig of the sweet-smelling stuff, you feel it tingle all the way down your throat and spread throughout your body from the inside.", True)
+            self.doLust(10, 0)
+            self.stats(0, 0, 1, 0)
+            if (self.skinType == 2):
+                self.doMainText(" You then proceed to lick as much of your fur as possible, making it look sleek and shiny")
+                self.stats(0, 0, 0, 1)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 228:
+            self.doMainText(f"You rub the oil all over your {self.skinDesc()}, making yourself look shiny and attractive, bringing attention to all the contours of your body.", True)
+            if (self.bodyOil > 0):
+                self.bodyOil = 5
+            else:
+                self.enticeMod += 5
+                self.bodyOil = 5
+            if (self.skinType == 1 or self.skinType == 3):
+                self.doMainText(f" It also makes your {self.skinDesc()} feel so good to the touch~")
+                self.stats(0, 0, 0, 1)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 230:
+            if (self.vagTotal < 1):
+                self.doMainText("You take out the eggcelerator, realize you don't have an appropriate orifice, and put it back away...", True)
+                self.itemAdd(230)
+            else:
+                self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} and squat down to help spread your {self.vulvaDesc()} lips. Grabbing the eggcelerator with your fingertips, you slip it into {self.oneYour(2)} slit{self.plural(2)}, pointy end first. It doesn't take much before physics takes over and the suppository slips up into your deeper spaces where you can feel a slight tingle as it dissolves.", True)
+                if (self.eggLaying > 0):
+                    if (self.eggceleratorDose > 6 + Math.ceil(self.percent() / 20)):
+                        self.doMainText(f"\n\nYou can feel your next egg starting to come along more quickly than before... but it continues to build. Your {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. You fall back onto your hands, your {self.legDesc(6)} in the air as you lay it with such expediency that your thighs quiver and your pussy gasps in surprise. Yet, the sensation doesn't end, as more eggs begin to develop almost instantly inside your womb, one by one forcing their way through your passageway. Your {self.hipDesc()} hips jerk and your {self.clitDesc()} clit{self.plural(2)} stand{self.plural(4)} tall with a strange arousal as you thrust into the air again and again to plop out egg after egg. Part of you wants to furiously rub yourself as the eggs nearly launch from your spread cunt, but the rapid pace of the laying makes your body a twitching, seizing mess as you cry out in desparation. So many eggs fly out of you into a pile that you can hardly save them all; quite a few crack and ooze over the others. The round, smooth, slick object having their way with your sensitive flesh eventually makes you quake with an odd orgasm, somewhat powerful but not quite fulfilling, making you collapse back onto the ground as your womb pops out the rest...\n\nOver half an hour passes after your egg-laying extravaganza before you can collect yourself. You sit up to wipe the slime from your pussy, gazing upon the pile of eggs you have laid until you finally go through and pull out the good ones. You also notice that your womb seems to have completely calmed down afterwards, the eggcelerator having been purged from your system. It seems you had taken so many doses that your body could no longer handle it...")
+                        self.addManyItem(219, self.eggceleratorDose)
+                        self.doLust(Math.floor(-self.sen / 3), 2, 2)
+                        self.eggceleratorTime = 0
+                        self.eggRate -= self.eggceleratorDose
+                        self.eggceleratorDose = 0
+                        self.hrs = 1
+                    else:
+                        self.doMainText("\n\nAlready you can somewhat feel that the next egg will be coming along more quickly than before and hope you'll be prepared for it.")
+                        self.eggRate += 1
+                        self.eggceleratorTime = 30
+                        self.eggceleratorDose += 1
+                else:
+                    self.doMainText("\n\nOther than the tingling, it doesn't seem to do much... It would probably be more useful if you could actually lay eggs.")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 231:
+            if (self.currentState != 2):
+                self.outputMainText("You can only use this dangerous sand in battle. You put the sand back into your bag.", True)
+                self.itemAdd(231)
+                self.doEnd()
+            else:
+                self.dmg = Math.floor(Math.random() * 21) + 20
+                self.doMainText(f"You throw the pile of sand at the {self.enemyName()}. It cringes and winces as the sand sucks the moisture from its body, dealing {self.dmg} damage!", True)
+                self.doeHP(-self.dmg)
+                if (self.percent() <= 25):
+                    self.doMainText("\n\nHowever, the wind catches some of the sand and it blow back at you! ")
+                    self.rndArray.clear()
+                    if (self.cockSizeMod > 0.5 and self.cockTotal > 0):
+                        self.rndArray.push(1)
+                    if (self.vagSizeMod > 0.5 and self.vagTotal > 0):
+                        self.rndArray.push(2)
+                    if (self.cumMod > 0.5 and self.showBalls and self.cockTotal > 0):
+                        self.rndArray.push(3)
+                    if (self.milkMod > 0):
+                        self.rndArray.push(4)
+                    if (self.pregnancyTime > 200):
+                        self.rndArray.push(5)
+                    self.rndArray.push(6)
+                    self.chooseFrom()
+                    if self.rndResult == 1:
+                        self.doMainText(f"The stuff rushes across your {self.cockDesc()} cock{self.plural(1)}, seeping in deep and causing some permanent shrinkage.")
+                        self.cockSizeMod -= 0.05
+                    elif self.rndResult == 2:
+                        self.doMainText(f"The stuff rushes between your legs and you can feel some slip up into your passage{self.plural(2)}, seeping in deep and resulting in some permanent shriveling.")
+                        self.vagSizeMod -= 0.05
+                    elif self.rndResult == 3:
+                        self.doMainText(f"The stuff rushes across your {self.ballDesc()} balls, sinking through the scrotum and causing them to lose some of their efficiency.")
+                        self.cumMod -= 0.1
+                    elif self.rndResult == 4:
+                        self.doMainText(f"The stuff rushes across your {self.boobDesc()} breasts, sinking into your mammary glands and reducing their power.")
+                        self.milkMod -= 5
+                    elif self.rndResult == 5:
+                        self.doMainText(f"The stuff rushes across your {self.bellyDesc()} belly. It doesn't affect the life within, but you can feel your womb wane as it loses some of its future fertility.")
+                        self.pregRate -= 0.05
+                        self.pregChanceMod -= 1
+                        self.extraPregChance -= 1
+                    else:
+                        self.doMainText("Thankfully, it barely touches you and you're left unaffected.")
+                self.displayMainText()
+                if (self.currentState == 2):
+                    self.doEnd()
+        elif ID == 232:
+            if (self.currentState != 1):
+                self.outputMainText("You cannot activate the flying carpet during battle or while attempting to masturbate. It takes too long to set up during battle and it is not the kind of 'carpet-munching' you should be doing while masturbating.", True)
+                self.doEnd()
+            else:
+                tempDict = {6: "Stay Here"}
+                self.outputMainText("Where would you like to go?", True)
+                buttonlist = ButtonList(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0)
+                if self.currentZone == 1:
+                    if (self.foundTieden):
+                        tempDict[1] = "Tieden"
+                        buttonlist[1] = 1
+                    if (self.foundFirmshaft):
+                        tempDict[10] = "Firmshaft"
+                        buttonlist[10] = 1
+                elif self.currentZone == 2:
+                    if (self.foundSoftlik):
+                        tempDict[3] = "Softlik"
+                        buttonlist[3] = 1
+                    if (self.foundSizCalit):
+                        tempDict[5] = "Siz'Calit"
+                        buttonlist[5] = 1
+                    if (self.foundOviasis):
+                        tempDict[10] = "Oviasis"
+                        buttonlist[10] = 1
+                    if (self.foundSanctuary):
+                        tempDict[11] = "Sanctuary"
+                        buttonlist[11] = 1
+                elif self.currentZone == 3:
+                    if (self.foundSoftlik):
+                        tempDict[7] = "Softlik"
+                        buttonlist[7] = 1
+                    if (self.foundSizCalit):
+                        tempDict[9] = "Siz'Calit"
+                        buttonlist[9] = 1
+                elif self.currentZone == 4:
+                    if (self.foundTieden):
+                        tempDict[2] = "Tieden"
+                        buttonlist[2] = 1
+                    if (self.foundFirmshaft):
+                        tempDict[7] = "Firmshaft"
+                        buttonlist[7] = 1
+                    if (self.foundOviasis):
+                        tempDict[11] = "Oviasis"
+                        buttonlist[11] = 1
+                elif self.currentZone == 6:
+                    if (self.foundSizCalit):
+                        tempDict[1] = "Siz'Calit"
+                        buttonlist[1] = 1
+                    if (self.foundFirmshaft):
+                        tempDict[2] = "Firmshaft"
+                        buttonlist[2] = 1
+                elif self.currentZone == 12:
+                    if (self.foundFirmshaft):
+                        tempDict[5] = "Firmshaft"
+                        buttonlist[5] = 1
+                self.showButtons(buttonlist)
+                self.doButtonChoices(tempDict)
+
+                def doListen():
+                    self.inDungeon = False
+                    if self.currentZone == 1:
+                        if self.buttonChoice == 1:
+                            self.regionChange(3)
+                        elif self.buttonChoice == 10:
+                            self.regionChange(2)
+                    elif self.currentZone == 2:
+                        if self.buttonChoice == 3:
+                            self.regionChange(1)
+                        elif self.buttonChoice == 5:
+                            self.regionChange(4)
+                        elif self.buttonChoice == 10:
+                            self.regionChange(6)
+                        elif self.buttonChoice == 11:
+                                self.regionChange(12)
+                    elif self.currentZone == 3:
+                        if self.buttonChoice == 7:
+                            self.regionChange(1)
+                        elif self.buttonChoice == 9:
+                            self.regionChange(4)
+                    elif self.currentZone == 4:
+                        if self.buttonChoice == 2:
+                            self.regionChange(3)
+                        elif self.buttonChoice == 7:
+                            self.regionChange(2)
+                        elif self.buttonChoice == 11:
+                            self.regionChange(6)
+                    elif self.currentZone == 6:
+                        if self.buttonChoice == 1:
+                            self.regionChange(4)
+                        elif self.buttonChoice == 2:
+                            self.regionChange(2)
+                    elif self.currentZone == 12:
+                        if self.buttonChoice == 5:
+                            self.regionChange(2)
+                    if self.buttonChoice == 6:
+                        self.doProcess()
+                    else:
+                        self.outputMainText(f"You step onto the carpet and with a gentle woosh, it lifts into the air and darts off in the direction of your desired location. Within just a couple of hours, you land in {self.regionName(self.currentZone)}, just like you wanted.", True)
+                        self.hrs = 2
+                        self.doEnd()
+                self.doListen = doListen
+        elif ID == 235:
+            self.outputMainText("You have equipped the fellatio rod.", True)
+            self.weapon = 235
+            self.doEnd()
+        elif ID == 238:
+            self.outputMainText("Nibbling the cheese, the delicious flavor melts in your mouth and feels so good going down. It feels good just eating it, like you could go hunting for lots more. Though... Hey, did your clothes get looser, or is it just your imagination?", True)
+            self.tallness -= 1
+            self.aff(8, Math.floor(self.percent() / 15 + 2), -2)
+            self.doEnd()
+        elif ID == 239:
+            self.outputMainText("You take out the rock and stare at it, intently focused on how shiny it is. Your mind grows sharper, allowing you to focus even harder and... Wait, what? One last glint of shininess and the rock suddenly became dull. Maybe you stared too hard? Either way, you toss the now dull rock, no longer interested in it.", True)
+            self.stats(0, 1, 0, 0)
+            self.aff(9, Math.floor(self.percent() / 15 + 2), -2)
+            self.doEnd()
+        elif ID == 240:
+            self.dyeThing(ID, 6)
+        elif ID == 241:
+            self.dyeThing(ID, 7)
+        elif ID == 242:
+            self.dyeThing(ID, 8)
+        elif ID == 243:
+            self.dyeThing(ID, 9)
+        elif ID == 244:
+            if (not self.snuggleBall):
+                self.outputMainText(f"You take out the snuggle ball and squeeze it against your chest, hugging it gleefully. So squishy and soft, the pleasant sensation of it forming around your body as you compress it is oh so nice~ Though it doesn't stop forming around your body...\n\nLiquidy tendrils lash out from the ball, sticking to your face and arms, belly and {self.legDesc(2)}. You don't have time to resist as it wraps around your body, seeping past your {self.currentClothes()} and coating your {self.skinDesc()}.\n\nOver within moments, you stand there and gradually try to move. A plush and soft layer, slightly shiny and malleable just like the ball, covers all your {self.skinDesc()}. It doesn't impede your movement or actions, almost like it was an extra layer of skin, and doesn't do much but make you... snuggly.", True)
+                self.snuggleBall = True
+                self.doEnd()
+            else:
+                self.outputMainText(f"Would you like to try and remove the plush shiny layer of cuddliness that covers your {self.skinDesc()}?", True)
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        if (self.percent() / 2 > self.str):
+                            self.outputMainText("You pull and tug at the extra layer of 'skin'. It stretches from your body, but yanks itself out of your grip and snaps back in place. The little bugger just doesn't want to let go!", True)
+                        else:
+                            self.outputMainText(f"You pull and tug at the extra layer of 'skin'. It stretches from your body and with a bit more exertion it snaps off, coalescing back down into a little ball in your hand. Your {self.skinDesc()} now free of the little bugger, you put it back in your bag to deal with later.", True)
+                            self.snuggleBall = False
+                        self.doEnd()
+                    else:
+                        self.doProcess()
+                self.doListen = doListen
+        elif ID == 245:
+            self.outputMainText(f"You pour the mud out into your hands and slather it all over your face. You let it sit there for a few moments, enjoying the warm sensation and feeling it creep into your pores and make your {self.skinDesc()} feel nice.\n\nYou soon wipe it off once it has had its effect, but tickle your nose a little in the process and make you laugh until you oink- err... snort.", True)
+            self.stats(0, 0, 0, 1)
+            self.aff(10, Math.floor(self.percent() / 15 + 2), -2)
+            self.doEnd()
+        elif ID == 246:
+            self.doMainText("You pour out the gel into your hand and rub it into your loins, making sure it gets in niiice and deeeep.", True)
+            if (self.vagTotal > 0):
+                self.doMainText(" Your womb seems to soak up the warmth of the gel, feeling more receptive to semen~")
+                if (self.fertileGel == 0):
+                    self.pregChanceMod += 10
+                self.fertileGel += 24
+            else:
+                self.doMainText(" However, you're not sure why you did that, since you don't exactly have a womb to make more fertile... Oh well, you're a pervert anyways.")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 247:
+            if (not self.suppHarness):
+                self.outputMainText("You wrap the harness around your back with the latches in front of you so you can see what you're doing. You gauge how tight they should be for your chest, crotch, and other various anatomy to fit before twisting it around. Then you stuff your chest into the appropriate sling, and continue on down until the multiple slings hold up your various weighty bits snugly, giving you a good deal more support. You can't exactly carry the world on your shoulders, but you can at least carry a bit more of yourself now.", True)
+                self.carryMod += 50
+                self.suppHarness = True
+            else:
+                self.carryMod -= 50
+                if (self.doWeight()):
+                    self.outputMainText("You reach around behind back and fiddle with the latches of the harness, forcing them open. Your anatomy immediately falls out of the slings, taken you with it as you crash to the ground, completely anchored by your own body. You at least manage to finish unequipping the harness and put it in your bag, but now you've got some issues...", True)
+                    self.doWeight()
+                else:
+                    self.outputMainText("You reach around behind back and fiddle with the latches of the harness, forcing them open. Your bits bounce out as they're set free, making you jerk as the weight falls back upon your body. You then stuff the harness back into your bag, no longer equipped, and prepare yourself to continue on with the unsupported weight.")
+                self.suppHarness = False
+            self.doEnd()
+        elif ID == 248:
+            self.doMainText("You gulp down the potion yourself, rather than giving it to some animal that it was intended for.", True)
+            if (self.vagTotal > 0):
+                self.doMainText(" Your womb immediately begins to warm up a little, your ovaries 'feeling' like they're working harder. It's strange to describe, but your body quickly adapts and the warmth settles down.")
+                self.extraPregChance += 3
+            else:
+                self.doMainText(" However, you don't really notice any effect when it comes to having a larger litter... You kinda can't have litters without a womb to birth them from, come to think of it.")
+            if (self.heat > 0):
+                self.doMainText(" Whereas your loins seem to feel flushed. Not exactly going into heat just from the potion, but more feeling like they will do so more readily now...")
+                self.heatMaxTime -= Math.floor(self.heatMaxTime * 0.1)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 249:
+            self.doMainText("You drop the small tear into your mouth, swallowing it easily with a quick gulp. You don't even feel it in your stomach; it doesn't seem to do anything at first.\n\nHowever, a sensation of wilting envelopes your appendages, like they're growing weaker.", True)
+            if (self.cockTotal > 0 or self.vagTotal > 0):
+                self.doMainText(" The sensation coalesces into your crotch, focusing within your extra genitalia.")
+                if (self.cockTotal > 0):
+                    self.tallness += Math.ceil(self.cockTotal / 4) * 2
+                    self.cockChange(0,-Math.ceil(self.cockTotal / 4))
+                if (self.balls > 2):
+                    self.tallness += Math.ceil(self.balls / 4)
+                    if (self.showBalls):
+                        self.doMainText(f"\n\n{Math.ceil(self.balls / 4)} of your testicles also shrivel up inside your scrotum, being absorbed back into your body.")
+                    self.balls -= Math.ceil(self.balls / 4)
+                if (self.vagTotal > 0):
+                    self.tallness += Math.ceil(self.vagTotal / 4) * 2
+                    self.vagChange(0,-Math.ceil(self.vagTotal / 4))
+                self.doMainText("\n\nThen, once you have lost the extra genitals, the ground below you falls away! Or, more accurately, your heads shoots upward as your body rapidly begins to grow, taller and taller to compensate for the genitals you have lost! You have shed your extra 'limbs' and grown towards the sky.")
+            else:
+                self.doMainText(" The sensation coalesces into your crotch for an instance, but quickly dissolves. Then... that's it.\n\nSeems whatever the tear was supposed to do didn't affect you. So much for that.")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 250:
+            if (self.currentState != 2):
+                self.outputMainText("You can only use this escape bomb in battle, it's not really useful otherwise. You put the foomp bomb back into your bag.", True)
+                self.itemAdd(250)
+                self.doEnd()
+            else:
+                self.doMainText(f"Needing a quick escape, you throw the foomp bomb at the enemy. It explodes on contact with a cloud of magical dust and, just as its name implies, there's a sort of \"foomp!\" sound. As the dust clears, you can't help but giggle at the results. The {self.enemyName()}'s whole body has ballooned to amusing proportions; inflated by the bomb.", True)
+                if (self.eGen == 1 or self.eGen == 3):
+                    self.doMainText(f" The {self.enemyName()}'s cock propels forward with the growth, flopping down onto the ground many times larger than it was, anchoring itself do the ground and preventing its owner from moving.")
+                if (self.eGen == 2 or self.eGen == 3):
+                    self.doMainText(f" The {self.enemyName()}'s breasts swell to obscene sizes, making her fall forward and be cushioned by the pillowy masses, unable to stand.")
+                if (self.eGen == 4):
+                    self.doMainText(f" The {self.enemyName()}'s midsection grows so large and round that it is unable to move at all.")
+                self.outputMainText(f"\n\nHowever, the bomb's effects are already beginning to wear off as you stare at its results. Taking advantage of this short opportunity, you turn and dash away before the {self.enemyName()} can shrink back down to a manageable size and continue the fight.")
+                self.currentState = 1
+                self.hrs += 1
+                self.doEnd()
+        elif ID == 251:
+            self.outputMainText("Biting into the plump fruit, the sweet flesh melts delightfully in your mouth with a nice citrusy sour tinge. Gulping it down and feeling it splash into your stomach and warm your insides makes you crave even more. Your mouth immediately bites off another chunk of the fruit, then another, insatiably devouring the delicious thing. The flesh slips down your throat and sinks into your stomach, filling you up so delightfully~\n\nBut before you know it, you've already eaten the whole thing. You glutton. Though there's no more left, you can still feel it digesting inside, which in itself is rather pleasant...", True)
+            self.bellyMod += 10
+            self.plumpQuats += 6
+            self.doEnd()
+        elif ID == 253:
+            if (self.tail == 12):
+                self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0))
+                self.outputMainText("Considering the egg is just about the right size for the hole in your large ovipositor tail, what would you like to do with it?", True)
+                self.doButtonChoices({5: "Eat", 7: "Ovipositor", 10: "Do Nothing"})
+
+                def doListen():
+                    if self.buttonChoice == 5:
+                        self.doMainText("You pop the egg into your mouth and bite down. The gooey stuff splorts about your mouth and... isn't exactly tasty. Even swallowing it makes your belly want to rebel. The act kills off some of your arousal, at least.", True)
+                        self.doLust(-3,0)
+                        self.displayMainText()
+                        self.doEnd()
+                    elif self.buttonChoice == 7:
+                        self.doMainText(f"Taking the chance, you bend around yourself and press the squishy egg up against the hole at the end of your blunted tail. You wince and shudder as you push it in, the passage inside sensitive as it quickly engulfs the sphere, arousing you slightly. Then it's gone.\n\nYou jiggle your {self.buttDesc()} butt, feeling the wide fleshy tail flop up and down on it, and wait a few moments as you hear and sense some groaning within, similar to the sounds of digestion. Eventually you feel a pressure against the inside of the hole and you press down, your hand ready at the tip to catch the slimy thing as it pops back out.\n\n", True)
+                        chance = self.percent()
+                        if (chance <= 8):
+                            self.doMainText("The egg now glows with a sort of regal luster, slightly larger than before with a heavier weight.")
+                            self.itemAdd(537)
+                        elif (chance <= 25):
+                            self.doMainText("The egg now feels tougher, less squishy in your hand than before.")
+                            self.itemAdd(538)
+                        elif (chance <= 55):
+                            self.doMainText("The egg now looks somewhat dimmer, but also has some more warmth to it than before.")
+                            self.itemAdd(539)
+                        else:
+                            self.doMainText("The egg now seems rather bland, not as gooey and more starchy than before.")
+                            self.itemAdd(540)
+                        self.displayMainText()
+                        self.doEnd()
+                    elif self.buttonChoice == 10:
+                        self.outputMainText("You decide to do nothing and put the egg away.", True)
+                        self.itemAdd(253)
+                        self.doEnd()
+                self.doListen = doListen
+            else:
+                self.doMainText("You pop the egg into your mouth and bite down. The gooey stuff splorts about your mouth and... isn't exactly tasty. Even swallowing it makes your belly want to rebel. The act kills off some of your arousal, at least.", True)
+                self.doLust(-3, 0)
+                self.displayMainText()
+                self.doEnd()
+        elif ID == 255:
+            self.outputMainText("You bring the flower to your nose and inhale deeply. It smells so good, the delightful scent filling your nostils and your lungs and leaving you feeling quite tingly all over.\n\nHowever, once you look back down afterwards, the flower has wilted and no longer has any scent at all...", True)
+            self.stats(0, 0, 0, 2)
+            self.aff(11, Math.floor(self.percent() / 15 + 2), -2)
+            self.doEnd()
+        elif ID == 256:
+            self.doMainText("You suck on the hard candy, the nutrient-rich ingredients making you feel stronger as the sweet flavors fill your belly.", True)
+            if (self.eggLaying > 0):
+                if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
+                    self.doMainText(" And your womb gets a good workout, the pro-something bacteria or whatever helping with its functions. Or something.")
+                self.eggTime -= 4
+            self.stats(1, 0, 0, 0)
+            self.aff(12, Math.floor(self.percent() / 15 + 2), -2)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 257:
+            self.doMainText("You drink down the potion. You immediately begin to feel very odd...", True)
+            if (self.legType != 1002):
+                self.humanTaurAffinity = 100
+                self.legChange(1002)
+                self.doMainText("\n\nFor a normal human, having a second body would -technically- be more human than a human. Though you can see why it was a failure...")
+            else:
+                self.doMainText("\n\nBut the feeling passes as nothing happens.")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 258:
+            self.doMainText("You drink down the potion. You immediately begin to feel very odd...", True)
+            if (self.legType != 1001):
+                self.cowTaurAffinity = 100
+                self.legChange(1001)
+                self.doMainText("\n\nIt's probably best that alchemist didn't sell it to others...")
+            else:
+                self.doMainText("\n\nBut the feeling passes as nothing happens.")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 259:
+            self.doMainText("You pop the candy into your mouth and let it slowly dissolve. You immediately realize that the 'sour' comes before the 'sweet', despite the name, and your face puckers up with the intensity, your pain subsiding in relation.", True)
+            if (self.vagTotal > 0):
+                self.doMainText(f" You pucker so hard that you can feel your cunt{self.plural(2)} stretch further into your body from the force, permanently slightly larger...")
+                self.vagSizeMod += 0.05
+            self.doMainText("\n\nThen the sweetness comes along, your body relaxing and tingling from the blissful flavor.")
+            if (self.cockTotal > 0):
+                self.doMainText(f" You relax your body so much that your cock{self.plural(1)} droop out even further than usual, so far that they're permanently slightly longer...")
+                self.cockSizeMod += 0.05
+            self.doHP(5)
+            self.doLust(5, 0)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 260:
+            self.doMainText("You gulp down the draft. The stuff is very thick and heady, nearly burning your throat on the way down. The warmth spreads from your belly, your mind becoming more focused while your body grows stronger, more mature, and taller.", True)
+            if (self.cockTotal > 0):
+                self.doMainText(f" Your {self.cockDesc()} cock{self.plural(1)} also grow{self.plural(3)} from the concentrated masculinity, bulging in your {self.clothesBottom()}.")
+                self.cockChange(2, 0)
+            if (self.vagTotal > 0):
+                self.doMainText(f" However, unexpectedly, the concentrated masculinity causes your {self.clitDesc()} clit{self.plural(2)} to grow as well, pushing out your {self.clothesBottom()} further...")
+                self.clitSize += 2
+            self.body += 1
+            self.tallness += 1
+            self.displayMainText()
+            self.stats(2, 1, 0, 0)
+            self.doEnd()
+        elif ID == 500:
+            self.doMainText("You down the bottle of milk and feel refreshed!", True)
+            self.doHP(10 + self.milkHPMod)
+            self.displayMainText()
+            self.exhaustion -= 2
+            self.doEnd()
+        elif ID == 501:
+            self.doMainText("You guzzle down the jug of milk and feel very refreshed! And you feel like you have a rather full bladder...", True)
+            self.doHP(40 + self.milkHPMod)
+            self.exhaustion -= 6
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 502:
+            self.outputMainText("You pour the milk out of the barrel into 4 jugs...", True)
+            self.addManyItem(501, 4)
+            self.doEnd()
+        elif ID == 503:
+            self.doMainText("You take a swig of the draft, your loins warming within seconds.", True)
+            self.doLust(20, 0)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 504:
+            self.doMainText("You down the potion, your body feeling much better than before.", True)
+            self.doHP(30)
+            self.doLust(-15, 0)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 505:
+            if (self.currentState != 2):
+                self.outputMainText("You can only use this explosive potion in battle. You put the bad experiment back into your bag.", True)
+                self.itemAdd(505)
+                self.doEnd()
+            else:
+                self.dmg = Math.floor(Math.random() * 11) + 10
+                self.outputMainText(f"You pull the bad experiment from your bag and toss it at the {self.enemyName()}. The crude stuff explodes, far enough away to not harm you, dealing {self.dmg} damage!", True)
+                self.doeHP(-self.dmg)
+                self.doBattle()
+        elif ID == 506:
+            if (self.pregCheck(0)):
+                self.doMainText(f"Drinking this potion, you can feel your {self.bellyDesc()} belly quiver, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You can almost hear the {self.skinDesc()} creak, growing taut!", True)
+                for i in range(0, self.pregArray.length, 5):
+                    if (self.pregArray[i]):
+                        self.pregArray[i + 3] += 50
+                self.doMainText(f"\n\nA few moments pass before you gather yourself, standing upright once more. You are slightly more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though it'll take a bit to get used to the sudden increase in size.")
+            else:
+                self.doMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely feel like you have to go to the bathroom all of a sudden...", True)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 507:
+            if (self.balls > 0):
+                if (self.showBalls):
+                    self.doMainText(f"Downing the potion, you quickly begin to feel a slight ache in your {self.ballDesc()} testicles, like you haven't had an orgasm in a while...", True)
+                    self.blueBalls += 30
+                else:
+                    self.doMainText("Downing the potion, you quickly begin to feel a slight ache in your abdomen, like you haven't had an orgasm in a while...", True)
+                    self.blueBalls += 30
+            else:
+                self.doMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.", True)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 508:
+            self.doMainText("You take a swig of the draft, your loins burning hot within seconds.", True)
+            self.doLust(50, 0)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 509:
+            self.doMainText("You down the potion, your body feeling immensely better than before.", True)
+            self.doHP(70)
+            self.doLust(-40, 0)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 510:
+            if (self.currentState != 2):
+                self.outputMainText("You can only use this explosive potion in battle. You put the bad experiment back into your bag.", True)
+                self.itemAdd(510)
+                self.doEnd()
+            else:
+                self.dmg = Math.floor(Math.random() * 21) + 20
+                self.outputMainText(f"You pull the super bad experiment from your bag and toss it at the {self.enemyName()}. The super crude stuff explodes superbly, far enough away to not harm you, dealing a super {self.dmg} damage!", True)
+                self.doeHP(-self.dmg)
+                self.doBattle()
+        elif ID == 511:
+            if (self.pregCheck(0)):
+                self.doMainText(f"Drinking this potion, you can feel your {self.bellyDesc()} belly shake, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You're pretty sure you can hear the {self.skinDesc()} creak, growing taut, to the point where you fear it will tear!", True)
+                for i in range(0, self.pregArray.length, 5):
+                    if (self.pregArray[i]):
+                        self.pregArray[i + 3] += 120
+                self.doMainText(f"\n\nA few moments pass before you gather yourself, standing upright once more, having a bit of difficulty doing so. You are much more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though you're unsure if you'll be able to get used to this sudden increase in size...")
+            else:
+                self.doMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely wish there was a bathroom here all of a sudden...", True)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 512:
+            if (self.balls > 0):
+                # TODO: Optimise here
+                if (self.showBalls):
+                    self.doMainText(f"Downing the potion, you quickly begin to feel a great ache in your {self.ballDesc()} testicles, like you haven't had an orgasm in sooo long!", True)
+                    self.blueBalls += 70
+                else:
+                    self.doMainText("Downing the potion, you quickly begin to feel a great ache in your abdomen, like you haven't had an orgasm in sooo long!", True)
+                    self.blueBalls += 70
+            else:
+                self.doMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.", True)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 513:
+            if self.gender == 1:
+                self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for a small amount of vaginal flesh inside.", True)
+                if (self.showBalls):
+                    self.doMainText(f" Your {self.ballDesc()} balls squeeze up {self.legWhere(1)} your {self.legDesc(2)} before eventually melding into your {self.skinDesc()}, leaving behind 1 tiny pair of feminine lips.")
+                else:
+                    self.doMainText(f" The skin {self.legWhere(1)} your {self.legDesc(2)} swells slightly, forming two tiny mounds, 1 pair of new feminine lips.")
+                self.doMainText(" The lips part, the fresh air making you shiver as it passes across the moist flesh within. Your hand passes over your clitoris, making you shiver slightly, before you dip your finger into your new cunny, amazed at the sensation of being penetrated like that. For all intents and purposes, you are now a girl.")
+                self.balls = 0
+                self.ballSize = 0
+                self.cockSize = 0
+                self.stats(0, 0, -(2 * (self.cockTotal - 1)), 0)
+                self.cockTotal = 0
+                self.humanCocks = 0
+                self.horseCocks = 0
+                self.wolfCocks = 0
+                self.catCocks = 0
+                self.lizardCocks = 0
+                self.rabbitCocks = 0
+                self.bugCocks = 0
+                self.vagBellyChange(1, 1)
+                self.vagTotal = 1
+                self.pregArray = Array(False, 0, 0, 0, 0)
+                self.vagSize = 1
+                self.vulvaSize = 1
+                self.clitSize = 1
+                self.gender = 2
+            elif self.gender == 2:
+                self.doMainText("You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within.", True)
+                self.cockChange(1, 1)
+                self.doMainText(f"\n\nHowever, it doesn't last long as the last of your vagina{self.plural(2)} shrink{self.plural(4)} to nothing, your {self.vulvaDesc()} lips disintegrating back against your groin before finally vanishing, making you a boy for all intents and purposes.")
+                self.vagChange(-1, 0)
+                self.vagBellyChange(-self.vagSize,-self.vagTotal)
+                self.stats(0, 0, -(2 * (self.vagTotal - 1)), 0)
+                self.vagSize = 0
+                self.vagTotal = 0
+                i = 0
+                while (i < self.pregArray.length):
+                    if (self.pregArray[i]):
+                        i += 5
+                    else:
+                        self.pregArray.splice(i, 5)
+                self.vulvaSize = 0
+                self.clitSize = 0
+                self.gender = 1
+            elif self.gender == 3:
+                self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within. Your {self.clothesBottom()} feels loser as your {self.cockDesc()} bulges dwindle as well.", True)
+                if (self.showBalls):
+                    self.doMainText(" Even your testicles shrivel up, growing smaller and smaller.")
+                self.doMainText(f"\n\nBy the time you finally pull {self.pullUD(2)} your {self.clothesBottom()}, all your attributes are like that of a childs...")
+                self.vagChange(-1, 0)
+                self.vagBellyChange(-(self.vagSize - 1), 0)
+                self.ballSize = 1
+                self.cockSize = 1
+                self.vagSize = 1
+                self.vulvaSize = 1
+                self.clitSize = 1
+            elif self.gender == 0:
+                chance = self.percent()
+                self.doMainText("You ingest the potion and quickly begin to feel its effects.", True)
+                if (chance <= 40):
+                    self.cockChange(1, 1)
+                elif (chance <= 80):
+                    self.vagChange(1, 1)
+                elif (chance > 80):
+                    self.cockChange(1, 1)
+                    self.vagChange(1, 1)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 514:
+            self.outputMainText("After drinking the potion, your body feels tingly all over. You have the odd feeling like it would be fun to be whipped right about now...", True)
+            self.masoPot += 24
+            self.doEnd()
+        elif ID == 515:
+            self.dyeThing(ID, 1)
+        elif ID == 516:
+            self.outputMainText("Taking the potion, you sudden feel less... fertile than before. You might still be a little fertile, but you suspect you can go out 'clubbing' for the next few days and not have to worry so much about a little extra weight in a few more. If you knew what any of that even meant.", True)
+            self.babyFree += 72
+            self.doEnd()
+        elif ID == 517:
+            if (self.balls > 0):
+                if (self.showBalls):
+                    self.doMainText(f"Within seconds of drinking this potion, you can feel your balls grow slightly warmer. You can almost hear them hum as they work harder to produce more fun goop for your cock{self.plural(1)}.", True)
+                else:
+                    self.doMainText(f"Within seconds of drinking this potion, you can feel your abdomen grow slightly warmer. You can almost hear something inside hum as it works harder to produce more fun goop for your cock{self.plural(1)}.", True)
+            else:
+                self.doMainText("If you had balls to be kicked in, they'd probably be feeling more active right now. Not that you would know, you ball-less freak.", True)
+            self.cumMod += 0.2
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 518:
+            if self.gender == 1:
+                self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for an equal amount of vaginal flesh inside.", True)
+                if (self.showBalls):
+                    self.doMainText(f" Your {self.ballDesc()} balls squeeze up {self.legWhere(1)} your {self.legDesc(2)} before eventually melding into your {self.skinDesc()}, forming mounds of equal size until you have {self.cockTotal} pair{self.plural(1)} of feminine lips.")
+                else:
+                    self.doMainText(f" The skin {self.legWhere(1)} your {self.legDesc(2)} swells slightly, forming mounds of plush flesh, {self.cockTotal} pair{self.plural(1)} of new feminine lips.")
+                self.doMainText(f" The lips part, the fresh air making you shiver as it passes across the moist flesh within. Your hand passes over your new clit{self.plural(1)}, making you shiver slightly, before you dip your finger into {self.oneYour(1)} new cunt{self.plural(1)}, amazed at the sensation of being penetrated like that. For all intents and purposes, you are now a girl.")
+                self.vagBellyChange(self.cockSize,self.cockTotal)
+                self.vagTotal = self.cockTotal
+                for i in range(self.vagTotal):
+                    if (self.pregArray.length / 5 < 1):
+                        self.pregArray = Array(False, 0, 0, 0, 0)
+                    elif (self.pregArray.length / 5 < self.vagTotal):
+                        self.pregArray.push(False, 0, 0, 0, 0)
+                self.vagSize = self.cockSize
+                self.vulvaSize = self.ballSize
+                self.clitSize = self.ballSize
+                self.balls = 0
+                self.ballSize = 0
+                self.cockSize = 0
+                self.cockTotal = 0
+                self.humanCocks = 0
+                self.horseCocks = 0
+                self.wolfCocks = 0
+                self.catCocks = 0
+                self.lizardCocks = 0
+                self.rabbitCocks = 0
+                self.bugCocks = 0
+                self.gender = 2
+            elif self.gender == 2:
+                self.doMainText("You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within.", True)
+                self.cockChange(self.vagSize,self.vagTotal)
+                self.doMainText(f"\n\nHowever, it doesn't last long as the last of your vagina{self.plural(2)} shrink{self.plural(4)} to nothing, your {self.vulvaDesc()} lips disintegrating into your new scrotum, your testicles growing larger and larger before your lips finally vanish, making you a boy for all intents and purposes.")
+                self.ballSize = self.vulvaSize
+                self.vagBellyChange(-self.vagSize,-self.vagTotal)
+                self.vagSize = 0
+                self.vagTotal = 0
+                i = 0
+                while (i < self.pregArray.length):
+                    if (self.pregArray[i]):
+                        i += 5
+                    else:
+                        self.pregArray.splice(i, 5)
+                self.vulvaSize = 0
+                self.clitSize = 0
+                self.gender = 1
+            elif self.gender == 3:
+                self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh attempting to match the size of your male anatomy. Your {self.clothesBottom()} shakes as your {self.cockDesc()} bulges try to mimic your female anatomy as well.", True)
+                if (self.showBalls):
+                    self.doMainText(f" Even your testicles shift, growing to match your pussy lips, while those lips do the same. Your clit{self.plural(2)} also change{self.plural(4)} to more closely match the size of your different vulva.")
+                else:
+                    self.doMainText(f"Even your pussy lips shift, trying to match the size of what's in your abdomen. Your clit{self.plural(2)} also change{self.plural(4)} to more closely match the size of your different vulva.")
+                self.doMainText(" In the end, your whole body feels a little off balanced, having to adjust to the backwards genitals...")
+                tempCockSize = self.cockSize
+                tempBallSize = self.ballSize
+                self.cockSize = self.vagSize
+                self.ballSize = self.vulvaSize
+                self.vagBellyChange(tempCockSize - self.vagSize, 0)
+                self.vagChange(-1, 0)
+                self.vagSize = tempCockSize
+                self.vulvaSize = tempBallSize
+                self.clitSize = tempBallSize
+            elif self.gender == 0:
+                chance = self.percent()
+                self.doMainText("You ingest the potion and quickly begin to feel its effects.", True)
+                if (chance <= 40):
+                    self.cockChange(Math.ceil(self.percent() / 5), 1)
+                    self.ballSize = Math.ceil(self.percent() / 5)
+                elif (chance <= 80):
+                    self.vagChange(Math.ceil(self.percent() / 5), 1)
+                    self.vulvaSize = Math.ceil(self.percent() / 5)
+                    self.clitSize = Math.ceil(self.percent() / 5)
+                elif (chance > 80):
+                    self.cockChange(Math.ceil(self.percent() / 5), 1)
+                    self.vagChange(Math.ceil(self.percent() / 5), 1)
+                    self.ballSize = Math.ceil(self.percent() / 5)
+                    self.vulvaSize = Math.ceil(self.percent() / 5)
+                    self.clitSize = Math.ceil(self.percent() / 5)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 519:
+            self.outputMainText("After drinking the potion, your body feels like electricity is sparking all over. You have the odd feeling like it would be fun to be beaten to a pulp right about now...", True)
+            self.sMasoPot += 24
+            self.doEnd()
+        elif ID == 520:
+            self.dyeThing(ID, 3)
+        elif ID == 521:
+            self.outputMainText("Taking the potion, you sudden feel less... fertile than before. You might still be a little fertile, but you suspect you can go out 'clubbing' for the next several days and not have to worry so much about a little extra weight afterwards. If you knew what any of that even meant.", True)
+            self.babyFree += 216
+            self.doEnd()
+        elif ID == 522:
+            if (self.balls > 0):
+                if (self.showBalls):
+                    self.doMainText(f"Within seconds of drinking this potion, you can feel your balls grow slightly hotter. You can almost hear them whir as they work harder to produce more fun goop for your cock{self.plural(1)}.", True)
+                else:
+                    self.doMainText(f"Within seconds of drinking this potion, you can feel your abdomen grow slightly hotter. You can almost hear something inside whir as it works harder to produce more fun goop for your cock{self.plural(1)}.", True)
+            else:
+                self.doMainText("If you had balls to be kicked in, they'd probably be feeling much more active right now. Not that you would know, you ball-less freak.", True)
             self.cumMod += 0.5
-         if (self.vagTotal > 0):
-            self.doMainText(f" Your loins ache as your nether-lips grow between your thighs, your pelvis literally spreading to make more room as your {self.hipDesc()} hips press outward. Your ovaries tickle a little as they spill their eggs for easier fertilization. Even your {self.boobDesc()} breasts feel heavier, your {self.nipDesc()}nipples growing longer for greater mouthfuls.")
-            self.vagChange(5,0)
-            self.hips += 5
-            self.vulvaSize += 5
-            self.pregChanceMod += 5
-            self.extraPregChance += 10
-            self.boobChange(5)
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 532:
-         self.outputMainText("You rub the strong-scented pheromones all over your body. It's so... powerful that even you feel a little rambunctious just wearing it. Others would probably find it much more enticing as well, strengthening their attraction to you.",True)
-         if (self.pheromone <= 0):
-            self.pheromone = 30
-            self.enticeMod += 25
-            self.statsMod(0,0,3,0)
-         else:
-            self.pheromone += 30
-         self.doEnd()
-      elif ID == 533:
-         self.choiceListArray.clear()
-         if (self.breastSize > 0):
-            self.choiceListArray.push("Breasts")
-         if (self.nippleSize > 1):
-            self.choiceListArray.push("Nipples")
-         if (self.butt > 1):
-            self.choiceListArray.push("Butt")
-         if (self.hips > 1):
-            self.choiceListArray.push("Hips")
-         if (self.vagTotal > 0):
-            self.choiceListArray.push("Pussy")
-            if (self.vulvaSize > 0):
-               self.choiceListArray.push("Vulva")
-            if (self.clitSize > 1):
-               self.choiceListArray.push("Clit")
-         if (self.cockTotal > 0):
-            self.choiceListArray.push("Cock")
-            if (self.showBalls and self.ballSize > 1):
-               self.choiceListArray.push("Balls")
-         if (self.udders):
-            if (self.udderSize > 1):
-               self.choiceListArray.push("Udder")
-            if (self.teatSize > 2):
-               self.choiceListArray.push("Teats")
-         if (self.bellyMod > 0):
-            self.choiceListArray.push("Belly")
-         self.choiceListButtons("Reduc Reduc")
-         self.outputMainText("Select which body part you would like to shrink a bit. If you don't have that part, this elixir will do nothing but will still be consumed.",True)
-         def doListen():
-            self.choiceListSelect("Reduc Reduc")
-            self.doMainText("You splash the elixir out onto your ",True)
-            temp = self.choiceListResult[0]
-            if temp == "Cock":
-               self.doMainText(f"{self.cockDesc()} cock{self.plural(1)} and watch the appendage{self.plural(1)} quiver and shrivel down by {2 * self.cockSizeMod} inches.")
-               self.cockChange(-4,0)
-            elif temp == "Balls":
-               self.doMainText(f"{self.ballDesc()} balls and watch with a shiver as the orbs shrink.")
-               self.ballSize -= 4
-            elif temp == "Pussy":
-               self.doMainText(f"vagina{self.plural(2)} and quiver as the fleshy walls within your body shrink.")
-               self.vagChange(-4,0)
-            elif temp == "Vulva":
-               self.doMainText(f"{self.vulvaDesc()} vulva and watch with a quiver as nether-lips shrink, becoming ")
-               self.vulvaSize -= 4
-               self.doMainText(f"{self.vulvaDesc()}.")
-            elif temp == "Clit":
-               self.doMainText(f"{self.clitDesc()} clit{self.plural(2)} and watch with a quiver as the button{self.plural(2)} shrink{self.plural(4)}, becoming ")
-               self.clitSize -= 4
-               self.doMainText(f"{self.clitDesc()}.")
-            elif temp == "Breasts":
-               self.doMainText(f"{self.boobDesc()} breasts and shudder as they shrink by about 2 inches.")
-               self.breastSize -= 4
-            elif temp == "Nipples":
-               self.doMainText(f"{self.nipDesc()} nipples and shudder as they receed into your breasts nearly an inch.")
-               self.nippleSize -= 4
-            elif temp == "Udder":
-               self.doMainText(f"{self.udderDesc()} udder and watch as it shrivels, becoming ")
-               self.udderSize -= 4
-               self.doMainText(f"{self.udderDesc()}.")
-            elif temp == "Teats":
-               self.doMainText(f"{self.teatDesc()} teats and watch as they recede, becoming ")
-               self.teatSize -= 4
-               self.doMainText(f"{self.teatDesc()}.")
-            elif temp == "Butt":
-               self.doMainText(f"{self.buttDesc()} butt and squirm as it shrinks, becoming ")
-               self.butt -= 4
-               self.doMainText(f"{self.buttDesc()}.")
-            elif temp == "Hips":
-               self.doMainText(f"{self.hipDesc()} hips and squirm as they narrow, becoming ")
-               self.hips -= 4
-               self.doMainText(f"{self.hipDesc()}.")
-            elif temp == "Belly":
-               self.doMainText(f"{self.bellyDesc()} belly and watch as some of the fat burns off, becoming ")
-               self.bellyMod -= 4
-               self.doMainText(f"{self.bellyDesc()}.")
             self.displayMainText()
-            if (self.buttonChoice == 4 or self.buttonChoice == 8):
-               self.choiceListButtons("Reduc Reduc")
-            elif (self.buttonChoice == 12):
-               self.itemAdd(533)
-               self.doProcess()
+            self.doEnd()
+        elif ID == 523:
+            self.doMainText("You pop open the vial of cum and let it ooze down your throat, shivering a bit from the heady taste.", True)
+            self.doHP(2)
+            self.doLust(5, 0)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 524:
+            self.doMainText("You gulp down the thick, creamy, sticky cum, having difficulty getting down the large amount of hot spunk with its heady taste.", True)
+            self.doHP(5)
+            self.doLust(15, 0)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 525:
+            self.outputMainText("You pour the jug of cum out into 3 bottles...", True)
+            self.addManyItem(524, 3)
+            self.doEnd()
+        elif ID == 526:
+            if (self.currentState == 2):
+                self.doMainText("You have no use for a barrel full of cum in the midst of battle, so you... tuck it away somewhere in your bag?", True)
+                self.itemAdd(526)
             else:
-               self.doEnd()
-         self.doListen = doListen
-      elif ID == 534:
-         self.doMainText("You pop the pill into your mouth, feeling a bit of warmth emanating from your groin.",True)
-         if (self.cockTotal > 0):
-            self.doMainText(f" You pull {self.pullUD(2)} your {self.clothesBottom()} and watch with awe as your schlong{self.plural(1)} grow longer")
-            if (self.showBalls):
-               self.doMainText(" and the testicles beneath swell within your scrotum")
-            elif self.respectShowBalls:
-               self.doMainText(". You can also feel your abdomen grow tighter, as if your internal testicles were swelling")
-            self.doMainText(".\n\nIt really does work!")
-            self.cockSize += 4
-            self.ballSize += 2
-         elif (self.gender == 2):
-            self.doMainText(f" Yet, despite not having any male genitals to speak of, you feel something growing longer. Pulling {self.pullUD(2)} your {self.clothesBottom()}, you watch with awe as your clit{self.plural(2)} extends further from {self.plural(6)} hood{self.plural(2)}! You also feel more... horny than usual...\n\nThough the pill was meant for males, females have quite a bit in common.")
-            self.clitSize += 3
-            self.stats(0,0,1,0)
-         else:
-            self.doMainText("\n\nYou don't have any genitals for it to enhance though, so it was kind of a waste.")
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 535:
-         self.doMainText(f"You gulp down the vial of Milk Suppressant. You don't notice much of a difference, except that your {self.nipDesc()} nipples",True)
-         if (self.udders):
-            self.doMainText(f" and {self.teatDesc()} teats")
-         self.outputMainText(" stiffen to such a point that they feel almost rock-hard. They don't really settle down either, like they're trying to hold something back.")
-         self.milkSuppressant += 48
-         self.milkSuppressantLact = self.lactation
-         self.milkSuppressantUdder = self.udderLactation
-         self.lactation = 0
-         self.udderLactation = 0
-         self.doEnd()
-      elif ID == 536:
-         self.doMainText("You pop the little growing orb into your mouth and quickly gulp it down past your gag reflex. It doesn't take long before your chest begins to feel warm...",True)
-         if self.boobTotal == 2:
-            self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
-            if (self.breastSize > 4):
-               self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            self.boobTotal = 4
-            self.fourBoobAffinity = 100
-            self.twoBoobAffinity = 0
-         elif self.boobTotal == 4:
-            self.doMainText(f"\n\nYour chest and belly tickle. Two new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with three rows of two breasts.")
-            if (self.breastSize > 4):
-               self.doMainText(f" The nipples protrude as fleshy mounds form beneath them, while your second pair seems to shrink in turn. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            self.boobTotal = 6
-            self.sixBoobAffinity = 100
-            self.fourBoobAffinity = 0
-         elif self.boobTotal == 6:
-            self.doMainText(f"\n\nYour chest and belly tickle. Two new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with four rows of two breasts, from chest to your lower belly.")
-            if (self.breastSize > 4):
-               self.doMainText(f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            self.boobTotal = 8
-            self.eightBoobAffinity = 100
-            self.sixBoobAffinity = 0
-         elif self.boobTotal == 8:
-            self.doMainText(f"\n\nThe area above your crotch tickles. Two new nipples form amongst your {self.skinDesc()}, right below your fourth pair below your belly, leaving you with five rows of two breasts, from your chest to your crotch.")
-            if (self.breastSize > 4):
-               self.doMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            self.boobTotal = 10
-            self.tenBoobAffinity = 100
-            self.eightBoobAffinity = 0
-         elif self.boobTotal == 10:
-            self.doMainText("\n\nYour chest down to your crotch starts to tickle. Checking, you see dozens of nipples beginning to appear amongst your breasts, going down to your groin and some even on your back. Mound of flesh begin growing everywhere until you're surrounded by tits!\n\nThen, a popping whir begins to fill the air. In a puff of pink smoke, all your breasts disappear at once, save the single primary pair upon your chest. It seems you have gone a bit overboard with the boobage...")
-            self.boobTotal = 2
-            self.twoBoobAffinity = 100
-            self.tenBoobAffinity = 0
-         self.displayMainText()
-         self.doEnd()
-      elif ID == 537:
-         self.doMainText(f"You munch on the egg, the wonderful flavors flowing over your tongue. It's sweet and buttery, quickly sliding down your gullet with delight until you're sucking the leftovers from your fingers. And as you ruminate over the delicious snack, you feel your {self.clothesBottom()} grow tighter. Your hips grow wider and your rump larger,",True)
-         if (self.vagTotal > 0):
-            self.doMainText(" the lips of your sex swelling as well, while your womb becomes more efficient,")
-            self.pregRate += 0.05
-            self.vulvaSize += 1
-         self.doMainText(f" and your {self.boobDesc()} chest feels slightly bigger on the inside than on the outside. Growing more suitable for a breeding queen.")
-         self.displayMainText()
-         self.hips += 1
-         self.butt += 1
-         self.milkCap += 4
-         self.doEnd()
-      elif ID == 538:
-         self.outputMainText("You bite down into the egg, getting through the tougher rind and giving it a good chew before you swallow. It takes a bit to get through the whole thing and by the time you're done the ground looks further away than usual. You've grown slightly taller and feel more lean and strong.",True)
-         self.tallness += 1
-         self.body += 1
-         self.stats(1,0,0,0)
-         self.doEnd()
-      elif ID == 539:
-         self.doMainText("You gobble down the egg, your mind quickly drifting more towards lustful thoughts.",True)
-         if (self.cockTotal > 0):
-            self.doMainText(f" Your cock{self.plural(1)} grow{self.plural(3)} slightly larger, more able to ensure a deeper injection of your seed.")
-            self.cockSize += 1
-            if (self.showBalls):
-               self.doMainText(" Your balls also feel more ready to spurt, as though you've gone many more hours without ejaculation than you actually have.")
-            self.blueBalls += 10
-         if (self.vagTotal > 0):
-            self.doMainText(f" And though {self.plural(8)} not actually something that can impregnate, your clit{self.plural(2)} swell{self.plural(4)} slightly larger.")
-            self.clitSize += 1
-         self.displayMainText()
-         self.stats(0,-1,1,0)
-         self.doEnd()
-      elif ID == 540:
-         self.outputMainText("You quickly chomp down the egg. It doesn't exactly taste good or bad, but that doesn't really matter. You just feel like you've got more energy to keep working!",True)
-         self.exhaustion -= 6
-         self.doEnd()
+                self.doMainText(f"Without much of a use for it otherwise, you decide to... strip down naked and jump in!\n\nThe cum is nice and warm and feels so good on your {self.skinDesc()}. You scrub yourself nice and thoroughly, making sure to get all the nooks and crannies. And with the slimy goop, you really focus on those crannies~\n\nAfter cleaning yourself up a bit, you sit back and relax, pulling out a toy to play with.\n\n\n'Oh rubber ducky, you're the one. You make bath-time lots of fun~'", True)
+                self.stats(0, 0, 1, 1)
+                self.hrs += 1
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 527:
+            self.doMainText("You crack open the good egg and down its contents, feeling healthier and stronger already.", True)
+            self.doHP(15)
+            self.displayMainText()
+            self.stats(1, 0, 0, 0)
+            self.doEnd()
+        elif ID == 528:
+            if (self.currentState != 2):
+                self.outputMainText("You can only use this dangerous egg in battle. You put the bad egg back into your bag.", True)
+                self.itemAdd(528)
+                self.doEnd()
+            else:
+                self.dmg = Math.floor(Math.random() * 11) + 10
+                self.outputMainText(f"You pull the bad egg from your bag and toss it at the {self.enemyName()}. It explodes in a burst of fire, somehow, dealing {self.dmg} damage!", True)
+                self.doeHP(-self.dmg)
+                if (self.currentState == 2):
+                    self.doEnd()
+        elif ID == 529:
+            self.doMainText("You crack open the strange egg and down its contents, feeling odd...", True)
+            # TODO: Maybe make this its own gametweak
+            if self.gameTweaksMisc:
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYou grow an inch taller.")
+                    self.tallness += 1
+                elif (self.percent() <= 10):
+                    self.doMainText("\n\nYou shrink by an inch.")
+                    self.tallness -= 1
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYour chest springs out, swelling in size.")
+                    self.breastSize += Math.ceil(self.percent() / 10)
+                elif (self.percent() <= 10 and self.breastSize > 1):
+                    self.doMainText("\n\nYour breasts recoil back, deflating.")
+                    self.breastSize -= Math.ceil(self.percent() / 10)
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYour crotch feels strange as some feminine bits begin to appear...")
+                    self.vagChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYour crotch feels strange as some masculine bits begin to appear...")
+                    self.cockChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
+                if (self.cockTotal > 0):
+                    if (self.percent() <= 10):
+                        self.doMainText(f"\n\nYour cock{self.plural(1)} grow{self.plural(3)} sporadically.")
+                        self.cockChange(Math.ceil(self.percent() / 10), 0)
+                    elif (self.percent() <= 10):
+                        self.doMainText(f"\n\nYour cock{self.plural(1)} shrink{self.plural(3)} sporadically.")
+                        self.cockChange(-Math.ceil(self.percent() / 10), 0)
+                if (self.vagTotal > 0):
+                    if (self.percent() <= 10):
+                        self.doMainText(f"\n\nYour vulva{self.plural(2)} grow{self.plural(4)} sporadically.")
+                        self.vagChange(Math.ceil(self.percent() / 10), 0)
+                        self.vulvaSize += Math.ceil(self.percent() / 10)
+                        self.clitSize += Math.ceil(self.percent() / 10)
+                    elif (self.percent() <= 10):
+                        self.doMainText(f"\n\nYour vulva{self.plural(2)} shrink{self.plural(4)} sporadically.")
+                        self.vagChange(-Math.ceil(self.percent() / 10), 0)
+                        self.vulvaSize -= Math.ceil(self.percent() / 10)
+                        self.clitSize -= Math.ceil(self.percent() / 10)
+                    if (self.percent() <= 10):
+                        self.doMainText(f"\n\nYou grunt and squat, {self.legVerb(1)} your {self.legDesc(2)} and pulling {self.pullUD(2)} your {self.clothesBottom()} in time for more fresh eggs to come sliding out of your slit{self.plural(2)} from nowhere!")
+                        self.addManyItem(219, 3)
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nIt feels as though your blood has thinned out a bit.")
+                    self.aff(0, 0, -10)
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYou suddenly feel very aroused.")
+                    self.doLust(50, 0)
+                elif (self.percent() <= 10):
+                    self.doMainText("\n\nYour arousal suddenly dies down.")
+                    self.doLust(-50, 0)
+                if (self.percent() <= 10):
+                    self.doMainText("\n\n10 coins pop out of your ears.")
+                    self.doCoin(10)
+            else:
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYou grow an inch taller.")
+                    self.tallness += 1
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYou shrink by an inch.")
+                    self.tallness -= 1
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYour chest springs out, swelling in size.")
+                    self.breastSize += Math.ceil(self.percent() / 10)
+                if (self.percent() <= 10 and self.breastSize > 1):
+                    self.doMainText("\n\nYour breasts recoil back, deflating.")
+                    self.breastSize -= Math.ceil(self.percent() / 10)
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYour crotch feels strange as some feminine bits begin to appear...")
+                    self.vagChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYour crotch feels strange as some masculine bits begin to appear...")
+                    self.cockChange(Math.ceil(self.percent() / 10),Math.ceil(self.percent() / 20))
+                if (self.cockTotal > 0):
+                    if (self.percent() <= 10):
+                        self.doMainText(f"\n\nYour cock{self.plural(1)} grow{self.plural(3)} sporadically.")
+                        self.cockChange(Math.ceil(self.percent() / 10), 0)
+                    if (self.percent() <= 10):
+                        self.doMainText(f"\n\nYour cock{self.plural(1)} shrink{self.plural(3)} sporadically.")
+                        self.cockChange(-Math.ceil(self.percent() / 10), 0)
+                if (self.vagTotal > 0):
+                    if (self.percent() <= 10):
+                        self.doMainText(f"\n\nYour vulva{self.plural(2)} grow{self.plural(4)} sporadically.")
+                        self.vagChange(Math.ceil(self.percent() / 10), 0)
+                        self.vulvaSize += Math.ceil(self.percent() / 10)
+                        self.clitSize += Math.ceil(self.percent() / 10)
+                    if (self.percent() <= 10):
+                        self.doMainText(f"\n\nYour vulva{self.plural(2)} shrink{self.plural(4)} sporadically.")
+                        self.vagChange(-Math.ceil(self.percent() / 10), 0)
+                        self.vulvaSize -= Math.ceil(self.percent() / 10)
+                        self.clitSize -= Math.ceil(self.percent() / 10)
+                    if (self.percent() <= 10):
+                        self.doMainText(f"\n\nYou grunt and squat, {self.legVerb(1)} your {self.legDesc(2)} and pulling {self.pullUD(2)} your {self.clothesBottom()} in time for more fresh eggs to come sliding out of your slit{self.plural(2)} from nowhere!")
+                        self.addManyItem(219, 3)
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nIt feels as though your blood has thinned out a bit.")
+                    self.aff(0, 0, -10)
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYou suddenly feel very aroused.")
+                    self.doLust(50, 0)
+                if (self.percent() <= 10):
+                    self.doMainText("\n\nYour arousal suddenly dies down.")
+                    self.doLust(-50, 0)
+                if (self.percent() <= 10):
+                    self.doMainText("\n\n10 coins pop out of your ears.")
+                    self.doCoin(10)
+            self.doMainText("\n\nQuite strange indeed...")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 530:
+            self.outputMainText("You crack the charmed egg open and gulp its contents. You suddenly feel charming, oh so charming, it's alarming how charming you feeeeel~", True)
+            if (self.charmTime <= 0):
+                self.enticeMod += 13
+                self.charmTime = 20
+            else:
+                self.charmTime += 20
+            self.stats(0, 1, 0, 0)
+            self.doEnd()
+        elif ID == 531:
+            self.doMainText("You can nearly hear the sounds of an angelic chorus as you crack the divine egg open, its gooey contents slipping down your throat.", True)
+            if (self.cockTotal > 0):
+                self.doMainText(f" Your {self.cockDesc()} cock{self.plural(1)} pulse{self.plural(3)} and bulge{self.plural(3)} in your {self.clothesBottom()}, swelling in size.")
+                if (self.showBalls):
+                    self.doMainText(" Your balls groan to match the amount of growth, expanding in their confines.")
+                self.doMainText(" You can feel the cum churn within your body, trying to make room for more.")
+                self.cockChange(5, 0)
+                self.ballSize += 5
+                self.cumMod += 0.5
+            if (self.vagTotal > 0):
+                self.doMainText(f" Your loins ache as your nether-lips grow between your thighs, your pelvis literally spreading to make more room as your {self.hipDesc()} hips press outward. Your ovaries tickle a little as they spill their eggs for easier fertilization. Even your {self.boobDesc()} breasts feel heavier, your {self.nipDesc()}nipples growing longer for greater mouthfuls.")
+                self.vagChange(5, 0)
+                self.hips += 5
+                self.vulvaSize += 5
+                self.pregChanceMod += 5
+                self.extraPregChance += 10
+                self.boobChange(5)
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 532:
+            self.outputMainText("You rub the strong-scented pheromones all over your body. It's so... powerful that even you feel a little rambunctious just wearing it. Others would probably find it much more enticing as well, strengthening their attraction to you.", True)
+            if (self.pheromone <= 0):
+                self.pheromone = 30
+                self.enticeMod += 25
+                self.statsMod(0, 0, 3, 0)
+            else:
+                self.pheromone += 30
+            self.doEnd()
+        elif ID == 533:
+            self.choiceListArray.clear()
+            if (self.breastSize > 0):
+                self.choiceListArray.push("Breasts")
+            if (self.nippleSize > 1):
+                self.choiceListArray.push("Nipples")
+            if (self.butt > 1):
+                self.choiceListArray.push("Butt")
+            if (self.hips > 1):
+                self.choiceListArray.push("Hips")
+            if (self.vagTotal > 0):
+                self.choiceListArray.push("Pussy")
+                if (self.vulvaSize > 0):
+                    self.choiceListArray.push("Vulva")
+                if (self.clitSize > 1):
+                    self.choiceListArray.push("Clit")
+            if (self.cockTotal > 0):
+                self.choiceListArray.push("Cock")
+                if (self.showBalls and self.ballSize > 1):
+                    self.choiceListArray.push("Balls")
+            if (self.udders):
+                if (self.udderSize > 1):
+                    self.choiceListArray.push("Udder")
+                if (self.teatSize > 2):
+                    self.choiceListArray.push("Teats")
+            if (self.bellyMod > 0):
+                self.choiceListArray.push("Belly")
+            self.choiceListButtons("Reduc Reduc")
+            self.outputMainText("Select which body part you would like to shrink a bit. If you don't have that part, this elixir will do nothing but will still be consumed.", True)
+
+            def doListen():
+                self.choiceListSelect("Reduc Reduc")
+                self.doMainText("You splash the elixir out onto your ", True)
+                temp = self.choiceListResult[0]
+                if temp == "Cock":
+                    self.doMainText(f"{self.cockDesc()} cock{self.plural(1)} and watch the appendage{self.plural(1)} quiver and shrivel down by {2 * self.cockSizeMod} inches.")
+                    self.cockChange(-4, 0)
+                elif temp == "Balls":
+                    self.doMainText(f"{self.ballDesc()} balls and watch with a shiver as the orbs shrink.")
+                    self.ballSize -= 4
+                elif temp == "Pussy":
+                    self.doMainText(f"vagina{self.plural(2)} and quiver as the fleshy walls within your body shrink.")
+                    self.vagChange(-4, 0)
+                elif temp == "Vulva":
+                    self.doMainText(f"{self.vulvaDesc()} vulva and watch with a quiver as nether-lips shrink, becoming ")
+                    self.vulvaSize -= 4
+                    self.doMainText(f"{self.vulvaDesc()}.")
+                elif temp == "Clit":
+                    self.doMainText(f"{self.clitDesc()} clit{self.plural(2)} and watch with a quiver as the button{self.plural(2)} shrink{self.plural(4)}, becoming ")
+                    self.clitSize -= 4
+                    self.doMainText(f"{self.clitDesc()}.")
+                elif temp == "Breasts":
+                    self.doMainText(f"{self.boobDesc()} breasts and shudder as they shrink by about 2 inches.")
+                    self.breastSize -= 4
+                elif temp == "Nipples":
+                    self.doMainText(f"{self.nipDesc()} nipples and shudder as they receed into your breasts nearly an inch.")
+                    self.nippleSize -= 4
+                elif temp == "Udder":
+                    self.doMainText(f"{self.udderDesc()} udder and watch as it shrivels, becoming ")
+                    self.udderSize -= 4
+                    self.doMainText(f"{self.udderDesc()}.")
+                elif temp == "Teats":
+                    self.doMainText(f"{self.teatDesc()} teats and watch as they recede, becoming ")
+                    self.teatSize -= 4
+                    self.doMainText(f"{self.teatDesc()}.")
+                elif temp == "Butt":
+                    self.doMainText(f"{self.buttDesc()} butt and squirm as it shrinks, becoming ")
+                    self.butt -= 4
+                    self.doMainText(f"{self.buttDesc()}.")
+                elif temp == "Hips":
+                    self.doMainText(f"{self.hipDesc()} hips and squirm as they narrow, becoming ")
+                    self.hips -= 4
+                    self.doMainText(f"{self.hipDesc()}.")
+                elif temp == "Belly":
+                    self.doMainText(f"{self.bellyDesc()} belly and watch as some of the fat burns off, becoming ")
+                    self.bellyMod -= 4
+                    self.doMainText(f"{self.bellyDesc()}.")
+                self.displayMainText()
+                if (self.buttonChoice == 4 or self.buttonChoice == 8):
+                    self.choiceListButtons("Reduc Reduc")
+                elif (self.buttonChoice == 12):
+                    self.itemAdd(533)
+                    self.doProcess()
+                else:
+                    self.doEnd()
+            self.doListen = doListen
+        elif ID == 534:
+            self.doMainText("You pop the pill into your mouth, feeling a bit of warmth emanating from your groin.", True)
+            if (self.cockTotal > 0):
+                self.doMainText(f" You pull {self.pullUD(2)} your {self.clothesBottom()} and watch with awe as your schlong{self.plural(1)} grow longer")
+                if (self.showBalls):
+                    self.doMainText(" and the testicles beneath swell within your scrotum")
+                elif self.respectShowBalls:
+                    self.doMainText(". You can also feel your abdomen grow tighter, as if your internal testicles were swelling")
+                self.doMainText(".\n\nIt really does work!")
+                self.cockSize += 4
+                self.ballSize += 2
+            elif (self.gender == 2):
+                self.doMainText(f" Yet, despite not having any male genitals to speak of, you feel something growing longer. Pulling {self.pullUD(2)} your {self.clothesBottom()}, you watch with awe as your clit{self.plural(2)} extends further from {self.plural(6)} hood{self.plural(2)}! You also feel more... horny than usual...\n\nThough the pill was meant for males, females have quite a bit in common.")
+                self.clitSize += 3
+                self.stats(0, 0, 1, 0)
+            else:
+                self.doMainText("\n\nYou don't have any genitals for it to enhance though, so it was kind of a waste.")
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 535:
+            self.doMainText(f"You gulp down the vial of Milk Suppressant. You don't notice much of a difference, except that your {self.nipDesc()} nipples", True)
+            if (self.udders):
+                self.doMainText(f" and {self.teatDesc()} teats")
+            self.outputMainText(" stiffen to such a point that they feel almost rock-hard. They don't really settle down either, like they're trying to hold something back.")
+            self.milkSuppressant += 48
+            self.milkSuppressantLact = self.lactation
+            self.milkSuppressantUdder = self.udderLactation
+            self.lactation = 0
+            self.udderLactation = 0
+            self.doEnd()
+        elif ID == 536:
+            self.doMainText("You pop the little growing orb into your mouth and quickly gulp it down past your gag reflex. It doesn't take long before your chest begins to feel warm...", True)
+            if self.boobTotal == 2:
+                self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
+                if (self.breastSize > 4):
+                    self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                self.boobTotal = 4
+                self.fourBoobAffinity = 100
+                self.twoBoobAffinity = 0
+            elif self.boobTotal == 4:
+                self.doMainText(f"\n\nYour chest and belly tickle. Two new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with three rows of two breasts.")
+                if (self.breastSize > 4):
+                    self.doMainText(f" The nipples protrude as fleshy mounds form beneath them, while your second pair seems to shrink in turn. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                self.boobTotal = 6
+                self.sixBoobAffinity = 100
+                self.fourBoobAffinity = 0
+            elif self.boobTotal == 6:
+                self.doMainText(f"\n\nYour chest and belly tickle. Two new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with four rows of two breasts, from chest to your lower belly.")
+                if (self.breastSize > 4):
+                    self.doMainText(f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                self.boobTotal = 8
+                self.eightBoobAffinity = 100
+                self.sixBoobAffinity = 0
+            elif self.boobTotal == 8:
+                self.doMainText(f"\n\nThe area above your crotch tickles. Two new nipples form amongst your {self.skinDesc()}, right below your fourth pair below your belly, leaving you with five rows of two breasts, from your chest to your crotch.")
+                if (self.breastSize > 4):
+                    self.doMainText(" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                self.boobTotal = 10
+                self.tenBoobAffinity = 100
+                self.eightBoobAffinity = 0
+            elif self.boobTotal == 10:
+                self.doMainText("\n\nYour chest down to your crotch starts to tickle. Checking, you see dozens of nipples beginning to appear amongst your breasts, going down to your groin and some even on your back. Mound of flesh begin growing everywhere until you're surrounded by tits!\n\nThen, a popping whir begins to fill the air. In a puff of pink smoke, all your breasts disappear at once, save the single primary pair upon your chest. It seems you have gone a bit overboard with the boobage...")
+                self.boobTotal = 2
+                self.twoBoobAffinity = 100
+                self.tenBoobAffinity = 0
+            self.displayMainText()
+            self.doEnd()
+        elif ID == 537:
+            self.doMainText(f"You munch on the egg, the wonderful flavors flowing over your tongue. It's sweet and buttery, quickly sliding down your gullet with delight until you're sucking the leftovers from your fingers. And as you ruminate over the delicious snack, you feel your {self.clothesBottom()} grow tighter. Your hips grow wider and your rump larger,", True)
+            if (self.vagTotal > 0):
+                self.doMainText(" the lips of your sex swelling as well, while your womb becomes more efficient,")
+                self.pregRate += 0.05
+                self.vulvaSize += 1
+            self.doMainText(f" and your {self.boobDesc()} chest feels slightly bigger on the inside than on the outside. Growing more suitable for a breeding queen.")
+            self.displayMainText()
+            self.hips += 1
+            self.butt += 1
+            self.milkCap += 4
+            self.doEnd()
+        elif ID == 538:
+            self.outputMainText("You bite down into the egg, getting through the tougher rind and giving it a good chew before you swallow. It takes a bit to get through the whole thing and by the time you're done the ground looks further away than usual. You've grown slightly taller and feel more lean and strong.", True)
+            self.tallness += 1
+            self.body += 1
+            self.stats(1, 0, 0, 0)
+            self.doEnd()
+        elif ID == 539:
+            self.doMainText("You gobble down the egg, your mind quickly drifting more towards lustful thoughts.", True)
+            if (self.cockTotal > 0):
+                self.doMainText(f" Your cock{self.plural(1)} grow{self.plural(3)} slightly larger, more able to ensure a deeper injection of your seed.")
+                self.cockSize += 1
+                if (self.showBalls):
+                    self.doMainText(" Your balls also feel more ready to spurt, as though you've gone many more hours without ejaculation than you actually have.")
+                self.blueBalls += 10
+            if (self.vagTotal > 0):
+                self.doMainText(f" And though {self.plural(8)} not actually something that can impregnate, your clit{self.plural(2)} swell{self.plural(4)} slightly larger.")
+                self.clitSize += 1
+            self.displayMainText()
+            self.stats(0, -1, 1, 0)
+            self.doEnd()
+        elif ID == 540:
+            self.outputMainText("You quickly chomp down the egg. It doesn't exactly taste good or bad, but that doesn't really matter. You just feel like you've got more energy to keep working!", True)
+            self.exhaustion -= 6
+            self.doEnd()
 
    def bsRefresh(self, which):
       '''
