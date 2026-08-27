@@ -10942,60 +10942,60 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
 
    def bsRefresh(self, which):
-      '''
-      Refreshes the bag/stash so doBag and doStash do not need to be called again.
-      '''
-      tempDict = {12:"Return",4:"<<",8:">>"}
-      if which == "Bag":
-         tempArray = tuple(self.itemName(i) for i in each(self.bagArray))
-      elif which == "Stash":
-         tempArray = tuple(self.itemName(i) for i in each(self.stashArray))
-      for i in range(9):
-         tempI = i + (self.choicePage * 9 - 9)
-         if (tempArray[tempI] != " "):
-            tempDict[self.bMap[i]] = tempArray[tempI]
-      self.doButtonChoices(tempDict)
-      itemArr = self.bagStackArray if which == "Bag" else self.stashStackArray
-      for i in range(1,13):
-         self.window._children[f"button{i}"].state = "normal"
-         if i not in {4,8,12}:
-            tempI = (i - (Math.floor(i / 4) + 1)) + (self.choicePage * 9 - 9)
-            self.window._children[f"button{i}"].text = tempArray[tempI]
-            if (itemArr[tempI] > 1):
-               self.showAmount(i)
-               self.writeAmount(i, f"{itemArr[tempI]}")
-            else:
-               self.hideAmount(i)
+        '''
+        Refreshes the bag/stash so doBag and doStash do not need to be called again.
+        '''
+        tempDict = {12: "Return", 4: "<<", 8: ">>"}
+        if which == "Bag":
+            tempArray = tuple(self.itemName(i) for i in each(self.bagArray))
+        elif which == "Stash":
+            tempArray = tuple(self.itemName(i) for i in each(self.stashArray))
+        for i in range(9):
+            tempI = i + (self.choicePage * 9 - 9)
+            if (tempArray[tempI] != " "):
+                tempDict[self.bMap[i]] = tempArray[tempI]
+        self.doButtonChoices(tempDict)
+        itemArr = self.bagStackArray if which == "Bag" else self.stashStackArray
+        for i in range(1, 13):
+            self.window._children[f"button{i}"].state = "normal"
+            if i not in {4, 8, 12}:
+                tempI = (i - (Math.floor(i / 4) + 1)) + (self.choicePage * 9 - 9)
+                self.window._children[f"button{i}"].text = tempArray[tempI]
+                if (itemArr[tempI] > 1):
+                    self.showAmount(i)
+                    self.writeAmount(i, f"{itemArr[tempI]}")
+                else:
+                    self.hideAmount(i)
 
    def doButtonDiscard(self, which):
-      '''
-      Discard button action
-      '''
-      self.hidePage()
-      self.doMainText(f"Are you sure you want to discard {self.itemName(self.moveItemID)}",True)
-      if (self.moveItemStack > 1):
-         self.doMainText(f" x{self.moveItemStack}")
-      self.outputMainText("?")
-      self.hideAmountAll()
-      self.buttonConfirm()
-      self.buttonShiftOverride = True
-      def doListen():
-         self.buttonShiftOverride = False
-         if (self.buttonChoice == 6):
+        '''
+        Discard button action
+        '''
+        self.hidePage()
+        self.doMainText(f"Are you sure you want to discard {self.itemName(self.moveItemID)}", True)
+        if (self.moveItemStack > 1):
+            self.doMainText(f" x{self.moveItemStack}")
+        self.outputMainText("?")
+        self.hideAmountAll()
+        self.buttonConfirm()
+        self.buttonShiftOverride = True
+        def doListen():
+            self.buttonShiftOverride = False
+            if (self.buttonChoice == 6):
+                if which == "Bag":
+                    self.passiveItemRemove(self.moveItemID)
+                self.moveItemID = 0
+                self.moveItemStack = 0
+                self.showMoveItem(False)
             if which == "Bag":
-               self.passiveItemRemove(self.moveItemID)
-            self.moveItemID = 0
-            self.moveItemStack = 0
-            self.showMoveItem(False)
-         if which == "Bag":
-            self.doBag()
-         elif which == "Stash":
-            self.doStash()
-         elif which == "mts":
-            self.moveToStash()
-         elif which == "mtb":
-            self.moveToBag()
-      self.doListen = doListen
+                self.doBag()
+            elif which == "Stash":
+                self.doStash()
+            elif which == "mts":
+                self.moveToStash()
+            elif which == "mtb":
+                self.moveToBag()
+        self.doListen = doListen
 
    def doStash(self, refresh=False):
       '''
@@ -11006,6 +11006,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.inStash = True
          self.tempBagPage = 1
          self.showMoveItem(True)
+         # TODO: Remove refresh handling if possible. It is only used in one
+         #       place.
          if refresh == True:
             self.choicePage = self.stashPage
             self.bsRefresh("Stash")
