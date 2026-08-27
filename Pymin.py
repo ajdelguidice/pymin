@@ -4495,21 +4495,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
    def choiceListButtons(self, which: str):
         tempDict = {12: 'Return'}
         buttonlist = ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
-        if (which == 'Bag'):
-            tempArray = tuple(self.itemName(i) if i else ' ' for i in each(self.bagArray))
-            if (self.inBag):
-                self.choicePage = self.bagPage
-            elif (self.mtb):
-                self.choicePage = self.tempBagPage
-        elif (which == 'Stash'):
-            tempArray = tuple(self.itemName(i) if i else ' ' for i in each(self.stashArray))
-            if (self.inStash):
-                self.choicePage = self.stashPage
-            elif (self.mts):
-                self.choicePage = self.tempBagPage
-        else:
-            tempArray = Array(*self.choiceListArray)
-        if (len(tempArray) > 9):
+        tempArray = Array(*self.choiceListArray)
+        if (tempArray.length > 9):
             buttonlist[4] = 1
             buttonlist[8] = 1
             tempDict.update({4: '<<', 8: '>>'})
@@ -4521,21 +4508,23 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 buttonlist[tempInt] = 1
                 if (tempArray[tempI] != ' '):
                     tempDict[tempInt] = tempArray[tempI]
-        if (which in {'Bag', 'Stash'}):
-            self.showButtonsBag(tempDict, which, not self.inShop)
-        else:
-            self.showButtons(buttonlist)
-            self.doButtonChoices(tempDict)
+        self.showButtons(buttonlist)
+        self.doButtonChoices(tempDict)
 
-   def showButtonsBag(self, buttonText, which: str, discardButton: bool):
+   def bsShowButtons(self, itemArray, stackArray):
         self.detailedDebug()
-        if discardButton:
-            self.showDiscard()
-        else:
+        if self.inShop:
             self.hideDiscard()
-        temparr = self.bagStackArray if which == 'Bag' else self.stashStackArray
+        else:
+            self.showDiscard()
+        buttonDict = {12: "Return", 4: "<<", 8: ">>"}
+        itemNameArray = tuple(self.itemName(i) for i in each(itemArray))
+        for i in range(9):
+            tempI = i + (self.choicePage * 9 - 9)
+            if (itemNameArray[tempI] != " "):
+                buttonDict[self.bMap[i]] = itemNameArray[tempI]
         for i in range(1, 13):
-            text = buttonText.get(i, '')
+            text = buttonDict.get(i, '')
             if self.buttonsVisible[i]:
                 self.window._children[f'button{i}'].state = 'normal'
                 self.window._children[f'button{i}'].text = text
@@ -4545,14 +4534,40 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.buttonsVisible[i] = True
             if i not in {4, 8, 12}:
                 tempI = Calc.showButtonsBag(i, self.choicePage)
-                if (text and temparr[tempI] > 1):
+                if (text and stackArray[tempI] > 1):
                     self.showAmount(i)
-                    self.writeAmount(i, f'{temparr[tempI]}')
+                    self.writeAmount(i, f'{stackArray[tempI]}')
                 else:
                     self.hideAmount(i)
 
+   def bsUpdateButtonsWhenMoveItem(self, which: str):
+        if self.moveItemID == 0:
+            self.window._children["discardbutton"].state = "disabled"
+        else:
+            self.window._children["discardbutton"].state = "normal"
+            if self.useNewStash and self.currentState == 1:
+                self.buttonWrite(12, which)
+
+   def displayBag(self):
+        if (self.inBag):
+            self.choicePage = self.bagPage
+        elif (self.mtb):
+            self.choicePage = self.tempBagPage
+        self.showPage('Bag')
+        self.bsShowButtons(self.bagArray, self.bagStackArray)
+        self.bsUpdateButtonsWhenMoveItem('Stash')
+
+   def displayStash(self):
+        if (self.inStash):
+            self.choicePage = self.stashPage
+        elif (self.mts):
+            self.choicePage = self.tempBagPage
+        self.showPage('Stash')
+        self.bsShowButtons(self.stashArray, self.stashStackArray)
+        self.bsUpdateButtonsWhenMoveItem('Bag')
+
    def bagDisableEmpty(self):
-        self.disableSelectedButtons([i for i in self.bMap if self.window._children[f'button{i}'].text in {'', ' '}])
+        self.disableSelectedButtons(i for i in self.bMap if self.window._children[f'button{i}'].text in {'', ' '})
 
    def choiceListBlanks(self):
         '''
@@ -7758,8 +7773,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.tempBagPage = 1
         self.showMoveItem(True)
 
-        self.choiceListButtons("Bag")
-        self.bsUpdateButtonsWhenMoveItem('Stash')
+        self.displayBag()
 
         def doListen():
             self.choiceListSelect("Bag")
@@ -7802,7 +7816,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 if self.choiceListResult[0]:
                     self.showMoveItem(False)
-                    self.useItem(self.choiceListResult[0])
+                self.useItem(self.choiceListResult[0])
         self.doListen = doListen
 
    def useItem(self, ID: int):
@@ -7812,7 +7826,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (ID == 0):
             self.outputMainText("This slot is empty.", True)
             self.doBag()
-            # TODO: Fix page resetting here
             return
         if self.useItemHidePage(ID):
             self.hidePage()
@@ -7939,7 +7952,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Function to discard an item
         '''
         self.tempID = ID
-        self.choiceListButtons("Bag")
+        self.displayBag()
 
         def doListen():
             self.choiceListSelect("Bag")
@@ -7948,7 +7961,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.itemGainArray.pop()
                 self.doProcess()
             elif (self.buttonChoice == 4 or self.buttonChoice == 8):
-                self.choiceListButtons("Bag")
+                self.displayBag()
             elif (self.canLose(self.choiceListResult[0])):
                 self.doMainText(f"{self.itemDescription(self.choiceListResult[0])}\n\n{self.itemDescription(self.tempID)}\n\nDo you want to replace {self.itemName(self.choiceListResult[0])} with {self.itemName(self.tempID)}?", True)
                 if (self.bagStackArray[self.choiceListResult[1]] > 1):
@@ -7966,14 +7979,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.choiceListResult[0])}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
                 self.doDiscard(self.tempID)
         self.doListen = doListen
-
-   def bsUpdateButtonsWhenMoveItem(self, which: str):
-        if self.moveItemID == 0:
-            self.window._children["discardbutton"].state = "disabled"
-        else:
-            self.window._children["discardbutton"].state = "normal"
-            if self.useNewStash and self.currentState == 1:
-                self.buttonWrite(12, which)
 
    def itemMove(self, slot: int):
         '''
@@ -8028,12 +8033,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # self.hideAmountAll()
         if (self.inBag):
             self.choicePage = self.bagPage
-            self.bsRefresh("Bag")
-            self.bsUpdateButtonsWhenMoveItem('Stash')
+            self.displayBag()
         elif (self.inStash):
             self.choicePage = self.stashPage
-            self.bsRefresh("Stash")
-            self.bsUpdateButtonsWhenMoveItem('Bag')
+            self.displayStash()
 
    def showMoveItem(self, which: bool):
         '''
@@ -10940,32 +10943,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.exhaustion -= 6
             self.doEnd()
 
-   def bsRefresh(self, which):
-        '''
-        Refreshes the bag/stash so doBag and doStash do not need to be called again.
-        '''
-        tempDict = {12: "Return", 4: "<<", 8: ">>"}
-        if which == "Bag":
-            tempArray = tuple(self.itemName(i) for i in each(self.bagArray))
-        elif which == "Stash":
-            tempArray = tuple(self.itemName(i) for i in each(self.stashArray))
-        for i in range(9):
-            tempI = i + (self.choicePage * 9 - 9)
-            if (tempArray[tempI] != " "):
-                tempDict[self.bMap[i]] = tempArray[tempI]
-        self.doButtonChoices(tempDict)
-        itemArr = self.bagStackArray if which == "Bag" else self.stashStackArray
-        for i in range(1, 13):
-            self.window._children[f"button{i}"].state = "normal"
-            if i not in {4, 8, 12}:
-                tempI = (i - (Math.floor(i / 4) + 1)) + (self.choicePage * 9 - 9)
-                self.window._children[f"button{i}"].text = tempArray[tempI]
-                if (itemArr[tempI] > 1):
-                    self.showAmount(i)
-                    self.writeAmount(i, f"{itemArr[tempI]}")
-                else:
-                    self.hideAmount(i)
-
    def doButtonDiscard(self, which):
         '''
         Discard button action
@@ -10997,53 +10974,54 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
    def doStash(self):
-      '''
-      Stash dialog
-      '''
-      if self.useNewStash:
-         self.mtb = False
-         self.inStash = True
-         self.tempBagPage = 1
-         self.showMoveItem(True)
-         self.choiceListButtons("Stash")
-         self.bsUpdateButtonsWhenMoveItem('Bag')
-         def doListen():
-            self.choiceListSelect("Stash")
-            if self.buttonChoice == 13:
-               self.doButtonDiscard("Stash")
-            elif self.buttonChoice == 12:
-               if self.moveItemID != 0:
-                  self.moveToBag()
-               else:
-                  self.inStash = False
-                  self.doReturn(False)
-            elif self.buttonChoice in {4,8}:
-               self.doStash()
-            else:
-               self.choicePage = self.stashPage
-               self.itemMove(self.buttonChoice)
-         self.doListen = doListen
-      else:
-         self.inStash = False
-         self.hidePage()
-         self.hideAmountAll()
-         self.showButtons(ButtonList(0,0,0,1,0,0,0,1,0,0,0,1))
-         self.outputMainText("Click 'Store' to store an item from your bag in the stash.\n\nClick 'Remove' to remove an item from your stash and put it into your bag.\n\nClick 'Return' to leave your stash.",True)
-         self.doButtonChoices({4:"Store",8:"Remove",12:"Return"})
-         def doListen():
-            if self.buttonChoice == 4:
-               self.inStash = True
-               self.doStoreStash()
-            elif self.buttonChoice == 8:
-               self.inStash = True
-               self.doRemoveStash()
-            elif self.buttonChoice == 12:
-               self.doReturn()
-         self.doListen = doListen
+        '''
+        Stash dialog
+        '''
+        if self.useNewStash:
+            self.mtb = False
+            self.inStash = True
+            self.tempBagPage = 1
+            self.showMoveItem(True)
+
+            self.displayStash()
+
+            def doListen():
+                self.choiceListSelect("Stash")
+                if self.buttonChoice == 13:
+                    self.doButtonDiscard("Stash")
+                elif self.buttonChoice == 12:
+                    if self.moveItemID != 0:
+                        self.moveToBag()
+                    else:
+                        self.inStash = False
+                        self.doReturn(False)
+                elif self.buttonChoice in {4, 8}:
+                    self.doStash()
+                else:
+                    self.choicePage = self.stashPage
+                    self.itemMove(self.buttonChoice)
+            self.doListen = doListen
+        else:
+            self.inStash = False
+            self.hidePage()
+            self.hideAmountAll()
+            self.showButtons(ButtonList(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1))
+            self.outputMainText("Click 'Store' to store an item from your bag in the stash.\n\nClick 'Remove' to remove an item from your stash and put it into your bag.\n\nClick 'Return' to leave your stash.", True)
+            self.doButtonChoices({4: "Store", 8: "Remove", 12: "Return"})
+            def doListen():
+                if self.buttonChoice == 4:
+                    self.inStash = True
+                    self.doStoreStash()
+                elif self.buttonChoice == 8:
+                    self.inStash = True
+                    self.doRemoveStash()
+                elif self.buttonChoice == 12:
+                    self.doReturn()
+            self.doListen = doListen
 
    def moveToStash(self):
       self.mts = True
-      self.choiceListButtons("Stash")
+      self.displayStash()
       self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
       def doListen():
          self.choiceListSelect("Stash")
@@ -11052,7 +11030,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          elif (self.buttonChoice == 12):
             self.doBag()
          elif (self.buttonChoice in {4,8}):
-            self.choiceListButtons("Stash")
+            self.displayStash()
          elif self.canLose(self.moveItemID,0):
             tempNum = self.moveItemID
             tempNum2 = self.moveItemStack
@@ -11084,7 +11062,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
    def moveToBag(self):
       self.mtb = True
-      self.choiceListButtons("Bag")
+      self.displayBag()
       self.outputMainText(f"Click on the bag slot you would like to place {self.itemName(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
       def doListen():
          self.choiceListSelect("Bag")
@@ -11093,7 +11071,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          elif (self.buttonChoice == 12):
             self.doStash()
          elif (self.buttonChoice in {4,8}):
-            self.choiceListButtons("Bag")
+            self.displayBag()
          else:
             tempNum = self.moveItemID
             tempNum2 = self.moveItemStack
@@ -11137,7 +11115,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.moveItemAmountHide()
 
    def doStoreStash(self):
-      self.choiceListButtons("Bag")
+      self.displayBag()
       self.bagDisableEmpty()
       self.outputMainText("Click on an item you would like to stash.\n\nClick 'Return' to return to the main stash options.",True)
       def doListen():
@@ -11145,7 +11123,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          if self.buttonChoice == 12:
             self.doStash()
          elif self.buttonChoice in {4,8}:
-            self.choiceListButtons("Bag")
+            self.displayBag()
             self.bagDisableEmpty()
          else:
             trace(self.bagArray[self.choiceListResult[1]])
@@ -11157,7 +11135,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.doListen = doListen
 
    def doRemoveStash(self):
-      self.choiceListButtons("Stash")
+      self.displayStash()
       self.bagDisableEmpty()
       self.outputMainText("Click on an item you would like to remove from stash.\n\nClick 'Return' to return to the main stash options.",True)
       def doListen():
@@ -11165,7 +11143,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          if self.buttonChoice == 12:
             self.doStash()
          elif self.buttonChoice in {4,8}:
-            self.choiceListButtons("Stash")
+            self.displayStash()
             self.bagDisableEmpty()
          else:
             self.stashRemove(self.choiceListResult[1])
@@ -11173,14 +11151,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
    def stashStore(self, storeItem:int):
       self.tempStoreItem = storeItem
-      self.choiceListButtons("Stash")
+      self.displayStash()
       self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.bagArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
       def doListen():
          self.choiceListSelect("Stash")
          if (self.buttonChoice == 12):
             self.doStash()
          elif (self.buttonChoice == 4 or self.buttonChoice == 8):
-            self.choiceListButtons("Stash")
+            self.displayStash()
          else:
             tempNum = self.bagArray[self.tempStoreItem]
             tempNum2 = self.bagStackArray[self.tempStoreItem]
@@ -11202,14 +11180,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
    def stashRemove(self, storeItem:int):
       self.tempStoreItem = storeItem
-      self.choiceListButtons("Bag")
+      self.displayBag()
       self.outputMainText(f"Click on the bag slot you would like to place {self.itemName(self.stashArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
       def doListen():
          self.choiceListSelect("Bag")
          if (self.buttonChoice == 12):
             self.doStash()
          elif (self.buttonChoice == 4 or self.buttonChoice == 8):
-            self.choiceListButtons("Bag")
+            self.displayBag()
          elif (self.canLose(self.choiceListResult[0])):
             tempNum = self.stashArray[self.tempStoreItem]
             tempNum2 = self.stashStackArray[self.tempStoreItem]
@@ -11340,7 +11318,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
    def doSell(self, cansell:bool=True):
       self.choicePage = self.tempBagPage
-      self.choiceListButtons("Bag")
+      self.displayBag()
       self.bagDisableEmpty()
       if cansell:
          self.outputMainText("Click on an item you would like to sell.",True)
@@ -11353,7 +11331,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.hidePage()
             self.doShop()
          elif (self.buttonChoice in {4,8}):
-            self.choiceListButtons("Bag")
+            self.displayBag()
             self.bagDisableEmpty()
          elif (self.choiceListResult[0]):
             if (self.bagStackArray[self.choiceListResult[1]] < 2):
