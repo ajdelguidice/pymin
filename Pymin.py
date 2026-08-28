@@ -26280,870 +26280,872 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return f"TAIL ERROR {self.tail}"
 
    def humanTaurTailDesc(self):
-      tempStr = ""
-      if (self.hairstyleLength(self.hair)):
-         if self.hairLength == 2:
-            tempStr = "short "
-         elif self.hairLength == 4:
-            tempStr = ""
-         elif self.hairLength == 6:
-            tempStr = "long "
-         elif self.hairLength == 8:
-            tempStr = "very long "
-         elif self.hairLength == 10:
-            tempStr = "ground-dragging "
-      tempStr += self.hairC()
-      if self.hair == 0:
-         return tempStr + "hairy"
-      if self.hair == 1:
-         return tempStr + "wavy haired"
-      if self.hair == 2:
-         return tempStr + "pigtailed"
-      if self.hair == 3:
-         return tempStr + "ponytailed"
-      if self.hair == 4:
-         return tempStr + "straight haired"
-      if self.hair == 5:
-         return tempStr + "stubbly haired"
-      if self.hair == 6:
-         return tempStr + "mohawked"
-      if self.hair == 7:
-         return tempStr + "bunned"
-      if self.hair == 8:
-         return tempStr + "curly haired"
-      if self.hair == 9:
-         return tempStr + "braided pigtailed"
-      if self.hair == 10:
-         return tempStr + "braided ponytailed "
-      if self.hair == 11:
-         return tempStr + "braided"
-      if self.hair == 12:
-         return tempStr + "spiky haired"
-      if self.hair == 13:
-         return tempStr + "stiff haired"
-      if self.hair == 14:
-         return tempStr + "poofball"
-      return ""
+        tempStr = ""
+        if (self.hairstyleLength(self.hair)):
+            if self.hairLength == 2:
+                tempStr = "short "
+            elif self.hairLength == 4:
+                tempStr = ""
+            elif self.hairLength == 6:
+                tempStr = "long "
+            elif self.hairLength == 8:
+                tempStr = "very long "
+            elif self.hairLength == 10:
+                tempStr = "ground-dragging "
+        tempStr += self.hairC()
+        if self.hair == 0:
+            return tempStr + "hairy"
+        if self.hair == 1:
+            return tempStr + "wavy haired"
+        if self.hair == 2:
+            return tempStr + "pigtailed"
+        if self.hair == 3:
+            return tempStr + "ponytailed"
+        if self.hair == 4:
+            return tempStr + "straight haired"
+        if self.hair == 5:
+            return tempStr + "stubbly haired"
+        if self.hair == 6:
+            return tempStr + "mohawked"
+        if self.hair == 7:
+            return tempStr + "bunned"
+        if self.hair == 8:
+            return tempStr + "curly haired"
+        if self.hair == 9:
+            return tempStr + "braided pigtailed"
+        if self.hair == 10:
+            return tempStr + "braided ponytailed "
+        if self.hair == 11:
+            return tempStr + "braided"
+        if self.hair == 12:
+            return tempStr + "spiky haired"
+        if self.hair == 13:
+            return tempStr + "stiff haired"
+        if self.hair == 14:
+            return tempStr + "poofball"
+        return ""
 
    def earDesc(self):
-      if self.ears == 1:
-         return "Hugging the sides of your head, you have small rounded ears that can easily be hidden by your hair, like that of a human's"
-      if self.ears == 2:
-         return "Atop your head, you have large tear-drop shaped ears that flick every now and then, able to hear quite well, like that of a horse's"
-      if self.ears == 3:
-         return "Atop your head, you have small triangular ears that stand perk, like that of a wolf's"
-      if self.ears == 4:
-         return "Atop your head, you have small triangular ears that stand perk, like that of a cat's"
-      if self.ears == 5:
-         return "Standing out perpendicular from the sides of your head, you have large oval ears that that droop slightly from their size, like that of a cow's"
-      if self.ears == 6:
-         return "On the sides of your head, you have sleek holes for ears, like many lizards have"
-      if self.ears == 7:
-         return "Atop your head, you have long ears that stand high and vigilant, like that of a rabbit's"
-      if self.ears == 8:
-         return "Standing out perpendicular the sides of your head, large rounded ears practically flap when they twitch, looking like you glued discs to the sides of your head, like that of a mouse's"
-      if self.ears == 9:
-         return "On the sides of your head, have flat patches of feathers covering your holes, like a bird's"
-      if self.ears == 10:
-         return "Standing out perpendicular from the sides of your head, you have triangular ears that fold near the ends and droop down from their length, like that of a pig's"
-      if self.ears == 11:
-         return "Atop your head, you have small round ears that stand perk, like that of a skunk's"
-      if self.ears == 12:
-         return "Hugging the sides of your head, you have long pointy ears with wavy-shaped lobes, colored vibrantly like the wings of a butterfly"
-      return f"EAR ERROR {self.ears}"
+        if self.ears == 1:
+            return "Hugging the sides of your head, you have small rounded ears that can easily be hidden by your hair, like that of a human's"
+        if self.ears == 2:
+            return "Atop your head, you have large tear-drop shaped ears that flick every now and then, able to hear quite well, like that of a horse's"
+        if self.ears == 3:
+            return "Atop your head, you have small triangular ears that stand perk, like that of a wolf's"
+        if self.ears == 4:
+            return "Atop your head, you have small triangular ears that stand perk, like that of a cat's"
+        if self.ears == 5:
+            return "Standing out perpendicular from the sides of your head, you have large oval ears that that droop slightly from their size, like that of a cow's"
+        if self.ears == 6:
+            return "On the sides of your head, you have sleek holes for ears, like many lizards have"
+        if self.ears == 7:
+            return "Atop your head, you have long ears that stand high and vigilant, like that of a rabbit's"
+        if self.ears == 8:
+            return "Standing out perpendicular the sides of your head, large rounded ears practically flap when they twitch, looking like you glued discs to the sides of your head, like that of a mouse's"
+        if self.ears == 9:
+            return "On the sides of your head, have flat patches of feathers covering your holes, like a bird's"
+        if self.ears == 10:
+            return "Standing out perpendicular from the sides of your head, you have triangular ears that fold near the ends and droop down from their length, like that of a pig's"
+        if self.ears == 11:
+            return "Atop your head, you have small round ears that stand perk, like that of a skunk's"
+        if self.ears == 12:
+            return "Hugging the sides of your head, you have long pointy ears with wavy-shaped lobes, colored vibrantly like the wings of a butterfly"
+        return f"EAR ERROR {self.ears}"
 
    def faceDesc(self):
-      if self.faceType == 10:
-         return ", your face round with a moderate-sized nose"
-      if self.faceType == 20:
-         return ", your face slightly longer than normal with large confident eyes"
-      if self.faceType == 21:
-         return ", your face having a wide and strong muzzle with large confident eyes"
-      if self.faceType == 30:
-         return ", your face looking slightly fierce with sharp teeth and focused eyes"
-      if self.faceType == 31:
-         return ", your face having a narrow and toothy muzzle with focused eyes"
-      if self.faceType == 40:
-         return ", your face somewhat flat with a small button nose"
-      if self.faceType == 41:
-         return ", your face somewhat flat with a small button nose, long whiskers, and a general catty grin"
-      if self.faceType == 50:
-         return ", your face seemingly docile with a broad nose and slightly gentle eyes"
-      if self.faceType == 51:
-         return ", your face having a broad muzzle and calm gentle eyes"
-      if self.faceType == 60:
-         return ", your face somewhat flat with a nose that is mostly a slight bump with two slits for nostrils"
-      if self.faceType == 61:
-         return ", your face narrowing down a short muzzle with only slits for nostrils"
-      if self.faceType == 70:
-         return ", your face somewhat flat with a twitchy button nose and large friendly eyes"
-      if self.faceType == 71:
-         return ", your face somewhat flat with a twitchy button nose and whiskers, slightly buck-toothed, and your eyes large and friendly"
-      if self.faceType == 80:
-         return ", your face somewhat narrowed with a curious button nose, your eyes careful of their surroundings"
-      if self.faceType == 81:
-         return ", your face somewhat narrowed with a curious button nose, your eyes careful of their surroundings while your buck-teeth chitter as the whiskers on your puffy cheeks twitch"
-      if self.faceType == 90:
-         return ", your face rather awake with your large hooked nose and constantly alert eyes"
-      if self.faceType == 91:
-         return ", your face narrowing down to a razor-sharp beak that makes up your nose and mouth while your eyes are constantly watchful"
-      if self.faceType == 100:
-         return ", your face rather round and somewhat pudgy"
-      if self.faceType == 101:
-         return ", your face rather round and somewhat pudgy with a large upturned nose"
-      if self.faceType == 102:
-         return ", your face rather round and somewhat pudgy with a large upturned nose and pointed tusks that grow up from the sides of your mouth to nearly obstruct your vision"
-      if self.faceType == 110:
-         return ", your face somewhat long with a small button nose and cute eyes"
-      if self.faceType == 111:
-         return ", your face somewhat long with a small button nose, long whiskers, and cute gentle eyes"
-      if self.faceType == 120:
-         return ", your face somewhat flat with a chitinous bandage over the bridge of your nose and large gazing eyes"
-      if self.faceType == 121:
-         return ", your face somewhat flat with a chitinous bandage over the bridge of your nose and large nectar-sucking lips that offset your large darkened eyes"
-      return f"FACE ERROR {self.faceType}"
+        if self.faceType == 10:
+            return ", your face round with a moderate-sized nose"
+        if self.faceType == 20:
+            return ", your face slightly longer than normal with large confident eyes"
+        if self.faceType == 21:
+            return ", your face having a wide and strong muzzle with large confident eyes"
+        if self.faceType == 30:
+            return ", your face looking slightly fierce with sharp teeth and focused eyes"
+        if self.faceType == 31:
+            return ", your face having a narrow and toothy muzzle with focused eyes"
+        if self.faceType == 40:
+            return ", your face somewhat flat with a small button nose"
+        if self.faceType == 41:
+            return ", your face somewhat flat with a small button nose, long whiskers, and a general catty grin"
+        if self.faceType == 50:
+            return ", your face seemingly docile with a broad nose and slightly gentle eyes"
+        if self.faceType == 51:
+            return ", your face having a broad muzzle and calm gentle eyes"
+        if self.faceType == 60:
+            return ", your face somewhat flat with a nose that is mostly a slight bump with two slits for nostrils"
+        if self.faceType == 61:
+            return ", your face narrowing down a short muzzle with only slits for nostrils"
+        if self.faceType == 70:
+            return ", your face somewhat flat with a twitchy button nose and large friendly eyes"
+        if self.faceType == 71:
+            return ", your face somewhat flat with a twitchy button nose and whiskers, slightly buck-toothed, and your eyes large and friendly"
+        if self.faceType == 80:
+            return ", your face somewhat narrowed with a curious button nose, your eyes careful of their surroundings"
+        if self.faceType == 81:
+            return ", your face somewhat narrowed with a curious button nose, your eyes careful of their surroundings while your buck-teeth chitter as the whiskers on your puffy cheeks twitch"
+        if self.faceType == 90:
+            return ", your face rather awake with your large hooked nose and constantly alert eyes"
+        if self.faceType == 91:
+            return ", your face narrowing down to a razor-sharp beak that makes up your nose and mouth while your eyes are constantly watchful"
+        if self.faceType == 100:
+            return ", your face rather round and somewhat pudgy"
+        if self.faceType == 101:
+            return ", your face rather round and somewhat pudgy with a large upturned nose"
+        if self.faceType == 102:
+            return ", your face rather round and somewhat pudgy with a large upturned nose and pointed tusks that grow up from the sides of your mouth to nearly obstruct your vision"
+        if self.faceType == 110:
+            return ", your face somewhat long with a small button nose and cute eyes"
+        if self.faceType == 111:
+            return ", your face somewhat long with a small button nose, long whiskers, and cute gentle eyes"
+        if self.faceType == 120:
+            return ", your face somewhat flat with a chitinous bandage over the bridge of your nose and large gazing eyes"
+        if self.faceType == 121:
+            return ", your face somewhat flat with a chitinous bandage over the bridge of your nose and large nectar-sucking lips that offset your large darkened eyes"
+        return f"FACE ERROR {self.faceType}"
 
    def boobDesc(self):
-      if (self.percent() <= 50):
-         if (self.breastSize <= 0):
-            return "flat"
-         if (self.breastSize <= 2):
-            return "nearly flat"
-         if (self.breastSize <= 8):
-            return "noticeable"
-         if (self.breastSize <= 20):
-            return "large"
-         if (self.breastSize <= 40):
-            return "huge"
-         if (self.breastSize <= 76):
-            return "humongous"
-         if (self.breastSize <= 146):
-            return "massive"
-         if (self.breastSize <= 210):
-            return "gargantuan"
-         if (self.breastSize <= 280):
-            return "tremendous"
-         if (self.breastSize <= 560):
-            return "colossal"
-         if (self.breastSize > 560):
-            return "ridiculously huge"
-      else:
-         if (self.breastSize <= 0):
-            return ""
-         if (self.breastSize <= 2):
-            return "tiny"
-         if (self.breastSize <= 8):
-            return "palmable"
-         if (self.breastSize <= 20):
-            return "ample"
-         if (self.breastSize <= 40):
-            return "head-sized"
-         if (self.breastSize <= 76):
-            return "hefty"
-         if (self.breastSize <= 146):
-            return "beachball-sized"
-         if (self.breastSize <= 210):
-            return "normally back-breaking"
-         if (self.breastSize <= 280):
-            return "view-obscuring"
-         if (self.breastSize <= 560):
-            return "bed-sized"
-         if (self.breastSize > 560):
-            return "road-filling"
-      return f"BOOB ERROR {self.breastSize}"
+        if (self.percent() <= 50):
+            if (self.breastSize <= 0):
+                return "flat"
+            if (self.breastSize <= 2):
+                return "nearly flat"
+            if (self.breastSize <= 8):
+                return "noticeable"
+            if (self.breastSize <= 20):
+                return "large"
+            if (self.breastSize <= 40):
+                return "huge"
+            if (self.breastSize <= 76):
+                return "humongous"
+            if (self.breastSize <= 146):
+                return "massive"
+            if (self.breastSize <= 210):
+                return "gargantuan"
+            if (self.breastSize <= 280):
+                return "tremendous"
+            if (self.breastSize <= 560):
+                return "colossal"
+            if (self.breastSize > 560):
+                return "ridiculously huge"
+        else:
+            if (self.breastSize <= 0):
+                return ""
+            if (self.breastSize <= 2):
+                return "tiny"
+            if (self.breastSize <= 8):
+                return "palmable"
+            if (self.breastSize <= 20):
+                return "ample"
+            if (self.breastSize <= 40):
+                return "head-sized"
+            if (self.breastSize <= 76):
+                return "hefty"
+            if (self.breastSize <= 146):
+                return "beachball-sized"
+            if (self.breastSize <= 210):
+                return "normally back-breaking"
+            if (self.breastSize <= 280):
+                return "view-obscuring"
+            if (self.breastSize <= 560):
+                return "bed-sized"
+            if (self.breastSize > 560):
+                return "road-filling"
+        return f"BOOB ERROR {self.breastSize}"
 
    def udderDesc(self):
-      tempUdder = self.udderSize / 2
-      if (self.percent() <= 50):
-         if (tempUdder <= 2):
-            return "nearly flat"
-         if (tempUdder <= 8):
-            return "noticeable"
-         if (tempUdder <= 20):
-            return "large"
-         if (tempUdder <= 40):
-            return "huge"
-         if (tempUdder <= 76):
-            return "humongous"
-         if (tempUdder <= 146):
-            return "massive"
-         if (tempUdder <= 210):
-            return "gargantuan"
-         if (tempUdder <= 280):
-            return "tremendous"
-         if (tempUdder <= 560):
-            return "colossal"
-         if (tempUdder > 560):
-            return "ridiculously huge"
-      else:
-         if (tempUdder <= 2):
-            return "tiny"
-         if (tempUdder <= 8):
-            return "palmable"
-         if (tempUdder <= 20):
-            return "ample"
-         if (tempUdder <= 40):
-            return "head-sized"
-         if (tempUdder <= 76):
-            return "hefty"
-         if (tempUdder <= 146):
-            return "beachball-sized"
-         if (tempUdder <= 210):
-            return "normally back-breaking"
-         if (tempUdder <= 280):
-            return "view-obscuring"
-         if (tempUdder <= 560):
-            return "bed-sized"
-         if (tempUdder > 560):
-            return "road-filling"
-      return f"udder ERROR {tempUdder}"
+        tempUdder = self.udderSize / 2
+        if (self.percent() <= 50):
+            if (tempUdder <= 2):
+                return "nearly flat"
+            if (tempUdder <= 8):
+                return "noticeable"
+            if (tempUdder <= 20):
+                return "large"
+            if (tempUdder <= 40):
+                return "huge"
+            if (tempUdder <= 76):
+                return "humongous"
+            if (tempUdder <= 146):
+                return "massive"
+            if (tempUdder <= 210):
+                return "gargantuan"
+            if (tempUdder <= 280):
+                return "tremendous"
+            if (tempUdder <= 560):
+                return "colossal"
+            if (tempUdder > 560):
+                return "ridiculously huge"
+        else:
+            if (tempUdder <= 2):
+                return "tiny"
+            if (tempUdder <= 8):
+                return "palmable"
+            if (tempUdder <= 20):
+                return "ample"
+            if (tempUdder <= 40):
+                return "head-sized"
+            if (tempUdder <= 76):
+                return "hefty"
+            if (tempUdder <= 146):
+                return "beachball-sized"
+            if (tempUdder <= 210):
+                return "normally back-breaking"
+            if (tempUdder <= 280):
+                return "view-obscuring"
+            if (tempUdder <= 560):
+                return "bed-sized"
+            if (tempUdder > 560):
+                return "road-filling"
+        return f"udder ERROR {tempUdder}"
    def teatDesc(self):
-      if (self.percent() <= 50):
-         if (self.teatSize <= 2):
-            return "normal"
-         if (self.teatSize <= 5):
-            return "noticeable"
-         if (self.teatSize <= 9):
-            return "blatant"
-         if (self.teatSize <= 30):
-            return "normal-for-a-cow"
-         if (self.teatSize <= 50):
-            return "cock-like"
-         if (self.teatSize <= 100):
-            return "horsecock-like"
-         if (self.teatSize <= 140):
-            return "arm-length"
-         if (self.teatSize <= 300):
-            return "street-clearing"
-         if (self.teatSize > 300):
-            return "obscene"
-      else:
-         if (self.teatSize <= 2):
-            return ""
-         if (self.teatSize <= 5):
-            return "perky"
-         if (self.teatSize <= 9):
-            return "hypnotizing"
-         if (self.teatSize <= 30):
-            return "long"
-         if (self.teatSize <= 50):
-            return "huge"
-         if (self.teatSize <= 100):
-            return "enormous"
-         if (self.teatSize <= 140):
-            return "extreme"
-         if (self.teatSize <= 300):
-            return "ridiculous"
-         if (self.teatSize > 300):
-            return "obscene"
-      return f"TEAT ERROR {self.teatSize}"
+        if (self.percent() <= 50):
+            if (self.teatSize <= 2):
+                return "normal"
+            if (self.teatSize <= 5):
+                return "noticeable"
+            if (self.teatSize <= 9):
+                return "blatant"
+            if (self.teatSize <= 30):
+                return "normal-for-a-cow"
+            if (self.teatSize <= 50):
+                return "cock-like"
+            if (self.teatSize <= 100):
+                return "horsecock-like"
+            if (self.teatSize <= 140):
+                return "arm-length"
+            if (self.teatSize <= 300):
+                return "street-clearing"
+            if (self.teatSize > 300):
+                return "obscene"
+        else:
+            if (self.teatSize <= 2):
+                return ""
+            if (self.teatSize <= 5):
+                return "perky"
+            if (self.teatSize <= 9):
+                return "hypnotizing"
+            if (self.teatSize <= 30):
+                return "long"
+            if (self.teatSize <= 50):
+                return "huge"
+            if (self.teatSize <= 100):
+                return "enormous"
+            if (self.teatSize <= 140):
+                return "extreme"
+            if (self.teatSize <= 300):
+                return "ridiculous"
+            if (self.teatSize > 300):
+                return "obscene"
+        return f"TEAT ERROR {self.teatSize}"
 
    def buttDesc(self, ngrammar=False):
-      tempButt = self.butt * self.buttMod
-      if (self.percent() <= 50):
-         if (tempButt <= 2):
-            return "flat"
-         if (tempButt <= 5):
-            return "tight"
-         if (tempButt <= 15):
-            if ngrammar == True and self.ngrammar:
-               return "\bn ample"
-            return "ample"
-         if (tempButt <= 30):
-            return "large"
-         if (tempButt <= 50):
-            return "huge"
-         if (tempButt <= 80):
-            return "grand"
-         if (tempButt <= 130):
-            return "jumbo"
-         if (tempButt <= 175):
-            return "giant"
-         if (tempButt > 175):
-            return "ginormous"
-      else:
-         if (tempButt <= 2):
-            return "boney"
-         if (tempButt <= 5):
-            return "firm"
-         if (tempButt <= 15):
-            return "grope-able"
-         if (tempButt <= 30):
-            return "jiggly"
-         if (tempButt <= 50):
-            return "pillow-like"
-         if (tempButt <= 80):
-            return "wobbling"
-         if (tempButt <= 130):
-            return "swaying"
-         if (tempButt <= 175):
-            return "bouncing"
-         if (tempButt > 175):
-            return "constantly quivering"
-      return f"BUTT ERROR {self.butt}"
+        tempButt = self.butt * self.buttMod
+        if (self.percent() <= 50):
+            if (tempButt <= 2):
+                return "flat"
+            if (tempButt <= 5):
+                return "tight"
+            if (tempButt <= 15):
+                if ngrammar == True and self.ngrammar:
+                    return "\bn ample"
+                return "ample"
+            if (tempButt <= 30):
+                return "large"
+            if (tempButt <= 50):
+                return "huge"
+            if (tempButt <= 80):
+                return "grand"
+            if (tempButt <= 130):
+                return "jumbo"
+            if (tempButt <= 175):
+                return "giant"
+            if (tempButt > 175):
+                return "ginormous"
+        else:
+            if (tempButt <= 2):
+                return "boney"
+            if (tempButt <= 5):
+                return "firm"
+            if (tempButt <= 15):
+                return "grope-able"
+            if (tempButt <= 30):
+                return "jiggly"
+            if (tempButt <= 50):
+                return "pillow-like"
+            if (tempButt <= 80):
+                return "wobbling"
+            if (tempButt <= 130):
+                return "swaying"
+            if (tempButt <= 175):
+                return "bouncing"
+            if (tempButt > 175):
+                return "constantly quivering"
+        return f"BUTT ERROR {self.butt}"
 
    def vulvaDesc(self):
-      if (self.percent() <= 50):
-         if (self.vulvaSize <= 2):
-            return "tiny"
-         if (self.vulvaSize <= 8):
-            return "plush"
-         if (self.vulvaSize <= 16):
-            return "plump"
-         if (self.vulvaSize <= 24):
-            return "huge"
-         if (self.vulvaSize <= 36):
-            return "enormous"
-         if (self.vulvaSize <= 54):
-            return "gigantic"
-         if (self.vulvaSize <= 84):
-            return "humongous"
-         if (self.vulvaSize <= 124):
-            return "tremendous"
-         if (self.vulvaSize <= 160):
-            return "colossal"
-         if (self.vulvaSize > 160):
-            return "ridiculous"
-      else:
-         if (self.vulvaSize <= 2):
-            return "childlike"
-         if (self.vulvaSize <= 8):
-            return "dainty"
-         if (self.vulvaSize <= 16):
-            return "kissable"
-         if (self.vulvaSize <= 24):
-            return "groin-filling"
-         if (self.vulvaSize <= 36):
-            return "thigh-spreading"
-         if (self.vulvaSize <= 54):
-            return f"{self.legDesc(1)}-{self.legVerb(2)}"
-         if (self.vulvaSize <= 84):
-            return "ground-scraping"
-         if (self.vulvaSize <= 124):
-            return "person-sized"
-         if (self.vulvaSize <= 160):
-            return "room-sized"
-         if (self.vulvaSize > 160):
-            return "building-sized"
-      return f"VULVA ERROR {self.vulvaSize}"
+        if (self.percent() <= 50):
+            if (self.vulvaSize <= 2):
+                return "tiny"
+            if (self.vulvaSize <= 8):
+                return "plush"
+            if (self.vulvaSize <= 16):
+                return "plump"
+            if (self.vulvaSize <= 24):
+                return "huge"
+            if (self.vulvaSize <= 36):
+                return "enormous"
+            if (self.vulvaSize <= 54):
+                return "gigantic"
+            if (self.vulvaSize <= 84):
+                return "humongous"
+            if (self.vulvaSize <= 124):
+                return "tremendous"
+            if (self.vulvaSize <= 160):
+                return "colossal"
+            if (self.vulvaSize > 160):
+                return "ridiculous"
+        else:
+            if (self.vulvaSize <= 2):
+                return "childlike"
+            if (self.vulvaSize <= 8):
+                return "dainty"
+            if (self.vulvaSize <= 16):
+                return "kissable"
+            if (self.vulvaSize <= 24):
+                return "groin-filling"
+            if (self.vulvaSize <= 36):
+                return "thigh-spreading"
+            if (self.vulvaSize <= 54):
+                return f"{self.legDesc(1)}-{self.legVerb(2)}"
+            if (self.vulvaSize <= 84):
+                return "ground-scraping"
+            if (self.vulvaSize <= 124):
+                return "person-sized"
+            if (self.vulvaSize <= 160):
+                return "room-sized"
+            if (self.vulvaSize > 160):
+                return "building-sized"
+        return f"VULVA ERROR {self.vulvaSize}"
 
    def cockDesc(self):
-      tempCock = self.cockSize * self.cockSizeMod
-      if (self.percent() <= 50):
-         if (tempCock <= 8):
-            return "puny"
-         if (tempCock <= 12):
-            return "average-sized"
-         if (tempCock <= 24):
-            return "big"
-         if (tempCock <= 32):
-            return "large"
-         if (tempCock <= 56):
-            return "huge"
-         if (tempCock <= 72):
-            return "enormous"
-         if (tempCock <= 100):
-            return "gigantic"
-         if (tempCock <= 152):
-            return "humongous"
-         if (tempCock <= 304):
-            return "tremendous"
-         if (tempCock <= 608):
-            return "colossal"
-         if (tempCock <= 1200):
-            return "ridiculous"
-         if (tempCock > 1200):
-            return "impossibly-ginormous"
-      else:
-         if (tempCock <= 8):
-            return "infantile"
-         if (tempCock <= 12):
-            return "hand-length"
-         if (tempCock <= 24):
-            return "larger than normal"
-         if (tempCock <= 32):
-            return "foot-long"
-         if (tempCock <= 56):
-            return "thigh-slapping"
-         if (tempCock <= 72):
-            return "knee-knocking"
-         if (tempCock <= 100):
-            return "leg-sized"
-         if (tempCock <= 152):
-            return "person-sized"
-         if (tempCock <= 304):
-            return "car-sized"
-         if (tempCock <= 608):
-            return "bus-sized"
-         if (tempCock <= 1200):
-            return "building-sized"
-         if (tempCock > 1200):
-            return "landscape-filling"
-      return f"COCK ERROR {tempCock}"
+        tempCock = self.cockSize * self.cockSizeMod
+        if (self.percent() <= 50):
+            if (tempCock <= 8):
+                return "puny"
+            if (tempCock <= 12):
+                return "average-sized"
+            if (tempCock <= 24):
+                return "big"
+            if (tempCock <= 32):
+                return "large"
+            if (tempCock <= 56):
+                return "huge"
+            if (tempCock <= 72):
+                return "enormous"
+            if (tempCock <= 100):
+                return "gigantic"
+            if (tempCock <= 152):
+                return "humongous"
+            if (tempCock <= 304):
+                return "tremendous"
+            if (tempCock <= 608):
+                return "colossal"
+            if (tempCock <= 1200):
+                return "ridiculous"
+            if (tempCock > 1200):
+                return "impossibly-ginormous"
+        else:
+            if (tempCock <= 8):
+                return "infantile"
+            if (tempCock <= 12):
+                return "hand-length"
+            if (tempCock <= 24):
+                return "larger than normal"
+            if (tempCock <= 32):
+                return "foot-long"
+            if (tempCock <= 56):
+                return "thigh-slapping"
+            if (tempCock <= 72):
+                return "knee-knocking"
+            if (tempCock <= 100):
+                return "leg-sized"
+            if (tempCock <= 152):
+                return "person-sized"
+            if (tempCock <= 304):
+                return "car-sized"
+            if (tempCock <= 608):
+                return "bus-sized"
+            if (tempCock <= 1200):
+                return "building-sized"
+            if (tempCock > 1200):
+                return "landscape-filling"
+        return f"COCK ERROR {tempCock}"
 
    def ballDesc(self):
-      if (self.percent() <= 50):
-         if (self.ballSize <= 1):
-            return "tiny"
-         if (self.ballSize <= 3):
-            return "small"
-         if (self.ballSize <= 5):
-            return "big"
-         if (self.ballSize <= 8):
-            return "large"
-         if (self.ballSize <= 13):
-            return "hand-filling"
-         if (self.ballSize <= 17):
-            return "huge"
-         if (self.ballSize <= 26):
-            return "barely palmable"
-         if (self.ballSize <= 40):
-            return "enormous"
-         if (self.ballSize <= 80):
-            return "tremendous"
-         if (self.ballSize <= 120):
-            return "huggable"
-         if (self.ballSize <= 240):
-            return "gargantuan"
-         if (self.ballSize > 240):
-            return "colossal"
-      else:
-         if (self.ballSize <= 1):
-            return "marble-sized"
-         if (self.ballSize <= 3):
-            return "golfball-sized"
-         if (self.ballSize <= 5):
-            return "kiwi-sized"
-         if (self.ballSize <= 8):
-            return "tennisball-sized"
-         if (self.ballSize <= 13):
-            return "baseball-sized"
-         if (self.ballSize <= 17):
-            return "softball-sized"
-         if (self.ballSize <= 26):
-            return "cantaloupe-sized"
-         if (self.ballSize <= 40):
-            return "basketball-sized"
-         if (self.ballSize <= 80):
-            return "watermelon-sized"
-         if (self.ballSize <= 120):
-            return "beachball-sized"
-         if (self.ballSize <= 240):
-            return "boulder-sized"
-         if (self.ballSize > 240):
-            return "landscape-crushing"
-      return f"BALLS ERROR {self.ballSize}"
+        if (self.percent() <= 50):
+            if (self.ballSize <= 1):
+                return "tiny"
+            if (self.ballSize <= 3):
+                return "small"
+            if (self.ballSize <= 5):
+                return "big"
+            if (self.ballSize <= 8):
+                return "large"
+            if (self.ballSize <= 13):
+                return "hand-filling"
+            if (self.ballSize <= 17):
+                return "huge"
+            if (self.ballSize <= 26):
+                return "barely palmable"
+            if (self.ballSize <= 40):
+                return "enormous"
+            if (self.ballSize <= 80):
+                return "tremendous"
+            if (self.ballSize <= 120):
+                return "huggable"
+            if (self.ballSize <= 240):
+                return "gargantuan"
+            if (self.ballSize > 240):
+                return "colossal"
+        else:
+            if (self.ballSize <= 1):
+                return "marble-sized"
+            if (self.ballSize <= 3):
+                return "golfball-sized"
+            if (self.ballSize <= 5):
+                return "kiwi-sized"
+            if (self.ballSize <= 8):
+                return "tennisball-sized"
+            if (self.ballSize <= 13):
+                return "baseball-sized"
+            if (self.ballSize <= 17):
+                return "softball-sized"
+            if (self.ballSize <= 26):
+                return "cantaloupe-sized"
+            if (self.ballSize <= 40):
+                return "basketball-sized"
+            if (self.ballSize <= 80):
+                return "watermelon-sized"
+            if (self.ballSize <= 120):
+                return "beachball-sized"
+            if (self.ballSize <= 240):
+                return "boulder-sized"
+            if (self.ballSize > 240):
+                return "landscape-crushing"
+        return f"BALLS ERROR {self.ballSize}"
 
    def nipDesc(self):
-      tempStr = f"NIPPLE ERROR {self.nippleSize}"
-      if (self.percent() <= 50):
-         if (self.nipType == 2 and self.lust < 50):
-            tempStr = "inverted "
-         else:
-            if (self.nippleSize <= 2):
-               tempStr = "small "
-            elif (self.nippleSize <= 5):
-               tempStr = "noticeable "
-            elif (self.nippleSize <= 15):
-               tempStr = "blatant "
-            elif (self.nippleSize <= 30):
-               tempStr = "teat-like "
-            elif (self.nippleSize <= 50):
-               tempStr = "cock-like "
-            elif (self.nippleSize <= 100):
-               tempStr = "horsecock-like "
-            elif (self.nippleSize <= 140):
-               tempStr = "arm-length "
-            elif (self.nippleSize <= 300):
-               tempStr = "street-clearing "
-            elif (self.nippleSize > 300):
-               tempStr = "obscene "
-      else:
-         if (self.nipType == 2 and self.lust < 50):
-            tempStr = "sunken "
-         else:
-            if (self.nippleSize <= 2):
-               tempStr = ""
-            elif (self.nippleSize <= 5):
-               tempStr = "perky "
-            elif (self.nippleSize <= 15):
-               tempStr = "hypnotizing "
-            elif (self.nippleSize <= 30):
-               tempStr = "long "
-            elif (self.nippleSize <= 50):
-               tempStr = "huge "
-            elif (self.nippleSize <= 100):
-               tempStr = "enormous "
-            elif (self.nippleSize <= 140):
-               tempStr = "extreme "
-            elif (self.nippleSize <= 300):
-               tempStr = "ridiculous "
-            elif (self.nippleSize > 300):
-               tempStr = "obscene "
-      if (self.nipType == 1):
-         if (self.percent() <= 50):
-            tempStr += " quad-"
-         else:
-            tempStr = f"quartets of {tempStr}"
-      return tempStr
+        tempStr = f"NIPPLE ERROR {self.nippleSize}"
+        if (self.percent() <= 50):
+            if (self.nipType == 2 and self.lust < 50):
+                tempStr = "inverted "
+            else:
+                if (self.nippleSize <= 2):
+                    tempStr = "small "
+                elif (self.nippleSize <= 5):
+                    tempStr = "noticeable "
+                elif (self.nippleSize <= 15):
+                    tempStr = "blatant "
+                elif (self.nippleSize <= 30):
+                    tempStr = "teat-like "
+                elif (self.nippleSize <= 50):
+                    tempStr = "cock-like "
+                elif (self.nippleSize <= 100):
+                    tempStr = "horsecock-like "
+                elif (self.nippleSize <= 140):
+                    tempStr = "arm-length "
+                elif (self.nippleSize <= 300):
+                    tempStr = "street-clearing "
+                elif (self.nippleSize > 300):
+                    tempStr = "obscene "
+        else:
+            if (self.nipType == 2 and self.lust < 50):
+                tempStr = "sunken "
+            else:
+                if (self.nippleSize <= 2):
+                    tempStr = ""
+                elif (self.nippleSize <= 5):
+                    tempStr = "perky "
+                elif (self.nippleSize <= 15):
+                    tempStr = "hypnotizing "
+                elif (self.nippleSize <= 30):
+                    tempStr = "long "
+                elif (self.nippleSize <= 50):
+                    tempStr = "huge "
+                elif (self.nippleSize <= 100):
+                    tempStr = "enormous "
+                elif (self.nippleSize <= 140):
+                    tempStr = "extreme "
+                elif (self.nippleSize <= 300):
+                    tempStr = "ridiculous "
+                elif (self.nippleSize > 300):
+                    tempStr = "obscene "
+        if (self.nipType == 1):
+            if (self.percent() <= 50):
+                tempStr += " quad-"
+            else:
+                tempStr = f"quartets of {tempStr}"
+        return tempStr
 
    def clitDesc(self):
-      if (self.percent() <= 50):
-         if (self.clitSize <= 2):
-            return "tiny"
-         if (self.clitSize <= 3):
-            return "nibble-able"
-         if (self.clitSize <= 6):
-            return "protruding"
-         if (self.clitSize <= 12):
-            return "blatant"
-         if (self.clitSize <= 25):
-            return "suckable"
-         if (self.clitSize <= 50):
-            return "cock-like"
-         if (self.clitSize <= 100):
-            return "horsecock-like"
-         if (self.clitSize <= 140):
-            return "arm-length"
-         if (self.clitSize <= 300):
-            return "person-sized"
-         if (self.clitSize > 300):
-            return "obscene"
-      else:
-         if (self.clitSize <= 2):
-            return "small"
-         if (self.clitSize <= 3):
-            return "pinchable"
-         if (self.clitSize <= 6):
-            return "flickable"
-         if (self.clitSize <= 12):
-            return "panty-tenting"
-         if (self.clitSize <= 25):
-            return "stroke-able"
-         if (self.clitSize <= 50):
-            return "huge"
-         if (self.clitSize <= 100):
-            return "gigantic"
-         if (self.clitSize <= 140):
-            return "doorway-smacking"
-         if (self.clitSize <= 300):
-            return "snuggle-able"
-         if (self.clitSize > 300):
-            return "obscene"
-      return f"CLIT ERROR {self.clitSize}"
+        if (self.percent() <= 50):
+            if (self.clitSize <= 2):
+                return "tiny"
+            if (self.clitSize <= 3):
+                return "nibble-able"
+            if (self.clitSize <= 6):
+                return "protruding"
+            if (self.clitSize <= 12):
+                return "blatant"
+            if (self.clitSize <= 25):
+                return "suckable"
+            if (self.clitSize <= 50):
+                return "cock-like"
+            if (self.clitSize <= 100):
+                return "horsecock-like"
+            if (self.clitSize <= 140):
+                return "arm-length"
+            if (self.clitSize <= 300):
+                return "person-sized"
+            if (self.clitSize > 300):
+                return "obscene"
+        else:
+            if (self.clitSize <= 2):
+                return "small"
+            if (self.clitSize <= 3):
+                return "pinchable"
+            if (self.clitSize <= 6):
+                return "flickable"
+            if (self.clitSize <= 12):
+                return "panty-tenting"
+            if (self.clitSize <= 25):
+                return "stroke-able"
+            if (self.clitSize <= 50):
+                return "huge"
+            if (self.clitSize <= 100):
+                return "gigantic"
+            if (self.clitSize <= 140):
+                return "doorway-smacking"
+            if (self.clitSize <= 300):
+                return "snuggle-able"
+            if (self.clitSize > 300):
+                return "obscene"
+        return f"CLIT ERROR {self.clitSize}"
 
    def hipDesc(self):
-      tempHips = self.hips * self.hipMod
-      if (self.percent() <= 50):
-         if (tempHips <= 3):
-            return "narrow"
-         if (tempHips <= 8):
-            return "unnoticeable"
-         if (tempHips <= 16):
-            return "wide"
-         if (tempHips <= 28):
-            return "endowed"
-         if (tempHips <= 40):
-            return "protruding"
-         if (tempHips <= 55):
-            return "cow-like"
-         if (tempHips <= 75):
-            return "shelf-like"
-         if (tempHips <= 100):
-            return "doorway-jamming"
-         if (tempHips > 100):
-            return "perpetually-swaying"
-      else:
-         if (tempHips <= 3):
-            return "prepubescent"
-         if (tempHips <= 8):
-            return "average"
-         if (tempHips <= 16):
-            return "child-bearing"
-         if (tempHips <= 28):
-            return "especially fertile"
-         if (tempHips <= 40):
-            return "hypnotizing"
-         if (tempHips <= 55):
-            return "blatantly obvious"
-         if (tempHips <= 75):
-            return "excessively wide"
-         if (tempHips <= 100):
-            return "greatly protruding"
-         if (tempHips > 100):
-            return "gigantic"
-      return f"HIP ERROR {self.hips}"
+        tempHips = self.hips * self.hipMod
+        if (self.percent() <= 50):
+            if (tempHips <= 3):
+                return "narrow"
+            if (tempHips <= 8):
+                return "unnoticeable"
+            if (tempHips <= 16):
+                return "wide"
+            if (tempHips <= 28):
+                return "endowed"
+            if (tempHips <= 40):
+                return "protruding"
+            if (tempHips <= 55):
+                return "cow-like"
+            if (tempHips <= 75):
+                return "shelf-like"
+            if (tempHips <= 100):
+                return "doorway-jamming"
+            if (tempHips > 100):
+                return "perpetually-swaying"
+        else:
+            if (tempHips <= 3):
+                return "prepubescent"
+            if (tempHips <= 8):
+                return "average"
+            if (tempHips <= 16):
+                return "child-bearing"
+            if (tempHips <= 28):
+                return "especially fertile"
+            if (tempHips <= 40):
+                return "hypnotizing"
+            if (tempHips <= 55):
+                return "blatantly obvious"
+            if (tempHips <= 75):
+                return "excessively wide"
+            if (tempHips <= 100):
+                return "greatly protruding"
+            if (tempHips > 100):
+                return "gigantic"
+        return f"HIP ERROR {self.hips}"
 
    def bellyDesc(self):
-      chance = self.percent()
-      if False and self.internalBallsEffectBelly and not self.showBalls:
-         tempBelly = (self.pregnancyTime / 10 + self.vagBellyMod / 3 + self.bellyMod / 5 + self.ballSize * 0.9 / 5) * 60 / self.tallness
-      else:
-         tempBelly = (self.pregnancyTime / 10 + self.vagBellyMod / 3 + self.bellyMod / 5) * 60 / self.tallness
-      tempStr = f"BELLY ERROR {tempBelly}"
-      if (self.pregnancyTime > self.bellyMod):
-         if (tempBelly <= 2):
-            tempStr = "flat"
-         elif (tempBelly <= 4):
-            tempStr = "hardly noticeable"
-         elif (tempBelly <= 7):
-            tempStr = "protruding"
-         elif (tempBelly <= 11):
-            tempStr = "swollen"
-         elif (tempBelly <= 14):
-            tempStr = "cradleable"
-         elif (tempBelly <= 19):
-            tempStr = "unbalancing"
-         elif (tempBelly <= 24):
-            tempStr = "huggable"
-         elif (tempBelly <= 30):
-            tempStr = "path-crowding"
-         elif (tempBelly <= 36):
-            tempStr = "larger-than-you"
-         elif (tempBelly <= 42):
-            tempStr = "ground-dragging"
-         elif (tempBelly <= 49):
-            tempStr = "view-blocking"
-         elif (tempBelly <= 57):
-            tempStr = "impossibly huge"
-         elif (tempBelly <= 66):
-            tempStr = "bed-sized"
-         elif (tempBelly <= 76):
-            tempStr = "portable-apartment"
-         elif (tempBelly > 76):
-            tempStr = "breeding-factory"
-         if (tempBelly > 11):
-            if (chance <= 50):
-               tempStr += " pregnant"
-            else:
-               tempStr += " gravid"
-      else:
-         if (tempBelly <= 2):
-            tempStr = "flat"
-         elif (tempBelly <= 4):
-            tempStr = "hardly noticeable"
-         elif (tempBelly <= 7):
-            tempStr = "chubby"
-         elif (tempBelly <= 11):
-            tempStr = "porky"
-         elif (tempBelly <= 14):
-            tempStr = "multi-rolled"
-         elif (tempBelly <= 19):
-            tempStr = "pillow-like"
-         elif (tempBelly <= 24):
-            tempStr = "morbidly obese"
-         elif (tempBelly <= 30):
-            tempStr = "bed-like"
-         elif (tempBelly <= 36):
-            tempStr = "fat-encompassing"
-         elif (tempBelly <= 42):
-            tempStr = "item-losing"
-         elif (tempBelly <= 49):
-            tempStr = "almost spherical"
-         elif (tempBelly <= 57):
-            tempStr = "limb-engulfing"
-         elif (tempBelly <= 66):
-            tempStr = "blob-like"
-         elif (tempBelly <= 76):
-            tempStr = "inhumanly large"
-         elif (tempBelly > 76):
-            tempStr = "gigantic blubbery mass of"
-         if (tempBelly > 11):
-            if (chance <= 50):
-               tempStr += " jiggly"
-            else:
-               tempStr += " meaty"
-      return tempStr
+        chance = self.percent()
+        if False and self.internalBallsEffectBelly and not self.showBalls:
+            tempBelly = (self.pregnancyTime / 10 + self.vagBellyMod / 3 + self.bellyMod / 5 + self.ballSize * 0.9 / 5) * 60 / self.tallness
+        else:
+            tempBelly = (self.pregnancyTime / 10 + self.vagBellyMod / 3 + self.bellyMod / 5) * 60 / self.tallness
+        tempStr = f"BELLY ERROR {tempBelly}"
+        if (self.pregnancyTime > self.bellyMod):
+            if (tempBelly <= 2):
+                tempStr = "flat"
+            elif (tempBelly <= 4):
+                tempStr = "hardly noticeable"
+            elif (tempBelly <= 7):
+                tempStr = "protruding"
+            elif (tempBelly <= 11):
+                tempStr = "swollen"
+            elif (tempBelly <= 14):
+                tempStr = "cradleable"
+            elif (tempBelly <= 19):
+                tempStr = "unbalancing"
+            elif (tempBelly <= 24):
+                tempStr = "huggable"
+            elif (tempBelly <= 30):
+                tempStr = "path-crowding"
+            elif (tempBelly <= 36):
+                tempStr = "larger-than-you"
+            elif (tempBelly <= 42):
+                tempStr = "ground-dragging"
+            elif (tempBelly <= 49):
+                tempStr = "view-blocking"
+            elif (tempBelly <= 57):
+                tempStr = "impossibly huge"
+            elif (tempBelly <= 66):
+                tempStr = "bed-sized"
+            elif (tempBelly <= 76):
+                tempStr = "portable-apartment"
+            elif (tempBelly > 76):
+                tempStr = "breeding-factory"
+            if (tempBelly > 11):
+                if (chance <= 50):
+                    tempStr += " pregnant"
+                else:
+                    tempStr += " gravid"
+        else:
+            if (tempBelly <= 2):
+                tempStr = "flat"
+            elif (tempBelly <= 4):
+                tempStr = "hardly noticeable"
+            elif (tempBelly <= 7):
+                tempStr = "chubby"
+            elif (tempBelly <= 11):
+                tempStr = "porky"
+            elif (tempBelly <= 14):
+                tempStr = "multi-rolled"
+            elif (tempBelly <= 19):
+                tempStr = "pillow-like"
+            elif (tempBelly <= 24):
+                tempStr = "morbidly obese"
+            elif (tempBelly <= 30):
+                tempStr = "bed-like"
+            elif (tempBelly <= 36):
+                tempStr = "fat-encompassing"
+            elif (tempBelly <= 42):
+                tempStr = "item-losing"
+            elif (tempBelly <= 49):
+                tempStr = "almost spherical"
+            elif (tempBelly <= 57):
+                tempStr = "limb-engulfing"
+            elif (tempBelly <= 66):
+                tempStr = "blob-like"
+            elif (tempBelly <= 76):
+                tempStr = "inhumanly large"
+            elif (tempBelly > 76):
+                tempStr = "gigantic blubbery mass of"
+            if (tempBelly > 11):
+                if (chance <= 50):
+                    tempStr += " jiggly"
+                else:
+                    tempStr += " meaty"
+        return tempStr
 
-   def skinDesc(self, appearanceGo=False):
-      tempStr = ""
-      if (self.skinColor > 0):
-         tempStr += self.skinC()
-      if (self.snuggleBall and not appearanceGo and self.snuggleBallTweak or self.snuggleBall and not self.snuggleBallTweak):
-         tempStr += "plush and snuggly "
-      if self.skinType == 1:
-         return f"{tempStr}skin"
-      if self.skinType == 2:
-         return f"{tempStr}fur"
-      if self.skinType == 3:
-         return f"{tempStr}scales"
-      if self.skinType == 4:
-         return f"{tempStr}feathers"
-      if self.skinType == 5:
-         return f"{tempStr}chitin"
-      return f"SKIN ERROR {self.skinType}"
+   def skinDesc(self, appearanceGo: bool = False):
+        tempStr = ""
+        if (self.skinColor > 0):
+            tempStr += self.skinC()
+        if (self.snuggleBall and not appearanceGo and self.snuggleBallTweak or self.snuggleBall and not self.snuggleBallTweak):
+            tempStr += "plush and snuggly "
+        if self.skinType == 1:
+            return f"{tempStr}skin"
+        if self.skinType == 2:
+            return f"{tempStr}fur"
+        if self.skinType == 3:
+            return f"{tempStr}scales"
+        if self.skinType == 4:
+            return f"{tempStr}feathers"
+        if self.skinType == 5:
+            return f"{tempStr}chitin"
+        return f"SKIN ERROR {self.skinType}"
 
    def skinC(self):
-      if self.skinColor == 0:
-         return ""
-      if self.skinColor == 1:
-         return "black "
-      if self.skinColor == 2:
-         return "blonde "
-      if self.skinColor == 3:
-         return "red "
-      if self.skinColor == 4:
-         return "brown "
-      if self.skinColor == 5:
-         return "coral pink "
-      if self.skinColor == 6:
-         return "auburn "
-      if self.skinColor == 7:
-         return "brown "
-      if self.skinColor == 8:
-         return "grey "
-      if self.skinColor == 9:
-         return "white "
-      return f"SKIN COLOR ERROR {self.skinColor}"
+        if self.skinColor == 0:
+            return ""
+        if self.skinColor == 1:
+            return "black "
+        if self.skinColor == 2:
+            return "blonde "
+        if self.skinColor == 3:
+            return "red "
+        if self.skinColor == 4:
+            return "brown "
+        if self.skinColor == 5:
+            return "coral pink "
+        if self.skinColor == 6:
+            return "auburn "
+        if self.skinColor == 7:
+            return "brown "
+        if self.skinColor == 8:
+            return "grey "
+        if self.skinColor == 9:
+            return "white "
+        return f"SKIN COLOR ERROR {self.skinColor}"
 
-   def legDesc(self, part:int):
-      if part == 1:
-         return "leg"
-      if part == 2:
-         return "legs"
-      if part == 3:
-         return "thigh"
-      if part == 4:
-         return "thighs"
-      if part == 5:
-         return "knee"
-      if part == 6:
-         return "knees"
-      if part == 7:
-         return "ankle"
-      if part == 8:
-         return "ankles"
-      if part == 9:
-         if (self.legType == 1):
-            return "paw"
-         if (self.legType in {2,1001} or self.checkItem(102)):
-            return "hoof"
-         return "foot"
-      if part == 10:
-         if (self.legType == 1):
-            return "paws"
-         if (self.legType in {2,1001} or self.checkItem(102)):
-            return "hooves"
-         return "feet"
-      return f"LEG ERROR PART {part} TYPE {self.legType}"
+   def legDesc(self, part: int):
+        if part == 1:
+            return "leg"
+        if part == 2:
+            return "legs"
+        if part == 3:
+            return "thigh"
+        if part == 4:
+            return "thighs"
+        if part == 5:
+            return "knee"
+        if part == 6:
+            return "knees"
+        if part == 7:
+            return "ankle"
+        if part == 8:
+            return "ankles"
+        if part == 9:
+            if (self.legType == 1):
+                return "paw"
+            if (self.legType in {2, 1001} or self.checkItem(102)):
+                return "hoof"
+            return "foot"
+        if part == 10:
+            if (self.legType == 1):
+                return "paws"
+            if (self.legType in {2, 1001} or self.checkItem(102)):
+                return "hooves"
+            return "feet"
+        return f"LEG ERROR PART {part} TYPE {self.legType}"
 
-   def legVerb(self, part:int):
-      if part == 1:
-         return "spreading"
-      if part == 2:
-         return "spread wide"
-      if part == 3:
-         return "spread"
-      if part == 4:
-         return "clench"
-      if part == 5:
-         return "straddling"
-      return f"LEG VERB ERROR {part} TYPE {self.legType}"
+   def legVerb(self, part: int):
+        if part == 1:
+            return "spreading"
+        if part == 2:
+            return "spread wide"
+        if part == 3:
+            return "spread"
+        if part == 4:
+            return "clench"
+        if part == 5:
+            return "straddling"
+        return f"LEG VERB ERROR {part} TYPE {self.legType}"
 
-   def legWhere(self, part:int):
-      if part == 1:
-         if (self.legType == 1001):
-            return "behind"
-         return "between"
-      if part == 2:
-         return "between"
-      return f"LEG WHERE ERROR {part} TYPE {self.legType}"
+   def legWhere(self, part: int):
+        if part == 1:
+            if (self.legType == 1001):
+                return "behind"
+            return "between"
+        if part == 2:
+            return "between"
+        return f"LEG WHERE ERROR {part} TYPE {self.legType}"
 
-   def legPlural(self, which:int):
-      if which == 1:
-         return ""
-      if which == 2:
-         return "are"
-      return f"LEG PLURAL ERROR TYPE {self.legType}"
+   def legPlural(self, which: int):
+        if which == 1:
+            return ""
+        if which == 2:
+            return "are"
+        return f"LEG PLURAL ERROR TYPE {self.legType}"
 
-   def regionName(self, region:int):
-      if region == 1:
-         return "Softlik"
-      if region == 2:
-         return "Firmshaft"
-      if region == 3:
-         return "Tieden"
-      if region == 4:
-         return "Siz'Calit"
-      if region == 6:
-         return "Oviasis"
-      if region == 12:
-         return "Sanctuary"
-      return f"REGION ERROR {self.currentZone}"
+   def regionName(self, region: int):
+        if region == 1:
+            return "Softlik"
+        if region == 2:
+            return "Firmshaft"
+        if region == 3:
+            return "Tieden"
+        if region == 4:
+            return "Siz'Calit"
+        if region == 6:
+            return "Oviasis"
+        if region == 12:
+            return "Sanctuary"
+        return f"REGION ERROR {self.currentZone}"
 
    def raceName(self):
-      if self.race == 1:
-         return "Human"
-      if self.race == 2:
-         return "Equan"
-      if self.race == 3:
-         return "Lupan"
-      if self.race == 4:
-         return "Felin"
-      if self.race == 6:
-         return "Lizan"
-      return f"RACE ERROR {self.race}"
-   def domName(self):
-      if self.dominant == 1:
-         return "human"
-      if self.dominant == 2:
-         return "horse"
-      if self.dominant == 3:
-         return "wolf"
-      if self.dominant == 4:
-         return "cat"
-      if self.dominant == 5:
-         return "cow"
-      if self.dominant == 6:
-         return "lizard"
-      if self.dominant == 7:
-         return "bunny"
-      if self.dominant == 8:
-         return "mouse"
-      if self.dominant == 9:
-         return "bird"
-      if self.dominant == 10:
-         return "pig"
-      if self.dominant == 11:
-         return "skunk"
-      if self.dominant == 12:
-         return "bug"
-      return f"DOMINANT ERROR {self.dominant}"
+        if self.race == 1:
+            return "Human"
+        if self.race == 2:
+            return "Equan"
+        if self.race == 3:
+            return "Lupan"
+        if self.race == 4:
+            return "Felin"
+        if self.race == 6:
+            return "Lizan"
+        return f"RACE ERROR {self.race}"
 
-   def isBottomOpen(self, ID:int=None):
-      if ID is None:
-         ID = self.attireBot
-      # Tattered Shreds, Elegant Dress, Skirt, Sundress, Skimpy Dress, Short Skirt, Loin Cloth, Gothic Dress
-      return ID in {-1,5,7,12,13,14,16,25}
+   def domName(self):
+        if self.dominant == 1:
+            return "human"
+        if self.dominant == 2:
+            return "horse"
+        if self.dominant == 3:
+            return "wolf"
+        if self.dominant == 4:
+            return "cat"
+        if self.dominant == 5:
+            return "cow"
+        if self.dominant == 6:
+            return "lizard"
+        if self.dominant == 7:
+            return "bunny"
+        if self.dominant == 8:
+            return "mouse"
+        if self.dominant == 9:
+            return "bird"
+        if self.dominant == 10:
+            return "pig"
+        if self.dominant == 11:
+            return "skunk"
+        if self.dominant == 12:
+            return "bug"
+        return f"DOMINANT ERROR {self.dominant}"
+
+   def isBottomOpen(self, ID: int = None):
+        if ID is None:
+            ID = self.attireBot
+        # Tattered Shreds, Elegant Dress, Skirt, Sundress, Skimpy Dress, Short Skirt, Loin Cloth, Gothic Dress
+        return ID in {-1, 5, 7, 12, 13, 14, 16, 25}
 
    def genName(self):
-      if self.gender == 0:
-         return "n androgynous"
-      if self.gender == 1:
-         if (self.hips > 3 and self.breastSize > 4):
-            return " female"
-         return " male"
-      if self.gender == 2:
-         if (self.body > 17 and self.breastSize <= 2):
+        if self.gender == 0:
+            return "n androgynous"
+        if self.gender == 1:
+            if (self.hips > 3 and self.breastSize > 4):
+                return " female"
             return " male"
-         return " female"
-      if self.gender == 3:
-         return " herm"
-      return f"GENDER ERROR {self.gender}"
+        if self.gender == 2:
+            if (self.body > 17 and self.breastSize <= 2):
+                return " male"
+            return " female"
+        if self.gender == 3:
+            return " herm"
+        return f"GENDER ERROR {self.gender}"
 
    def cumAmount(self):
-      tempNum = self.ballSize * self.ballSize / 2 * self.balls * self.cumMod
-      temp = self.blueBalls
-      self.blueBalls = 0
-      if (temp <= 12):
-         return Math.floor(tempNum * 0.5)
-      if (temp <= 36):
-         return Math.floor(tempNum * 1)
-      if (temp <= 84):
-         return Math.floor(tempNum * 2)
-      return Math.floor(tempNum * 2.5)
+        tempNum = self.ballSize * self.ballSize / 2 * self.balls * self.cumMod
+        temp = self.blueBalls
+        self.blueBalls = 0
+        if (temp <= 12):
+            return Math.floor(tempNum * 0.5)
+        if (temp <= 36):
+            return Math.floor(tempNum * 1)
+        if (temp <= 84):
+            return Math.floor(tempNum * 2)
+        return Math.floor(tempNum * 2.5)
 
-   def milkAmount(self, origin:int):
+   def milkAmount(self, origin: int):
+      # HERE
       tempNum = 0
       if origin == 1:
          if (self.milkEngorgement > (self.breastSize * (self.breastSize + 1) + self.tallness / 4 + self.milkCap) * 2):
@@ -27224,476 +27226,499 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       return Math.floor(tempNum)
 
    def frame1(self):
-      self.loadPreferences()
-      self.hideOption7()
-      if self.originalFrame1Message:
-         out = f"Nimin: Fetish Fantasy\n            v{NIMIN_VERSION}\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n     www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n     fenoxo.com\n\n\nFor tutorial/guide, questions, or bug reports, visit Xadera's page at the link above."
-
-      else:
-         out = f"Nimin: Fetish Fantasy (Unofficial python port)\n            Version {__version__} (v{NIMIN_VERSION})\n\nClick 'New Game' to begin a new game.\n\nOriginal game created by <a href='https://www.furaffinity.net/user/xadera/'>Xadera</a>\n    www.furaffinity.net/user/xadera\n\nOriginal concept by <a href='https://www.fenoxo.com/'>Fenoxo</a>\n    fenoxo.com\n\nThis port was created and maintained by <a href='https://github.com/ajdelguidice'>ajdelguidice</a>\n    github.com/ajdelguidice\n\nAll bug reports should be directed <a href='https://github.com/ajdelguidice/pymin/'>here</a>\n    github.com/ajdelguidice/pymin\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk.\n\nThis port adds additional configuration options, cheats, and fixes. Most of these can be accessed by going to File->Options in the menu bar. This is also where gameplay altering tweaks (Game Tweaks), grammar fixes/tweaks, and theme stuff are located (You can make the game closer to the original by going to the \"Interface\" tab and switching the theme selecter to \"Nimin\"). I recommend at least turning on \"Use expanded save dialog\" (Interface tab), \"Respect showBalls\" (Grammar tab), and \"Grammar Fixes\" (Grammar tab).\n\nThere is now also a panic button (More info at Wiki->Basics->Hotkeys)"
-      self.outputMainText(out,True)
+        self.loadPreferences()
+        self.hideOption7()
+        if self.originalFrame1Message:
+            out = f"Nimin: Fetish Fantasy\n            v{NIMIN_VERSION}\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n     www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n     fenoxo.com\n\n\nFor tutorial/guide, questions, or bug reports, visit Xadera's page at the link above."
+        else:
+            out = f"Nimin: Fetish Fantasy (Unofficial python port)\n            Version {__version__} (v{NIMIN_VERSION})\n\nClick 'New Game' to begin a new game.\n\nOriginal game created by <a href='https://www.furaffinity.net/user/xadera/'>Xadera</a>\n    www.furaffinity.net/user/xadera\n\nOriginal concept by <a href='https://www.fenoxo.com/'>Fenoxo</a>\n    fenoxo.com\n\nThis port was created and maintained by <a href='https://github.com/ajdelguidice'>ajdelguidice</a>\n    github.com/ajdelguidice\n\nAll bug reports should be directed <a href='https://github.com/ajdelguidice/pymin/'>here</a>\n    github.com/ajdelguidice/pymin\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk.\n\nThis port adds additional configuration options, cheats, and fixes. Most of these can be accessed by going to File->Options in the menu bar. This is also where gameplay altering tweaks (Game Tweaks), grammar fixes/tweaks, and theme stuff are located (You can make the game closer to the original by going to the \"Interface\" tab and switching the theme selecter to \"Nimin\"). I recommend at least turning on \"Use expanded save dialog\" (Interface tab), \"Respect showBalls\" (Grammar tab), and \"Grammar Fixes\" (Grammar tab).\n\nThere is now also a panic button (More info at Wiki->Basics->Hotkeys)"
+        self.outputMainText(out, True)
 
    def showStatsPane(self):
-      self.showStatPane()
-      self.showLevelPane()
-      self.showRegionPane()
-      self.showTimePane()
+        self.showStatPane()
+        self.showLevelPane()
+        self.showRegionPane()
+        self.showTimePane()
 
    def hideStatsPane(self):
-      self.hideStatPane()
-      self.hideLevelPane()
-      self.hideRegionPane()
-      self.hideTimePane()
+        self.hideStatPane()
+        self.hideLevelPane()
+        self.hideRegionPane()
+        self.hideTimePane()
 
    def setCStats(self):
-      self.window._children["strvallabel"].text = self.str
-      self.window._children["mentvallabel"].text = self.ment
-      self.window._children["libvallabel"].text = self.lib
-      self.window._children["senvallabel"].text = self.sen
-      self.window._children["hungervallabel"].text = self.hunger
+        self.window._children["strvallabel"].text = self.str
+        self.window._children["mentvallabel"].text = self.ment
+        self.window._children["libvallabel"].text = self.lib
+        self.window._children["senvallabel"].text = self.sen
+        self.window._children["hungervallabel"].text = self.hunger
 
    def setSCStats(self):
-      self.window._children["sexpvallabel"].text = int(self.SexP)
-      self.window._children["coinvallabel"].text = int(self.coin)
+        self.window._children["sexpvallabel"].text = int(self.SexP)
+        self.window._children["coinvallabel"].text = int(self.coin)
 
    def setDHStats(self):
-      self.window._children["dayvallabel"].text = self.day
-      self.window._children["hourvallabel"].text = f"{self.hour}:00"
+        self.window._children["dayvallabel"].text = self.day
+        self.window._children["hourvallabel"].text = f"{self.hour}:00"
 
    def setHPStat(self):
-      self.window._children["hpvallabel"].text = self.HP
+        self.window._children["hpvallabel"].text = self.HP
 
    def setLustStat(self):
-      if isinstance(self.lust, float):
-         self.lust = Math.floor(self.lust)
-      self.window._children["lustvallabel"].text = self.lust
+        if isinstance(self.lust, float):
+            self.lust = Math.floor(self.lust)
+        self.window._children["lustvallabel"].text = self.lust
 
    def setLevelStat(self):
-      self.window._children["levelvallabel"].text = self.level
+        self.window._children["levelvallabel"].text = self.level
 
    def showStatPane(self):
-      if not self.statpanevisible:
-         # Pane Title
-         self.window.addnwhLabel("display","label1",x=20,y=30,font=self.font,text="Base Stats",background=self.backgroundColor,foreground=self.textColor)
-         # Strength Label
-         self.window.addnwhLabel("display","strlabel",x=20,y=70,font=self.font,text="Strength",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","strcolonlabel",x=110,y=69,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","strvallabel",x=130,y=70,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addImageLabel("display","strimglabel",x=174,y=70,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
-         # Mentality Label
-         self.window.addnwhLabel("display","mentlabel",x=20,y=90,font=self.font,text="Mentality",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","mentcolonlabel",x=110,y=89,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","mentvallabel",x=130,y=90,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addImageLabel("display","mentimglabel",x=174,y=90,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
-         # Libido Label
-         self.window.addnwhLabel("display","liblabel",x=20,y=110,font=self.font,text="Libido",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","libcolonlabel",x=110,y=109,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","libvallabel",x=130,y=110,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addImageLabel("display","libimglabel",x=174,y=110,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
-         # Sensitivity Label
-         self.window.addnwhLabel("display","senlabel",x=20,y=130,font=self.font,text="Sensitivity",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","sencolonlabel",x=110,y=129,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","senvallabel",x=130,y=130,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addImageLabel("display","senimglabel",x=174,y=130,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
-         # Combat Stats Section Title
-         self.window.addnwhLabel("display","label6",x=20,y=170,font=self.font,text="Combat Stats",background=self.backgroundColor,foreground=self.textColor)
-         # HP Label
-         self.window.addnwhLabel("display","hplabel",x=20,y=190,font=self.font,text="HP",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","hpcolonlabel",x=110,y=189,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","hpvallabel",x=130,y=190,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addImageLabel("display","hpimglabel",x=174,y=190,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
-         # Lust Label
-         self.window.addnwhLabel("display","lustlabel",x=20,y=210,font=self.font,text="Lust",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","lustcolonlabel",x=110,y=209,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","lustvallabel",x=130,y=210,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addImageLabel("display","lustimglabel",x=174,y=210,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
-         # Hunger Label
-         self.window.addnwhLabel("display","hungerlabel",x=20,y=230,font=self.font,text="Hunger",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","hungercolonlabel",x=110,y=229,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","hungervallabel",x=130,y=230,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         self.statpanevisible = True
+        if not self.statpanevisible:
+            # Pane Title
+            self.window.addnwhLabel("display","label1",x=20,y=30,font=self.font,text="Base Stats",background=self.backgroundColor,foreground=self.textColor)
+
+            # Strength Label
+            self.window.addnwhLabel("display","strlabel",x=20,y=70,font=self.font,text="Strength",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","strcolonlabel",x=110,y=69,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","strvallabel",x=130,y=70,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addImageLabel("display","strimglabel",x=174,y=70,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
+
+            # Mentality Label
+            self.window.addnwhLabel("display","mentlabel",x=20,y=90,font=self.font,text="Mentality",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","mentcolonlabel",x=110,y=89,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","mentvallabel",x=130,y=90,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addImageLabel("display","mentimglabel",x=174,y=90,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
+
+            # Libido Label
+            self.window.addnwhLabel("display","liblabel",x=20,y=110,font=self.font,text="Libido",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","libcolonlabel",x=110,y=109,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","libvallabel",x=130,y=110,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addImageLabel("display","libimglabel",x=174,y=110,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
+
+            # Sensitivity Label
+            self.window.addnwhLabel("display","senlabel",x=20,y=130,font=self.font,text="Sensitivity",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","sencolonlabel",x=110,y=129,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","senvallabel",x=130,y=130,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addImageLabel("display","senimglabel",x=174,y=130,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
+
+            # Combat Stats Section Title
+            self.window.addnwhLabel("display","label6",x=20,y=170,font=self.font,text="Combat Stats",background=self.backgroundColor,foreground=self.textColor)
+
+            # HP Label
+            self.window.addnwhLabel("display","hplabel",x=20,y=190,font=self.font,text="HP",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","hpcolonlabel",x=110,y=189,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","hpvallabel",x=130,y=190,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addImageLabel("display","hpimglabel",x=174,y=190,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
+
+            # Lust Label
+            self.window.addnwhLabel("display","lustlabel",x=20,y=210,font=self.font,text="Lust",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","lustcolonlabel",x=110,y=209,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","lustvallabel",x=130,y=210,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addImageLabel("display","lustimglabel",x=174,y=210,width=20,height=20,image_name="",background=self.backgroundColor,foreground=self.textColor)
+
+            # Hunger Label
+            self.window.addnwhLabel("display","hungerlabel",x=20,y=230,font=self.font,text="Hunger",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","hungercolonlabel",x=110,y=229,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","hungervallabel",x=130,y=230,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+            self.statpanevisible = True
 
    def hideStatPane(self):
-      if self.statpanevisible:
-         # Pane Title
-         self.window.destroyChild("label1")
-         # Strength Label
-         self.window.destroyChild("strlabel")
-         self.window.destroyChild("strcolonlabel")
-         self.window.destroyChild("strvallabel")
-         self.window.destroyChild("strimglabel")
-         # Mentality Label
-         self.window.destroyChild("mentlabel")
-         self.window.destroyChild("mentcolonlabel")
-         self.window.destroyChild("mentvallabel")
-         self.window.destroyChild("mentimglabel")
-         # Libido Label
-         self.window.destroyChild("liblabel")
-         self.window.destroyChild("libcolonlabel")
-         self.window.destroyChild("libvallabel")
-         self.window.destroyChild("libimglabel")
-         # Sensitivity Label
-         self.window.destroyChild("senlabel")
-         self.window.destroyChild("sencolonlabel")
-         self.window.destroyChild("senvallabel")
-         self.window.destroyChild("senimglabel")
-         # Combat Stats Section Title
-         self.window.destroyChild("label6")
-         # HP Label
-         self.window.destroyChild("hplabel")
-         self.window.destroyChild("hpcolonlabel")
-         self.window.destroyChild("hpvallabel")
-         self.window.destroyChild("hpimglabel")
-         # Lust Label
-         self.window.destroyChild("lustlabel")
-         self.window.destroyChild("lustcolonlabel")
-         self.window.destroyChild("lustvallabel")
-         self.window.destroyChild("lustimglabel")
-         # Hunger Label
-         self.window.destroyChild("hungerlabel")
-         self.window.destroyChild("hungercolonlabel")
-         self.window.destroyChild("hungervallabel")
-         self.statpanevisible = False
+        if self.statpanevisible:
+            # Pane Title
+            self.window.destroyChild("label1")
+
+            # Strength Label
+            self.window.destroyChild("strlabel")
+            self.window.destroyChild("strcolonlabel")
+            self.window.destroyChild("strvallabel")
+            self.window.destroyChild("strimglabel")
+
+            # Mentality Label
+            self.window.destroyChild("mentlabel")
+            self.window.destroyChild("mentcolonlabel")
+            self.window.destroyChild("mentvallabel")
+            self.window.destroyChild("mentimglabel")
+
+            # Libido Label
+            self.window.destroyChild("liblabel")
+            self.window.destroyChild("libcolonlabel")
+            self.window.destroyChild("libvallabel")
+            self.window.destroyChild("libimglabel")
+
+            # Sensitivity Label
+            self.window.destroyChild("senlabel")
+            self.window.destroyChild("sencolonlabel")
+            self.window.destroyChild("senvallabel")
+            self.window.destroyChild("senimglabel")
+
+            # Combat Stats Section Title
+            self.window.destroyChild("label6")
+
+            # HP Label
+            self.window.destroyChild("hplabel")
+            self.window.destroyChild("hpcolonlabel")
+            self.window.destroyChild("hpvallabel")
+            self.window.destroyChild("hpimglabel")
+
+            # Lust Label
+            self.window.destroyChild("lustlabel")
+            self.window.destroyChild("lustcolonlabel")
+            self.window.destroyChild("lustvallabel")
+            self.window.destroyChild("lustimglabel")
+
+            # Hunger Label
+            self.window.destroyChild("hungerlabel")
+            self.window.destroyChild("hungercolonlabel")
+            self.window.destroyChild("hungervallabel")
+            self.statpanevisible = False
 
    def showTimePane(self):
-      if not self.timepanevisible:
-         # Day Label
-         self.window.addnwhLabel("display","daylabel",x=20,y=450,font=self.font,text="Day",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","daycolonlabel",x=110,y=449,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","dayvallabel",x=130,y=450,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         # Hour Label
-         self.window.addnwhLabel("display","hourlabel",x=20,y=470,font=self.font,text="Hour",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","hourcolonlabel",x=110,y=469,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","hourvallabel",x=130,y=470,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         self.timepanevisible = True
+        if not self.timepanevisible:
+            # Day Label
+            self.window.addnwhLabel("display","daylabel",x=20,y=450,font=self.font,text="Day",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","daycolonlabel",x=110,y=449,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","dayvallabel",x=130,y=450,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+
+            # Hour Label
+            self.window.addnwhLabel("display","hourlabel",x=20,y=470,font=self.font,text="Hour",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","hourcolonlabel",x=110,y=469,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","hourvallabel",x=130,y=470,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+            self.timepanevisible = True
 
    def hideTimePane(self):
-      if self.timepanevisible:
-         # Day Label
-         self.window.destroyChild("daylabel")
-         self.window.destroyChild("daycolonlabel")
-         self.window.destroyChild("dayvallabel")
-         # Hour Label
-         self.window.destroyChild("hourlabel")
-         self.window.destroyChild("hourcolonlabel")
-         self.window.destroyChild("hourvallabel")
-         self.timepanevisible = False
+        if self.timepanevisible:
+            # Day Label
+            self.window.destroyChild("daylabel")
+            self.window.destroyChild("daycolonlabel")
+            self.window.destroyChild("dayvallabel")
+
+            # Hour Label
+            self.window.destroyChild("hourlabel")
+            self.window.destroyChild("hourcolonlabel")
+            self.window.destroyChild("hourvallabel")
+            self.timepanevisible = False
 
    def showRegionPane(self):
-      if not self.regionpanevisible:
-         # Pane Title
-         self.window.addnwhLabel("display","label10",x=110,y=280,font=self.font,anchor="n",text="Current Region",background=self.backgroundColor,foreground=self.textColor)
-         # Region Label
-         self.window.addnwhLabel("display","currentregionlabel",x=110,y=300,font=("Times New Roman",20,"bold"),anchor="n",text="Region",background=self.backgroundColor,foreground=self.textColor)
-         self.regionpanevisible = True
-      self.regionChange(self.currentZone)
+        if not self.regionpanevisible:
+            # Pane Title
+            self.window.addnwhLabel("display","label10",x=110,y=280,font=self.font,anchor="n",text="Current Region",background=self.backgroundColor,foreground=self.textColor)
+
+            # Region Label
+            self.window.addnwhLabel("display","currentregionlabel",x=110,y=300,font=("Times New Roman",20,"bold"),anchor="n",text="Region",background=self.backgroundColor,foreground=self.textColor)
+            self.regionpanevisible = True
+        self.regionChange(self.currentZone)
 
    def hideRegionPane(self):
-      if self.regionpanevisible:
-         # Pane Title
-         self.window.destroyChild("label10")
-         # Region Label
-         self.window.destroyChild("currentregionlabel")
-         self.regionpanevisible = False
+        if self.regionpanevisible:
+            # Pane Title
+            self.window.destroyChild("label10")
+
+            # Region Label
+            self.window.destroyChild("currentregionlabel")
+            self.regionpanevisible = False
 
    def showLevelPane(self):
-      if not self.levelpanevisible:
-         # Level Label
-         self.window.addnwhLabel("display","levellabel",x=20,y=370,font=self.font,text="Level",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","levelcolonlabel",x=110,y=369,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","levelvallabel",x=130,y=370,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         # SexP Label
-         self.window.addnwhLabel("display","sexplabel",x=20,y=390,font=self.font,text="SexP",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","sexpcolonlabel",x=110,y=389,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","sexpvallabel",x=130,y=390,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         # Coin Label
-         self.window.addnwhLabel("display","coinlabel",x=20,y=410,font=self.font,text="Coin",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","coincolonlabel",x=110,y=409,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
-         self.window.addnwhLabel("display","coinvallabel",x=130,y=410,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
-         self.levelpanevisible = True
+        if not self.levelpanevisible:
+            # Level Label
+            self.window.addnwhLabel("display","levellabel",x=20,y=370,font=self.font,text="Level",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","levelcolonlabel",x=110,y=369,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","levelvallabel",x=130,y=370,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+
+            # SexP Label
+            self.window.addnwhLabel("display","sexplabel",x=20,y=390,font=self.font,text="SexP",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","sexpcolonlabel",x=110,y=389,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","sexpvallabel",x=130,y=390,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+
+            # Coin Label
+            self.window.addnwhLabel("display","coinlabel",x=20,y=410,font=self.font,text="Coin",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","coincolonlabel",x=110,y=409,font=self.font,anchor="n",text=":",background=self.backgroundColor,foreground=self.textColor)
+            self.window.addnwhLabel("display","coinvallabel",x=130,y=410,font=self.font,text="",background=self.backgroundColor,foreground=self.textColor)
+            self.levelpanevisible = True
 
    def hideLevelPane(self):
-      if self.levelpanevisible:
-         # Level Label
-         self.window.destroyChild('levellabel')
-         self.window.destroyChild('levelcolonlabel')
-         self.window.destroyChild('levelvallabel')
-         # SexP Label
-         self.window.destroyChild('sexplabel')
-         self.window.destroyChild('sexpcolonlabel')
-         self.window.destroyChild('sexpvallabel')
-         # Coin Label
-         self.window.destroyChild('coinlabel')
-         self.window.destroyChild('coincolonlabel')
-         self.window.destroyChild('coinvallabel')
-         self.levelpanevisible = False
+        if self.levelpanevisible:
+            # Level Label
+            self.window.destroyChild('levellabel')
+            self.window.destroyChild('levelcolonlabel')
+            self.window.destroyChild('levelvallabel')
+
+            # SexP Label
+            self.window.destroyChild('sexplabel')
+            self.window.destroyChild('sexpcolonlabel')
+            self.window.destroyChild('sexpvallabel')
+
+            # Coin Label
+            self.window.destroyChild('coinlabel')
+            self.window.destroyChild('coincolonlabel')
+            self.window.destroyChild('coinvallabel')
+            self.levelpanevisible = False
 
    def showSGButton(self):
-      if (not self.showsavegame):
-         self.window.addWidget(PyminButton, 'display', 'savegamebutton', x=110, y=510, width=100, height=30, font=self.font, anchor='n', text='Save Game', command=self.saveG)
-         self.showsavegame = True
+        if (not self.showsavegame):
+            self.window.addWidget(PyminButton, 'display', 'savegamebutton', x=110, y=510, width=100, height=30, font=self.font, anchor='n', text='Save Game', command=self.saveG)
+            self.showsavegame = True
 
    def hideSGButton(self):
-      if (self.showsavegame):
-         self.window.destroyChild('savegamebutton')
-         self.showsavegame = False
+        if (self.showsavegame):
+            self.window.destroyChild('savegamebutton')
+            self.showsavegame = False
 
    def showLGButton(self):
-      if (not self.showloadgame):
-         self.window.addWidget(PyminButton, 'display', 'loadgamebutton', x=110, y=545, width=100, height=30, font=self.font, anchor='n', text='Load Game', command=self.loadG)
-         self.showloadgame = True
+        if (not self.showloadgame):
+            self.window.addWidget(PyminButton, 'display', 'loadgamebutton', x=110, y=545, width=100, height=30, font=self.font, anchor='n', text='Load Game', command=self.loadG)
+            self.showloadgame = True
 
    def hideLGButton(self):
-      if (self.showloadgame):
-         self.window.destroyChild('loadgamebutton')
-         self.showloadgame = False
+        if (self.showloadgame):
+            self.window.destroyChild('loadgamebutton')
+            self.showloadgame = False
 
    def showNGButton(self):
-      if (not self.shownewgame):
-         tempcalc = (610, 90) if self.oNewGameButton else (580, 100)
-         self.window.addWidget(PyminButton, 'display', 'newgamebutton', x=110, y=tempcalc[0], width=tempcalc[1], height=30, font=self.font, anchor='n', text='New Game', command=self.newGameStart)
-         self.shownewgame = True
+        if (not self.shownewgame):
+            tempcalc = (610, 90) if self.oNewGameButton else (580, 100)
+            self.window.addWidget(PyminButton, 'display', 'newgamebutton', x=110, y=tempcalc[0], width=tempcalc[1], height=30, font=self.font, anchor='n', text='New Game', command=self.newGameStart)
+            self.shownewgame = True
 
    def hideNGButton(self):
-      if (self.shownewgame):
-         self.window.destroyChild('newgamebutton')
-         self.shownewgame = False
+        if (self.shownewgame):
+            self.window.destroyChild('newgamebutton')
+            self.shownewgame = False
 
    def showDiscard(self):
-      if not self.buttonsVisible[13]:
-         self.window.addWidget(PyminButton, 'display', 'discardbutton', x=840, y=162, width=140, height=46, font=self.font, text='Discard', command=self.buttonEventDiscard)
-         self.buttonsVisible[13] = True
+        if not self.buttonsVisible[13]:
+            self.window.addWidget(PyminButton, 'display', 'discardbutton', x=840, y=162, width=140, height=46, font=self.font, text='Discard', command=self.buttonEventDiscard)
+            self.buttonsVisible[13] = True
 
    def hideDiscard(self):
-      if self.buttonsVisible[13]:
-         self.window.destroyChild('discardbutton')
-         self.buttonsVisible[13] = False
+        if self.buttonsVisible[13]:
+            self.window.destroyChild('discardbutton')
+            self.buttonsVisible[13] = False
 
-   def buttonExecProxy(self, buttonNum:int):
-      if buttonNum == 1:
-         self.buttonEvent1()
-      elif buttonNum == 2:
-         self.buttonEvent2()
-      elif buttonNum == 3:
-         self.buttonEvent3()
-      elif buttonNum == 4:
-         self.buttonEvent4()
-      elif buttonNum == 5:
-         self.buttonEvent5()
-      elif buttonNum == 6:
-         self.buttonEvent6()
-      elif buttonNum == 7:
-         self.buttonEvent7()
-      elif buttonNum == 8:
-         self.buttonEvent8()
-      elif buttonNum == 9:
-         self.buttonEvent9()
-      elif buttonNum == 10:
-         self.buttonEvent10()
-      elif buttonNum == 11:
-         self.buttonEvent11()
-      elif buttonNum == 12:
-         self.buttonEvent12()
+   def buttonExecProxy(self, buttonNum: int):
+        if buttonNum == 1:
+            self.buttonEvent1()
+        elif buttonNum == 2:
+            self.buttonEvent2()
+        elif buttonNum == 3:
+            self.buttonEvent3()
+        elif buttonNum == 4:
+            self.buttonEvent4()
+        elif buttonNum == 5:
+            self.buttonEvent5()
+        elif buttonNum == 6:
+            self.buttonEvent6()
+        elif buttonNum == 7:
+            self.buttonEvent7()
+        elif buttonNum == 8:
+            self.buttonEvent8()
+        elif buttonNum == 9:
+            self.buttonEvent9()
+        elif buttonNum == 10:
+            self.buttonEvent10()
+        elif buttonNum == 11:
+            self.buttonEvent11()
+        elif buttonNum == 12:
+            self.buttonEvent12()
 
-   def showButtons(self, buttons:ButtonList, hideDiscard=True):
-      '''
-      Replacement function for viewButtonOutline
-      '''
-      self.bc()
-      if hideDiscard: 
-         self.hideDiscard()
-      for i in range(1, 13):
-         if not buttons[i] and self.buttonsVisible[i]:
-            self.window.destroyChild(f'button{i}')
-            self.buttonsVisible[i] = False
-         elif buttons[i]:
-            if self.buttonsVisible[i]:
-               self.window._children[f'button{i}'].state = 'normal'
-            else:
-               tempcalc = Calc.showButtons(i)
-               self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, command=partial(self.buttonExecProxy, i))
-               self.buttonsVisible[i] = True
+   def showButtons(self, buttons: ButtonList, hideDiscard: bool = True):
+        '''
+        Replacement function for viewButtonOutline
+        '''
+        self.bc()
+        if hideDiscard:
+            self.hideDiscard()
+        for i in range(1, 13):
+            if not buttons[i] and self.buttonsVisible[i]:
+                self.window.destroyChild(f'button{i}')
+                self.buttonsVisible[i] = False
+            elif buttons[i]:
+                if self.buttonsVisible[i]:
+                    self.window._children[f'button{i}'].state = 'normal'
+                else:
+                    tempcalc = Calc.showButtons(i)
+                    self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, command=partial(self.buttonExecProxy, i))
+                    self.buttonsVisible[i] = True
 
    def buttonWrite(self, buttonNumber: int, buttonText: str):
-      self.window._children[f'button{buttonNumber}'].text = buttonText
+        self.window._children[f'button{buttonNumber}'].text = buttonText
 
    def clearTextAllButtons(self):
-      for i in range(1, 13):
-         if (self.buttonsVisible[i]):
-            self.window._children[f'button{i}'].text = ''
+        for i in range(1, 13):
+            if (self.buttonsVisible[i]):
+                self.window._children[f'button{i}'].text = ''
 
    def enableAllButtons(self):
-      for i in range(1, 13):
-         if (self.buttonsVisible[i]):
-            self.window._children[f'button{i}'].state = 'normal'
+        for i in range(1, 13):
+            if (self.buttonsVisible[i]):
+                self.window._children[f'button{i}'].state = 'normal'
 
    def disableOneButton(self, buttonNum:int):
-      if (self.buttonsVisible[buttonNum]):
-         self.window._children[f'button{buttonNum}'].state = 'disabled'
+        if (self.buttonsVisible[buttonNum]):
+            self.window._children[f'button{buttonNum}'].state = 'disabled'
 
    def disableSelectedButtons(self, a:list):
-      for i in a:
-         self.disableOneButton(i)
+        for i in a:
+            self.disableOneButton(i)
 
    def writeAmount(self, number, amount):
-      self.window._children[f'amountlabel{number}'].text = amount
+        self.window._children[f'amountlabel{number}'].text = amount
 
    def showAmount(self, buttonNum:int):
-      if not self.amountLabelsVisible[buttonNum]:
-         tempcalc = Calc.showAmount(buttonNum)
-         self.window.addWidget(PyminLabel, 'display', f'amountlabel{buttonNum}', x=tempcalc[0], y=tempcalc[1], width=30, height=15, font=self.font, text='000')
-         self.amountLabelsVisible[buttonNum] = True
+        if not self.amountLabelsVisible[buttonNum]:
+            tempcalc = Calc.showAmount(buttonNum)
+            self.window.addWidget(PyminLabel, 'display', f'amountlabel{buttonNum}', x=tempcalc[0], y=tempcalc[1], width=30, height=15, font=self.font, text='000')
+            self.amountLabelsVisible[buttonNum] = True
 
    def hideAmount(self, buttonNum:int):
-      if self.amountLabelsVisible[buttonNum]:
-         self.window.destroyChild(f'amountlabel{buttonNum}')
-         self.amountLabelsVisible[buttonNum] = False
+        if self.amountLabelsVisible[buttonNum]:
+            self.window.destroyChild(f'amountlabel{buttonNum}')
+            self.amountLabelsVisible[buttonNum] = False
 
    def hideAmountAll(self):
-      for i in range(1, 13):
-         self.hideAmount(i)
+        for i in range(1, 13):
+            self.hideAmount(i)
 
    def showSidePanel(self):
-      if not self.sidepanelvisible:
-         for i in range(8):
-            tempcalc = Calc.showSidePanel(i)
-            self.window.addWidget(PyminButton, 'display', self.sidepanelbuttonnames[i], x=tempcalc[0], y=tempcalc[1], width=80, height=30, font=self.font, text=self.sidepanelbuttontext[i], command=partial(self.sideEvent, i + 1))
-         self.window.addHTMLScrolledText('display', 'textside', x=823, y=275, width=330, height=315, font=self.font, border=self.scrolledTextBorders, text='Test', cursor='arrow', wrap='word', background=self.backgroundColor, foreground=self.textColor)
-         self.displaySideText()
-      self.sidepanelvisible = True
-      self.hideAPButton()
+        if not self.sidepanelvisible:
+            for i in range(8):
+                tempcalc = Calc.showSidePanel(i)
+                self.window.addWidget(PyminButton, 'display', self.sidepanelbuttonnames[i], x=tempcalc[0], y=tempcalc[1], width=80, height=30, font=self.font, text=self.sidepanelbuttontext[i], command=partial(self.sideEvent, i + 1))
+            self.window.addHTMLScrolledText('display', 'textside', x=823, y=275, width=330, height=315, font=self.font, border=self.scrolledTextBorders, text='Test', cursor='arrow', wrap='word', background=self.backgroundColor, foreground=self.textColor)
+            self.displaySideText()
+        self.sidepanelvisible = True
+        self.hideAPButton()
 
    def hideSidePanel(self):
-      if self.sidepanelvisible:
-         for i in range(8):
-            self.window.destroyChild(self.sidepanelbuttonnames[i])
-         self.window.destroyChild('textside')
-      self.sidepanelvisible = False
-      self.showAPButton()
+        if self.sidepanelvisible:
+            for i in range(8):
+                self.window.destroyChild(self.sidepanelbuttonnames[i])
+            self.window.destroyChild('textside')
+        self.sidepanelvisible = False
+        self.showAPButton()
 
    def showOption7(self):
-      if (not self.option7Visible):
-         self.window._children['themebutton7'].state = 'normal'
-         self.option7Visible = True
-         self.swapOption7()
+        if (not self.option7Visible):
+            self.window._children['themebutton7'].state = 'normal'
+            self.option7Visible = True
+            self.swapOption7()
 
    def hideOption7(self):
-      if (self.option7Visible):
-         self.window._children['themebutton7'].text = ''
-         self.window._children['themebutton7'].state = 'disabled'
-         self.option7Visible = False
+        if (self.option7Visible):
+            self.window._children['themebutton7'].text = ''
+            self.window._children['themebutton7'].state = 'disabled'
+            self.option7Visible = False
 
    def swapOption7(self):
-      if (self.option7Visible):
-         if (self.showSide):
-            self.window._children['themebutton7'].text = 'O'
-         elif (not self.showSide):
-            self.window._children['themebutton7'].text = '--'
+        if (self.option7Visible):
+            if (self.showSide):
+                self.window._children['themebutton7'].text = 'O'
+            elif (not self.showSide):
+                self.window._children['themebutton7'].text = '--'
 
    def showAPButton(self):
-      if not self.appearancebuttonvisible:
-         self.window.addWidget(PyminButton, 'display', 'appearancebutton', x=990, y=426, width=150, height=50, font=self.font, anchor='center', text='Appearance', command=self.appearance)
-         self.appearancebuttonvisible = True
+        if not self.appearancebuttonvisible:
+            self.window.addWidget(PyminButton, 'display', 'appearancebutton', x=990, y=426, width=150, height=50, font=self.font, anchor='center', text='Appearance', command=self.appearance)
+            self.appearancebuttonvisible = True
 
    def hideAPButton(self):
-      if self.appearancebuttonvisible:
-         self.window.destroyChild('appearancebutton')
-         self.appearancebuttonvisible = False
+        if self.appearancebuttonvisible:
+            self.window.destroyChild('appearancebutton')
+            self.appearancebuttonvisible = False
 
    def displayMainText(self):
-      self.window._children['textmain']._fontSize = self.fontSize - 2
-      self.window._children['textmain']._bold = self.fontBold
-      self.window._children['textmain'].text = self.currentText.get()
+        self.window._children['textmain']._fontSize = self.fontSize - 2
+        self.window._children['textmain']._bold = self.fontBold
+        self.window._children['textmain'].text = self.currentText.get()
 
    def displaySideText(self):
-      self.window._children['textside']._fontSize = self.fontSize - 2
-      self.window._children['textside']._bold = self.fontBold
-      self.window._children['textside'].text = self.sideText.get()
+        self.window._children['textside']._fontSize = self.fontSize - 2
+        self.window._children['textside']._bold = self.fontBold
+        self.window._children['textside'].text = self.sideText.get()
 
    def hideUpDown(self):
-      if self.statpanevisible:
-         self.window.configureChildren(('strimglabel', 'mentimglabel', 'libimglabel', 'senimglabel', 'hpimglabel', 'lustimglabel'), image_name='')
+        if self.statpanevisible:
+            self.window.configureChildren(('strimglabel', 'mentimglabel', 'libimglabel', 'senimglabel', 'hpimglabel', 'lustimglabel'), image_name='')
 
    def UpDownImage(self, which, img):
-      if self.statpanevisible:
-         self.window._children[f'{which}imglabel'].image_name = img
+        if self.statpanevisible:
+            self.window._children[f'{which}imglabel'].image_name = img
 
    def moveItemShow(self):
-      text = self.itemName(self.moveItemID)
-      if (not self.moveitembuttonvisible):
-         self.window.addWidget(PyminButton, 'display', 'moveitembutton', x=920, y=96, width=140, height=46, font=self.font, text=text)
-         self.moveitembuttonvisible = True
-      else:
-         self.window._children['moveitembutton'].text = text
+        text = self.itemName(self.moveItemID)
+        if (not self.moveitembuttonvisible):
+            self.window.addWidget(PyminButton, 'display', 'moveitembutton', x=920, y=96, width=140, height=46, font=self.font, text=text)
+            self.moveitembuttonvisible = True
+        else:
+            self.window._children['moveitembutton'].text = text
 
    def moveItemHide(self):
-      if (self.moveitembuttonvisible):
-         self.window.destroyChild('moveitembutton')
-         self.moveitembuttonvisible = False
+        if (self.moveitembuttonvisible):
+            self.window.destroyChild('moveitembutton')
+            self.moveitembuttonvisible = False
 
    def moveItemAmountShow(self):
-      if (not self.moveitemamountvisible):
-         self.window.addWidget(PyminLabel, 'display', 'moveitemamount', x=1030, y=129, width=30, height=15, font=self.font, text=self.moveItemStack)
-         self.moveitemamountvisible = True
-      else:
-         self.window._children['moveitemamount'].text = self.moveItemStack
+        if (not self.moveitemamountvisible):
+            self.window.addWidget(PyminLabel, 'display', 'moveitemamount', x=1030, y=129, width=30, height=15, font=self.font, text=self.moveItemStack)
+            self.moveitemamountvisible = True
+        else:
+            self.window._children['moveitemamount'].text = self.moveItemStack
 
    def moveItemAmountHide(self):
-      if (self.moveitemamountvisible):
-         self.window.destroyChild('moveitemamount')
-         self.moveitemamountvisible = False
+        if (self.moveitemamountvisible):
+            self.window.destroyChild('moveitemamount')
+            self.moveitemamountvisible = False
 
    def debugVariableDisplayText(self):
-      if self.currentState == 0:
-         return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
-      return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
+        if self.currentState == 0:
+            return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
+        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
 
    def detailedDebug(self, *e):
-      self.debugvarwindow.updateText()
+        self.debugvarwindow.updateText()
 
    def debugChangeAffinity(self, affinity, amount):
-      if affinity == '1':
-         self.human += amount
-      elif affinity == '2':
-         self.horse += amount
-      elif affinity == '3':
-         self.wolf += amount
-      elif affinity == '4':
-         self.cat += amount
-      elif affinity == '5':
-         self.cow += amount
-      elif affinity == '6':
-         self.lizard += amount
-      elif affinity == '7':
-         self.rabbit += amount
-      elif affinity == '8':
-         self.mouse += amount
-      elif affinity == '9':
-         self.bird += amount
-      elif affinity == '10':
-         self.pig += amount
-      elif affinity == '11':
-         self.skunk += amount
-      elif affinity == '12':
-         self.bug += amount
-      elif affinity == 'L1001':
-         self.cowTaurAffinity += amount
-      elif affinity == 'L1002':
-         self.humanTaurAffinity += amount
-      elif affinity == 'B2':
-         self.twoBoobAffinity += amount
-      elif affinity == 'B4':
-         self.fourBoobAffinity += amount
-      elif affinity == 'B6':
-         self.sixBoobAffinity += amount
-      elif affinity == 'B8':
-         self.eightBoobAffinity += amount
-      elif affinity == 'B10':
-         self.tenBoobAffinity += amount
-      if self.currentState == 1 and self.showsavegame and self.showloadgame and self.shownewgame:
-         # Should only happen when in doGeneral
-         self.doProcess(override='aff')
-      self.detailedDebug()
+        if affinity == '1':
+            self.human += amount
+        elif affinity == '2':
+            self.horse += amount
+        elif affinity == '3':
+            self.wolf += amount
+        elif affinity == '4':
+            self.cat += amount
+        elif affinity == '5':
+            self.cow += amount
+        elif affinity == '6':
+            self.lizard += amount
+        elif affinity == '7':
+            self.rabbit += amount
+        elif affinity == '8':
+            self.mouse += amount
+        elif affinity == '9':
+            self.bird += amount
+        elif affinity == '10':
+            self.pig += amount
+        elif affinity == '11':
+            self.skunk += amount
+        elif affinity == '12':
+            self.bug += amount
+        elif affinity == 'L1001':
+            self.cowTaurAffinity += amount
+        elif affinity == 'L1002':
+            self.humanTaurAffinity += amount
+        elif affinity == 'B2':
+            self.twoBoobAffinity += amount
+        elif affinity == 'B4':
+            self.fourBoobAffinity += amount
+        elif affinity == 'B6':
+            self.sixBoobAffinity += amount
+        elif affinity == 'B8':
+            self.eightBoobAffinity += amount
+        elif affinity == 'B10':
+            self.tenBoobAffinity += amount
+        if self.currentState == 1 and self.showsavegame and self.showloadgame and self.shownewgame:
+            # Should only happen when in doGeneral
+            self.doProcess(override='aff')
+        self.detailedDebug()
 
 
 if __name__ == '__main__':
