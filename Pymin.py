@@ -7970,6 +7970,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(f"\n\nYou will lose all {self.bagStackArray[self.choiceListResult[1]]} of {self.itemName(self.choiceListResult[0])} if you do.")
                 self.displayMainText()
                 self.buttonConfirm()
+
                 def doListen():
                     if (self.buttonChoice == 6):
                         self.bagSlotClear(self.choiceListResult[1])
@@ -8028,7 +8029,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.moveItemID == 0):
             self.showMoveItem(False)
         else:
-            self.refreshMoveItem(self.moveItemID,self.moveItemStack)
+            self.refreshMoveItem(self.moveItemID, self.moveItemStack)
         if self.useNewStash and (self.inBag or self.inStash):
             if self.moveItemID != 0 and self.buttonsVisible[12]:
                 self.buttonWrite(12, "Stash" if (self.inBag) else "Bag")
@@ -8634,8 +8635,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Returns True if item ID is consumable
         '''
-        # HERE
-        return ID in {103,105,110,111,112,113,114,115,120,121,122,123,124,125,126,128,201,202,203,204,205,207,208,209,210,211,212,213,214,216,217,218,219,220,221,222,223,224,225,226,227,228,230,231,238,239,240,241,242,243,245,246,248,249,250,251,253,255,256,257,258,259,260,500,501,502,503,504,505,506,507,508,509,510,511,512,513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,528,529,530,531,532,533,534,535,536,537,538,539,540}
+        return ID in {103, 105, 110, 111, 112, 113, 114, 115, 120, 121, 122, 123, 124, 125, 126, 128, 201, 202, 203, 204, 205, 207, 208, 209, 210, 211, 212, 213, 214, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 230, 231, 238, 239, 240, 241, 242, 243, 245, 246, 248, 249, 250, 251, 253, 255, 256, 257, 258, 259, 260, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540}
 
    def passiveItemAdd(self, ID: int):
         '''
@@ -8786,14 +8786,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Function which returns the maximum number of the item ID that can be in a stack
         '''
-        # HERE
-        if ID in {1,2,3,101,102,104,106,108,109,116,117,118,119,127,200,215,229,232,233,234,235,236,237,244,247,252,254,404,418,502,526,531}:
+        if ID in {1, 2, 3, 101, 102, 104, 106, 108, 109, 116, 117, 118, 119, 127, 200, 215, 229, 232, 233, 234, 235, 236, 237, 244, 247, 252, 254, 404, 418, 502, 526, 531}:
             return 1
-        if ID in {105,110,111,112,113,114,120,126,201,202,204,205,207,210,216,217,219,220,222,230,240,241,242,243,249,250,257,258,501,505,513,514,515,516,517,518,519,520,521,522,525,529,530,532,536,537}:
+        if ID in {105, 110, 111, 112, 113, 114, 120, 126, 201, 202, 204, 205, 207, 210, 216, 217, 219, 220, 222, 230, 240, 241, 242, 243, 249, 250, 257, 258, 501, 505, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 525, 529, 530, 532, 536, 537}:
             return 5
-        if ID in {115,121,122,123,124,125,128,206,208,212,213,214,218,221,223,224,225,227,228,231,246,248,259,260,500,503,504,506,507,508,509,510,511,512,524,527,528,534,535,538,539}:
+        if ID in {115, 121, 122, 123, 124, 125, 128, 206, 208, 212, 213, 214, 218, 221, 223, 224, 225, 227, 228, 231, 246, 248, 259, 260, 500, 503, 504, 506, 507, 508, 509, 510, 511, 512, 524, 527, 528, 534, 535, 538, 539}:
             return 10
-        if ID in {103,203,209,211,226,238,239,245,251,253,255,256,523,533,540}:
+        if ID in {103, 203, 209, 211, 226, 238, 239, 245, 251, 253, 255, 256, 523, 533, 540}:
             return 15
         return 0
 
@@ -8838,7 +8837,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Whether the page label should be hidden when using an item
         '''
-        return not ID in {101, 102, 200, 206, 215, 229, 233, 234, 236, 237, 252, 254, 404}
+        return ID not in {101, 102, 200, 206, 215, 229, 233, 234, 236, 237, 252, 254, 404}
 
    @staticmethod
    def TeleportScrollAny_GetButtonOrder(currentZone):
@@ -8957,12 +8956,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText("You dab the sand onto your nipples. It feels odd at first, but as you rub them until they are stiff, you notice a decrease in lactation.", True)
                     if (self.lactation - 75 < 0):
                         self.milkMod += self.lactation - 75
-                    self.lactChange(1,-75)
+                    self.lactChange(1, -75)
                     self.displayMainText()
                     self.doEnd()
                 elif self.buttonChoice == 11:
                     self.doMainText("You dab the sand onto your teats. It feels odd at first, but as you rub them until they are stiff, you notice a decrease in lactation.", True)
-                    self.lactChange(2,-75)
+                    self.lactChange(2, -75)
                     self.displayMainText()
                     self.doEnd()
                 elif self.buttonChoice == 12:
@@ -9058,12 +9057,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText(f"You have produced {self.decGet(self.getMilk / 1000, 1)} liters of milk!", True)
                         if (self.tempNum == 1):
                             if (self.breastSize > 14):
-                                self.doLust(-Math.floor(self.sen / 4),2,3)
+                                self.doLust(-Math.floor(self.sen / 4), 2, 3)
                             elif (self.breastSize < 4):
-                                self.doLust(-Math.floor(self.sen / 4),2,3)
+                                self.doLust(-Math.floor(self.sen / 4), 2, 3)
                             self.nipplePlay += 10
                         elif (self.tempNum == 2):
-                            self.doLust(-Math.floor(self.sen / 4),2,4)
+                            self.doLust(-Math.floor(self.sen / 4), 2, 4)
                             self.udderPlay += 10
                         if self.getMilk < 1000:
                             self.doMainText("\n\nUnfortunately, you haven't produced enough milk to fill a full bottle yet.")
@@ -9155,7 +9154,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             if (getCum < 1000):
                                 self.doMainText(f"\n\nYou have produced {getCum} ml of spooge!")
                             elif (getCum >= 1000):
-                                self.doMainText(f"\n\nYou have produced {self.decGet(getCum / 1000,1)} liters of spooge!")
+                                self.doMainText(f"\n\nYou have produced {self.decGet(getCum / 1000, 1)} liters of spooge!")
                             if (getCum <= 400):
                                 self.doMainText(" Although, the resulting amount is so small that you can't really do anything with it...")
                             elif (getCum <= 600):
@@ -9186,13 +9185,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.cockSize += 1
                                 self.doMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your cock{self.plural(1)} permanently slightly larger...")
                             if (self.cockSize * self.cockSizeMod * 4 > self.tallness and self.gender == 3):
-                                self.doLust(-Math.floor(self.sen / 4),2,58,3,57,4)
+                                self.doLust(-Math.floor(self.sen / 4), 2, 58, 3, 57, 4)
                             elif (self.cockSize * self.cockSizeMod * 4 > self.tallness):
-                                self.doLust(-Math.floor(self.sen / 4),2,58,1,57,4)
+                                self.doLust(-Math.floor(self.sen / 4), 2, 58, 1, 57, 4)
                             elif (self.gender == 3):
-                                self.doLust(-Math.floor(self.sen / 4),2,3,57,4)
+                                self.doLust(-Math.floor(self.sen / 4), 2, 3, 57, 4)
                             else:
-                                self.doLust(-Math.floor(self.sen / 4),2,1,57,4)
+                                self.doLust(-Math.floor(self.sen / 4), 2, 1, 57, 4)
                             self.hrs = 2
                         self.displayMainText()
                         self.doEnd()
@@ -9246,29 +9245,29 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif ID == 108:
             self.doMainText("You push the gauge against your pulse. It grows warm for a moment before a vague display shows up on the other side.", True)
             if (self.humanAffinity > 0):
-                self.doMainText("\n\nHuman:\n" + "|"*self.humanAffinity)
+                self.doMainText("\n\nHuman:\n" + "|" * self.humanAffinity)
             if (self.horseAffinity > 0):
-                self.doMainText("\n\nHorse:\n" + "|"*self.horseAffinity)
+                self.doMainText("\n\nHorse:\n" + "|" * self.horseAffinity)
             if (self.wolfAffinity > 0):
-                self.doMainText("\n\nWolf:\n" + "|"*self.wolfAffinity)
+                self.doMainText("\n\nWolf:\n" + "|" * self.wolfAffinity)
             if (self.catAffinity > 0):
-                self.doMainText("\n\nCat:\n" + "|"*self.catAffinity)
+                self.doMainText("\n\nCat:\n" + "|" * self.catAffinity)
             if (self.cowAffinity > 0):
-                self.doMainText("\n\nCow:\n" + "|"*self.cowAffinity)
+                self.doMainText("\n\nCow:\n" + "|" * self.cowAffinity)
             if (self.lizardAffinity > 0):
-                self.doMainText("\n\nLizard:\n" + "|"*self.lizardAffinity)
+                self.doMainText("\n\nLizard:\n" + "|" * self.lizardAffinity)
             if (self.rabbitAffinity > 0):
-                self.doMainText("\n\nRabbit:\n" + "|"*self.rabbitAffinity)
+                self.doMainText("\n\nRabbit:\n" + "|" * self.rabbitAffinity)
             if (self.mouseAffinity > 0):
-                self.doMainText("\n\nMouse:\n" + "|"*self.mouseAffinity)
+                self.doMainText("\n\nMouse:\n" + "|" * self.mouseAffinity)
             if (self.birdAffinity > 0):
-                self.doMainText("\n\nBird:\n" + "|"*self.birdAffinity)
+                self.doMainText("\n\nBird:\n" + "|" * self.birdAffinity)
             if (self.pigAffinity > 0):
-                self.doMainText("\n\nPig:\n" + "|"*self.pigAffinity)
+                self.doMainText("\n\nPig:\n" + "|" * self.pigAffinity)
             if (self.skunkAffinity > 0):
-                self.doMainText("\n\nSkunk:\n" + "|"*self.skunkAffinity)
+                self.doMainText("\n\nSkunk:\n" + "|" * self.skunkAffinity)
             if (self.bugAffinity > 0):
-                self.doMainText("\n\nBug:\n" + "|"*self.bugAffinity)
+                self.doMainText("\n\nBug:\n" + "|" * self.bugAffinity)
             self.displayMainText()
             self.doEnd()
         elif ID == 109:
@@ -9336,14 +9335,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 temp = self.choiceListResult[0]
                 if temp == "Cock":
                     self.doMainText(f"{self.cockDesc()} cock{self.plural(1)} and watch with a shiver as the flesh receeds.")
-                    self.cockChange(-Math.ceil(self.cockSize / 2),0)
+                    self.cockChange(-Math.ceil(self.cockSize / 2), 0)
                 elif temp == "Balls":
                     self.doMainText(f"{self.ballDesc()} balls and watch with a shiver as the orbs shrink, becoming ")
                     self.ballSize -= Math.floor(self.ballSize / 2)
                     self.doMainText(f"{self.ballDesc()}.")
                 elif temp == "Pussy":
                     self.doMainText(f"vagina{self.plural(2)} and quiver as the fleshy walls within your body shrink.")
-                    self.vagChange(Math.floor(-self.vagSize / 2),0)
+                    self.vagChange(Math.floor(-self.vagSize / 2), 0)
                 elif temp == "Vulva":
                     self.doMainText(f"{self.vulvaDesc()} vulva and watch with a quiver as nether-lips shrink, becoming ")
                     self.vulvaSize -= Math.floor(self.vulvaSize / 2)
@@ -9379,7 +9378,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.bellyMod -= Math.floor(self.bellyMod / 2)
                     self.doMainText(f"{self.bellyDesc()}.")
                 self.displayMainText()
-                if self.buttonChoice in {4,8}:
+                if self.buttonChoice in {4, 8}:
                     self.choiceListButtons("Reduction")
                 elif self.buttonChoice == 12:
                     self.itemAdd(110)
@@ -9399,12 +9398,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
         elif ID == 113:
             self.outputMainText("Biting into the leaf, it feels oddly sour. However, afterward your mind feels a bit clearer and your body more prepared for whatever may come.", True)
-            self.stats(1,1,0,0)
+            self.stats(1, 1, 0, 0)
             self.aff(3, Math.floor(self.percent() / 15 + 2), -2)
             self.doEnd()
         elif ID == 114:
             self.outputMainText("Drinking the slick, slimey, slightly sweet sap, you realize it probably isn't sap... The thought makes you tingle with arousal, your whole body slightly more sensitive.", True)
-            self.stats(0,0,1,1)
+            self.stats(0, 0, 1, 1)
             self.aff(4, Math.floor(self.percent() / 15 + 2), -2)
             self.doEnd()
         elif ID == 115:
@@ -9448,12 +9447,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doEnd()
                 elif self.buttonChoice == 5:
                     self.doMainText(f"You rub the neuterizer into {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}...", True)
-                    self.cockChange(0,-1)
+                    self.cockChange(0, -1)
                     self.displayMainText()
                     self.doEnd()
                 elif self.buttonChoice == 7:
                     self.doMainText(f"You rub the neuterizer into {self.oneYour(2)} {self.vulvaDesc()} cunt{self.plural(1)}...", True)
-                    self.vagChange(0,-1)
+                    self.vagChange(0, -1)
                     self.displayMainText()
                     self.doEnd()
                 elif self.buttonChoice == 10:
@@ -9539,13 +9538,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if self.buttonChoice == 5:
                     self.doMainText(f"You pour out the vial of poison and rub the pearlescant fluid all over your {self.boobDesc()} breasts. You shiver a little as they tingle, a subtle warmth permeating your bosom as the poison sets in and remains.", True)
                     self.milkCPoisonNip += 5
-                    self.doLust(self.percent() / 10,0)
+                    self.doLust(self.percent() / 10, 0)
                     self.displayMainText()
                     self.doEnd()
                 elif self.buttonChoice == 7:
                     self.doMainText(f"You pour out the vial of poison and rub the pearlescant fluid all over your {self.udderDesc()} udder. Your hips twitch a little as the fleshy bag tingles, a subtle warmth permeating your udder as the poison sets in and remains.", True)
                     self.milkCPoisonUdd += 5
-                    self.doLust(self.percent() / 10,0)
+                    self.doLust(self.percent() / 10, 0)
                     self.displayMainText()
                     self.doEnd()
                 elif self.buttonChoice == 12:
@@ -9563,7 +9562,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(f" You feel {self.oneYour(2)} {self.clitDesc()} clit{self.plural(2)} swell and shift within your {self.clothesBottom()}, your lips starting to grow quite oddly as well...")
                     self.vagChange(0, -1)
                     self.cockChange(Math.ceil(self.clitSize * 5 / 2), 1)
-                    self.doLust(4,0)
+                    self.doLust(4, 0)
                 else:
                     self.doMainText(f" You feel your {self.clitDesc()} clit{self.plural(2)} grow warm. Within seconds, you begin to shudder erotically as you clit{self.plural(2)} grow hot and erect. After waiting a few moments, the initial intensity passes, but the warmth of the venom within persists, as though lying in wait...")
                     self.cockSnakeVenom += 5
@@ -9615,11 +9614,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText("You crack open the wooden cock. ", True)
             if (chance <= 15):
                 self.doMainText(f" Sparkling lights erupt from the crack, swirling around in the air until they come together to form the outline of a disembodied glowing cock, looking much like the carving. Before you react, it flips around and dives down, before driving back up {self.legWhere(1)} your {self.legDesc(2)} and disappearing into the crotch of your {self.clothesBottom()}.")
-                self.vagChange(0,1)
+                self.vagChange(0, 1)
                 self.doLust(self.percent() / 5, 0)
             elif (chance <= 30):
                 self.doMainText(f" Sparkling lights erupt from the crack, swirling around in the air until they come together to form the outline of a disembodied glowing cock, looking much like the carving. Before you react, it flips around and charges at your groin, ramming right above your crotch and disappearing into the front of your {self.clothesBottom()}.")
-                self.cockChange(0,1)
+                self.cockChange(0, 1)
                 self.doLust(self.percent() / 5, 0)
             else:
                 self.doMainText(" There's nothing inside... Either this thing was just some kinky woman's play-toy, or it was a dud.")
@@ -9761,7 +9760,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     self.doMainText(" feel your cum churning within your body, something extra growing within... Seems as though this berry caused you to grow an extra internal testicle, somehow.")
                 self.balls += 1
-                self.doLust(self.percent() / 10,0)
+                self.doLust(self.percent() / 10, 0)
             else:
                 self.doMainText(" Moments later, you feel a bit of warmth in your groin, but it quickly passes. Now all you're left with is the aftertaste...")
             self.displayMainText()
@@ -9828,7 +9827,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText("You quickly scrub yourself down with the body wash, feeling so fresh and so clean. Which is kinda odd, considering that you're currently playing a porn game.", True)
             self.exhaustion -= 8
             self.stats(0, 1, 0, 2)
-            self.doLust(-10,0)
+            self.doLust(-10, 0)
             self.displayMainText()
             self.doEnd()
         elif ID == 226:
@@ -10008,7 +10007,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         elif self.buttonChoice == 10:
                             self.regionChange(6)
                         elif self.buttonChoice == 11:
-                                self.regionChange(12)
+                            self.regionChange(12)
                     elif self.currentZone == 3:
                         if self.buttonChoice == 7:
                             self.regionChange(1)
@@ -10126,7 +10125,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" The sensation coalesces into your crotch, focusing within your extra genitalia.")
                 if (self.cockTotal > 0):
                     self.tallness += Math.ceil(self.cockTotal / 4) * 2
-                    self.cockChange(0,-Math.ceil(self.cockTotal / 4))
+                    self.cockChange(0, -Math.ceil(self.cockTotal / 4))
                 if (self.balls > 2):
                     self.tallness += Math.ceil(self.balls / 4)
                     if (self.showBalls):
@@ -10134,7 +10133,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.balls -= Math.ceil(self.balls / 4)
                 if (self.vagTotal > 0):
                     self.tallness += Math.ceil(self.vagTotal / 4) * 2
-                    self.vagChange(0,-Math.ceil(self.vagTotal / 4))
+                    self.vagChange(0, -Math.ceil(self.vagTotal / 4))
                 self.doMainText("\n\nThen, once you have lost the extra genitals, the ground below you falls away! Or, more accurately, your heads shoots upward as your body rapidly begins to grow, taller and taller to compensate for the genitals you have lost! You have shed your extra 'limbs' and grown towards the sky.")
             else:
                 self.doMainText(" The sensation coalesces into your crotch for an instance, but quickly dissolves. Then... that's it.\n\nSeems whatever the tear was supposed to do didn't affect you. So much for that.")
@@ -10171,7 +10170,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 def doListen():
                     if self.buttonChoice == 5:
                         self.doMainText("You pop the egg into your mouth and bite down. The gooey stuff splorts about your mouth and... isn't exactly tasty. Even swallowing it makes your belly want to rebel. The act kills off some of your arousal, at least.", True)
-                        self.doLust(-3,0)
+                        self.doLust(-3, 0)
                         self.displayMainText()
                         self.doEnd()
                     elif self.buttonChoice == 7:
@@ -10400,7 +10399,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.cockChange(1, 1)
                 self.doMainText(f"\n\nHowever, it doesn't last long as the last of your vagina{self.plural(2)} shrink{self.plural(4)} to nothing, your {self.vulvaDesc()} lips disintegrating back against your groin before finally vanishing, making you a boy for all intents and purposes.")
                 self.vagChange(-1, 0)
-                self.vagBellyChange(-self.vagSize,-self.vagTotal)
+                self.vagBellyChange(-self.vagSize, -self.vagTotal)
                 self.stats(0, 0, -(2 * (self.vagTotal - 1)), 0)
                 self.vagSize = 0
                 self.vagTotal = 0
@@ -10468,7 +10467,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     self.doMainText(f" The skin {self.legWhere(1)} your {self.legDesc(2)} swells slightly, forming mounds of plush flesh, {self.cockTotal} pair{self.plural(1)} of new feminine lips.")
                 self.doMainText(f" The lips part, the fresh air making you shiver as it passes across the moist flesh within. Your hand passes over your new clit{self.plural(1)}, making you shiver slightly, before you dip your finger into {self.oneYour(1)} new cunt{self.plural(1)}, amazed at the sensation of being penetrated like that. For all intents and purposes, you are now a girl.")
-                self.vagBellyChange(self.cockSize,self.cockTotal)
+                self.vagBellyChange(self.cockSize, self.cockTotal)
                 self.vagTotal = self.cockTotal
                 for i in range(self.vagTotal):
                     if (self.pregArray.length / 5 < 1):
@@ -10492,10 +10491,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.gender = 2
             elif self.gender == 2:
                 self.doMainText("You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within.", True)
-                self.cockChange(self.vagSize,self.vagTotal)
+                self.cockChange(self.vagSize, self.vagTotal)
                 self.doMainText(f"\n\nHowever, it doesn't last long as the last of your vagina{self.plural(2)} shrink{self.plural(4)} to nothing, your {self.vulvaDesc()} lips disintegrating into your new scrotum, your testicles growing larger and larger before your lips finally vanish, making you a boy for all intents and purposes.")
                 self.ballSize = self.vulvaSize
-                self.vagBellyChange(-self.vagSize,-self.vagTotal)
+                self.vagBellyChange(-self.vagSize, -self.vagTotal)
                 self.vagSize = 0
                 self.vagTotal = 0
                 i = 0
@@ -10957,6 +10956,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.hideAmountAll()
         self.buttonConfirm()
         self.buttonShiftOverride = True
+
         def doListen():
             self.buttonShiftOverride = False
             if (self.buttonChoice == 6):
@@ -11010,6 +11010,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.showButtons(ButtonList(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1))
             self.outputMainText("Click 'Store' to store an item from your bag in the stash.\n\nClick 'Remove' to remove an item from your stash and put it into your bag.\n\nClick 'Return' to leave your stash.", True)
             self.doButtonChoices({4: "Store", 8: "Remove", 12: "Return"})
+
             def doListen():
                 if self.buttonChoice == 4:
                     self.inStash = True
@@ -11022,568 +11023,586 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen = doListen
 
    def moveToStash(self):
-      self.mts = True
-      self.displayStash()
-      self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
-      def doListen():
-         self.choiceListSelect("Stash")
-         if (self.buttonChoice == 13):
-            self.doButtonDiscard("mts")
-         elif (self.buttonChoice == 12):
-            self.doBag()
-         elif (self.buttonChoice in {4,8}):
-            self.displayStash()
-         elif self.canLose(self.moveItemID,0):
-            tempNum = self.moveItemID
-            tempNum2 = self.moveItemStack
-            if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
-               if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
-                  self.moveItemStack -= self.itemStackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
-                  self.stashStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
-                  self.refreshMoveItem(self.moveItemID, self.moveItemStack)
-                  self.moveToStash()
-               else:
-                  self.stashStackArray[self.choiceListResult[1]] += tempNum2
-                  self.refreshMoveItem(0,0)
-                  self.doBag()
+        self.mts = True
+        self.displayStash()
+        self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+
+        def doListen():
+            self.choiceListSelect("Stash")
+            if (self.buttonChoice == 13):
+                self.doButtonDiscard("mts")
+            elif (self.buttonChoice == 12):
+                self.doBag()
+            elif (self.buttonChoice in {4, 8}):
+                self.displayStash()
+            elif self.canLose(self.moveItemID, 0):
+                tempNum = self.moveItemID
+                tempNum2 = self.moveItemStack
+                if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
+                    if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
+                        self.moveItemStack -= self.itemStackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
+                        self.stashStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
+                        self.refreshMoveItem(self.moveItemID, self.moveItemStack)
+                        self.moveToStash()
+                    else:
+                        self.stashStackArray[self.choiceListResult[1]] += tempNum2
+                        self.refreshMoveItem(0, 0)
+                        self.doBag()
+                else:
+                    tempmoveItemID = self.stashArray[self.choiceListResult[1]]
+                    tempmoveItemStack = self.stashStackArray[self.choiceListResult[1]]
+                    self.passiveItemRemove(self.moveItemID)
+                    self.stashArray[self.choiceListResult[1]] = tempNum
+                    self.stashStackArray[self.choiceListResult[1]] = tempNum2
+                    self.refreshMoveItem(tempmoveItemID, tempmoveItemStack)
+                    if tempmoveItemID != 0 and tempmoveItemStack != 0:
+                        self.moveToStash()
+                    else:
+                        self.doBag()
             else:
-               tempmoveItemID = self.stashArray[self.choiceListResult[1]]
-               tempmoveItemStack = self.stashStackArray[self.choiceListResult[1]]
-               self.passiveItemRemove(self.moveItemID)
-               self.stashArray[self.choiceListResult[1]] = tempNum
-               self.stashStackArray[self.choiceListResult[1]] = tempNum2
-               self.refreshMoveItem(tempmoveItemID,tempmoveItemStack)
-               if tempmoveItemID != 0 and tempmoveItemStack != 0:
-                  self.moveToStash()
-               else:
-                  self.doBag()
-         else:
-            self.doBag()
-            self.outputMainText("You cannot remove that item from your bag. It may be cursed or needs to be unequipped first.\n\nPlease select another item to move to your stash.",True)
-      self.doListen = doListen
+                self.doBag()
+                self.outputMainText("You cannot remove that item from your bag. It may be cursed or needs to be unequipped first.\n\nPlease select another item to move to your stash.", True)
+        self.doListen = doListen
 
    def moveToBag(self):
-      self.mtb = True
-      self.displayBag()
-      self.outputMainText(f"Click on the bag slot you would like to place {self.itemName(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
-      def doListen():
-         self.choiceListSelect("Bag")
-         if (self.buttonChoice == 13):
-            self.doButtonDiscard("mtb")
-         elif (self.buttonChoice == 12):
-            self.doStash()
-         elif (self.buttonChoice in {4,8}):
-            self.displayBag()
-         else:
-            tempNum = self.moveItemID
-            tempNum2 = self.moveItemStack
-            if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
-               if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
-                  self.moveItemStack -= self.itemStackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
-                  self.bagStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
-                  self.refreshMoveItem(self.moveItemID, self.moveItemStack)
-                  self.moveToBag()
-               else:
-                  self.bagStackArray[self.choiceListResult[1]] += tempNum2
-                  self.refreshMoveItem(0,0)
-                  self.doStash()
-            else:
-               tempmoveItemID = self.bagArray[self.choiceListResult[1]]
-               tempmoveItemStack = self.bagStackArray[self.choiceListResult[1]]
-               self.bagSlotClear(self.choiceListResult[1])
-               self.bagArray[self.choiceListResult[1]] = tempNum
-               self.bagStackArray[self.choiceListResult[1]] = tempNum2
-               self.refreshMoveItem(tempmoveItemID,tempmoveItemStack)
-               if tempmoveItemID != 0 and tempmoveItemStack != 0:
-                  self.moveToBag()
-               else:
-                  self.doStash()
-      self.doListen = doListen
+        self.mtb = True
+        self.displayBag()
+        self.outputMainText(f"Click on the bag slot you would like to place {self.itemName(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
-   def refreshMoveItem(self, item, stack):
-      '''
-      Function to refresh the item being moved
-      '''
-      self.moveItemID = item
-      self.moveItemStack = stack
-      if self.moveItemID != 0 and self.moveItemStack != 0:
-         self.moveItemShow()
-         if (self.moveItemStack > 1):
-            self.moveItemAmountShow()
-         else:
+        def doListen():
+            self.choiceListSelect("Bag")
+            if (self.buttonChoice == 13):
+                self.doButtonDiscard("mtb")
+            elif (self.buttonChoice == 12):
+                self.doStash()
+            elif (self.buttonChoice in {4, 8}):
+                self.displayBag()
+            else:
+                tempNum = self.moveItemID
+                tempNum2 = self.moveItemStack
+                if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
+                    if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
+                        self.moveItemStack -= self.itemStackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
+                        self.bagStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
+                        self.refreshMoveItem(self.moveItemID, self.moveItemStack)
+                        self.moveToBag()
+                    else:
+                        self.bagStackArray[self.choiceListResult[1]] += tempNum2
+                        self.refreshMoveItem(0, 0)
+                        self.doStash()
+                else:
+                    tempmoveItemID = self.bagArray[self.choiceListResult[1]]
+                    tempmoveItemStack = self.bagStackArray[self.choiceListResult[1]]
+                    self.bagSlotClear(self.choiceListResult[1])
+                    self.bagArray[self.choiceListResult[1]] = tempNum
+                    self.bagStackArray[self.choiceListResult[1]] = tempNum2
+                    self.refreshMoveItem(tempmoveItemID, tempmoveItemStack)
+                    if tempmoveItemID != 0 and tempmoveItemStack != 0:
+                        self.moveToBag()
+                    else:
+                        self.doStash()
+        self.doListen = doListen
+
+   def refreshMoveItem(self, item: int, stack: int):
+        '''
+        Function to refresh the item being moved
+        '''
+        self.moveItemID = item
+        self.moveItemStack = stack
+        if self.moveItemID != 0 and self.moveItemStack != 0:
+            self.moveItemShow()
+            if (self.moveItemStack > 1):
+                self.moveItemAmountShow()
+            else:
+                self.moveItemAmountHide()
+        else:
+            self.moveItemHide()
             self.moveItemAmountHide()
-      else:
-         self.moveItemHide()
-         self.moveItemAmountHide()
 
    def doStoreStash(self):
-      self.displayBag()
-      self.bagDisableEmpty()
-      self.outputMainText("Click on an item you would like to stash.\n\nClick 'Return' to return to the main stash options.",True)
-      def doListen():
-         self.choiceListSelect("Bag")
-         if self.buttonChoice == 12:
-            self.doStash()
-         elif self.buttonChoice in {4,8}:
-            self.displayBag()
-            self.bagDisableEmpty()
-         else:
-            trace(self.bagArray[self.choiceListResult[1]])
-            if (self.canLose(self.bagArray[self.choiceListResult[1]])):
-               self.stashStore(self.choiceListResult[1])
+        self.displayBag()
+        self.bagDisableEmpty()
+        self.outputMainText("Click on an item you would like to stash.\n\nClick 'Return' to return to the main stash options.", True)
+
+        def doListen():
+            self.choiceListSelect("Bag")
+            if self.buttonChoice == 12:
+                self.doStash()
+            elif self.buttonChoice in {4, 8}:
+                self.displayBag()
+                self.bagDisableEmpty()
             else:
-               self.doStoreStash()
-               self.outputMainText("You cannot remove the selected item from your bag for some reason. It may be cursed or need to be unequipped first.\n\nPlease select another item.",True)
-      self.doListen = doListen
+                trace(self.bagArray[self.choiceListResult[1]])
+                if (self.canLose(self.bagArray[self.choiceListResult[1]])):
+                    self.stashStore(self.choiceListResult[1])
+                else:
+                    self.doStoreStash()
+                    self.outputMainText("You cannot remove the selected item from your bag for some reason. It may be cursed or need to be unequipped first.\n\nPlease select another item.", True)
+        self.doListen = doListen
 
    def doRemoveStash(self):
-      self.displayStash()
-      self.bagDisableEmpty()
-      self.outputMainText("Click on an item you would like to remove from stash.\n\nClick 'Return' to return to the main stash options.",True)
-      def doListen():
-         self.choiceListSelect("Stash")
-         if self.buttonChoice == 12:
-            self.doStash()
-         elif self.buttonChoice in {4,8}:
-            self.displayStash()
-            self.bagDisableEmpty()
-         else:
-            self.stashRemove(self.choiceListResult[1])
-      self.doListen = doListen
+        self.displayStash()
+        self.bagDisableEmpty()
+        self.outputMainText("Click on an item you would like to remove from stash.\n\nClick 'Return' to return to the main stash options.", True)
 
-   def stashStore(self, storeItem:int):
-      self.tempStoreItem = storeItem
-      self.displayStash()
-      self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.bagArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
-      def doListen():
-         self.choiceListSelect("Stash")
-         if (self.buttonChoice == 12):
-            self.doStash()
-         elif (self.buttonChoice == 4 or self.buttonChoice == 8):
-            self.displayStash()
-         else:
-            tempNum = self.bagArray[self.tempStoreItem]
-            tempNum2 = self.bagStackArray[self.tempStoreItem]
-            if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
-               if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
-                  self.bagStackArray[self.tempStoreItem] -= self.itemStackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
-                  self.stashStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
-               else:
-                  self.stashStackArray[self.choiceListResult[1]] += tempNum2
-                  self.bagSlotClear(self.tempStoreItem)
+        def doListen():
+            self.choiceListSelect("Stash")
+            if self.buttonChoice == 12:
+                self.doStash()
+            elif self.buttonChoice in {4, 8}:
+                self.displayStash()
+                self.bagDisableEmpty()
             else:
-               self.bagSlotClear(self.tempStoreItem)
-               self.bagArray[self.tempStoreItem] = self.choiceListResult[0]
-               self.bagStackArray[self.tempStoreItem] = self.stashStackArray[self.choiceListResult[1]]
-               self.stashArray[self.choiceListResult[1]] = tempNum
-               self.stashStackArray[self.choiceListResult[1]] = tempNum2
-            self.doStoreStash()
-      self.doListen = doListen
+                self.stashRemove(self.choiceListResult[1])
+        self.doListen = doListen
 
-   def stashRemove(self, storeItem:int):
-      self.tempStoreItem = storeItem
-      self.displayBag()
-      self.outputMainText(f"Click on the bag slot you would like to place {self.itemName(self.stashArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.",True)
-      def doListen():
-         self.choiceListSelect("Bag")
-         if (self.buttonChoice == 12):
-            self.doStash()
-         elif (self.buttonChoice == 4 or self.buttonChoice == 8):
-            self.displayBag()
-         elif (self.canLose(self.choiceListResult[0])):
-            tempNum = self.stashArray[self.tempStoreItem]
-            tempNum2 = self.stashStackArray[self.tempStoreItem]
-            if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
-               if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
-                  self.stashStackArray[self.tempStoreItem] -= self.itemStackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
-                  self.bagStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
-               else:
-                  self.bagStackArray[self.choiceListResult[1]] += tempNum2
-                  self.stashArray[self.tempStoreItem] = 0
-                  self.stashStackArray[self.tempStoreItem] = 0
+   def stashStore(self, storeItem: int):
+        self.tempStoreItem = storeItem
+        self.displayStash()
+        self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.bagArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+
+        def doListen():
+            self.choiceListSelect("Stash")
+            if (self.buttonChoice == 12):
+                self.doStash()
+            elif (self.buttonChoice == 4 or self.buttonChoice == 8):
+                self.displayStash()
             else:
-               self.stashArray[self.tempStoreItem] = self.choiceListResult[0]
-               self.stashStackArray[self.tempStoreItem] = self.bagStackArray[self.choiceListResult[1]]
-               self.bagSlotClear(self.choiceListResult[1])
-               self.bagArray[self.choiceListResult[1]] = tempNum
-               self.bagStackArray[self.choiceListResult[1]] = tempNum2
-            self.doRemoveStash()
-         else:
-            self.stashRemove(self.tempStoreItem)
-            self.outputMainText("You cannot remove that item from your bag. It may be cursed or needs to be unequipped first.\n\nPlease select another slot to move your stashed item into.",True)
-      self.doListen = doListen
+                tempNum = self.bagArray[self.tempStoreItem]
+                tempNum2 = self.bagStackArray[self.tempStoreItem]
+                if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
+                    if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
+                        self.bagStackArray[self.tempStoreItem] -= self.itemStackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
+                        self.stashStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
+                    else:
+                        self.stashStackArray[self.choiceListResult[1]] += tempNum2
+                        self.bagSlotClear(self.tempStoreItem)
+                else:
+                    self.bagSlotClear(self.tempStoreItem)
+                    self.bagArray[self.tempStoreItem] = self.choiceListResult[0]
+                    self.bagStackArray[self.tempStoreItem] = self.stashStackArray[self.choiceListResult[1]]
+                    self.stashArray[self.choiceListResult[1]] = tempNum
+                    self.stashStackArray[self.choiceListResult[1]] = tempNum2
+                self.doStoreStash()
+        self.doListen = doListen
+
+   def stashRemove(self, storeItem: int):
+        self.tempStoreItem = storeItem
+        self.displayBag()
+        self.outputMainText(f"Click on the bag slot you would like to place {self.itemName(self.stashArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+
+        def doListen():
+            self.choiceListSelect("Bag")
+            if (self.buttonChoice == 12):
+                self.doStash()
+            elif (self.buttonChoice == 4 or self.buttonChoice == 8):
+                self.displayBag()
+            elif (self.canLose(self.choiceListResult[0])):
+                tempNum = self.stashArray[self.tempStoreItem]
+                tempNum2 = self.stashStackArray[self.tempStoreItem]
+                if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
+                    if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
+                        self.stashStackArray[self.tempStoreItem] -= self.itemStackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
+                        self.bagStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
+                    else:
+                        self.bagStackArray[self.choiceListResult[1]] += tempNum2
+                        self.stashArray[self.tempStoreItem] = 0
+                        self.stashStackArray[self.tempStoreItem] = 0
+                else:
+                    self.stashArray[self.tempStoreItem] = self.choiceListResult[0]
+                    self.stashStackArray[self.tempStoreItem] = self.bagStackArray[self.choiceListResult[1]]
+                    self.bagSlotClear(self.choiceListResult[1])
+                    self.bagArray[self.choiceListResult[1]] = tempNum
+                    self.bagStackArray[self.choiceListResult[1]] = tempNum2
+                self.doRemoveStash()
+            else:
+                self.stashRemove(self.tempStoreItem)
+                self.outputMainText("You cannot remove that item from your bag. It may be cursed or needs to be unequipped first.\n\nPlease select another slot to move your stashed item into.", True)
+        self.doListen = doListen
 
    def doShops(self):
-      self.showButtons(ButtonList(1,1,1,0,0,1,1,0,0,0,0,1))
-      self.outputMainText(f"General Store - Come here to see what kinds of goods {self.regionName(self.currentZone)} has for sale. You can also sell your own goods here as well.\n\nDye Shop - If you want to feel unique and look special, stop by for some new colors.\n\nApothecary - Need some ingredients for your alchemy brewing? Or maybe need to learn a new recipe or two? Come check out what's available in {self.regionName(self.currentZone)} to see what you might like.\n\nSalon - Want a different haircut? Stop by here to see what styles are popular in {self.regionName(self.currentZone)}.\n\nTailor - If you're looking to get a new outfit, the {self.regionName(self.currentZone)} tailor might be able to custom-fit something for you from their available designs.",True)
-      self.doButtonChoices({1:"General",2:"Dyes",3:"Apothecary",6:"Salon",7:"Tailor",12:"Return"})
-      def doListen():
-         if self.buttonChoice == 1:
-            self.doShop()
-         elif self.buttonChoice == 2:
-            self.doDyeShop()
-         elif self.buttonChoice == 3:
-            self.doApothecary()
-         elif self.buttonChoice == 6:
-            self.doSalon()
-         elif self.buttonChoice == 7:
-            self.doTailor()
-         elif self.buttonChoice == 12:
-            self.doReturn()
-      self.doListen = doListen
+        self.showButtons(ButtonList(1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1))
+        self.outputMainText(f"General Store - Come here to see what kinds of goods {self.regionName(self.currentZone)} has for sale. You can also sell your own goods here as well.\n\nDye Shop - If you want to feel unique and look special, stop by for some new colors.\n\nApothecary - Need some ingredients for your alchemy brewing? Or maybe need to learn a new recipe or two? Come check out what's available in {self.regionName(self.currentZone)} to see what you might like.\n\nSalon - Want a different haircut? Stop by here to see what styles are popular in {self.regionName(self.currentZone)}.\n\nTailor - If you're looking to get a new outfit, the {self.regionName(self.currentZone)} tailor might be able to custom-fit something for you from their available designs.", True)
+        self.doButtonChoices({1: "General", 2: "Dyes", 3: "Apothecary", 6: "Salon", 7: "Tailor", 12: "Return"})
+
+        def doListen():
+            if self.buttonChoice == 1:
+                self.doShop()
+            elif self.buttonChoice == 2:
+                self.doDyeShop()
+            elif self.buttonChoice == 3:
+                self.doApothecary()
+            elif self.buttonChoice == 6:
+                self.doSalon()
+            elif self.buttonChoice == 7:
+                self.doTailor()
+            elif self.buttonChoice == 12:
+                self.doReturn()
+        self.doListen = doListen
 
    def doShop(self):
-      self.buy = 0
-      self.tempBagPage = 1
-      self.inShop = True
-      self.showButtons(ButtonList(1,1,1,1,1,1,1,1,1,1,1,1))
-      tempDict = {4:"Buy", 8:"Sell", 12:"Return"}
-      dlist = []
-      for i in self.bMap:
-         tempDict[i] = self.itemName(self.goodsID(i))
-         if (self.itemName(self.goodsID(i)) == " "):
-            dlist.append(i)
-      self.outputMainText("Click on an item to view a description of the item. If you would like to purchase it, click the Buy button.\n\nIf you would like to sell an item from your bag, click Sell.",True)
-      self.doButtonChoices(tempDict)
-      self.disableSelectedButtons(dlist)
-      def doListen():
-         if (self.buttonChoice not in {4,8,12} and self.goodsID(self.buttonChoice) != 0):
-            self.outputMainText(f"{self.itemDescription(self.goodsID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.goodsID(self.buttonChoice))} coins.",True)
-            self.buy = self.buttonChoice
-         elif (self.buttonChoice == 4 and self.buy != 0):
-            self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.goodsID(self.buy))}?")
-            if (self.itemStackMax(self.goodsID(self.buy)) > 1):
-               buttonlist = ButtonList(1,1,1,0,0,0,0,0,0,0,0,1)
-               tempDict = {1:"Buy 1", 2:"Buy 2", 3:"Buy 5", 12:"Nevermind"}
-               self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.itemValue(self.goodsID(self.buy))} coins, 2 for {6 * self.itemValue(self.goodsID(self.buy))} coins, 5 for {15 * self.itemValue(self.goodsID(self.buy))} coins")
-               if (self.itemStackMax(self.goodsID(self.buy)) >= 10):
-                  buttonlist[9] = 1
-                  tempDict[9] = "Buy 10"
-                  self.doMainText(f", 10 for {30 * self.itemValue(self.goodsID(self.buy))} coins")
-               if (self.itemStackMax(self.goodsID(self.buy)) >= 15):
-                  buttonlist[10] = 1
-                  tempDict[10] = "Buy 15"
-                  self.doMainText(f", 15 for {45 * self.itemValue(self.goodsID(self.buy))} coins")
-               self.outputMainText(".")
-               self.showButtons(buttonlist)
-               self.doButtonChoices(tempDict)
-            else:
-               self.buttonConfirm()
-            def doListen():
-               if (self.buttonChoice in {7,12}):
-                  self.doShop()
-               else:
-                  tempInt = 0
-                  if (self.buttonChoice == 1):
-                     tempInt = 1
-                  elif (self.buttonChoice == 6):
-                     tempInt = 1
-                  elif (self.buttonChoice == 2):
-                     tempInt = 2
-                  elif (self.buttonChoice == 3):
-                     tempInt = 5
-                  elif (self.buttonChoice == 9):
-                     tempInt = 10
-                  elif (self.buttonChoice == 10):
-                     tempInt = 15
-                  if (self.coin < 3 * tempInt * self.itemValue(self.goodsID(self.buy))):
-                     self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.itemValue(self.goodsID(self.buy)) - self.coin} more coins to purchase ",True)
-                     if (tempInt > 1):
-                        self.doMainText(f"{tempInt}x {self.itemName(self.goodsID(self.buy))}.")
-                     else:
-                        self.doMainText(f"{self.itemName(self.goodsID(self.buy))}.")
-                     self.displayMainText()
-                     self.doNext()
-                     def doListen():
-                        self.doShop()
-                     self.doListen = doListen
-                  elif (self.checkItem(self.goodsID(self.buy)) and not self.conItem(self.goodsID(self.buy))):
-                     self.outputMainText(f"Sorry, but you cannot buy {self.itemName(self.goodsID(self.buy))} if you already have one. Please choose something else.",True)
-                     self.doNext()
-                     def doListen():
-                        self.doShop()
-                     self.doListen = doListen
-                  else:
-                     self.addManyItem(self.goodsID(self.buy),tempInt)
-                     self.doCoin(-3 * tempInt * self.itemValue(self.goodsID(self.buy)))
-                     self.doProcess()
-            self.doListen = doListen
-         elif (self.buttonChoice == 8):
-            self.doSell()
-         elif (self.buttonChoice == 12):
-            self.inShop = False
-            if (self.doShopsReturn and not self.shiftHeld):
-               self.doShops()
-            else:
-               self.doReturn()
-      self.doListen = doListen
+        self.buy = 0
+        self.tempBagPage = 1
+        self.inShop = True
+        self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1))
+        tempDict = {4: "Buy", 8: "Sell", 12: "Return"}
+        dlist = []
+        for i in self.bMap:
+            tempDict[i] = self.itemName(self.goodsID(i))
+            if (self.itemName(self.goodsID(i)) == " "):
+                dlist.append(i)
+        self.outputMainText("Click on an item to view a description of the item. If you would like to purchase it, click the Buy button.\n\nIf you would like to sell an item from your bag, click Sell.", True)
+        self.doButtonChoices(tempDict)
+        self.disableSelectedButtons(dlist)
 
-   def doSell(self, cansell:bool=True):
-      self.choicePage = self.tempBagPage
-      self.displayBag()
-      self.bagDisableEmpty()
-      if cansell:
-         self.outputMainText("Click on an item you would like to sell.",True)
-      else:
-         self.outputMainText("\n\nClick on a different item you would like to sell.")
-      def doListen():
-         self.choiceListSelect("Bag")
-         if (self.buttonChoice == 12):
-            self.hideAmountAll()
-            self.hidePage()
-            self.doShop()
-         elif (self.buttonChoice in {4,8}):
-            self.displayBag()
-            self.bagDisableEmpty()
-         elif (self.choiceListResult[0]):
-            canSellItem = self.itemValue(self.choiceListResult[0]) != 0 and self.canLose(self.choiceListResult[0])
-            if canSellItem:
-               self.hideAmountAll()
-               self.hidePage()
-            if (self.bagStackArray[self.choiceListResult[1]] < 2):
-               if not canSellItem:
-                  self.outputMainText("You cannot sell the selected item. Either it is not yours to sell or needs to be unequipped first. Please select another item.",True)
-                  self.doSell(False)
-               else:
-                  self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])}.\n\nAre you sure you want to sell it?",True)
-                  self.buttonConfirm()
-                  def doListen():
-                     if (self.buttonChoice == 6):
-                        self.doCoin(self.itemValue(self.choiceListResult[0]))
-                        self.bagArray[self.choiceListResult[1]] = 0
-                        self.passiveItemRemove(self.choiceListResult[0])
-                     self.doSell()
-                  self.doListen = doListen
-            else:
-               self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])} each.\n\nHow many would you like to sell?",True)
-               buttonlist = ButtonList(1,0,1,0,0,0,0,0,1,0,1,0)
-               tempDict = {1:"1", 3:"2", 9:"All", 11:"None"}
-               if (self.bagStackArray[self.choiceListResult[1]] >= 5):
-                  tempDict[5] = "5"
-                  buttonlist[5] = 1
-               if (self.bagStackArray[self.choiceListResult[1]] >= 10):
-                  tempDict[7] = "10"
-                  buttonlist[7] = 1
-               self.showButtons(buttonlist)
-               self.doButtonChoices(tempDict)
-               def doListen():
-                  tempInt = 0
-                  if (self.buttonChoice == 1):
-                     tempInt = 1
-                  elif (self.buttonChoice == 3):
-                     tempInt = 2
-                  elif (self.buttonChoice == 5):
-                     tempInt = 5
-                  elif (self.buttonChoice == 7):
-                     tempInt = 10
-                  elif (self.buttonChoice == 9):
-                     tempInt = self.bagStackArray[self.choiceListResult[1]]
-                  if (self.bagStackArray[self.choiceListResult[1]] == tempInt):
-                     self.bagSlotClear(self.choiceListResult[1])
-                  else:
-                     self.bagStackArray[self.choiceListResult[1]] -= tempInt
-                  if (tempInt > 0):
-                     self.doCoin(tempInt * self.itemValue(self.choiceListResult[0]))
-                  self.doSell()
-               self.doListen = doListen
-      self.doListen = doListen
+        def doListen():
+            if (self.buttonChoice not in {4, 8, 12} and self.goodsID(self.buttonChoice) != 0):
+                self.outputMainText(f"{self.itemDescription(self.goodsID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.goodsID(self.buttonChoice))} coins.", True)
+                self.buy = self.buttonChoice
+            elif (self.buttonChoice == 4 and self.buy != 0):
+                self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.goodsID(self.buy))}?")
+                if (self.itemStackMax(self.goodsID(self.buy)) > 1):
+                    buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+                    tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
+                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.itemValue(self.goodsID(self.buy))} coins, 2 for {6 * self.itemValue(self.goodsID(self.buy))} coins, 5 for {15 * self.itemValue(self.goodsID(self.buy))} coins")
+                    if (self.itemStackMax(self.goodsID(self.buy)) >= 10):
+                        buttonlist[9] = 1
+                        tempDict[9] = "Buy 10"
+                        self.doMainText(f", 10 for {30 * self.itemValue(self.goodsID(self.buy))} coins")
+                    if (self.itemStackMax(self.goodsID(self.buy)) >= 15):
+                        buttonlist[10] = 1
+                        tempDict[10] = "Buy 15"
+                        self.doMainText(f", 15 for {45 * self.itemValue(self.goodsID(self.buy))} coins")
+                    self.outputMainText(".")
+                    self.showButtons(buttonlist)
+                    self.doButtonChoices(tempDict)
+                else:
+                    self.buttonConfirm()
 
-   def goodsID(self, goodsSlot:int):
-      if self.currentZone == 1:
-         if goodsSlot == 1:
-            return 104
-         if goodsSlot == 2:
-            return 111
-         if goodsSlot == 3:
-            return 116
-         if goodsSlot == 5:
-            return 500
-         if goodsSlot == 6:
-            return 501
-         if goodsSlot == 7:
-            return 108
-         if goodsSlot == 9:
-            return 110
-         if goodsSlot == 10:
-            return 115
-         if goodsSlot == 11:
-            return 121
-      elif self.currentZone == 2:
-         if goodsSlot == 1:
-            return 102
-         if goodsSlot == 2:
-            return 112
-         if goodsSlot == 3:
-            return 117
-         if goodsSlot == 5:
-            return 106
-         if goodsSlot == 9:
-            return 110
-         if goodsSlot == 10:
-            return 115
-         if goodsSlot == 11:
-            return 122
-      elif self.currentZone == 3:
-         if goodsSlot == 1:
-            return 101
-         if goodsSlot == 2:
-            return 113
-         if goodsSlot == 3:
-            return 118
-         if goodsSlot == 5:
-            return 120
-         if goodsSlot == 9:
-            return 110
-         if goodsSlot == 10:
-            return 115
-         if goodsSlot == 11:
-            return 123
-      elif self.currentZone == 4:
-         if goodsSlot == 2:
-            return 114
-         if goodsSlot == 3:
-            return 119
-         if goodsSlot == 5:
-            return 103
-         if goodsSlot == 6:
-            return 105
-         if goodsSlot == 9:
-            return 110
-         if goodsSlot == 10:
-            return 115
-         if goodsSlot == 11:
-            return 124
-      elif self.currentZone == 6:
-         if goodsSlot == 1:
-            return 109
-         if goodsSlot == 2:
-            return 126
-         if goodsSlot == 3:
-            return 127
-         if goodsSlot == 5:
-            return 103
-         if goodsSlot == 6:
-            return 230
-         if goodsSlot == 9:
-            return 110
-         if goodsSlot == 10:
-            return 115
-         if goodsSlot == 11:
-            return 125
-      elif self.currentZone == 12:
-         if goodsSlot == 1:
-            return 247
-         if goodsSlot == 2:
-            return 250
-         if goodsSlot == 3:
-            return 256
-         if goodsSlot == 5:
-            return 120
-         if goodsSlot == 9:
-            return 110
-         if goodsSlot == 10:
-            return 115
-         if goodsSlot == 11:
-            return 128
-      return 0
+                def doListen():
+                    if (self.buttonChoice in {7, 12}):
+                        self.doShop()
+                    else:
+                        tempInt = 0
+                        if (self.buttonChoice == 1):
+                            tempInt = 1
+                        elif (self.buttonChoice == 6):
+                            tempInt = 1
+                        elif (self.buttonChoice == 2):
+                            tempInt = 2
+                        elif (self.buttonChoice == 3):
+                            tempInt = 5
+                        elif (self.buttonChoice == 9):
+                            tempInt = 10
+                        elif (self.buttonChoice == 10):
+                            tempInt = 15
+                        if (self.coin < 3 * tempInt * self.itemValue(self.goodsID(self.buy))):
+                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.itemValue(self.goodsID(self.buy)) - self.coin} more coins to purchase ", True)
+                            if (tempInt > 1):
+                                self.doMainText(f"{tempInt}x {self.itemName(self.goodsID(self.buy))}.")
+                            else:
+                                self.doMainText(f"{self.itemName(self.goodsID(self.buy))}.")
+                            self.displayMainText()
+                            self.doNext()
+
+                            def doListen():
+                                self.doShop()
+                            self.doListen = doListen
+                        elif (self.checkItem(self.goodsID(self.buy)) and not self.conItem(self.goodsID(self.buy))):
+                            self.outputMainText(f"Sorry, but you cannot buy {self.itemName(self.goodsID(self.buy))} if you already have one. Please choose something else.", True)
+                            self.doNext()
+
+                            def doListen():
+                                self.doShop()
+                            self.doListen = doListen
+                        else:
+                            self.addManyItem(self.goodsID(self.buy), tempInt)
+                            self.doCoin(-3 * tempInt * self.itemValue(self.goodsID(self.buy)))
+                            self.doProcess()
+                self.doListen = doListen
+            elif (self.buttonChoice == 8):
+                self.doSell()
+            elif (self.buttonChoice == 12):
+                self.inShop = False
+                if (self.doShopsReturn and not self.shiftHeld):
+                    self.doShops()
+                else:
+                    self.doReturn()
+        self.doListen = doListen
+
+   def doSell(self, cansell: bool = True):
+        self.choicePage = self.tempBagPage
+        self.displayBag()
+        self.bagDisableEmpty()
+        if cansell:
+            self.outputMainText("Click on an item you would like to sell.", True)
+
+        def doListen():
+            self.choiceListSelect("Bag")
+            if (self.buttonChoice == 12):
+                self.hideAmountAll()
+                self.hidePage()
+                self.doShop()
+            elif (self.buttonChoice in {4, 8}):
+                self.displayBag()
+                self.bagDisableEmpty()
+            elif (self.choiceListResult[0]):
+                canSellItem = self.itemValue(self.choiceListResult[0]) != 0 and self.canLose(self.choiceListResult[0])
+                if canSellItem:
+                    self.hideAmountAll()
+                    self.hidePage()
+                if (self.bagStackArray[self.choiceListResult[1]] < 2):
+                    if not canSellItem:
+                        self.outputMainText("You cannot sell the selected item. Either it is not yours to sell or needs to be unequipped first. Please select another item.", True)
+                        self.doSell(False)
+                    else:
+                        self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])}.\n\nAre you sure you want to sell it?", True)
+                        self.buttonConfirm()
+
+                        def doListen():
+                            if (self.buttonChoice == 6):
+                                self.doCoin(self.itemValue(self.choiceListResult[0]))
+                                self.bagArray[self.choiceListResult[1]] = 0
+                                self.passiveItemRemove(self.choiceListResult[0])
+                            self.doSell()
+                        self.doListen = doListen
+                else:
+                    self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])} each.\n\nHow many would you like to sell?", True)
+                    buttonlist = ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0)
+                    tempDict = {1: "1", 3: "2", 9: "All", 11: "None"}
+                    if (self.bagStackArray[self.choiceListResult[1]] >= 5):
+                        tempDict[5] = "5"
+                        buttonlist[5] = 1
+                    if (self.bagStackArray[self.choiceListResult[1]] >= 10):
+                        tempDict[7] = "10"
+                        buttonlist[7] = 1
+                    self.showButtons(buttonlist)
+                    self.doButtonChoices(tempDict)
+
+                    def doListen():
+                        tempInt = 0
+                        if (self.buttonChoice == 1):
+                            tempInt = 1
+                        elif (self.buttonChoice == 3):
+                            tempInt = 2
+                        elif (self.buttonChoice == 5):
+                            tempInt = 5
+                        elif (self.buttonChoice == 7):
+                            tempInt = 10
+                        elif (self.buttonChoice == 9):
+                            tempInt = self.bagStackArray[self.choiceListResult[1]]
+                        if (self.bagStackArray[self.choiceListResult[1]] == tempInt):
+                            self.bagSlotClear(self.choiceListResult[1])
+                        else:
+                            self.bagStackArray[self.choiceListResult[1]] -= tempInt
+                        if (tempInt > 0):
+                            self.doCoin(tempInt * self.itemValue(self.choiceListResult[0]))
+                        self.doSell()
+                    self.doListen = doListen
+        self.doListen = doListen
+
+   def goodsID(self, goodsSlot: int):
+        if self.currentZone == 1:
+            if goodsSlot == 1:
+                return 104
+            if goodsSlot == 2:
+                return 111
+            if goodsSlot == 3:
+                return 116
+            if goodsSlot == 5:
+                return 500
+            if goodsSlot == 6:
+                return 501
+            if goodsSlot == 7:
+                return 108
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 121
+        elif self.currentZone == 2:
+            if goodsSlot == 1:
+                return 102
+            if goodsSlot == 2:
+                return 112
+            if goodsSlot == 3:
+                return 117
+            if goodsSlot == 5:
+                return 106
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 122
+        elif self.currentZone == 3:
+            if goodsSlot == 1:
+                return 101
+            if goodsSlot == 2:
+                return 113
+            if goodsSlot == 3:
+                return 118
+            if goodsSlot == 5:
+                return 120
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 123
+        elif self.currentZone == 4:
+            if goodsSlot == 2:
+                return 114
+            if goodsSlot == 3:
+                return 119
+            if goodsSlot == 5:
+                return 103
+            if goodsSlot == 6:
+                return 105
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 124
+        elif self.currentZone == 6:
+            if goodsSlot == 1:
+                return 109
+            if goodsSlot == 2:
+                return 126
+            if goodsSlot == 3:
+                return 127
+            if goodsSlot == 5:
+                return 103
+            if goodsSlot == 6:
+                return 230
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 125
+        elif self.currentZone == 12:
+            if goodsSlot == 1:
+                return 247
+            if goodsSlot == 2:
+                return 250
+            if goodsSlot == 3:
+                return 256
+            if goodsSlot == 5:
+                return 120
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 128
+        return 0
 
    def doDyeShop(self):
-      self.buy = 0
-      self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
-      tempDict = {4:"Buy", 12:"Return"}
-      dlist = []
-      for i in self.bMap:
-         tempDict[i] = self.itemName(self.dyeID(i))
-         if (self.itemName(self.dyeID(i)) == " "):
-            dlist.append(i)
-      self.outputMainText("Click on a dye to view a description of the color. If you would like to purchase it, click the Buy button..",True)
-      self.doButtonChoices(tempDict)
-      self.disableSelectedButtons(dlist)
-      def doListen():
-         if (self.buttonChoice not in {4,8,12} and self.dyeID(self.buttonChoice) != 0):
-            self.outputMainText(f"{self.itemDescription(self.dyeID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.dyeID(self.buttonChoice))} coins.",True)
-            self.buy = self.buttonChoice
-         elif (self.buttonChoice == 4 and self.buy != 0):
-            self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.dyeID(self.buy))}?")
-            self.buttonConfirm()
-            def doListen():
-               if (self.buttonChoice == 6):
-                  if (self.coin < 3 * self.itemValue(self.dyeID(self.buy))):
-                     self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * self.itemValue(self.dyeID(self.buy)) - self.coin} more coins to purchase{self.itemName(self.dyeID(self.buy))}.",True)
-                     self.doNext()
-                     def doListen():
+        self.buy = 0
+        self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
+        tempDict = {4: "Buy", 12: "Return"}
+        dlist = []
+        for i in self.bMap:
+            tempDict[i] = self.itemName(self.dyeID(i))
+            if (self.itemName(self.dyeID(i)) == " "):
+                dlist.append(i)
+        self.outputMainText("Click on a dye to view a description of the color. If you would like to purchase it, click the Buy button..", True)
+        self.doButtonChoices(tempDict)
+        self.disableSelectedButtons(dlist)
+
+        def doListen():
+            if (self.buttonChoice not in {4, 8, 12} and self.dyeID(self.buttonChoice) != 0):
+                self.outputMainText(f"{self.itemDescription(self.dyeID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.dyeID(self.buttonChoice))} coins.", True)
+                self.buy = self.buttonChoice
+            elif (self.buttonChoice == 4 and self.buy != 0):
+                self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.dyeID(self.buy))}?")
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        if (self.coin < 3 * self.itemValue(self.dyeID(self.buy))):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * self.itemValue(self.dyeID(self.buy)) - self.coin} more coins to purchase{self.itemName(self.dyeID(self.buy))}.", True)
+                            self.doNext()
+
+                            def doListen():
+                                self.doDyeShop()
+                            self.doListen = doListen
+                        else:
+                            self.itemAdd(self.dyeID(self.buy))
+                            self.doCoin(-3 * self.itemValue(self.dyeID(self.buy)))
+                            self.doProcess()
+                    else:
                         self.doDyeShop()
-                     self.doListen = doListen
-                  else:
-                     self.itemAdd(self.dyeID(self.buy))
-                     self.doCoin(-3 * self.itemValue(self.dyeID(self.buy)))
-                     self.doProcess()
-               else:
-                  self.doDyeShop()
-            self.doListen = doListen
-         elif (self.buttonChoice == 12):
-            if (self.doShopsReturn and not self.shiftHeld):
-               self.doShops()
-            else:
-               self.doReturn()
-      self.doListen = doListen
+                self.doListen = doListen
+            elif (self.buttonChoice == 12):
+                if (self.doShopsReturn and not self.shiftHeld):
+                    self.doShops()
+                else:
+                    self.doReturn()
+        self.doListen = doListen
 
    @staticmethod
-   def dyeID(goodsSlot:int):
-      if goodsSlot == 1:
-         return 240
-      if goodsSlot == 2:
-         return 241
-      if goodsSlot == 5:
-         return 242
-      if goodsSlot == 6:
-         return 243
-      return 0
+   def dyeID(goodsSlot: int):
+        if goodsSlot == 1:
+            return 240
+        if goodsSlot == 2:
+            return 241
+        if goodsSlot == 5:
+            return 242
+        if goodsSlot == 6:
+            return 243
+        return 0
 
-   def dyeThing(self, ID, color):
-      self.tempID = ID
-      self.tempColor = color
-      self.showButtons(ButtonList(0,0,0,0,1,0,1,0,0,1,0,0))
-      self.outputMainText(f"What would you like to apply the {self.itemName(ID)} to?",True)
-      tempDict = {7:"Body", 10:"Nevermind"}
-      if (self.hair > 0):
-         tempDict[5] = "Hair"
-      self.doButtonChoices(tempDict)
-      def doListen():
-         if self.buttonChoice == 5:
-            self.hairColor = self.tempColor
-            self.doMainText(f"You smear the {self.itemName(self.tempID)} around in your {self.hairDesc()}, turning it {self.hairC()} in color.",True)
-         elif self.buttonChoice == 7:
-            self.skinColor = self.tempColor
-            self.doMainText(f"You rub the {self.itemName(self.tempID)} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.",True)
-         elif self.buttonChoice == 10:
-            self.doMainText("Apparently you derped and didn't mean to use it, so you put the dye back in your bag.",True)
-            self.itemAdd(self.tempID)
-         self.displayMainText()
-         self.doEnd()
-      self.doListen = doListen
+   def dyeThing(self, ID: int, color: int):
+        self.tempID = ID
+        self.tempColor = color
+        self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0))
+        self.outputMainText(f"What would you like to apply the {self.itemName(ID)} to?", True)
+        tempDict = {7: "Body", 10: "Nevermind"}
+        if (self.hair > 0):
+            tempDict[5] = "Hair"
+        self.doButtonChoices(tempDict)
+
+        def doListen():
+            if self.buttonChoice == 5:
+                self.hairColor = self.tempColor
+                self.doMainText(f"You smear the {self.itemName(self.tempID)} around in your {self.hairDesc()}, turning it {self.hairC()} in color.", True)
+            elif self.buttonChoice == 7:
+                self.skinColor = self.tempColor
+                self.doMainText(f"You rub the {self.itemName(self.tempID)} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.", True)
+            elif self.buttonChoice == 10:
+                self.doMainText("Apparently you derped and didn't mean to use it, so you put the dye back in your bag.", True)
+                self.itemAdd(self.tempID)
+            self.displayMainText()
+            self.doEnd()
+        self.doListen = doListen
 
    def doApothecary(self):
+      # HERE
       self.buy = 0
-      self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
+      self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
       dlist = []
-      tempDict = {4:"Buy", 12:"Return"}
+      tempDict = {4: "Buy", 12: "Return"}
       for i in self.bMap:
          tempDict[i] = self.apothName(self.apothID(i))
          if (self.apothName(self.apothID(i)) == ""):
             dlist.append(i)
-      self.outputMainText("Click on an item to view its description. If you would like to purchase it, click the Buy button.\n\nRecipes for Alchemy only need to be bought once. After you have learned the recipe, you don't need to learn it again.",True)
+      self.outputMainText("Click on an item to view its description. If you would like to purchase it, click the Buy button.\n\nRecipes for Alchemy only need to be bought once. After you have learned the recipe, you don't need to learn it again.", True)
       self.doButtonChoices(tempDict)
       self.disableSelectedButtons(dlist)
+
       def doListen():
-         if (self.buttonChoice not in {4,8,12} and self.apothID(self.buttonChoice) != 0):
-            self.outputMainText(f"{self.apothDescription(self.apothID(self.buttonChoice))}\n\nCost: {3 * self.apothValue(self.apothID(self.buttonChoice))} coins.",True)
+         if (self.buttonChoice not in {4, 8, 12} and self.apothID(self.buttonChoice) != 0):
+            self.outputMainText(f"{self.apothDescription(self.apothID(self.buttonChoice))}\n\nCost: {3 * self.apothValue(self.apothID(self.buttonChoice))} coins.", True)
             self.buy = self.buttonChoice
          elif (self.buttonChoice == 4 and self.buy != 0):
             self.outputMainText(f"\n\nAre you sure you would like to buy {self.apothName(self.apothID(self.buy))}?")
             if (self.apothID(self.buy) > 200 and self.itemStackMax(self.apothID(self.buy)) > 1):
-               buttonlist = ButtonList(1,1,1,0,0,0,0,0,0,0,0,1)
-               tempDict = {1:"Buy 1", 2:"Buy 2", 3:"Buy 5", 12:"Nevermind"}
+               buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+               tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
                self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.apothValue(self.apothID(self.buy))} coins, 2 for {6 * self.apothValue(self.apothID(self.buy))} coins, 5 for {15 * self.apothValue(self.apothID(self.buy))} coins")
                if (self.itemStackMax(self.apothID(self.buy)) >= 10):
                   tempDict[9] = "Buy 10"
@@ -11598,8 +11617,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.doButtonChoices(tempDict)
             else:
                self.buttonConfirm()
+
             def doListen():
-               if (self.buttonChoice in {7,12}):
+               if (self.buttonChoice in {7, 12}):
                   self.doApothecary()
                else:
                   tempInt = 0
@@ -11616,26 +11636,28 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   elif self.buttonChoice == 10:
                      tempInt = 15
                   if (self.coin < 3 * tempInt * self.apothValue(self.apothID(self.buy))):
-                     self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.apothValue(self.apothID(self.buy)) - self.coin} more coins to purchase ",True)
+                     self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.apothValue(self.apothID(self.buy)) - self.coin} more coins to purchase ", True)
                      if (tempInt > 1):
                         self.doMainText(f"{tempInt}x {self.apothName(self.apothID(self.buy))}.")
                      else:
                         self.doMainText(f"{self.apothName(self.apothID(self.buy))}.")
                      self.displayMainText()
                      self.doNext()
+
                      def doListen():
                         self.doApothecary()
                      self.doListen = doListen
                   elif (self.checkItem(self.apothID(self.buy)) and not self.conItem(self.apothID(self.buy))):
-                     self.outputMainText(f"Sorry, but you cannot buy {self.apothName(self.apothID(self.buy))} if you already have one. Please choose something else.",True)
+                     self.outputMainText(f"Sorry, but you cannot buy {self.apothName(self.apothID(self.buy))} if you already have one. Please choose something else.", True)
                      self.doNext()
+
                      def doListen():
                         self.doApothecary()
                      self.doListen = doListen
                   else:
                      self.doCoin(-3 * tempInt * self.apothValue(self.apothID(self.buy)))
                      if (self.apothID(self.buy) > 200):
-                        self.addManyItem(self.apothID(self.buy),tempInt)
+                        self.addManyItem(self.apothID(self.buy), tempInt)
                      else:
                         self.apothLearn(self.apothID(self.buy))
                      self.doProcess()
@@ -11647,7 +11669,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.doReturn()
       self.doListen = doListen
 
-   def apothID(self, goodsSlot:int):
+   def apothID(self, goodsSlot: int):
       if self.currentZone == 1:
          if goodsSlot == 1:
             return 203
@@ -11728,7 +11750,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             return 17
       return 0
 
-   def apothLearn(self, ID:int):
+   def apothLearn(self, ID: int):
       if ID == 1:
          self.knowLustDraft = True
       if ID == 2:
@@ -11764,7 +11786,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       if ID == 17:
          self.knowMilkSuppress = True
 
-   def apothName(self, ID:int):
+   def apothName(self, ID: int):
       if ID >= 200:
          return self.itemName(ID)
       if ID == 1:
@@ -11803,7 +11825,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          return 'R: MilkSuppress'
       return ""
 
-   def apothDescription(self, ID:int):
+   def apothDescription(self, ID: int):
       if ID >= 200:
          return self.itemDescription(ID)
       if ID == 1:
@@ -11842,7 +11864,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          return "Recipe: Milk Suppressant\n\nSometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
       return ""
 
-   def apothValue(self, ID:int):
+   def apothValue(self, ID: int):
       if (ID >= 200):
          return self.itemValue(ID)
       if ID == 1:
