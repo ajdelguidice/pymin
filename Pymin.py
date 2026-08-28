@@ -11581,1482 +11581,1492 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
    def doApothecary(self):
-      # HERE
-      self.buy = 0
-      self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
-      dlist = []
-      tempDict = {4: "Buy", 12: "Return"}
-      for i in self.bMap:
-         tempDict[i] = self.apothName(self.apothID(i))
-         if (self.apothName(self.apothID(i)) == ""):
-            dlist.append(i)
-      self.outputMainText("Click on an item to view its description. If you would like to purchase it, click the Buy button.\n\nRecipes for Alchemy only need to be bought once. After you have learned the recipe, you don't need to learn it again.", True)
-      self.doButtonChoices(tempDict)
-      self.disableSelectedButtons(dlist)
+        self.buy = 0
+        self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
+        dlist = []
+        tempDict = {4: "Buy", 12: "Return"}
+        for i in self.bMap:
+            tempDict[i] = self.apothName(self.apothID(i))
+            if (self.apothName(self.apothID(i)) == ""):
+                dlist.append(i)
+        self.outputMainText("Click on an item to view its description. If you would like to purchase it, click the Buy button.\n\nRecipes for Alchemy only need to be bought once. After you have learned the recipe, you don't need to learn it again.", True)
+        self.doButtonChoices(tempDict)
+        self.disableSelectedButtons(dlist)
 
-      def doListen():
-         if (self.buttonChoice not in {4, 8, 12} and self.apothID(self.buttonChoice) != 0):
-            self.outputMainText(f"{self.apothDescription(self.apothID(self.buttonChoice))}\n\nCost: {3 * self.apothValue(self.apothID(self.buttonChoice))} coins.", True)
-            self.buy = self.buttonChoice
-         elif (self.buttonChoice == 4 and self.buy != 0):
-            self.outputMainText(f"\n\nAre you sure you would like to buy {self.apothName(self.apothID(self.buy))}?")
-            if (self.apothID(self.buy) > 200 and self.itemStackMax(self.apothID(self.buy)) > 1):
-               buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
-               tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
-               self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.apothValue(self.apothID(self.buy))} coins, 2 for {6 * self.apothValue(self.apothID(self.buy))} coins, 5 for {15 * self.apothValue(self.apothID(self.buy))} coins")
-               if (self.itemStackMax(self.apothID(self.buy)) >= 10):
-                  tempDict[9] = "Buy 10"
-                  buttonlist[9] = 1
-                  self.doMainText(f", 10 for {30 * self.apothValue(self.apothID(self.buy))} coins")
-               if (self.itemStackMax(self.apothID(self.buy)) >= 15):
-                  tempDict[10] = "Buy 15"
-                  buttonlist[10] = 1
-                  self.doMainText(f", 15 for {45 * self.apothValue(self.apothID(self.buy))} coins")
-               self.outputMainText(".")
-               self.showButtons(buttonlist)
-               self.doButtonChoices(tempDict)
-            else:
-               self.buttonConfirm()
+        def doListen():
+            if (self.buttonChoice not in {4, 8, 12} and self.apothID(self.buttonChoice) != 0):
+                self.outputMainText(f"{self.apothDescription(self.apothID(self.buttonChoice))}\n\nCost: {3 * self.apothValue(self.apothID(self.buttonChoice))} coins.", True)
+                self.buy = self.buttonChoice
+            elif (self.buttonChoice == 4 and self.buy != 0):
+                self.outputMainText(f"\n\nAre you sure you would like to buy {self.apothName(self.apothID(self.buy))}?")
+                if (self.apothID(self.buy) > 200 and self.itemStackMax(self.apothID(self.buy)) > 1):
+                    buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+                    tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
+                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.apothValue(self.apothID(self.buy))} coins, 2 for {6 * self.apothValue(self.apothID(self.buy))} coins, 5 for {15 * self.apothValue(self.apothID(self.buy))} coins")
+                    if (self.itemStackMax(self.apothID(self.buy)) >= 10):
+                        tempDict[9] = "Buy 10"
+                        buttonlist[9] = 1
+                        self.doMainText(f", 10 for {30 * self.apothValue(self.apothID(self.buy))} coins")
+                    if (self.itemStackMax(self.apothID(self.buy)) >= 15):
+                        tempDict[10] = "Buy 15"
+                        buttonlist[10] = 1
+                        self.doMainText(f", 15 for {45 * self.apothValue(self.apothID(self.buy))} coins")
+                    self.outputMainText(".")
+                    self.showButtons(buttonlist)
+                    self.doButtonChoices(tempDict)
+                else:
+                    self.buttonConfirm()
 
-            def doListen():
-               if (self.buttonChoice in {7, 12}):
-                  self.doApothecary()
-               else:
-                  tempInt = 0
-                  if self.buttonChoice == 1:
-                     tempInt = 1
-                  elif self.buttonChoice == 2:
-                     tempInt = 2
-                  elif self.buttonChoice == 3:
-                     tempInt = 5
-                  elif self.buttonChoice == 6:
-                     tempInt = 1
-                  elif self.buttonChoice == 9:
-                     tempInt = 10
-                  elif self.buttonChoice == 10:
-                     tempInt = 15
-                  if (self.coin < 3 * tempInt * self.apothValue(self.apothID(self.buy))):
-                     self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.apothValue(self.apothID(self.buy)) - self.coin} more coins to purchase ", True)
-                     if (tempInt > 1):
-                        self.doMainText(f"{tempInt}x {self.apothName(self.apothID(self.buy))}.")
-                     else:
-                        self.doMainText(f"{self.apothName(self.apothID(self.buy))}.")
-                     self.displayMainText()
-                     self.doNext()
-
-                     def doListen():
+                def doListen():
+                    if (self.buttonChoice in {7, 12}):
                         self.doApothecary()
-                     self.doListen = doListen
-                  elif (self.checkItem(self.apothID(self.buy)) and not self.conItem(self.apothID(self.buy))):
-                     self.outputMainText(f"Sorry, but you cannot buy {self.apothName(self.apothID(self.buy))} if you already have one. Please choose something else.", True)
-                     self.doNext()
+                    else:
+                        tempInt = 0
+                        if self.buttonChoice == 1:
+                            tempInt = 1
+                        elif self.buttonChoice == 2:
+                            tempInt = 2
+                        elif self.buttonChoice == 3:
+                            tempInt = 5
+                        elif self.buttonChoice == 6:
+                            tempInt = 1
+                        elif self.buttonChoice == 9:
+                            tempInt = 10
+                        elif self.buttonChoice == 10:
+                            tempInt = 15
+                        if (self.coin < 3 * tempInt * self.apothValue(self.apothID(self.buy))):
+                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.apothValue(self.apothID(self.buy)) - self.coin} more coins to purchase ", True)
+                            if (tempInt > 1):
+                                self.doMainText(f"{tempInt}x {self.apothName(self.apothID(self.buy))}.")
+                            else:
+                                self.doMainText(f"{self.apothName(self.apothID(self.buy))}.")
+                            self.displayMainText()
+                            self.doNext()
 
-                     def doListen():
-                        self.doApothecary()
-                     self.doListen = doListen
-                  else:
-                     self.doCoin(-3 * tempInt * self.apothValue(self.apothID(self.buy)))
-                     if (self.apothID(self.buy) > 200):
-                        self.addManyItem(self.apothID(self.buy), tempInt)
-                     else:
-                        self.apothLearn(self.apothID(self.buy))
-                     self.doProcess()
-            self.doListen = doListen
-         elif (self.buttonChoice == 12):
-            if (self.doShopsReturn and not self.shiftHeld):
-               self.doShops()
-            else:
-               self.doReturn()
-      self.doListen = doListen
+                            def doListen():
+                                self.doApothecary()
+                            self.doListen = doListen
+                        elif (self.checkItem(self.apothID(self.buy)) and not self.conItem(self.apothID(self.buy))):
+                            self.outputMainText(f"Sorry, but you cannot buy {self.apothName(self.apothID(self.buy))} if you already have one. Please choose something else.", True)
+                            self.doNext()
+
+                            def doListen():
+                                self.doApothecary()
+                            self.doListen = doListen
+                        else:
+                            self.doCoin(-3 * tempInt * self.apothValue(self.apothID(self.buy)))
+                            if (self.apothID(self.buy) > 200):
+                                self.addManyItem(self.apothID(self.buy), tempInt)
+                            else:
+                                self.apothLearn(self.apothID(self.buy))
+                            self.doProcess()
+                self.doListen = doListen
+            elif (self.buttonChoice == 12):
+                if (self.doShopsReturn and not self.shiftHeld):
+                    self.doShops()
+                else:
+                    self.doReturn()
+        self.doListen = doListen
 
    def apothID(self, goodsSlot: int):
-      if self.currentZone == 1:
-         if goodsSlot == 1:
-            return 203
-         if goodsSlot == 2:
-            return 209
-         if goodsSlot == 3:
-            return 523
-         if goodsSlot == 7 and not self.knowLustDraft:
-            return 1
-         if goodsSlot == 9 and not self.knowSRejuvPot:
-            return 6
-         if goodsSlot == 10 and not self.knowMasoPot:
-            return 10
-         if goodsSlot == 11 and not self.knowBabyFree:
-            return 11
-      elif self.currentZone == 2:
-         if goodsSlot == 1:
-            return 209
-         if goodsSlot == 2:
-            return 202
-         if goodsSlot == 3:
-            return 206
-         if goodsSlot == 5:
-            return 212
-         if goodsSlot == 6:
-            return 524
-         if goodsSlot == 9 and not self.knowRejuvPot:
-            return 2
-         if goodsSlot == 10 and not self.knowSLustDraft:
-            return 5
-         if goodsSlot == 11 and not self.knowSMasoPot:
-            return 14
-      elif self.currentZone == 3:
-         if goodsSlot == 1:
-            return 201
-         if goodsSlot == 2:
-            return 202
-         if goodsSlot == 3:
-            return 213
-         if goodsSlot == 5:
-            return 203
-         if goodsSlot == 9 and not self.knowBallSwell:
-            return 4
-         if goodsSlot == 10 and not self.knowPotPot:
-            return 12
-         if goodsSlot == 11 and not self.knowSGenSwap:
-            return 13
-      elif self.currentZone == 4:
-         if goodsSlot == 1:
-            return 210
-         if goodsSlot == 2:
-            return 201
-         if goodsSlot == 3:
-            return 218
-         if goodsSlot == 9 and not self.knowExpPreg:
-            return 3
-         if goodsSlot == 10 and not self.knowGenSwap:
-            return 9
-         if goodsSlot == 11 and not self.knowSBabyFree:
-            return 15
-      elif self.currentZone == 6:
-         if goodsSlot == 1:
-            return 207
-         if goodsSlot == 2:
-            return 213
-         if goodsSlot == 3:
-            return 208
-         if goodsSlot == 5:
-            return 228
-         if goodsSlot == 9 and not self.knowSExpPreg:
-            return 7
-         if goodsSlot == 10 and not self.knowSBallSwell:
-            return 8
-         if goodsSlot == 11 and not self.knowSPotPot:
-            return 16
-      elif self.currentZone == 12:
-         if goodsSlot == 9 and not self.knowMilkSuppress:
-            return 17
-      return 0
+        if self.currentZone == 1:
+            if goodsSlot == 1:
+                return 203
+            if goodsSlot == 2:
+                return 209
+            if goodsSlot == 3:
+                return 523
+            if goodsSlot == 7 and not self.knowLustDraft:
+                return 1
+            if goodsSlot == 9 and not self.knowSRejuvPot:
+                return 6
+            if goodsSlot == 10 and not self.knowMasoPot:
+                return 10
+            if goodsSlot == 11 and not self.knowBabyFree:
+                return 11
+        elif self.currentZone == 2:
+            if goodsSlot == 1:
+                return 209
+            if goodsSlot == 2:
+                return 202
+            if goodsSlot == 3:
+                return 206
+            if goodsSlot == 5:
+                return 212
+            if goodsSlot == 6:
+                return 524
+            if goodsSlot == 9 and not self.knowRejuvPot:
+                return 2
+            if goodsSlot == 10 and not self.knowSLustDraft:
+                return 5
+            if goodsSlot == 11 and not self.knowSMasoPot:
+                return 14
+        elif self.currentZone == 3:
+            if goodsSlot == 1:
+                return 201
+            if goodsSlot == 2:
+                return 202
+            if goodsSlot == 3:
+                return 213
+            if goodsSlot == 5:
+                return 203
+            if goodsSlot == 9 and not self.knowBallSwell:
+                return 4
+            if goodsSlot == 10 and not self.knowPotPot:
+                return 12
+            if goodsSlot == 11 and not self.knowSGenSwap:
+                return 13
+        elif self.currentZone == 4:
+            if goodsSlot == 1:
+                return 210
+            if goodsSlot == 2:
+                return 201
+            if goodsSlot == 3:
+                return 218
+            if goodsSlot == 9 and not self.knowExpPreg:
+                return 3
+            if goodsSlot == 10 and not self.knowGenSwap:
+                return 9
+            if goodsSlot == 11 and not self.knowSBabyFree:
+                return 15
+        elif self.currentZone == 6:
+            if goodsSlot == 1:
+                return 207
+            if goodsSlot == 2:
+                return 213
+            if goodsSlot == 3:
+                return 208
+            if goodsSlot == 5:
+                return 228
+            if goodsSlot == 9 and not self.knowSExpPreg:
+                return 7
+            if goodsSlot == 10 and not self.knowSBallSwell:
+                return 8
+            if goodsSlot == 11 and not self.knowSPotPot:
+                return 16
+        elif self.currentZone == 12:
+            if goodsSlot == 9 and not self.knowMilkSuppress:
+                return 17
+        return 0
 
    def apothLearn(self, ID: int):
-      if ID == 1:
-         self.knowLustDraft = True
-      if ID == 2:
-         self.knowRejuvPot = True
-      if ID == 3:
-         self.knowExpPreg = True
-      if ID == 4:
-         self.knowBallSwell = True
-      if ID == 5:
-         self.knowSLustDraft = True
-      if ID == 6:
-         self.knowSRejuvPot = True
-      if ID == 7:
-         self.knowSExpPreg = True
-      if ID == 8:
-         self.knowSBallSwell = True
-      if ID == 9:
-         self.knowGenSwap = True
-      if ID == 10:
-         self.knowMasoPot = True
-      if ID == 11:
-         self.knowBabyFree = True
-      if ID == 12:
-         self.knowPotPot = True
-      if ID == 13:
-         self.knowSGenSwap = True
-      if ID == 14:
-         self.knowSMasoPot = True
-      if ID == 15:
-         self.knowSBabyFree = True
-      if ID == 16:
-         self.knowSPotPot = True
-      if ID == 17:
-         self.knowMilkSuppress = True
+        if ID == 1:
+            self.knowLustDraft = True
+        if ID == 2:
+            self.knowRejuvPot = True
+        if ID == 3:
+            self.knowExpPreg = True
+        if ID == 4:
+            self.knowBallSwell = True
+        if ID == 5:
+            self.knowSLustDraft = True
+        if ID == 6:
+            self.knowSRejuvPot = True
+        if ID == 7:
+            self.knowSExpPreg = True
+        if ID == 8:
+            self.knowSBallSwell = True
+        if ID == 9:
+            self.knowGenSwap = True
+        if ID == 10:
+            self.knowMasoPot = True
+        if ID == 11:
+            self.knowBabyFree = True
+        if ID == 12:
+            self.knowPotPot = True
+        if ID == 13:
+            self.knowSGenSwap = True
+        if ID == 14:
+            self.knowSMasoPot = True
+        if ID == 15:
+            self.knowSBabyFree = True
+        if ID == 16:
+            self.knowSPotPot = True
+        if ID == 17:
+            self.knowMilkSuppress = True
 
    def apothName(self, ID: int):
-      if ID >= 200:
-         return self.itemName(ID)
-      if ID == 1:
-         return 'R: LustDraft'
-      if ID == 2:
-         return 'R: RejuvPot'
-      if ID == 3:
-         return 'R: ExpPreg'
-      if ID == 4:
-         return 'R: BallSwell'
-      if ID == 5:
-         return 'R: SLustDraft'
-      if ID == 6:
-         return 'R: SRejuvPot'
-      if ID == 7:
-         return 'R: SExpPreg'
-      if ID == 8:
-         return 'R: SBallSwell'
-      if ID == 9:
-         return 'R: GenSwap'
-      if ID == 10:
-         return 'R: MasoPot'
-      if ID == 11:
-         return 'R: BabyFree'
-      if ID == 12:
-         return 'R: PotPot'
-      if ID == 13:
-         return 'R: SGenSwap'
-      if ID == 14:
-         return 'R: SMasoPot'
-      if ID == 15:
-         return 'R: SBabyFree'
-      if ID == 16:
-         return 'R: SPotPot'
-      if ID == 17:
-         return 'R: MilkSuppress'
-      return ""
+        if ID >= 200:
+            return self.itemName(ID)
+        if ID == 1:
+            return 'R: LustDraft'
+        if ID == 2:
+            return 'R: RejuvPot'
+        if ID == 3:
+            return 'R: ExpPreg'
+        if ID == 4:
+            return 'R: BallSwell'
+        if ID == 5:
+            return 'R: SLustDraft'
+        if ID == 6:
+            return 'R: SRejuvPot'
+        if ID == 7:
+            return 'R: SExpPreg'
+        if ID == 8:
+            return 'R: SBallSwell'
+        if ID == 9:
+            return 'R: GenSwap'
+        if ID == 10:
+            return 'R: MasoPot'
+        if ID == 11:
+            return 'R: BabyFree'
+        if ID == 12:
+            return 'R: PotPot'
+        if ID == 13:
+            return 'R: SGenSwap'
+        if ID == 14:
+            return 'R: SMasoPot'
+        if ID == 15:
+            return 'R: SBabyFree'
+        if ID == 16:
+            return 'R: SPotPot'
+        if ID == 17:
+            return 'R: MilkSuppress'
+        return ""
 
    def apothDescription(self, ID: int):
-      if ID >= 200:
-         return self.itemDescription(ID)
-      if ID == 1:
-         return "Recipe: Lust Draft\n\nFor those who need a boost in the bedroom.\n\nAlchemy difficulty: Simple"
-      if ID == 2:
-         return "Recipe: Rejuvenation Potion\n\nUseful for soothing what ailes you.\n\nAlchemy difficulty: Simple"
-      if ID == 3:
-         return "Recipe: Express Pregnancy Potion\n\nHelps quicken the gestation period.\n\nAlchemy difficulty: Simple"
-      if ID == 4:
-         return "Recipe: Ball Sweller\n\nGives your nuts a jump in their production.\n\nAlchemy difficulty: Simple"
-      if ID == 5:
-         return "Recipe: Superior Lust Draft\n\nFor when you've got a long night ahead with your spouse.\n\nAlchemy difficulty: Complex"
-      if ID == 6:
-         return "Recipe: Superior Rejuvenation Potion\n\nGreatly soothes your ailments.\n\nAlchemy difficulty: Complex"
-      if ID == 7:
-         return "Recipe: Superior Express Pregnancy Potion\n\nBecause that baby just needs to get out.\n\nAlchemy difficulty: Complex"
-      if ID == 8:
-         return "Recipe: Superior Ball Sweller\n\nIf you like that swollen, achy, full of seed feeling, this is what you want.\n\nAlchemy difficulty: Complex"
-      if ID == 9:
-         return "Recipe: Gender Swap Potion\n\nDon't like your current path in life? This will help start you off from a new perspective.\n\nAlchemy difficulty: Complex"
-      if ID == 10:
-         return "Recipe: Masochism Potion\n\nMakes some the pain feel pleasurable instead.\n\nAlchemy difficulty: Complex"
-      if ID == 11:
-         return "Recipe: Baby Free Potion\n\nA good contraceptive.\n\nAlchemy difficulty: Complex"
-      if ID == 12:
-         return "Recipe: Potency Potion\n\nMakes your testicles more efficient in their duties.\n\nAlchemy difficulty: Complex"
-      if ID == 13:
-         return "Recipe: Superior Gender Swap Potion\n\nFor when you're bored and wanna try out something new.\n\nAlchemy difficulty: Advanced"
-      if ID == 14:
-         return "Recipe: Superior Masochism Potion\n\nReally helps take on the big fellas; all that soreness will be delightful instead.\n\nAlchemy difficulty: Advanced"
-      if ID == 15:
-         return "Recipe: Superior Baby Free Potion\n\nNecessary in Siz'Calit.\n\nAlchemy difficulty: Advanced"
-      if ID == 16:
-         return "Recipe: Superior Potency Potion\n\nHelps make sure you absolutely fertilize all those eggs with a good coating.\n\nAlchemy difficulty: Advanced"
-      if ID == 17:
-         return "Recipe: Milk Suppressant\n\nSometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
-      return ""
+        if ID >= 200:
+            return self.itemDescription(ID)
+        if ID == 1:
+            return "Recipe: Lust Draft\n\nFor those who need a boost in the bedroom.\n\nAlchemy difficulty: Simple"
+        if ID == 2:
+            return "Recipe: Rejuvenation Potion\n\nUseful for soothing what ailes you.\n\nAlchemy difficulty: Simple"
+        if ID == 3:
+            return "Recipe: Express Pregnancy Potion\n\nHelps quicken the gestation period.\n\nAlchemy difficulty: Simple"
+        if ID == 4:
+            return "Recipe: Ball Sweller\n\nGives your nuts a jump in their production.\n\nAlchemy difficulty: Simple"
+        if ID == 5:
+            return "Recipe: Superior Lust Draft\n\nFor when you've got a long night ahead with your spouse.\n\nAlchemy difficulty: Complex"
+        if ID == 6:
+            return "Recipe: Superior Rejuvenation Potion\n\nGreatly soothes your ailments.\n\nAlchemy difficulty: Complex"
+        if ID == 7:
+            return "Recipe: Superior Express Pregnancy Potion\n\nBecause that baby just needs to get out.\n\nAlchemy difficulty: Complex"
+        if ID == 8:
+            return "Recipe: Superior Ball Sweller\n\nIf you like that swollen, achy, full of seed feeling, this is what you want.\n\nAlchemy difficulty: Complex"
+        if ID == 9:
+            return "Recipe: Gender Swap Potion\n\nDon't like your current path in life? This will help start you off from a new perspective.\n\nAlchemy difficulty: Complex"
+        if ID == 10:
+            return "Recipe: Masochism Potion\n\nMakes some the pain feel pleasurable instead.\n\nAlchemy difficulty: Complex"
+        if ID == 11:
+            return "Recipe: Baby Free Potion\n\nA good contraceptive.\n\nAlchemy difficulty: Complex"
+        if ID == 12:
+            return "Recipe: Potency Potion\n\nMakes your testicles more efficient in their duties.\n\nAlchemy difficulty: Complex"
+        if ID == 13:
+            return "Recipe: Superior Gender Swap Potion\n\nFor when you're bored and wanna try out something new.\n\nAlchemy difficulty: Advanced"
+        if ID == 14:
+            return "Recipe: Superior Masochism Potion\n\nReally helps take on the big fellas; all that soreness will be delightful instead.\n\nAlchemy difficulty: Advanced"
+        if ID == 15:
+            return "Recipe: Superior Baby Free Potion\n\nNecessary in Siz'Calit.\n\nAlchemy difficulty: Advanced"
+        if ID == 16:
+            return "Recipe: Superior Potency Potion\n\nHelps make sure you absolutely fertilize all those eggs with a good coating.\n\nAlchemy difficulty: Advanced"
+        if ID == 17:
+            return "Recipe: Milk Suppressant\n\nSometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
+        return ""
 
    def apothValue(self, ID: int):
-      if (ID >= 200):
-         return self.itemValue(ID)
-      if ID == 1:
-         return 20
-      if ID == 2:
-         return 25
-      if ID == 3:
-         return 25
-      if ID == 4:
-         return 20
-      if ID == 5:
-         return 35
-      if ID == 6:
-         return 40
-      if ID == 7:
-         return 35
-      if ID == 8:
-         return 30
-      if ID == 9:
-         return 45
-      if ID == 10:
-         return 45
-      if ID == 11:
-         return 40
-      if ID == 12:
-         return 45
-      if ID == 13:
-         return 60
-      if ID == 14:
-         return 70
-      if ID == 15:
-         return 55
-      if ID == 16:
-         return 65
-      if ID == 17:
-         return 35
-      return 0
+        if (ID >= 200):
+            return self.itemValue(ID)
+        if ID == 1:
+            return 20
+        if ID == 2:
+            return 25
+        if ID == 3:
+            return 25
+        if ID == 4:
+            return 20
+        if ID == 5:
+            return 35
+        if ID == 6:
+            return 40
+        if ID == 7:
+            return 35
+        if ID == 8:
+            return 30
+        if ID == 9:
+            return 45
+        if ID == 10:
+            return 45
+        if ID == 11:
+            return 40
+        if ID == 12:
+            return 45
+        if ID == 13:
+            return 60
+        if ID == 14:
+            return 70
+        if ID == 15:
+            return 55
+        if ID == 16:
+            return 65
+        if ID == 17:
+            return 35
+        return 0
 
    def doSalon(self):
-      self.buy = 0
-      self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
-      dlist = [10]
-      tempDict = {4:"Buy", 12:"Return"}
-      for i in self.bMap:
-         if i != 10:
-            tempDict[i] = self.hairstyleName(self.hairstyleID(i))
-      self.outputMainText("Click on a hairstyle to view a description of the hairstyle. If you would like to purchase it, click the Buy button.\n\nNote: Buying hairstyles automatically replaces your current hairstyle. You cannot sell hairstyles.",True)
-      self.doButtonChoices(tempDict)
-      self.disableSelectedButtons(dlist)
-      def doListen():
-         if (self.buttonChoice not in {4,8,12} and self.clothesID(self.buttonChoice) != 0):
-            self.outputMainText(f"{self.hairstyleDescription(self.hairstyleID(self.buttonChoice))}\n\nCost: {self.hairstyleValue(self.hairstyleID(self.buttonChoice))} coins.",True)
-            self.buy = self.buttonChoice
-         elif (self.buttonChoice == 4 and self.buy != 0):
-            self.outputMainText(f"\n\nAre you sure you would like to buy {self.hairstyleName(self.hairstyleID(self.buy))}?")
-            self.buttonConfirm()
-            def doListen():
-               if (self.buttonChoice == 6):
-                  if (self.coin < self.hairstyleValue(self.hairstyleID(self.buy))):
-                     self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {self.hairstyleValue(self.hairstyleID(self.buy)) - self.coin} more coins to purchase {self.hairstyleName(self.hairstyleID(self.buy))}.",True)
-                     self.doNext()
-                     def doListen():
-                        self.doSalon()
-                     self.doListen = doListen
-                  else:
-                     self.hair = self.hairstyleID(self.buy)
-                     self.doCoin(-self.hairstyleValue(self.hairstyleID(self.buy)))
-                     if (self.hairstyleLength(self.hairstyleID(self.buy))):
-                        self.showButtons(ButtonList(1,1,0,0,1,1,1,0,0,0,0,0))
-                        self.outputMainText("What length would you like your hair to be? This does not affect its cost.\n\nShort - Doesn't hang past head.\n\nMedium - Reaches shoulders.\n\nLong - Reaches past shoulderblades.\n\nX-Long - Hangs past your butt.\n\nXX-Long - Reaches the ground.")
-                        self.doButtonChoices({1:"Short", 2:"Medium", 5:"Long", 6:"X-Long", 7:"XX-Long"})
-                        def doListen():
-                           if (self.buttonChoice == 1):
-                              self.hairLength = 2
-                           elif (self.buttonChoice == 2):
-                              self.hairLength = 4
-                           elif (self.buttonChoice == 5):
-                              self.hairLength = 6
-                           elif (self.buttonChoice == 6):
-                              self.hairLength = 8
-                           elif (self.buttonChoice == 7):
-                              self.hairLength = 10
-                           self.doSalon()
-                        self.doListen = doListen
-                     else:
-                        self.doSalon()
-               else:
-                  self.doSalon()
-            self.doListen = doListen
-         elif (self.buttonChoice == 12):
-            if (self.doShopsReturn and not self.shiftHeld):
-               self.doShops()
-            else:
-               self.doReturn()
-      self.doListen = doListen
+        self.buy = 0
+        self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
+        dlist = [10]
+        tempDict = {4: "Buy", 12: "Return"}
+        for i in self.bMap:
+            if i != 10:
+                tempDict[i] = self.hairstyleName(self.hairstyleID(i))
+        self.outputMainText("Click on a hairstyle to view a description of the hairstyle. If you would like to purchase it, click the Buy button.\n\nNote: Buying hairstyles automatically replaces your current hairstyle. You cannot sell hairstyles.", True)
+        self.doButtonChoices(tempDict)
+        self.disableSelectedButtons(dlist)
 
-   def hairstyleName(self, ID:int):
-      if ID == 0:
-         return 'None'
-      if ID == 1:
-         return 'Wavy'
-      if ID == 2:
-         return 'Pigtail'
-      if ID == 3:
-         return 'Ponytail'
-      if ID == 4:
-         return 'Straight'
-      if ID == 5:
-         return 'Buzzcut'
-      if ID == 6:
-         return 'Mohawk'
-      if ID == 7:
-         return 'Bun'
-      if ID == 8:
-         return 'Curly'
-      if ID == 9:
-         return 'B Pigtail'
-      if ID == 10:
-         return 'B Ponytail'
-      if ID == 11:
-         return 'Braided'
-      if ID == 12:
-         return 'Spiky'
-      if ID == 13:
-         return 'Emo'
-      if ID == 14:
-         return 'Afro'
-      return f"HAIRSTYLE NAME ERROR {self.hair}"
+        def doListen():
+            if (self.buttonChoice not in {4, 8, 12} and self.clothesID(self.buttonChoice) != 0):
+                self.outputMainText(f"{self.hairstyleDescription(self.hairstyleID(self.buttonChoice))}\n\nCost: {self.hairstyleValue(self.hairstyleID(self.buttonChoice))} coins.", True)
+                self.buy = self.buttonChoice
+            elif (self.buttonChoice == 4 and self.buy != 0):
+                self.outputMainText(f"\n\nAre you sure you would like to buy {self.hairstyleName(self.hairstyleID(self.buy))}?")
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        if (self.coin < self.hairstyleValue(self.hairstyleID(self.buy))):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {self.hairstyleValue(self.hairstyleID(self.buy)) - self.coin} more coins to purchase {self.hairstyleName(self.hairstyleID(self.buy))}.", True)
+                            self.doNext()
+
+                            def doListen():
+                                self.doSalon()
+                            self.doListen = doListen
+                        else:
+                            self.hair = self.hairstyleID(self.buy)
+                            self.doCoin(-self.hairstyleValue(self.hairstyleID(self.buy)))
+                            if (self.hairstyleLength(self.hairstyleID(self.buy))):
+                                self.showButtons(ButtonList(1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0))
+                                self.outputMainText("What length would you like your hair to be? This does not affect its cost.\n\nShort - Doesn't hang past head.\n\nMedium - Reaches shoulders.\n\nLong - Reaches past shoulderblades.\n\nX-Long - Hangs past your butt.\n\nXX-Long - Reaches the ground.")
+                                self.doButtonChoices({1: "Short", 2: "Medium", 5: "Long", 6: "X-Long", 7: "XX-Long"})
+
+                                def doListen():
+                                    if (self.buttonChoice == 1):
+                                        self.hairLength = 2
+                                    elif (self.buttonChoice == 2):
+                                        self.hairLength = 4
+                                    elif (self.buttonChoice == 5):
+                                        self.hairLength = 6
+                                    elif (self.buttonChoice == 6):
+                                        self.hairLength = 8
+                                    elif (self.buttonChoice == 7):
+                                        self.hairLength = 10
+                                    self.doSalon()
+                                self.doListen = doListen
+                            else:
+                                self.doSalon()
+                    else:
+                        self.doSalon()
+                self.doListen = doListen
+            elif (self.buttonChoice == 12):
+                if (self.doShopsReturn and not self.shiftHeld):
+                    self.doShops()
+                else:
+                    self.doReturn()
+        self.doListen = doListen
+
+   def hairstyleName(self, ID: int):
+        if ID == 0:
+            return 'None'
+        if ID == 1:
+            return 'Wavy'
+        if ID == 2:
+            return 'Pigtail'
+        if ID == 3:
+            return 'Ponytail'
+        if ID == 4:
+            return 'Straight'
+        if ID == 5:
+            return 'Buzzcut'
+        if ID == 6:
+            return 'Mohawk'
+        if ID == 7:
+            return 'Bun'
+        if ID == 8:
+            return 'Curly'
+        if ID == 9:
+            return 'B Pigtail'
+        if ID == 10:
+            return 'B Ponytail'
+        if ID == 11:
+            return 'Braided'
+        if ID == 12:
+            return 'Spiky'
+        if ID == 13:
+            return 'Emo'
+        if ID == 14:
+            return 'Afro'
+        return f"HAIRSTYLE NAME ERROR {self.hair}"
 
    def hairDesc(self):
-      if self.hair == 1:
-         return "wavy hair"
-      if self.hair == 2:
-         return "hair pulled to the sides of your head in pigtails"
-      if self.hair == 3:
-         return "hair pulled back into a ponytail"
-      if self.hair == 4:
-         return "straight hair"
-      if self.hair == 5:
-         return "really short hair"
-      if self.hair == 6:
-         return "hair styled up into a mohawk"
-      if self.hair == 7:
-         return "hair curled up into a bun"
-      if self.hair == 8:
-         return "curly hair"
-      if self.hair == 9:
-         return "hair pulled to the sides of your head in braided pigtails"
-      if self.hair == 10:
-         return "hair pulled back into a braided ponytail"
-      if self.hair == 11:
-         return "braided hair"
-      if self.hair == 12:
-         return "spiky hair"
-      if self.hair == 13:
-         return "straight, stiff hair covering an eye"
-      if self.hair == 14:
-         return "giant poofball of hair"
-      return f"HAIR DESC_SHORT ERROR {self.hair}"
+        if self.hair == 1:
+            return "wavy hair"
+        if self.hair == 2:
+            return "hair pulled to the sides of your head in pigtails"
+        if self.hair == 3:
+            return "hair pulled back into a ponytail"
+        if self.hair == 4:
+            return "straight hair"
+        if self.hair == 5:
+            return "really short hair"
+        if self.hair == 6:
+            return "hair styled up into a mohawk"
+        if self.hair == 7:
+            return "hair curled up into a bun"
+        if self.hair == 8:
+            return "curly hair"
+        if self.hair == 9:
+            return "hair pulled to the sides of your head in braided pigtails"
+        if self.hair == 10:
+            return "hair pulled back into a braided ponytail"
+        if self.hair == 11:
+            return "braided hair"
+        if self.hair == 12:
+            return "spiky hair"
+        if self.hair == 13:
+            return "straight, stiff hair covering an eye"
+        if self.hair == 14:
+            return "giant poofball of hair"
+        return f"HAIR DESC_SHORT ERROR {self.hair}"
 
    def hairC(self):
-      if self.hairColor == 0:
-         return ""
-      if self.hairColor == 1:
-         return "black "
-      if self.hairColor == 2:
-         return "blonde "
-      if self.hairColor == 3:
-         return "red "
-      if self.hairColor == 4:
-         return "blue "
-      if self.hairColor == 5:
-         return "coral pink "
-      if self.hairColor == 6:
-         return "auburn "
-      if self.hairColor == 7:
-         return "brown "
-      if self.hairColor == 8:
-         return "grey "
-      if self.hairColor == 9:
-         return "white "
-      return f"HAIR COLOR ERROR {self.hairColor}"
+        if self.hairColor == 0:
+            return ""
+        if self.hairColor == 1:
+            return "black "
+        if self.hairColor == 2:
+            return "blonde "
+        if self.hairColor == 3:
+            return "red "
+        if self.hairColor == 4:
+            return "blue "
+        if self.hairColor == 5:
+            return "coral pink "
+        if self.hairColor == 6:
+            return "auburn "
+        if self.hairColor == 7:
+            return "brown "
+        if self.hairColor == 8:
+            return "grey "
+        if self.hairColor == 9:
+            return "white "
+        return f"HAIR COLOR ERROR {self.hairColor}"
 
    def hairL(self):
-      if self.hairLength == 2:
-         return "that is short enough to not dangle past your head"
-      if self.hairLength == 4:
-         return "that reaches down to your shoulders"
-      if self.hairLength == 6:
-         return "that reaches down your back"
-      if self.hairLength == 8:
-         return "that reaches down to your butt"
-      if self.hairLength == 10:
-         return "that reaches down to the ground"
-      return f"HAIR LENGTH ERROR {self.hairLength}"
+        if self.hairLength == 2:
+            return "that is short enough to not dangle past your head"
+        if self.hairLength == 4:
+            return "that reaches down to your shoulders"
+        if self.hairLength == 6:
+            return "that reaches down your back"
+        if self.hairLength == 8:
+            return "that reaches down to your butt"
+        if self.hairLength == 10:
+            return "that reaches down to the ground"
+        return f"HAIR LENGTH ERROR {self.hairLength}"
 
-   def hairstyleID(self, choice:int):
-      if self.currentZone == 1:
-         if choice == 1:
-            return 1
-         if choice == 2:
-            return 4
-         if choice == 3:
-            return 8
-         if choice == 5:
-            return 2
-         if choice == 6:
-            return 3
-         if choice == 7:
-            return 12
-         if choice == 9:
-            return 14
-      elif self.currentZone == 2:
-         if choice == 1:
-            return 1
-         if choice == 2:
-            return 4
-         if choice == 3:
-            return 8
-         if choice == 5:
-            return 3
-         if choice == 6:
-            return 10
-         if choice == 7:
+   def hairstyleID(self, choice: int):
+        if self.currentZone == 1:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 4
+            if choice == 3:
+                return 8
+            if choice == 5:
+                return 2
+            if choice == 6:
+                return 3
+            if choice == 7:
+                return 12
+            if choice == 9:
+                return 14
+        elif self.currentZone == 2:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 4
+            if choice == 3:
+                return 8
+            if choice == 5:
+                return 3
+            if choice == 6:
+                return 10
+            if choice == 7:
+                return 5
+            if choice == 9:
+                return 6
+        elif self.currentZone == 3:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 4
+            if choice == 3:
+                return 8
+            if choice == 5:
+                return 6
+            if choice == 6:
+                return 11
+            if choice == 7:
+                return 12
+            if choice == 9:
+                return 13
+        elif self.currentZone == 4:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 4
+            if choice == 3:
+                return 8
+            if choice == 5:
+                return 2
+            if choice == 6:
+                return 9
+            if choice == 7:
+                return 7
+            if choice == 9:
+                return 13
+        elif self.currentZone == 6:
+            if choice == 1:
+                return 2
+            if choice == 2:
+                return 3
+            if choice == 3:
+                return 4
+            if choice == 5:
+                return 9
+            if choice == 6:
+                return 10
+            if choice == 7:
+                return 11
+            if choice == 9:
+                return 12
+        elif self.currentZone == 12:
+            if choice == 1:
+                return 2
+            if choice == 2:
+                return 9
+            if choice == 3:
+                return 6
+            if choice == 5:
+                return 12
+            if choice == 6:
+                return 13
+            if choice == 7:
+                return 1
+            if choice == 9:
+                return 4
+        return 0
+
+   @staticmethod
+   def hairstyleValue(ID: int):
+        if ID == 1:
             return 5
-         if choice == 9:
-            return 6
-      elif self.currentZone == 3:
-         if choice == 1:
-            return 1
-         if choice == 2:
-            return 4
-         if choice == 3:
+        if ID == 2:
             return 8
-         if choice == 5:
-            return 6
-         if choice == 6:
-            return 11
-         if choice == 7:
-            return 12
-         if choice == 9:
-            return 13
-      elif self.currentZone == 4:
-         if choice == 1:
-            return 1
-         if choice == 2:
-            return 4
-         if choice == 3:
+        if ID == 3:
             return 8
-         if choice == 5:
-            return 2
-         if choice == 6:
-            return 9
-         if choice == 7:
+        if ID == 4:
+            return 5
+        if ID == 5:
             return 7
-         if choice == 9:
-            return 13
-      elif self.currentZone == 6:
-         if choice == 1:
-            return 2
-         if choice == 2:
-            return 3
-         if choice == 3:
-            return 4
-         if choice == 5:
-            return 9
-         if choice == 6:
+        if ID == 6:
+            return 20
+        if ID == 7:
             return 10
-         if choice == 7:
-            return 11
-         if choice == 9:
-            return 12
-      elif self.currentZone == 12:
-         if choice == 1:
-            return 2
-         if choice == 2:
-            return 9
-         if choice == 3:
-            return 6
-         if choice == 5:
-            return 12
-         if choice == 6:
-            return 13
-         if choice == 7:
-            return 1
-         if choice == 9:
-            return 4
-      return 0
+        if ID == 8:
+            return 5
+        if ID == 9:
+            return 15
+        if ID == 10:
+            return 15
+        if ID == 11:
+            return 23
+        if ID == 12:
+            return 18
+        if ID == 13:
+            return 18
+        if ID == 14:
+            return 20
+        return 0
 
    @staticmethod
-   def hairstyleValue(ID:int):
-      if ID == 1:
-         return 5
-      if ID == 2:
-         return 8
-      if ID == 3:
-         return 8
-      if ID == 4:
-         return 5
-      if ID == 5:
-         return 7
-      if ID == 6:
-         return 20
-      if ID == 7:
-         return 10
-      if ID == 8:
-         return 5
-      if ID == 9:
-         return 15
-      if ID == 10:
-         return 15
-      if ID == 11:
-         return 23
-      if ID == 12:
-         return 18
-      if ID == 13:
-         return 18
-      if ID == 14:
-         return 20
-      return 0
+   def hairstyleLength(ID: int):
+        '''
+        Returns whether a specific hairstyle has length options
+        '''
+        return ID in {1, 2, 3, 4, 8, 9, 10, 11, 13}
 
    @staticmethod
-   def hairstyleLength(ID:int):
-      '''
-      Returns whether a specific hairstyle has length options
-      '''
-      return ID in {1,2,3,4,8,9,10,11,13}
-
-   @staticmethod
-   def hairstyleDescription(ID:int):
-      if ID == 0:
-         return "No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."
-      if ID == 1:
-         return "Wavy hair has subtle curves that make it seem more flowing.\n\nThis hairstyle has additional length options available after purchasing."
-      if ID == 2:
-         return "Pigtails are straight/wavy/curvy hair pulled away from the face and gathered towards the sides of your head, where it is bundled and tied at the base, allowing it to hang freely over your shoulders.\n\nThis hairstyle has additional length options available after purchasing."
-      if ID == 3:
-         return "A Ponytail is straight/wavy/curvy hair pulled away from the face and gathered at the back of your head, where it is bundled and tied at the base, allowing it to hang freely over your back.\n\nThis hairstyle has additional length options available after purchasing."
-      if ID == 4:
-         return "Straight hair has been combed out to be nice and straight.\n\nThis hairstyle has additional length options available after purchasing."
-      if ID == 5:
-         return "A Buzzcut is hair cut quite short, less than a quarter inch from your head."
-      if ID == 6:
-         return "A Mohawk leaves only the hair along the center, from front to back, left, shaving the rest. It's usually a couple inches long."
-      if ID == 7:
-         return "A Bun is straight or wavy hair pulled up into a bun-like shape on top of the back of your head."
-      if ID == 8:
-         return "Curly hair has been treated to make it nice and curly with a bit of spring.\n\nThis hairstyle has additional length options available after purchasing."
-      if ID == 9:
-         return "Braided Pigtails are pigtails that have been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
-      if ID == 10:
-         return "A Braided Ponytail is a ponytail that has been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
-      if ID == 11:
-         return "Braided hair involves tying all your hair into many braids, keeping it all in multiple tight formations.\n\nThis hairstyle has additional length options available after purchasing."
-      if ID == 12:
-         return "Spiky hair is hair that has been treated to stand away from your head, defying gravity. Due to limitations, it can only reach a few inches in length."
-      if ID == 13:
-         return "Emo hair is hair that has been treated to sit straight at all times, with bangs often hanging over one eye.\n\nThis hairstyle has additional length options available after purchasing."
-      if ID == 14:
-         return "An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head."
-      return f"HAIR DESC_LONG ERROR {ID}"
+   def hairstyleDescription(ID: int):
+        if ID == 0:
+            return "No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."
+        if ID == 1:
+            return "Wavy hair has subtle curves that make it seem more flowing.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 2:
+            return "Pigtails are straight/wavy/curvy hair pulled away from the face and gathered towards the sides of your head, where it is bundled and tied at the base, allowing it to hang freely over your shoulders.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 3:
+            return "A Ponytail is straight/wavy/curvy hair pulled away from the face and gathered at the back of your head, where it is bundled and tied at the base, allowing it to hang freely over your back.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 4:
+            return "Straight hair has been combed out to be nice and straight.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 5:
+            return "A Buzzcut is hair cut quite short, less than a quarter inch from your head."
+        if ID == 6:
+            return "A Mohawk leaves only the hair along the center, from front to back, left, shaving the rest. It's usually a couple inches long."
+        if ID == 7:
+            return "A Bun is straight or wavy hair pulled up into a bun-like shape on top of the back of your head."
+        if ID == 8:
+            return "Curly hair has been treated to make it nice and curly with a bit of spring.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 9:
+            return "Braided Pigtails are pigtails that have been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 10:
+            return "A Braided Ponytail is a ponytail that has been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 11:
+            return "Braided hair involves tying all your hair into many braids, keeping it all in multiple tight formations.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 12:
+            return "Spiky hair is hair that has been treated to stand away from your head, defying gravity. Due to limitations, it can only reach a few inches in length."
+        if ID == 13:
+            return "Emo hair is hair that has been treated to sit straight at all times, with bangs often hanging over one eye.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 14:
+            return "An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head."
+        return f"HAIR DESC_LONG ERROR {ID}"
 
    def doTailor(self):
-      self.buy = 0
-      self.showButtons(ButtonList(1,1,1,1,1,1,1,0,1,1,1,1))
-      tempDict = {4:"Buy", 12:"Return"}
-      for i in self.bMap:
-         tempDict[i] = self.clothesName(self.clothesID(i))
-      self.outputMainText("Click on a piece of clothing to view a description for the piece. If you would like to purchase it, click the Buy button.\n\nNote: Buying clothes automatically replaces what you're already wearing. You cannot sell outfits.",True)
-      self.doButtonChoices(tempDict)
-      def doListen():
-         if (self.buttonChoice not in {4,8,12} and self.clothesID(self.buttonChoice) != 0):
-            self.outputMainText(f"{self.clothesDescription(self.clothesID(self.buttonChoice))}\n\nCost: {self.clothesValue(self.clothesID(self.buttonChoice))} coins.",True)
-            self.buy = self.buttonChoice
-         elif (self.buttonChoice == 4 and self.buy != 0):
-            self.outputMainText(f"\n\nAre you sure you would like to buy {self.clothesName(self.clothesID(self.buy))}?")
-            if (self.attireTop == self.attireBot):
-               self.outputMainText(f"\n\nBe wary, replacing your {self.clothesTop()} with something that only takes a single clothes slot, your other clothes slot will default to the basic shirt/pants.")
-            self.buttonConfirm()
-            def doListen():
-               if (self.buttonChoice == 6):
-                  if (self.coin < self.clothesValue(self.clothesID(self.buy))):
-                     self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {self.clothesValue(self.clothesID(self.buy)) - self.coin} more coins to purchase {self.clothesName(self.clothesID(self.buy))}.",True)
-                     self.doNext()
-                     def doListen():
+        self.buy = 0
+        self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
+        tempDict = {4: "Buy", 12: "Return"}
+        for i in self.bMap:
+            tempDict[i] = self.clothesName(self.clothesID(i))
+        self.outputMainText("Click on a piece of clothing to view a description for the piece. If you would like to purchase it, click the Buy button.\n\nNote: Buying clothes automatically replaces what you're already wearing. You cannot sell outfits.", True)
+        self.doButtonChoices(tempDict)
+
+        def doListen():
+            if (self.buttonChoice not in {4, 8, 12} and self.clothesID(self.buttonChoice) != 0):
+                self.outputMainText(f"{self.clothesDescription(self.clothesID(self.buttonChoice))}\n\nCost: {self.clothesValue(self.clothesID(self.buttonChoice))} coins.", True)
+                self.buy = self.buttonChoice
+            elif (self.buttonChoice == 4 and self.buy != 0):
+                self.outputMainText(f"\n\nAre you sure you would like to buy {self.clothesName(self.clothesID(self.buy))}?")
+                if (self.attireTop == self.attireBot):
+                    self.outputMainText(f"\n\nBe wary, replacing your {self.clothesTop()} with something that only takes a single clothes slot, your other clothes slot will default to the basic shirt/pants.")
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        if (self.coin < self.clothesValue(self.clothesID(self.buy))):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {self.clothesValue(self.clothesID(self.buy)) - self.coin} more coins to purchase {self.clothesName(self.clothesID(self.buy))}.", True)
+                            self.doNext()
+
+                            def doListen():
+                                self.doTailor()
+                            self.doListen = doListen
+                        else:
+                            self.clothesChange(self.clothesID(self.buy))
+                            self.doCoin(-self.clothesValue(self.clothesID(self.buy)))
+                            self.doTailor()
+                    else:
                         self.doTailor()
-                     self.doListen = doListen
-                  else:
-                     self.clothesChange(self.clothesID(self.buy))
-                     self.doCoin(-self.clothesValue(self.clothesID(self.buy)))
-                     self.doTailor()
-               else:
-                  self.doTailor()
-            self.doListen = doListen
-         elif (self.buttonChoice == 12):
-            if (self.doShopsReturn and not self.shiftHeld):
-               self.doShops()
-            else:
-               self.doReturn()
-      self.doListen = doListen
+                self.doListen = doListen
+            elif (self.buttonChoice == 12):
+                if (self.doShopsReturn and not self.shiftHeld):
+                    self.doShops()
+                else:
+                    self.doReturn()
+        self.doListen = doListen
 
    @staticmethod
-   def clothesName(ID:int):
-      if ID == -1:
-         return "Tattered Shreds"
-      if ID == 0:
-         return "Invisible Underwear"
-      if ID == 1:
-         return "Shirt"
-      if ID == 2:
-         return "Pants"
-      if ID == 3:
-         return "Bikini Top"
-      if ID == 4:
-         return "Bikini Bottom"
-      if ID == 5:
-         return "Elegant Dress"
-      if ID == 6:
-         return "Latex Suit"
-      if ID == 7:
-         return "Skirt"
-      if ID == 8:
-         return "Shorts"
-      if ID == 9:
-         return "Blouse"
-      if ID == 10:
-         return "Diaper"
-      if ID == 11:
-         return "Poofy Diaper"
-      if ID == 12:
-         return "Sundress"
-      if ID == 13:
-         return "Skimpy Dress"
-      if ID == 14:
-         return "Short Skirt"
-      if ID == 15:
-         return "Short Shorts"
-      if ID == 16:
-         return "Loin Cloth"
-      if ID == 17:
-         return "Bathing Suit"
-      if ID == 18:
-         return "Muscle Shirt"
-      if ID == 19:
-         return "Corset"
-      if ID == 20:
-         return "Silk Panties"
-      if ID == 21:
-         return "Slingkini"
-      if ID == 22:
-         return "Thong"
-      if ID == 23:
-         return "Bloomers"
-      if ID == 24:
-         return "Tights"
-      if ID == 25:
-         return "Gothic Dress"
-      if ID == 26:
-         return "Tube Top"
-      if ID == 27:
-         return "Nipple Pasties"
-      if ID == 28:
-         return "Camisole"
-      if ID == 29:
-         return "Training Suit"
-      if ID == 30:
-         return "Bouncy Bra"
-      return "CLOTHES NAME ERROR"
+   def clothesName(ID: int):
+        if ID == -1:
+            return "Tattered Shreds"
+        if ID == 0:
+            return "Invisible Underwear"
+        if ID == 1:
+            return "Shirt"
+        if ID == 2:
+            return "Pants"
+        if ID == 3:
+            return "Bikini Top"
+        if ID == 4:
+            return "Bikini Bottom"
+        if ID == 5:
+            return "Elegant Dress"
+        if ID == 6:
+            return "Latex Suit"
+        if ID == 7:
+            return "Skirt"
+        if ID == 8:
+            return "Shorts"
+        if ID == 9:
+            return "Blouse"
+        if ID == 10:
+            return "Diaper"
+        if ID == 11:
+            return "Poofy Diaper"
+        if ID == 12:
+            return "Sundress"
+        if ID == 13:
+            return "Skimpy Dress"
+        if ID == 14:
+            return "Short Skirt"
+        if ID == 15:
+            return "Short Shorts"
+        if ID == 16:
+            return "Loin Cloth"
+        if ID == 17:
+            return "Bathing Suit"
+        if ID == 18:
+            return "Muscle Shirt"
+        if ID == 19:
+            return "Corset"
+        if ID == 20:
+            return "Silk Panties"
+        if ID == 21:
+            return "Slingkini"
+        if ID == 22:
+            return "Thong"
+        if ID == 23:
+            return "Bloomers"
+        if ID == 24:
+            return "Tights"
+        if ID == 25:
+            return "Gothic Dress"
+        if ID == 26:
+            return "Tube Top"
+        if ID == 27:
+            return "Nipple Pasties"
+        if ID == 28:
+            return "Camisole"
+        if ID == 29:
+            return "Training Suit"
+        if ID == 30:
+            return "Bouncy Bra"
+        return "CLOTHES NAME ERROR"
 
-   def clothesID(self, choice:int):
-      if self.currentZone == 1:
-         if choice == 1:
-            return 1
-         if choice == 2:
-            return 2
-         if choice == 3:
-            return 29
-         if choice == 5:
-            return 6
-         if choice == 6:
-            return 9
-         if choice == 7:
-            return 10
-         if choice == 9:
-            return 13
-         if choice == 10:
-            return 22
-         if choice == 11:
-            return 27
-      elif self.currentZone == 2:
-         if choice == 1:
-            return 1
-         if choice == 2:
-            return 2
-         if choice == 3:
-            return 29
-         if choice == 5:
-            return 8
-         if choice == 6:
-            return 9
-         if choice == 7:
-            return 15
-         if choice == 9:
-            return 18
-         if choice == 10:
-            return 24
-         if choice == 11:
-            return 26
-      elif self.currentZone == 3:
-         if choice == 1:
-            return 1
-         if choice == 2:
-            return 2
-         if choice == 3:
-            return 29
-         if choice == 5:
+   def clothesID(self, choice: int):
+        if self.currentZone == 1:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 6
+            if choice == 6:
+                return 9
+            if choice == 7:
+                return 10
+            if choice == 9:
+                return 13
+            if choice == 10:
+                return 22
+            if choice == 11:
+                return 27
+        elif self.currentZone == 2:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 8
+            if choice == 6:
+                return 9
+            if choice == 7:
+                return 15
+            if choice == 9:
+                return 18
+            if choice == 10:
+                return 24
+            if choice == 11:
+                return 26
+        elif self.currentZone == 3:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 5
+            if choice == 6:
+                return 13
+            if choice == 7:
+                return 19
+            if choice == 9:
+                return 22
+            if choice == 10:
+                return 23
+            if choice == 11:
+                return 25
+        elif self.currentZone == 4:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 3
+            if choice == 6:
+                return 4
+            if choice == 7:
+                return 11
+            if choice == 9:
+                return 12
+            if choice == 10:
+                return 20
+            if choice == 11:
+                return 28
+        elif self.currentZone == 6:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 7
+            if choice == 6:
+                return 14
+            if choice == 7:
+                return 16
+            if choice == 9:
+                return 17
+            if choice == 10:
+                return 19
+            if choice == 11:
+                return 21
+        elif self.currentZone == 12:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 28
+            if choice == 6:
+                return 30
+            if choice == 7:
+                return 25
+            if choice == 9:
+                return 23
+            if choice == 10:
+                return 22
+            if choice == 11:
+                return 19
+        return 0
+
+   @staticmethod
+   def clothesValue(ID: int):
+        if ID == 1:
             return 5
-         if choice == 6:
-            return 13
-         if choice == 7:
-            return 19
-         if choice == 9:
-            return 22
-         if choice == 10:
-            return 23
-         if choice == 11:
+        if ID == 2:
+            return 5
+        if ID == 3:
             return 25
-      elif self.currentZone == 4:
-         if choice == 1:
-            return 1
-         if choice == 2:
-            return 2
-         if choice == 3:
-            return 29
-         if choice == 5:
-            return 3
-         if choice == 6:
-            return 4
-         if choice == 7:
-            return 11
-         if choice == 9:
-            return 12
-         if choice == 10:
-            return 20
-         if choice == 11:
-            return 28
-      elif self.currentZone == 6:
-         if choice == 1:
-            return 1
-         if choice == 2:
-            return 2
-         if choice == 3:
-            return 29
-         if choice == 5:
-            return 7
-         if choice == 6:
-            return 14
-         if choice == 7:
-            return 16
-         if choice == 9:
-            return 17
-         if choice == 10:
-            return 19
-         if choice == 11:
-            return 21
-      elif self.currentZone == 12:
-         if choice == 1:
-            return 1
-         if choice == 2:
-            return 2
-         if choice == 3:
-            return 29
-         if choice == 5:
-            return 28
-         if choice == 6:
+        if ID == 4:
+            return 25
+        if ID == 5:
+            return 45
+        if ID == 6:
+            return 60
+        if ID == 7:
+            return 25
+        if ID == 8:
+            return 25
+        if ID == 9:
+            return 25
+        if ID == 10:
             return 30
-         if choice == 7:
-            return 25
-         if choice == 9:
-            return 23
-         if choice == 10:
-            return 22
-         if choice == 11:
-            return 19
-      return 0
+        if ID == 11:
+            return 40
+        if ID == 12:
+            return 40
+        if ID == 13:
+            return 50
+        if ID == 14:
+            return 35
+        if ID == 15:
+            return 35
+        if ID == 16:
+            return 40
+        if ID == 17:
+            return 55
+        if ID == 18:
+            return 15
+        if ID == 19:
+            return 50
+        if ID == 20:
+            return 35
+        if ID == 21:
+            return 65
+        if ID == 22:
+            return 40
+        if ID == 23:
+            return 30
+        if ID == 24:
+            return 35
+        if ID == 25:
+            return 60
+        if ID == 26:
+            return 20
+        if ID == 27:
+            return 45
+        if ID == 28:
+            return 40
+        if ID == 29:
+            return 35
+        if ID == 30:
+            return 45
+        return 0
 
    @staticmethod
-   def clothesValue(ID:int):
-      if ID == 1:
-         return 5
-      if ID == 2:
-         return 5
-      if ID == 3:
-         return 25
-      if ID == 4:
-         return 25
-      if ID == 5:
-         return 45
-      if ID == 6:
-         return 60
-      if ID == 7:
-         return 25
-      if ID == 8:
-         return 25
-      if ID == 9:
-         return 25
-      if ID == 10:
-         return 30
-      if ID == 11:
-         return 40
-      if ID == 12:
-         return 40
-      if ID == 13:
-         return 50
-      if ID == 14:
-         return 35
-      if ID == 15:
-         return 35
-      if ID == 16:
-         return 40
-      if ID == 17:
-         return 55
-      if ID == 18:
-         return 15
-      if ID == 19:
-         return 50
-      if ID == 20:
-         return 35
-      if ID == 21:
-         return 65
-      if ID == 22:
-         return 40
-      if ID == 23:
-         return 30
-      if ID == 24:
-         return 35
-      if ID == 25:
-         return 60
-      if ID == 26:
-         return 20
-      if ID == 27:
-         return 45
-      if ID == 28:
-         return 40
-      if ID == 29:
-         return 35
-      if ID == 30:
-         return 45
-      return 0
-
-   @staticmethod
-   def clothesDescription(ID:int):
-      if ID == 1:
-         return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
-      if ID == 2:
-         return "A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."
-      if ID == 3:
-         return "A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."
-      if ID == 4:
-         return "A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."
-      if ID == 5:
-         return "A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."
-      if ID == 6:
-         return "A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."
-      if ID == 7:
-         return "A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."
-      if ID == 8:
-         return "A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."
-      if ID == 9:
-         return "A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."
-      if ID == 10:
-         return "A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
-      if ID == 11:
-         return "A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
-      if ID == 12:
-         return "A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."
-      if ID == 13:
-         return "A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."
-      if ID == 14:
-         return "A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."
-      if ID == 15:
-         return "A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."
-      if ID == 16:
-         return "A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."
-      if ID == 17:
-         return "A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."
-      if ID == 18:
-         return "A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."
-      if ID == 19:
-         return "A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."
-      if ID == 20:
-         return "A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."
-      if ID == 21:
-         return "A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."
-      if ID == 22:
-         return "A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."
-      if ID == 23:
-         return "A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."
-      if ID == 24:
-         return "A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."
-      if ID == 25:
-         return "A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."
-      if ID == 26:
-         return "A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."
-      if ID == 27:
-         return "A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."
-      if ID == 28:
-         return "A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."
-      if ID == 29:
-         return "A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."
-      if ID == 30:
-         return "A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot."
-      return "CLOTHES DESCRIPTION ERROR"
+   def clothesDescription(ID: int):
+        if ID == 1:
+            return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
+        if ID == 2:
+            return "A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."
+        if ID == 3:
+            return "A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."
+        if ID == 4:
+            return "A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."
+        if ID == 5:
+            return "A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."
+        if ID == 6:
+            return "A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."
+        if ID == 7:
+            return "A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."
+        if ID == 8:
+            return "A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."
+        if ID == 9:
+            return "A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."
+        if ID == 10:
+            return "A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
+        if ID == 11:
+            return "A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
+        if ID == 12:
+            return "A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."
+        if ID == 13:
+            return "A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."
+        if ID == 14:
+            return "A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."
+        if ID == 15:
+            return "A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."
+        if ID == 16:
+            return "A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."
+        if ID == 17:
+            return "A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."
+        if ID == 18:
+            return "A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."
+        if ID == 19:
+            return "A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."
+        if ID == 20:
+            return "A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."
+        if ID == 21:
+            return "A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."
+        if ID == 22:
+            return "A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."
+        if ID == 23:
+            return "A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."
+        if ID == 24:
+            return "A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."
+        if ID == 25:
+            return "A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."
+        if ID == 26:
+            return "A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."
+        if ID == 27:
+            return "A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."
+        if ID == 28:
+            return "A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."
+        if ID == 29:
+            return "A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."
+        if ID == 30:
+            return "A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot."
+        return "CLOTHES DESCRIPTION ERROR"
 
    def clothesTop(self):
-      if self.attireTop == -1:
-         return "tattered shreds"
-      if self.attireTop == 0:
-         return "invisible underwear"
-      if self.attireTop == 1:
-         return "shirt"
-      if self.attireTop == 3:
-         if (self.boobTotal > 2):
-            return "bikini tops"
-         return "bikini top"
-      if self.attireTop == 5:
-         return "elegant dress"
-      if self.attireTop == 6:
-         return "latex suit"
-      if self.attireTop == 9:
-         return "blouse"
-      if self.attireTop == 12:
-         return "sundress"
-      if self.attireTop == 13:
-         return "skimpy dress"
-      if self.attireTop == 17:
-         return "bathing suit"
-      if self.attireTop == 18:
-         return "muscle shirt"
-      if self.attireTop == 19:
-         return "corset"
-      if self.attireTop == 21:
-         return "slingkini"
-      if self.attireTop == 25:
-         return "gothic dress"
-      if self.attireTop == 26:
-         return "tube top"
-      if self.attireTop == 27:
-         return "nipple pasties"
-      if self.attireTop == 28:
-         return "camisole"
-      if self.attireTop == 29:
-         return "training suit"
-      if self.attireTop == 30:
-         return "bouncy bra"
-      return f"CLOTHES TOP ERROR {self.attireTop}"
+        if self.attireTop == -1:
+            return "tattered shreds"
+        if self.attireTop == 0:
+            return "invisible underwear"
+        if self.attireTop == 1:
+            return "shirt"
+        if self.attireTop == 3:
+            if (self.boobTotal > 2):
+                return "bikini tops"
+            return "bikini top"
+        if self.attireTop == 5:
+            return "elegant dress"
+        if self.attireTop == 6:
+            return "latex suit"
+        if self.attireTop == 9:
+            return "blouse"
+        if self.attireTop == 12:
+            return "sundress"
+        if self.attireTop == 13:
+            return "skimpy dress"
+        if self.attireTop == 17:
+            return "bathing suit"
+        if self.attireTop == 18:
+            return "muscle shirt"
+        if self.attireTop == 19:
+            return "corset"
+        if self.attireTop == 21:
+            return "slingkini"
+        if self.attireTop == 25:
+            return "gothic dress"
+        if self.attireTop == 26:
+            return "tube top"
+        if self.attireTop == 27:
+            return "nipple pasties"
+        if self.attireTop == 28:
+            return "camisole"
+        if self.attireTop == 29:
+            return "training suit"
+        if self.attireTop == 30:
+            return "bouncy bra"
+        return f"CLOTHES TOP ERROR {self.attireTop}"
 
    def clothesBottom(self):
-      if self.attireBot == -1:
-         return "tattered shreds"
-      if self.attireBot == 0:
-         return "invisible underwear"
-      if self.attireBot == 2:
-         return "pants"
-      if self.attireBot == 4:
-         return "bikini bottom"
-      if self.attireBot == 5:
-         return "elegant dress"
-      if self.attireBot == 6:
-         return "latex suit"
-      if self.attireBot == 7:
-         return "skirt"
-      if self.attireBot == 8:
-         return "shorts"
-      if self.attireBot == 10:
-         return "diaper"
-      if self.attireBot == 11:
-         return "poofy diaper"
-      if self.attireBot == 12:
-         return "sundress"
-      if self.attireBot == 13:
-         return "skimpy dress"
-      if self.attireBot == 14:
-         return "short skirt"
-      if self.attireBot == 15:
-         return "short shorts"
-      if self.attireBot == 16:
-         return "loincloth"
-      if self.attireBot == 17:
-         return "bathing suit"
-      if self.attireBot == 20:
-         return "silken panties"
-      if self.attireBot == 21:
-         return "slingkini"
-      if self.attireBot == 22:
-         return "thong"
-      if self.attireBot == 23:
-         return "bloomer"
-      if self.attireBot == 24:
-         return "tights"
-      if self.attireBot == 25:
-         return "gothic dress"
-      if self.attireBot == 29:
-         return "training suit"
-      return f"CLOTHES BOTTOM ERROR {self.attireBot}"
+        if self.attireBot == -1:
+            return "tattered shreds"
+        if self.attireBot == 0:
+            return "invisible underwear"
+        if self.attireBot == 2:
+            return "pants"
+        if self.attireBot == 4:
+            return "bikini bottom"
+        if self.attireBot == 5:
+            return "elegant dress"
+        if self.attireBot == 6:
+            return "latex suit"
+        if self.attireBot == 7:
+            return "skirt"
+        if self.attireBot == 8:
+            return "shorts"
+        if self.attireBot == 10:
+            return "diaper"
+        if self.attireBot == 11:
+            return "poofy diaper"
+        if self.attireBot == 12:
+            return "sundress"
+        if self.attireBot == 13:
+            return "skimpy dress"
+        if self.attireBot == 14:
+            return "short skirt"
+        if self.attireBot == 15:
+            return "short shorts"
+        if self.attireBot == 16:
+            return "loincloth"
+        if self.attireBot == 17:
+            return "bathing suit"
+        if self.attireBot == 20:
+            return "silken panties"
+        if self.attireBot == 21:
+            return "slingkini"
+        if self.attireBot == 22:
+            return "thong"
+        if self.attireBot == 23:
+            return "bloomer"
+        if self.attireBot == 24:
+            return "tights"
+        if self.attireBot == 25:
+            return "gothic dress"
+        if self.attireBot == 29:
+            return "training suit"
+        return f"CLOTHES BOTTOM ERROR {self.attireBot}"
 
    def currentClothes(self):
-      if (self.attireTop == self.attireBot):
-         return self.clothesTop()
-      return f"{self.clothesTop()} and {self.clothesBottom()}"
-      #return "CURRENT CLOTHES ERROR"
+        if (self.attireTop == self.attireBot):
+            return self.clothesTop()
+        return f"{self.clothesTop()} and {self.clothesBottom()}"
+        # return "CURRENT CLOTHES ERROR"
 
-   def pullUD(self, source:int):
-      if source == 1:
-         if self.attireTop in {-1,6,9,21,29}:
-            return "open"
-         if self.attireTop in {0,1,18,28}:
-            return "up"
-         if self.attireTop in {3,5,12,13,17,19,25,26,30}:
-            return "down"
-         if self.attireTop == 27:
-            return "off"
-      elif source == 2:
-         if self.attireBot in {-1,6,29}:
-            return "open"
-         if self.attireBot in {0,2,4,8,10,11,15,20,22,23,24}:
-            return "down"
-         if self.attireBot in {5,7,12,13,14,16,25}:
-            return "up"
-         if self.attireBot in {17,21}:
-            return "aside"
-      return f"PULL UP/DOWN ERROR {self.attireTop} {self.attireBot}"
+   def pullUD(self, source: int):
+        if source == 1:
+            if self.attireTop in {-1, 6, 9, 21, 29}:
+                return "open"
+            if self.attireTop in {0, 1, 18, 28}:
+                return "up"
+            if self.attireTop in {3, 5, 12, 13, 17, 19, 25, 26, 30}:
+                return "down"
+            if self.attireTop == 27:
+                return "off"
+        elif source == 2:
+            if self.attireBot in {-1, 6, 29}:
+                return "open"
+            if self.attireBot in {0, 2, 4, 8, 10, 11, 15, 20, 22, 23, 24}:
+                return "down"
+            if self.attireBot in {5, 7, 12, 13, 14, 16, 25}:
+                return "up"
+            if self.attireBot in {17, 21}:
+                return "aside"
+        return f"PULL UP/DOWN ERROR {self.attireTop} {self.attireBot}"
 
-   def clothesChange(self, ID:int):
-      if ID == 1:
-         self.changeTop(1)
-      elif ID == 2:
-         self.changeBot(2)
-      elif ID == 3:
-         self.changeTop(3)
-      elif ID == 4:
-         self.changeBot(4)
-      elif ID == 5:
-         self.changeTop(5)
-         self.changeBot(5)
-      elif ID == 6:
-         self.changeTop(6)
-         self.changeBot(6)
-      elif ID == 7:
-         self.changeBot(7)
-      elif ID == 8:
-         self.changeBot(8)
-      elif ID == 9:
-         self.changeTop(9)
-      elif ID == 10:
-         self.changeBot(10)
-      elif ID == 11:
-         self.changeBot(11)
-      elif ID == 12:
-         self.changeTop(12)
-         self.changeBot(12)
-      elif ID == 13:
-         self.changeTop(13)
-         self.changeBot(13)
-      elif ID == 14:
-         self.changeBot(14)
-      elif ID == 15:
-         self.changeBot(15)
-      elif ID == 16:
-         self.changeBot(16)
-      elif ID == 17:
-         self.changeTop(17)
-         self.changeBot(17)
-      elif ID == 18:
-         self.changeTop(18)
-      elif ID == 19:
-         self.changeTop(19)
-      elif ID == 20:
-         self.changeBot(20)
-      elif ID == 21:
-         self.changeTop(21)
-         self.changeBot(21)
-      elif ID == 22:
-         self.changeBot(22)
-      elif ID == 23:
-         self.changeBot(23)
-      elif ID == 24:
-         self.changeBot(24)
-      elif ID == 25:
-         self.changeTop(25)
-         self.changeBot(25)
-      elif ID == 26:
-         self.changeTop(26)
-      elif ID == 27:
-         self.changeTop(27)
-      elif ID == 28:
-         self.changeTop(28)
-      elif ID == 29:
-         self.changeTop(29)
-         self.changeBot(29)
-      elif ID == 30:
-         self.changeTop(30)
-
-   def changeTop(self, ID:int):
-      #!Here
-      if (ID != self.attireTop):
-         if (self.attireTop == -1):
-            self.statsMod(2,2,0,0)
-         elif (self.attireTop == 0):
-            self.statsMod(0,4,0,0)
-         elif (self.attireTop == 1):...
-         elif (self.attireTop == 3):
-            self.enticeMod -= 6
-            self.statsMod(0,2,0,-2)
-            self.milkMod += 15
-         elif (self.attireTop == 5):
-            self.statsMod(2,-4,0,0)
-            self.pregRate -= 0.2
-         elif (self.attireTop == 6):
-            self.enticeMod -= 8
-            self.statsMod(0,2,0,-8)
-            self.cumMod += 0.2
-            self.milkMod += 10
-            self.runMod += 5
-         elif (self.attireTop == 9):
-            self.statsMod(2,-2,0,1)
-            self.milkMod -= 20
-         elif (self.attireTop == 12):
-            self.statsMod(2,0,-2,-2)
-            self.cumMod -= 0.2
-            self.runMod += 5
-            self.pregChanceMod -= 5
-         elif (self.attireTop == 13):
-            self.statsMod(2,3,-2,-3)
-            self.enticeMod -= 14
-            self.pregChanceMod -= 5
-         elif (self.attireTop == 17):
-            self.statsMod(-2,2,0,-2)
-            self.vagMoistMod -= 2
-            self.cockMoistMod -= 2
-            self.pregChanceMod += 5
-         elif (self.attireTop == 18):
-            self.statsMod(-2,2,0,0)
-            self.breastSize -= 1
-         elif (self.attireTop == 19):
-            self.statsMod(2,-2,-2,0)
-            self.breastSize -= 4
-            self.hips -= 2
-            self.HPMod += 5
-         elif (self.attireTop == 21):
-            self.enticeMod -= 18
-            self.statsMod(2,6,-4,-4)
-            self.runMod += 10
-            self.minLust -= 5
-         elif (self.attireTop == 25):
-            self.statsMod(0,-4,0,0)
-            self.rapeMod -= 3
-            self.vagElastic -= 0.2
-         elif (self.attireTop == 26):
-            self.enticeMod -= 2
-            self.statsMod(0,2,0,0)
-            self.milkMod -= 5
-            self.nippleSize -= 2
-         elif (self.attireTop == 27):
-            self.statsMod(0,6,-2,-4)
-            self.milkCap -= 250
-            self.enticeMod -= 6
-         elif (self.attireTop == 28):
-            self.statsMod(0,-2,0,-4)
-            self.enticeMod -= 4
-         elif (self.attireTop == 29):
-            self.statsMod(-10,2,2,2)
-            self.enticeMod += 10
-            self.HPMod -= 10
-         elif (self.attireTop == 30):
-            self.carryMod -= 15
-         if (ID == -1):
-            if (self.attireTop == self.attireBot and self.attireBot != -1):
-               self.attireTop = ID
-               self.changeBot(-1)
-            self.statsMod(-2,-2,0,0)
-         elif (ID == 0):
-            self.statsMod(0,-4,0,0)
-         elif (ID == 1):...
-         elif (ID == 3):
-            self.enticeMod += 6
-            self.statsMod(0,-2,0,2)
-            self.milkMod -= 15
-         elif (ID == 5):
-            self.statsMod(-2,4,0,0)
-            self.pregRate += 0.2
-         elif (ID == 6):
-            self.enticeMod += 8
-            self.statsMod(0,-2,0,8)
-            self.cumMod -= 0.2
-            self.milkMod -= 10
-            self.runMod -= 5
-         elif (ID == 9):
-            self.statsMod(-2,2,0,-1)
-            self.milkMod += 20
-         elif (ID == 12):
-            self.statsMod(-2,0,2,2)
-            self.cumMod += 0.2
-            self.runMod -= 5
-            self.pregChanceMod += 5
-         elif (ID == 13):
-            self.statsMod(-2,-3,2,3)
-            self.enticeMod += 14
-            self.pregChanceMod += 5
-         elif (ID == 17):
-            self.statsMod(2,-2,0,2)
-            self.vagMoistMod += 2
-            self.cockMoistMod += 2
-            self.pregChanceMod -= 5
-         elif (ID == 18):
-            self.statsMod(2,-2,0,0)
-            self.breastSize += 1
-         elif (ID == 19):
-            self.statsMod(-2,2,2,0)
-            self.breastSize += 4
-            self.hips += 2
-            self.HPMod -= 5
-         elif (ID == 21):
-            self.enticeMod += 18
-            self.statsMod(-2,-6,4,4)
-            self.runMod -= 10
-            self.minLust += 5
-         elif (ID == 25):
-            self.statsMod(0,4,0,0)
-            self.rapeMod += 3
-            self.vagElastic += 0.2
-         elif (ID == 26):
-            self.enticeMod += 2
-            self.statsMod(0,-2,0,0)
-            self.milkMod += 5
-            self.nippleSize += 2
-         elif (ID == 27):
-            self.statsMod(0,-6,2,4)
-            self.milkCap += 250
-            self.enticeMod += 6
-         elif (ID == 28):
-            self.statsMod(0,2,0,4)
-            self.enticeMod += 4
-         elif (ID == 29):
-            self.statsMod(10,-2,-2,-2)
-            self.enticeMod -= 10
-            self.HPMod += 10
-         elif (ID == 30):
-            self.carryMod += 15
-         if (self.attireTop == self.attireBot and ID != 0 and ID != -1):
-            self.attireTop = ID
-            self.changeBot(2)
-         else:
-            self.attireTop = ID
-
-   def changeBot(self, ID:int):
-      if (ID != self.attireBot):
-         if (self.attireBot == -1):
-            self.statsMod(2,2,0,0)
-         elif (self.attireBot == 0):
-            self.statsMod(0,4,0,0)
-         elif (self.attireBot == 2):...
-         elif (self.attireBot == 4):
-            self.enticeMod -= 6
-            self.statsMod(0,2,0,-2)
-            self.cumMod += 0.2
-         elif (self.attireBot == 7):
-            self.runMod -= 3
-            self.cumMod -= 0.2
-            self.statsMod(-2,2,0,0)
-            self.pregChanceMod -= 4
-         elif (self.attireBot == 8):
-            self.runMod -= 3
-            self.statsMod(-2,0,3,0)
-         elif (self.attireBot == 10):
-            self.vagMoistMod += 2
-            self.cockMoistMod += 2
-            self.hips -= 1
-            self.statsMod(0,4,0,0)
-         elif (self.attireBot == 11):
-            self.vagMoistMod += 5
-            self.cockMoistMod += 5
-            self.hips -= 1
-            self.butt -= 2
-            self.statsMod(0,4,4,0)
-         elif (self.attireBot == 14):
-            self.cumMod -= 0.2
-            self.enticeMod -= 7
-            self.statsMod(0,4,0,-2)
-            self.pregChanceMod -= 6
-         elif (self.attireBot == 15):
-            self.cumMod += 0.2
-            self.runMod -= 5
-            self.enticeMod -= 4
-            self.statsMod(2,3,0,-2)
-         elif (self.attireBot == 16):
-            self.cumMod -= 0.2
-            self.runMod -= 4
-            self.pregChanceMod -= 5
-            self.statsMod(-2,4,0,-2)
-         elif (self.attireBot == 20):
-            self.cumMod += 0.3
-            self.runMod += 3
-            self.vulvaSize -= 1
-            self.enticeMod -= 7
-            self.statsMod(0,2,-2,-2)
-         elif (self.attireBot == 22):
-            self.runMod += 5
-            self.enticeMod -= 9
-            self.statsMod(2,2,-4,2)
-         elif (self.attireBot == 23):
-            self.runMod -= 6
-            self.rapeMod += 4
-            self.statsMod(-2,2,-2,0)
-         elif (self.attireBot == 24):
-            self.runMod -= 4
-            self.cumMod += 0.2
-            self.pregChanceMod += 3
-            self.statsMod(0,0,0,-2)
-         if (ID == -1):
-            if (self.attireTop == self.attireBot and self.attireTop != -1):
-               self.attireBot = ID
-               self.changeTop(-1)
-            self.statsMod(-2,-2,0,0)
-         elif (ID == 0):
-            self.statsMod(0,-4,0,0)
-         elif(ID == 2):...
-         elif (ID == 4):
-            self.enticeMod += 6
-            self.statsMod(0,-2,0,2)
-            self.cumMod -= 0.2
-         elif (ID == 7):
-            self.runMod += 3
-            self.cumMod += 0.2
-            self.statsMod(2,-2,0,0)
-            self.pregChanceMod += 4
-         elif (ID == 8):
-            self.runMod += 3
-            self.statsMod(2,0,-3,0)
-         elif (ID == 10):
-            self.vagMoistMod -= 2
-            self.cockMoistMod -= 2
-            self.hips += 1
-            self.statsMod(0,-4,0,0)
-         elif (ID == 11):
-            self.vagMoistMod -= 5
-            self.cockMoistMod -= 5
-            self.hips += 1
-            self.butt += 2
-            self.statsMod(0,-4,-4,0)
-         elif (ID == 14):
-            self.cumMod += 0.2
-            self.enticeMod += 7
-            self.statsMod(0,-4,0,2)
-            self.pregChanceMod += 6
-         elif (ID == 15):
-            self.cumMod -= 0.2
-            self.runMod += 5
-            self.enticeMod += 4
-            self.statsMod(-2,-3,0,2)
-         elif (ID == 16):
-            self.cumMod += 0.2
-            self.runMod += 4
-            self.pregChanceMod += 5
-            self.statsMod(2,-4,0,2)
-         elif (ID == 20):
-            self.cumMod -= 0.3
-            self.runMod -= 3
-            self.vulvaSize += 1
-            self.enticeMod += 7
-            self.statsMod(0,-2,2,2)
-         elif (ID == 22):
-            self.runMod -= 5
-            self.enticeMod += 9
-            self.statsMod(-2,-2,4,-2)
-         elif (ID == 23):
-            self.runMod += 6
-            self.rapeMod -= 4
-            self.statsMod(2,-2,2,0)
-         elif (ID == 24):
-            self.runMod += 4
-            self.cumMod -= 0.2
-            self.pregChanceMod -= 3
-            self.statsMod(0,0,0,2)
-         if (self.attireTop == self.attireBot and ID != 0 and ID != -1):
-            self.attireBot = ID
+   def clothesChange(self, ID: int):
+        if ID == 1:
             self.changeTop(1)
-         else:
-            self.attireBot = ID
+        elif ID == 2:
+            self.changeBot(2)
+        elif ID == 3:
+            self.changeTop(3)
+        elif ID == 4:
+            self.changeBot(4)
+        elif ID == 5:
+            self.changeTop(5)
+            self.changeBot(5)
+        elif ID == 6:
+            self.changeTop(6)
+            self.changeBot(6)
+        elif ID == 7:
+            self.changeBot(7)
+        elif ID == 8:
+            self.changeBot(8)
+        elif ID == 9:
+            self.changeTop(9)
+        elif ID == 10:
+            self.changeBot(10)
+        elif ID == 11:
+            self.changeBot(11)
+        elif ID == 12:
+            self.changeTop(12)
+            self.changeBot(12)
+        elif ID == 13:
+            self.changeTop(13)
+            self.changeBot(13)
+        elif ID == 14:
+            self.changeBot(14)
+        elif ID == 15:
+            self.changeBot(15)
+        elif ID == 16:
+            self.changeBot(16)
+        elif ID == 17:
+            self.changeTop(17)
+            self.changeBot(17)
+        elif ID == 18:
+            self.changeTop(18)
+        elif ID == 19:
+            self.changeTop(19)
+        elif ID == 20:
+            self.changeBot(20)
+        elif ID == 21:
+            self.changeTop(21)
+            self.changeBot(21)
+        elif ID == 22:
+            self.changeBot(22)
+        elif ID == 23:
+            self.changeBot(23)
+        elif ID == 24:
+            self.changeBot(24)
+        elif ID == 25:
+            self.changeTop(25)
+            self.changeBot(25)
+        elif ID == 26:
+            self.changeTop(26)
+        elif ID == 27:
+            self.changeTop(27)
+        elif ID == 28:
+            self.changeTop(28)
+        elif ID == 29:
+            self.changeTop(29)
+            self.changeBot(29)
+        elif ID == 30:
+            self.changeTop(30)
+
+   def changeTop(self, ID: int):
+        if (ID != self.attireTop):
+            if (self.attireTop == -1):
+                self.statsMod(2, 2, 0, 0)
+            elif (self.attireTop == 0):
+                self.statsMod(0, 4, 0, 0)
+            elif (self.attireTop == 1):
+                ...
+            elif (self.attireTop == 3):
+                self.enticeMod -= 6
+                self.statsMod(0, 2, 0, -2)
+                self.milkMod += 15
+            elif (self.attireTop == 5):
+                self.statsMod(2, -4, 0, 0)
+                self.pregRate -= 0.2
+            elif (self.attireTop == 6):
+                self.enticeMod -= 8
+                self.statsMod(0, 2, 0, -8)
+                self.cumMod += 0.2
+                self.milkMod += 10
+                self.runMod += 5
+            elif (self.attireTop == 9):
+                self.statsMod(2, -2, 0, 1)
+                self.milkMod -= 20
+            elif (self.attireTop == 12):
+                self.statsMod(2, 0, -2, -2)
+                self.cumMod -= 0.2
+                self.runMod += 5
+                self.pregChanceMod -= 5
+            elif (self.attireTop == 13):
+                self.statsMod(2, 3, -2, -3)
+                self.enticeMod -= 14
+                self.pregChanceMod -= 5
+            elif (self.attireTop == 17):
+                self.statsMod(-2, 2, 0, -2)
+                self.vagMoistMod -= 2
+                self.cockMoistMod -= 2
+                self.pregChanceMod += 5
+            elif (self.attireTop == 18):
+                self.statsMod(-2, 2, 0, 0)
+                self.breastSize -= 1
+            elif (self.attireTop == 19):
+                self.statsMod(2, -2, -2, 0)
+                self.breastSize -= 4
+                self.hips -= 2
+                self.HPMod += 5
+            elif (self.attireTop == 21):
+                self.enticeMod -= 18
+                self.statsMod(2, 6, -4, -4)
+                self.runMod += 10
+                self.minLust -= 5
+            elif (self.attireTop == 25):
+                self.statsMod(0, -4, 0, 0)
+                self.rapeMod -= 3
+                self.vagElastic -= 0.2
+            elif (self.attireTop == 26):
+                self.enticeMod -= 2
+                self.statsMod(0, 2, 0, 0)
+                self.milkMod -= 5
+                self.nippleSize -= 2
+            elif (self.attireTop == 27):
+                self.statsMod(0, 6, -2, -4)
+                self.milkCap -= 250
+                self.enticeMod -= 6
+            elif (self.attireTop == 28):
+                self.statsMod(0, -2, 0, -4)
+                self.enticeMod -= 4
+            elif (self.attireTop == 29):
+                self.statsMod(-10, 2, 2, 2)
+                self.enticeMod += 10
+                self.HPMod -= 10
+            elif (self.attireTop == 30):
+                self.carryMod -= 15
+            if (ID == -1):
+                if (self.attireTop == self.attireBot and self.attireBot != -1):
+                    self.attireTop = ID
+                    self.changeBot(-1)
+                self.statsMod(-2, -2, 0, 0)
+            elif (ID == 0):
+                self.statsMod(0, -4, 0, 0)
+            elif (ID == 1):
+                ...
+            elif (ID == 3):
+                self.enticeMod += 6
+                self.statsMod(0, -2, 0, 2)
+                self.milkMod -= 15
+            elif (ID == 5):
+                self.statsMod(-2, 4, 0, 0)
+                self.pregRate += 0.2
+            elif (ID == 6):
+                self.enticeMod += 8
+                self.statsMod(0, -2, 0, 8)
+                self.cumMod -= 0.2
+                self.milkMod -= 10
+                self.runMod -= 5
+            elif (ID == 9):
+                self.statsMod(-2, 2, 0, -1)
+                self.milkMod += 20
+            elif (ID == 12):
+                self.statsMod(-2, 0, 2, 2)
+                self.cumMod += 0.2
+                self.runMod -= 5
+                self.pregChanceMod += 5
+            elif (ID == 13):
+                self.statsMod(-2, -3, 2, 3)
+                self.enticeMod += 14
+                self.pregChanceMod += 5
+            elif (ID == 17):
+                self.statsMod(2, -2, 0, 2)
+                self.vagMoistMod += 2
+                self.cockMoistMod += 2
+                self.pregChanceMod -= 5
+            elif (ID == 18):
+                self.statsMod(2, -2, 0, 0)
+                self.breastSize += 1
+            elif (ID == 19):
+                self.statsMod(-2, 2, 2, 0)
+                self.breastSize += 4
+                self.hips += 2
+                self.HPMod -= 5
+            elif (ID == 21):
+                self.enticeMod += 18
+                self.statsMod(-2, -6, 4, 4)
+                self.runMod -= 10
+                self.minLust += 5
+            elif (ID == 25):
+                self.statsMod(0, 4, 0, 0)
+                self.rapeMod += 3
+                self.vagElastic += 0.2
+            elif (ID == 26):
+                self.enticeMod += 2
+                self.statsMod(0, -2, 0, 0)
+                self.milkMod += 5
+                self.nippleSize += 2
+            elif (ID == 27):
+                self.statsMod(0, -6, 2, 4)
+                self.milkCap += 250
+                self.enticeMod += 6
+            elif (ID == 28):
+                self.statsMod(0, 2, 0, 4)
+                self.enticeMod += 4
+            elif (ID == 29):
+                self.statsMod(10, -2, -2, -2)
+                self.enticeMod -= 10
+                self.HPMod += 10
+            elif (ID == 30):
+                self.carryMod += 15
+            if (self.attireTop == self.attireBot and ID != 0 and ID != -1):
+                self.attireTop = ID
+                self.changeBot(2)
+            else:
+                self.attireTop = ID
+
+   def changeBot(self, ID: int):
+        if (ID != self.attireBot):
+            if (self.attireBot == -1):
+                self.statsMod(2, 2, 0, 0)
+            elif (self.attireBot == 0):
+                self.statsMod(0, 4, 0, 0)
+            elif (self.attireBot == 2):
+                ...
+            elif (self.attireBot == 4):
+                self.enticeMod -= 6
+                self.statsMod(0, 2, 0, -2)
+                self.cumMod += 0.2
+            elif (self.attireBot == 7):
+                self.runMod -= 3
+                self.cumMod -= 0.2
+                self.statsMod(-2, 2, 0, 0)
+                self.pregChanceMod -= 4
+            elif (self.attireBot == 8):
+                self.runMod -= 3
+                self.statsMod(-2, 0, 3, 0)
+            elif (self.attireBot == 10):
+                self.vagMoistMod += 2
+                self.cockMoistMod += 2
+                self.hips -= 1
+                self.statsMod(0, 4, 0, 0)
+            elif (self.attireBot == 11):
+                self.vagMoistMod += 5
+                self.cockMoistMod += 5
+                self.hips -= 1
+                self.butt -= 2
+                self.statsMod(0, 4, 4, 0)
+            elif (self.attireBot == 14):
+                self.cumMod -= 0.2
+                self.enticeMod -= 7
+                self.statsMod(0, 4, 0, -2)
+                self.pregChanceMod -= 6
+            elif (self.attireBot == 15):
+                self.cumMod += 0.2
+                self.runMod -= 5
+                self.enticeMod -= 4
+                self.statsMod(2, 3, 0, -2)
+            elif (self.attireBot == 16):
+                self.cumMod -= 0.2
+                self.runMod -= 4
+                self.pregChanceMod -= 5
+                self.statsMod(-2, 4, 0, -2)
+            elif (self.attireBot == 20):
+                self.cumMod += 0.3
+                self.runMod += 3
+                self.vulvaSize -= 1
+                self.enticeMod -= 7
+                self.statsMod(0, 2, -2, -2)
+            elif (self.attireBot == 22):
+                self.runMod += 5
+                self.enticeMod -= 9
+                self.statsMod(2, 2, -4, 2)
+            elif (self.attireBot == 23):
+                self.runMod -= 6
+                self.rapeMod += 4
+                self.statsMod(-2, 2, -2, 0)
+            elif (self.attireBot == 24):
+                self.runMod -= 4
+                self.cumMod += 0.2
+                self.pregChanceMod += 3
+                self.statsMod(0, 0, 0, -2)
+            if (ID == -1):
+                if (self.attireTop == self.attireBot and self.attireTop != -1):
+                    self.attireBot = ID
+                    self.changeTop(-1)
+                self.statsMod(-2, -2, 0, 0)
+            elif (ID == 0):
+                self.statsMod(0, -4, 0, 0)
+            elif(ID == 2):
+                ...
+            elif (ID == 4):
+                self.enticeMod += 6
+                self.statsMod(0, -2, 0, 2)
+                self.cumMod -= 0.2
+            elif (ID == 7):
+                self.runMod += 3
+                self.cumMod += 0.2
+                self.statsMod(2, -2, 0, 0)
+                self.pregChanceMod += 4
+            elif (ID == 8):
+                self.runMod += 3
+                self.statsMod(2, 0, -3, 0)
+            elif (ID == 10):
+                self.vagMoistMod -= 2
+                self.cockMoistMod -= 2
+                self.hips += 1
+                self.statsMod(0, -4, 0, 0)
+            elif (ID == 11):
+                self.vagMoistMod -= 5
+                self.cockMoistMod -= 5
+                self.hips += 1
+                self.butt += 2
+                self.statsMod(0, -4, -4, 0)
+            elif (ID == 14):
+                self.cumMod += 0.2
+                self.enticeMod += 7
+                self.statsMod(0, -4, 0, 2)
+                self.pregChanceMod += 6
+            elif (ID == 15):
+                self.cumMod -= 0.2
+                self.runMod += 5
+                self.enticeMod += 4
+                self.statsMod(-2, -3, 0, 2)
+            elif (ID == 16):
+                self.cumMod += 0.2
+                self.runMod += 4
+                self.pregChanceMod += 5
+                self.statsMod(2, -4, 0, 2)
+            elif (ID == 20):
+                self.cumMod -= 0.3
+                self.runMod -= 3
+                self.vulvaSize += 1
+                self.enticeMod += 7
+                self.statsMod(0, -2, 2, 2)
+            elif (ID == 22):
+                self.runMod -= 5
+                self.enticeMod += 9
+                self.statsMod(-2, -2, 4, -2)
+            elif (ID == 23):
+                self.runMod += 6
+                self.rapeMod -= 4
+                self.statsMod(2, -2, 2, 0)
+            elif (ID == 24):
+                self.runMod += 4
+                self.cumMod -= 0.2
+                self.pregChanceMod -= 3
+                self.statsMod(0, 0, 0, 2)
+            if (self.attireTop == self.attireBot and ID != 0 and ID != -1):
+                self.attireBot = ID
+                self.changeTop(1)
+            else:
+                self.attireBot = ID
 
    def doDayCare(self):
-      self.doMainText("Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo).",True)
+      # HERE
+      self.doMainText("Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo).", True)
       if (self.currentDayCare != self.currentZone):
          self.doMainText(f"\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in {self.regionName(self.currentDayCare)}.\n\nIf you would like to send a party of well-experienced travelers to {self.regionName(self.currentDayCare)} to safely bring your children here, it will cost 500 coins.")
          tempDict = {12:"Leave"}
@@ -13065,11 +13075,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          elif (self.coin >= 500):
             tempDict[1] = "Transfer"
          self.displayMainText()
-         self.showButtons(ButtonList(1,0,0,0,0,0,0,0,0,0,0,1))
+         self.showButtons(ButtonList(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1))
          self.doButtonChoices(tempDict)
+
          def doListen():
             if (self.buttonChoice == 1):
-               self.outputMainText("Spending your 500 coins, a caravan is gathered and sent out immediately, thanks to there being a few groups that do this sort of thing for a living. You wait around the Day-Care, anxiously awaiting the safe return of your children (and if you don't have any you're just silly). About 8 hours pass and the caravan comes rolling back in, without a scratch or any other problems, thanks to the skill of those you hired and your children are successfully transported to their new location!",True)
+               self.outputMainText("Spending your 500 coins, a caravan is gathered and sent out immediately, thanks to there being a few groups that do this sort of thing for a living. You wait around the Day-Care, anxiously awaiting the safe return of your children (and if you don't have any you're just silly). About 8 hours pass and the caravan comes rolling back in, without a scratch or any other problems, thanks to the skill of those you hired and your children are successfully transported to their new location!", True)
                self.currentDayCare = self.currentZone
                self.hrs = 8
                self.doCoin(-500)
@@ -13148,19 +13159,19 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          if (self.freakyGirlChildren > 0):
             self.doMainText(f"\n\nYou have {self.freakyGirlChildren} cute little balls of fuzz babies with adorable human-like faces and long ears. They roll and bounce about, acting adorable, but if you're not careful and make them angry, you might lose a finger... You're not entirely sure if they'll grow legs and a full body like their 'father'; you don't know much about them at all, really.")
          if (self.currentText == "Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo)."):
-            self.doMainText("\n\nYou have yet to have any children that you keep in your day-care, it seems.",True)
+            self.doMainText("\n\nYou have yet to have any children that you keep in your day-care, it seems.", True)
          self.displayMainText()
          self.doEnd(leave=True)
 
    def doProstitute(self):
       # TODO: Spellcheck
       if (self.percent() < 33 - self.enticeMod):
-         self.outputMainText(f"You wait around {self.regionName(self.currentZone)}, shaking your assets and hoping to catch the eye of someone looking for a bit of sensual company. Unfortunately, despite some lustful gazes, nobody steps forward to take you up on your offer. Either you just weren't attractive enough or they just weren't in the mood at the moment.",True)
+         self.outputMainText(f"You wait around {self.regionName(self.currentZone)}, shaking your assets and hoping to catch the eye of someone looking for a bit of sensual company. Unfortunately, despite some lustful gazes, nobody steps forward to take you up on your offer. Either you just weren't attractive enough or they just weren't in the mood at the moment.", True)
          self.hrs = 2
          self.doEnd()
       else:
          tempInt = Math.floor(self.percent() / 20 + self.ment / 5 + self.lib / 5)
-         self.doMainText("",True)
+         self.doMainText("", True)
          if self.currentZone == 1: # Softlik Whoring
             self.rndArray = Array(1,4,5)
             if self.cockTotal > 0:
@@ -13169,7 +13180,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.rndArray.push(6)
             chance = self.chooseFrom()
             if chance == 1:
-               self.doMainText(f"Checking yourself in a window, you make sure your {self.currentClothes()} are in order. You make sure your {self.boobDesc()} breasts are exposed just enough to entice anyone that sees the lovely flesh of your {self.boobDesc()} bust. You walk with your hips swaying back and forth, trying to bring any watcher to you like a moth to the flame. It's not long before a small group of three human males approach you. Each of them looks like they’ve had a bit to drink and they even try to haggle with you. You manage to agree upon a price for the three of them and they take you back to a seedy bar. The place is bustling, but they have a back room for their dirty exploits.",True)
+               self.doMainText(f"Checking yourself in a window, you make sure your {self.currentClothes()} are in order. You make sure your {self.boobDesc()} breasts are exposed just enough to entice anyone that sees the lovely flesh of your {self.boobDesc()} bust. You walk with your hips swaying back and forth, trying to bring any watcher to you like a moth to the flame. It's not long before a small group of three human males approach you. Each of them looks like they’ve had a bit to drink and they even try to haggle with you. You manage to agree upon a price for the three of them and they take you back to a seedy bar. The place is bustling, but they have a back room for their dirty exploits.", True)
                if (self.lactation > 0):
                   self.doMainText(f"\n\nThe three men eagerly began to strip, each appears to be a fine example of human endowment. You almost wonder if these men had deliberately lost to cock-snakes at some point... though that seems a little ridiculous... who would do that after all? You remove your {self.currentClothes()} for them in a sexy striptease, their fat cocks already engorging with blood.\n\nYou smile seductively as the bravest man approaches. He grabs your {self.boobDesc()} tits and begins to suckle on the sensitive nipples. A moan escapes your lips as milk escapes into his eager mouth.\n\nYou stagger backwards into the waiting arms of one of the men, not realizing that he was behind you. He grabs you roughly by the waist and you feel his hard manhood in your back. You wonder if he will drive it into you, the thought filling your mind makes you shudder with anticipation. He prolongs your wait as he begins to kiss and nibble on the soft nape of your neck, driving the fire in your body hotter and hotter.\n\nThe last man approaches and takes your hand, guiding it to his still hardening member. You can barely fit your delicate fingers around it as you begin a slow teasing movement.\n\nIt’s hard to focus as you try to continue your movements, but the feel of the lips on your neck and the teeth on your nipples is making it difficult to do anything but breathe heavily. Another set of teeth come down suddenly on your free breast. You have to move a little to continue stroking the man’s large member. Your other hand snakes out to find another cock to fill it. The lips on your neck disappear, but that feeling is soon replaced by one of strong hands up your rump. Your cheeks are spread followed by sudden pressure on your little hole. The feeling increases as the hands slide to your hips and they’re pulled backward onto the hard shaft.You give a small yelp as the man pushes fully inside of you, raising you off the ground in surprise.")
                   self.doMainText(f"\n\nYour {self.legDesc(10)} swing awkwardly as you hang impaled on his manhood. Your hands leave the men’s members, but they do not stop milking your tits harshly. You look back over your shoulder and see the man’s smug grin as he leans against a table to support himself. Your attention gets pulled back to one of the men as he pulls hard on your breast to force more milk into his mouth. You wonder what's going to happen next as you slowly get used to the uncomfortable feeling of being held aloft on the man's thick cock. His strong hands grip you tightly around the waist and he begins to pull himself from you. He pulls almost all the way out, barely leaving the head of his member inside. A surprised moan escapes your lips when he suddenly thrusts back into you. You feel a slight bit of pain and your stomach has a noticeable bulge, but you are paying too much attention to your breasts to notice it. As the man begins his thrusting, you can’t help but feel even more turned on. Your tits feel like they're on fire as they are suckled constantly and your nipples are so hard that it's almost painful. With all the focus the men give your body, you can’t fight against the orgasm that turns your bones to jelly and makes your eyes roll back into your head. All your muscles spasm and the man behind you gives a grunt as you clench mercilessly on his shaft. His orgasm has yet to come, but you’re sure that it won’t be long now. There’s not much to do as you let the men suck your tits dry and fuck your ass raw until at last you feel the heat of the man's seed spilling within you. You sigh in pleasure from both the warmth inside you and relief as he pulls himself free of your ass before lowering you to the ground. As good as it felt, you just know it’s gonna be hard to sit for at least a week.")
@@ -13185,7 +13196,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.cumAmount()
                self.hrs = 2
             elif chance == 2:
-               self.doMainText(f"You wander around the city of Softlik, putting yourself on display, hoping to earn some coin with the only asset you have to peddle. The crowds seem to largely ignore you. Some of the more prudish citizen even actively avoid you. As time passes, you worry that your efforts may be in vain. Just as you are about to give up, a very nervous young man hesitantly approaches you.\n\n\"Hey, I know, this might sound stupid, but you look like a...\" he blushes and stammers a bit \"well,..\" He looks around and lowers his voice, hoping no one can hear him, \"I always wanted to try to suck off a {self.domName()} like you. I'll pay you, if you let me...\" He blushes deeply as he looks at you with downcast eyes, his face turning almost as red as his hair. You find it rather endearing as you watch his nervousness warring with his desire.\n\nNeeding the money, you nod your head in acceptance. The young man grabs your arm as his enthusiasm overcomes his nervousness. He practically drags you into an empty alley before looking around, ensuring no one can see you two. Now that he has you in private, however, his nervousness reasserts itself, looking a bit unsure. You decide to take the lead for this moment and pull out {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}.",True)
+               self.doMainText(f"You wander around the city of Softlik, putting yourself on display, hoping to earn some coin with the only asset you have to peddle. The crowds seem to largely ignore you. Some of the more prudish citizen even actively avoid you. As time passes, you worry that your efforts may be in vain. Just as you are about to give up, a very nervous young man hesitantly approaches you.\n\n\"Hey, I know, this might sound stupid, but you look like a...\" he blushes and stammers a bit \"well,..\" He looks around and lowers his voice, hoping no one can hear him, \"I always wanted to try to suck off a {self.domName()} like you. I'll pay you, if you let me...\" He blushes deeply as he looks at you with downcast eyes, his face turning almost as red as his hair. You find it rather endearing as you watch his nervousness warring with his desire.\n\nNeeding the money, you nod your head in acceptance. The young man grabs your arm as his enthusiasm overcomes his nervousness. He practically drags you into an empty alley before looking around, ensuring no one can see you two. Now that he has you in private, however, his nervousness reasserts itself, looking a bit unsure. You decide to take the lead for this moment and pull out {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}.", True)
                if (self.cockSize * self.cockSizeMod <= 20):
                   self.doMainText("\n\nThe young man promptly falls down to his knees in front of you and touches it with a trace of wonder. Finally he begins stroking it in earnest and you realize that despite his uncertainty, he certainly has some talent. As he gains courage from your gasp of pleasure, he starts applying his tongue, teasing along the underside of your shaft. Despite his initial shyness, he is really quite good at this. He takes the tip of your cock into his mouth, licking around the tip and moaning softly. His expression is one of sheer bliss as he tastes the drop of pre that emerges. His head starts bobbing on your cock, going down on you in earnest, eliciting a low growl from you. If this guy is really new to this, he is a natural. He picks up speed and moves your up and down on your cock sucking harder and faster.")
                   if (not self.knot):
@@ -13214,7 +13225,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.hrs = 1
                self.cumAmount()
             elif chance == 3:
-               self.doMainText(f"You don't wait long for a customer. A young blond woman enters your room and immediately strips her clothes off, revealing her large supple breasts and delicate curves. Already your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to grow hard at the sight of her bare flesh. You join her on the bed, locking lips in a sensual kiss as your hands roam over her breasts and pinch her pert nipples.\n\nYou moan as her fingers trace down your spine, her nails applying just enough pressure for it to be sensual and pleasurable. You trail kisses down her neck and chest until you reach her hips. You give her clit a tender lick and nibble before you delve your tongue deep into her folds. She moans and arches her back as she runs her fingers through your hair, pushing your tongue deep into her needy pussy.\n\nThe smell of her aroused sex fills your nostrils as your tongue laps at her delicate walls. Your {self.cockDesc()} cock{self.plural(1)} throb{self.plural(3)} with need to the point of aching as it goes unattended. You pull away from her crotch and she eagerly lays back on the bed, her wet folds glistening with saliva and feminine juices.\n\nYou rub {self.oneYour(1)} hard cock{self.plural(1)} along her nether lips, coating it in her juices before you press your hard length into her. She moans as you vigorously thrust into her, your shaft stroking her sensitive places with each pass.\n\nWith each passing moment her pussy tightens around your cock, making it harder for you to keep pace as you slam into her. You can feel the heavy warmth in your ",True)
+               self.doMainText(f"You don't wait long for a customer. A young blond woman enters your room and immediately strips her clothes off, revealing her large supple breasts and delicate curves. Already your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to grow hard at the sight of her bare flesh. You join her on the bed, locking lips in a sensual kiss as your hands roam over her breasts and pinch her pert nipples.\n\nYou moan as her fingers trace down your spine, her nails applying just enough pressure for it to be sensual and pleasurable. You trail kisses down her neck and chest until you reach her hips. You give her clit a tender lick and nibble before you delve your tongue deep into her folds. She moans and arches her back as she runs her fingers through your hair, pushing your tongue deep into her needy pussy.\n\nThe smell of her aroused sex fills your nostrils as your tongue laps at her delicate walls. Your {self.cockDesc()} cock{self.plural(1)} throb{self.plural(3)} with need to the point of aching as it goes unattended. You pull away from her crotch and she eagerly lays back on the bed, her wet folds glistening with saliva and feminine juices.\n\nYou rub {self.oneYour(1)} hard cock{self.plural(1)} along her nether lips, coating it in her juices before you press your hard length into her. She moans as you vigorously thrust into her, your shaft stroking her sensitive places with each pass.\n\nWith each passing moment her pussy tightens around your cock, making it harder for you to keep pace as you slam into her. You can feel the heavy warmth in your ", True)
                if not self.respectShowBalls or self.respectShowBalls and not self.showBalls:
                   self.doMainText("internal ")
                self.doMainText(f"balls as they begin to clench and roil, ready to burst at any moment. You pound hard into her a few more times before she reaches her peak.\n\nHer pussy clenches and milks at your cock. You groan and push into her one last time as your seed bursts from the tip of your cock and catches deep within her greedy passage. Thick ropes of cum spill into her as you hold her down, filling her with your entire potent load.")
@@ -13223,7 +13234,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.cumAmount()
                self.doLust(-Math.floor(self.sen / 2),2,1)
             elif chance == 4:
-               self.doMainText(f"You've been standing on the corner for a couple of hours now, trying to tempt someone into spending some coin in exchange for some pleasure. So far all you've gotten are dirty looks from several of the town matrons, making you even more embarrassed that you've had to resort to this desperate measure. Luckily for you, a group of farmhands from one of the surrounding farms have come into town on their day off. Several of the burly, sunburnt men cast appreciative glances at you but most of them seem eager to drown their thirst at the nearby tavern. As the boisterous group moves off, one of the younger men pauses, glancing at your {self.boobDesc()} breasts. He watches the men as they make their way into the tavern, grinning to himself when they fail to notice his absence. He continues to gaze at your chest as he makes his way over to you, giving you a chance to study him. His straight brown hair is a bit on the shaggy side, almost concealing his warm, chocolate brown eyes. The downy beginning of a moustache and beard surround his mouth. He's wearing a pair of coveralls over a fairly clean flannel shirt and he doesn't smell too strongly of manure. He quickly agrees to part with some coin to have a bit of fun with you. You lead him a short way down the alley to a spot behind some empty beer crates. His eyes go wide as you slip out of your {self.currentClothes()} letting him get a good look at you.",True)
+               self.doMainText(f"You've been standing on the corner for a couple of hours now, trying to tempt someone into spending some coin in exchange for some pleasure. So far all you've gotten are dirty looks from several of the town matrons, making you even more embarrassed that you've had to resort to this desperate measure. Luckily for you, a group of farmhands from one of the surrounding farms have come into town on their day off. Several of the burly, sunburnt men cast appreciative glances at you but most of them seem eager to drown their thirst at the nearby tavern. As the boisterous group moves off, one of the younger men pauses, glancing at your {self.boobDesc()} breasts. He watches the men as they make their way into the tavern, grinning to himself when they fail to notice his absence. He continues to gaze at your chest as he makes his way over to you, giving you a chance to study him. His straight brown hair is a bit on the shaggy side, almost concealing his warm, chocolate brown eyes. The downy beginning of a moustache and beard surround his mouth. He's wearing a pair of coveralls over a fairly clean flannel shirt and he doesn't smell too strongly of manure. He quickly agrees to part with some coin to have a bit of fun with you. You lead him a short way down the alley to a spot behind some empty beer crates. His eyes go wide as you slip out of your {self.currentClothes()} letting him get a good look at you.", True)
                self.doMainText("\n\nHe fumbles with the buttons of his coveralls and finally manages to undo them. He hastily tugs them down, letting his erection spring from its confinement. His cock isn't the biggest you've seen, but it certainly isn't the smallest either. He blushes a bit as he explains he'd like to use your tits. It isn't quite what you've envisioned, but the customer is always right so you quickly work out the logistics. You have him sit down on one of the empty crates, then lean over him so his erection is nestled between your breasts. He moans softly as you capture his hard, hot length between your tits and soon begins to rock his hips. There's a bit of friction at first, but soon his slick pre is smeared in your cleavage and he begins to thrust his hips even more vigorously.")
                if (self.breastSize <= 2):
                   self.doMainText(" You lower your head and flick your tongue over the head of his cock as it rubs the slight curve between your mounds.")
@@ -18473,7 +18484,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
    def doSanctuary(self):
       chance = self.eventSelect("Sanctuary")
-      self.outputMainText("There doesn't seem to be anything to find here yet.",True)
+      self.outputMainText("There doesn't seem to be anything to find here yet.", True)
       self.hrs = 1
       self.doEnd()
 
@@ -22053,155 +22064,157 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.foundSanctuary = True
 
    def lilaDesc(self):
-      tempStr = ""
-      if (self.lilaMilk == 0):
-         tempStr += "\n\nHer small breasts leak only a few drops of milk as she stands there, but her nipples are quite erect and peek through her fur as she blushes at you staring at her."
-      elif (self.lilaMilk <= 2):
-         tempStr += "\n\nThin trails of white milk travel through her fur from her many erect nipples, slowly dripping onto the floor as she stands there and waits for you, a slight blush crossing her cheeks as the air chills her wet areolas and makes her shiver."
-      elif (self.lilaMilk <= 5):
-         tempStr += "\n\nHer nipples push out from her fur, drops almost continually forming around them and drizzling down her naked body. Shyly, she brings a hand up to squeeze one that's especially stiff and sensitive, making her cheeks red as a squirt of milk launches across the floor of your room."
-      elif (self.lilaMilk <= 8):
-         tempStr += "\n\nThick streams of white milk dribble down her body, her puffy nipples bulging from their retained milk. Her arms cross over a few of them in embarrassment at how obvious they are, but milk squirts out around them and runs down over her pussy, mixing with the fluids there, and pooling on the floor."
-      elif (self.lilaMilk <= 12):
-         tempStr += "\n\nThough not completely engorged thanks to her 'sharing', her nipples are still quite puffy. A hand reaches up to massage one of the breasts as it feels a bit full to her and it spews several thin spurts in different directions from the slight touch, making her blush furiously."
-      elif (self.lilaMilk <= 18):
-         tempStr += "\n\nDespite having just fed some of her friends, her breasts are still swollen, her nipples puffing out further than ever before. Stiff and long, she can't help but play with them with her fingers, milk spilling profusely down her hand and body, and making her moan before you even get to her. With her eager actions, her face grows red with embarrassment."
-      elif (self.lilaMilk <= 19):
-         tempStr += "\n\nShe stands there, short and happy as her breasts squirt thin sprays of milk simply by moving a little. Her hands often pass over them, squeezing her thick stiff nipples and moaning as thick streams gush from them, spilling down her body. Rather used to them by now, she hardly blushes at all, and is quite eager for you to get back to her."
-      if (self.lilaVulva == 0):
-         tempStr += " Her dainty little vulva also dribbles onto her thighs, her pink lips panting with lubrication in excitement."
-      elif (self.lilaVulva <= 2):
-         tempStr += " She also twists her hips back and forth while she waits, still trying to figure out how to stand with her thick developed labia filling much the gap between her thighs, making slick webs spread back and forth between them."
-      elif (self.lilaVulva <= 5):
-         tempStr += " Her nose seems somewhat red from a different kind of blush, a heat filling her face as her thighs tense and relax, squeezing the thick vulva between her legs again and again. You can see her clit peek out from its hood through the cleft, aroused and urging on the slimy coating about her thighs."
-      elif (self.lilaVulva <= 8):
-         tempStr += " She still holds onto her swollen vulva, with much of the flesh bulging out from between her fingers. Standing with her legs slightly spread so as to not squeeze it, she still manages to cause long strands of thick lubricant to spill from her fingers as she kneads the mass about, afraid to stop or it'll drop from body."
-      elif (self.lilaVulva <= 12):
-         tempStr += " She also stands with her legs spread, her thighs unable to touch due to the thick lips between them. Each outer labia is as big as her fist, with the inner labia dangling down and nearly red with arousal, drizzling thick strands of clear honey down to the floor without her even touching it. Which she puts a great deal of effort into doing, afraid that she won't stop rubbing the thick clit that sticks out slightly."
-      elif (self.lilaVulva <= 18):
-         tempStr += " And between her knees hangs her overgrown lips, making her stand slightly bow-legged. Her legs almost constantly twist about, using her knees to squish the flesh again and again since her hands can hardly hold it all if she tried. Her clitoris can hardly be called a button, stroked like a small penis as it pushes out from the massive folds. Her inner lips are so pink with arousal that they seem to be growing longer, due to the the amount of slickness flowing down them that creates the illusion and forms a puddle around her feet."
-      elif (self.lilaVulva <= 19):
-         tempStr += " And she hardly seems like's she's standing at all. With how much her legs bend around and squeeze the large squishy labia that fills the space between them, it seems like she's nearly sitting on her own pussy. However, it barely hovers over the floor, the inner labia dangling down and brushing across it when she presses down slightly to push her clit against the floor to please it a bit. If she curled up and actually wrapped her whole hand around the sensitive thing, there would have still been some more length to cover. Which only makes her original 'wetness' problem worse, the overall size of her genitals causing a flood about her feet and leaving them almost constantly slick and wet with a trail of more following her wherever she goes. However, thanks to her size, when she slips from her moisture she simply lets out an erotic mewl as she falls down onto her soft flesh."
-      if (self.lilaPreg <= 35 and self.lilaVulva >= 11):
-         tempStr += " Her belly seems to be sporting some extra cushioning as well. Not exactly chubby, her excess vaginal flesh from all the growth causes it to protrude, her lower breasts pushing out even more."
-      elif (self.lilaPreg <= 70 and self.lilaPreg > 35):
-         tempStr += " Her hands have a tendancy to cup her growing belly as well, imagining how big she will get. Already protruding quite a bit, her belly button just beginning to stick out, she giggles a little to herself at the thoughts of what's to come."
-      elif (self.lilaPreg <= 100 and self.lilaPreg > 70):
-         tempStr += "Yet, despite all of that, her focus mostly remains on her large belly. Nearly as large as herself if she were to curl up, the thing hangs forward to the point where she can't see her messy arousal below. Her hands often roam over the taut fur, taking her naked opportunity to caress it and pleasure in it, cradling it gently."
-      return tempStr
+        tempStr = ""
+        if (self.lilaMilk == 0):
+            tempStr += "\n\nHer small breasts leak only a few drops of milk as she stands there, but her nipples are quite erect and peek through her fur as she blushes at you staring at her."
+        elif (self.lilaMilk <= 2):
+            tempStr += "\n\nThin trails of white milk travel through her fur from her many erect nipples, slowly dripping onto the floor as she stands there and waits for you, a slight blush crossing her cheeks as the air chills her wet areolas and makes her shiver."
+        elif (self.lilaMilk <= 5):
+            tempStr += "\n\nHer nipples push out from her fur, drops almost continually forming around them and drizzling down her naked body. Shyly, she brings a hand up to squeeze one that's especially stiff and sensitive, making her cheeks red as a squirt of milk launches across the floor of your room."
+        elif (self.lilaMilk <= 8):
+            tempStr += "\n\nThick streams of white milk dribble down her body, her puffy nipples bulging from their retained milk. Her arms cross over a few of them in embarrassment at how obvious they are, but milk squirts out around them and runs down over her pussy, mixing with the fluids there, and pooling on the floor."
+        elif (self.lilaMilk <= 12):
+            tempStr += "\n\nThough not completely engorged thanks to her 'sharing', her nipples are still quite puffy. A hand reaches up to massage one of the breasts as it feels a bit full to her and it spews several thin spurts in different directions from the slight touch, making her blush furiously."
+        elif (self.lilaMilk <= 18):
+            tempStr += "\n\nDespite having just fed some of her friends, her breasts are still swollen, her nipples puffing out further than ever before. Stiff and long, she can't help but play with them with her fingers, milk spilling profusely down her hand and body, and making her moan before you even get to her. With her eager actions, her face grows red with embarrassment."
+        elif (self.lilaMilk <= 19):
+            tempStr += "\n\nShe stands there, short and happy as her breasts squirt thin sprays of milk simply by moving a little. Her hands often pass over them, squeezing her thick stiff nipples and moaning as thick streams gush from them, spilling down her body. Rather used to them by now, she hardly blushes at all, and is quite eager for you to get back to her."
+        if (self.lilaVulva == 0):
+            tempStr += " Her dainty little vulva also dribbles onto her thighs, her pink lips panting with lubrication in excitement."
+        elif (self.lilaVulva <= 2):
+            tempStr += " She also twists her hips back and forth while she waits, still trying to figure out how to stand with her thick developed labia filling much the gap between her thighs, making slick webs spread back and forth between them."
+        elif (self.lilaVulva <= 5):
+            tempStr += " Her nose seems somewhat red from a different kind of blush, a heat filling her face as her thighs tense and relax, squeezing the thick vulva between her legs again and again. You can see her clit peek out from its hood through the cleft, aroused and urging on the slimy coating about her thighs."
+        elif (self.lilaVulva <= 8):
+            tempStr += " She still holds onto her swollen vulva, with much of the flesh bulging out from between her fingers. Standing with her legs slightly spread so as to not squeeze it, she still manages to cause long strands of thick lubricant to spill from her fingers as she kneads the mass about, afraid to stop or it'll drop from body."
+        elif (self.lilaVulva <= 12):
+            tempStr += " She also stands with her legs spread, her thighs unable to touch due to the thick lips between them. Each outer labia is as big as her fist, with the inner labia dangling down and nearly red with arousal, drizzling thick strands of clear honey down to the floor without her even touching it. Which she puts a great deal of effort into doing, afraid that she won't stop rubbing the thick clit that sticks out slightly."
+        elif (self.lilaVulva <= 18):
+            tempStr += " And between her knees hangs her overgrown lips, making her stand slightly bow-legged. Her legs almost constantly twist about, using her knees to squish the flesh again and again since her hands can hardly hold it all if she tried. Her clitoris can hardly be called a button, stroked like a small penis as it pushes out from the massive folds. Her inner lips are so pink with arousal that they seem to be growing longer, due to the the amount of slickness flowing down them that creates the illusion and forms a puddle around her feet."
+        elif (self.lilaVulva <= 19):
+            tempStr += " And she hardly seems like's she's standing at all. With how much her legs bend around and squeeze the large squishy labia that fills the space between them, it seems like she's nearly sitting on her own pussy. However, it barely hovers over the floor, the inner labia dangling down and brushing across it when she presses down slightly to push her clit against the floor to please it a bit. If she curled up and actually wrapped her whole hand around the sensitive thing, there would have still been some more length to cover. Which only makes her original 'wetness' problem worse, the overall size of her genitals causing a flood about her feet and leaving them almost constantly slick and wet with a trail of more following her wherever she goes. However, thanks to her size, when she slips from her moisture she simply lets out an erotic mewl as she falls down onto her soft flesh."
+        if (self.lilaPreg <= 35 and self.lilaVulva >= 11):
+            tempStr += " Her belly seems to be sporting some extra cushioning as well. Not exactly chubby, her excess vaginal flesh from all the growth causes it to protrude, her lower breasts pushing out even more."
+        elif (self.lilaPreg <= 70 and self.lilaPreg > 35):
+            tempStr += " Her hands have a tendancy to cup her growing belly as well, imagining how big she will get. Already protruding quite a bit, her belly button just beginning to stick out, she giggles a little to herself at the thoughts of what's to come."
+        elif (self.lilaPreg <= 100 and self.lilaPreg > 70):
+            tempStr += "Yet, despite all of that, her focus mostly remains on her large belly. Nearly as large as herself if she were to curl up, the thing hangs forward to the point where she can't see her messy arousal below. Her hands often roam over the taut fur, taking her naked opportunity to caress it and pleasure in it, cradling it gently."
+        return tempStr
 
-   def Gibberish(self): #not used
-      chance = self.percent()
-      if (chance <= 33):
-         return "¤çÑ-| ÇôG+¦æ| EÆáÜaß pOƒ§· +îdvwqe 5dfÑ¯» º¤äÜ¦) ¼ÿæ¤h ·ƒ."
-      elif (chance <= 66):
-         return "Gs¿ fdfƒæ d§ew ¤-ÿö fs¤£· ÖÅ¢¥¬ ¼«¦ds?"
-      else:
-         return "Tas ªÜhf¤ ÄäÑse çåÅû¿ ÑÜñ?Äsd Ü¥¦»¦ƒ ¦ÜÆ+¿æ£ we¤ rgdA-d»¦± Ü+#A¤$¤-ò. Fi?¤çÑK)^¤2 ges nec ¤?+ÿ• ºñ¡as frtr."
-      return "GIBBERISH ERROR"
+   def Gibberish(self):  # not used
+        chance = self.percent()
+        if (chance <= 33):
+            return "¤çÑ-| ÇôG+¦æ| EÆáÜaß pOƒ§· +îdvwqe 5dfÑ¯» º¤äÜ¦) ¼ÿæ¤h ·ƒ."
+        elif (chance <= 66):
+            return "Gs¿ fdfƒæ d§ew ¤-ÿö fs¤£· ÖÅ¢¥¬ ¼«¦ds?"
+        else:
+            return "Tas ªÜhf¤ ÄäÑse çåÅû¿ ÑÜñ?Äsd Ü¥¦»¦ƒ ¦ÜÆ+¿æ£ we¤ rgdA-d»¦± Ü+#A¤$¤-ò. Fi?¤çÑK)^¤2 ges nec ¤?+ÿ• ºñ¡as frtr."
+        return "GIBBERISH ERROR"
 
-   def GibButt(self): #not used
-      chance = self.percent()
-      if (chance <= 20):
-         return "Pk¿ºs"
-      elif (chance <= 40):
-         return "Ju£¥)"
-      elif (chance <= 60):
-         return "§hdsa"
-      elif (chance <= 80):
-         return "Ö¦¤ÄT¦+"
-      else:
-         return "Pancakes"
-      return "GIB BUTTON ERROR"
+   def GibButt(self):  # not used
+        chance = self.percent()
+        if (chance <= 20):
+            return "Pk¿ºs"
+        elif (chance <= 40):
+            return "Ju£¥)"
+        elif (chance <= 60):
+            return "§hdsa"
+        elif (chance <= 80):
+            return "Ö¦¤ÄT¦+"
+        else:
+            return "Pancakes"
+        return "GIB BUTTON ERROR"
 
-   def knotholeMain(self, entering:bool):
-      self.hrs += 1
-      if (entering == True):
-         self.doMainText("Inside The Knothole, you come across an almost primal sight.\n\n",True)
-      else:
-         self.doMainText("You return to the main floor of the Knothole, looking around to see what else you would like to do.\n\n",True)
-      self.doMainText("Many Lupans are gathered in the drum-house, beating on sturdy, yet beautifully crafted drums built into the very foundation, the source of the deep, hard thumps that got your heart racing in the first place now pounding at your ears.")
-      if (self.ment <= 20 and entering == True):
-         self.doMainText("The few who look like they are done for the night that you can see look like they've either just ran a marathon, or have just released after being pent up for a month or five. And to you right now, those vacant drums are looking very inviting.")
-      self.doMainText("To the right, you see more Lupans dancing to the beating rhythm. Pheromones and mixed scents fill the Knothole, making your heart race harder. As you start feeling the blood pump through your veins, almost in sync with the beat of the drums, you find your body bouncing slightly with the rhythm.")
-      if (self.lust >= 50 and entering == True):
-         self.doMainText("As if there was a subtle draft, the scents coming from the dancers start to entice you to join them, the movement of bodies a welcome sight right now. Watching the movement of bodies and tails dancing to the beat, you find your body starting to sway with the flow of the dances, as if the very essence of the drum-house was moving it for you.")
-         self.doLust(10,0)
-      self.doMainText("On the left, you spot a wide staircase leading up, and another leading down. A good portion of Lupans are going to the other floors, some holding others on leashes linked to collars wrapped and locked around the necks of the ones being walked. Those on leashes heading up seemed to be more high-spirited than those heading down, which half seemed to be 'zoned out' or in a trance, following their Masters and Mistresses.")
-      self.displayMainText()
-      self.showButtons(ButtonList(1,0,0,0,0,1,1,0,0,0,0,1))
-      self.doButtonChoices({1:"Upstairs", 6:"Drum", 7:"Dance", 12:"Leave"})
-      def doListen():
-         if self.buttonChoice == 1:
-            self.knotholeUpstairs()
-         elif self.buttonChoice == 6:
-            self.doMainText("Stepping up to one of the many drums, you feel the beat seeping into your veins. Each thrum of the rhythm resounding through the structure can be felt through the floor. Your fists rise up above your head, not entirely of your will, before swinging down upon the drum. Your fists bounce off the head of the instrument, and both swing down on their own, your rhythm matching that of the one booming throughout the room.\n\nYou decide to add a few quirks to the beat, your hands dancing and slamming into the drum, adding a bit of a different style lead to the rhythmic percussion. Meeting your ear is the sound of more and more of the others around you start going with your new style, soon, the whole house thrums with the rhythm.\n\nAfter quite a while of beating your heart out almost literally, you slowly bring your drumming to a halt, feeling like you just ran a marathon. Yet, there's also a sensation as having just got out of a soothing, relaxing bath and massage.\n\nFeeling no more need to be here, you leave the Knothole and return to Tieden.",True)
-            self.stats(1,0,-1,0)
-            self.doLust(-20,0)
-            self.hrs += 2
-            self.displayMainText()
-            self.doEnd()
-         elif self.buttonChoice == 7:
-            if (self.percent() <= 50):
-               self.doMainText(f"The beat of the drums and movement of the dancers pull you to the crowd, your heartbeat racing hard as your body starts moving.\n\nAt the edge of the crowd, your {self.legDesc(10)} hit the floor with the rhythm, your {self.legDesc(2)} pulsing with each beat of your thumping heart. Your arms bent at your sides, bouncing with your body, the flow of the dancers taking you in, your dance becomes one with the heat and movement of those around you.\n\nAs the drums start thrumming in a more graceful cadence, the dance of everyone around you, and yourself, takes on a smoother, gliding turn. A long stride, harsh stomp, left twist, right glide double stomp. Your {self.legDesc(10)} slam the ground with the drumbeat, the floor vibrating as everyone does so as well.\n\nA good long time of dancing harshly and calmly leads you to the edge of the group again, the dance eventually driven from your body, leaving you feeling exhausted, yet incredibly invigorated.\n\nFinding your time done for now, you leave the Knothole, wiping off the sweat collected on your body.",True)
-               self.doLust(-15,0)
-               self.exhaustion += 3
-            else:
-               self.doMainText("The draw of the dancers pulls you to them, your body already starting to move with the enticing way they dance to the beat of the drums.\n\nReaching the edge of the group, your motions start to match theirs, your heartbeat already racing and pulsing throughout your body. Moving with the others around you, you find yourself being drawn further in, surrounded by bodies shifting to the rhythm. You also slowly come to realize that you feel those same bodies softly rubbing and grinding on yours…\n\nUndaunted, you continue dancing, matching the beat of those around you, until you come across a particularly inviting gesture of a fluffy Lupan tail brushing over your face, with the rump connected to said tail grinding against your hips. Another thing you quickly notice: not everyone is fully clothed, but not naked either, and the scent of pheromones comes to your nose.\n\nYour new dance partner continues to dance circles around you, almost always keeping contact with your body, be it with their tail, hands, or hips. Your hands and hips return the favor by matching their moves, grinding back into them, along with your rump.\n\nYour hands explore their body, finding a bare chest and a skirt over their legs and hips. Both bodies soon dance in sync, theirs pressing back into yours. You could have sworn you could hear them moan, but it's drowned out by the drums, and your hands explore the soft fur regardless. Your right hand moves down and slips under the skirt, finding a soaked pussy between a firm, soft pair of thighs.\n\nYour fingers stroke the soft lips, hips swaying back and forth to the rhythm, and the unoccupied hand keeping itself occupied with the soft mounds on her chest. Her hips grind harder into you, laying her head back on you in need. Your fingers stop stroking her cunny’s labia and start to wriggle in. Your tongue slides out of your mouth and licks her exposed neck, and you can hear her whimpers and moans with her mouth next to your ear.\n\nIn a burst of primal urge out of nowhere, you find yourself bearing your teeth and biting her neck through her fur, causing her to howl as her pussy clamps down over your fingers in ecstasy. Her howl rings out, with other Lupans in the area, a chorus of howls resounding throughout the drum-house. Once her pussy lets go of your fingers and your teeth no longer hold her neck, she slips away into the crowd, dancing with renewed energy.\n\nBefore you know it, you're back outside of the dancing group, with a pair of soaked fingers, and feeling exhausted from the dancing and surprisingly refreshed even though you know you haven't actually 'released'.\n\nWith nothing more to do save smell the woman's scent on your fingers, you leave the Knothole.",True)
-               self.doLust(-200,0)
-               self.exhaustion += 4
-               self.stats(0,0,1,0)
-            self.hrs += 2
-            self.displayMainText()
-            self.doEnd()
-         elif self.buttonChoice == 12:
-            self.knotholeLeave()
-      self.doListen = doListen
+   def knotholeMain(self, entering: bool):
+        self.hrs += 1
+        if (entering == True):
+            self.doMainText("Inside The Knothole, you come across an almost primal sight.\n\n", True)
+        else:
+            self.doMainText("You return to the main floor of the Knothole, looking around to see what else you would like to do.\n\n",True)
+        self.doMainText("Many Lupans are gathered in the drum-house, beating on sturdy, yet beautifully crafted drums built into the very foundation, the source of the deep, hard thumps that got your heart racing in the first place now pounding at your ears.")
+        if (self.ment <= 20 and entering == True):
+            self.doMainText("The few who look like they are done for the night that you can see look like they've either just ran a marathon, or have just released after being pent up for a month or five. And to you right now, those vacant drums are looking very inviting.")
+        self.doMainText("To the right, you see more Lupans dancing to the beating rhythm. Pheromones and mixed scents fill the Knothole, making your heart race harder. As you start feeling the blood pump through your veins, almost in sync with the beat of the drums, you find your body bouncing slightly with the rhythm.")
+        if (self.lust >= 50 and entering == True):
+            self.doMainText("As if there was a subtle draft, the scents coming from the dancers start to entice you to join them, the movement of bodies a welcome sight right now. Watching the movement of bodies and tails dancing to the beat, you find your body starting to sway with the flow of the dances, as if the very essence of the drum-house was moving it for you.")
+            self.doLust(10, 0)
+        self.doMainText("On the left, you spot a wide staircase leading up, and another leading down. A good portion of Lupans are going to the other floors, some holding others on leashes linked to collars wrapped and locked around the necks of the ones being walked. Those on leashes heading up seemed to be more high-spirited than those heading down, which half seemed to be 'zoned out' or in a trance, following their Masters and Mistresses.")
+        self.displayMainText()
+        self.showButtons(ButtonList(1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1))
+        self.doButtonChoices({1:"Upstairs", 6:"Drum", 7:"Dance", 12:"Leave"})
+
+        def doListen():
+            if self.buttonChoice == 1:
+                self.knotholeUpstairs()
+            elif self.buttonChoice == 6:
+                self.doMainText("Stepping up to one of the many drums, you feel the beat seeping into your veins. Each thrum of the rhythm resounding through the structure can be felt through the floor. Your fists rise up above your head, not entirely of your will, before swinging down upon the drum. Your fists bounce off the head of the instrument, and both swing down on their own, your rhythm matching that of the one booming throughout the room.\n\nYou decide to add a few quirks to the beat, your hands dancing and slamming into the drum, adding a bit of a different style lead to the rhythmic percussion. Meeting your ear is the sound of more and more of the others around you start going with your new style, soon, the whole house thrums with the rhythm.\n\nAfter quite a while of beating your heart out almost literally, you slowly bring your drumming to a halt, feeling like you just ran a marathon. Yet, there's also a sensation as having just got out of a soothing, relaxing bath and massage.\n\nFeeling no more need to be here, you leave the Knothole and return to Tieden.", True)
+                self.stats(1, 0, -1, 0)
+                self.doLust(-20, 0)
+                self.hrs += 2
+                self.displayMainText()
+                self.doEnd()
+            elif self.buttonChoice == 7:
+                if (self.percent() <= 50):
+                    self.doMainText(f"The beat of the drums and movement of the dancers pull you to the crowd, your heartbeat racing hard as your body starts moving.\n\nAt the edge of the crowd, your {self.legDesc(10)} hit the floor with the rhythm, your {self.legDesc(2)} pulsing with each beat of your thumping heart. Your arms bent at your sides, bouncing with your body, the flow of the dancers taking you in, your dance becomes one with the heat and movement of those around you.\n\nAs the drums start thrumming in a more graceful cadence, the dance of everyone around you, and yourself, takes on a smoother, gliding turn. A long stride, harsh stomp, left twist, right glide double stomp. Your {self.legDesc(10)} slam the ground with the drumbeat, the floor vibrating as everyone does so as well.\n\nA good long time of dancing harshly and calmly leads you to the edge of the group again, the dance eventually driven from your body, leaving you feeling exhausted, yet incredibly invigorated.\n\nFinding your time done for now, you leave the Knothole, wiping off the sweat collected on your body.", True)
+                    self.doLust(-15, 0)
+                    self.exhaustion += 3
+                else:
+                    self.doMainText("The draw of the dancers pulls you to them, your body already starting to move with the enticing way they dance to the beat of the drums.\n\nReaching the edge of the group, your motions start to match theirs, your heartbeat already racing and pulsing throughout your body. Moving with the others around you, you find yourself being drawn further in, surrounded by bodies shifting to the rhythm. You also slowly come to realize that you feel those same bodies softly rubbing and grinding on yours…\n\nUndaunted, you continue dancing, matching the beat of those around you, until you come across a particularly inviting gesture of a fluffy Lupan tail brushing over your face, with the rump connected to said tail grinding against your hips. Another thing you quickly notice: not everyone is fully clothed, but not naked either, and the scent of pheromones comes to your nose.\n\nYour new dance partner continues to dance circles around you, almost always keeping contact with your body, be it with their tail, hands, or hips. Your hands and hips return the favor by matching their moves, grinding back into them, along with your rump.\n\nYour hands explore their body, finding a bare chest and a skirt over their legs and hips. Both bodies soon dance in sync, theirs pressing back into yours. You could have sworn you could hear them moan, but it's drowned out by the drums, and your hands explore the soft fur regardless. Your right hand moves down and slips under the skirt, finding a soaked pussy between a firm, soft pair of thighs.\n\nYour fingers stroke the soft lips, hips swaying back and forth to the rhythm, and the unoccupied hand keeping itself occupied with the soft mounds on her chest. Her hips grind harder into you, laying her head back on you in need. Your fingers stop stroking her cunny’s labia and start to wriggle in. Your tongue slides out of your mouth and licks her exposed neck, and you can hear her whimpers and moans with her mouth next to your ear.\n\nIn a burst of primal urge out of nowhere, you find yourself bearing your teeth and biting her neck through her fur, causing her to howl as her pussy clamps down over your fingers in ecstasy. Her howl rings out, with other Lupans in the area, a chorus of howls resounding throughout the drum-house. Once her pussy lets go of your fingers and your teeth no longer hold her neck, she slips away into the crowd, dancing with renewed energy.\n\nBefore you know it, you're back outside of the dancing group, with a pair of soaked fingers, and feeling exhausted from the dancing and surprisingly refreshed even though you know you haven't actually 'released'.\n\nWith nothing more to do save smell the woman's scent on your fingers, you leave the Knothole.", True)
+                    self.doLust(-200, 0)
+                    self.exhaustion += 4
+                    self.stats(0, 0, 1, 0)
+                self.hrs += 2
+                self.displayMainText()
+                self.doEnd()
+            elif self.buttonChoice == 12:
+                self.knotholeLeave()
+        self.doListen = doListen
 
    def knotholeLeave(self):
-      self.outputMainText("Finished with your time in the Knothole, you return to the fresh air of Tieden.",True)
-      self.doEnd()
+        self.outputMainText("Finished with your time in the Knothole, you return to the fresh air of Tieden.", True)
+        self.doEnd()
 
    def knotholeUpstairs(self):
-      self.outputMainText(f"The staircase going up is wide, accommodating as many as five people side by side. With enough space, you make it up without bumping into anyone, though you're sure you felt some eyes on your rear as you climbed the stairs. Looking back, you don’t see anyone staring at you but you still sense eyes admiring your {self.bodyDesc()} figure.\n\nDismissing the odd paranoia, you look around the area, deciding to get accustomed to the environment. The room looks like it covers the whole area above the first floor. Pillars here and there support the roof, standing above pillars and supporting walls you saw below, though these ones have four iron rings midway up their height. Many of these rings sport Lupans, both male and female, chained to the pillars, mostly nude or wearing exotic clothing, and exposing themselves in erotic displays, looking like they are enjoying themselves in front of their audience.\n\nA large area of the room is taken up by rigs. X-crosses, suspension rigs, stockades, padded sawhorses, and cushioning on the walls with more iron rings and padded metal restraints. Aside the pillars and walls with the rings, there are several wooden posts standing in various spots around the room, half of those also linked to what looks to be more personal 'displays' of Lupans acting as pets.\n\nIn the area filled with rigs, there stands a small gathering as submissive Lupans toy, tease, get teased, beg, seduce, and outright presenting themselves for their audience. The apparent Dominants either stand or seat themselves on lavish sofas and chairs; a group of voyeurs enjoying the exhibitions.",True)
-      self.showButtons(ButtonList(1,0,1,0,0,0,0,0,1,0,0,1))
-      self.doButtonChoices({1:"Relax", 3:"Exhibition", 9:"Downstairs", 12:"Leave"})
+      # HERE
+      self.outputMainText(f"The staircase going up is wide, accommodating as many as five people side by side. With enough space, you make it up without bumping into anyone, though you're sure you felt some eyes on your rear as you climbed the stairs. Looking back, you don’t see anyone staring at you but you still sense eyes admiring your {self.bodyDesc()} figure.\n\nDismissing the odd paranoia, you look around the area, deciding to get accustomed to the environment. The room looks like it covers the whole area above the first floor. Pillars here and there support the roof, standing above pillars and supporting walls you saw below, though these ones have four iron rings midway up their height. Many of these rings sport Lupans, both male and female, chained to the pillars, mostly nude or wearing exotic clothing, and exposing themselves in erotic displays, looking like they are enjoying themselves in front of their audience.\n\nA large area of the room is taken up by rigs. X-crosses, suspension rigs, stockades, padded sawhorses, and cushioning on the walls with more iron rings and padded metal restraints. Aside the pillars and walls with the rings, there are several wooden posts standing in various spots around the room, half of those also linked to what looks to be more personal 'displays' of Lupans acting as pets.\n\nIn the area filled with rigs, there stands a small gathering as submissive Lupans toy, tease, get teased, beg, seduce, and outright presenting themselves for their audience. The apparent Dominants either stand or seat themselves on lavish sofas and chairs; a group of voyeurs enjoying the exhibitions.", True)
+      self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1))
+      self.doButtonChoices({1: "Relax", 3: "Exhibition", 9: "Downstairs", 12: "Leave"})
       def doListen():
          if self.buttonChoice == 1:
             if (self.breastSize > 2 and self.hips > 2 and self.body < 20):
-               self.outputMainText(f"Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone.\n\nThe moment you take a seat on the soft comfortable cushions, a dark gray collared Lupan takes notice of you and makes their way over to you. Slowly approaching you (and crawling on all fours), you notice that they are male, and he is avoiding eye contact with you, focusing more on your {self.legDesc(10)} and {self.legDesc(2)}.\n\nReaching your corner of the room, the collared male kneels at your {self.legDesc(10)}, keeping his eyes low and bows his head. “Would you like me to dance for you?” he asks almost indirectly, his voice sounding timid.\n\nYou consider for a moment, looking over the dark fur of the male's slender, nude frame before you.",True)
+               self.outputMainText(f"Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone.\n\nThe moment you take a seat on the soft comfortable cushions, a dark gray collared Lupan takes notice of you and makes their way over to you. Slowly approaching you (and crawling on all fours), you notice that they are male, and he is avoiding eye contact with you, focusing more on your {self.legDesc(10)} and {self.legDesc(2)}.\n\nReaching your corner of the room, the collared male kneels at your {self.legDesc(10)}, keeping his eyes low and bows his head. “Would you like me to dance for you?” he asks almost indirectly, his voice sounding timid.\n\nYou consider for a moment, looking over the dark fur of the male's slender, nude frame before you.", True)
             else:
-               self.outputMainText("Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone.\n\nThe moment you take a seat on the soft, comfortable cushions, a collared Lupan takes notice of you and makes their way over to you. Getting closer to you (and crawling on all fours), you notice that they are female, and she avoids eye contact despite you almost getting lost in her beautiful deep emerald green eyes.\n\nReaching your corner of the room, she kneels before you, pressing her bare chest out to display her ample breasts, showing her Lupan qualities to you. Her legs spread to expose her snatch between her legs, her hands on her legs with palms up. “Would you like me to dance for you?” she asks, still avoiding eye contact and keeping her head down, her tone of voice very timid.\n\nYou consider for a moment, looking over the dark fur of the female's slender, nude frame before you.",True)
+               self.outputMainText("Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone.\n\nThe moment you take a seat on the soft, comfortable cushions, a collared Lupan takes notice of you and makes their way over to you. Getting closer to you (and crawling on all fours), you notice that they are female, and she avoids eye contact despite you almost getting lost in her beautiful deep emerald green eyes.\n\nReaching your corner of the room, she kneels before you, pressing her bare chest out to display her ample breasts, showing her Lupan qualities to you. Her legs spread to expose her snatch between her legs, her hands on her legs with palms up. “Would you like me to dance for you?” she asks, still avoiding eye contact and keeping her head down, her tone of voice very timid.\n\nYou consider for a moment, looking over the dark fur of the female's slender, nude frame before you.", True)
             self.buttonConfirm()
             def doListen():
                if (self.buttonChoice == 6):
                   if (self.breastSize > 2 and self.hips > 2 and self.body < 20):
-                     self.doMainText(f"The male Lupan with a collar before you nods and slowly comes to a stand, keeping his head down. With the stand, you have full view of his endowment, an already fully erect deep-red canine cock, with knot and all at attention out of his sheath.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan male before you counts himself down, then starts with a spin, and slide, giving you a very nice view of his furred ass.\n\nThe dance quickly turns erotic, his hands sliding over his body as his torso weaves in concert, putting on a rather arousing display for his audience. His tail sways with his motions, in rhythm to the drumbeat.\n\nThe collar he wears has a slight jingle of an oval, golden tag bearing his name. With how he moves, you don't get a good view of it, but you don't believe he is available for an owner anyway. Instead, you enjoy his display, watching the slender figure move and twist, showing off his supple ass and throbbing knotted canine shaft.\n\nAfter a couple hours of watching him dance almost nonstop to the ever-changing rhythm of the drum-house below, he is called by a female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be his owner and you watch as he obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to his collar.\n\nSeeing as you became rather aroused by his performance, you decide to leave the Knothole for now, leaving the male Lupan to his Mistress.",True)
+                     self.doMainText(f"The male Lupan with a collar before you nods and slowly comes to a stand, keeping his head down. With the stand, you have full view of his endowment, an already fully erect deep-red canine cock, with knot and all at attention out of his sheath.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan male before you counts himself down, then starts with a spin, and slide, giving you a very nice view of his furred ass.\n\nThe dance quickly turns erotic, his hands sliding over his body as his torso weaves in concert, putting on a rather arousing display for his audience. His tail sways with his motions, in rhythm to the drumbeat.\n\nThe collar he wears has a slight jingle of an oval, golden tag bearing his name. With how he moves, you don't get a good view of it, but you don't believe he is available for an owner anyway. Instead, you enjoy his display, watching the slender figure move and twist, showing off his supple ass and throbbing knotted canine shaft.\n\nAfter a couple hours of watching him dance almost nonstop to the ever-changing rhythm of the drum-house below, he is called by a female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be his owner and you watch as he obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to his collar.\n\nSeeing as you became rather aroused by his performance, you decide to leave the Knothole for now, leaving the male Lupan to his Mistress.", True)
                      self.doLust(Math.floor(self.lib / 4),0)
                   else:
-                     self.doMainText(f"The female Lupan with a collar before you nods and slowly comes to a stand, keeping her head down. With the stand, you have a wondrous view of her supple bosom and damp pussy.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan female before you counts herself down, then starts with a spin, and slide, giving you a very nice view of her soft and firm furred ass.\n\nThe dance quickly turns erotic, her hands sliding over her breasts and slender belly as her torso weaves in concert, putting on a rather arousing display for her audience. Her fluffy tail sways with her motions, in rhythm to the drumbeat.\n\nThe collar she wears has a slight jingle of an oval, golden tag bearing her name. With how she moves, you don't get a good view of it, but you don't believe she is available for an owner anyway. Instead, you enjoy her erotic display, watching the slender figure move and twist, showing off her firm slim ass and damp cunny.\n\nAfter a couple hours of watching her dance almost nonstop to the ever-changing rhythm of the drum-house below, she is called by another female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be her owner and you watch as she obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to her collar.\n\nSeeing as you became rather aroused by her performance, you decide to leave the Knothole for now, leaving the female Lupan to her Mistress.",True)
+                     self.doMainText(f"The female Lupan with a collar before you nods and slowly comes to a stand, keeping her head down. With the stand, you have a wondrous view of her supple bosom and damp pussy.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan female before you counts herself down, then starts with a spin, and slide, giving you a very nice view of her soft and firm furred ass.\n\nThe dance quickly turns erotic, her hands sliding over her breasts and slender belly as her torso weaves in concert, putting on a rather arousing display for her audience. Her fluffy tail sways with her motions, in rhythm to the drumbeat.\n\nThe collar she wears has a slight jingle of an oval, golden tag bearing her name. With how she moves, you don't get a good view of it, but you don't believe she is available for an owner anyway. Instead, you enjoy her erotic display, watching the slender figure move and twist, showing off her firm slim ass and damp cunny.\n\nAfter a couple hours of watching her dance almost nonstop to the ever-changing rhythm of the drum-house below, she is called by another female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be her owner and you watch as she obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to her collar.\n\nSeeing as you became rather aroused by her performance, you decide to leave the Knothole for now, leaving the female Lupan to her Mistress.", True)
                      self.doLust(Math.floor(self.lib / 4),0)
                   self.hrs += 3
                else:
-                  self.doMainText("Dismissing the submissive Lupan before you, you lay your head back and relax, listening to the dulled beat of the drum-house below and the mixed sounds of pleasure, conversation, and ecstasy around the large room.\n\nSometime later, you don't know how long, you take a heavy yawn and stretch, having your rest filled with wet dreams and imaginings of the events around you. Seeing not much else to do, you take your leave of the Knothole.",True)
+                  self.doMainText("Dismissing the submissive Lupan before you, you lay your head back and relax, listening to the dulled beat of the drum-house below and the mixed sounds of pleasure, conversation, and ecstasy around the large room.\n\nSometime later, you don't know how long, you take a heavy yawn and stretch, having your rest filled with wet dreams and imaginings of the events around you. Seeing not much else to do, you take your leave of the Knothole.", True)
                   self.hrs += 1
                   self.doLust(10,0)
                self.displayMainText()
                self.doEnd()
             self.doListen = doListen
          elif self.buttonChoice == 3:
-            self.outputMainText(f"Feeling like showing off, you walk to an open area of the room, swaying your hips a bit.\n\nAlmost right away, you notice you've already caught someone's eye, relaxing on a bench. A smirk crosses your lips as your motions, now directed in their general direction, make your body sway and twist.\n\nWhile turned away from your observer, you slowly strip off your {self.currentClothes()}, letting the outfit drop to the floor. The patron you are entertaining, now standing and a bit closer to watch, a Lupan male, nude, with a full erection and deep-red throbbing knot, raises his brow to your naked backside, intrigued by what he sees.\n\nWithout breaking stride, feeling the beat of the drum-house through the floor, and your {self.legDesc(10)}, you swirl your hips and twirl, giving him a round-view of your naked body. This gets both his brows raised, and leaving him licking his lips as he watches.\n\nYour now-exposed rump has his attention now, his eyes following it whenever you spin and twist as you dance before him. Having a bit more fun, you inch closer to the Lupan, teasing with your ass as you wiggle it, only to pull it away.",True)
+            self.outputMainText(f"Feeling like showing off, you walk to an open area of the room, swaying your hips a bit.\n\nAlmost right away, you notice you've already caught someone's eye, relaxing on a bench. A smirk crosses your lips as your motions, now directed in their general direction, make your body sway and twist.\n\nWhile turned away from your observer, you slowly strip off your {self.currentClothes()}, letting the outfit drop to the floor. The patron you are entertaining, now standing and a bit closer to watch, a Lupan male, nude, with a full erection and deep-red throbbing knot, raises his brow to your naked backside, intrigued by what he sees.\n\nWithout breaking stride, feeling the beat of the drum-house through the floor, and your {self.legDesc(10)}, you swirl your hips and twirl, giving him a round-view of your naked body. This gets both his brows raised, and leaving him licking his lips as he watches.\n\nYour now-exposed rump has his attention now, his eyes following it whenever you spin and twist as you dance before him. Having a bit more fun, you inch closer to the Lupan, teasing with your ass as you wiggle it, only to pull it away.", True)
             self.doNext()
             def doListen():
                if self.gender == 1:
-                  self.outputMainText("Bending over and leaning up against a pillar, your hand slides down your body to your stiffened shaft. You wiggle your ass teasingly and spread your legs wide, giving him a nice view of your tailhole. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you start to tease your cock, lightly stroking it with a few fingers, starting to please yourself in front of the Lupan male.\n\nThe teasing not enough, you grip your rod tighter, stroking faster, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nHard, moaning, and so lost in yourself, you don't notice the male now behind you. The next thing you feel, is a thick, canine shaft thrusting into your ass, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your tight hole.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your ass drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your tailhole stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your rump feeling nice and full, of both his knotted cock, and his thick, warm cream.",True)
+                  self.outputMainText("Bending over and leaning up against a pillar, your hand slides down your body to your stiffened shaft. You wiggle your ass teasingly and spread your legs wide, giving him a nice view of your tailhole. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you start to tease your cock, lightly stroking it with a few fingers, starting to please yourself in front of the Lupan male.\n\nThe teasing not enough, you grip your rod tighter, stroking faster, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nHard, moaning, and so lost in yourself, you don't notice the male now behind you. The next thing you feel, is a thick, canine shaft thrusting into your ass, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your tight hole.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your ass drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your tailhole stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your rump feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
                elif self.gender == 2:
-                  self.outputMainText(f"Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread your pussy lips wide, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunn{self.plural(16)}. The next thing you feel, is a thick, canine shaft thrusting into {self.oneYour(2)} puss{self.plural(16)}, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.",True)
+                  self.outputMainText(f"Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread your pussy lips wide, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunn{self.plural(16)}. The next thing you feel, is a thick, canine shaft thrusting into {self.oneYour(2)} puss{self.plural(16)}, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
                elif self.gender == 3:
-                  self.outputMainText(f"Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread pussy lips wide and pressing {self.oneYour(1)} shaft{self.plural(1)} down {self.legWhere(1)} your {self.legDesc(2)}, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, your other hand stroking and playing with your throbbing cock, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure, stroking your shaft harder and faster.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunt{self.plural(16)}. The next thing you feel, is a thick, canine shaft thrusting into {self.oneYour(2)} puss{self.plural(16)}, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, your cock spraying your load all over the ground and pillar in front of you, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.",True)
+                  self.outputMainText(f"Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread pussy lips wide and pressing {self.oneYour(1)} shaft{self.plural(1)} down {self.legWhere(1)} your {self.legDesc(2)}, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, your other hand stroking and playing with your throbbing cock, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure, stroking your shaft harder and faster.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunt{self.plural(16)}. The next thing you feel, is a thick, canine shaft thrusting into {self.oneYour(2)} puss{self.plural(16)}, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, your cock spraying your load all over the ground and pillar in front of you, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
                self.doNext()
                def doListen():
-                  self.doMainText("A couple hours later, you wake up and find yourself laying on a bench, clothes stacked next to you, and feeling very relieved from the experience.\n\nGathering your clothes, and trying to stand, you wobble a bit, still feeling the fuck you had not long ago, your ",True)
+                  self.doMainText("A couple hours later, you wake up and find yourself laying on a bench, clothes stacked next to you, and feeling very relieved from the experience.\n\nGathering your clothes, and trying to stand, you wobble a bit, still feeling the fuck you had not long ago, your ", True)
                   if (self.vagTotal > 0):
                      self.doMainText("pussy")
                      self.doImpregnate(3)
@@ -22329,48 +22342,49 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.doListen = doListen
 
    def weaponAttack(self):
-      self.dmg = 0
-      if self.weapon == 2:
-         self.dmg = 99999
-         self.outputMainText(f"You hit the {self.enemyName()} with your debug stick, dealing {self.dmg} damage!",True)
-         self.doeHP(-99999)
-      elif self.weapon == 10:
-         self.dmg = Math.floor(Math.random() * 10) + 1 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-         self.outputMainText(f"You punch the {self.enemyName()} with your fists, dealing {self.dmg} damage!",True)
-         self.doeHP(-self.dmg)
-      elif self.weapon == 116:
-         self.dmg = Math.floor(Math.random() * 8) + 5 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-         self.outputMainText(f"You lunge at the {self.enemyName()} and stab it with your dagger, dealing {self.dmg} damage!",True)
-         self.doeHP(-self.dmg)
-      elif self.weapon == 117:
-         self.dmg = Math.floor(Math.random() * 19) + 2 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-         self.outputMainText(f"You swing your hammer at the {self.enemyName()}, dealing {self.dmg} damage!",True)
-         self.doeHP(-self.dmg)
-      elif self.weapon == 118:
-         self.dmg = Math.floor(Math.random() * 16) + 10 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-         self.outputMainText(f"You slash at the {self.enemyName()} with your saber, dealing {self.dmg} damage!",True)
-         self.doeHP(-self.dmg)
-      elif self.weapon == 119:
-         self.dmg = Math.floor(Math.random() * 7) + 12 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-         self.outputMainText(f"You lash at the {self.enemyName()} with your whip, dealing {self.dmg} damage!",True)
-         self.doeHP(-self.dmg)
-      elif self.weapon == 127:
-         self.dmg = Math.floor(Math.random() * 11) + 10 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-         self.outputMainText(f"You whip around your tail and smack the {self.enemyName()} with the spike at the end, dealing {self.dmg} damage!",True)
-         self.doeHP(-self.dmg)
-      elif self.weapon == 235:
-         self.dmg = Math.floor(Math.random() * 5) + 1 + Math.ceil(self.ment / 10)
-         if (self.ment < 30):
-            self.outputMainText(f"You awkwardly stuff the wide-rimmed head of the rod into your mouth, sucking as hard as you can even though you only manage drain {self.dmg} HP from the {self.enemyName()}.",True)
-         elif (self.ment < 70):
-            self.outputMainText(f"You gently lick around the wide-rimmed head of the rod before sliding it into your mouth and gently sucking from the tip, draining a whole {self.dmg} HP from the {self.enemyName()}.",True)
-         else:
-            self.outputMainText(f"You lick up the shaft of the rod before swirling your tongue around the wide-rimmed head, coaxing it into your mouth as you continue to drag your tastebuds over and around it while pumping it in and out gently, draining {self.dmg} HP from the {self.enemyName()}!",True)
-         self.doeHP(-self.dmg)
-         self.doHP(self.dmg)
+        self.dmg = 0
+        if self.weapon == 2:
+            self.dmg = 99999
+            self.outputMainText(f"You hit the {self.enemyName()} with your debug stick, dealing {self.dmg} damage!", True)
+            self.doeHP(-99999)
+        elif self.weapon == 10:
+            self.dmg = Math.floor(Math.random() * 10) + 1 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
+            self.outputMainText(f"You punch the {self.enemyName()} with your fists, dealing {self.dmg} damage!", True)
+            self.doeHP(-self.dmg)
+        elif self.weapon == 116:
+            self.dmg = Math.floor(Math.random() * 8) + 5 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
+            self.outputMainText(f"You lunge at the {self.enemyName()} and stab it with your dagger, dealing {self.dmg} damage!", True)
+            self.doeHP(-self.dmg)
+        elif self.weapon == 117:
+            self.dmg = Math.floor(Math.random() * 19) + 2 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
+            self.outputMainText(f"You swing your hammer at the {self.enemyName()}, dealing {self.dmg} damage!", True)
+            self.doeHP(-self.dmg)
+        elif self.weapon == 118:
+            self.dmg = Math.floor(Math.random() * 16) + 10 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
+            self.outputMainText(f"You slash at the {self.enemyName()} with your saber, dealing {self.dmg} damage!", True)
+            self.doeHP(-self.dmg)
+        elif self.weapon == 119:
+            self.dmg = Math.floor(Math.random() * 7) + 12 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
+            self.outputMainText(f"You lash at the {self.enemyName()} with your whip, dealing {self.dmg} damage!", True)
+            self.doeHP(-self.dmg)
+        elif self.weapon == 127:
+            self.dmg = Math.floor(Math.random() * 11) + 10 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
+            self.outputMainText(f"You whip around your tail and smack the {self.enemyName()} with the spike at the end, dealing {self.dmg} damage!", True)
+            self.doeHP(-self.dmg)
+        elif self.weapon == 235:
+            self.dmg = Math.floor(Math.random() * 5) + 1 + Math.ceil(self.ment / 10)
+            if (self.ment < 30):
+                self.outputMainText(f"You awkwardly stuff the wide-rimmed head of the rod into your mouth, sucking as hard as you can even though you only manage drain {self.dmg} HP from the {self.enemyName()}.", True)
+            elif (self.ment < 70):
+                self.outputMainText(f"You gently lick around the wide-rimmed head of the rod before sliding it into your mouth and gently sucking from the tip, draining a whole {self.dmg} HP from the {self.enemyName()}.", True)
+            else:
+                self.outputMainText(f"You lick up the shaft of the rod before swirling your tongue around the wide-rimmed head, coaxing it into your mouth as you continue to drag your tastebuds over and around it while pumping it in and out gently, draining {self.dmg} HP from the {self.enemyName()}!", True)
+            self.doeHP(-self.dmg)
+            self.doHP(self.dmg)
 
-   def doSpecialAbility(self, more:int):
-      buttonlist = ButtonList(0,0,0,0,0,0,0,0,0,0,0,1)
+   def doSpecialAbility(self, more: int):
+      # HERE
+      buttonlist = ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
       self.choicePage = more
       self.showPage("Spc Abilities")
       self.fp1 = more
@@ -22422,6 +22436,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.specialAbilityDescription(self.specialAbilityArray[8 + (more * 9 - 9)])
       self.showButtons(buttonlist)
       self.doButtonChoices(tempDict)
+
       def doListen():
          if self.buttonChoice == 1:
             self.specialAbilityUse(self.specialAbilityArray[0 + (self.fp1 * 9 - 9)])
@@ -22457,32 +22472,35 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.doListen = doListen
 
    @staticmethod
-   def specialAbilityName(ID:int):
-      if ID == 1:
-         return "Skunk Spray"
-      return f"SPECIAL ABILITY NAME ERROR {ID}"
+   def specialAbilityName(ID: int):
+        if ID == 1:
+            return "Skunk Spray"
+        return f"SPECIAL ABILITY NAME ERROR {ID}"
 
    @staticmethod
-   def specialAbilityDescription(ID:int):
-      if ID == 1:
-         return "\n\nSkunk Spray - Using your scent glands in your rump, you can unleash this terrible stench upon your enemy, causing damage and potentially making them miss their next turn."
-      return f"SPECIAL ABILITY DESC ERROR {ID}"
+   def specialAbilityDescription(ID: int):
+        if ID == 1:
+            return "\n\nSkunk Spray - Using your scent glands in your rump, you can unleash this terrible stench upon your enemy, causing damage and potentially making them miss their next turn."
+        return f"SPECIAL ABILITY DESC ERROR {ID}"
 
-   def specialAbilityUse(self, ID:int):
-      self.dmg = 0
-      if ID == 1: # Skunk Spray
-         self.dmg = Math.floor(10 + self.percent() / 10)
-         self.outputMainText(f"\n\nYou turn around and aim your {self.buttDesc()} butt at the {self.enemyName()} and spray out a foul odor. The {self.enemyName()} snorts and shakes, taking {self.dmg} damage.")
-         self.doeHP(-self.dmg)
-         if (self.currentState == 2):
-            if (self.percent() < 35):
-               self.outputMainText(f"\n\nThe {self.enemyName()} flinches so badly from the stench that it misses its chance to counter.")
-            else:
-               self.enemyAttack()
-      if (self.currentState == 2):
-         self.doBattle()
+   def specialAbilityUse(self, ID: int):
+        self.dmg = 0
+        # Skunk Spray
+        if ID == 1:
+            self.dmg = Math.floor(10 + self.percent() / 10)
+            self.outputMainText(f"\n\nYou turn around and aim your {self.buttDesc()} butt at the {self.enemyName()} and spray out a foul odor. The {self.enemyName()} snorts and shakes, taking {self.dmg} damage.")
+            self.doeHP(-self.dmg)
+            if (self.currentState == 2):
+                if (self.percent() < 35):
+                    self.outputMainText(f"\n\nThe {self.enemyName()} flinches so badly from the stench that it misses its chance to counter.")
+                else:
+                    self.enemyAttack()
+
+        if (self.currentState == 2):
+            self.doBattle()
 
    def doEntice(self):
+      # HERE
       # TODO: optimize if/else
       chance = self.percent()
       if (self.eGen == 1 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
@@ -22623,89 +22641,90 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.displayMainText()
 
    def battleWin(self):
-      self.doMainText("You walk away from the battle the victor and to the victor goes the spoils.",True)
-      if (self.eCoin != 0):
-         self.doMainText(f"\n\nSomewhere on the passed out body (you probably don't want to know where) you find {self.eCoin} coins.")
-         self.doCoin(self.eCoin)
-      if (self.eItem != 0):
-         self.doMainText(f"\n\nYou manage to obtain {self.itemName(self.eItem)} from your opponent.")
-      if (self.eSexP != 0):
-         self.doMainText(f"\n\nFor your efforts, you grow in experience, gaining {self.eSexP} SexP!")
-         self.doSexP(self.eSexP)
-      if (self.eItem != 0):
-         self.itemAdd(self.eItem)
-      self.displayMainText()
-      self.hrs = 2
-      self.doEnd()
+        self.doMainText("You walk away from the battle the victor and to the victor goes the spoils.", True)
+        if (self.eCoin != 0):
+            self.doMainText(f"\n\nSomewhere on the passed out body (you probably don't want to know where) you find {self.eCoin} coins.")
+            self.doCoin(self.eCoin)
+        if (self.eItem != 0):
+            self.doMainText(f"\n\nYou manage to obtain {self.itemName(self.eItem)} from your opponent.")
+        if (self.eSexP != 0):
+            self.doMainText(f"\n\nFor your efforts, you grow in experience, gaining {self.eSexP} SexP!")
+            self.doSexP(self.eSexP)
+        if (self.eItem != 0):
+            self.itemAdd(self.eItem)
+        self.displayMainText()
+        self.hrs = 2
+        self.doEnd()
 
    def specialRapeWin(self):
-      if self.enemyID == 303:
-         self.doMainText("\n\nThe octopus shudders as her belly quakes, the orgasm having wracked her a little too strongly. She huffs as she begins to crawl back towards the ocean. Just as she touches the water, she lets out a loud groan. Her tentacles quiver and part, exposing her vaginal-beak. The thing yawns wide as a spherical object pushes through.\n\nClear with a solid pink center, the egg falls from her dripping pussy-beak, and into the sand. Barely 4 inches in diameter, it doesn't come close to the size of her belly. She quickly catches her breath, her pink face red with embarrassment, before she pushes herself into the water, a tentacle grabbing the egg and pulling it with her before any more can escape...\n\nHowever, she seems to have left behind a big gob of pink goop.")
-      elif self.enemyID == 304 or self.enemyID == 305:
-         self.doMainText(f"\n\nAs the {self.enemyName()} collapses to the ground, wracked by orgasms and thoroughly distracted by the lewd fun, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemyName()}'s body, you find something wedged in a rather lewd location.")
-      elif self.enemyID == 306:
-         self.doMainText("\n\nThe naga collapses to the ground, tail still squirming in delighted orgasm and no longer wishing to battle. You take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.")
-      elif self.enemyID == 307:
-         self.doMainText("\n\nHe succombs to the pleasant sensations and doesn't seem to want to stop. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then ignores you.")
-         if (not self.defeatedMinotaur):
-            self.defeatedMinotaur = True
-         self.currentDungeon = 1003
-      elif self.enemyID == 308:
-         self.doMainText("\r\rA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"")
-         if (not self.defeatedFreakyGirl):
-            self.defeatedFreakyGirl = True
-         self.currentDungeon = 1006
-      elif self.enemyID == 309:
-         self.doMainText("\n\nHowever, her hips can stop twitching and she has difficulty zipping back up, nearly coming again just from trying. \"O-Okay... You win. I... I can't take any more than that... Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
-         if (not self.defeatedSuccubus):
-            self.defeatedSuccubus = True
-            self.currentDungeon = 1010
-         else:
-            self.currentDungeon = 1009
-      else:
-         self.doMainText(f"\n\nThe {self.enemyName()} collapses to the ground, quivering body wracked by orgasms. Having broken its mental state into a puddle of sex, it no longer wishes to battle.")
-      self.displayMainText()
+        if self.enemyID == 303:
+            self.doMainText("\n\nThe octopus shudders as her belly quakes, the orgasm having wracked her a little too strongly. She huffs as she begins to crawl back towards the ocean. Just as she touches the water, she lets out a loud groan. Her tentacles quiver and part, exposing her vaginal-beak. The thing yawns wide as a spherical object pushes through.\n\nClear with a solid pink center, the egg falls from her dripping pussy-beak, and into the sand. Barely 4 inches in diameter, it doesn't come close to the size of her belly. She quickly catches her breath, her pink face red with embarrassment, before she pushes herself into the water, a tentacle grabbing the egg and pulling it with her before any more can escape...\n\nHowever, she seems to have left behind a big gob of pink goop.")
+        elif self.enemyID == 304 or self.enemyID == 305:
+            self.doMainText(f"\n\nAs the {self.enemyName()} collapses to the ground, wracked by orgasms and thoroughly distracted by the lewd fun, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemyName()}'s body, you find something wedged in a rather lewd location.")
+        elif self.enemyID == 306:
+            self.doMainText("\n\nThe naga collapses to the ground, tail still squirming in delighted orgasm and no longer wishing to battle. You take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.")
+        elif self.enemyID == 307:
+            self.doMainText("\n\nHe succombs to the pleasant sensations and doesn't seem to want to stop. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then ignores you.")
+            if (not self.defeatedMinotaur):
+                self.defeatedMinotaur = True
+            self.currentDungeon = 1003
+        elif self.enemyID == 308:
+            self.doMainText("\r\rA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"")
+            if (not self.defeatedFreakyGirl):
+                self.defeatedFreakyGirl = True
+            self.currentDungeon = 1006
+        elif self.enemyID == 309:
+            self.doMainText("\n\nHowever, her hips can stop twitching and she has difficulty zipping back up, nearly coming again just from trying. \"O-Okay... You win. I... I can't take any more than that... Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
+            if (not self.defeatedSuccubus):
+                self.defeatedSuccubus = True
+                self.currentDungeon = 1010
+            else:
+                self.currentDungeon = 1009
+        else:
+            self.doMainText(f"\n\nThe {self.enemyName()} collapses to the ground, quivering body wracked by orgasms. Having broken its mental state into a puddle of sex, it no longer wishes to battle.")
+        self.displayMainText()
 
    def specialKOWin(self):
-      if self.enemyID == 303:
-         self.doMainText("\n\nSaddened with your rough treatment, you don't seem to want to play like she does. A bit hurt, she jumps back into the ocean, leaving nothing but a gob of pink goop behind.")
-      elif self.enemyID == 304 or self.enemyID == 305:
-         self.doMainText(f"\n\nAs the {self.enemyName()} passes out from all the pain, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemyName()}'s body, you find something wedged in a rather lewd location.")
-      elif self.enemyID == 102:
-         self.doMainText("\n\nFeeling itself about to dissipate from your attacks, the desiccating dust devil feebly spins away, leaving behind some of the sand it can no longer support.")
-      elif self.enemyID == 306:
-         self.doMainText("\n\nThe naga passes out from your attacks, allowing you take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.")
-      elif self.enemyID == 307:
-         self.doMainText("\n\n\"No, stop! No more! It hurts!\" He slinks away from you, sullen. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then starts grumbling to himself in a corner.")
-         if (not self.defeatedMinotaur):
-            self.defeatedMinotaur = True
-         self.currentDungeon = 1002
-      elif self.enemyID == 308:
-         self.doMainText("\n\nShe growls and curses obsceneties while nursing her pain. \"GAH, NO MORE! TAKE YOUR DAMNED WINNINGS AND GO!\"\n\nShe proceeds to rip off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she throws at you.")
-         if (not self.defeatedFreakyGirl):
-            self.defeatedFreakyGirl = True
-         self.currentDungeon = 1004
-      elif self.enemyID == 309:
-         self.doMainText("\n\n\"Ow, ow, ow, ow. Okay, okay, you win! Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
-         if (not self.defeatedSuccubus):
-            self.defeatedSuccubus = True
-            self.currentDungeon = 1010
-         else:
-            self.currentDungeon = 1008
-      else:
-         self.doMainText(f"\n\nYou have made the {self.enemyName()} pass out from all the pain.")
-      self.displayMainText()
+        if self.enemyID == 303:
+            self.doMainText("\n\nSaddened with your rough treatment, you don't seem to want to play like she does. A bit hurt, she jumps back into the ocean, leaving nothing but a gob of pink goop behind.")
+        elif self.enemyID == 304 or self.enemyID == 305:
+            self.doMainText(f"\n\nAs the {self.enemyName()} passes out from all the pain, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemyName()}'s body, you find something wedged in a rather lewd location.")
+        elif self.enemyID == 102:
+            self.doMainText("\n\nFeeling itself about to dissipate from your attacks, the desiccating dust devil feebly spins away, leaving behind some of the sand it can no longer support.")
+        elif self.enemyID == 306:
+            self.doMainText("\n\nThe naga passes out from your attacks, allowing you take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.")
+        elif self.enemyID == 307:
+            self.doMainText("\n\n\"No, stop! No more! It hurts!\" He slinks away from you, sullen. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then starts grumbling to himself in a corner.")
+            if (not self.defeatedMinotaur):
+                self.defeatedMinotaur = True
+            self.currentDungeon = 1002
+        elif self.enemyID == 308:
+            self.doMainText("\n\nShe growls and curses obsceneties while nursing her pain. \"GAH, NO MORE! TAKE YOUR DAMNED WINNINGS AND GO!\"\n\nShe proceeds to rip off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she throws at you.")
+            if (not self.defeatedFreakyGirl):
+                self.defeatedFreakyGirl = True
+            self.currentDungeon = 1004
+        elif self.enemyID == 309:
+            self.doMainText("\n\n\"Ow, ow, ow, ow. Okay, okay, you win! Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
+            if (not self.defeatedSuccubus):
+                self.defeatedSuccubus = True
+                self.currentDungeon = 1010
+            else:
+                self.currentDungeon = 1008
+        else:
+            self.doMainText(f"\n\nYou have made the {self.enemyName()} pass out from all the pain.")
+        self.displayMainText()
 
    def specialKOLose(self):
-      if (self.currentState == 2):
-         if self.enemyID == 303:
-            self.doMainText("\n\nJust as you're about to pass out, you see the octopus girl lean over your body. She wears a disappointed expression, finding you were't strong enough for what she was looking for. Shrugging, she jumps back into the ocean, leaving you to yourself.")
-         elif self.enemyID in {304,305}:
-            self.doMainText("\n\nJust as you're about to pass out, you feel yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Though not quite all the way...")
-         elif self.enemyID == 309:
-            self.doMainText("\n\nThe succubus seems a bit surprised as you pass out. \"Oops... I thought you could take more than that. Sorry~\"")
+        if (self.currentState == 2):
+            if self.enemyID == 303:
+                self.doMainText("\n\nJust as you're about to pass out, you see the octopus girl lean over your body. She wears a disappointed expression, finding you were't strong enough for what she was looking for. Shrugging, she jumps back into the ocean, leaving you to yourself.")
+            elif self.enemyID in {304,305}:
+                self.doMainText("\n\nJust as you're about to pass out, you feel yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Though not quite all the way...")
+            elif self.enemyID == 309:
+                self.doMainText("\n\nThe succubus seems a bit surprised as you pass out. \"Oops... I thought you could take more than that. Sorry~\"")
 
    def doRape(self):
+      # HERE
       '''
       Provides a detailed description of the rape if you are successful
       '''
@@ -23244,148 +23263,150 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.skipExhaustion = True
       self.doEnd()
 
-   def setEnemystats(self, enemyHP:int, enemyStr:int, enemyMenta:int, enemySen:int, enemyLib:int, enemyLust:int, enemyGen:int, enemyPref:int, enemyCoin:int, enemySexP:int, enemyItem:int):
-      self.eHP = enemyHP
-      self.eStr = enemyStr
-      self.eMenta = enemyMenta
-      self.eSen = enemySen
-      self.eLib = enemyLib
-      self.eLust = enemyLust
-      self.eGen = enemyGen
-      self.ePref = enemyPref
-      self.eCoin = enemyCoin
-      self.eSexP = enemySexP
-      self.eItem = enemyItem
+   def setEnemystats(self, enemyHP: int, enemyStr: int, enemyMenta: int, enemySen: int, enemyLib: int, enemyLust: int, enemyGen: int, enemyPref: int, enemyCoin: int, enemySexP: int, enemyItem: int):
+        self.eHP = enemyHP
+        self.eStr = enemyStr
+        self.eMenta = enemyMenta
+        self.eSen = enemySen
+        self.eLib = enemyLib
+        self.eLust = enemyLust
+        self.eGen = enemyGen
+        self.ePref = enemyPref
+        self.eCoin = enemyCoin
+        self.eSexP = enemySexP
+        self.eItem = enemyItem
 
-   def doeHP(self, changes:int):
-      '''
-      Calculate and set enemy's HP
-      
-      DOES NOT RETURN THE BATTLE WIN MESSAGE
-      '''
-      if (self.eHP + changes <= 0):
-         self.specialKOWin()
-         self.outputMainText("\n\nYou win the battle!")
-         if (self.inBag):
-            self.inBag = False
-         self.currentState = 1
-         self.doNext()
-         def doListen():
-            self.battleWin()
-         self.doListen = doListen
-      self.eHP += changes
-      if (self.eHP > 0):
-         self.outputMainText(f"\n\nYour enemy now seems to be under {Math.ceil(self.eHP / self.eMaxHP * 10) * 10}% HP.")
+   def doeHP(self, changes: int):
+        '''
+        Calculate and set enemy's HP
 
-   def doeLust(self, changes:int):
-      if self.eGen == 1:
-         if (self.eLust + changes > 65 and self.eLust <= 65):
-            self.doMainText(f"\n\nThe {self.enemyName()} smears the pre across its rod, stroking it gently while fighting, majorly distracted.")
-         elif (self.eLust + changes > 40 and self.eLust <= 40):
-            self.doMainText(f"\n\nThe {self.enemyName()} squirms, pre dripping from the tip of its stiffness.")
-         elif (self.eLust + changes > 20 and self.eLust <= 20):
-            self.doMainText(f"\n\nThe {self.enemyName()} shifts a little, an erection clearly beginning to grow.")
-      elif self.eGen == 2:
-         if (self.eLust + changes > 65 and self.eLust <= 65):
-            self.doMainText(f"\n\nThe {self.enemyName()} smears the honey all over as it rubs itself constantly while fighting, majorly distracted.")
-         elif (self.eLust + changes > 40 and self.eLust <= 40):
-            self.doMainText(f"\n\nThe {self.enemyName()} squirms, honey dribbling from its naughty hole.")
-         elif (self.eLust + changes > 20 and self.eLust <= 20):
-            self.doMainText(f"\n\nThe {self.enemyName()} shifts a little, caressing its pussy here and there when it can.")
-      elif self.eGen == 3:
-         if (self.eLust + changes > 65 and self.eLust <= 65):
-            self.doMainText(f"\n\nThe {self.enemyName()} smears the lubricant all over as it rubs and strokes itself constantly while fighting, majorly distracted.")
-         elif (self.eLust + changes > 40 and self.eLust <= 40):
-            self.doMainText(f"\n\nThe {self.enemyName()} squirms, honey dribbling and pre dripping from its aroused genitals.")
-         elif (self.eLust + changes > 20 and self.eLust <= 20):
-            self.doMainText(f"\n\nThe {self.enemyName()} shifts a little, caressing its pussy here and there when it can while its erection clearly grows.")
-      self.eLust += changes
+        DOES NOT RETURN THE BATTLE WIN MESSAGE
+        '''
+        if (self.eHP + changes <= 0):
+            self.specialKOWin()
+            self.outputMainText("\n\nYou win the battle!")
+            if (self.inBag):
+                self.inBag = False
+            self.currentState = 1
+            self.doNext()
+
+            def doListen():
+                self.battleWin()
+            self.doListen = doListen
+        self.eHP += changes
+        if (self.eHP > 0):
+            self.outputMainText(f"\n\nYour enemy now seems to be under {Math.ceil(self.eHP / self.eMaxHP * 10) * 10}% HP.")
+
+   def doeLust(self, changes: int):
+        if self.eGen == 1:
+            if (self.eLust + changes > 65 and self.eLust <= 65):
+                self.doMainText(f"\n\nThe {self.enemyName()} smears the pre across its rod, stroking it gently while fighting, majorly distracted.")
+            elif (self.eLust + changes > 40 and self.eLust <= 40):
+                self.doMainText(f"\n\nThe {self.enemyName()} squirms, pre dripping from the tip of its stiffness.")
+            elif (self.eLust + changes > 20 and self.eLust <= 20):
+                self.doMainText(f"\n\nThe {self.enemyName()} shifts a little, an erection clearly beginning to grow.")
+        elif self.eGen == 2:
+            if (self.eLust + changes > 65 and self.eLust <= 65):
+                self.doMainText(f"\n\nThe {self.enemyName()} smears the honey all over as it rubs itself constantly while fighting, majorly distracted.")
+            elif (self.eLust + changes > 40 and self.eLust <= 40):
+                self.doMainText(f"\n\nThe {self.enemyName()} squirms, honey dribbling from its naughty hole.")
+            elif (self.eLust + changes > 20 and self.eLust <= 20):
+                self.doMainText(f"\n\nThe {self.enemyName()} shifts a little, caressing its pussy here and there when it can.")
+        elif self.eGen == 3:
+            if (self.eLust + changes > 65 and self.eLust <= 65):
+                self.doMainText(f"\n\nThe {self.enemyName()} smears the lubricant all over as it rubs and strokes itself constantly while fighting, majorly distracted.")
+            elif (self.eLust + changes > 40 and self.eLust <= 40):
+                self.doMainText(f"\n\nThe {self.enemyName()} squirms, honey dribbling and pre dripping from its aroused genitals.")
+            elif (self.eLust + changes > 20 and self.eLust <= 20):
+                self.doMainText(f"\n\nThe {self.enemyName()} shifts a little, caressing its pussy here and there when it can while its erection clearly grows.")
+        self.eLust += changes
 
    def eDmg(self, eweapon):
-      if self.debugNoDamage and as3state.as3DebugEnable:
-         return 0
-      self.dmgRed = 0
-      self.dmg = 0
-      if (self.sen > 0):
-         self.dmgRed = Math.floor((100 - self.sen) / 2)
-      if (self.dmgRed > self.level):
-         self.dmgRed = self.level
-      self.dmg = Math.floor(self.percent() / eweapon + self.eStr / 2 - self.dmgRed)
-      if (self.dmg < 0):
-         self.dmg = 0
-      return self.dmg
+        if self.debugNoDamage and as3state.as3DebugEnable:
+            return 0
+        self.dmgRed = 0
+        self.dmg = 0
+        if (self.sen > 0):
+            self.dmgRed = Math.floor((100 - self.sen) / 2)
+        if (self.dmgRed > self.level):
+            self.dmgRed = self.level
+        self.dmg = Math.floor(self.percent() / eweapon + self.eStr / 2 - self.dmgRed)
+        if (self.dmg < 0):
+            self.dmg = 0
+        return self.dmg
 
    def enemyName(self):
-      if self.enemyID == 101:
-         return "cock-snake"
-      if self.enemyID == 102:
-         return "desiccating dust devil"
-      if self.enemyID == 201:
-         return "lone male wolf"
-      if self.enemyID == 202:
-         return "gay wolf"
-      if self.enemyID == 301:
-         return "felin in heat"
-      if self.enemyID == 302:
-         return "drunken equan"
-      if self.enemyID == 303:
-         return "octopus girl"
-      if self.enemyID == 304:
-         return "little big bunny-man"
-      if self.enemyID == 305:
-         return "little big bunny-girl"
-      if self.enemyID == 306:
-         return "fierce naga"
-      if self.enemyID == 307:
-         return "Minotaur"
-      if self.enemyID == 308:
-         return "freaky little girl"
-      if self.enemyID == 309:
-         return "succubus"
-      return "ENEMY NAME ERROR"
+        if self.enemyID == 101:
+            return "cock-snake"
+        if self.enemyID == 102:
+            return "desiccating dust devil"
+        if self.enemyID == 201:
+            return "lone male wolf"
+        if self.enemyID == 202:
+            return "gay wolf"
+        if self.enemyID == 301:
+            return "felin in heat"
+        if self.enemyID == 302:
+            return "drunken equan"
+        if self.enemyID == 303:
+            return "octopus girl"
+        if self.enemyID == 304:
+            return "little big bunny-man"
+        if self.enemyID == 305:
+            return "little big bunny-girl"
+        if self.enemyID == 306:
+            return "fierce naga"
+        if self.enemyID == 307:
+            return "Minotaur"
+        if self.enemyID == 308:
+            return "freaky little girl"
+        if self.enemyID == 309:
+            return "succubus"
+        return "ENEMY NAME ERROR"
 
    def enemyBaseStats(self):
-      if self.enemyID == 101:
-         self.setEnemystats(30,16,4,8,0,0,0,4,0,15,202)
-      elif self.enemyID == 102:
-         self.setEnemystats(25,0,20,0,50,0,0,0,0,10,231)
-      elif self.enemyID == 201:
-         self.setEnemystats(45,22,16,13,11,30,1,2,0,20,203)
-      elif self.enemyID == 202:
-         self.setEnemystats(45,26,16,20,11,40,1,1,0,20,203)
-      elif self.enemyID == 301:
-         self.setEnemystats(50,12,10,24,30,40,2,4,Math.floor(self.percent() / 10),25,204)
-      elif self.enemyID == 302:
-         self.setEnemystats(60,28,9,18,14,30,1,4,Math.floor(self.percent() / 10),25,205)
-      elif self.enemyID == 303:
-         self.setEnemystats(150,45,30,25,35,20,2,4,0,50,216)
-      elif self.enemyID == 304:
-         self.setEnemystats(55,35,30,35,45,10,1,4,Math.floor(self.percent() / 10),30,222)
-      elif self.enemyID == 305:
-         self.setEnemystats(50,35,30,45,35,10,2,4,Math.floor(self.percent() / 10),30,222)
-      elif self.enemyID == 306:
-         self.setEnemystats(100,50,20,40,2,40,2,4,Math.floor(self.percent() / 5),55,230)
-      elif self.enemyID == 307:
-         self.setEnemystats(250,70,20,50,20,10,1,4,Math.floor(self.percent() / 4 + 5),50,525)
-      elif self.enemyID == 308:
-         self.setEnemystats(175,80,40,70,60,10,2,4,Math.floor(self.percent() / 4 + 5),55,259)
-      elif self.enemyID == 309:
-         self.setEnemystats(150,35,80,40,40,0,2,4,Math.floor(self.percent() / 4 + 5),60,260)
+        if self.enemyID == 101:
+            self.setEnemystats(30, 16, 4, 8, 0, 0, 0, 4, 0, 15, 202)
+        elif self.enemyID == 102:
+            self.setEnemystats(25, 0, 20, 0, 50, 0, 0, 0, 0, 10, 231)
+        elif self.enemyID == 201:
+            self.setEnemystats(45, 22, 16, 13, 11, 30, 1, 2, 0, 20, 203)
+        elif self.enemyID == 202:
+            self.setEnemystats(45, 26, 16, 20, 11, 40, 1, 1, 0, 20, 203)
+        elif self.enemyID == 301:
+            self.setEnemystats(50, 12, 10, 24, 30, 40, 2, 4, Math.floor(self.percent() / 10), 25, 204)
+        elif self.enemyID == 302:
+            self.setEnemystats(60, 28, 9, 18, 14, 30, 1, 4, Math.floor(self.percent() / 10), 25, 205)
+        elif self.enemyID == 303:
+            self.setEnemystats(150, 45, 30, 25, 35, 20, 2, 4, 0, 50, 216)
+        elif self.enemyID == 304:
+            self.setEnemystats(55, 35, 30, 35, 45, 10, 1, 4, Math.floor(self.percent() / 10), 30, 222)
+        elif self.enemyID == 305:
+            self.setEnemystats(50, 35, 30, 45, 35, 10, 2, 4, Math.floor(self.percent() / 10), 30, 222)
+        elif self.enemyID == 306:
+            self.setEnemystats(100, 50, 20, 40, 2, 40, 2, 4, Math.floor(self.percent() / 5), 55, 230)
+        elif self.enemyID == 307:
+            self.setEnemystats(250, 70, 20, 50, 20, 10, 1, 4, Math.floor(self.percent() / 4 + 5), 50, 525)
+        elif self.enemyID == 308:
+            self.setEnemystats(175, 80, 40, 70, 60, 10, 2, 4, Math.floor(self.percent() / 4 + 5), 55, 259)
+        elif self.enemyID == 309:
+            self.setEnemystats(150, 35, 80, 40, 40, 0, 2, 4, Math.floor(self.percent() / 4 + 5), 60, 260)
 
    def enemyBaby(self):
-      if self.enemyID == 201:
-         return 100
-      if self.enemyID == 302:
-         return 2
-      if self.enemyID == 304:
-         return 7
-      if self.enemyID == 307:
-         return 307
-      if self.enemyID == 308:
-         return 308
-      return 0
+        if self.enemyID == 201:
+            return 100
+        if self.enemyID == 302:
+            return 2
+        if self.enemyID == 304:
+            return 7
+        if self.enemyID == 307:
+            return 307
+        if self.enemyID == 308:
+            return 308
+        return 0
 
    def enemyAttack(self):
+      # HERE
       attack = self.percent()
       if self.enemyID == 101: # Cock-Snake
          if (attack <= 50):
@@ -24410,62 +24431,63 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.displayMainText()
          self.doEnd()
 
-   def affinity(self, humanChange:int, horseChange:int, wolfChange:int, catChange:int, cowChange:int, lizardChange:int, rabbitChange:int): #not used
-      self.human += Math.ceil(humanChange * self.changeMod)
-      self.horse += Math.ceil(horseChange * self.changeMod)
-      self.wolf += Math.ceil(wolfChange * self.changeMod)
-      self.cat += Math.ceil(catChange * self.changeMod)
-      self.cow += Math.ceil(cowChange * self.changeMod)
-      self.lizard += Math.ceil(lizardChange * self.changeMod)
-      self.rabbit += Math.ceil(rabbitChange * self.changeMod)
+   def affinity(self, humanChange: int, horseChange: int, wolfChange: int, catChange: int, cowChange: int, lizardChange: int, rabbitChange: int):  # not used
+        self.human += Math.ceil(humanChange * self.changeMod)
+        self.horse += Math.ceil(horseChange * self.changeMod)
+        self.wolf += Math.ceil(wolfChange * self.changeMod)
+        self.cat += Math.ceil(catChange * self.changeMod)
+        self.cow += Math.ceil(cowChange * self.changeMod)
+        self.lizard += Math.ceil(lizardChange * self.changeMod)
+        self.rabbit += Math.ceil(rabbitChange * self.changeMod)
 
    def aff(self, tempRace, tempChange, otherChange):
-      self.human += Math.ceil(otherChange * self.changeMod)
-      self.horse += Math.ceil(otherChange * self.changeMod)
-      self.wolf += Math.ceil(otherChange * self.changeMod)
-      self.cat += Math.ceil(otherChange * self.changeMod)
-      self.cow += Math.ceil(otherChange * self.changeMod)
-      self.lizard += Math.ceil(otherChange * self.changeMod)
-      self.rabbit += Math.ceil(otherChange * self.changeMod)
-      self.mouse += Math.ceil(otherChange * self.changeMod)
-      self.bird += Math.ceil(otherChange * self.changeMod)
-      self.pig += Math.ceil(otherChange * self.changeMod)
-      self.skunk += Math.ceil(otherChange * self.changeMod)
-      self.bug += Math.ceil(otherChange * self.changeMod)
-      self.twoBoobAffinity += Math.ceil(otherChange * self.changeMod)
-      self.fourBoobAffinity += Math.ceil(otherChange * self.changeMod)
-      self.sixBoobAffinity += Math.ceil(otherChange * self.changeMod)
-      self.eightBoobAffinity += Math.ceil(otherChange * self.changeMod)
-      self.tenBoobAffinity += Math.ceil(otherChange * self.changeMod)
-      self.cowTaurAffinity += Math.ceil(otherChange * self.changeMod)
-      self.humanTaurAffinity += Math.ceil(otherChange * self.changeMod)
-      if tempRace == 1:
-         self.human += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 2:
-         self.horse += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 3:
-         self.wolf += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 4:
-         self.cat += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 5:
-         self.cow += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 6:
-         self.lizard += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 7:
-         self.rabbit += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 8:
-         self.mouse += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 9:
-         self.bird += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 10:
-         self.pig += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 11:
-         self.skunk += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-      elif tempRace == 12:
-         self.bug += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        self.human += Math.ceil(otherChange * self.changeMod)
+        self.horse += Math.ceil(otherChange * self.changeMod)
+        self.wolf += Math.ceil(otherChange * self.changeMod)
+        self.cat += Math.ceil(otherChange * self.changeMod)
+        self.cow += Math.ceil(otherChange * self.changeMod)
+        self.lizard += Math.ceil(otherChange * self.changeMod)
+        self.rabbit += Math.ceil(otherChange * self.changeMod)
+        self.mouse += Math.ceil(otherChange * self.changeMod)
+        self.bird += Math.ceil(otherChange * self.changeMod)
+        self.pig += Math.ceil(otherChange * self.changeMod)
+        self.skunk += Math.ceil(otherChange * self.changeMod)
+        self.bug += Math.ceil(otherChange * self.changeMod)
+        self.twoBoobAffinity += Math.ceil(otherChange * self.changeMod)
+        self.fourBoobAffinity += Math.ceil(otherChange * self.changeMod)
+        self.sixBoobAffinity += Math.ceil(otherChange * self.changeMod)
+        self.eightBoobAffinity += Math.ceil(otherChange * self.changeMod)
+        self.tenBoobAffinity += Math.ceil(otherChange * self.changeMod)
+        self.cowTaurAffinity += Math.ceil(otherChange * self.changeMod)
+        self.humanTaurAffinity += Math.ceil(otherChange * self.changeMod)
+        if tempRace == 1:
+            self.human += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 2:
+            self.horse += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 3:
+            self.wolf += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 4:
+            self.cat += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 5:
+            self.cow += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 6:
+            self.lizard += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 7:
+            self.rabbit += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 8:
+            self.mouse += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 9:
+            self.bird += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 10:
+            self.pig += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 11:
+            self.skunk += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
+        elif tempRace == 12:
+            self.bug += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
 
    def affinityChange(self):
-      self.doMainText("Something feels odd...",True)
+      # HERE
+      self.doMainText("Something feels odd...", True)
       chance = self.percent()
       affinityCheckArray = Array(self.humanAffinity + self.human,self.horseAffinity + self.horse,self.wolfAffinity + self.wolf,self.catAffinity + self.cat,self.cowAffinity + self.cow,self.lizardAffinity + self.lizard,self.rabbitAffinity + self.rabbit,self.mouseAffinity + self.mouse,self.birdAffinity + self.bird,self.pigAffinity + self.pig,self.skunkAffinity + self.skunk,self.bugAffinity + self.bug)
       affinityCheckArray.sort(16)
@@ -25809,26 +25831,27 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       if (self.udderLactation < 0):
          self.udderLactation = 0
 
-   def pregCheck(self, amount:int):
-      if (amount == 0):
-         for i in range(0,self.pregArray.length,5):
-            if (self.pregArray[i]):
-               return True
-      elif (amount == 1):
-         for i in range(0,self.pregArray.length,5):
-            if (not self.pregArray[i]):
-               return True
-      elif (amount > 1):
-         for i in range(0,self.pregArray.length,5):
-            if (self.pregArray[i + 1] == amount):
-               return True
-      return False
+   def pregCheck(self, amount: int):
+        if (amount == 0):
+            for i in range(0,self.pregArray.length,5):
+                if (self.pregArray[i]):
+                    return True
+        elif (amount == 1):
+            for i in range(0,self.pregArray.length,5):
+                if (not self.pregArray[i]):
+                    return True
+        elif (amount > 1):
+            for i in range(0,self.pregArray.length,5):
+                if (self.pregArray[i + 1] == amount):
+                    return True
+        return False
 
-   def doMultiImpregnate(self, erace:int, amount:int):
-      for i in range(amount):
-         self.doImpregnate(erace)
+   def doMultiImpregnate(self, erace: int, amount: int):
+        for i in range(amount):
+            self.doImpregnate(erace)
 
-   def doImpregnate(self, erace:int):
+   def doImpregnate(self, erace: int):
+      # HERE
       chance = self.percent()
       tempPregMod = 0
       if (self.babyFree > 0):
@@ -26060,192 +26083,201 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       elif pregnancyType == 504:
          self.doMainText(f" White fluids explode from your fresh pussy, drenching your {self.legDesc(4)} and slightly flooding the area around you. It only takes a few moments for it to all escape, your belly quickly deflating. Dabbing your fresh new pussy and taking a taste, the white fluid was a bunch of milk...\n\nThe statue must have enjoyed it's practical joke on you.")
 
-   def ptweaksGrammar(self, topic:int, capital:bool=False):
-      if topic == 1: #femme-boy/femboy
-         if capital:
-            return "Femboy" if self.femmeboyToFemboy else "Femme-boy"
-         return "femboy" if self.femmeboyToFemboy else "femme-boy"
-      if topic == 2: #shemale/futanari
-         if capital:
-            return "Futanari" if self.shemaleToFuta else "Shemale"
-         return "futanari" if self.shemaleToFuta else "shemale"
-      if topic == 3: #Femme boy/Femboy
-         if capital:
-            return "Femboy" if self.femmeboyToFemboy else "Femme Boy"
-         return "femboy" if self.femmeboyToFemboy else "femme boy"
+   def ptweaksGrammar(self, topic: int, capital: bool = False):
+        # femme-boy/femboy
+        if topic == 1:
+            if capital:
+                return "Femboy" if self.femmeboyToFemboy else "Femme-boy"
+            return "femboy" if self.femmeboyToFemboy else "femme-boy"
 
-   def plural(self, topic:int):
-      if (topic == 1 and self.cockTotal > 1):
-         return "s"
-      if (topic == 2 and self.vagTotal > 1):
-         return "s"
-      if (topic == 3 and self.cockTotal < 2):
-         return "s"
-      if (topic == 4 and self.vagTotal < 2):
-         return "s"
-      if (topic == 5):
-         if (self.cockTotal < 2):
-            return "its"
-         return "their"
-      if (topic == 6):
-         if (self.vagTotal < 2):
-            return "its"
-         return "their"
-      if (topic == 7):
-         if (self.cockTotal < 2):
-            return "it's"
-         return "they're"
-      if (topic == 8):
-         if (self.vagTotal < 2):
-            return "it's"
-         return "they're"
-      if (topic == 9):
-         if (self.cockTotal < 2):
-            return "it"
-         return "them"
-      if (topic == 10):
-         if (self.vagTotal < 2):
-            return "it"
-         return "them"
-      if (topic == 11):
-         if (self.cockTotal < 2):
-            return "it"
-         return "they"
-      if (topic == 12):
-         if (self.vagTotal < 2):
-            return "it"
-         return "they"
-      if (topic == 13):
-         if (self.cockTotal < 2):
-            return "is"
-         return "are"
-      if (topic == 14):
-         if (self.vagTotal < 2):
-            return "is"
-         return "are"
-      if (topic == 15 and self.cockTotal > 1):
-         return "es"
-      if (topic == 16):
-         if (self.vagTotal < 2):
-            return "y"
-         return "ies"
-      return ""
+        # shemale/futanari
+        if topic == 2:
+            if capital:
+                return "Futanari" if self.shemaleToFuta else "Shemale"
+            return "futanari" if self.shemaleToFuta else "shemale"
 
-   def oneYour(self, topic:int):
-      if (topic == 1):
-         if (self.cockTotal > 1):
-            return "one of your"
-         if (self.cockTotal == 1):
-            return "your"
-      elif (topic == 2):
-         if (self.vagTotal > 1):
-            return "one of your"
-         if (self.vagTotal == 1):
-            return "your"
-      return f"ONE YOUR ERROR {self.cockTotal} {self.vagTotal}"
+        # femme boy/femboy
+        if topic == 3:
+            if capital:
+                return "Femboy" if self.femmeboyToFemboy else "Femme Boy"
+            return "femboy" if self.femmeboyToFemboy else "femme boy"
+
+   def plural(self, topic: int):
+        if (topic == 1 and self.cockTotal > 1):
+            return "s"
+        if (topic == 2 and self.vagTotal > 1):
+            return "s"
+        if (topic == 3 and self.cockTotal < 2):
+            return "s"
+        if (topic == 4 and self.vagTotal < 2):
+            return "s"
+        if (topic == 5):
+            if (self.cockTotal < 2):
+                return "its"
+            return "their"
+        if (topic == 6):
+            if (self.vagTotal < 2):
+                return "its"
+            return "their"
+        if (topic == 7):
+            if (self.cockTotal < 2):
+                return "it's"
+            return "they're"
+        if (topic == 8):
+            if (self.vagTotal < 2):
+                return "it's"
+            return "they're"
+        if (topic == 9):
+            if (self.cockTotal < 2):
+                return "it"
+            return "them"
+        if (topic == 10):
+            if (self.vagTotal < 2):
+                return "it"
+            return "them"
+        if (topic == 11):
+            if (self.cockTotal < 2):
+                return "it"
+            return "they"
+        if (topic == 12):
+            if (self.vagTotal < 2):
+                return "it"
+            return "they"
+        if (topic == 13):
+            if (self.cockTotal < 2):
+                return "is"
+            return "are"
+        if (topic == 14):
+            if (self.vagTotal < 2):
+                return "is"
+            return "are"
+        if (topic == 15 and self.cockTotal > 1):
+            return "es"
+        if (topic == 16):
+            if (self.vagTotal < 2):
+                return "y"
+            return "ies"
+        return ""
+
+   def oneYour(self, topic: int):
+        if (topic == 1):
+            if (self.cockTotal > 1):
+                return "one of your"
+            if (self.cockTotal == 1):
+                return "your"
+        elif (topic == 2):
+            if (self.vagTotal > 1):
+                return "one of your"
+            if (self.vagTotal == 1):
+                return "your"
+        return f"ONE YOUR ERROR {self.cockTotal} {self.vagTotal}"
 
    def bodyDesc(self):
-      if (self.gender == 1):
-         if self.body <= 11:
-            return "childish"
-         elif self.body <= 17:
-            if (self.hips > 3 and self.breastSize > 4):
-               return self.ptweaksGrammar(2)
-            elif (self.hips > 2):
-               return "girly" if self.femboyishToGirly else f"{self.ptweaksGrammar(1)}ish"
-            return "boyish"
-         elif self.body <= 25:
-            return "manly"
-         elif (self.body > 25):
-            return "musclebound"
-      elif (self.gender == 2):
-         if (self.body <= 9):
-            return "childish"
-         elif (self.body <= 14):
-            return "girly"
-         elif (self.body > 17 and self.breastSize <= 2):
-            return "cunt-boy"
-         elif (self.body <= 20):
-            if (self.hips > 4 or self.butt > 4 or self.breastSize > 4):
-               return "voluptuous"
-            return "womanly"
-         elif (self.body > 20):
-            return "musclebound"
-      elif (self.gender == 3):
-         if self.body <= 11:
-            return "childish"
-         elif self.body <= 23:
-            if (self.hips > 2 and self.breastSize > 2):
-               return "feminine"
-            return "masculine"
-         elif (self.body > 23):
-            return "musclebound"
-      elif (self.gender == 0):
-         if (self.body <= 11):
-            return "childish"
-         elif (self.body <= 15):
-            return "teenage"
-         elif (self.body <= 23):
-            return "fully grown"
-         elif (self.body > 23):
-            return "musclebound"
-      return f"BODY ERROR {self.gender} {self.body}"
+        if (self.gender == 1):
+            if self.body <= 11:
+                return "childish"
+            elif self.body <= 17:
+                if (self.hips > 3 and self.breastSize > 4):
+                    return self.ptweaksGrammar(2)
+                elif (self.hips > 2):
+                    return "girly" if self.femboyishToGirly else f"{self.ptweaksGrammar(1)}ish"
+                return "boyish"
+            elif self.body <= 25:
+                return "manly"
+            elif (self.body > 25):
+                return "musclebound"
 
-   def tailDesc(self, ngrammar=False):
-      chance = self.percent()
-      if (chance <= 50):
-         if self.tail == 2:
-            if ngrammar and self.ngrammar:
-               return "\bn equine"
-            return "equine"
-         if self.tail == 3:
-            return "wolfish"
-         if self.tail == 4:
-            return "cat-like"
-         if self.tail == 5:
-            return "bovine"
-         if self.tail == 6:
-            return "reptillian"
-         if self.tail == 7:
-            return "bunny"
-         if self.tail == 8:
-            return "mousy"
-         if self.tail == 9:
-            return "birdy"
-         if self.tail == 10:
-            return "piggy"
-         if self.tail == 11:
-            return "skunky"
-         if self.tail == 12:
-            return "thick ovipositor"
-         if self.tail == 1002:
-            return self.humanTaurTailDesc()
-      else:
-         if self.tail == 2:
-            return "bristly"
-         if self.tail == 3:
-            return "fluffy"
-         if self.tail == 4:
-            return "lithe"
-         if self.tail == 5:
-            return "skinny, bristly-tipped"
-         if self.tail == 6:
-            return "thick, sleek"
-         if self.tail == 7:
-            return "poofy puff-ball"
-         if self.tail == 8:
-            return "thin, naked"
-         if self.tail == 9:
-            return "feathery"
-         if self.tail == 10:
-            return "short, curly"
-         if self.tail == 11:
-            return "big striped fluffy"
-         if self.tail == 12:
-            return "wide bulbous"
-         if self.tail == 1002:
-            return self.humanTaurTailDesc()
-      return f"TAIL ERROR {self.tail}"
+        elif (self.gender == 2):
+            if (self.body <= 9):
+                return "childish"
+            elif (self.body <= 14):
+                return "girly"
+            elif (self.body > 17 and self.breastSize <= 2):
+                return "cunt-boy"
+            elif (self.body <= 20):
+                if (self.hips > 4 or self.butt > 4 or self.breastSize > 4):
+                    return "voluptuous"
+                return "womanly"
+            elif (self.body > 20):
+                return "musclebound"
+
+        elif (self.gender == 3):
+            if self.body <= 11:
+                return "childish"
+            elif self.body <= 23:
+                if (self.hips > 2 and self.breastSize > 2):
+                    return "feminine"
+                return "masculine"
+            elif (self.body > 23):
+                return "musclebound"
+
+        elif (self.gender == 0):
+            if (self.body <= 11):
+                return "childish"
+            elif (self.body <= 15):
+                return "teenage"
+            elif (self.body <= 23):
+                return "fully grown"
+            elif (self.body > 23):
+                return "musclebound"
+
+        return f"BODY ERROR {self.gender} {self.body}"
+
+   def tailDesc(self, ngrammar: bool = False):
+        chance = self.percent()
+        if (chance <= 50):
+            if self.tail == 2:
+                if ngrammar and self.ngrammar:
+                    return "\bn equine"
+                return "equine"
+            if self.tail == 3:
+                return "wolfish"
+            if self.tail == 4:
+                return "cat-like"
+            if self.tail == 5:
+                return "bovine"
+            if self.tail == 6:
+                return "reptillian"
+            if self.tail == 7:
+                return "bunny"
+            if self.tail == 8:
+                return "mousy"
+            if self.tail == 9:
+                return "birdy"
+            if self.tail == 10:
+                return "piggy"
+            if self.tail == 11:
+                return "skunky"
+            if self.tail == 12:
+                return "thick ovipositor"
+            if self.tail == 1002:
+                return self.humanTaurTailDesc()
+        else:
+            if self.tail == 2:
+                return "bristly"
+            if self.tail == 3:
+                return "fluffy"
+            if self.tail == 4:
+                return "lithe"
+            if self.tail == 5:
+                return "skinny, bristly-tipped"
+            if self.tail == 6:
+                return "thick, sleek"
+            if self.tail == 7:
+                return "poofy puff-ball"
+            if self.tail == 8:
+                return "thin, naked"
+            if self.tail == 9:
+                return "feathery"
+            if self.tail == 10:
+                return "short, curly"
+            if self.tail == 11:
+                return "big striped fluffy"
+            if self.tail == 12:
+                return "wide bulbous"
+            if self.tail == 1002:
+                return self.humanTaurTailDesc()
+        return f"TAIL ERROR {self.tail}"
 
    def humanTaurTailDesc(self):
       tempStr = ""
