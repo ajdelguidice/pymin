@@ -13831,37 +13831,39 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.doEnd()
 
     def doMasturbate(self):
-      self.currentState = 3
-      tempDict = {4:"Bag",7:"Breasts",12:"Return"}
-      if (self.cockTotal > 0):
-         tempDict[1] = "Penis"
-      #if (self.cockTotal > 0 and self.vagTotal > 0):
-      #   tempDict[2] = "Both"
-      if (self.vagTotal > 0):
-         tempDict[3] = "Vagina"
-      if (self.udders):
-         tempDict[10] = "Udder"
-      self.showButtons(ButtonList(1,0,1,1,0,0,1,0,0,1,0,1))
-      self.outputMainText("How would you like to masturbate?",True)
-      self.doButtonChoices(tempDict)
-      def doListen():
-         if self.buttonChoice == 1:
-            self.doCockMasturbate()
-         elif self.buttonChoice == 2:
-            self.doBothMasturbate()
-         elif self.buttonChoice == 3:
-            self.doVagMasturbate()
-         elif self.buttonChoice == 4:
-            self.doBag()
-         elif self.buttonChoice == 7:
-            self.doBoobMasturbate()
-         elif self.buttonChoice == 10:
-            self.doUdderMasturbate()
-         elif self.buttonChoice == 12:
-            self.doGeneral()
-      self.doListen = doListen
+        self.currentState = 3
+        tempDict = {4: "Bag", 7: "Breasts", 12: "Return"}
+        if (self.cockTotal > 0):
+            tempDict[1] = "Penis"
+        #if (self.cockTotal > 0 and self.vagTotal > 0):
+        #   tempDict[2] = "Both"
+        if (self.vagTotal > 0):
+            tempDict[3] = "Vagina"
+        if (self.udders):
+            tempDict[10] = "Udder"
+        self.showButtons(ButtonList(1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1))
+        self.outputMainText("How would you like to masturbate?", True)
+        self.doButtonChoices(tempDict)
+
+        def doListen():
+            if self.buttonChoice == 1:
+                self.doCockMasturbate()
+            elif self.buttonChoice == 2:
+                self.doBothMasturbate()
+            elif self.buttonChoice == 3:
+                self.doVagMasturbate()
+            elif self.buttonChoice == 4:
+                self.doBag()
+            elif self.buttonChoice == 7:
+                self.doBoobMasturbate()
+            elif self.buttonChoice == 10:
+                self.doUdderMasturbate()
+            elif self.buttonChoice == 12:
+                self.doGeneral()
+        self.doListen = doListen
 
     def doCockMasturbate(self):
+      # HERE
       if (self.lust < 20):
          self.doMainText(f"You're hardly aroused enough to get your cock{self.plural(1)} standing, let alone masturbate. You'll just have to settle for something else.",True)
       else:
@@ -14127,17 +14129,19 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.displayMainText()
       self.doEnd()
 
-    #def doBothMasturbate(self):
-    #   if (self.ment >= self.lib - 10):
-    #      self.outputMainText("",True)
-    #   if (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-    #      self.outputMainText("",True)
-    #   if (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-    #      self.outputMainText("",True)
-    #   if (self.ment < self.lib - 50):
-    #      self.outputMainText("",True)
-    #   if (self.lust > 20):
-    #      self.doSexP(10)
+    '''
+    def doBothMasturbate(self):
+        if (self.ment >= self.lib - 10):
+            self.outputMainText("" ,True)
+        if (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
+            self.outputMainText("", True)
+        if (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
+            self.outputMainText("", True)
+        if (self.ment < self.lib - 50):
+            self.outputMainText("", True)
+        if (self.lust > 20):
+            self.doSexP(10)
+    '''
 
     def doBoobMasturbate(self):
       self.rndArray = Array()
@@ -14405,416 +14409,423 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.doEnd()
 
     def doAlchemy(self):
-      self.showButtons(ButtonList(1,0,0,0,0,1,0,0,0,0,1,1))
-      self.outputMainText("Choose which list of alchemy you would like to choose from.",True)
-      self.doButtonChoices({1:"Simple",6:"Complex",11:"Advanced",12:"Return"})
-      def doListen():
-         if self.buttonChoice == 1:
-            self.simpleAlchemy()
-         elif self.buttonChoice == 6:
-            self.complexAlchemy()
-         elif self.buttonChoice == 11:
-            self.advancedAlchemy()
-         elif self.buttonChoice == 12:
-            self.doReturn()
-      self.doListen = doListen
+        self.showButtons(ButtonList(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1))
+        self.outputMainText("Choose which list of alchemy you would like to choose from.", True)
+        self.doButtonChoices({1: "Simple", 6: "Complex", 11: "Advanced", 12: "Return"})
+
+        def doListen():
+            if self.buttonChoice == 1:
+                self.simpleAlchemy()
+            elif self.buttonChoice == 6:
+                self.complexAlchemy()
+            elif self.buttonChoice == 11:
+                self.advancedAlchemy()
+            elif self.buttonChoice == 12:
+                self.doReturn()
+        self.doListen = doListen
 
     def simpleAlchemy(self):
-      self.comefromalch = 1
-      self.choiceListArray.clear()
-      self.doMainText("Click on an item you would like to create.",True)
-      self.choiceListArray.push("Blondie")
-      if (self.choiceListCheck("Blondie")):
-         self.doMainText("\n\nBlondie - Dye that will turn your hair blonde.\nRequires 7 Grain.")
-      self.choiceListArray.push("Reduc Reduc")
-      if (self.choiceListCheck("Reduc Reduc")):
-         self.doMainText("\n\nReduced Reduction - For when you don't want the more powerful shrinkage from a Reduction, this Reduced version shrinks things at a static rate.\nRequires 2 Reductions.")
-      if (self.knowLustDraft):
-         self.choiceListArray.push("Lust Draft")
-         if (self.choiceListCheck("Lust Draft")):
-            self.doMainText("\n\nLust Draft - When you're having difficulty performing, a quick sip of this will get you up and ready in no time.\nRequires 1 Grain, plus either 1 Sweet Sap, 1 Cum Vial, or moderately moist genitals at the time of creation.")
-      if (self.knowRejuvPot):
-         self.choiceListArray.push("Rejuv Pot")
-         if (self.choiceListCheck("Rejuv Pot")):
-            self.doMainText("\n\nRejuvenating Potion - Both heals and soothes the body.\nRequires 1 Poultice and 1 Wolf Fur.")
-      if (self.knowExpPreg):
-         self.choiceListArray.push("Exp Preg")
-         if (self.choiceListCheck("Exp Preg")):
-            self.doMainText("\n\nExpress Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these to get a jump on the gestation period!\nRequires 1 Sweet Sap and 1 Fresh Egg.")
-      if (self.knowBallSwell):
-         self.choiceListArray.push("Ball Swell")
-         if (self.choiceListCheck("Ball Swell")):
-            self.doMainText("\n\nBall Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production for the next volley.\nRequires 1 Blo Berry.")
-      if (self.knowMaleEnhance):
-         self.choiceListArray.push("Male Enhance")
-         if (self.choiceListCheck("Male Enhance")):
-            self.doMainText("\n\nMale Enhancement Drug - A simple concoction to help streamline one's masculine growth.\nRequires 2 Co-Sn Ven and either 1 Blo Berry or 1 Bul Berry.")
-      self.displayMainText()
-      self.choiceListButtons("Simple")
-      def doListen():
-         self.choiceListSelect("Simple")
-         if (self.buttonChoice == 4 or self.buttonChoice == 8):
-            self.simpleAlchemy()
-         elif (self.buttonChoice == 12):
-            self.doAlchemy()
-         else:
-            self.choicePage = 1
-         if (self.choiceListResult[0] == "Blondie"):
-            self.makeAlchemy(220,1)
-         elif (self.choiceListResult[0] == "Reduc Reduc"):
-            self.makeAlchemy(533,1)
-         elif (self.choiceListResult[0] == "Lust Draft"):
-            self.makeAlchemy(503,1)
-         elif (self.choiceListResult[0] == "Rejuv Pot"):
-            self.makeAlchemy(504,1)
-         elif (self.choiceListResult[0] == "Exp Preg"):
-            self.makeAlchemy(506,1)
-         elif (self.choiceListResult[0] == "Ball Swell"):
-            self.makeAlchemy(507,1)
-         elif (self.choiceListResult[0] == "Male Enhance"):
-            self.makeAlchemy(534,1)
-      self.doListen = doListen
+        self.comefromalch = 1
+        self.choiceListArray.clear()
+        self.doMainText("Click on an item you would like to create.", True)
+        self.choiceListArray.push("Blondie")
+        if (self.choiceListCheck("Blondie")):
+            self.doMainText("\n\nBlondie - Dye that will turn your hair blonde.\nRequires 7 Grain.")
+        self.choiceListArray.push("Reduc Reduc")
+        if (self.choiceListCheck("Reduc Reduc")):
+            self.doMainText("\n\nReduced Reduction - For when you don't want the more powerful shrinkage from a Reduction, this Reduced version shrinks things at a static rate.\nRequires 2 Reductions.")
+        if (self.knowLustDraft):
+            self.choiceListArray.push("Lust Draft")
+            if (self.choiceListCheck("Lust Draft")):
+                self.doMainText("\n\nLust Draft - When you're having difficulty performing, a quick sip of this will get you up and ready in no time.\nRequires 1 Grain, plus either 1 Sweet Sap, 1 Cum Vial, or moderately moist genitals at the time of creation.")
+        if (self.knowRejuvPot):
+            self.choiceListArray.push("Rejuv Pot")
+            if (self.choiceListCheck("Rejuv Pot")):
+                self.doMainText("\n\nRejuvenating Potion - Both heals and soothes the body.\nRequires 1 Poultice and 1 Wolf Fur.")
+        if (self.knowExpPreg):
+            self.choiceListArray.push("Exp Preg")
+            if (self.choiceListCheck("Exp Preg")):
+                self.doMainText("\n\nExpress Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these to get a jump on the gestation period!\nRequires 1 Sweet Sap and 1 Fresh Egg.")
+        if (self.knowBallSwell):
+            self.choiceListArray.push("Ball Swell")
+            if (self.choiceListCheck("Ball Swell")):
+                self.doMainText("\n\nBall Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production for the next volley.\nRequires 1 Blo Berry.")
+        if (self.knowMaleEnhance):
+            self.choiceListArray.push("Male Enhance")
+            if (self.choiceListCheck("Male Enhance")):
+                self.doMainText("\n\nMale Enhancement Drug - A simple concoction to help streamline one's masculine growth.\nRequires 2 Co-Sn Ven and either 1 Blo Berry or 1 Bul Berry.")
+        self.displayMainText()
+        self.choiceListButtons("Simple")
+
+        def doListen():
+            self.choiceListSelect("Simple")
+            if (self.buttonChoice == 4 or self.buttonChoice == 8):
+                self.simpleAlchemy()
+            elif (self.buttonChoice == 12):
+                self.doAlchemy()
+            else:
+                self.choicePage = 1
+            if (self.choiceListResult[0] == "Blondie"):
+                self.makeAlchemy(220, 1)
+            elif (self.choiceListResult[0] == "Reduc Reduc"):
+                self.makeAlchemy(533, 1)
+            elif (self.choiceListResult[0] == "Lust Draft"):
+                self.makeAlchemy(503, 1)
+            elif (self.choiceListResult[0] == "Rejuv Pot"):
+                self.makeAlchemy(504, 1)
+            elif (self.choiceListResult[0] == "Exp Preg"):
+                self.makeAlchemy(506, 1)
+            elif (self.choiceListResult[0] == "Ball Swell"):
+                self.makeAlchemy(507, 1)
+            elif (self.choiceListResult[0] == "Male Enhance"):
+                self.makeAlchemy(534, 1)
+        self.doListen = doListen
 
     def complexAlchemy(self):
-      self.comefromalch = 2
-      self.choiceListArray.clear()
-      self.doMainText("Click on an item you would like to create.",True)
-      self.choiceListArray.push("Black Dye")
-      if (self.choiceListCheck("Black Dye")):
-         self.doMainText("\n\nBlack Dye - Dye that will turn your hair black.\nRequires 5 Wolf Fur.")
-      if (self.knowSLustDraft):
-         self.choiceListArray.push("S Lust Draft")
-         if (self.choiceListCheck("S Lust Draft")):
-            self.doMainText("\n\nSuperior Lust Draft - When you're having difficulty performing, a quick sip of this will get you up so fast that you may want to avoid pointing towards any nearby eyes.\nRequires 3 Grain plus either 2 Bol Juice, 1 Cum Bottle, or really moist genitals at the time of creation.")
-      if (self.knowSRejuvPot):
-         self.choiceListArray.push("S Rejuv Pot")
-         if (self.choiceListCheck("S Rejuv Pot")):
-            self.doMainText("\n\nSuperior Rejuvenating Potion - Both greatly heals and soothes the body.\nRequires 1 Lust Draft (to be reversed) and either 1 Milk Jug or 3 Milk Bottle.")
-      if (self.knowSExpPreg):
-         self.choiceListArray.push("S Exp Preg")
-         if (self.choiceListCheck("S Exp Preg")):
-            self.doMainText("\n\nSuperior Express Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these and that baby will be wanting out in no time!\nRequires 1 Wet Cloth and 3 Fresh Eggs.")
-      if (self.knowSBallSwell):
-         self.choiceListArray.push("S Ball Swell")
-         if (self.choiceListCheck("S Ball Swell")):
-            self.doMainText("\n\nSuperior Ball Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production so much that you may wanna be wary of explosions.\nRequires 1 Blo Berry and 1 Bul Berry.")
-      if (self.knowBabyFree):
-         self.choiceListArray.push("Baby Free")
-         if (self.choiceListCheck("Baby Free")):
-            self.doMainText("\n\nBaby Free Potion - Though this potion may lack babies as an ingredient, it also reduces the chances of any woman who takes it from getting pregnant for a period of time.\nRequires 1 Reduction and 1 Wolf Fur.")
-      if (self.knowPotPot):
-         self.choiceListArray.push("Pot Pot")
-         if (self.choiceListCheck("Pot Pot")):
-            self.doMainText("\n\nPotency Potion - Not happy with the amount of cum you're producing with your measly testicles? This will make your nuts more effective at their job!\nRequires 3 Ball Swell and 1 Cum Vial.")
-      if (self.knowGenSwap):
-         self.choiceListArray.push("Gen Swap")
-         if (self.choiceListCheck("Gen Swap")):
-            self.doMainText("\n\nGender Swap Potion - If you've ever wondered how the other sex feels, this is a great way to do it. Although you may lose your proportions, you'll know what it feels to be like the opposite gender in no time. Unless you're both, in which case you'd just know how a rather undeveloped version of both genders feels, or androgynous, in which case who knows which gender you'll end up as.\nRequires 1 Neuter and 1 Reduction.")
-      if (self.knowMasoPot):
-         self.choiceListArray.push("Maso Pot")
-         if (self.choiceListCheck("Maso Pot")):
-            self.doMainText("\n\nMasochism Potion - This little drink messes up your nervous system for a while, making you perceive some damage as pleasure instead. A batch of Masochism Potion results in 2 potions.\nRequires 2 Wolf Fur and 1 Lust Draft.")
-      if (self.knowMilkSuppress):
-         self.choiceListArray.push("Milk Suppress")
-         if (self.choiceListCheck("Milk Suppress")):
-            self.doMainText("\n\nMilk Suppressant - A little embarassed by your inopportune leaking? This drug will help prevent any milk from flowing out, though it does not stop the production of milk.\nRequires 1 Milk C Pois and 1 Reduc Reduc.")
-      self.displayMainText()
-      self.choiceListButtons("Complex")
-      def doListen():
-         self.choiceListSelect("Complex")
-         if (self.buttonChoice == 4 or self.buttonChoice == 8):
-            self.complexAlchemy()
-         elif (self.buttonChoice == 12):
-            self.doAlchemy()
-         else:
-            self.choicePage = 1
-         if (self.choiceListResult[0] == "Black Dye"):
-            self.makeAlchemy(515,1)
-         elif (self.choiceListResult[0] == "S Lust Draft"):
-            self.makeAlchemy(508,1)
-         elif (self.choiceListResult[0] == "S Rejuv Pot"):
-            self.makeAlchemy(509,1)
-         elif (self.choiceListResult[0] == "S Exp Preg"):
-            self.makeAlchemy(511,1)
-         elif (self.choiceListResult[0] == "S Ball Swell"):
-            self.makeAlchemy(512,1)
-         elif (self.choiceListResult[0] == "Baby Free"):
-            self.makeAlchemy(516,1)
-         elif (self.choiceListResult[0] == "Pot Pot"):
-            self.makeAlchemy(517,1)
-         elif (self.choiceListResult[0] == "Gen Swap"):
-            self.makeAlchemy(513,1)
-         elif (self.choiceListResult[0] == "Maso Pot"):
-            self.makeAlchemy(514,1)
-         elif (self.choiceListResult[0] == "Milk Suppress"):
-            self.makeAlchemy(535,1)
-      self.doListen = doListen
+        self.comefromalch = 2
+        self.choiceListArray.clear()
+        self.doMainText("Click on an item you would like to create.", True)
+        self.choiceListArray.push("Black Dye")
+        if (self.choiceListCheck("Black Dye")):
+            self.doMainText("\n\nBlack Dye - Dye that will turn your hair black.\nRequires 5 Wolf Fur.")
+        if (self.knowSLustDraft):
+            self.choiceListArray.push("S Lust Draft")
+            if (self.choiceListCheck("S Lust Draft")):
+                self.doMainText("\n\nSuperior Lust Draft - When you're having difficulty performing, a quick sip of this will get you up so fast that you may want to avoid pointing towards any nearby eyes.\nRequires 3 Grain plus either 2 Bol Juice, 1 Cum Bottle, or really moist genitals at the time of creation.")
+        if (self.knowSRejuvPot):
+            self.choiceListArray.push("S Rejuv Pot")
+            if (self.choiceListCheck("S Rejuv Pot")):
+                self.doMainText("\n\nSuperior Rejuvenating Potion - Both greatly heals and soothes the body.\nRequires 1 Lust Draft (to be reversed) and either 1 Milk Jug or 3 Milk Bottle.")
+        if (self.knowSExpPreg):
+            self.choiceListArray.push("S Exp Preg")
+            if (self.choiceListCheck("S Exp Preg")):
+                self.doMainText("\n\nSuperior Express Pregnancy Potion - Tired of waiting for that baby to come? Drink one of these and that baby will be wanting out in no time!\nRequires 1 Wet Cloth and 3 Fresh Eggs.")
+        if (self.knowSBallSwell):
+            self.choiceListArray.push("S Ball Swell")
+            if (self.choiceListCheck("S Ball Swell")):
+                self.doMainText("\n\nSuperior Ball Sweller - When you're ejaculating often, your testicles have difficulty keeping up. A dose of this will help speed up your sperm production so much that you may wanna be wary of explosions.\nRequires 1 Blo Berry and 1 Bul Berry.")
+        if (self.knowBabyFree):
+            self.choiceListArray.push("Baby Free")
+            if (self.choiceListCheck("Baby Free")):
+                self.doMainText("\n\nBaby Free Potion - Though this potion may lack babies as an ingredient, it also reduces the chances of any woman who takes it from getting pregnant for a period of time.\nRequires 1 Reduction and 1 Wolf Fur.")
+        if (self.knowPotPot):
+            self.choiceListArray.push("Pot Pot")
+            if (self.choiceListCheck("Pot Pot")):
+                self.doMainText("\n\nPotency Potion - Not happy with the amount of cum you're producing with your measly testicles? This will make your nuts more effective at their job!\nRequires 3 Ball Swell and 1 Cum Vial.")
+        if (self.knowGenSwap):
+            self.choiceListArray.push("Gen Swap")
+            if (self.choiceListCheck("Gen Swap")):
+                self.doMainText("\n\nGender Swap Potion - If you've ever wondered how the other sex feels, this is a great way to do it. Although you may lose your proportions, you'll know what it feels to be like the opposite gender in no time. Unless you're both, in which case you'd just know how a rather undeveloped version of both genders feels, or androgynous, in which case who knows which gender you'll end up as.\nRequires 1 Neuter and 1 Reduction.")
+        if (self.knowMasoPot):
+            self.choiceListArray.push("Maso Pot")
+            if (self.choiceListCheck("Maso Pot")):
+                self.doMainText("\n\nMasochism Potion - This little drink messes up your nervous system for a while, making you perceive some damage as pleasure instead. A batch of Masochism Potion results in 2 potions.\nRequires 2 Wolf Fur and 1 Lust Draft.")
+        if (self.knowMilkSuppress):
+            self.choiceListArray.push("Milk Suppress")
+            if (self.choiceListCheck("Milk Suppress")):
+                self.doMainText("\n\nMilk Suppressant - A little embarassed by your inopportune leaking? This drug will help prevent any milk from flowing out, though it does not stop the production of milk.\nRequires 1 Milk C Pois and 1 Reduc Reduc.")
+        self.displayMainText()
+        self.choiceListButtons("Complex")
+
+        def doListen():
+            self.choiceListSelect("Complex")
+            if (self.buttonChoice == 4 or self.buttonChoice == 8):
+                self.complexAlchemy()
+            elif (self.buttonChoice == 12):
+                self.doAlchemy()
+            else:
+                self.choicePage = 1
+            if (self.choiceListResult[0] == "Black Dye"):
+                self.makeAlchemy(515, 1)
+            elif (self.choiceListResult[0] == "S Lust Draft"):
+                self.makeAlchemy(508, 1)
+            elif (self.choiceListResult[0] == "S Rejuv Pot"):
+                self.makeAlchemy(509, 1)
+            elif (self.choiceListResult[0] == "S Exp Preg"):
+                self.makeAlchemy(511, 1)
+            elif (self.choiceListResult[0] == "S Ball Swell"):
+                self.makeAlchemy(512, 1)
+            elif (self.choiceListResult[0] == "Baby Free"):
+                self.makeAlchemy(516, 1)
+            elif (self.choiceListResult[0] == "Pot Pot"):
+                self.makeAlchemy(517, 1)
+            elif (self.choiceListResult[0] == "Gen Swap"):
+                self.makeAlchemy(513, 1)
+            elif (self.choiceListResult[0] == "Maso Pot"):
+                self.makeAlchemy(514, 1)
+            elif (self.choiceListResult[0] == "Milk Suppress"):
+                self.makeAlchemy(535, 1)
+        self.doListen = doListen
 
     def advancedAlchemy(self):
-      self.comefromalch = 3
-      self.choiceListArray.clear()
-      self.doMainText("Click on an item you would like to create.",True)
-      self.choiceListArray.push("Red Dye")
-      if (self.choiceListCheck("Red Dye")):
-         self.doMainText("\n\nRed Dye - Dye that will turn your hair red.\nRequires 1 Pink Ink and 3 Red Mush.")
-      if (self.knowSBabyFree):
-         self.choiceListArray.push("S Baby Free")
-         if (self.choiceListCheck("S Baby Free")):
-            self.doMainText("\n\nSuperior Baby Free Potion - This potion really has no babies in it I swear! Seriously. Please believe me! If you drink it you'll be nearly baby free as well for over a week!\nRequires 1 Neuter and 1 Puss Fruit.")
-      if (self.knowSPotPot):
-         self.choiceListArray.push("S Pot Pot")
-         if (self.choiceListCheck("S Pot Pot")):
-            self.doMainText("\n\nSuperior Potency Potion - Not happy with the amount of cum you're producing with your measly testicles? This will definitely kick them... into gear!\nRequires 3 S Ball Swell and 1 Cum Bottle.")
-      if (self.knowSGenSwap):
-         self.choiceListArray.push("S Gen Swap")
-         if (self.choiceListCheck("S Gen Swap")):
-            self.doMainText("\n\nSuperior Gender Swap Potion - If you've ever wondered how the other sex feels, this is a great way to do it. And the best part is your endowments will be of equal proportion! Unless you're both, in which case your proportions will swap, or androgynous, in which case who knows which gender you'll end up as.\nRequires 1 Puss Fruit, 1 Co-Sn Ven, 1 Milk C Pois, and 1 Cock Carv.")
-      if (self.knowSMasoPot):
-         self.choiceListArray.push("S Maso Pot")
-         if (self.choiceListCheck("S Maso Pot")):
-            self.doMainText("\n\nSuperior Masochism Potion - This little drink messes up your nervous system for a while, making you perceive all damage as pleasure instead.\nRequires 1 Kinky Carr, 1 Rejuv Pot, and 1 Trinket.")
-      if (self.knowPussJuice):
-         self.choiceListArray.push("Puss Juice")
-         if (self.choiceListCheck("Puss Juice")):
-            self.doMainText("\n\nConcentrated Pussy Fruit Juice - A recipe learned from the felin mistress in Siz'Calit, this mixture increases the potency of the Pussy Fruit and guarantees some interesting reactions.\nRequires 6 Puss Fruit and 1 Sweet Sap.")
-      if (self.knowPheromone):
-         self.choiceListArray.push("Pheromone")
-         if (self.choiceListCheck("Pheromone")):
-            self.doMainText("\n\nStrong Pheromone - A recipe learned from an elderly lupan fisherman at the lake outside of Tieden, this concoction supposedly attracts fish quite well and makes great bait. However, due to some missing notes, your results may be a bit more... potent than advertised.\nRequires 1 Charmed Egg, 1 Red Mush, and 1 Trinket.")
-      if (self.knowBazoomba):
-         self.choiceListArray.push("Bazoomba!")
-         if (self.choiceListCheck("Bazoomba!")):
-            self.doMainText("\n\nBazoomba! - A secret and powerful recipe that creates more of one of the best things in the world...\nRequires 1 Strange Egg, 1 Milk Jug, 2 Cock Carv, and 3 Red Mush.")
-      self.displayMainText()
-      self.choiceListButtons("Advanced")
-      def doListen():
-         self.choiceListSelect("Advanced")
-         if (self.buttonChoice == 4 or self.buttonChoice == 8):
-            self.advancedAlchemy()
-         elif (self.buttonChoice == 12):
-            self.doAlchemy()
-         else:
-            self.choicePage = 1
-         if (self.choiceListResult[0] == "Red Dye"):
-            self.makeAlchemy(520,1)
-         elif (self.choiceListResult[0] == "S Baby free"):
-            self.makeAlchemy(521,1)
-         elif (self.choiceListResult[0] == "S Pot Pot"):
-            self.makeAlchemy(522,1)
-         elif (self.choiceListResult[0] == "S Gen Swap"):
-            self.makeAlchemy(518,1)
-         elif (self.choiceListResult[0] == "S Maso Pot"):
-            self.makeAlchemy(519,1)
-         elif (self.choiceListResult[0] == "Puss Juice"):
-            self.makeAlchemy(221,1)
-         elif (self.choiceListResult[0] == "Pheromone"):
-            self.makeAlchemy(532,1)
-         elif (self.choiceListResult[0] == "Bazoomba!"):
-            self.makeAlchemy(536,1)
-      self.doListen = doListen
+        self.comefromalch = 3
+        self.choiceListArray.clear()
+        self.doMainText("Click on an item you would like to create.", True)
+        self.choiceListArray.push("Red Dye")
+        if (self.choiceListCheck("Red Dye")):
+            self.doMainText("\n\nRed Dye - Dye that will turn your hair red.\nRequires 1 Pink Ink and 3 Red Mush.")
+        if (self.knowSBabyFree):
+            self.choiceListArray.push("S Baby Free")
+            if (self.choiceListCheck("S Baby Free")):
+                self.doMainText("\n\nSuperior Baby Free Potion - This potion really has no babies in it I swear! Seriously. Please believe me! If you drink it you'll be nearly baby free as well for over a week!\nRequires 1 Neuter and 1 Puss Fruit.")
+        if (self.knowSPotPot):
+            self.choiceListArray.push("S Pot Pot")
+            if (self.choiceListCheck("S Pot Pot")):
+                self.doMainText("\n\nSuperior Potency Potion - Not happy with the amount of cum you're producing with your measly testicles? This will definitely kick them... into gear!\nRequires 3 S Ball Swell and 1 Cum Bottle.")
+        if (self.knowSGenSwap):
+            self.choiceListArray.push("S Gen Swap")
+            if (self.choiceListCheck("S Gen Swap")):
+                self.doMainText("\n\nSuperior Gender Swap Potion - If you've ever wondered how the other sex feels, this is a great way to do it. And the best part is your endowments will be of equal proportion! Unless you're both, in which case your proportions will swap, or androgynous, in which case who knows which gender you'll end up as.\nRequires 1 Puss Fruit, 1 Co-Sn Ven, 1 Milk C Pois, and 1 Cock Carv.")
+        if (self.knowSMasoPot):
+            self.choiceListArray.push("S Maso Pot")
+            if (self.choiceListCheck("S Maso Pot")):
+                self.doMainText("\n\nSuperior Masochism Potion - This little drink messes up your nervous system for a while, making you perceive all damage as pleasure instead.\nRequires 1 Kinky Carr, 1 Rejuv Pot, and 1 Trinket.")
+        if (self.knowPussJuice):
+            self.choiceListArray.push("Puss Juice")
+            if (self.choiceListCheck("Puss Juice")):
+                self.doMainText("\n\nConcentrated Pussy Fruit Juice - A recipe learned from the felin mistress in Siz'Calit, this mixture increases the potency of the Pussy Fruit and guarantees some interesting reactions.\nRequires 6 Puss Fruit and 1 Sweet Sap.")
+        if (self.knowPheromone):
+            self.choiceListArray.push("Pheromone")
+            if (self.choiceListCheck("Pheromone")):
+                self.doMainText("\n\nStrong Pheromone - A recipe learned from an elderly lupan fisherman at the lake outside of Tieden, this concoction supposedly attracts fish quite well and makes great bait. However, due to some missing notes, your results may be a bit more... potent than advertised.\nRequires 1 Charmed Egg, 1 Red Mush, and 1 Trinket.")
+        if (self.knowBazoomba):
+            self.choiceListArray.push("Bazoomba!")
+            if (self.choiceListCheck("Bazoomba!")):
+                self.doMainText("\n\nBazoomba! - A secret and powerful recipe that creates more of one of the best things in the world...\nRequires 1 Strange Egg, 1 Milk Jug, 2 Cock Carv, and 3 Red Mush.")
+        self.displayMainText()
+        self.choiceListButtons("Advanced")
 
-    def makeAlchemy(self, ID:int, level:int):
-      self.tempID = ID
-      self.tempInt = level
-      self.outputMainText(f"You have chosen to make a {self.itemName(ID)}.\n\nAre you sure?",True)
-      self.buttonConfirm()
-      def doListen():
-         ID = self.tempID
-         level = self.tempInt
-         tempBool = False
-         if (self.buttonChoice == 6):
-            tempBool = False
-            if ID == 220 and self.countItem(209) >= 7:
-               tempBool = True
-            elif ID == 221 and self.countItem(210) >= 6 and self.checkItem(114):
-               tempBool = True
-            elif ID == 503 and (self.checkItem(209) and (self.checkItem(114) or self.checkItem(523) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
-               tempBool = True
-            elif ID == 504 and self.checkItem(115) and self.checkItem(203):
-               tempBool = True
-            elif ID == 506 and self.checkItem(114) and self.checkItem(219):
-               tempBool = True
-            elif ID == 507 and self.checkItem(208):
-               tempBool = True
-            elif ID == 508 and (self.countItem(209) >= 3 and (self.countItem(112) >= 2 or self.checkItem(524) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
-               tempBool = True
-            elif ID == 509 and (self.checkItem(503) and (self.checkItem(501) or self.countItem(500) >= 3)):
-               tempBool = True
-            elif ID == 511 and self.checkItem(213) and self.countItem(219) >= 3:
-               tempBool = True
-            elif ID == 512 and self.checkItem(208) and self.checkItem(218):
-               tempBool = True
-            elif ID == 513 and self.checkItem(110) and self.checkItem(120):
-               tempBool = True
-            elif ID == 514 and self.countItem(203) >= 2 and self.checkItem(503):
-               tempBool = True
-            elif ID == 515 and self.countItem(203) >= 5:
-               tempBool = True
-            elif ID == 516 and self.checkItem(110) and self.checkItem(203):
-               tempBool = True
-            elif ID == 517 and self.countItem(507) >= 3 and self.checkItem(523):
-               tempBool = True
-            elif ID == 518 and self.checkItem(201) and self.checkItem(202) and self.checkItem(207) and self.checkItem(210):
-               tempBool = True
-            elif ID == 519 and self.checkItem(222) and self.checkItem(206) and self.checkItem(504):
-               tempBool = True
-            elif ID == 520 and self.checkItem(216) and self.countItem(212) >= 3:
-               tempBool = True
-            elif ID == 521 and self.checkItem(120) and self.checkItem(210):
-               tempBool = True
-            elif ID == 522 and self.countItem(512) >= 3 and self.checkItem(524):
-               tempBool = True
-            elif ID == 532 and self.checkItem(530) and self.checkItem(212) and self.checkItem(206):
-               tempBool = True
-            elif ID == 533 and self.countItem(110) >= 2:
-               tempBool = True
-            elif ID == 534 and (self.countItem(202) >= 2 and (self.checkItem(208) or self.checkItem(218))):
-               tempBool = True
-            elif ID == 535 and self.checkItem(201) and self.checkItem(533):
-               tempBool = True
-            elif ID == 536 and self.countItem(207) >= 2 and self.countItem(212) >= 3 and self.checkItem(501) and self.checkItem(529):
-               tempBool = True
-            if (tempBool):
-               if ID == 220:
-                  self.loseManyItem(209,7)
-               elif ID == 221:
-                  self.loseManyItem(210,6)
-                  self.loseManyItem(114,1)
-               elif ID == 503:
-                  self.loseManyItem(209,1)
-                  if not (self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000):
-                     if (self.checkItem(523)):
-                        self.loseManyItem(523,1)
-                     else:
-                        self.loseManyItem(114,1)
-               elif ID == 504:
-                  self.loseManyItem(115,1)
-                  self.loseManyItem(203,1)
-               elif ID == 506:
-                  self.loseManyItem(114,1)
-                  self.loseManyItem(219,1)
-               elif ID == 507:
-                  self.loseManyItem(208,1)
-               elif ID == 508:
-                  self.loseManyItem(209,3)
-                  if not (self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000):
-                     if (self.checkItem(524)):
-                        self.loseManyItem(524,1)
-                     else:
-                        self.loseManyItem(112,2)
-               elif ID == 509:
-                  self.loseManyItem(503,1)
-                  if (self.countItem(500) >= 3):
-                     self.loseManyItem(500,3)
-                  else:
-                     self.loseManyItem(501,1)
-               elif ID == 511:
-                  self.loseManyItem(213,1)
-                  self.loseManyItem(219,3)
-               elif ID == 512:
-                  self.loseManyItem(208,1)
-                  self.loseManyItem(218,1)
-               elif ID == 513:
-                  self.loseManyItem(110,1)
-                  self.loseManyItem(120,1)
-               elif ID == 514:
-                  self.loseManyItem(203,2)
-                  self.loseManyItem(503,1)
-               elif ID == 515:
-                  self.loseManyItem(203,5)
-               elif ID == 516:
-                  self.loseManyItem(110,1)
-                  self.loseManyItem(203,1)
-               elif ID == 517:
-                  self.loseManyItem(507,3)
-                  self.loseManyItem(523,1)
-               elif ID == 518:
-                  self.loseManyItem(201,1)
-                  self.loseManyItem(202,1)
-                  self.loseManyItem(207,1)
-                  self.loseManyItem(210,1)
-               elif ID == 519:
-                  self.loseManyItem(206,1)
-                  self.loseManyItem(222,1)
-                  self.loseManyItem(504,1)
-               elif ID == 520:
-                  self.loseManyItem(212,3)
-                  self.loseManyItem(216,1)
-               elif ID == 521:
-                  self.loseManyItem(120,1)
-                  self.loseManyItem(210,1)
-               elif ID == 522:
-                  self.loseManyItem(512,3)
-                  self.loseManyItem(524,1)
-               elif ID == 532:
-                  self.loseManyItem(530,1)
-                  self.loseManyItem(212,1)
-                  self.loseManyItem(206,1)
-               elif ID == 533:
-                  self.loseManyItem(110,2)
-               elif ID == 534:
-                  self.loseManyItem(202,2)
-                  if (self.checkItem(208)):
-                     self.loseManyItem(208,1)
-                  else:
-                     self.loseManyItem(218,1)
-               elif ID == 535:
-                  self.loseManyItem(201,1)
-                  self.loseManyItem(533,1)
-               elif ID == 536:
-                  self.loseManyItem(501,1)
-                  self.loseManyItem(529,1)
-                  self.loseManyItem(207,2)
-                  self.loseManyItem(212,3)
-               if level == 1:
-                  self.itemAdd(ID)
-                  if (self.percent() <= 55 + self.alchemistLevel * 2):
-                     self.itemAdd(ID)
-                  if (self.percent() <= 25 + self.alchemistLevel * 2):
-                     self.itemAdd(ID)
-                  if (self.percent() <= 5 + self.alchemistLevel * 2):
-                     self.itemAdd(ID)
-               elif level == 2:
-                  self.itemAdd(ID)
-                  if (self.percent() <= 55 + self.alchemistLevel):
-                     self.itemAdd(ID)
-                  if (self.percent() <= 25 + self.alchemistLevel):
-                     self.itemAdd(ID)
-                  if (self.percent() <= 5 + self.alchemistLevel):
-                     self.itemAdd(ID)
-               elif level == 3:
-                  self.itemAdd(ID)
-                  if (self.percent() <= 55 + self.alchemistLevel * 2 / 3):
-                     self.itemAdd(ID)
-                  if (self.percent() <= 25 + self.alchemistLevel * 2 / 3):
-                     self.itemAdd(ID)
-                  if (self.percent() <= 5 + self.alchemistLevel * 2 / 3):
-                     self.itemAdd(ID)
-               # Items that give more per creation
-               if (ID == 533):
-                  self.addManyItem(ID,4)
-               self.doProcess()
+        def doListen():
+            self.choiceListSelect("Advanced")
+            if (self.buttonChoice == 4 or self.buttonChoice == 8):
+                self.advancedAlchemy()
+            elif (self.buttonChoice == 12):
+                self.doAlchemy()
             else:
-               self.outputMainText("Sorry, but you do not have the necessary ingredients on hand. Please choose something else.",True)
-               self.doNext()
-               def doListen():
-                  if self.comefromalch == 1:
-                     self.simpleAlchemy()
-                  elif self.comefromalch == 2:
-                     self.complexAlchemy()
-                  elif self.comefromalch == 3:
-                     self.advancedAlchemy()
-               self.doListen = doListen
-         else:
-            if self.comefromalch == 1:
-               self.simpleAlchemy()
-            elif self.comefromalch == 2:
-               self.complexAlchemy()
-            elif self.comefromalch == 3:
-               self.advancedAlchemy()
-      self.doListen = doListen
+                self.choicePage = 1
+            if (self.choiceListResult[0] == "Red Dye"):
+                self.makeAlchemy(520, 1)
+            elif (self.choiceListResult[0] == "S Baby free"):
+                self.makeAlchemy(521, 1)
+            elif (self.choiceListResult[0] == "S Pot Pot"):
+                self.makeAlchemy(522, 1)
+            elif (self.choiceListResult[0] == "S Gen Swap"):
+                self.makeAlchemy(518, 1)
+            elif (self.choiceListResult[0] == "S Maso Pot"):
+                self.makeAlchemy(519, 1)
+            elif (self.choiceListResult[0] == "Puss Juice"):
+                self.makeAlchemy(221, 1)
+            elif (self.choiceListResult[0] == "Pheromone"):
+                self.makeAlchemy(532, 1)
+            elif (self.choiceListResult[0] == "Bazoomba!"):
+                self.makeAlchemy(536, 1)
+        self.doListen = doListen
+
+    def makeAlchemy(self, ID: int, level: int):
+        self.tempID = ID
+        self.tempInt = level
+        self.outputMainText(f"You have chosen to make a {self.itemName(ID)}.\n\nAre you sure?", True)
+        self.buttonConfirm()
+
+        def doListen():
+            ID = self.tempID
+            level = self.tempInt
+            tempBool = False
+            if (self.buttonChoice == 6):
+                tempBool = False
+                if ID == 220 and self.countItem(209) >= 7:
+                    tempBool = True
+                elif ID == 221 and self.countItem(210) >= 6 and self.checkItem(114):
+                    tempBool = True
+                elif ID == 503 and (self.checkItem(209) and (self.checkItem(114) or self.checkItem(523) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
+                    tempBool = True
+                elif ID == 504 and self.checkItem(115) and self.checkItem(203):
+                    tempBool = True
+                elif ID == 506 and self.checkItem(114) and self.checkItem(219):
+                    tempBool = True
+                elif ID == 507 and self.checkItem(208):
+                    tempBool = True
+                elif ID == 508 and (self.countItem(209) >= 3 and (self.countItem(112) >= 2 or self.checkItem(524) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
+                    tempBool = True
+                elif ID == 509 and (self.checkItem(503) and (self.checkItem(501) or self.countItem(500) >= 3)):
+                    tempBool = True
+                elif ID == 511 and self.checkItem(213) and self.countItem(219) >= 3:
+                    tempBool = True
+                elif ID == 512 and self.checkItem(208) and self.checkItem(218):
+                    tempBool = True
+                elif ID == 513 and self.checkItem(110) and self.checkItem(120):
+                    tempBool = True
+                elif ID == 514 and self.countItem(203) >= 2 and self.checkItem(503):
+                    tempBool = True
+                elif ID == 515 and self.countItem(203) >= 5:
+                    tempBool = True
+                elif ID == 516 and self.checkItem(110) and self.checkItem(203):
+                    tempBool = True
+                elif ID == 517 and self.countItem(507) >= 3 and self.checkItem(523):
+                    tempBool = True
+                elif ID == 518 and self.checkItem(201) and self.checkItem(202) and self.checkItem(207) and self.checkItem(210):
+                    tempBool = True
+                elif ID == 519 and self.checkItem(222) and self.checkItem(206) and self.checkItem(504):
+                    tempBool = True
+                elif ID == 520 and self.checkItem(216) and self.countItem(212) >= 3:
+                    tempBool = True
+                elif ID == 521 and self.checkItem(120) and self.checkItem(210):
+                    tempBool = True
+                elif ID == 522 and self.countItem(512) >= 3 and self.checkItem(524):
+                    tempBool = True
+                elif ID == 532 and self.checkItem(530) and self.checkItem(212) and self.checkItem(206):
+                    tempBool = True
+                elif ID == 533 and self.countItem(110) >= 2:
+                    tempBool = True
+                elif ID == 534 and (self.countItem(202) >= 2 and (self.checkItem(208) or self.checkItem(218))):
+                    tempBool = True
+                elif ID == 535 and self.checkItem(201) and self.checkItem(533):
+                    tempBool = True
+                elif ID == 536 and self.countItem(207) >= 2 and self.countItem(212) >= 3 and self.checkItem(501) and self.checkItem(529):
+                    tempBool = True
+                if (tempBool):
+                    if ID == 220:
+                        self.loseManyItem(209, 7)
+                    elif ID == 221:
+                        self.loseManyItem(210, 6)
+                        self.loseManyItem(114, 1)
+                    elif ID == 503:
+                        self.loseManyItem(209, 1)
+                        if not (self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000):
+                            if (self.checkItem(523)):
+                                self.loseManyItem(523, 1)
+                            else:
+                                self.loseManyItem(114, 1)
+                    elif ID == 504:
+                        self.loseManyItem(115, 1)
+                        self.loseManyItem(203, 1)
+                    elif ID == 506:
+                        self.loseManyItem(114, 1)
+                        self.loseManyItem(219, 1)
+                    elif ID == 507:
+                        self.loseManyItem(208, 1)
+                    elif ID == 508:
+                        self.loseManyItem(209, 3)
+                        if not (self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000):
+                            if (self.checkItem(524)):
+                                self.loseManyItem(524, 1)
+                            else:
+                                self.loseManyItem(112, 2)
+                    elif ID == 509:
+                        self.loseManyItem(503, 1)
+                        if (self.countItem(500) >= 3):
+                            self.loseManyItem(500, 3)
+                        else:
+                            self.loseManyItem(501, 1)
+                    elif ID == 511:
+                        self.loseManyItem(213, 1)
+                        self.loseManyItem(219, 3)
+                    elif ID == 512:
+                        self.loseManyItem(208, 1)
+                        self.loseManyItem(218, 1)
+                    elif ID == 513:
+                        self.loseManyItem(110, 1)
+                        self.loseManyItem(120, 1)
+                    elif ID == 514:
+                        self.loseManyItem(203, 2)
+                        self.loseManyItem(503, 1)
+                    elif ID == 515:
+                        self.loseManyItem(203, 5)
+                    elif ID == 516:
+                        self.loseManyItem(110, 1)
+                        self.loseManyItem(203, 1)
+                    elif ID == 517:
+                        self.loseManyItem(507, 3)
+                        self.loseManyItem(523, 1)
+                    elif ID == 518:
+                        self.loseManyItem(201, 1)
+                        self.loseManyItem(202, 1)
+                        self.loseManyItem(207, 1)
+                        self.loseManyItem(210, 1)
+                    elif ID == 519:
+                        self.loseManyItem(206, 1)
+                        self.loseManyItem(222, 1)
+                        self.loseManyItem(504, 1)
+                    elif ID == 520:
+                        self.loseManyItem(212, 3)
+                        self.loseManyItem(216, 1)
+                    elif ID == 521:
+                        self.loseManyItem(120, 1)
+                        self.loseManyItem(210, 1)
+                    elif ID == 522:
+                        self.loseManyItem(512, 3)
+                        self.loseManyItem(524, 1)
+                    elif ID == 532:
+                        self.loseManyItem(530, 1)
+                        self.loseManyItem(212, 1)
+                        self.loseManyItem(206, 1)
+                    elif ID == 533:
+                        self.loseManyItem(110, 2)
+                    elif ID == 534:
+                        self.loseManyItem(202, 2)
+                        if (self.checkItem(208)):
+                            self.loseManyItem(208, 1)
+                        else:
+                            self.loseManyItem(218, 1)
+                    elif ID == 535:
+                        self.loseManyItem(201, 1)
+                        self.loseManyItem(533, 1)
+                    elif ID == 536:
+                        self.loseManyItem(501, 1)
+                        self.loseManyItem(529, 1)
+                        self.loseManyItem(207, 2)
+                        self.loseManyItem(212, 3)
+                    if level == 1:
+                        self.itemAdd(ID)
+                        if (self.percent() <= 55 + self.alchemistLevel * 2):
+                            self.itemAdd(ID)
+                        if (self.percent() <= 25 + self.alchemistLevel * 2):
+                            self.itemAdd(ID)
+                        if (self.percent() <= 5 + self.alchemistLevel * 2):
+                            self.itemAdd(ID)
+                    elif level == 2:
+                        self.itemAdd(ID)
+                        if (self.percent() <= 55 + self.alchemistLevel):
+                            self.itemAdd(ID)
+                        if (self.percent() <= 25 + self.alchemistLevel):
+                            self.itemAdd(ID)
+                        if (self.percent() <= 5 + self.alchemistLevel):
+                            self.itemAdd(ID)
+                    elif level == 3:
+                        self.itemAdd(ID)
+                        if (self.percent() <= 55 + self.alchemistLevel * 2 / 3):
+                            self.itemAdd(ID)
+                        if (self.percent() <= 25 + self.alchemistLevel * 2 / 3):
+                            self.itemAdd(ID)
+                        if (self.percent() <= 5 + self.alchemistLevel * 2 / 3):
+                            self.itemAdd(ID)
+                    # Items that give more per creation
+                    if (ID == 533):
+                        self.addManyItem(ID, 4)
+                    self.doProcess()
+                else:
+                    self.outputMainText("Sorry, but you do not have the necessary ingredients on hand. Please choose something else.", True)
+                    self.doNext()
+
+                    def doListen():
+                        if self.comefromalch == 1:
+                            self.simpleAlchemy()
+                        elif self.comefromalch == 2:
+                            self.complexAlchemy()
+                        elif self.comefromalch == 3:
+                            self.advancedAlchemy()
+                    self.doListen = doListen
+            else:
+                if self.comefromalch == 1:
+                    self.simpleAlchemy()
+                elif self.comefromalch == 2:
+                    self.complexAlchemy()
+                elif self.comefromalch == 3:
+                    self.advancedAlchemy()
+        self.doListen = doListen
 
     def doLevelUP(self):
+      # HERE
       self.outputMainText(f"You have this many perks pending: {self.levelUP}\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.",True)
       if self.staticdoLevelUPButtons:
          self.choiceListArray = Array("Super Perk","","Body Build","Hyper Happy","","Alchemist","","Shapeshifty")
