@@ -16936,7 +16936,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.doMainText(" Trails of milk blotch their way down her sundress, dripping across the wood of the felin 'street' as she runs, her nipples forming peaks in the fabric.")
             elif (self.lilaMilk <= 8):
                self.doMainText(f" Drops of milk visibly form outside of her sundress as it soaks through, her puffy stiff nipples showing through the mildly-translucent wet fabric. You can see further beyond that a few of her friends had been following her, a couple with white mustaches. Though as she squeezes against you with the embrace, you can feel more warm moistness spray out about your {self.legDesc(2)}.")
-            elif (lilaMilk <= 12):  # TODO: self.
+            elif (self.lilaMilk <= 12):
                self.doMainText(f" She seems to have left behind a group of friends, some with white mustaches. There's a slight extra bounce to her sundress as her swollen areoles and perk engorged nipples bulge through the fabric, almost completely visible with its wetness. As she squeezes you, you feel plenty more warm moistness drizzle down about your {self.legDesc(2)}.")
             elif (self.lilaMilk <= 18):
                self.doMainText(f" She seems especially happy to see you, escaping from her group of thirsty friends. Her breasts form small mounds in her sundress simply from their engorgement, her puffy nipples sticking out even further, clearly visible through the wet fabric. A hand squishes a couple in her grip before she reaches you, forcing spurts of milk through the dress with a blush of pleasure on her face. When she finally hugs you, she squeezes even more to relieve some of the milk out across your {self.legDesc(2)} and forming a puddle beneath you.")
@@ -17031,20 +17031,20 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.doMainText(f" Her face practically glows as stands there, her belly swollen with offspring and pushing her milky nipples out even further. It pushes {self.legWhere(2)} your own {self.legDesc(2)} as she tries to hold you close, making her squeak as a baby kicks your {self.legDesc(1)} from inside. If you weren't there to stop her, she would have probably fallen forward from the round thing, since it's almost larger than she is. \"Mmm... Awe yew looking fowawd to being a daddy?,\" she sighs pleasantly.")
             self.displayMainText()
 
-            # TODO: Convert this to doButtonChoices
             buttonlist = ButtonList(1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1)
-            templist = [1, "Milk", 3, "Suckle", 5, "Lick", 12, "Mommy"]
+            tempDict = {1: "Milk", 3: "Suckle", 5: "Lick", 12: "Mommy"}
             if (self.lilaUB):
                buttonlist[6] = 1
                if (self.tallness < 6 + 4 * self.lilaVulva):
-                  templist.extend((6, "Unbirth"))
+                  tempDict[6] = "Unbirth"
             if (self.gender != 0 and (self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva) and self.cockTotal > 0) or self.vagTotal > 0):
-               templist.extend((7, "Sex"))
+               tempDict[7] = "Sex"
             if (self.checkItem(105)):
-               templist.extend((9, "Cat's Meow"))
+               tempDict[9] = "Cat's Meow"
             if (self.checkItem(221)):
-               templist.extend((10, "Puss Juice"))
+               tempDict[10] = "Puss Juice"
             self.showButtons(buttonlist)
+            self.doButtonChoices(tempDict)
 
             def doListen():
                if (self.buttonChoice == 1):
@@ -17149,7 +17149,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.doListen = doListen
 
                # Lila Unbirth
-               elif (buttonChoice == 6):  # TODO: self.
+               elif (self.buttonChoice == 6):
                   self.doMainText("Reaching up, you place a hand on the taller small girl's belly, giving her a kinky smile. It takes her a moment to realize what that is supposed to mean, but then she blushes terribly, her dress getting promptly more moist and her tail jerking about at the mere thought. Feigning reluctance, she nods hesitantly, but is the first to grab your hand and step towards your hut. However, she quickly slows to try and look like she's not as eager as she really is, still embarassed that she could even do such a thing. And when you get there, Lila stands by your bed, meekly lifting the front of her dress to hide her face and expose herself before you even shut the door.\n\n", True)
                   if (self.lilaVulva == 0):
                      self.doMainText(" A few drops of excitement already descend from her petite folds. It's amazing you could ever have fit in there as she can hardly fit an average sized penis.")
@@ -18847,7 +18847,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doEnd()
 
     def doSanctuary(self):
-      chance = self.eventSelect("Sanctuary")  # TODO: Remove, never used
+      # chance = self.eventSelect("Sanctuary")
       self.outputMainText("There doesn't seem to be anything to find here yet.", True)
       self.hrs = 1
       self.doEnd()
@@ -22216,7 +22216,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doMainText(f"You attempt to poke the statue's ear. Why would you do such a thing? Would you like someone poking your ear? The statue sure doesn't seem to like it.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
                      if (self.boobTotal == 2):
                         self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
-                        if (breastSize > 4):  # TODO: NEEDS self.
+                        if (self.breastSize > 4):
                            self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
                         self.boobTotal = 4
                         self.fourBoobAffinity = 100
@@ -22863,10 +22863,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.dmg = Math.floor(self.percent() / 10 + self.lust / 10)
                   self.doMainText(f"\n\nHowever, the {self.enemyName()} is sorely turned off by your rough pounding on its sensitive area, merely hurting its genitals and its pride.\n\nBut you do deal {self.dmg} damage and satisfy yourself a bit.")
                   self.doeHP(-self.dmg)
-                  if (self.enemyID < 300):  # TODO: Duplicate condition
-                     self.doLust(-Math.floor(self.percent() / 20 + self.sen / 10), 2, 1, 2)
-                  else:
-                     self.doLust(-Math.floor(self.percent() / 20 + self.sen / 10), 2, 1, 2)
+                  self.doLust(-Math.floor(self.percent() / 20 + self.sen / 10), 2, 1, 2)
                   self.displayMainText()
                else:
                   self.doRape()
@@ -23347,7 +23344,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
       # Horny Felin
       elif self.enemyID == 301:
-         chance = self.percent()  # TODO: Remove this, it is never used
          if (self.gender == 1 or self.percent() <= 50 and self.gender == 3):
             self.doMainText(f"The felin woman is easily bent forward by your efforts. Her loincloth droops out of the way, giving you a perfect view of the swollen, supple lips that pucker around the crotch of her bikini bottom. Pulling {self.pullUD(2)} your {self.clothesBottom()}, you slide {self.oneYour(1)} {self.cockDesc()} prick{self.plural(1)} out and through the cheeks of her ample rump, making her quiver with anticipation. Not wanting to leave her waiting for too long, the head of your cock pushes into the bikini bottom, pushing through to kiss the waiting hole within.", True)
             # TODO: if/else-ify
@@ -25147,7 +25143,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def affinityChange(self):
       # HERE
       self.doMainText("Something feels odd...", True)
-      chance = self.percent()  # TODO: See if this can be removed, it is never uesd
       affinityCheckArray = Array(self.humanAffinity + self.human, self.horseAffinity + self.horse, self.wolfAffinity + self.wolf, self.catAffinity + self.cat, self.cowAffinity + self.cow, self.lizardAffinity + self.lizard, self.rabbitAffinity + self.rabbit, self.mouseAffinity + self.mouse, self.birdAffinity + self.bird, self.pigAffinity + self.pig, self.skunkAffinity + self.skunk, self.bugAffinity + self.bug)
       affinityCheckArray.sort(16)
       domCheck = affinityCheckArray[-1]
@@ -25699,7 +25694,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          tempTailArray.sort(16)
          maxTail = tempTailArray[-1]
          secondTail = tempTailArray[-2]
-         maxNonTail = Math.max(self.humanAffinity)  # TODO: Remove the Math.max here. It doesn't do anything
+         maxNonTail = self.humanAffinity
          if (self.tail < 1):
             if (self.dominant == 2 and self.horseAffinity > maxNonTail + 15):
                self.tail = 2
