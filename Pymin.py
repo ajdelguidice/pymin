@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import as3lib
 from as3lib import (Array, as3state, each, EnableDebug, Error, Number,
                     RangeError, setHeaderInfo, TOML, trace)  # Math
 from as3lib.helpers import isValidDirectory, textObject
@@ -152,7 +153,7 @@ class PyminButton(itk.itkFrame):
         text = kwargs.pop('text', '')
         super().__init__(master, highlightthickness=1, background='#FFFFFF', highlightbackground='#000000', **kwargs)
         self.label = tkinter.Label(self, anchor='center', background='#FFFFFF', foreground='#000000')
-        self.bind(_TOOLKITEVENT.MouseButtonToTK(MouseEvent.CLICK), self.press)
+        self.bind(_TOOLKITEVENT.MouseButtonToTk(MouseEvent.CLICK), self.press)
         self.text = text
 
     def bind(self, key, func):
@@ -2398,9 +2399,6 @@ class SaveConverter(PyminWindow):
 
         self._isOpen = True
 
-        if startType:
-            self.window.mainloop()
-
     def convertButton(self, *e):
         self.convertSave(self.window._children['inputfilebox'].get(), self.inputfilecombobox.get(), self.window._children['outputfilebox'].get(), self.outputfilecombobox.get())
 
@@ -3802,8 +3800,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         self._isOpen = True
 
-        self.window.mainloop()
-
     open = MainTimeline
 
     @staticmethod
@@ -3819,7 +3815,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Function activated on key press
         '''
         self.detailedDebug()
-        key = _TOOLKITEVENT.TKGetKeyCode(e)
+        key = _TOOLKITEVENT.TkGetKeyCode(e)
         if key == 16:  # Shift
             self.shiftHeld = True
         elif key == 17:  # Ctrl
@@ -3835,7 +3831,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Function activated on key release
         '''
-        kc = _TOOLKITEVENT.TKGetKeyCode(e)
+        kc = _TOOLKITEVENT.TkGetKeyCode(e)
         if kc == 16:  # Shift
             self.shiftHeld = False
         if kc == 17:  # Ctrl
@@ -28391,8 +28387,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.detailedDebug()
 
 
-if __name__ == '__main__':
-    setHeaderInfo(10, 24, 1176, 662)
+def Pymin():
+    global mainobject
     from sys import argv
     if '-h' in argv or '--help' in argv or '/?' in argv:
         print('Usage: python Pymin.py [options]\nOptions:\n\t-h --help\tDisplays this message.\n\t-d --debug\tEnables debug mode for this run.\n\t-C --convert\tOpens savefile converter instead of the game.')
@@ -28404,3 +28400,8 @@ if __name__ == '__main__':
     else:
         mainobject = PyminMain()
     mainobject.open()
+
+
+if __name__ == '__main__':
+    setHeaderInfo(10, 24, 1176, 662)
+    as3lib.Main()
