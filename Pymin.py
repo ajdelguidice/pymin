@@ -643,6 +643,845 @@ class Calc:
         return (823 + (83 * (buttonNum % 4)), 210 + (32 * Math.floor(buttonNum / 4)))
 
 
+class Items:
+    def name(ID: int):
+        '''
+        Function which returns the name of the item ID
+        '''
+        if (ID == 0):
+            return " "
+        if (ID == 1):
+            return "Test"
+        if (ID == 2):
+            return "Debug Stick"
+        if (ID == 3):
+            return "TS Any"
+        if (ID == 404):
+            return "Item Not Found"
+        if (ID == 418):
+            return "Teapot"
+        if (ID == 101):
+            return "Anc Claws"
+        if (ID == 102):
+            return "Imb Shoes"
+        if (ID == 103):
+            return "Dry Sand"
+        if (ID == 104):
+            return "Milker"
+        if (ID == 105):
+            return "Cat's Meow"
+        if (ID == 106):
+            return "Penis Pump"
+        if (ID == 108):
+            return "Blood Gge"
+        if (ID == 109):
+            return "Edu Egg"
+        if (ID == 110):
+            return "Reduction"
+        if (ID == 111):
+            return "Skin Balm"
+        if (ID == 112):
+            return "Bol Juice"
+        if (ID == 113):
+            return "Taint Leaf"
+        if (ID == 114):
+            return "Sweet Sap"
+        if (ID == 115):
+            return "Poultice"
+        if (ID == 116):
+            return "Dagger"
+        if (ID == 117):
+            return "Hammer"
+        if (ID == 118):
+            return "Saber"
+        if (ID == 119):
+            return "Whip"
+        if (ID == 120):
+            return "Neuter"
+        if (ID == 121):
+            return "TS Soft"
+        if (ID == 122):
+            return "TS Firm"
+        if (ID == 123):
+            return "TS Tied"
+        if (ID == 124):
+            return "TS Siz"
+        if (ID == 125):
+            return "TS Ovi"
+        if (ID == 126):
+            return "Oas Water"
+        if (ID == 127):
+            return "Tail Spike"
+        if (ID == 128):
+            return "TS Sanct"
+        if (ID == 200):
+            return "Lila's Gift"
+        if (ID == 201):
+            return "Milk C Pois"
+        if (ID == 202):
+            return "Co-Snak Ven"
+        if (ID == 203):
+            return "Wolf Fur"
+        if (ID == 204):
+            return "Sm Pouch"
+        if (ID == 205):
+            return "Sm Pouch"
+        if (ID == 206):
+            return "Trinket"
+        if (ID == 207):
+            return "Cock Carv"
+        if (ID == 208):
+            return "Blo Berry"
+        if (ID == 209):
+            return "Grain"
+        if (ID == 210):
+            return "Puss Fruit"
+        if (ID == 211):
+            return "DairE Pill"
+        if (ID == 212):
+            return "Red Mush"
+        if (ID == 213):
+            return "Wet Cloth"
+        if (ID == 214):
+            return "Lon Milk"
+        if (ID == 215):
+            return "Lon Pendant"
+        if (ID == 216):
+            return "Pink Ink"
+        if (ID == 217):
+            return "Egg Jelly"
+        if (ID == 218):
+            return "Bul Berry"
+        if (ID == 219):
+            return "Fresh Egg"
+        if (ID == 220):
+            return "Blondie"
+        if (ID == 221):
+            return "Puss Juice"
+        if (ID == 222):
+            return "Kinky Carr"
+        if (ID == 223):
+            return "Eq Snack"
+        if (ID == 224):
+            return "Lila's Milk"
+        if (ID == 225):
+            return "Body Wash"
+        if (ID == 226):
+            return "Felin Tea"
+        if (ID == 227):
+            return "Oral Wash"
+        if (ID == 228):
+            return "Body Oil"
+        if (ID == 229):
+            return "Leath Strap"
+        if (ID == 230):
+            return "Eggcelerator"
+        if (ID == 231):
+            return "Desi Sand"
+        if (ID == 232):
+            return "Flying Carp"
+        if (ID == 233):
+            return "A-Grav Rock"
+        if (ID == 234):
+            return "Rein Charm"
+        if (ID == 235):
+            return "Fell Rod"
+        if (ID == 236):
+            return "Recept Bell"
+        if (ID == 237):
+            return "Dewy Gift"
+        if (ID == 238):
+            return "Squ Cheese"
+        if (ID == 239):
+            return "Shiny Rock"
+        if (ID == 240):
+            return "Auburn Dye"
+        if (ID == 241):
+            return "Brown Dye"
+        if (ID == 242):
+            return "Grey Dye"
+        if (ID == 243):
+            return "White Dye"
+        if (ID == 244):
+            return "Snuggle Ball"
+        if (ID == 245):
+            return "Facial Mud"
+        if (ID == 246):
+            return "Fertile Gel"
+        if (ID == 247):
+            return "Supp Harness"
+        if (ID == 248):
+            return "Breeder Pot"
+        if (ID == 249):
+            return "Treant\'s Tear"
+        if (ID == 250):
+            return "Foomp Bomb"
+        if (ID == 251):
+            return "Plump Quat"
+        if (ID == 252):
+            return "Milky Pend"
+        if (ID == 253):
+            return "Bug Egg"
+        if (ID == 254):
+            return "Lantern"
+        if (ID == 255):
+            return "Frag Flower"
+        if (ID == 256):
+            return "Nectar Candy"
+        if (ID == 257):
+            return "Too Human"
+        if (ID == 258):
+            return "Tainted Pot"
+        if (ID == 259):
+            return "Sweet&Sour"
+        if (ID == 260):
+            return "Succ Draft"
+        if (ID == 500):
+            return "Milk Bottle"
+        if (ID == 501):
+            return "Milk Jug"
+        if (ID == 502):
+            return "Milk Barrel"
+        if (ID == 503):
+            return "Lust Draft"
+        if (ID == 504):
+            return "Rejuv Pot"
+        if (ID == 505):
+            return "Bad Exper"
+        if (ID == 506):
+            return "Exp Preg"
+        if (ID == 507):
+            return "Ball Sweller"
+        if (ID == 508):
+            return "S Lust Draft"
+        if (ID == 509):
+            return "S Rejuv Pot"
+        if (ID == 510):
+            return "S Bad Exper"
+        if (ID == 511):
+            return "S Exp Preg"
+        if (ID == 512):
+            return "S Ball Sweller"
+        if (ID == 513):
+            return "Gen Swap"
+        if (ID == 514):
+            return "Maso Pot"
+        if (ID == 515):
+            return "Black Dye"
+        if (ID == 516):
+            return "Baby Free"
+        if (ID == 517):
+            return "Pot Pot"
+        if (ID == 518):
+            return "S Gen Swap"
+        if (ID == 519):
+            return "S Maso Pot"
+        if (ID == 520):
+            return "Red Dye"
+        if (ID == 521):
+            return "S Baby Free"
+        if (ID == 522):
+            return "S Pot Pot"
+        if (ID == 523):
+            return "Cum Vial"
+        if (ID == 524):
+            return "Cum Bottle"
+        if (ID == 525):
+            return "Cum Jug"
+        if (ID == 526):
+            return "Cum Barrel"
+        if (ID == 527):
+            return "Good Egg"
+        if (ID == 528):
+            return "Bad Egg"
+        if (ID == 529):
+            return "Strange Egg"
+        if (ID == 530):
+            return "Charmed Egg"
+        if (ID == 531):
+            return "Divine Egg"
+        if (ID == 532):
+            return "Pheromone"
+        if (ID == 533):
+            return "Reduc Reduc"
+        if (ID == 534):
+            return "Male Enhance"
+        if (ID == 535):
+            return "Milk Suppress"
+        if (ID == 536):
+            return "Bazoomba!"
+        if (ID == 537):
+            return "Queen Egg"
+        if (ID == 538):
+            return "Soldier Egg"
+        if (ID == 539):
+            return "Drone Egg"
+        if (ID == 540):
+            return "Worker Egg"
+        return f"ITEM NAME ERROR {ID}"
+
+    def isUsable(ID: int):
+        '''
+        Returns True if item ID can be used
+        '''
+        return ID in {2, 3, 104, 106, 108, 109, 116, 117, 118, 119, 127, 232, 235, 244, 247, 418}
+
+    def isConsumable(ID: int):
+        '''
+        Returns True if item ID is consumable
+        '''
+        return ID in {103, 105, 110, 111, 112, 113, 114, 115, 120, 121, 122, 123, 124, 125, 126, 128, 201, 202, 203, 204, 205, 207, 208, 209, 210, 211, 212, 213, 214, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 230, 231, 238, 239, 240, 241, 242, 243, 245, 246, 248, 249, 250, 251, 253, 255, 256, 257, 258, 259, 260, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540}
+
+    def value(ID: int):
+        '''
+        Function which returns the value of the item ID
+        '''
+        if ID in {200, 215, 229, 232, 233, 234, 235, 236, 237, 252, 254}:
+            return 0
+        if ID in {204, 205}:
+            return 1
+        if ID in {523, 528}:
+            return 2
+        if ID in {209, 239, 253}:
+            return 3
+        if ID in {115, 203, 213, 214, 219, 226, 500, 526, 533, 540}:
+            return 5
+        if ID == 524:
+            return 7
+        if ID in {211, 224, 225, 227, 228, 238, 251, 503, 504, 505, 506, 507, 527, 534, 539}:
+            return 10
+        if ID == 1:
+            return 13
+        if ID == 212:
+            return 14
+        if ID in {111, 112, 113, 114, 121, 122, 123, 124, 125, 126, 201, 202, 208, 222, 223, 231, 245, 255, 501}:
+            return 15
+        if ID == 210:
+            return 17
+        if ID in {103, 110, 116, 207, 218, 246, 256, 513, 514, 515, 516, 517, 535, 536, 538}:
+            return 20
+        if ID in {128, 230, 248, 508, 509, 510, 511, 512, 525}:
+            return 25
+        if ID in {105, 117, 120, 206, 221, 241, 257, 258, 529, 537}:
+            return 30
+        if ID in {127, 244}:
+            return 35
+        if ID in {119, 217, 530}:
+            return 40
+        if ID in {242, 249, 250, 260}:
+            return 45
+        if ID in {101, 102, 108, 220, 259, 518, 519, 521, 522}:
+            return 50
+        if ID == 118:
+            return 55
+        if ID == 531:
+            return 69
+        if ID == 502:
+            return 70
+        if ID in {106, 240, 532}:
+            return 75
+        if ID == 247:
+            return 80
+        if ID in {104, 243}:
+            return 100
+        if ID == 109:
+            return 125
+        if ID in {216, 520}:
+            return 150
+        return 0
+
+    def stackMax(ID: int):
+        '''
+        Function which returns the maximum number of the item ID that can be in a stack
+        '''
+        if ID in {1, 2, 3, 101, 102, 104, 106, 108, 109, 116, 117, 118, 119, 127, 200, 215, 229, 232, 233, 234, 235, 236, 237, 244, 247, 252, 254, 404, 418, 502, 526, 531}:
+            return 1
+        if ID in {105, 110, 111, 112, 113, 114, 120, 126, 201, 202, 204, 205, 207, 210, 216, 217, 219, 220, 222, 230, 240, 241, 242, 243, 249, 250, 257, 258, 501, 505, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 525, 529, 530, 532, 536, 537}:
+            return 5
+        if ID in {115, 121, 122, 123, 124, 125, 128, 206, 208, 212, 213, 214, 218, 221, 223, 224, 225, 227, 228, 231, 246, 248, 259, 260, 500, 503, 504, 506, 507, 508, 509, 510, 511, 512, 524, 527, 528, 534, 535, 538, 539}:
+            return 10
+        if ID in {103, 203, 209, 211, 226, 238, 239, 245, 251, 253, 255, 256, 523, 533, 540}:
+            return 15
+        return 0
+
+    def foodValue(ID: int):
+        '''
+        Function which returns the food value of the item ID
+        '''
+        tempNum = 0
+        if ID == 529:
+            tempNum = 1
+        elif ID == 503:
+            tempNum = 3
+        elif ID in {513, 514, 253}:
+            tempNum = 4
+        elif ID in {114, 211, 534, 504, 506}:
+            tempNum = 5
+        elif ID in {507, 508}:
+            tempNum = 7
+        elif ID in {208, 509, 518, 519}:
+            tempNum = 8
+        elif ID in {512, 226, 523, 209, 535, 218, 540, 222, 511}:
+            tempNum = 10
+        elif ID in {256, 516, 517, 527, 212, 536, 539, 219, 221}:
+            tempNum = 15
+        elif ID in {224, 521, 522, 238, 210, 530, 538}:
+            tempNum = 20
+        elif ID in {537, 259, 223}:
+            tempNum = 25
+        elif ID in {500, 524, 214}:
+            tempNum = 30
+        elif ID == 251:
+            tempNum = 40
+        elif ID == 531:
+            tempNum = 50
+        elif ID == 501:
+            tempNum = 70
+        return tempNum * 2
+
+    def useHidesPage(ID: int):
+        '''
+        Whether the page label should be hidden when using an item
+        '''
+        return ID not in {101, 102, 200, 206, 215, 229, 233, 234, 236, 237, 252, 254, 404}
+
+    def TeleportScrollAny_GetButtonOrder(currentZone):
+        if currentZone == 1:
+            return {1: "Tieden", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
+        if currentZone == 2:
+            return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 8: "Sanctuary", 10: "Oviasis"}
+        if currentZone == 3:
+            return {3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
+        if currentZone == 4:
+            return {1: "Tieden", 3: "Softlik", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
+        if currentZone == 6:
+            return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary"}
+        if currentZone == 12:
+            return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 10: "Oviasis"}
+
+        # Fallback
+        return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
+
+    def TeleportScrollAny_GetZoneForButton(buttonChoice):
+        if buttonChoice == 1:
+            return 'Tieden'
+        if buttonChoice == 3:
+            return 'Softlik'
+        if buttonChoice == 5:
+            return 'Siz\'Calit'
+        if buttonChoice == 7:
+            return 'Firmshaft'
+        if buttonChoice == 8:
+            return 'Sanctuary'
+        if buttonChoice == 10:
+            return 'Oviasis'
+
+        return f'TELEPORT SCROLL ANY ERROR BUTTON {buttonChoice}'
+
+    def dyeID(goodsSlot: int):
+        if goodsSlot == 1:
+            return 240
+        if goodsSlot == 2:
+            return 241
+        if goodsSlot == 5:
+            return 242
+        if goodsSlot == 6:
+            return 243
+        return 0
+
+
+class Clothes:
+    def name(ID: int):
+        if ID == -1:
+            return "Tattered Shreds"
+        if ID == 0:
+            return "Invisible Underwear"
+        if ID == 1:
+            return "Shirt"
+        if ID == 2:
+            return "Pants"
+        if ID == 3:
+            return "Bikini Top"
+        if ID == 4:
+            return "Bikini Bottom"
+        if ID == 5:
+            return "Elegant Dress"
+        if ID == 6:
+            return "Latex Suit"
+        if ID == 7:
+            return "Skirt"
+        if ID == 8:
+            return "Shorts"
+        if ID == 9:
+            return "Blouse"
+        if ID == 10:
+            return "Diaper"
+        if ID == 11:
+            return "Poofy Diaper"
+        if ID == 12:
+            return "Sundress"
+        if ID == 13:
+            return "Skimpy Dress"
+        if ID == 14:
+            return "Short Skirt"
+        if ID == 15:
+            return "Short Shorts"
+        if ID == 16:
+            return "Loin Cloth"
+        if ID == 17:
+            return "Bathing Suit"
+        if ID == 18:
+            return "Muscle Shirt"
+        if ID == 19:
+            return "Corset"
+        if ID == 20:
+            return "Silk Panties"
+        if ID == 21:
+            return "Slingkini"
+        if ID == 22:
+            return "Thong"
+        if ID == 23:
+            return "Bloomers"
+        if ID == 24:
+            return "Tights"
+        if ID == 25:
+            return "Gothic Dress"
+        if ID == 26:
+            return "Tube Top"
+        if ID == 27:
+            return "Nipple Pasties"
+        if ID == 28:
+            return "Camisole"
+        if ID == 29:
+            return "Training Suit"
+        if ID == 30:
+            return "Bouncy Bra"
+        return "CLOTHES NAME ERROR"
+
+    def value(ID: int):
+        if ID == 1:
+            return 5
+        if ID == 2:
+            return 5
+        if ID == 3:
+            return 25
+        if ID == 4:
+            return 25
+        if ID == 5:
+            return 45
+        if ID == 6:
+            return 60
+        if ID == 7:
+            return 25
+        if ID == 8:
+            return 25
+        if ID == 9:
+            return 25
+        if ID == 10:
+            return 30
+        if ID == 11:
+            return 40
+        if ID == 12:
+            return 40
+        if ID == 13:
+            return 50
+        if ID == 14:
+            return 35
+        if ID == 15:
+            return 35
+        if ID == 16:
+            return 40
+        if ID == 17:
+            return 55
+        if ID == 18:
+            return 15
+        if ID == 19:
+            return 50
+        if ID == 20:
+            return 35
+        if ID == 21:
+            return 65
+        if ID == 22:
+            return 40
+        if ID == 23:
+            return 30
+        if ID == 24:
+            return 35
+        if ID == 25:
+            return 60
+        if ID == 26:
+            return 20
+        if ID == 27:
+            return 45
+        if ID == 28:
+            return 40
+        if ID == 29:
+            return 35
+        if ID == 30:
+            return 45
+        return 0
+
+    def description(ID: int):
+        if ID == 1:
+            return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
+        if ID == 2:
+            return "A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."
+        if ID == 3:
+            return "A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."
+        if ID == 4:
+            return "A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."
+        if ID == 5:
+            return "A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."
+        if ID == 6:
+            return "A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."
+        if ID == 7:
+            return "A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."
+        if ID == 8:
+            return "A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."
+        if ID == 9:
+            return "A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."
+        if ID == 10:
+            return "A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
+        if ID == 11:
+            return "A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
+        if ID == 12:
+            return "A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."
+        if ID == 13:
+            return "A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."
+        if ID == 14:
+            return "A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."
+        if ID == 15:
+            return "A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."
+        if ID == 16:
+            return "A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."
+        if ID == 17:
+            return "A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."
+        if ID == 18:
+            return "A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."
+        if ID == 19:
+            return "A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."
+        if ID == 20:
+            return "A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."
+        if ID == 21:
+            return "A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."
+        if ID == 22:
+            return "A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."
+        if ID == 23:
+            return "A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."
+        if ID == 24:
+            return "A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."
+        if ID == 25:
+            return "A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."
+        if ID == 26:
+            return "A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."
+        if ID == 27:
+            return "A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."
+        if ID == 28:
+            return "A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."
+        if ID == 29:
+            return "A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."
+        if ID == 30:
+            return "A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot."
+        return "CLOTHES DESCRIPTION ERROR"
+
+
+class Hairstyles:
+    def name(ID: int):
+        if ID == 0:
+            return 'None'
+        if ID == 1:
+            return 'Wavy'
+        if ID == 2:
+            return 'Pigtail'
+        if ID == 3:
+            return 'Ponytail'
+        if ID == 4:
+            return 'Straight'
+        if ID == 5:
+            return 'Buzzcut'
+        if ID == 6:
+            return 'Mohawk'
+        if ID == 7:
+            return 'Bun'
+        if ID == 8:
+            return 'Curly'
+        if ID == 9:
+            return 'B Pigtail'
+        if ID == 10:
+            return 'B Ponytail'
+        if ID == 11:
+            return 'Braided'
+        if ID == 12:
+            return 'Spiky'
+        if ID == 13:
+            return 'Emo'
+        if ID == 14:
+            return 'Afro'
+        return f"HAIRSTYLE NAME ERROR {ID}"
+
+    def value(ID: int):
+        if ID == 1:
+            return 5
+        if ID == 2:
+            return 8
+        if ID == 3:
+            return 8
+        if ID == 4:
+            return 5
+        if ID == 5:
+            return 7
+        if ID == 6:
+            return 20
+        if ID == 7:
+            return 10
+        if ID == 8:
+            return 5
+        if ID == 9:
+            return 15
+        if ID == 10:
+            return 15
+        if ID == 11:
+            return 23
+        if ID == 12:
+            return 18
+        if ID == 13:
+            return 18
+        if ID == 14:
+            return 20
+        return 0
+
+    def description(ID: int):
+        if ID == 0:
+            return "No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."
+        if ID == 1:
+            return "Wavy hair has subtle curves that make it seem more flowing.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 2:
+            return "Pigtails are straight/wavy/curvy hair pulled away from the face and gathered towards the sides of your head, where it is bundled and tied at the base, allowing it to hang freely over your shoulders.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 3:
+            return "A Ponytail is straight/wavy/curvy hair pulled away from the face and gathered at the back of your head, where it is bundled and tied at the base, allowing it to hang freely over your back.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 4:
+            return "Straight hair has been combed out to be nice and straight.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 5:
+            return "A Buzzcut is hair cut quite short, less than a quarter inch from your head."
+        if ID == 6:
+            return "A Mohawk leaves only the hair along the center, from front to back, left, shaving the rest. It's usually a couple inches long."
+        if ID == 7:
+            return "A Bun is straight or wavy hair pulled up into a bun-like shape on top of the back of your head."
+        if ID == 8:
+            return "Curly hair has been treated to make it nice and curly with a bit of spring.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 9:
+            return "Braided Pigtails are pigtails that have been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 10:
+            return "A Braided Ponytail is a ponytail that has been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 11:
+            return "Braided hair involves tying all your hair into many braids, keeping it all in multiple tight formations.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 12:
+            return "Spiky hair is hair that has been treated to stand away from your head, defying gravity. Due to limitations, it can only reach a few inches in length."
+        if ID == 13:
+            return "Emo hair is hair that has been treated to sit straight at all times, with bangs often hanging over one eye.\n\nThis hairstyle has additional length options available after purchasing."
+        if ID == 14:
+            return "An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head."
+        return f"HAIR DESC_LONG ERROR {ID}"
+
+    def hasLengthOptions(ID: int):
+        '''
+        Returns whether a specific hairstyle has length options
+        '''
+        return ID in {1, 2, 3, 4, 8, 9, 10, 11, 13}
+
+
+class SpecialAbilities:
+    def name(ID: int):
+        if ID == 1:
+            return "Skunk Spray"
+        return f"SPECIAL ABILITY NAME ERROR {ID}"
+
+    def description(ID: int):
+        if ID == 1:
+            return "\n\nSkunk Spray - Using your scent glands in your rump, you can unleash this terrible stench upon your enemy, causing damage and potentially making them miss their next turn."
+        return f"SPECIAL ABILITY DESC ERROR {ID}"
+
+
+class ApothecaryItems:
+    def name(ID: int):
+        if ID >= 200:
+            return Items.name(ID)
+        if ID == 1:
+            return 'R: LustDraft'
+        if ID == 2:
+            return 'R: RejuvPot'
+        if ID == 3:
+            return 'R: ExpPreg'
+        if ID == 4:
+            return 'R: BallSwell'
+        if ID == 5:
+            return 'R: SLustDraft'
+        if ID == 6:
+            return 'R: SRejuvPot'
+        if ID == 7:
+            return 'R: SExpPreg'
+        if ID == 8:
+            return 'R: SBallSwell'
+        if ID == 9:
+            return 'R: GenSwap'
+        if ID == 10:
+            return 'R: MasoPot'
+        if ID == 11:
+            return 'R: BabyFree'
+        if ID == 12:
+            return 'R: PotPot'
+        if ID == 13:
+            return 'R: SGenSwap'
+        if ID == 14:
+            return 'R: SMasoPot'
+        if ID == 15:
+            return 'R: SBabyFree'
+        if ID == 16:
+            return 'R: SPotPot'
+        if ID == 17:
+            return 'R: MilkSuppress'
+        return ""
+
+    def value(ID: int):
+        if (ID >= 200):
+            return Items.value(ID)
+        if ID == 1:
+            return 20
+        if ID == 2:
+            return 25
+        if ID == 3:
+            return 25
+        if ID == 4:
+            return 20
+        if ID == 5:
+            return 35
+        if ID == 6:
+            return 40
+        if ID == 7:
+            return 35
+        if ID == 8:
+            return 30
+        if ID == 9:
+            return 45
+        if ID == 10:
+            return 45
+        if ID == 11:
+            return 40
+        if ID == 12:
+            return 45
+        if ID == 13:
+            return 60
+        if ID == 14:
+            return 70
+        if ID == 15:
+            return 55
+        if ID == 16:
+            return 65
+        if ID == 17:
+            return 35
+        return 0
+
+
 class PyminWindow:
     @property
     def enforceSize(self):
@@ -1777,7 +2616,7 @@ class PyminWiki(PyminWindow):
         elif page.topic == 'Item':
             text = self.itemDescription(page.num)
         elif page.topic == 'Clothes':
-            text = self.clothesDescription(page.num)
+            text = Clothes.description(page.num)
         elif page.topic == 'Enemy':
             text = self.enemyDescription(page.num)
         elif page.topic == 'Race':
@@ -4496,7 +5335,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         else:
             self.showDiscard()
         buttonDict = {12: "Return", 4: "<<", 8: ">>"}
-        itemNameArray = tuple(self.itemName(i) for i in each(itemArray))
+        itemNameArray = tuple(Items.name(i) for i in each(itemArray))
         for i in range(9):
             tempI = i + (self.choicePage * 9 - 9)
             if (itemNameArray[tempI] != " "):
@@ -4792,7 +5631,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.choicePage = 1
         if (not (self.inBag or self.inStash) and self.moveItemID != 0):
             self.hideAmountAll()
-            self.doMainText(f'You seem to have not placed your {self.itemName(self.moveItemID)}', True)
+            self.doMainText(f'You seem to have not placed your {Items.name(self.moveItemID)}', True)
             if (self.moveItemStack > 1):
                 self.doMainText(f' x{self.moveItemStack}')
             self.outputMainText(' in your bag. Do you want to discard the item?')
@@ -5742,7 +6581,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += applyBackspace(f"You began your journey as a {self.raceName()}.\n\n{Math.floor(self.tallness / 12)} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc(ngrammar=True)} butt on an overall {self.bodyDesc()} figure.")
         if (self.hair > 0):
             tempStr += f" With {self.hairC()}{self.hairDesc()}"
-            if (self.hairstyleLength(self.hair)):
+            if (Hairstyles.hasLengthOptions(self.hair)):
                 tempStr += f" {self.hairL()}"
             tempStr += ", y"
         else:
@@ -5789,7 +6628,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.weapon == 10):
             tempStr += "while you defend yourself unarmed."
         else:
-            tempStr += f"while you defend yourself with a {self.itemName(self.weapon)} as your weapon."
+            tempStr += f"while you defend yourself with a {Items.name(self.weapon)} as your weapon."
         if (self.lilaWetStatus > 0 and self.attireBot in {10, 11}):
             tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
         if (self.legType >= 1000):
@@ -6328,7 +7167,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += "You have the following items in your Bag:\n"
         for i in range(27):
             if (self.bagArray[i]):
-                tempStr += f"\n{self.itemName(self.bagArray[i])}"
+                tempStr += f"\n{Items.name(self.bagArray[i])}"
                 if (self.bagStackArray[i] > 1):
                     tempStr += f" x{self.bagStackArray[i]}"
         if (self.showSide):
@@ -7783,13 +8622,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if self.moveItemID != 0:
                     if self.useNewStash and self.currentState == 1:
                         if (not self.canLose(self.moveItemID, 0)):
-                            self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
+                            self.outputMainText(f"Something is preventing you from removing the {Items.name(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
                         else:
                             self.moveToStash()
                     else:
                         self.hideAmountAll()
                         self.hidePage()
-                        self.doMainText(f"Closing your bag while moving an item will discard the item.\n\nAre you sure you want to discard {self.itemName(self.moveItemID)}", True)
+                        self.doMainText(f"Closing your bag while moving an item will discard the item.\n\nAre you sure you want to discard {Items.name(self.moveItemID)}", True)
                         if (self.moveItemStack > 1):
                             self.doMainText(f" x{self.moveItemStack}")
                         self.outputMainText("?")
@@ -7827,14 +8666,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText("This slot is empty.", True)
             self.doBag()
             return
-        if self.useItemHidePage(ID):
+        if Items.useHidesPage(ID):
             self.hidePage()
         self.choicePage = 1
         self.doMainText(self.itemDescription(ID), True)
-        if (self.usableItem(ID) or self.conItem(ID)):
+        if (Items.isUsable(ID) or Items.isConsumable(ID)):
             self.hideAmountAll()
             self.doMainText("\n\nAre you sure you want to use this item?")
-            if (self.conItem(ID)):
+            if (Items.isConsumable(ID)):
                 self.doMainText("\n\nWarning: Using this item will consume it.")
             self.displayMainText()
             self.buttonConfirm()
@@ -7843,12 +8682,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             def doListen():
                 self.buttonShiftOverride = False
                 if (self.buttonChoice == 6):
-                    if (self.conItem(ID)):
+                    if (Items.isConsumable(ID)):
                         if (self.bagStackArray[self.choiceListResult[1]] <= 1):
                             self.bagSlotClear(self.choiceListResult[1])
                         else:
                             self.bagStackArray[self.choiceListResult[1]] = self.bagStackArray[self.choiceListResult[1]] - 1
-                    self.hunger += self.itemFoodValue(ID)
+                    self.hunger += Items.foodValue(ID)
                     self.buttonShiftOverride = True
                     self.doItemUse(ID)
                     self.buttonShiftOverride = False
@@ -7896,7 +8735,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempNum = 0
         openSlot = self.checkOpenSlot(ID)
         if openSlot < 0:
-            self.outputMainText(f"You have obtained a {self.itemName(ID)}!\n\nHowever, you do not have enough room in your bag. Click on an item in your bag to replace it with the new one or click a non-item button to ignore the new item.", True)
+            self.outputMainText(f"You have obtained a {Items.name(ID)}!\n\nHowever, you do not have enough room in your bag. Click on an item in your bag to replace it with the new one or click a non-item button to ignore the new item.", True)
             self.doDiscard(ID)
             return
         if (self.bagArray[openSlot] == 0):
@@ -7904,26 +8743,26 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.bagStackArray[openSlot] = 1
             self.passiveItemAdd(ID)
             tempNum += 1
-            while (self.bagStackArray[openSlot] < self.itemStackMax(ID) and ID in self.itemGainArray):
+            while (self.bagStackArray[openSlot] < Items.stackMax(ID) and ID in self.itemGainArray):
                 self.itemGainArray.pop()
                 self.bagStackArray[openSlot] += 1
                 tempNum += 1
         else:
             tempNum += 1
             self.bagStackArray[openSlot] += 1
-            while (self.bagStackArray[openSlot] < self.itemStackMax(ID) and ID in self.itemGainArray):
+            while (self.bagStackArray[openSlot] < Items.stackMax(ID) and ID in self.itemGainArray):
                 self.itemGainArray.pop()
                 self.bagStackArray[openSlot] += 1
                 tempNum += 1
         if (tempNum < 2):
-            self.outputMainText(f"You have obtained a {self.itemName(ID)}!", True)
+            self.outputMainText(f"You have obtained a {Items.name(ID)}!", True)
         else:
-            self.outputMainText(f"You have obtained {tempNum}x {self.itemName(ID)}!", True)
+            self.outputMainText(f"You have obtained {tempNum}x {Items.name(ID)}!", True)
         self.doEnd()
 
     def checkOpenSlot(self, ID: int):
         for i in range(27):
-            if (self.bagStackArray[i] < self.itemStackMax(ID) and self.bagArray[i] == ID):
+            if (self.bagStackArray[i] < Items.stackMax(ID) and self.bagArray[i] == ID):
                 return i
         for i in range(27):
             if (not self.bagArray[i]):
@@ -7963,9 +8802,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.buttonChoice == 4 or self.buttonChoice == 8):
                 self.displayBag()
             elif (self.canLose(self.choiceListResult[0])):
-                self.doMainText(f"{self.itemDescription(self.choiceListResult[0])}\n\n{self.itemDescription(self.tempID)}\n\nDo you want to replace {self.itemName(self.choiceListResult[0])} with {self.itemName(self.tempID)}?", True)
+                self.doMainText(f"{self.itemDescription(self.choiceListResult[0])}\n\n{self.itemDescription(self.tempID)}\n\nDo you want to replace {Items.name(self.choiceListResult[0])} with {Items.name(self.tempID)}?", True)
                 if (self.bagStackArray[self.choiceListResult[1]] > 1):
-                    self.doMainText(f"\n\nYou will lose all {self.bagStackArray[self.choiceListResult[1]]} of {self.itemName(self.choiceListResult[0])} if you do.")
+                    self.doMainText(f"\n\nYou will lose all {self.bagStackArray[self.choiceListResult[1]]} of {Items.name(self.choiceListResult[0])} if you do.")
                 self.displayMainText()
                 self.buttonConfirm()
 
@@ -7977,7 +8816,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doDiscard(self.tempID)
                 self.doListen = doListen
             elif (not self.canLose(self.choiceListResult[0])):
-                self.outputMainText(f"Something is preventing you from removing the {self.itemName(self.choiceListResult[0])}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
+                self.outputMainText(f"Something is preventing you from removing the {Items.name(self.choiceListResult[0])}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
                 self.doDiscard(self.tempID)
         self.doListen = doListen
 
@@ -7991,14 +8830,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if slot < 12:
             tempI -= Math.floor(slot / 4) + 1
         if self.inBag:
-            if (self.moveItemID == self.bagArray[tempI] and self.bagStackArray[tempI] < self.itemStackMax(self.bagArray[tempI])):
-                if (self.moveItemStack + self.bagStackArray[tempI] <= self.itemStackMax(self.bagArray[tempI])):
+            if (self.moveItemID == self.bagArray[tempI] and self.bagStackArray[tempI] < Items.stackMax(self.bagArray[tempI])):
+                if (self.moveItemStack + self.bagStackArray[tempI] <= Items.stackMax(self.bagArray[tempI])):
                     self.bagStackArray[tempI] += self.moveItemStack
                     self.moveItemID = 0
                     self.moveItemStack = 0
                 else:
-                    self.moveItemStack -= self.itemStackMax(self.bagArray[tempI]) - self.bagStackArray[tempI]
-                    self.bagStackArray[tempI] = self.itemStackMax(self.bagArray[tempI])
+                    self.moveItemStack -= Items.stackMax(self.bagArray[tempI]) - self.bagStackArray[tempI]
+                    self.bagStackArray[tempI] = Items.stackMax(self.bagArray[tempI])
             else:
                 self.moveItemID = self.bagArray[tempI]
                 self.moveItemStack = self.bagStackArray[tempI]
@@ -8008,14 +8847,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 trace(self.bagArray)
                 trace(self.bagStackArray)
         elif self.inStash:
-            if (self.moveItemID == self.stashArray[tempI] and self.stashStackArray[tempI] < self.itemStackMax(self.stashArray[tempI])):
-                if (self.moveItemStack + self.stashStackArray[tempI] <= self.itemStackMax(self.stashArray[tempI])):
+            if (self.moveItemID == self.stashArray[tempI] and self.stashStackArray[tempI] < Items.stackMax(self.stashArray[tempI])):
+                if (self.moveItemStack + self.stashStackArray[tempI] <= Items.stackMax(self.stashArray[tempI])):
                     self.stashStackArray[tempI] += self.moveItemStack
                     self.moveItemID = 0
                     self.moveItemStack = 0
                 else:
-                    self.moveItemStack -= self.itemStackMax(self.stashArray[tempI]) - self.stashStackArray[tempI]
-                    self.stashStackArray[tempI] = self.itemStackMax(self.stashArray[tempI])
+                    self.moveItemStack -= Items.stackMax(self.stashArray[tempI]) - self.stashStackArray[tempI]
+                    self.stashStackArray[tempI] = Items.stackMax(self.stashArray[tempI])
             else:
                 self.moveItemID = self.stashArray[tempI]
                 self.moveItemStack = self.stashStackArray[tempI]
@@ -8052,287 +8891,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.moveItemHide()
             self.moveItemAmountHide()
 
-    @staticmethod
-    def itemName(ID: int):
-        '''
-        Function which returns the name of the item ID
-        '''
-        if (ID == 0):
-            return " "
-        if (ID == 1):
-            return "Test"
-        if (ID == 2):
-            return "Debug Stick"
-        if (ID == 3):
-            return "TS Any"
-        if (ID == 404):
-            return "Item Not Found"
-        if (ID == 418):
-            return "Teapot"
-        if (ID == 101):
-            return "Anc Claws"
-        if (ID == 102):
-            return "Imb Shoes"
-        if (ID == 103):
-            return "Dry Sand"
-        if (ID == 104):
-            return "Milker"
-        if (ID == 105):
-            return "Cat's Meow"
-        if (ID == 106):
-            return "Penis Pump"
-        if (ID == 108):
-            return "Blood Gge"
-        if (ID == 109):
-            return "Edu Egg"
-        if (ID == 110):
-            return "Reduction"
-        if (ID == 111):
-            return "Skin Balm"
-        if (ID == 112):
-            return "Bol Juice"
-        if (ID == 113):
-            return "Taint Leaf"
-        if (ID == 114):
-            return "Sweet Sap"
-        if (ID == 115):
-            return "Poultice"
-        if (ID == 116):
-            return "Dagger"
-        if (ID == 117):
-            return "Hammer"
-        if (ID == 118):
-            return "Saber"
-        if (ID == 119):
-            return "Whip"
-        if (ID == 120):
-            return "Neuter"
-        if (ID == 121):
-            return "TS Soft"
-        if (ID == 122):
-            return "TS Firm"
-        if (ID == 123):
-            return "TS Tied"
-        if (ID == 124):
-            return "TS Siz"
-        if (ID == 125):
-            return "TS Ovi"
-        if (ID == 126):
-            return "Oas Water"
-        if (ID == 127):
-            return "Tail Spike"
-        if (ID == 128):
-            return "TS Sanct"
-        if (ID == 200):
-            return "Lila's Gift"
-        if (ID == 201):
-            return "Milk C Pois"
-        if (ID == 202):
-            return "Co-Snak Ven"
-        if (ID == 203):
-            return "Wolf Fur"
-        if (ID == 204):
-            return "Sm Pouch"
-        if (ID == 205):
-            return "Sm Pouch"
-        if (ID == 206):
-            return "Trinket"
-        if (ID == 207):
-            return "Cock Carv"
-        if (ID == 208):
-            return "Blo Berry"
-        if (ID == 209):
-            return "Grain"
-        if (ID == 210):
-            return "Puss Fruit"
-        if (ID == 211):
-            return "DairE Pill"
-        if (ID == 212):
-            return "Red Mush"
-        if (ID == 213):
-            return "Wet Cloth"
-        if (ID == 214):
-            return "Lon Milk"
-        if (ID == 215):
-            return "Lon Pendant"
-        if (ID == 216):
-            return "Pink Ink"
-        if (ID == 217):
-            return "Egg Jelly"
-        if (ID == 218):
-            return "Bul Berry"
-        if (ID == 219):
-            return "Fresh Egg"
-        if (ID == 220):
-            return "Blondie"
-        if (ID == 221):
-            return "Puss Juice"
-        if (ID == 222):
-            return "Kinky Carr"
-        if (ID == 223):
-            return "Eq Snack"
-        if (ID == 224):
-            return "Lila's Milk"
-        if (ID == 225):
-            return "Body Wash"
-        if (ID == 226):
-            return "Felin Tea"
-        if (ID == 227):
-            return "Oral Wash"
-        if (ID == 228):
-            return "Body Oil"
-        if (ID == 229):
-            return "Leath Strap"
-        if (ID == 230):
-            return "Eggcelerator"
-        if (ID == 231):
-            return "Desi Sand"
-        if (ID == 232):
-            return "Flying Carp"
-        if (ID == 233):
-            return "A-Grav Rock"
-        if (ID == 234):
-            return "Rein Charm"
-        if (ID == 235):
-            return "Fell Rod"
-        if (ID == 236):
-            return "Recept Bell"
-        if (ID == 237):
-            return "Dewy Gift"
-        if (ID == 238):
-            return "Squ Cheese"
-        if (ID == 239):
-            return "Shiny Rock"
-        if (ID == 240):
-            return "Auburn Dye"
-        if (ID == 241):
-            return "Brown Dye"
-        if (ID == 242):
-            return "Grey Dye"
-        if (ID == 243):
-            return "White Dye"
-        if (ID == 244):
-            return "Snuggle Ball"
-        if (ID == 245):
-            return "Facial Mud"
-        if (ID == 246):
-            return "Fertile Gel"
-        if (ID == 247):
-            return "Supp Harness"
-        if (ID == 248):
-            return "Breeder Pot"
-        if (ID == 249):
-            return "Treant\'s Tear"
-        if (ID == 250):
-            return "Foomp Bomb"
-        if (ID == 251):
-            return "Plump Quat"
-        if (ID == 252):
-            return "Milky Pend"
-        if (ID == 253):
-            return "Bug Egg"
-        if (ID == 254):
-            return "Lantern"
-        if (ID == 255):
-            return "Frag Flower"
-        if (ID == 256):
-            return "Nectar Candy"
-        if (ID == 257):
-            return "Too Human"
-        if (ID == 258):
-            return "Tainted Pot"
-        if (ID == 259):
-            return "Sweet&Sour"
-        if (ID == 260):
-            return "Succ Draft"
-        if (ID == 500):
-            return "Milk Bottle"
-        if (ID == 501):
-            return "Milk Jug"
-        if (ID == 502):
-            return "Milk Barrel"
-        if (ID == 503):
-            return "Lust Draft"
-        if (ID == 504):
-            return "Rejuv Pot"
-        if (ID == 505):
-            return "Bad Exper"
-        if (ID == 506):
-            return "Exp Preg"
-        if (ID == 507):
-            return "Ball Sweller"
-        if (ID == 508):
-            return "S Lust Draft"
-        if (ID == 509):
-            return "S Rejuv Pot"
-        if (ID == 510):
-            return "S Bad Exper"
-        if (ID == 511):
-            return "S Exp Preg"
-        if (ID == 512):
-            return "S Ball Sweller"
-        if (ID == 513):
-            return "Gen Swap"
-        if (ID == 514):
-            return "Maso Pot"
-        if (ID == 515):
-            return "Black Dye"
-        if (ID == 516):
-            return "Baby Free"
-        if (ID == 517):
-            return "Pot Pot"
-        if (ID == 518):
-            return "S Gen Swap"
-        if (ID == 519):
-            return "S Maso Pot"
-        if (ID == 520):
-            return "Red Dye"
-        if (ID == 521):
-            return "S Baby Free"
-        if (ID == 522):
-            return "S Pot Pot"
-        if (ID == 523):
-            return "Cum Vial"
-        if (ID == 524):
-            return "Cum Bottle"
-        if (ID == 525):
-            return "Cum Jug"
-        if (ID == 526):
-            return "Cum Barrel"
-        if (ID == 527):
-            return "Good Egg"
-        if (ID == 528):
-            return "Bad Egg"
-        if (ID == 529):
-            return "Strange Egg"
-        if (ID == 530):
-            return "Charmed Egg"
-        if (ID == 531):
-            return "Divine Egg"
-        if (ID == 532):
-            return "Pheromone"
-        if (ID == 533):
-            return "Reduc Reduc"
-        if (ID == 534):
-            return "Male Enhance"
-        if (ID == 535):
-            return "Milk Suppress"
-        if (ID == 536):
-            return "Bazoomba!"
-        if (ID == 537):
-            return "Queen Egg"
-        if (ID == 538):
-            return "Soldier Egg"
-        if (ID == 539):
-            return "Drone Egg"
-        if (ID == 540):
-            return "Worker Egg"
-        return f"ITEM NAME ERROR {ID}"
-
     def itemDescription(self, ID: int):
         '''
         Function which returns the description of the item ID
         '''
+        # TODO: Find a way to move this out of the main class
         if ID == 2:
             return "Debug Stick\n\nDebug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
         if ID == 3:
@@ -8615,25 +9178,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             return "Worker Egg\n\nNot the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
         return f"ITEM DESCRIPTION ERROR {ID}"
 
-    @staticmethod
-    def usableItem(ID: int):
-        '''
-        Returns True if item ID can be used
-        '''
-        return ID in {2, 3, 104, 106, 108, 109, 116, 117, 118, 119, 127, 232, 235, 244, 247, 418}
-
     def canLose(self, ID: int, check: int = 1):
         '''
         Returns True if item ID can be lost
         '''
         return not (ID == 244 and self.countItem(244) == check and self.snuggleBall or ID == 247 and self.countItem(247) == check and self.suppHarness)
-
-    @staticmethod
-    def conItem(ID: int):
-        '''
-        Returns True if item ID is consumable
-        '''
-        return ID in {103, 105, 110, 111, 112, 113, 114, 115, 120, 121, 122, 123, 124, 125, 126, 128, 201, 202, 203, 204, 205, 207, 208, 209, 210, 211, 212, 213, 214, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 230, 231, 238, 239, 240, 241, 242, 243, 245, 246, 248, 249, 250, 251, 253, 255, 256, 257, 258, 259, 260, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540}
 
     def passiveItemAdd(self, ID: int):
         '''
@@ -8720,158 +9269,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.carryMod -= 10
             self.milkCap -= 3000
 
-    @staticmethod
-    def itemValue(ID: int):
-        '''
-        Function which returns the value of the item ID
-        '''
-        if ID in {200, 215, 229, 232, 233, 234, 235, 236, 237, 252, 254}:
-            return 0
-        if ID in {204, 205}:
-            return 1
-        if ID in {523, 528}:
-            return 2
-        if ID in {209, 239, 253}:
-            return 3
-        if ID in {115, 203, 213, 214, 219, 226, 500, 526, 533, 540}:
-            return 5
-        if ID == 524:
-            return 7
-        if ID in {211, 224, 225, 227, 228, 238, 251, 503, 504, 505, 506, 507, 527, 534, 539}:
-            return 10
-        if ID == 1:
-            return 13
-        if ID == 212:
-            return 14
-        if ID in {111, 112, 113, 114, 121, 122, 123, 124, 125, 126, 201, 202, 208, 222, 223, 231, 245, 255, 501}:
-            return 15
-        if ID == 210:
-            return 17
-        if ID in {103, 110, 116, 207, 218, 246, 256, 513, 514, 515, 516, 517, 535, 536, 538}:
-            return 20
-        if ID in {128, 230, 248, 508, 509, 510, 511, 512, 525}:
-            return 25
-        if ID in {105, 117, 120, 206, 221, 241, 257, 258, 529, 537}:
-            return 30
-        if ID in {127, 244}:
-            return 35
-        if ID in {119, 217, 530}:
-            return 40
-        if ID in {242, 249, 250, 260}:
-            return 45
-        if ID in {101, 102, 108, 220, 259, 518, 519, 521, 522}:
-            return 50
-        if ID == 118:
-            return 55
-        if ID == 531:
-            return 69
-        if ID == 502:
-            return 70
-        if ID in {106, 240, 532}:
-            return 75
-        if ID == 247:
-            return 80
-        if ID in {104, 243}:
-            return 100
-        if ID == 109:
-            return 125
-        if ID in {216, 520}:
-            return 150
-        return 0
-
-    @staticmethod
-    def itemStackMax(ID: int):
-        '''
-        Function which returns the maximum number of the item ID that can be in a stack
-        '''
-        if ID in {1, 2, 3, 101, 102, 104, 106, 108, 109, 116, 117, 118, 119, 127, 200, 215, 229, 232, 233, 234, 235, 236, 237, 244, 247, 252, 254, 404, 418, 502, 526, 531}:
-            return 1
-        if ID in {105, 110, 111, 112, 113, 114, 120, 126, 201, 202, 204, 205, 207, 210, 216, 217, 219, 220, 222, 230, 240, 241, 242, 243, 249, 250, 257, 258, 501, 505, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 525, 529, 530, 532, 536, 537}:
-            return 5
-        if ID in {115, 121, 122, 123, 124, 125, 128, 206, 208, 212, 213, 214, 218, 221, 223, 224, 225, 227, 228, 231, 246, 248, 259, 260, 500, 503, 504, 506, 507, 508, 509, 510, 511, 512, 524, 527, 528, 534, 535, 538, 539}:
-            return 10
-        if ID in {103, 203, 209, 211, 226, 238, 239, 245, 251, 253, 255, 256, 523, 533, 540}:
-            return 15
-        return 0
-
-    @staticmethod
-    def itemFoodValue(ID: int):
-        '''
-        Function which returns the food value of the item ID
-        '''
-        tempNum = 0
-        if ID == 529:
-            tempNum = 1
-        elif ID == 503:
-            tempNum = 3
-        elif ID in {513, 514, 253}:
-            tempNum = 4
-        elif ID in {114, 211, 534, 504, 506}:
-            tempNum = 5
-        elif ID in {507, 508}:
-            tempNum = 7
-        elif ID in {208, 509, 518, 519}:
-            tempNum = 8
-        elif ID in {512, 226, 523, 209, 535, 218, 540, 222, 511}:
-            tempNum = 10
-        elif ID in {256, 516, 517, 527, 212, 536, 539, 219, 221}:
-            tempNum = 15
-        elif ID in {224, 521, 522, 238, 210, 530, 538}:
-            tempNum = 20
-        elif ID in {537, 259, 223}:
-            tempNum = 25
-        elif ID in {500, 524, 214}:
-            tempNum = 30
-        elif ID == 251:
-            tempNum = 40
-        elif ID == 531:
-            tempNum = 50
-        elif ID == 501:
-            tempNum = 70
-        return tempNum * 2
-
-    @staticmethod
-    def useItemHidePage(ID: int):
-        '''
-        Whether the page label should be hidden when using an item
-        '''
-        return ID not in {101, 102, 200, 206, 215, 229, 233, 234, 236, 237, 252, 254, 404}
-
-    @staticmethod
-    def TeleportScrollAny_GetButtonOrder(currentZone):
-        if currentZone == 1:
-            return {1: "Tieden", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
-        if currentZone == 2:
-            return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 8: "Sanctuary", 10: "Oviasis"}
-        if currentZone == 3:
-            return {3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
-        if currentZone == 4:
-            return {1: "Tieden", 3: "Softlik", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
-        if currentZone == 6:
-            return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary"}
-        if currentZone == 12:
-            return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 10: "Oviasis"}
-
-        # Fallback
-        return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
-
-    @staticmethod
-    def TeleportScrollAny_GetZoneForButton(buttonChoice):
-        if buttonChoice == 1:
-            return 'Tieden'
-        if buttonChoice == 3:
-            return 'Softlik'
-        if buttonChoice == 5:
-            return 'Siz\'Calit'
-        if buttonChoice == 7:
-            return 'Firmshaft'
-        if buttonChoice == 8:
-            return 'Sanctuary'
-        if buttonChoice == 10:
-            return 'Oviasis'
-
-        return f'TELEPORT SCROLL ANY ERROR BUTTON {buttonChoice}'
-
     def doItemUse(self, ID: int):
         '''
         Does the behaviour of item "ID"
@@ -8891,10 +9288,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if self.currentState != 2:
                 self.outputMainText("Where would you like to go?", True)
                 self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0))
-                self.doButtonChoices(self.TeleportScrollAny_GetButtonOrder(self.currentZone))
+                self.doButtonChoices(Items.TeleportScrollAny_GetButtonOrder(self.currentZone))
 
                 def doListen():
-                    self.outputMainText(f"Are you sure that you want to travel to {self.TeleportScrollAny_GetZoneForButton(self.buttonChoice)}?", True)
+                    self.outputMainText(f"Are you sure that you want to travel to {Items.TeleportScrollAny_GetZoneForButton(self.buttonChoice)}?", True)
                     self.tempNum = self.buttonChoice
                     self.buttonConfirm()
 
@@ -10947,7 +11344,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Discard button action
         '''
         self.hidePage()
-        self.doMainText(f"Are you sure you want to discard {self.itemName(self.moveItemID)}", True)
+        self.doMainText(f"Are you sure you want to discard {Items.name(self.moveItemID)}", True)
         if (self.moveItemStack > 1):
             self.doMainText(f" x{self.moveItemStack}")
         self.outputMainText("?")
@@ -11023,7 +11420,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def moveToStash(self):
         self.mts = True
         self.displayStash()
-        self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+        self.outputMainText(f"Click on the stash slot you would like to place {Items.name(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
         def doListen():
             self.choiceListSelect("Stash")
@@ -11036,10 +11433,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.canLose(self.moveItemID, 0):
                 tempNum = self.moveItemID
                 tempNum2 = self.moveItemStack
-                if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
-                    if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
-                        self.moveItemStack -= self.itemStackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
-                        self.stashStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
+                if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < Items.stackMax(tempNum)):
+                    if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
+                        self.moveItemStack -= Items.stackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
+                        self.stashStackArray[self.choiceListResult[1]] = Items.stackMax(tempNum)
                         self.refreshMoveItem(self.moveItemID, self.moveItemStack)
                         self.moveToStash()
                     else:
@@ -11065,7 +11462,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def moveToBag(self):
         self.mtb = True
         self.displayBag()
-        self.outputMainText(f"Click on the bag slot you would like to place {self.itemName(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+        self.outputMainText(f"Click on the bag slot you would like to place {Items.name(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
         def doListen():
             self.choiceListSelect("Bag")
@@ -11078,10 +11475,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 tempNum = self.moveItemID
                 tempNum2 = self.moveItemStack
-                if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
-                    if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
-                        self.moveItemStack -= self.itemStackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
-                        self.bagStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
+                if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < Items.stackMax(tempNum)):
+                    if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
+                        self.moveItemStack -= Items.stackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
+                        self.bagStackArray[self.choiceListResult[1]] = Items.stackMax(tempNum)
                         self.refreshMoveItem(self.moveItemID, self.moveItemStack)
                         self.moveToBag()
                     else:
@@ -11157,7 +11554,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def stashStore(self, storeItem: int):
         self.tempStoreItem = storeItem
         self.displayStash()
-        self.outputMainText(f"Click on the stash slot you would like to place {self.itemName(self.bagArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+        self.outputMainText(f"Click on the stash slot you would like to place {Items.name(self.bagArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
         def doListen():
             self.choiceListSelect("Stash")
@@ -11168,10 +11565,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 tempNum = self.bagArray[self.tempStoreItem]
                 tempNum2 = self.bagStackArray[self.tempStoreItem]
-                if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
-                    if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
-                        self.bagStackArray[self.tempStoreItem] -= self.itemStackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
-                        self.stashStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
+                if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < Items.stackMax(tempNum)):
+                    if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
+                        self.bagStackArray[self.tempStoreItem] -= Items.stackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
+                        self.stashStackArray[self.choiceListResult[1]] = Items.stackMax(tempNum)
                     else:
                         self.stashStackArray[self.choiceListResult[1]] += tempNum2
                         self.bagSlotClear(self.tempStoreItem)
@@ -11187,7 +11584,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def stashRemove(self, storeItem: int):
         self.tempStoreItem = storeItem
         self.displayBag()
-        self.outputMainText(f"Click on the bag slot you would like to place {self.itemName(self.stashArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+        self.outputMainText(f"Click on the bag slot you would like to place {Items.name(self.stashArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
         def doListen():
             self.choiceListSelect("Bag")
@@ -11198,10 +11595,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.canLose(self.choiceListResult[0])):
                 tempNum = self.stashArray[self.tempStoreItem]
                 tempNum2 = self.stashStackArray[self.tempStoreItem]
-                if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < self.itemStackMax(tempNum)):
-                    if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > self.itemStackMax(tempNum)):
-                        self.stashStackArray[self.tempStoreItem] -= self.itemStackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
-                        self.bagStackArray[self.choiceListResult[1]] = self.itemStackMax(tempNum)
+                if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < Items.stackMax(tempNum)):
+                    if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
+                        self.stashStackArray[self.tempStoreItem] -= Items.stackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
+                        self.bagStackArray[self.choiceListResult[1]] = Items.stackMax(tempNum)
                     else:
                         self.bagStackArray[self.choiceListResult[1]] += tempNum2
                         self.stashArray[self.tempStoreItem] = 0
@@ -11246,8 +11643,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempDict = {4: "Buy", 8: "Sell", 12: "Return"}
         dlist = []
         for i in self.bMap:
-            tempDict[i] = self.itemName(self.goodsID(i))
-            if (self.itemName(self.goodsID(i)) == " "):
+            tempDict[i] = Items.name(self.goodsID(i))
+            if (Items.name(self.goodsID(i)) == " "):
                 dlist.append(i)
         self.outputMainText("Click on an item to view a description of the item. If you would like to purchase it, click the Buy button.\n\nIf you would like to sell an item from your bag, click Sell.", True)
         self.doButtonChoices(tempDict)
@@ -11255,22 +11652,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             if (self.buttonChoice not in {4, 8, 12} and self.goodsID(self.buttonChoice) != 0):
-                self.outputMainText(f"{self.itemDescription(self.goodsID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.goodsID(self.buttonChoice))} coins.", True)
+                self.outputMainText(f"{self.itemDescription(self.goodsID(self.buttonChoice))}\n\nCost: {3 * Items.value(self.goodsID(self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.goodsID(self.buy))}?")
-                if (self.itemStackMax(self.goodsID(self.buy)) > 1):
+                self.outputMainText(f"\n\nAre you sure you would like to buy {Items.name(self.goodsID(self.buy))}?")
+                if (Items.stackMax(self.goodsID(self.buy)) > 1):
                     buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                     tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
-                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.itemValue(self.goodsID(self.buy))} coins, 2 for {6 * self.itemValue(self.goodsID(self.buy))} coins, 5 for {15 * self.itemValue(self.goodsID(self.buy))} coins")
-                    if (self.itemStackMax(self.goodsID(self.buy)) >= 10):
+                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * Items.value(self.goodsID(self.buy))} coins, 2 for {6 * Items.value(self.goodsID(self.buy))} coins, 5 for {15 * Items.value(self.goodsID(self.buy))} coins")
+                    if (Items.stackMax(self.goodsID(self.buy)) >= 10):
                         buttonlist[9] = 1
                         tempDict[9] = "Buy 10"
-                        self.doMainText(f", 10 for {30 * self.itemValue(self.goodsID(self.buy))} coins")
-                    if (self.itemStackMax(self.goodsID(self.buy)) >= 15):
+                        self.doMainText(f", 10 for {30 * Items.value(self.goodsID(self.buy))} coins")
+                    if (Items.stackMax(self.goodsID(self.buy)) >= 15):
                         buttonlist[10] = 1
                         tempDict[10] = "Buy 15"
-                        self.doMainText(f", 15 for {45 * self.itemValue(self.goodsID(self.buy))} coins")
+                        self.doMainText(f", 15 for {45 * Items.value(self.goodsID(self.buy))} coins")
                     self.outputMainText(".")
                     self.showButtons(buttonlist)
                     self.doButtonChoices(tempDict)
@@ -11294,20 +11691,20 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             tempInt = 10
                         elif (self.buttonChoice == 10):
                             tempInt = 15
-                        if (self.coin < 3 * tempInt * self.itemValue(self.goodsID(self.buy))):
-                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.itemValue(self.goodsID(self.buy)) - self.coin} more coins to purchase ", True)
+                        if (self.coin < 3 * tempInt * Items.value(self.goodsID(self.buy))):
+                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * Items.value(self.goodsID(self.buy)) - self.coin} more coins to purchase ", True)
                             if (tempInt > 1):
-                                self.doMainText(f"{tempInt}x {self.itemName(self.goodsID(self.buy))}.")
+                                self.doMainText(f"{tempInt}x {Items.name(self.goodsID(self.buy))}.")
                             else:
-                                self.doMainText(f"{self.itemName(self.goodsID(self.buy))}.")
+                                self.doMainText(f"{Items.name(self.goodsID(self.buy))}.")
                             self.displayMainText()
                             self.doNext()
 
                             def doListen():
                                 self.doShop()
                             self.doListen = doListen
-                        elif (self.checkItem(self.goodsID(self.buy)) and not self.conItem(self.goodsID(self.buy))):
-                            self.outputMainText(f"Sorry, but you cannot buy {self.itemName(self.goodsID(self.buy))} if you already have one. Please choose something else.", True)
+                        elif (self.checkItem(self.goodsID(self.buy)) and not Items.isConsumable(self.goodsID(self.buy))):
+                            self.outputMainText(f"Sorry, but you cannot buy {Items.name(self.goodsID(self.buy))} if you already have one. Please choose something else.", True)
                             self.doNext()
 
                             def doListen():
@@ -11315,7 +11712,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doListen = doListen
                         else:
                             self.addManyItem(self.goodsID(self.buy), tempInt)
-                            self.doCoin(-3 * tempInt * self.itemValue(self.goodsID(self.buy)))
+                            self.doCoin(-3 * tempInt * Items.value(self.goodsID(self.buy)))
                             self.doProcess()
                 self.doListen = doListen
             elif (self.buttonChoice == 8):
@@ -11345,7 +11742,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.displayBag()
                 self.bagDisableEmpty()
             elif (self.choiceListResult[0]):
-                canSellItem = self.itemValue(self.choiceListResult[0]) != 0 and self.canLose(self.choiceListResult[0])
+                canSellItem = Items.value(self.choiceListResult[0]) != 0 and self.canLose(self.choiceListResult[0])
                 if canSellItem:
                     self.hideAmountAll()
                     self.hidePage()
@@ -11354,18 +11751,18 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.outputMainText("You cannot sell the selected item. Either it is not yours to sell or needs to be unequipped first. Please select another item.", True)
                         self.doSell(False)
                     else:
-                        self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])}.\n\nAre you sure you want to sell it?", True)
+                        self.outputMainText(f"{Items.name(self.choiceListResult[0])} sells for {Items.value(self.choiceListResult[0])}.\n\nAre you sure you want to sell it?", True)
                         self.buttonConfirm()
 
                         def doListen():
                             if (self.buttonChoice == 6):
-                                self.doCoin(self.itemValue(self.choiceListResult[0]))
+                                self.doCoin(Items.value(self.choiceListResult[0]))
                                 self.bagArray[self.choiceListResult[1]] = 0
                                 self.passiveItemRemove(self.choiceListResult[0])
                             self.doSell()
                         self.doListen = doListen
                 else:
-                    self.outputMainText(f"{self.itemName(self.choiceListResult[0])} sells for {self.itemValue(self.choiceListResult[0])} each.\n\nHow many would you like to sell?", True)
+                    self.outputMainText(f"{Items.name(self.choiceListResult[0])} sells for {Items.value(self.choiceListResult[0])} each.\n\nHow many would you like to sell?", True)
                     buttonlist = ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0)
                     tempDict = {1: "1", 3: "2", 9: "All", 11: "None"}
                     if (self.bagStackArray[self.choiceListResult[1]] >= 5):
@@ -11394,7 +11791,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         else:
                             self.bagStackArray[self.choiceListResult[1]] -= tempInt
                         if (tempInt > 0):
-                            self.doCoin(tempInt * self.itemValue(self.choiceListResult[0]))
+                            self.doCoin(tempInt * Items.value(self.choiceListResult[0]))
                         self.doSell()
                     self.doListen = doListen
         self.doListen = doListen
@@ -11504,33 +11901,33 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempDict = {4: "Buy", 12: "Return"}
         dlist = []
         for i in self.bMap:
-            tempDict[i] = self.itemName(self.dyeID(i))
-            if (self.itemName(self.dyeID(i)) == " "):
+            tempDict[i] = Items.name(Items.dyeID(i))
+            if (Items.name(Items.dyeID(i)) == " "):
                 dlist.append(i)
         self.outputMainText("Click on a dye to view a description of the color. If you would like to purchase it, click the Buy button..", True)
         self.doButtonChoices(tempDict)
         self.disableSelectedButtons(dlist)
 
         def doListen():
-            if (self.buttonChoice not in {4, 8, 12} and self.dyeID(self.buttonChoice) != 0):
-                self.outputMainText(f"{self.itemDescription(self.dyeID(self.buttonChoice))}\n\nCost: {3 * self.itemValue(self.dyeID(self.buttonChoice))} coins.", True)
+            if (self.buttonChoice not in {4, 8, 12} and Items.dyeID(self.buttonChoice) != 0):
+                self.outputMainText(f"{self.itemDescription(Items.dyeID(self.buttonChoice))}\n\nCost: {3 * Items.value(Items.dyeID(self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {self.itemName(self.dyeID(self.buy))}?")
+                self.outputMainText(f"\n\nAre you sure you would like to buy {Items.name(Items.dyeID(self.buy))}?")
                 self.buttonConfirm()
 
                 def doListen():
                     if (self.buttonChoice == 6):
-                        if (self.coin < 3 * self.itemValue(self.dyeID(self.buy))):
-                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * self.itemValue(self.dyeID(self.buy)) - self.coin} more coins to purchase{self.itemName(self.dyeID(self.buy))}.", True)
+                        if (self.coin < 3 * Items.value(Items.dyeID(self.buy))):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * Items.value(Items.dyeID(self.buy)) - self.coin} more coins to purchase{Items.name(Items.dyeID(self.buy))}.", True)
                             self.doNext()
 
                             def doListen():
                                 self.doDyeShop()
                             self.doListen = doListen
                         else:
-                            self.itemAdd(self.dyeID(self.buy))
-                            self.doCoin(-3 * self.itemValue(self.dyeID(self.buy)))
+                            self.itemAdd(Items.dyeID(self.buy))
+                            self.doCoin(-3 * Items.value(Items.dyeID(self.buy)))
                             self.doProcess()
                     else:
                         self.doDyeShop()
@@ -11542,23 +11939,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doReturn()
         self.doListen = doListen
 
-    @staticmethod
-    def dyeID(goodsSlot: int):
-        if goodsSlot == 1:
-            return 240
-        if goodsSlot == 2:
-            return 241
-        if goodsSlot == 5:
-            return 242
-        if goodsSlot == 6:
-            return 243
-        return 0
-
     def dyeThing(self, ID: int, color: int):
         self.tempID = ID
         self.tempColor = color
         self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0))
-        self.outputMainText(f"What would you like to apply the {self.itemName(ID)} to?", True)
+        self.outputMainText(f"What would you like to apply the {Items.name(ID)} to?", True)
         tempDict = {7: "Body", 10: "Nevermind"}
         if (self.hair > 0):
             tempDict[5] = "Hair"
@@ -11567,10 +11952,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         def doListen():
             if self.buttonChoice == 5:
                 self.hairColor = self.tempColor
-                self.doMainText(f"You smear the {self.itemName(self.tempID)} around in your {self.hairDesc()}, turning it {self.hairC()} in color.", True)
+                self.doMainText(f"You smear the {Items.name(self.tempID)} around in your {self.hairDesc()}, turning it {self.hairC()} in color.", True)
             elif self.buttonChoice == 7:
                 self.skinColor = self.tempColor
-                self.doMainText(f"You rub the {self.itemName(self.tempID)} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.", True)
+                self.doMainText(f"You rub the {Items.name(self.tempID)} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.", True)
             elif self.buttonChoice == 10:
                 self.doMainText("Apparently you derped and didn't mean to use it, so you put the dye back in your bag.", True)
                 self.itemAdd(self.tempID)
@@ -11584,8 +11969,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         dlist = []
         tempDict = {4: "Buy", 12: "Return"}
         for i in self.bMap:
-            tempDict[i] = self.apothName(self.apothID(i))
-            if (self.apothName(self.apothID(i)) == ""):
+            tempDict[i] = ApothecaryItems.name(self.apothID(i))
+            if (ApothecaryItems.name(self.apothID(i)) == ""):
                 dlist.append(i)
         self.outputMainText("Click on an item to view its description. If you would like to purchase it, click the Buy button.\n\nRecipes for Alchemy only need to be bought once. After you have learned the recipe, you don't need to learn it again.", True)
         self.doButtonChoices(tempDict)
@@ -11593,22 +11978,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             if (self.buttonChoice not in {4, 8, 12} and self.apothID(self.buttonChoice) != 0):
-                self.outputMainText(f"{self.apothDescription(self.apothID(self.buttonChoice))}\n\nCost: {3 * self.apothValue(self.apothID(self.buttonChoice))} coins.", True)
+                self.outputMainText(f"{self.apothDescription(self.apothID(self.buttonChoice))}\n\nCost: {3 * ApothecaryItems.value(self.apothID(self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {self.apothName(self.apothID(self.buy))}?")
-                if (self.apothID(self.buy) > 200 and self.itemStackMax(self.apothID(self.buy)) > 1):
+                self.outputMainText(f"\n\nAre you sure you would like to buy {ApothecaryItems.name(self.apothID(self.buy))}?")
+                if (self.apothID(self.buy) > 200 and Items.stackMax(self.apothID(self.buy)) > 1):
                     buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                     tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
-                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * self.apothValue(self.apothID(self.buy))} coins, 2 for {6 * self.apothValue(self.apothID(self.buy))} coins, 5 for {15 * self.apothValue(self.apothID(self.buy))} coins")
-                    if (self.itemStackMax(self.apothID(self.buy)) >= 10):
+                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * ApothecaryItems.value(self.apothID(self.buy))} coins, 2 for {6 * ApothecaryItems.value(self.apothID(self.buy))} coins, 5 for {15 * ApothecaryItems.value(self.apothID(self.buy))} coins")
+                    if (Items.stackMax(self.apothID(self.buy)) >= 10):
                         tempDict[9] = "Buy 10"
                         buttonlist[9] = 1
-                        self.doMainText(f", 10 for {30 * self.apothValue(self.apothID(self.buy))} coins")
-                    if (self.itemStackMax(self.apothID(self.buy)) >= 15):
+                        self.doMainText(f", 10 for {30 * ApothecaryItems.value(self.apothID(self.buy))} coins")
+                    if (Items.stackMax(self.apothID(self.buy)) >= 15):
                         tempDict[10] = "Buy 15"
                         buttonlist[10] = 1
-                        self.doMainText(f", 15 for {45 * self.apothValue(self.apothID(self.buy))} coins")
+                        self.doMainText(f", 15 for {45 * ApothecaryItems.value(self.apothID(self.buy))} coins")
                     self.outputMainText(".")
                     self.showButtons(buttonlist)
                     self.doButtonChoices(tempDict)
@@ -11632,27 +12017,27 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             tempInt = 10
                         elif self.buttonChoice == 10:
                             tempInt = 15
-                        if (self.coin < 3 * tempInt * self.apothValue(self.apothID(self.buy))):
-                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * self.apothValue(self.apothID(self.buy)) - self.coin} more coins to purchase ", True)
+                        if (self.coin < 3 * tempInt * ApothecaryItems.value(self.apothID(self.buy))):
+                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * ApothecaryItems.value(self.apothID(self.buy)) - self.coin} more coins to purchase ", True)
                             if (tempInt > 1):
-                                self.doMainText(f"{tempInt}x {self.apothName(self.apothID(self.buy))}.")
+                                self.doMainText(f"{tempInt}x {ApothecaryItems.name(self.apothID(self.buy))}.")
                             else:
-                                self.doMainText(f"{self.apothName(self.apothID(self.buy))}.")
+                                self.doMainText(f"{ApothecaryItems.name(self.apothID(self.buy))}.")
                             self.displayMainText()
                             self.doNext()
 
                             def doListen():
                                 self.doApothecary()
                             self.doListen = doListen
-                        elif (self.checkItem(self.apothID(self.buy)) and not self.conItem(self.apothID(self.buy))):
-                            self.outputMainText(f"Sorry, but you cannot buy {self.apothName(self.apothID(self.buy))} if you already have one. Please choose something else.", True)
+                        elif (self.checkItem(self.apothID(self.buy)) and not Items.isConsumable(self.apothID(self.buy))):
+                            self.outputMainText(f"Sorry, but you cannot buy {ApothecaryItems.name(self.apothID(self.buy))} if you already have one. Please choose something else.", True)
                             self.doNext()
 
                             def doListen():
                                 self.doApothecary()
                             self.doListen = doListen
                         else:
-                            self.doCoin(-3 * tempInt * self.apothValue(self.apothID(self.buy)))
+                            self.doCoin(-3 * tempInt * ApothecaryItems.value(self.apothID(self.buy)))
                             if (self.apothID(self.buy) > 200):
                                 self.addManyItem(self.apothID(self.buy), tempInt)
                             else:
@@ -11783,46 +12168,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if ID == 17:
             self.knowMilkSuppress = True
 
-    def apothName(self, ID: int):
-        if ID >= 200:
-            return self.itemName(ID)
-        if ID == 1:
-            return 'R: LustDraft'
-        if ID == 2:
-            return 'R: RejuvPot'
-        if ID == 3:
-            return 'R: ExpPreg'
-        if ID == 4:
-            return 'R: BallSwell'
-        if ID == 5:
-            return 'R: SLustDraft'
-        if ID == 6:
-            return 'R: SRejuvPot'
-        if ID == 7:
-            return 'R: SExpPreg'
-        if ID == 8:
-            return 'R: SBallSwell'
-        if ID == 9:
-            return 'R: GenSwap'
-        if ID == 10:
-            return 'R: MasoPot'
-        if ID == 11:
-            return 'R: BabyFree'
-        if ID == 12:
-            return 'R: PotPot'
-        if ID == 13:
-            return 'R: SGenSwap'
-        if ID == 14:
-            return 'R: SMasoPot'
-        if ID == 15:
-            return 'R: SBabyFree'
-        if ID == 16:
-            return 'R: SPotPot'
-        if ID == 17:
-            return 'R: MilkSuppress'
-        return ""
-
     def apothDescription(self, ID: int):
+        # TODO: Move to
         if ID >= 200:
             return self.itemDescription(ID)
         if ID == 1:
@@ -11861,45 +12208,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             return "Recipe: Milk Suppressant\n\nSometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
         return ""
 
-    def apothValue(self, ID: int):
-        if (ID >= 200):
-            return self.itemValue(ID)
-        if ID == 1:
-            return 20
-        if ID == 2:
-            return 25
-        if ID == 3:
-            return 25
-        if ID == 4:
-            return 20
-        if ID == 5:
-            return 35
-        if ID == 6:
-            return 40
-        if ID == 7:
-            return 35
-        if ID == 8:
-            return 30
-        if ID == 9:
-            return 45
-        if ID == 10:
-            return 45
-        if ID == 11:
-            return 40
-        if ID == 12:
-            return 45
-        if ID == 13:
-            return 60
-        if ID == 14:
-            return 70
-        if ID == 15:
-            return 55
-        if ID == 16:
-            return 65
-        if ID == 17:
-            return 35
-        return 0
-
     def doSalon(self):
         self.buy = 0
         self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
@@ -11907,23 +12215,23 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempDict = {4: "Buy", 12: "Return"}
         for i in self.bMap:
             if i != 10:
-                tempDict[i] = self.hairstyleName(self.hairstyleID(i))
+                tempDict[i] = Hairstyles.name(self.hairstyleID(i))
         self.outputMainText("Click on a hairstyle to view a description of the hairstyle. If you would like to purchase it, click the Buy button.\n\nNote: Buying hairstyles automatically replaces your current hairstyle. You cannot sell hairstyles.", True)
         self.doButtonChoices(tempDict)
         self.disableSelectedButtons(dlist)
 
         def doListen():
             if (self.buttonChoice not in {4, 8, 12} and self.clothesID(self.buttonChoice) != 0):
-                self.outputMainText(f"{self.hairstyleDescription(self.hairstyleID(self.buttonChoice))}\n\nCost: {self.hairstyleValue(self.hairstyleID(self.buttonChoice))} coins.", True)
+                self.outputMainText(f"{Hairstyles.description(self.hairstyleID(self.buttonChoice))}\n\nCost: {Hairstyles.value(self.hairstyleID(self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {self.hairstyleName(self.hairstyleID(self.buy))}?")
+                self.outputMainText(f"\n\nAre you sure you would like to buy {Hairstyles.name(self.hairstyleID(self.buy))}?")
                 self.buttonConfirm()
 
                 def doListen():
                     if (self.buttonChoice == 6):
-                        if (self.coin < self.hairstyleValue(self.hairstyleID(self.buy))):
-                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {self.hairstyleValue(self.hairstyleID(self.buy)) - self.coin} more coins to purchase {self.hairstyleName(self.hairstyleID(self.buy))}.", True)
+                        if (self.coin < Hairstyles.value(self.hairstyleID(self.buy))):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {Hairstyles.value(self.hairstyleID(self.buy)) - self.coin} more coins to purchase {Hairstyles.name(self.hairstyleID(self.buy))}.", True)
                             self.doNext()
 
                             def doListen():
@@ -11931,8 +12239,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doListen = doListen
                         else:
                             self.hair = self.hairstyleID(self.buy)
-                            self.doCoin(-self.hairstyleValue(self.hairstyleID(self.buy)))
-                            if (self.hairstyleLength(self.hairstyleID(self.buy))):
+                            self.doCoin(-Hairstyles.value(self.hairstyleID(self.buy)))
+                            if (Hairstyles.hasLengthOptions(self.hairstyleID(self.buy))):
                                 self.showButtons(ButtonList(1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0))
                                 self.outputMainText("What length would you like your hair to be? This does not affect its cost.\n\nShort - Doesn't hang past head.\n\nMedium - Reaches shoulders.\n\nLong - Reaches past shoulderblades.\n\nX-Long - Hangs past your butt.\n\nXX-Long - Reaches the ground.")
                                 self.doButtonChoices({1: "Short", 2: "Medium", 5: "Long", 6: "X-Long", 7: "XX-Long"})
@@ -11961,39 +12269,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     self.doReturn()
         self.doListen = doListen
-
-    def hairstyleName(self, ID: int):
-        if ID == 0:
-            return 'None'
-        if ID == 1:
-            return 'Wavy'
-        if ID == 2:
-            return 'Pigtail'
-        if ID == 3:
-            return 'Ponytail'
-        if ID == 4:
-            return 'Straight'
-        if ID == 5:
-            return 'Buzzcut'
-        if ID == 6:
-            return 'Mohawk'
-        if ID == 7:
-            return 'Bun'
-        if ID == 8:
-            return 'Curly'
-        if ID == 9:
-            return 'B Pigtail'
-        if ID == 10:
-            return 'B Ponytail'
-        if ID == 11:
-            return 'Braided'
-        if ID == 12:
-            return 'Spiky'
-        if ID == 13:
-            return 'Emo'
-        if ID == 14:
-            return 'Afro'
-        return f"HAIRSTYLE NAME ERROR {self.hair}"
 
     def hairDesc(self):
         if self.hair == 1:
@@ -12155,102 +12430,29 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 4
         return 0
 
-    @staticmethod
-    def hairstyleValue(ID: int):
-        if ID == 1:
-            return 5
-        if ID == 2:
-            return 8
-        if ID == 3:
-            return 8
-        if ID == 4:
-            return 5
-        if ID == 5:
-            return 7
-        if ID == 6:
-            return 20
-        if ID == 7:
-            return 10
-        if ID == 8:
-            return 5
-        if ID == 9:
-            return 15
-        if ID == 10:
-            return 15
-        if ID == 11:
-            return 23
-        if ID == 12:
-            return 18
-        if ID == 13:
-            return 18
-        if ID == 14:
-            return 20
-        return 0
-
-    @staticmethod
-    def hairstyleLength(ID: int):
-        '''
-        Returns whether a specific hairstyle has length options
-        '''
-        return ID in {1, 2, 3, 4, 8, 9, 10, 11, 13}
-
-    @staticmethod
-    def hairstyleDescription(ID: int):
-        if ID == 0:
-            return "No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."
-        if ID == 1:
-            return "Wavy hair has subtle curves that make it seem more flowing.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == 2:
-            return "Pigtails are straight/wavy/curvy hair pulled away from the face and gathered towards the sides of your head, where it is bundled and tied at the base, allowing it to hang freely over your shoulders.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == 3:
-            return "A Ponytail is straight/wavy/curvy hair pulled away from the face and gathered at the back of your head, where it is bundled and tied at the base, allowing it to hang freely over your back.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == 4:
-            return "Straight hair has been combed out to be nice and straight.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == 5:
-            return "A Buzzcut is hair cut quite short, less than a quarter inch from your head."
-        if ID == 6:
-            return "A Mohawk leaves only the hair along the center, from front to back, left, shaving the rest. It's usually a couple inches long."
-        if ID == 7:
-            return "A Bun is straight or wavy hair pulled up into a bun-like shape on top of the back of your head."
-        if ID == 8:
-            return "Curly hair has been treated to make it nice and curly with a bit of spring.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == 9:
-            return "Braided Pigtails are pigtails that have been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == 10:
-            return "A Braided Ponytail is a ponytail that has been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == 11:
-            return "Braided hair involves tying all your hair into many braids, keeping it all in multiple tight formations.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == 12:
-            return "Spiky hair is hair that has been treated to stand away from your head, defying gravity. Due to limitations, it can only reach a few inches in length."
-        if ID == 13:
-            return "Emo hair is hair that has been treated to sit straight at all times, with bangs often hanging over one eye.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == 14:
-            return "An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head."
-        return f"HAIR DESC_LONG ERROR {ID}"
-
     def doTailor(self):
         self.buy = 0
         self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
         tempDict = {4: "Buy", 12: "Return"}
         for i in self.bMap:
-            tempDict[i] = self.clothesName(self.clothesID(i))
+            tempDict[i] = Clothes.name(self.clothesID(i))
         self.outputMainText("Click on a piece of clothing to view a description for the piece. If you would like to purchase it, click the Buy button.\n\nNote: Buying clothes automatically replaces what you're already wearing. You cannot sell outfits.", True)
         self.doButtonChoices(tempDict)
 
         def doListen():
             if (self.buttonChoice not in {4, 8, 12} and self.clothesID(self.buttonChoice) != 0):
-                self.outputMainText(f"{self.clothesDescription(self.clothesID(self.buttonChoice))}\n\nCost: {self.clothesValue(self.clothesID(self.buttonChoice))} coins.", True)
+                self.outputMainText(f"{Clothes.description(self.clothesID(self.buttonChoice))}\n\nCost: {Clothes.value(self.clothesID(self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {self.clothesName(self.clothesID(self.buy))}?")
+                self.outputMainText(f"\n\nAre you sure you would like to buy {Clothes.name(self.clothesID(self.buy))}?")
                 if (self.attireTop == self.attireBot):
                     self.outputMainText(f"\n\nBe wary, replacing your {self.clothesTop()} with something that only takes a single clothes slot, your other clothes slot will default to the basic shirt/pants.")
                 self.buttonConfirm()
 
                 def doListen():
                     if (self.buttonChoice == 6):
-                        if (self.coin < self.clothesValue(self.clothesID(self.buy))):
-                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {self.clothesValue(self.clothesID(self.buy)) - self.coin} more coins to purchase {self.clothesName(self.clothesID(self.buy))}.", True)
+                        if (self.coin < Clothes.value(self.clothesID(self.buy))):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {Clothes.value(self.clothesID(self.buy)) - self.coin} more coins to purchase {Clothes.name(self.clothesID(self.buy))}.", True)
                             self.doNext()
 
                             def doListen():
@@ -12258,7 +12460,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doListen = doListen
                         else:
                             self.clothesChange(self.clothesID(self.buy))
-                            self.doCoin(-self.clothesValue(self.clothesID(self.buy)))
+                            self.doCoin(-Clothes.value(self.clothesID(self.buy)))
                             self.doTailor()
                     else:
                         self.doTailor()
@@ -12269,74 +12471,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     self.doReturn()
         self.doListen = doListen
-
-    @staticmethod
-    def clothesName(ID: int):
-        if ID == -1:
-            return "Tattered Shreds"
-        if ID == 0:
-            return "Invisible Underwear"
-        if ID == 1:
-            return "Shirt"
-        if ID == 2:
-            return "Pants"
-        if ID == 3:
-            return "Bikini Top"
-        if ID == 4:
-            return "Bikini Bottom"
-        if ID == 5:
-            return "Elegant Dress"
-        if ID == 6:
-            return "Latex Suit"
-        if ID == 7:
-            return "Skirt"
-        if ID == 8:
-            return "Shorts"
-        if ID == 9:
-            return "Blouse"
-        if ID == 10:
-            return "Diaper"
-        if ID == 11:
-            return "Poofy Diaper"
-        if ID == 12:
-            return "Sundress"
-        if ID == 13:
-            return "Skimpy Dress"
-        if ID == 14:
-            return "Short Skirt"
-        if ID == 15:
-            return "Short Shorts"
-        if ID == 16:
-            return "Loin Cloth"
-        if ID == 17:
-            return "Bathing Suit"
-        if ID == 18:
-            return "Muscle Shirt"
-        if ID == 19:
-            return "Corset"
-        if ID == 20:
-            return "Silk Panties"
-        if ID == 21:
-            return "Slingkini"
-        if ID == 22:
-            return "Thong"
-        if ID == 23:
-            return "Bloomers"
-        if ID == 24:
-            return "Tights"
-        if ID == 25:
-            return "Gothic Dress"
-        if ID == 26:
-            return "Tube Top"
-        if ID == 27:
-            return "Nipple Pasties"
-        if ID == 28:
-            return "Camisole"
-        if ID == 29:
-            return "Training Suit"
-        if ID == 30:
-            return "Bouncy Bra"
-        return "CLOTHES NAME ERROR"
 
     def clothesID(self, choice: int):
         if self.currentZone == 1:
@@ -12454,134 +12588,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if choice == 11:
                 return 19
         return 0
-
-    @staticmethod
-    def clothesValue(ID: int):
-        if ID == 1:
-            return 5
-        if ID == 2:
-            return 5
-        if ID == 3:
-            return 25
-        if ID == 4:
-            return 25
-        if ID == 5:
-            return 45
-        if ID == 6:
-            return 60
-        if ID == 7:
-            return 25
-        if ID == 8:
-            return 25
-        if ID == 9:
-            return 25
-        if ID == 10:
-            return 30
-        if ID == 11:
-            return 40
-        if ID == 12:
-            return 40
-        if ID == 13:
-            return 50
-        if ID == 14:
-            return 35
-        if ID == 15:
-            return 35
-        if ID == 16:
-            return 40
-        if ID == 17:
-            return 55
-        if ID == 18:
-            return 15
-        if ID == 19:
-            return 50
-        if ID == 20:
-            return 35
-        if ID == 21:
-            return 65
-        if ID == 22:
-            return 40
-        if ID == 23:
-            return 30
-        if ID == 24:
-            return 35
-        if ID == 25:
-            return 60
-        if ID == 26:
-            return 20
-        if ID == 27:
-            return 45
-        if ID == 28:
-            return 40
-        if ID == 29:
-            return 35
-        if ID == 30:
-            return 45
-        return 0
-
-    @staticmethod
-    def clothesDescription(ID: int):
-        if ID == 1:
-            return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
-        if ID == 2:
-            return "A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."
-        if ID == 3:
-            return "A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."
-        if ID == 4:
-            return "A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."
-        if ID == 5:
-            return "A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."
-        if ID == 6:
-            return "A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."
-        if ID == 7:
-            return "A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."
-        if ID == 8:
-            return "A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."
-        if ID == 9:
-            return "A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."
-        if ID == 10:
-            return "A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
-        if ID == 11:
-            return "A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
-        if ID == 12:
-            return "A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."
-        if ID == 13:
-            return "A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."
-        if ID == 14:
-            return "A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."
-        if ID == 15:
-            return "A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."
-        if ID == 16:
-            return "A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."
-        if ID == 17:
-            return "A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."
-        if ID == 18:
-            return "A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."
-        if ID == 19:
-            return "A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."
-        if ID == 20:
-            return "A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."
-        if ID == 21:
-            return "A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."
-        if ID == 22:
-            return "A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."
-        if ID == 23:
-            return "A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."
-        if ID == 24:
-            return "A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."
-        if ID == 25:
-            return "A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."
-        if ID == 26:
-            return "A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."
-        if ID == 27:
-            return "A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."
-        if ID == 28:
-            return "A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."
-        if ID == 29:
-            return "A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."
-        if ID == 30:
-            return "A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot."
-        return "CLOTHES DESCRIPTION ERROR"
 
     def clothesTop(self):
         if self.attireTop == -1:
@@ -14685,7 +14691,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def makeAlchemy(self, ID: int, level: int):
         self.tempID = ID
         self.tempInt = level
-        self.outputMainText(f"You have chosen to make a {self.itemName(ID)}.\n\nAre you sure?", True)
+        self.outputMainText(f"You have chosen to make a {Items.name(ID)}.\n\nAre you sure?", True)
         self.buttonConfirm()
 
         def doListen():
@@ -18896,7 +18902,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (self.buttonChoice == 6):
                self.doMainText("It just looks so magnificent that you can't help but stuff your nose in and take a big whiff.\n\nYou immediately regret your impulsive inhaling, as an intense tingle erupts within your nose. You're nearly forced to laugh from the intense tickling sensation, but considering the area being affected, you instead halt your breath. Your next attempt to breath only intensifies the sensation further, your chest heaving to hold back. But, you're simply not strong enough...\n\n\"ACHOO!\" You sneeze loud and hard. So hard, in fact, that ", True)
                self.rndArray = Array(1, 2)
-               if (self.hairstyleLength(self.hair) and self.hairLength < 10):
+               if (Hairstyles.hasLengthOptions(self.hair) and self.hairLength < 10):
                   self.rndArray.push(3)
                if (self.cockTotal > 0):
                   self.rndArray.push(4)
@@ -22971,40 +22977,40 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempDict.update({4: "<<", 8: ">>"})
         if (self.specialAbilityArray[0 + (more * 9 - 9)]):
             buttonlist[1] = 1
-            tempDict[1] = self.specialAbilityName(self.specialAbilityArray[0 + (more * 9 - 9)])
-            self.specialAbilityDescription(self.specialAbilityArray[0 + (more * 9 - 9)])
+            tempDict[1] = SpecialAbilities.name(self.specialAbilityArray[0 + (more * 9 - 9)])
+            SpecialAbilities.description(self.specialAbilityArray[0 + (more * 9 - 9)])
         if (self.specialAbilityArray[1 + (more * 9 - 9)]):
             buttonlist[2] = 1
-            tempDict[2] = self.specialAbilityName(self.specialAbilityArray[1 + (more * 9 - 9)])
-            self.specialAbilityDescription(self.specialAbilityArray[1 + (more * 9 - 9)])
+            tempDict[2] = SpecialAbilities.name(self.specialAbilityArray[1 + (more * 9 - 9)])
+            SpecialAbilities.description(self.specialAbilityArray[1 + (more * 9 - 9)])
         if (self.specialAbilityArray[2 + (more * 9 - 9)]):
             buttonlist[3] = 1
-            tempDict[3] = self.specialAbilityName(self.specialAbilityArray[2 + (more * 9 - 9)])
-            self.specialAbilityDescription(self.specialAbilityArray[2 + (more * 9 - 9)])
+            tempDict[3] = SpecialAbilities.name(self.specialAbilityArray[2 + (more * 9 - 9)])
+            SpecialAbilities.description(self.specialAbilityArray[2 + (more * 9 - 9)])
         if (self.specialAbilityArray[3 + (more * 9 - 9)]):
             buttonlist[5] = 1
-            tempDict[5] = self.specialAbilityName(self.specialAbilityArray[3 + (more * 9 - 9)])
-            self.specialAbilityDescription(self.specialAbilityArray[3 + (more * 9 - 9)])
+            tempDict[5] = SpecialAbilities.name(self.specialAbilityArray[3 + (more * 9 - 9)])
+            SpecialAbilities.description(self.specialAbilityArray[3 + (more * 9 - 9)])
         if (self.specialAbilityArray[4 + (more * 9 - 9)]):
             buttonlist[6] = 1
-            tempDict[6] = self.specialAbilityName(self.specialAbilityArray[4 + (more * 9 - 9)])
-            self.specialAbilityDescription(self.specialAbilityArray[4 + (more * 9 - 9)])
+            tempDict[6] = SpecialAbilities.name(self.specialAbilityArray[4 + (more * 9 - 9)])
+            SpecialAbilities.description(self.specialAbilityArray[4 + (more * 9 - 9)])
         if (self.specialAbilityArray[5 + (more * 9 - 9)]):
             buttonlist[7] = 1
-            tempDict[7] = self.specialAbilityName(self.specialAbilityArray[5 + (more * 9 - 9)])
-            self.specialAbilityDescription(self.specialAbilityArray[5 + (more * 9 - 9)])
+            tempDict[7] = SpecialAbilities.name(self.specialAbilityArray[5 + (more * 9 - 9)])
+            SpecialAbilities.description(self.specialAbilityArray[5 + (more * 9 - 9)])
         if (self.specialAbilityArray[6 + (more * 9 - 9)]):
             buttonlist[9] = 1
-            tempDict[9] = self.specialAbilityName(self.specialAbilityArray[6 + (more * 9 - 9)])
-            self.specialAbilityDescription(self.specialAbilityArray[6 + (more * 9 - 9)])
+            tempDict[9] = SpecialAbilities.name(self.specialAbilityArray[6 + (more * 9 - 9)])
+            SpecialAbilities.description(self.specialAbilityArray[6 + (more * 9 - 9)])
         if (self.specialAbilityArray[7 + (more * 9 - 9)]):
             buttonlist[10] = 1
-            tempDict[10] = self.specialAbilityName(self.specialAbilityArray[7 + (more * 9 - 9)])
-            self.specialAbilityDescription(self.specialAbilityArray[7 + (more * 9 - 9)])
+            tempDict[10] = SpecialAbilities.name(self.specialAbilityArray[7 + (more * 9 - 9)])
+            SpecialAbilities.description(self.specialAbilityArray[7 + (more * 9 - 9)])
         if (self.specialAbilityArray[8 + (more * 9 - 9)]):
             buttonlist[11] = 1
-            tempDict[11] = self.specialAbilityName(self.specialAbilityArray[8 + (more * 9 - 9)])
-            self.specialAbilityDescription(self.specialAbilityArray[8 + (more * 9 - 9)])
+            tempDict[11] = SpecialAbilities.name(self.specialAbilityArray[8 + (more * 9 - 9)])
+            SpecialAbilities.description(self.specialAbilityArray[8 + (more * 9 - 9)])
         self.showButtons(buttonlist)
         self.doButtonChoices(tempDict)
 
@@ -23041,18 +23047,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hidePage()
                 self.doReturn()
         self.doListen = doListen
-
-    @staticmethod
-    def specialAbilityName(ID: int):
-        if ID == 1:
-            return "Skunk Spray"
-        return f"SPECIAL ABILITY NAME ERROR {ID}"
-
-    @staticmethod
-    def specialAbilityDescription(ID: int):
-        if ID == 1:
-            return "\n\nSkunk Spray - Using your scent glands in your rump, you can unleash this terrible stench upon your enemy, causing damage and potentially making them miss their next turn."
-        return f"SPECIAL ABILITY DESC ERROR {ID}"
 
     def specialAbilityUse(self, ID: int):
         self.dmg = 0
@@ -23224,7 +23218,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText(f"\n\nSomewhere on the passed out body (you probably don't want to know where) you find {self.eCoin} coins.")
             self.doCoin(self.eCoin)
         if (self.eItem != 0):
-            self.doMainText(f"\n\nYou manage to obtain {self.itemName(self.eItem)} from your opponent.")
+            self.doMainText(f"\n\nYou manage to obtain {Items.name(self.eItem)} from your opponent.")
         if (self.eSexP != 0):
             self.doMainText(f"\n\nFor your efforts, you grow in experience, gaining {self.eSexP} SexP!")
             self.doSexP(self.eSexP)
@@ -24525,7 +24519,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.stats(0, 0, 1, 0)
          elif (attack <= 45):
             chance = self.percent()
-            if (chance <= 20 and self.hair > 0 and self.hairstyleLength(self.hair) and self.hairLength < 10):
+            if (chance <= 20 and self.hair > 0 and Hairstyles.hasLengthOptions(self.hair) and self.hairLength < 10):
                self.doMainText(f"\n\n\"You know what helps make a slut look good?\" She steps up behind you and runs her fingers through your {self.hairDesc()} hair. A tingly sensation envelops your skull")
                if (self.percent() < self.ment):
                   self.doMainText(", but you manage to resist and interrupt her efforts.")
@@ -26949,7 +26943,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def humanTaurTailDesc(self):
         tempStr = ""
-        if (self.hairstyleLength(self.hair)):
+        if (Hairstyles.hasLengthOptions(self.hair)):
             if self.hairLength == 2:
                 tempStr = "short "
             elif self.hairLength == 4:
@@ -28313,7 +28307,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.window._children[f'{which}imglabel'].image_name = img
 
     def moveItemShow(self):
-        text = self.itemName(self.moveItemID)
+        text = Items.name(self.moveItemID)
         if (not self.moveitembuttonvisible):
             self.window.addWidget(PyminButton, 'display', 'moveitembutton', x=920, y=96, width=140, height=46, font=self.font, text=text)
             self.moveitembuttonvisible = True
