@@ -3,7 +3,7 @@ import as3lib
 from as3lib import (Array, as3state, each, EnableDebug, Error, Number,
                     RangeError, setHeaderInfo, TOML, trace)  # Math
 from as3lib.helpers import isValidDirectory, textObject
-from as3lib.flash.desktop import _TOOLKITEVENT
+from as3lib.flash.desktop import _ToolkitEvent, _TkMouse
 from as3lib.flash.events import MouseEvent
 from as3lib.flash.text import Font
 import as3lib.interface_tk as itk
@@ -153,7 +153,7 @@ class PyminButton(itk.itkFrame):
         text = kwargs.pop('text', '')
         super().__init__(master, highlightthickness=1, background='#FFFFFF', highlightbackground='#000000', **kwargs)
         self.label = tkinter.Label(self, anchor='center', background='#FFFFFF', foreground='#000000')
-        self.bind(_TOOLKITEVENT.MouseButtonToTk(MouseEvent.CLICK), self.press)
+        self.bind(f'<Button-{_TkMouse.LeftButton}>', self.press)
         self.text = text
 
     def bind(self, key, func):
@@ -3815,7 +3815,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Function activated on key press
         '''
         self.detailedDebug()
-        key = _TOOLKITEVENT.TkGetKeyCode(e)
+        key = _ToolkitEvent.GetKeyCode(e)
         if key == 16:  # Shift
             self.shiftHeld = True
         elif key == 17:  # Ctrl
@@ -3831,7 +3831,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Function activated on key release
         '''
-        kc = _TOOLKITEVENT.TkGetKeyCode(e)
+        kc = _ToolkitEvent.GetKeyCode(e)
         if kc == 16:  # Shift
             self.shiftHeld = False
         if kc == 17:  # Ctrl
@@ -13775,91 +13775,91 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doEnd()
 
     def doSleep(self):
-      self.bc()
-      self.doMainText("You head into town to sleep for the night...", True)
-      self.exhaustion = 0
-      self.skipExhaustion = True
-      if (self.exhaustionPenalty == 1):
-         self.exhaustionPenalty = 0
-         self.statsMod(3, 3, 0, 0)
-      elif (self.exhaustionPenalty == 2):
-         self.exhaustionPenalty = 0
-         self.statsMod(11, 11, 0, 0)
-      self.doHP(20)
-      if (self.lust <= 30):
-         self.doMainText("\n\nDespite everything, your body is calm and sleeps rather soundly.")
-         if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
-            self.doMainText(" Although your bed is slightly moist from your constant production of lubricant from your loins.")
-      elif (self.lust <= 70):
-         self.doMainText("\n\nYour sleep is somewhat disrupted by tossing and turning throughout the night, your arousal making certain attributes swell with blood and desiring attention...")
-         self.exhaustion += 3
-         if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 9 and self.cockTotal > 0 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 9 and self.vagTotal > 0):
-            self.doMainText(" Plus your bed is slightly moist from your constant production of lubricant from your loins.")
-         if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
-            self.doMainText(" It also seems as though you had wet the bed throughout the night, however the slick slime that pulls away in long strands as you touch it indicates a different fluid...")
-      elif (self.lust > 70):
-         self.doMainText("\n\nYou spend most of the night tossing and turning, your mind having difficulty sleeping with the lust that envelops it. Although you do manage to eventually get some, it's not nearly as good.")
-         self.exhaustion += 8
-         if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 and self.cockTotal > 0 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3 and self.vagTotal > 0):
-            self.doMainText(" Plus your bed is slightly moist from your constant production of lubricant from your loins.")
-         if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 9 and self.cockTotal > 0 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 9 and self.vagTotal > 0):
-            self.doMainText(" It also seems as though you had wet the bed throughout the night, however the slick slime that pulls away in long strands as you touch it indicates a different fluid...")
-         if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
-            self.doMainText(f" You also wake up in a pool of your own sexual lubricant, the slick stuff sloshing off the sheets as you attempt to get out. You remain cautious as your {self.legDesc(10)} touch the floor, as you have to avoid slipping in the large puddle around the bed.")
-      if (self.heatTime < 0 and self.heat > 0 and self.vagTotal > 0):
-         self.doMainText("\n\nDreams of being fucked by over a dozen cocks, each filling you to the brim with hot spunk, filled your sleep. When you eventually woke up in a hot sweat, your hand reflexively inspects your belly and you find yourself slightly disappointed to find it empty.")
-      if (self.milkEngorgementLevel == 2):
-         self.doMainText("\n\nYour sheets smell somewhat sweet, slightly wet and white, as you wake up. Milk still dribbles from your breasts, having formed a small puddle throughout the night.")
-      elif (self.milkEngorgementLevel > 2):
-         self.doMainText("\n\nYour sheets smell somewhat sweet and feel very wet as you wake up. Milk spills in streams from your breasts, as you sit up, a pool of the stuff all around you.")
-      if (self.udderEngorgementLevel == 2):
-         self.doMainText("\n\nYour sheets smell somewhat sweet, slightly wet and white, as you wake up. Milk still dribbles from your udder, having formed a small puddle throughout the night.")
-      elif (self.udderEngorgementLevel > 2):
-         self.doMainText("\n\nYour sheets smell somewhat sweet and feel very wet as you wake up. Milk spills in streams from your udder, as you sit up, a pool of the stuff all around you.")
-      if (self.pregCheck(0)):
-         if (self.pregnancyTime > 432):
-            self.doMainText("\n\nYou don't even bother to head to your bed. Borrowing a bunch of blankets, you've made do with sleeping outside. Your belly is too big to go indoors, even having to handle shop business from the streets. Your hand reaches out as far as it can and hardly wraps around any of your girth. The warmth it emanates and sensations it echoes through your body help you sleep quite soundly and pleasantly, though, so you'll be fine until you give birth.")
-         elif (self.pregnancyTime > 396):
-            self.doMainText(f"\n\nAs you lay down to go to sleep, you have to curl forward to fit your belly in your bed, leaving your backside hanging off the mattress. The sheets aren't even wide enough to cover you completely, making you feel a draft on some of your exposed belly. The chill makes you shiver, not from the cold, but from your nerves sparking from the super-taut, extra-sensitive {self.skinDesc()}.")
-         elif (self.pregnancyTime > 360):
-            self.doMainText(f"\n\nNow you're actually starting to get a little worried... Your {self.legDesc(6)} are knocking against the underside of your belly when you try to walk. People are clearing the way when you move down the streets to make room for your belly and you have to skillfully wedge yourself through narrow doorways!")
-         elif (self.pregnancyTime > 324):
-            self.doMainText("\n\nYour giant belly is becoming a bit of a nuisance... As you walk through buildings, people back up against a wall to let you pass by. You can feel your belly scrape against the frames of narrow doorways as you pass through, and it's been a while since you've last seen your belly-button...")
-         elif (self.pregnancyTime > 288):
-            self.doMainText("\n\nThis is getting ridiculous... People are starting to come up to you as you move through the street on your way to bed and actually ask if you've got a small person in your belly! Although, you aren't quite sure, but as your hands try to wrap around it, unable to fully embrace it, you begin to wonder yourself.")
-         elif (self.pregnancyTime > 252):
-            self.doMainText("\n\nYou're beginning to draw the eyes of the crowd as you move through town, your belly is so enormous. People are wondering if you've actually got a baby in there and not a small child.")
-         elif (self.pregnancyTime > 216):
-            self.doMainText(f"\n\nThe {self.skinDesc()} around your giant belly is so taut that you can audibly drum it with your fingers. Which the baby inside does with its feet frequently from inside.")
-         elif (self.pregnancyTime > 180):
-            self.doMainText("\n\nFor most races, you would be giving birth any time now. You actually have to be cautious about people bumping into you as you walk through the town, it protrudes so far.")
-         elif (self.pregnancyTime > 144):
-            self.doMainText("\n\nYour belly is so large your belly button has turned into an outie. You play with it as you head to sleep, the baby inside kicking back in turn.")
-         elif (self.pregnancyTime > 108):
-            self.doMainText("\n\nYou can easily hug your belly as it protrudes from your torso, looking like you were trying to smuggle a melon in your womb. But it feels so good to rub and caress it, making you easily get horny.")
-         elif (self.pregnancyTime > 72):
-            self.doMainText("\n\nYour belly is obviously bulging now, more than it would if it were just fat. You should probably accept the fact that you're pregnant...")
-         elif (self.pregnancyTime > 36):
-            self.doMainText("\n\nYou seem to be getting a bit chubbier in your midsection, might be because you've been hungrier and eating more lately. Plus you've been feeling a bit more randy than usual...")
-         elif (self.pregnancyTime > 18):
-            self.doMainText("\n\nAfter waking, you feel oddly sick and strangely bloated. You should probably watch what you eat more closely.")
-         temp1 = self.body + self.str / 2 + self.carryMod
-         temp2 = Math.floor(self.pregnancyTime / 10)
-         if (temp1 < temp2):
-            self.doMainText(" However, none of that really matters as you can no longer carry the weight of your hefty belly. You're stuck in this town, dragging your belly across the ground, with padding beneath to protect it. There's going to be no more exploring until you either get stronger or give birth to this massive nuisance...")
-         elif (temp1 * 2 < temp2):
-            self.doMainText(f" Your {self.skinDesc()} is pulled so taut around your belly that you're afraid it might tear, though it never does. But it's so sensitive... Caressing it as you try to sleep is so nice~ Although, it does have the slight drawback of looking rather silly while you walk with a hunch and attempt to cradle it wherever you go; it's gotten so heavy.")
-         elif (temp1 * 3 < temp2):
-            self.doMainText(" The mound feels so heavy... When walking around town, you even had to keep a hand on your back for support.")
-         elif (temp1 * 4 < temp2):
-            self.doMainText(" The weight of your belly makes you feel more exhausted than you really are by the end of the day, making you glad for the night's rest.")
-         elif (temp1 * 5 < temp2):
-            self.doMainText(" You can noticeably feel the weight of your belly.")
-      if (not self.firstExplore and self.percent() < 10):
-         self.doMainText("\n\n\"Please... Anybody?\" Despite everything, your mind focuses on that echoing dream for another night now...")
-      self.displayMainText()
-      self.hrs = 8
-      self.doEnd()
+        self.bc()
+        self.doMainText("You head into town to sleep for the night...", True)
+        self.exhaustion = 0
+        self.skipExhaustion = True
+        if (self.exhaustionPenalty == 1):
+            self.exhaustionPenalty = 0
+            self.statsMod(3, 3, 0, 0)
+        elif (self.exhaustionPenalty == 2):
+            self.exhaustionPenalty = 0
+            self.statsMod(11, 11, 0, 0)
+        self.doHP(20)
+        if (self.lust <= 30):
+            self.doMainText("\n\nDespite everything, your body is calm and sleeps rather soundly.")
+            if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
+                self.doMainText(" Although your bed is slightly moist from your constant production of lubricant from your loins.")
+        elif (self.lust <= 70):
+            self.doMainText("\n\nYour sleep is somewhat disrupted by tossing and turning throughout the night, your arousal making certain attributes swell with blood and desiring attention...")
+            self.exhaustion += 3
+            if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 9 and self.cockTotal > 0 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 9 and self.vagTotal > 0):
+                self.doMainText(" Plus your bed is slightly moist from your constant production of lubricant from your loins.")
+            if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
+                self.doMainText(" It also seems as though you had wet the bed throughout the night, however the slick slime that pulls away in long strands as you touch it indicates a different fluid...")
+        elif (self.lust > 70):
+            self.doMainText("\n\nYou spend most of the night tossing and turning, your mind having difficulty sleeping with the lust that envelops it. Although you do manage to eventually get some, it's not nearly as good.")
+            self.exhaustion += 8
+            if (self.moistCalc(1) > 0 and self.moistCalc(1) <= 3 and self.cockTotal > 0 or self.moistCalc(2) > 0 and self.moistCalc(2) <= 3 and self.vagTotal > 0):
+                self.doMainText(" Plus your bed is slightly moist from your constant production of lubricant from your loins.")
+            if (self.moistCalc(1) > 3 and self.moistCalc(1) <= 9 and self.cockTotal > 0 or self.moistCalc(2) > 3 and self.moistCalc(2) <= 9 and self.vagTotal > 0):
+                self.doMainText(" It also seems as though you had wet the bed throughout the night, however the slick slime that pulls away in long strands as you touch it indicates a different fluid...")
+            if (self.moistCalc(1) > 9 and self.cockTotal > 0 or self.moistCalc(2) > 9 and self.vagTotal > 0):
+                self.doMainText(f" You also wake up in a pool of your own sexual lubricant, the slick stuff sloshing off the sheets as you attempt to get out. You remain cautious as your {self.legDesc(10)} touch the floor, as you have to avoid slipping in the large puddle around the bed.")
+        if (self.heatTime < 0 and self.heat > 0 and self.vagTotal > 0):
+            self.doMainText("\n\nDreams of being fucked by over a dozen cocks, each filling you to the brim with hot spunk, filled your sleep. When you eventually woke up in a hot sweat, your hand reflexively inspects your belly and you find yourself slightly disappointed to find it empty.")
+        if (self.milkEngorgementLevel == 2):
+            self.doMainText("\n\nYour sheets smell somewhat sweet, slightly wet and white, as you wake up. Milk still dribbles from your breasts, having formed a small puddle throughout the night.")
+        elif (self.milkEngorgementLevel > 2):
+            self.doMainText("\n\nYour sheets smell somewhat sweet and feel very wet as you wake up. Milk spills in streams from your breasts, as you sit up, a pool of the stuff all around you.")
+        if (self.udderEngorgementLevel == 2):
+            self.doMainText("\n\nYour sheets smell somewhat sweet, slightly wet and white, as you wake up. Milk still dribbles from your udder, having formed a small puddle throughout the night.")
+        elif (self.udderEngorgementLevel > 2):
+            self.doMainText("\n\nYour sheets smell somewhat sweet and feel very wet as you wake up. Milk spills in streams from your udder, as you sit up, a pool of the stuff all around you.")
+        if (self.pregCheck(0)):
+            if (self.pregnancyTime > 432):
+                self.doMainText("\n\nYou don't even bother to head to your bed. Borrowing a bunch of blankets, you've made do with sleeping outside. Your belly is too big to go indoors, even having to handle shop business from the streets. Your hand reaches out as far as it can and hardly wraps around any of your girth. The warmth it emanates and sensations it echoes through your body help you sleep quite soundly and pleasantly, though, so you'll be fine until you give birth.")
+            elif (self.pregnancyTime > 396):
+                self.doMainText(f"\n\nAs you lay down to go to sleep, you have to curl forward to fit your belly in your bed, leaving your backside hanging off the mattress. The sheets aren't even wide enough to cover you completely, making you feel a draft on some of your exposed belly. The chill makes you shiver, not from the cold, but from your nerves sparking from the super-taut, extra-sensitive {self.skinDesc()}.")
+            elif (self.pregnancyTime > 360):
+                self.doMainText(f"\n\nNow you're actually starting to get a little worried... Your {self.legDesc(6)} are knocking against the underside of your belly when you try to walk. People are clearing the way when you move down the streets to make room for your belly and you have to skillfully wedge yourself through narrow doorways!")
+            elif (self.pregnancyTime > 324):
+                self.doMainText("\n\nYour giant belly is becoming a bit of a nuisance... As you walk through buildings, people back up against a wall to let you pass by. You can feel your belly scrape against the frames of narrow doorways as you pass through, and it's been a while since you've last seen your belly-button...")
+            elif (self.pregnancyTime > 288):
+                self.doMainText("\n\nThis is getting ridiculous... People are starting to come up to you as you move through the street on your way to bed and actually ask if you've got a small person in your belly! Although, you aren't quite sure, but as your hands try to wrap around it, unable to fully embrace it, you begin to wonder yourself.")
+            elif (self.pregnancyTime > 252):
+                self.doMainText("\n\nYou're beginning to draw the eyes of the crowd as you move through town, your belly is so enormous. People are wondering if you've actually got a baby in there and not a small child.")
+            elif (self.pregnancyTime > 216):
+                self.doMainText(f"\n\nThe {self.skinDesc()} around your giant belly is so taut that you can audibly drum it with your fingers. Which the baby inside does with its feet frequently from inside.")
+            elif (self.pregnancyTime > 180):
+                self.doMainText("\n\nFor most races, you would be giving birth any time now. You actually have to be cautious about people bumping into you as you walk through the town, it protrudes so far.")
+            elif (self.pregnancyTime > 144):
+                self.doMainText("\n\nYour belly is so large your belly button has turned into an outie. You play with it as you head to sleep, the baby inside kicking back in turn.")
+            elif (self.pregnancyTime > 108):
+                self.doMainText("\n\nYou can easily hug your belly as it protrudes from your torso, looking like you were trying to smuggle a melon in your womb. But it feels so good to rub and caress it, making you easily get horny.")
+            elif (self.pregnancyTime > 72):
+                self.doMainText("\n\nYour belly is obviously bulging now, more than it would if it were just fat. You should probably accept the fact that you're pregnant...")
+            elif (self.pregnancyTime > 36):
+                self.doMainText("\n\nYou seem to be getting a bit chubbier in your midsection, might be because you've been hungrier and eating more lately. Plus you've been feeling a bit more randy than usual...")
+            elif (self.pregnancyTime > 18):
+                self.doMainText("\n\nAfter waking, you feel oddly sick and strangely bloated. You should probably watch what you eat more closely.")
+            temp1 = self.body + self.str / 2 + self.carryMod
+            temp2 = Math.floor(self.pregnancyTime / 10)
+            if (temp1 < temp2):
+                self.doMainText(" However, none of that really matters as you can no longer carry the weight of your hefty belly. You're stuck in this town, dragging your belly across the ground, with padding beneath to protect it. There's going to be no more exploring until you either get stronger or give birth to this massive nuisance...")
+            elif (temp1 * 2 < temp2):
+                self.doMainText(f" Your {self.skinDesc()} is pulled so taut around your belly that you're afraid it might tear, though it never does. But it's so sensitive... Caressing it as you try to sleep is so nice~ Although, it does have the slight drawback of looking rather silly while you walk with a hunch and attempt to cradle it wherever you go; it's gotten so heavy.")
+            elif (temp1 * 3 < temp2):
+                self.doMainText(" The mound feels so heavy... When walking around town, you even had to keep a hand on your back for support.")
+            elif (temp1 * 4 < temp2):
+                self.doMainText(" The weight of your belly makes you feel more exhausted than you really are by the end of the day, making you glad for the night's rest.")
+            elif (temp1 * 5 < temp2):
+                self.doMainText(" You can noticeably feel the weight of your belly.")
+        if (not self.firstExplore and self.percent() < 10):
+            self.doMainText("\n\n\"Please... Anybody?\" Despite everything, your mind focuses on that echoing dream for another night now...")
+        self.displayMainText()
+        self.hrs = 8
+        self.doEnd()
 
     def doMasturbate(self):
         self.currentState = 3
@@ -15801,366 +15801,367 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doListen = doListen
 
     def debugSenarioChooser(self, numbers: tuple):
-      # TODO: Rewrite this to use the button pannel instead of the terminal
-      if numbers[0] == numbers[1]:
-         return numbers[0]
-      self.outputMainText("Debug tweak: alwaysChooseSenario is active.\n\nType the desired senario number into the terminal and press enter. If the value entered is not a number or is outside the range of the senario, the normal senario selection will be used instead.", True)
-      self.bc()
-      self.showButtons(ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
-      # TODO: Ask again if value is invalid, make sure that ctrl-c works to exit prompt
-      try:
-         temp = int(input(f"Enter a senario between {numbers[0]} and {numbers[1]}: "))
-      except:
-         return None
-      if temp < numbers[0] or temp > numbers[1]:
-         return None
-      return temp
+        # TODO: Rewrite this to use the button pannel instead of the terminal
+        if numbers[0] == numbers[1]:
+            return numbers[0]
+        self.outputMainText("Debug tweak: alwaysChooseSenario is active.\n\nType the desired senario number into the terminal and press enter. If the value entered is not a number or is outside the range of the senario, the normal senario selection will be used instead.", True)
+        self.bc()
+        self.showButtons(ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+        # TODO: Ask again if value is invalid, make sure that ctrl-c works to exit prompt
+        try:
+            temp = int(input(f"Enter a senario between {numbers[0]} and {numbers[1]}: "))
+        except:
+            return None
+        if temp < numbers[0] or temp > numbers[1]:
+            return None
+        return temp
 
     def eventSelect(self, which: str):
-      #!Here
-      if as3state.as3DebugEnable and self.debugChooseSenario:
-         temp = self.debugSenarioChooser({"Softlik": (1, 4), "Firmshaft": (1, 3), "Tieden": (1, 3), "Siz'Calit": (1, 4), "Oviasis": (1, 5), "Sanctuary": (3, 3), "Forest": (1, 6), "Jungle": (1, 7), "Plains": (1, 5), "Savanna": (1, 5), "Desert": (1, 5), "Beach": (1, 6), "Lake": (1, 3), "Dairy Farm": (1, 5), "Old Cave": (1, 3), "Den": (1, 2), "Valley": (1, 5)}[which])
-         if temp is not None:
-            return temp
+        if as3state.as3DebugEnable and self.debugChooseSenario:
+            temp = self.debugSenarioChooser({"Softlik": (1, 4), "Firmshaft": (1, 3), "Tieden": (1, 3), "Siz'Calit": (1, 4), "Oviasis": (1, 5), "Sanctuary": (3, 3), "Forest": (1, 6), "Jungle": (1, 7), "Plains": (1, 5), "Savanna": (1, 5), "Desert": (1, 5), "Beach": (1, 6), "Lake": (1, 3), "Dairy Farm": (1, 5), "Old Cave": (1, 3), "Den": (1, 2), "Valley": (1, 5)}[which])
+            if temp is not None:
+                return temp
 
-      self.rndArray.clear()
+        self.rndArray.clear()
 
-      # Towns
-      if which == "Softlik":
-         # Squeaky Cheese
-         tempArray = (0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Male Enhance
-         tempArray = (1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Too Human
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Gen
-         tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
+        # Towns
+        if which == "Softlik":
+            # Squeaky Cheese
+            tempArray = (0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Male Enhance
+            tempArray = (1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Too Human
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Gen
+            tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
 
-      elif which == "Firmshaft":
-         # Jamie
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Harem
-         tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Gen
-         tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
+        elif which == "Firmshaft":
+            # Jamie
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Harem
+            tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Gen
+            tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
 
-      elif which == "Tieden":
-         # Knothole
-         tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Preggo Lover
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0)
-         if (tempArray[self.hour] and self.pregnancyTime >= 180 and self.vagTotal > 0):
-            self.rndArray.push(2)
-         # Gen
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
+        elif which == "Tieden":
+            # Knothole
+            tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Preggo Lover
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0)
+            if (tempArray[self.hour] and self.pregnancyTime >= 180 and self.vagTotal > 0):
+                self.rndArray.push(2)
+            # Gen
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
 
-      elif which == "Siz'Calit":
-         # Lila
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Lila+
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0)
-         if (tempArray[self.hour] and self.lilaRep > 3):
-            self.rndArray.push(1)
-         # Cat Attack
-         tempArray = (1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Hyper Mistress
-         tempArray = (0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Gen
-         tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
+        elif which == "Siz'Calit":
+            # Lila
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Lila+
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0)
+            if (tempArray[self.hour] and self.lilaRep > 3):
+                self.rndArray.push(1)
+            # Cat Attack
+            tempArray = (1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Hyper Mistress
+            tempArray = (0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Gen
+            tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
 
-      elif which == "Oviasis":
-         # Silandrias
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0)
-         if (tempArray[self.hour] and self.silRep < 6):
-            self.rndArray.push(1)
-         # Sunbathing
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Night Sex
-         tempArray = (1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Water Eggs
-         tempArray = (0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
-         # Gen
-         tempArray = (1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(5)
+        elif which == "Oviasis":
+            # Silandrias
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+            if (tempArray[self.hour] and self.silRep < 6):
+                self.rndArray.push(1)
+            # Sunbathing
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Night Sex
+            tempArray = (1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Water Eggs
+            tempArray = (0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
+            # Gen
+            tempArray = (1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(5)
 
-      elif which == "Sanctuary":
-         # Gen
-         tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
+        elif which == "Sanctuary":
+            # Gen
+            tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
 
-      # Shared
-      elif which == "Forest":
-         # Wolf
-         tempArray = (0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Gay Wolf
-         tempArray = (1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Cock-Snake
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Sneeze Flower
-         tempArray = (1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
-         # Milk Creeper
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(5)
-         # Path
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(6)
+        # Shared
+        elif which == "Forest":
+            # Wolf
+            tempArray = (0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Gay Wolf
+            tempArray = (1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Cock-Snake
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Sneeze Flower
+            tempArray = (1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
+            # Milk Creeper
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(5)
+            # Path
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(6)
 
-      elif which == "Jungle":
-         # Find Valley
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour] and not self.foundValley and self.firstExplore):
-            self.rndArray.push(1)
-         # Milk Creeper
-         tempArray = (0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Wolf
-         tempArray = (0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Gay Wolf
-         tempArray = (1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
-         # Pussy Fruit
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(5)
-         # Shiny Rock
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(6)
-         # Path
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(7)
+        elif which == "Jungle":
+            # Find Valley
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour] and not self.foundValley and self.firstExplore):
+                self.rndArray.push(1)
+            # Milk Creeper
+            tempArray = (0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Wolf
+            tempArray = (0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Gay Wolf
+            tempArray = (1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
+            # Pussy Fruit
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(5)
+            # Shiny Rock
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(6)
+            # Path
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(7)
 
-      elif which == "Plains":
-         # Snuggle Ball
-         tempArray = (1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0)
-         if (tempArray[self.hour] and self.checkOpenSlot(244) > 0):
-            self.rndArray.push(1)
-         # Cock Snake
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Drunken Equan
-         tempArray = (0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Grain
-         tempArray = (0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
-         # Path
-         tempArray = (1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(5)
+        elif which == "Plains":
+            # Snuggle Ball
+            tempArray = (1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0)
+            if (tempArray[self.hour] and self.checkOpenSlot(244) > 0):
+                self.rndArray.push(1)
+            # Cock Snake
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Drunken Equan
+            tempArray = (0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Grain
+            tempArray = (0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
+            # Path
+            tempArray = (1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(5)
 
-      elif which == "Savanna":
-         # Horny Felin
-         tempArray = (0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Drunken Equan
-         tempArray = (1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Warmth
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Facial Mud
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
-         # Path
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(5)
+        elif which == "Savanna":
+            # Horny Felin
+            tempArray = (0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Drunken Equan
+            tempArray = (1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Warmth
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Facial Mud
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
+            # Path
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(5)
 
-      elif which == "Desert":
-         # Sandwich
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Silanrias
-         tempArray = (0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour] and self.currentZone == 6 and self.silRep == 0):
-            self.rndArray.push(2)
-         # Dust Devil
-         tempArray = (0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Hot Sun
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
-         # Path
-         tempArray = (1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(5)
+        elif which == "Desert":
+            # Sandwich
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Silanrias
+            tempArray = (0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour] and self.currentZone == 6 and self.silRep == 0):
+                self.rndArray.push(2)
+            # Dust Devil
+            tempArray = (0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Hot Sun
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
+            # Path
+            tempArray = (1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(5)
 
-      # Areas
-      elif which == "Beach":
-         # Octo Girl
-         tempArray = (0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Pregnant Lizan
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Trinket
-         tempArray = (0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Cock Carve
-         tempArray = (1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
-         # Urchin
-         tempArray = (0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(5)
-         # Relax
-         tempArray = (0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(6)
+        # Areas
+        elif which == "Beach":
+            # Octo Girl
+            tempArray = (0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Pregnant Lizan
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Trinket
+            tempArray = (0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Cock Carve
+            tempArray = (1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
+            # Urchin
+            tempArray = (0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(5)
+            # Relax
+            tempArray = (0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(6)
 
-      elif which == "Lake":
-         # Wet Cloth
-         tempArray = (1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Fisherman
-         tempArray = (0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour] and not self.knowPheromone):
-            self.rndArray.push(2)
-         # Song
-         tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
+        elif which == "Lake":
+            # Wet Cloth
+            tempArray = (1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Fisherman
+            tempArray = (0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour] and not self.knowPheromone):
+                self.rndArray.push(2)
+            # Song
+            tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
 
-      elif which == "Dairy Farm":
-         # Free Pill
-         tempArray = (0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Experimental Milk Machine
-         tempArray = (1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)
-         if (tempArray[self.hour] and self.udders and self.udderLactation > 0 and self.udderEngorgementLevel > 0):
-            self.rndArray.push(2)
-         # Buy Pill
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Malon
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
-         # Malon+
-         tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour] and self.malonRep > 0):
-            self.rndArray.push(4)
-         # Steal Milk
-         tempArray = (1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(5)
+        elif which == "Dairy Farm":
+            # Free Pill
+            tempArray = (0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Experimental Milk Machine
+            tempArray = (1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)
+            if (tempArray[self.hour] and self.udders and self.udderLactation > 0 and self.udderEngorgementLevel > 0):
+                self.rndArray.push(2)
+            # Buy Pill
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Malon
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
+            # Malon+
+            tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour] and self.malonRep > 0):
+                self.rndArray.push(4)
+            # Steal Milk
+            tempArray = (1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(5)
 
-      elif which == "Old Cave":
-         # Red Mush
-         tempArray = (0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Cake or Cup
-         tempArray = (1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Wander
-         tempArray = (1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
+        elif which == "Old Cave":
+            # Red Mush
+            tempArray = (0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Cake or Cup
+            tempArray = (1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Wander
+            tempArray = (1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
 
-      elif which == "Den":
-         # Strap
-         tempArray = (0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour] and not self.silTied and not (self.checkItem(229) or self.checkStash(229))):
-            self.rndArray.push(1)
-         # Sil
-         tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
+        elif which == "Den":
+            # Strap
+            tempArray = (0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour] and not self.silTied and not (self.checkItem(229) or self.checkStash(229))):
+                self.rndArray.push(1)
+            # Sil
+            tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
 
-      elif which == "Valley":
-         # Fertility Statue
-         tempArray = (0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(1)
-         # Fragrant Flower
-         tempArray = (1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(2)
-         # Plump Quats
-         tempArray = (0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(3)
-         # Treant Seed
-         tempArray = (1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-         if (tempArray[self.hour]):
-            self.rndArray.push(4)
-         # Slumber
-         tempArray = (0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1)
-         if (tempArray[self.hour]):
-            self.rndArray.push(5)
-      trace(self.rndArray)
-      return self.chooseFrom()
+        elif which == "Valley":
+            # Fertility Statue
+            tempArray = (0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(1)
+            # Fragrant Flower
+            tempArray = (1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(2)
+            # Plump Quats
+            tempArray = (0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(3)
+            # Treant Seed
+            tempArray = (1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+            if (tempArray[self.hour]):
+                self.rndArray.push(4)
+            # Slumber
+            tempArray = (0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 1)
+            if (tempArray[self.hour]):
+                self.rndArray.push(5)
+
+        trace(self.rndArray)
+        return self.chooseFrom()
 
     def doSoftlik(self):
+      # HERE
       chance = self.eventSelect("Softlik")
       if chance == 1:
          self.outputMainText("You pass by an alley while exploring when a scent catches your nose. Savory and salty and strong, you sniff your way between the buildings down to some empty crates.\n\nIn one, there's a slice of perfectly good cheese. You pick it up and it's a bit dry on the outside, squeaking in your fingers as they rub over it. There's no dirt or mold or anything, looking quite edible and smelling quite tasty,. Since it was left out here like trash, there's no harm in taking it, so you do.", True)
@@ -18843,12 +18844,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doEnd()
 
     def doSanctuary(self):
-      # chance = self.eventSelect("Sanctuary")
-      self.outputMainText("There doesn't seem to be anything to find here yet.", True)
-      self.hrs = 1
-      self.doEnd()
+        # chance = self.eventSelect("Sanctuary")
+        self.outputMainText("There doesn't seem to be anything to find here yet.", True)
+        self.hrs = 1
+        self.doEnd()
 
     def doForest(self):
+      # HERE
       chance = self.eventSelect("Forest")
       if chance == 1:
          self.outputMainText("Walking through the forest, you begin to hear footsteps mix with your own... As you pause to listen in, a creature jumps out before you! A lone wolf, it growls, ready to attack. And judging by the red rod that bobs beneath its belly, it's probably male, and probably frustrated after some failed encounter with a female...", True)
@@ -19772,42 +19774,43 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doEnd()
 
     def doLake(self):
-      chance = self.eventSelect("Lake")
-      if chance == 1:
-         self.outputMainText("At the edge of the lake, knocking against the bank with the subtle waves, you spot a piece of cloth. Pulling it out, you let out an \"ew\" as long strands of clear slime drip from it. Nevertheless, you think it's a fantastic idea to hold onto it.\n\n(You should really get your kleptomania checked)", True)
-         self.itemAdd(213)
-         self.hrs = 2
-         self.doEnd()
-
-      elif chance == 2:
-         if (self.countItem(219) >= 5):
-            self.outputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him.\n\n\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I'm a little low on my bait so I'm just going on luck. It's been a while since I've been able to get me those things from the people down south...\"\n\nHis hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard's. This man has obviously traveled a bit...\n\n\"If I could get maybe 5 of those eggs they kept plopping out, I'm sure one of them would be just what I need to really haul in some nice catch!\"\n\nAt this you realize that you actually have 5 such eggs on you right now. Would you like to offer them?", True)
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.outputMainText(f"Pausing his rambling for a moment, you mention how you have 5 such eggs on you and offer them to him. His eyes light up and he graciously takes them from you. Ducking into his boat, he pulls out an odd machine and begins to slip them into an insertion point that is perfectly fitted for such eggs. The machine churns a little and dings before popping out a slightly different egg. He does this {Math.ceil(self.percent() / 25) + 1} times, whereafter he lets out a happy yip as an egg decorated with pretty red hearts pops out.\n\n\"Well lookie at that, a superb specimen! Just what I needed to make my special bait that can catch all sorts of fish! Thank you so much, stranger, we'll be eating well for some time to come thanks to this.\" He pauses for a moment, trying to think how he could repay you. \"Umm... I don't have much to give, but I'll tell you what. I can give you the recipe to my secret bait. Since you seem to have access to these kinds of eggs, I'm sure you could do quite well with this recipe.\"\n\nHe proceeds to rattle off all the ingredients you need and how the process to mixing it goes. You try to keep up, but you only get some of what you think are the main points. However, you do kinda miss out on some of the 'diluting' instructions, so your concoction might be a tad strong...\n\nYou have gained: Strong Pheromone Recipe!\n\nYou thank each other again, but he seems to be quite eager to get out on the lake and use some of his fresh bait, wishing you farewell and good luck on your journey!", True)
-                  self.loseManyItem(219, 5)
-                  self.knowPheromone = True
-                  self.hrs = 3
-                  self.doEnd()
-               else:
-                  self.outputMainText("Deciding not to give him any, the old man continues to ramble on about how the weather could be a bit better also and shows you some of his home-made tackle as well. Eventually, however, he realizes that he's talked so long that he might not catch anything at this rate! He hurriedly thanks you for letting him talk your ear off a bit and says he hopes you'll meet again before he pushes off into the water, rowing to get to the good spots.", True)
-                  self.hrs = 2
-                  self.doEnd()
-            self.doListen = doListen
-         else:
-            self.outputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him.\n\n\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I'm a little low on my bait so I'm just going on luck. It's been a while since I've been able to get me those things from the people down south...\"\n\nHis hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard's. This man has obviously traveled a bit...\n\n\"If I could get maybe 5 of those eggs they kept plopping out, I'm sure one of them would be just what I need to really haul in some nice catch!\"\n\nHe continues to ramble on about how the weather could be a bit better also and shows you some of his home-made tackle as well. Eventually, however, he realizes that he's talked so long that he might not catch anything at this rate! He hurriedly thanks you for letting him talk your ear off a bit and says he hopes you'll meet again before he pushes off into the water, rowing to get to the good spots.", True)
+        chance = self.eventSelect("Lake")
+        if chance == 1:
+            self.outputMainText("At the edge of the lake, knocking against the bank with the subtle waves, you spot a piece of cloth. Pulling it out, you let out an \"ew\" as long strands of clear slime drip from it. Nevertheless, you think it's a fantastic idea to hold onto it.\n\n(You should really get your kleptomania checked)", True)
+            self.itemAdd(213)
             self.hrs = 2
             self.doEnd()
 
-      elif chance == 3:
-         self.outputMainText("You wander around the lake, but you don't find much. However, in the distance you hear some soft singing that elates your body and mind.", True)
-         self.stats(1, 2, -1, 0)
-         self.hrs = 1
-         self.doEnd()
+        elif chance == 2:
+            if (self.countItem(219) >= 5):
+                self.outputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him.\n\n\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I'm a little low on my bait so I'm just going on luck. It's been a while since I've been able to get me those things from the people down south...\"\n\nHis hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard's. This man has obviously traveled a bit...\n\n\"If I could get maybe 5 of those eggs they kept plopping out, I'm sure one of them would be just what I need to really haul in some nice catch!\"\n\nAt this you realize that you actually have 5 such eggs on you right now. Would you like to offer them?", True)
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.outputMainText(f"Pausing his rambling for a moment, you mention how you have 5 such eggs on you and offer them to him. His eyes light up and he graciously takes them from you. Ducking into his boat, he pulls out an odd machine and begins to slip them into an insertion point that is perfectly fitted for such eggs. The machine churns a little and dings before popping out a slightly different egg. He does this {Math.ceil(self.percent() / 25) + 1} times, whereafter he lets out a happy yip as an egg decorated with pretty red hearts pops out.\n\n\"Well lookie at that, a superb specimen! Just what I needed to make my special bait that can catch all sorts of fish! Thank you so much, stranger, we'll be eating well for some time to come thanks to this.\" He pauses for a moment, trying to think how he could repay you. \"Umm... I don't have much to give, but I'll tell you what. I can give you the recipe to my secret bait. Since you seem to have access to these kinds of eggs, I'm sure you could do quite well with this recipe.\"\n\nHe proceeds to rattle off all the ingredients you need and how the process to mixing it goes. You try to keep up, but you only get some of what you think are the main points. However, you do kinda miss out on some of the 'diluting' instructions, so your concoction might be a tad strong...\n\nYou have gained: Strong Pheromone Recipe!\n\nYou thank each other again, but he seems to be quite eager to get out on the lake and use some of his fresh bait, wishing you farewell and good luck on your journey!", True)
+                        self.loseManyItem(219, 5)
+                        self.knowPheromone = True
+                        self.hrs = 3
+                        self.doEnd()
+                    else:
+                        self.outputMainText("Deciding not to give him any, the old man continues to ramble on about how the weather could be a bit better also and shows you some of his home-made tackle as well. Eventually, however, he realizes that he's talked so long that he might not catch anything at this rate! He hurriedly thanks you for letting him talk your ear off a bit and says he hopes you'll meet again before he pushes off into the water, rowing to get to the good spots.", True)
+                        self.hrs = 2
+                        self.doEnd()
+                self.doListen = doListen
+            else:
+                self.outputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him.\n\n\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I'm a little low on my bait so I'm just going on luck. It's been a while since I've been able to get me those things from the people down south...\"\n\nHis hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard's. This man has obviously traveled a bit...\n\n\"If I could get maybe 5 of those eggs they kept plopping out, I'm sure one of them would be just what I need to really haul in some nice catch!\"\n\nHe continues to ramble on about how the weather could be a bit better also and shows you some of his home-made tackle as well. Eventually, however, he realizes that he's talked so long that he might not catch anything at this rate! He hurriedly thanks you for letting him talk your ear off a bit and says he hopes you'll meet again before he pushes off into the water, rowing to get to the good spots.", True)
+                self.hrs = 2
+                self.doEnd()
+
+        elif chance == 3:
+            self.outputMainText("You wander around the lake, but you don't find much. However, in the distance you hear some soft singing that elates your body and mind.", True)
+            self.stats(1, 2, -1, 0)
+            self.hrs = 1
+            self.doEnd()
 
     def doDairyFarm(self):
+      # HERE
       chance = self.eventSelect("Dairy Farm")
       if (self.malonRep == 4 and self.malonPreg > 216):
          self.doMainText("As you approach the farm, one of the farmhands rushes up to you. Catching their breath, they speak rapidly.\n\n\"Hurry! Malon's gone into labor!!\"\n\nThe farmhand grabs you hand and yanks you towards the main farmhouse. Within minutes, you're brought up to Malon's room where the excessively pregnant half-bovine woman huffs and heaves. Her tail swishes out the side from under her, twitching with each contraction.\n\n\"Here it comes!\", one of the farmhands announces as the baby begins to crown.\n\nAn eternity of bliss passes as you hear a cry, slightly mooing, but utterly beautiful. She has long, luxurious red hair, just like her mother's. Along with large, cow-like ears, and a long swishy tail. As well as, oddly enough, a jiggly little udder just below her belly and palmable breasts on her chest. A beautiful baby girl", True)
@@ -22419,11 +22422,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doListen = doListen
 
     def doDungeon(self):
-      # Cave Descent
-      if (self.currentDungeon > 1000 and self.currentDungeon <= 1010):
-         self.doOldCaveDescent()
+        # Cave Descent
+        if (self.currentDungeon > 1000 and self.currentDungeon <= 1010):
+            self.doOldCaveDescent()
 
     def doOldCaveDescent(self):
+      # HERE
       if self.currentDungeon in {1001, 1002, 1003}:
          if (not self.defeatedMinotaur):
             self.outputMainText("With the lantern allowing you to actually see where you're going, you're able to venture much deeper into the old cave. It is surpisingly long for a cave that doesn't open up into a large cavern and there's not terribly much of note either, nothing you could have accidentally bumped into. The only thing particularly interesting are holes that line the bottom of the walls that angle downward, as a sort of natural drainage system for fluids. Otherwise, things are just rather... humid and slimy. It's not something you think too much about, however, as your light eventually begins to glisten off of the back wall of the cave, finally having reached the end. Or so you think it's the end.\n\nAs you reach the back wall, you notice another cave branching off. Yet, it's not exactly another cave. From the way the stone is hewn and the entrance is elevated from the normal floor of the original cave, this appears to have been carved out. You step up inside and immediately notice... There's stairs going down. Since ventured this far in, you continue on, walking down the spiraling staircase.\n\nThis passage appears to be ancient, with many of the steps rather worn from all the footsteps. The walls are slightly warped and scratched, but otherwise in good condition for their age. And they just keep going down and down and down... You quickly lose count of how many steps you've descended and it just becomes a relentless trek downward until... you find a room!\n\nAlthough, it's not much of a room... Rectangular, somewhat large, lighted by a couple torches and relatively boring, with another stairwell against the opposite wall. This is just a sort of waypoint along the stairwell... But it's not empty either.", True)
@@ -22951,93 +22955,92 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doHP(self.dmg)
 
     def doSpecialAbility(self, more: int):
-      # HERE
-      buttonlist = ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
-      self.choicePage = more
-      self.showPage("Spc Abilities")
-      self.fp1 = more
-      tempDict = {12: "Return"}
-      self.specialAbilityArray.clear()
-      if (self.skunkAffinity >= 40):
-         self.specialAbilityArray.push(1)
-      if (self.specialAbilityArray.length):
-         self.outputMainText("Which special ability would you like to use?", True)
-      else:
-         self.outputMainText("Your do not currently have any special abilities that you can use.", True)
-      if (self.specialAbilityArray.length > 9):
-         tempDict.update({4: "<<", 8: ">>"})
-      if (self.specialAbilityArray[0 + (more * 9 - 9)]):
-         buttonlist[1] = 1
-         tempDict[1] = self.specialAbilityName(self.specialAbilityArray[0 + (more * 9 - 9)])
-         self.specialAbilityDescription(self.specialAbilityArray[0 + (more * 9 - 9)])
-      if (self.specialAbilityArray[1 + (more * 9 - 9)]):
-         buttonlist[2] = 1
-         tempDict[2] = self.specialAbilityName(self.specialAbilityArray[1 + (more * 9 - 9)])
-         self.specialAbilityDescription(self.specialAbilityArray[1 + (more * 9 - 9)])
-      if (self.specialAbilityArray[2 + (more * 9 - 9)]):
-         buttonlist[3] = 1
-         tempDict[3] = self.specialAbilityName(self.specialAbilityArray[2 + (more * 9 - 9)])
-         self.specialAbilityDescription(self.specialAbilityArray[2 + (more * 9 - 9)])
-      if (self.specialAbilityArray[3 + (more * 9 - 9)]):
-         buttonlist[5] = 1
-         tempDict[5] = self.specialAbilityName(self.specialAbilityArray[3 + (more * 9 - 9)])
-         self.specialAbilityDescription(self.specialAbilityArray[3 + (more * 9 - 9)])
-      if (self.specialAbilityArray[4 + (more * 9 - 9)]):
-         buttonlist[6] = 1
-         tempDict[6] = self.specialAbilityName(self.specialAbilityArray[4 + (more * 9 - 9)])
-         self.specialAbilityDescription(self.specialAbilityArray[4 + (more * 9 - 9)])
-      if (self.specialAbilityArray[5 + (more * 9 - 9)]):
-         buttonlist[7] = 1
-         tempDict[7] = self.specialAbilityName(self.specialAbilityArray[5 + (more * 9 - 9)])
-         self.specialAbilityDescription(self.specialAbilityArray[5 + (more * 9 - 9)])
-      if (self.specialAbilityArray[6 + (more * 9 - 9)]):
-         buttonlist[9] = 1
-         tempDict[9] = self.specialAbilityName(self.specialAbilityArray[6 + (more * 9 - 9)])
-         self.specialAbilityDescription(self.specialAbilityArray[6 + (more * 9 - 9)])
-      if (self.specialAbilityArray[7 + (more * 9 - 9)]):
-         buttonlist[10] = 1
-         tempDict[10] = self.specialAbilityName(self.specialAbilityArray[7 + (more * 9 - 9)])
-         self.specialAbilityDescription(self.specialAbilityArray[7 + (more * 9 - 9)])
-      if (self.specialAbilityArray[8 + (more * 9 - 9)]):
-         buttonlist[11] = 1
-         tempDict[11] = self.specialAbilityName(self.specialAbilityArray[8 + (more * 9 - 9)])
-         self.specialAbilityDescription(self.specialAbilityArray[8 + (more * 9 - 9)])
-      self.showButtons(buttonlist)
-      self.doButtonChoices(tempDict)
+        buttonlist = ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1)
+        self.choicePage = more
+        self.showPage("Spc Abilities")
+        self.fp1 = more
+        tempDict = {12: "Return"}
+        self.specialAbilityArray.clear()
+        if (self.skunkAffinity >= 40):
+            self.specialAbilityArray.push(1)
+        if (self.specialAbilityArray.length):
+            self.outputMainText("Which special ability would you like to use?", True)
+        else:
+            self.outputMainText("Your do not currently have any special abilities that you can use.", True)
+        if (self.specialAbilityArray.length > 9):
+            tempDict.update({4: "<<", 8: ">>"})
+        if (self.specialAbilityArray[0 + (more * 9 - 9)]):
+            buttonlist[1] = 1
+            tempDict[1] = self.specialAbilityName(self.specialAbilityArray[0 + (more * 9 - 9)])
+            self.specialAbilityDescription(self.specialAbilityArray[0 + (more * 9 - 9)])
+        if (self.specialAbilityArray[1 + (more * 9 - 9)]):
+            buttonlist[2] = 1
+            tempDict[2] = self.specialAbilityName(self.specialAbilityArray[1 + (more * 9 - 9)])
+            self.specialAbilityDescription(self.specialAbilityArray[1 + (more * 9 - 9)])
+        if (self.specialAbilityArray[2 + (more * 9 - 9)]):
+            buttonlist[3] = 1
+            tempDict[3] = self.specialAbilityName(self.specialAbilityArray[2 + (more * 9 - 9)])
+            self.specialAbilityDescription(self.specialAbilityArray[2 + (more * 9 - 9)])
+        if (self.specialAbilityArray[3 + (more * 9 - 9)]):
+            buttonlist[5] = 1
+            tempDict[5] = self.specialAbilityName(self.specialAbilityArray[3 + (more * 9 - 9)])
+            self.specialAbilityDescription(self.specialAbilityArray[3 + (more * 9 - 9)])
+        if (self.specialAbilityArray[4 + (more * 9 - 9)]):
+            buttonlist[6] = 1
+            tempDict[6] = self.specialAbilityName(self.specialAbilityArray[4 + (more * 9 - 9)])
+            self.specialAbilityDescription(self.specialAbilityArray[4 + (more * 9 - 9)])
+        if (self.specialAbilityArray[5 + (more * 9 - 9)]):
+            buttonlist[7] = 1
+            tempDict[7] = self.specialAbilityName(self.specialAbilityArray[5 + (more * 9 - 9)])
+            self.specialAbilityDescription(self.specialAbilityArray[5 + (more * 9 - 9)])
+        if (self.specialAbilityArray[6 + (more * 9 - 9)]):
+            buttonlist[9] = 1
+            tempDict[9] = self.specialAbilityName(self.specialAbilityArray[6 + (more * 9 - 9)])
+            self.specialAbilityDescription(self.specialAbilityArray[6 + (more * 9 - 9)])
+        if (self.specialAbilityArray[7 + (more * 9 - 9)]):
+            buttonlist[10] = 1
+            tempDict[10] = self.specialAbilityName(self.specialAbilityArray[7 + (more * 9 - 9)])
+            self.specialAbilityDescription(self.specialAbilityArray[7 + (more * 9 - 9)])
+        if (self.specialAbilityArray[8 + (more * 9 - 9)]):
+            buttonlist[11] = 1
+            tempDict[11] = self.specialAbilityName(self.specialAbilityArray[8 + (more * 9 - 9)])
+            self.specialAbilityDescription(self.specialAbilityArray[8 + (more * 9 - 9)])
+        self.showButtons(buttonlist)
+        self.doButtonChoices(tempDict)
 
-      def doListen():
-         if self.buttonChoice == 1:
-            self.specialAbilityUse(self.specialAbilityArray[0 + (self.fp1 * 9 - 9)])
-         elif self.buttonChoice == 2:
-            self.specialAbilityUse(self.specialAbilityArray[1 + (self.fp1 * 9 - 9)])
-         elif self.buttonChoice == 3:
-            self.specialAbilityUse(self.specialAbilityArray[2 + (self.fp1 * 9 - 9)])
-         elif self.buttonChoice == 5:
-            self.specialAbilityUse(self.specialAbilityArray[3 + (self.fp1 * 9 - 9)])
-         elif self.buttonChoice == 6:
-            self.specialAbilityUse(self.specialAbilityArray[4 + (self.fp1 * 9 - 9)])
-         elif self.buttonChoice == 7:
-            self.specialAbilityUse(self.specialAbilityArray[5 + (self.fp1 * 9 - 9)])
-         elif self.buttonChoice == 9:
-            self.specialAbilityUse(self.specialAbilityArray[6 + (self.fp1 * 9 - 9)])
-         elif self.buttonChoice == 10:
-            self.specialAbilityUse(self.specialAbilityArray[7 + (self.fp1 * 9 - 9)])
-         elif self.buttonChoice == 11:
-            self.specialAbilityUse(self.specialAbilityArray[8 + (self.fp1 * 9 - 9)])
-         elif self.buttonChoice == 4:
-            if (self.specialAbilityArray.length / 9 < self.fp1):
-               self.doSpecialAbility(1)
-            else:
-               self.doSpecialAbility(self.fp1 + 1)
-         elif self.buttonChoice == 8:
-            if (self.fp1 == 1):
-               self.doSpecialAbility(Math.floor(self.specialAbilityArray.length / 9))
-            else:
-               self.doSpecialAbility(self.fp1 - 1)
-         elif self.buttonChoice == 12:
-            self.hidePage()
-            self.doReturn()
-      self.doListen = doListen
+        def doListen():
+            if self.buttonChoice == 1:
+                self.specialAbilityUse(self.specialAbilityArray[0 + (self.fp1 * 9 - 9)])
+            elif self.buttonChoice == 2:
+                self.specialAbilityUse(self.specialAbilityArray[1 + (self.fp1 * 9 - 9)])
+            elif self.buttonChoice == 3:
+                self.specialAbilityUse(self.specialAbilityArray[2 + (self.fp1 * 9 - 9)])
+            elif self.buttonChoice == 5:
+                self.specialAbilityUse(self.specialAbilityArray[3 + (self.fp1 * 9 - 9)])
+            elif self.buttonChoice == 6:
+                self.specialAbilityUse(self.specialAbilityArray[4 + (self.fp1 * 9 - 9)])
+            elif self.buttonChoice == 7:
+                self.specialAbilityUse(self.specialAbilityArray[5 + (self.fp1 * 9 - 9)])
+            elif self.buttonChoice == 9:
+                self.specialAbilityUse(self.specialAbilityArray[6 + (self.fp1 * 9 - 9)])
+            elif self.buttonChoice == 10:
+                self.specialAbilityUse(self.specialAbilityArray[7 + (self.fp1 * 9 - 9)])
+            elif self.buttonChoice == 11:
+                self.specialAbilityUse(self.specialAbilityArray[8 + (self.fp1 * 9 - 9)])
+            elif self.buttonChoice == 4:
+                if (self.specialAbilityArray.length / 9 < self.fp1):
+                    self.doSpecialAbility(1)
+                else:
+                    self.doSpecialAbility(self.fp1 + 1)
+            elif self.buttonChoice == 8:
+                if (self.fp1 == 1):
+                    self.doSpecialAbility(Math.floor(self.specialAbilityArray.length / 9))
+                else:
+                    self.doSpecialAbility(self.fp1 - 1)
+            elif self.buttonChoice == 12:
+                self.hidePage()
+                self.doReturn()
+        self.doListen = doListen
 
     @staticmethod
     def specialAbilityName(ID: int):
@@ -23068,153 +23071,152 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doBattle()
 
     def doEntice(self):
-      # HERE
-      # TODO: optimize if/else
-      chance = self.percent()
-      if (self.eGen == 1 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
-         if (chance <= 50):
-            self.doMainText(f"You turn around and bend over before the {self.enemyName()} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
-            if (self.tail != 0):
-               self.doMainText(f", your {self.tailDesc()} tail dancing above")
-            self.doMainText(" tantalizingly.")
-         else:
-            self.doMainText(f"You flex your muscles, trying to show off your masculinity, while you thrust your {self.hipDesc()} hips in an attempt to show off your {self.cockDesc()} bulge.", True)
-         if self.ePref in {1, 4}:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
-         elif self.ePref == 3:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
+        # TODO: optimize if/else
+        chance = self.percent()
+        if (self.eGen == 1 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
+            if (chance <= 50):
+                self.doMainText(f"You turn around and bend over before the {self.enemyName()} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
+                if (self.tail != 0):
+                    self.doMainText(f", your {self.tailDesc()} tail dancing above")
+                self.doMainText(" tantalizingly.")
+            else:
+                self.doMainText(f"You flex your muscles, trying to show off your masculinity, while you thrust your {self.hipDesc()} hips in an attempt to show off your {self.cockDesc()} bulge.", True)
+            if self.ePref in {1, 4}:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
+            elif self.ePref == 3:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
 
-      elif (self.eGen == 1 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
-         if (chance <= 50):
-            self.doMainText(f"You turn around and bend over before the {self.enemyName()}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}", True)
-            if (self.lust > 20 and self.moistCalc(2) > 3):
-               self.doMainText(" until your feminine arousal seeps through")
-            self.doMainText(f". Your {self.hipDesc()} hips wiggle erotically")
-            if (self.tail != 0):
-               self.doMainText(f", your {self.tailDesc()} tail dancing above")
-            self.doMainText(".")
-         else:
-            self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a {self.nipDesc()}nipple through your {self.clothesTop()} with your other hand.", True)
-         if self.ePref in {2, 4}:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
-         elif self.ePref == 3:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
+        elif (self.eGen == 1 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
+            if (chance <= 50):
+                self.doMainText(f"You turn around and bend over before the {self.enemyName()}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}", True)
+                if (self.lust > 20 and self.moistCalc(2) > 3):
+                    self.doMainText(" until your feminine arousal seeps through")
+                self.doMainText(f". Your {self.hipDesc()} hips wiggle erotically")
+                if (self.tail != 0):
+                    self.doMainText(f", your {self.tailDesc()} tail dancing above")
+                self.doMainText(".")
+            else:
+                self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a {self.nipDesc()}nipple through your {self.clothesTop()} with your other hand.", True)
+            if self.ePref in {2, 4}:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
+            elif self.ePref == 3:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
 
-      elif (self.eGen == 2 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
-         if (chance <= 50):
-            self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your cock-flesh", True)
-            if (self.lust > 20):
-               self.doMainText(f", the {self.cockDesc()} erection pulsing strongly beneath your {self.clothesBottom()}")
-            self.doMainText(", rubbing it to show off what you can offer")
-            if (self.moistCalc(1) > 3):
-               self.doMainText(", a blotch of pre beginning to seep across the fabric")
-            self.doMainText(".")
-         else:
-            self.doMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.", True)
-         if self.ePref in {1, 4}:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
-         elif self.ePref == 3:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
+        elif (self.eGen == 2 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
+            if (chance <= 50):
+                self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your cock-flesh", True)
+                if (self.lust > 20):
+                    self.doMainText(f", the {self.cockDesc()} erection pulsing strongly beneath your {self.clothesBottom()}")
+                self.doMainText(", rubbing it to show off what you can offer")
+                if (self.moistCalc(1) > 3):
+                    self.doMainText(", a blotch of pre beginning to seep across the fabric")
+                self.doMainText(".")
+            else:
+                self.doMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.", True)
+            if self.ePref in {1, 4}:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
+            elif self.ePref == 3:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
 
-      elif (self.eGen == 2 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
-         if (chance <= 50):
-            self.doMainText(f"You spread your {self.legDesc(6)}, crouching down as both hands grind into your {self.vulvaDesc()} pussy", True)
-            if (self.lust > 20 and self.moistCalc(2) > 3):
-               self.doMainText(f", your honey spreading from the crotch of your {self.clothesBottom()},")
-            if (self.tail != 0):
-               self.doMainText(f", your {self.tailDesc()} tail swishing across the ground,")
-            self.doMainText(f" luring the {self.enemyName()} to come grind instead.")
-         else:
-            self.doMainText(f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger", True)
-            if (self.lust > 20 and self.nippleSize > 1 or self.nippleSize > 6):
-               self.doMainText(f", your {self.nipDesc()}nipples clearly visible through your {self.clothesTop()}")
-            self.doMainText(".")
-         if self.ePref in {2, 4}:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
-         elif self.ePref == 3:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
+        elif (self.eGen == 2 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
+            if (chance <= 50):
+                self.doMainText(f"You spread your {self.legDesc(6)}, crouching down as both hands grind into your {self.vulvaDesc()} pussy", True)
+                if (self.lust > 20 and self.moistCalc(2) > 3):
+                    self.doMainText(f", your honey spreading from the crotch of your {self.clothesBottom()},")
+                if (self.tail != 0):
+                    self.doMainText(f", your {self.tailDesc()} tail swishing across the ground,")
+                self.doMainText(f" luring the {self.enemyName()} to come grind instead.")
+            else:
+                self.doMainText(f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger", True)
+                if (self.lust > 20 and self.nippleSize > 1 or self.nippleSize > 6):
+                    self.doMainText(f", your {self.nipDesc()}nipples clearly visible through your {self.clothesTop()}")
+                self.doMainText(".")
+            if self.ePref in {2, 4}:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
+            elif self.ePref == 3:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
 
-      elif (self.eGen == 3 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
-         if (chance <= 25):
-            self.doMainText(f"You turn around and bend over before the {self.enemyName()} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
-            if (self.tail != 0):
-               self.doMainText(f", your {self.tailDesc()} tail dancing above")
-            self.doMainText(" tantalizingly.")
-         elif (chance > 25 and chance <= 50):
-            self.doMainText(f"You flex your muscles, trying to show off your masculinity, while you thrust your {self.hipDesc()} hips in an attempt to show off your {self.cockDesc()} bulge.", True)
-         elif (chance > 50 and chance <= 75):
-            self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your cock-flesh", True)
-            if (self.lust > 20):
-               self.doMainText(f", the {self.cockDesc()} erection pulsing strongly beneath your {self.clothesBottom()}")
-            self.doMainText(", rubbing it to show off what you can offer")
-            if (self.moistCalc(1) > 3):
-               self.doMainText(", a blotch of pre begining to seep across the fabric")
-            self.doMainText(".")
-         elif (self.chance > 75):
-            self.doMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.", True)
-         if self.ePref in {1, 4}:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
-         elif self.ePref == 3:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
+        elif (self.eGen == 3 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
+            if (chance <= 25):
+                self.doMainText(f"You turn around and bend over before the {self.enemyName()} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
+                if (self.tail != 0):
+                    self.doMainText(f", your {self.tailDesc()} tail dancing above")
+                self.doMainText(" tantalizingly.")
+            elif (chance > 25 and chance <= 50):
+                self.doMainText(f"You flex your muscles, trying to show off your masculinity, while you thrust your {self.hipDesc()} hips in an attempt to show off your {self.cockDesc()} bulge.", True)
+            elif (chance > 50 and chance <= 75):
+                self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your cock-flesh", True)
+                if (self.lust > 20):
+                    self.doMainText(f", the {self.cockDesc()} erection pulsing strongly beneath your {self.clothesBottom()}")
+                self.doMainText(", rubbing it to show off what you can offer")
+                if (self.moistCalc(1) > 3):
+                    self.doMainText(", a blotch of pre begining to seep across the fabric")
+                self.doMainText(".")
+            elif (self.chance > 75):
+                self.doMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.", True)
+            if self.ePref in {1, 4}:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
+            elif self.ePref == 3:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
 
-      elif (self.eGen == 3 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
-         if (chance <= 25):
-            self.doMainText(f"You spread your {self.legDesc(6)}, crouching down as both hands grinding into your {self.vulvaDesc()} pussy", True)
-            if (self.lust > 20 and self.moistCalc(2) > 3):
-               self.doMainText(f", your honey spreading from the crotch of your {self.clothesBottom()},")
-            if (self.tail != 0):
-               self.doMainText(f", your {self.tailDesc()} tail swishing across the ground,")
-            self.doMainText(f" luring the {self.enemyName()} to come grind instead.")
-         elif (chance > 25 and chance <= 50):
-            self.doMainText(f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger", True)
-            if (self.lust > 20 and self.nippleSize > 1 or self.nippleSize > 6):
-               self.doMainText(f", your {self.nipDesc()}nipples clearly visible through your {self.clothesTop()}.")
-            self.doMainText(".")
-         elif (chance > 50 and chance <= 75):
-            self.doMainText(f"You turn around and bend over before the {self.enemyName()}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}", True)
-            if (self.lust > 20 and self.moistCalc(2) > 3):
-               self.doMainText(" until your feminine arousal seeps through")
-            self.doMainText(f". Your {self.hipDesc()} hips waggle erotically")
-            if (self.tail != 0):
-               self.doMainText(f", your {self.tailDesc()} tail dancing above")
-            self.doMainText(".")
-         elif (chance > 75):
-            self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a {self.nipDesc()}nipple through your {self.clothesTop()} with your other hand.", True)
-         if self.ePref in {2, 4}:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5))
-         elif self.ePref == 3:
+        elif (self.eGen == 3 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
+            if (chance <= 25):
+                self.doMainText(f"You spread your {self.legDesc(6)}, crouching down as both hands grinding into your {self.vulvaDesc()} pussy", True)
+                if (self.lust > 20 and self.moistCalc(2) > 3):
+                    self.doMainText(f", your honey spreading from the crotch of your {self.clothesBottom()},")
+                if (self.tail != 0):
+                    self.doMainText(f", your {self.tailDesc()} tail swishing across the ground,")
+                self.doMainText(f" luring the {self.enemyName()} to come grind instead.")
+            elif (chance > 25 and chance <= 50):
+                self.doMainText(f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger", True)
+                if (self.lust > 20 and self.nippleSize > 1 or self.nippleSize > 6):
+                    self.doMainText(f", your {self.nipDesc()}nipples clearly visible through your {self.clothesTop()}.")
+                self.doMainText(".")
+            elif (chance > 50 and chance <= 75):
+                self.doMainText(f"You turn around and bend over before the {self.enemyName()}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}", True)
+                if (self.lust > 20 and self.moistCalc(2) > 3):
+                    self.doMainText(" until your feminine arousal seeps through")
+                self.doMainText(f". Your {self.hipDesc()} hips waggle erotically")
+                if (self.tail != 0):
+                    self.doMainText(f", your {self.tailDesc()} tail dancing above")
+                self.doMainText(".")
+            elif (chance > 75):
+                self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a {self.nipDesc()}nipple through your {self.clothesTop()} with your other hand.", True)
+            if self.ePref in {2, 4}:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5))
+            elif self.ePref == 3:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10))
+
+        elif (self.gender == 3 and self.ePref != 0 and self.eGen != 0):
+            if (chance <= 25):
+                self.doMainText(f"You turn around and bend over before the {self.enemyName()}, patting your {self.buttDesc()} ass and {self.vulvaDesc()} pussy. You waggle your {self.hipDesc()} hips, the {self.cockDesc()} bulge in your {self.clothesBottom()} swaying", True)
+                if (self.tail != 0):
+                    self.doMainText(f", your {self.tailDesc()} tail dancing above")
+                self.doMainText(" deliciously.")
+            elif (chance > 25 and chance <= 50):
+                self.doMainText(f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger while you flex, thrusting at the air with your {self.cockDesc()} package bobbing.", True)
+            elif (chance > 50 and chance <= 75):
+                self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your male anatomy while you spread your {self.legDesc(6)}, crouching down as both hands grind across the bulge and into your female portions", True)
+                if (self.lust > 20 and (self.moistCalc(2) > 3 or self.moistCalc(1) > 3)):
+                    self.doMainText(", the fabric quickly growing damp")
+                self.doMainText(".")
+                if (self.tail != 0):
+                    self.doMainText(f"Your {self.tailDesc()} tail swishes across the ground in anticipation.")
+            elif (chance > 75):
+                self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub the {self.cockDesc()} phallic outline in your {self.clothesBottom()} with your other hand.", True)
+            if self.ePref in {3, 4}:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5))
+            elif self.ePref in {1, 2}:
+                self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10))
+
+        elif (self.gender == 0 and self.ePref != 0 and self.eGen != 0):
+            self.doMainText(f"Your {self.hipDesc()} hips dance provocatively while you lick and suckle your fingers, trying to show off what you can do with what you've still got.", True)
             self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10))
 
-      elif (self.gender == 3 and self.ePref != 0 and self.eGen != 0):
-         if (chance <= 25):
-            self.doMainText(f"You turn around and bend over before the {self.enemyName()}, patting your {self.buttDesc()} ass and {self.vulvaDesc()} pussy. You waggle your {self.hipDesc()} hips, the {self.cockDesc()} bulge in your {self.clothesBottom()} swaying", True)
-            if (self.tail != 0):
-               self.doMainText(f", your {self.tailDesc()} tail dancing above")
-            self.doMainText(" deliciously.")
-         elif (chance > 25 and chance <= 50):
-            self.doMainText(f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger while you flex, thrusting at the air with your {self.cockDesc()} package bobbing.", True)
-         elif (chance > 50 and chance <= 75):
-            self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your male anatomy while you spread your {self.legDesc(6)}, crouching down as both hands grind across the bulge and into your female portions", True)
-            if (self.lust > 20 and (self.moistCalc(2) > 3 or self.moistCalc(1) > 3)):
-               self.doMainText(", the fabric quickly growing damp")
-            self.doMainText(".")
-            if (self.tail != 0):
-               self.doMainText(f"Your {self.tailDesc()} tail swishes across the ground in anticipation.")
-         elif (chance > 75):
-            self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub the {self.cockDesc()} phallic outline in your {self.clothesBottom()} with your other hand.", True)
-         if self.ePref in {3, 4}:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 5))
-         elif self.ePref in {1, 2}:
-            self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10))
-
-      elif (self.gender == 0 and self.ePref != 0 and self.eGen != 0):
-         self.doMainText(f"Your {self.hipDesc()} hips dance provocatively while you lick and suckle your fingers, trying to show off what you can do with what you've still got.", True)
-         self.doeLust(Math.floor(self.percent() / 10 + self.eLib / 10))
-
-      else:
-         self.doMainText(f"Your attempt at an erotic display only seems to turn the {self.enemyName()} off further.", True)
-         self.eLust -= 5
-      self.displayMainText()
+        else:
+            self.doMainText(f"Your attempt at an erotic display only seems to turn the {self.enemyName()} off further.", True)
+            self.eLust -= 5
+        self.displayMainText()
 
     def battleWin(self):
         self.doMainText("You walk away from the battle the victor and to the victor goes the spoils.", True)
@@ -26035,191 +26037,192 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doEnd()
 
     def cockChange(self, sizeChange: int, totalChange: int):
-      nonCock = False  # Variable storing whether current race doesn't have its own cock type
-      maxCock = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.lizardAffinity, self.rabbitAffinity, self.bugAffinity)
-      if (self.dominant in {5, 8, 9, 10, 11}):
-         nonCock = True
+        nonCock = False  # Variable storing whether current race doesn't have its own cock type
+        maxCock = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.lizardAffinity, self.rabbitAffinity, self.bugAffinity)
+        if (self.dominant in {5, 8, 9, 10, 11}):
+            nonCock = True
 
-      # Loose all cocks
-      if ((self.cockSize + sizeChange <= 0 or self.cockTotal + totalChange < 1) and self.cockSize > 0 and self.cockTotal > 0):
-         self.doMainText(f"\n\nYou shiver a little as your cock{self.plural(1)} ")
-         if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
-            self.doMainText("and balls ")
-         self.doMainText("shrink")
-         if self.respectShowBalls and self.showBalls and self.cockTotal < 2:
-            self.doMainText("s")
-         self.doMainText(" into your body, disappearing")
-         if (self.vagTotal > 0):
-            self.doMainText(f", leaving you with only your vagina{self.plural(2)} and making you solely female.")
-            self.gender = 2
-         elif (self.vagTotal < 1):
-            self.doMainText(", leaving you with no genitals whatsoever. This is going to make things tough...")
-            self.gender = 0
-         self.balls = 0
-         self.stats(0, 0, -(2 * self.cockTotal), 0)
-         self.ballSize = 0
-         self.cockSize = 0
-         self.cockTotal = 0
-         self.humanCocks = 0
-         self.horseCocks = 0
-         self.wolfCocks = 0
-         self.catCocks = 0
-         self.lizardCocks = 0
-         self.rabbitCocks = 0
-         self.bugCocks = 0
-         self.neuterizerHideBalls = False
+        # Loose all cocks
+        if ((self.cockSize + sizeChange <= 0 or self.cockTotal + totalChange < 1) and self.cockSize > 0 and self.cockTotal > 0):
+            self.doMainText(f"\n\nYou shiver a little as your cock{self.plural(1)} ")
+            if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                self.doMainText("and balls ")
+            self.doMainText("shrink")
+            if self.respectShowBalls and self.showBalls and self.cockTotal < 2:
+                self.doMainText("s")
+            self.doMainText(" into your body, disappearing")
+            if (self.vagTotal > 0):
+                self.doMainText(f", leaving you with only your vagina{self.plural(2)} and making you solely female.")
+                self.gender = 2
+            elif (self.vagTotal < 1):
+                self.doMainText(", leaving you with no genitals whatsoever. This is going to make things tough...")
+                self.gender = 0
+            self.balls = 0
+            self.stats(0, 0, -(2 * self.cockTotal), 0)
+            self.ballSize = 0
+            self.cockSize = 0
+            self.cockTotal = 0
+            self.humanCocks = 0
+            self.horseCocks = 0
+            self.wolfCocks = 0
+            self.catCocks = 0
+            self.lizardCocks = 0
+            self.rabbitCocks = 0
+            self.bugCocks = 0
+            self.neuterizerHideBalls = False
 
-      # Gain cock when no cock
-      elif (self.cockTotal + totalChange > 0 and self.cockTotal < 1):
-         self.doMainText(f"\n\nA strange sensation of arousal engulfs your groin. Your {self.clothesBottom()} grows tight as you feel something swell within. You don't have much time to pull {self.pullUD(2)} your {self.clothesBottom()} as flesh bulges over the fitted garment. Throbbing and dripping with pre, a fresh, new ")
-         if (self.dominant == 1 or nonCock and maxCock == self.humanAffinity):
-            self.doMainText("human ")
-            self.humanCocks += 1
-         elif (self.dominant == 2 or nonCock and maxCock == self.horseAffinity):
-            self.doMainText("equine ")
-            self.horseCocks += 1
-         elif (self.dominant == 3 or nonCock and maxCock == self.wolfAffinity):
-            self.doMainText("canine ")
-            self.wolfCocks += 1
-         elif (self.dominant == 4 or nonCock and maxCock == self.catAffinity):
-            self.doMainText("feline ")
-            self.catCocks += 1
-         elif (self.dominant == 6 or nonCock and maxCock == self.lizardAffinity):
-            self.doMainText("reptillian ")
-            self.lizardCocks += 1
-         elif (self.dominant == 7 or nonCock and maxCock == self.rabbitAffinity):
-            self.doMainText("lapin ")
-            self.rabbitCocks += 1
-         elif (self.dominant == 12 or nonCock and maxCock == self.bugAffinity):
-            self.doMainText("insectile ")
-            self.bugCocks += 1
-         self.doMainText("penis stands erect")
-         if not self.lizanDontShowBalls or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
-            self.doMainText(" and balls to match settle within your crotch beneath")
-         if (self.vagTotal > 0):
+        # Gain cock when no cock
+        elif (self.cockTotal + totalChange > 0 and self.cockTotal < 1):
+            self.doMainText(f"\n\nA strange sensation of arousal engulfs your groin. Your {self.clothesBottom()} grows tight as you feel something swell within. You don't have much time to pull {self.pullUD(2)} your {self.clothesBottom()} as flesh bulges over the fitted garment. Throbbing and dripping with pre, a fresh, new ")
+            if (self.dominant == 1 or nonCock and maxCock == self.humanAffinity):
+                self.doMainText("human ")
+                self.humanCocks += 1
+            elif (self.dominant == 2 or nonCock and maxCock == self.horseAffinity):
+                self.doMainText("equine ")
+                self.horseCocks += 1
+            elif (self.dominant == 3 or nonCock and maxCock == self.wolfAffinity):
+                self.doMainText("canine ")
+                self.wolfCocks += 1
+            elif (self.dominant == 4 or nonCock and maxCock == self.catAffinity):
+                self.doMainText("feline ")
+                self.catCocks += 1
+            elif (self.dominant == 6 or nonCock and maxCock == self.lizardAffinity):
+                self.doMainText("reptillian ")
+                self.lizardCocks += 1
+            elif (self.dominant == 7 or nonCock and maxCock == self.rabbitAffinity):
+                self.doMainText("lapin ")
+                self.rabbitCocks += 1
+            elif (self.dominant == 12 or nonCock and maxCock == self.bugAffinity):
+                self.doMainText("insectile ")
+                self.bugCocks += 1
+            self.doMainText("penis stands erect")
             if not self.lizanDontShowBalls or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
-               self.doMainText(f", slipping into your {self.vulvaDesc()} lips")
-            self.doMainText(". You now are considered a cross between genders, a herm.")
-            self.gender = 3
-         else:
-            self.doMainText(". You have now graduated from androgynous to male, congratulations!")
-            self.gender = 1
-         self.ballSize = 1
-         self.balls = 2
-         self.neuterizerHideBalls = False
-         self.cockSize = 1
-         self.stats(0, 0, 2, 0)
-         self.cockTotal = 1
-         self.cockSize += sizeChange
-         totalChange -= 1
-         if totalChange > 0:  # This was added, it shouldn't cause any issues
-            self.cockChange(0, totalChange)
+                self.doMainText(" and balls to match settle within your crotch beneath")
+            if (self.vagTotal > 0):
+                if not self.lizanDontShowBalls or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
+                    self.doMainText(f", slipping into your {self.vulvaDesc()} lips")
+                self.doMainText(". You now are considered a cross between genders, a herm.")
+                self.gender = 3
+            else:
+                self.doMainText(". You have now graduated from androgynous to male, congratulations!")
+                self.gender = 1
+            self.ballSize = 1
+            self.balls = 2
+            self.neuterizerHideBalls = False
+            self.cockSize = 1
+            self.stats(0, 0, 2, 0)
+            self.cockTotal = 1
+            self.cockSize += sizeChange
+            totalChange -= 1
+            if totalChange > 0:  # This was added, it shouldn't cause any issues
+                self.cockChange(0, totalChange)
 
-      # Gain cock when has cock
-      elif (totalChange > 0 and self.cockTotal > 0):
-         self.doMainText(f"\n\nA strange sensation of arousal engulfs your groin. Your {self.clothesBottom()} grows tight as you feel something swell within. You don't have much time to open your {self.clothesBottom()} as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,")
-         if (totalChange > 1):
-            self.doMainText(f" {totalChange}")
-         if (self.dominant == 1 or nonCock and maxCock == self.humanAffinity):
-            self.doMainText(" human ")
-            self.humanCocks += totalChange
-         elif (self.dominant == 2 or nonCock and maxCock == self.horseAffinity):
-            self.doMainText(" equine ")
-            self.horseCocks += totalChange
-         elif (self.dominant == 3 or nonCock and maxCock == self.wolfAffinity):
-            self.doMainText(" canine ")
-            self.wolfCocks += totalChange
-         elif (self.dominant == 4 or nonCock and maxCock == self.catAffinity):
-            self.doMainText(" feline ")
-            self.catCocks += totalChange
-         elif (self.dominant == 6 or nonCock and maxCock == self.lizardAffinity):
-            self.doMainText(" reptillian ")
-            self.lizardCocks += totalChange
-         elif (self.dominant == 7 or nonCock and maxCock == self.rabbitAffinity):
-            self.doMainText(" lapin ")
-            self.rabbitCocks += totalChange
-         elif (self.dominant == 12 or nonCock and maxCock == self.bugAffinity):
-            self.doMainText(" insectile ")
-            self.bugCocks += totalChange
-         self.doMainText("penis")
-         if (totalChange > 1):
-            self.doMainText("es")
-         self.doMainText(f" standing erect with the other{self.plural(1)}.")
-         self.stats(0, 0, 2 * totalChange, 0)
-         self.cockTotal += totalChange
-         self.cockSize += sizeChange
+        # Gain cock when has cock
+        elif (totalChange > 0 and self.cockTotal > 0):
+            self.doMainText(f"\n\nA strange sensation of arousal engulfs your groin. Your {self.clothesBottom()} grows tight as you feel something swell within. You don't have much time to open your {self.clothesBottom()} as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,")
+            if (totalChange > 1):
+                self.doMainText(f" {totalChange}")
+            if (self.dominant == 1 or nonCock and maxCock == self.humanAffinity):
+                self.doMainText(" human ")
+                self.humanCocks += totalChange
+            elif (self.dominant == 2 or nonCock and maxCock == self.horseAffinity):
+                self.doMainText(" equine ")
+                self.horseCocks += totalChange
+            elif (self.dominant == 3 or nonCock and maxCock == self.wolfAffinity):
+                self.doMainText(" canine ")
+                self.wolfCocks += totalChange
+            elif (self.dominant == 4 or nonCock and maxCock == self.catAffinity):
+                self.doMainText(" feline ")
+                self.catCocks += totalChange
+            elif (self.dominant == 6 or nonCock and maxCock == self.lizardAffinity):
+                self.doMainText(" reptillian ")
+                self.lizardCocks += totalChange
+            elif (self.dominant == 7 or nonCock and maxCock == self.rabbitAffinity):
+                self.doMainText(" lapin ")
+                self.rabbitCocks += totalChange
+            elif (self.dominant == 12 or nonCock and maxCock == self.bugAffinity):
+                self.doMainText(" insectile ")
+                self.bugCocks += totalChange
+            self.doMainText("penis")
+            if (totalChange > 1):
+                self.doMainText("es")
+            self.doMainText(f" standing erect with the other{self.plural(1)}.")
+            self.stats(0, 0, 2 * totalChange, 0)
+            self.cockTotal += totalChange
+            self.cockSize += sizeChange
 
-      # Loose less than all cocks
-      elif (totalChange < 0 and self.cockTotal > 0 and self.cockSize > 0):
-         self.doMainText(f"\n\nYou notice an odd sensation of numbness within your groin. Your {self.clothesBottom()} feels looser, something going missing within. By the time you open your {self.clothesBottom()} you notice that you have lost something.")
-         self.cockTotal += totalChange
-         while (totalChange < 0):
-            self.cockLoss()
-            totalChange += 1
-         self.stats(0, 0, 2 * totalChange, 0)
-         if self.statusTweaks and sizeChange > 0:
-            self.cockChange(sizeChange, 0)
+        # Loose less than all cocks
+        elif (totalChange < 0 and self.cockTotal > 0 and self.cockSize > 0):
+            self.doMainText(f"\n\nYou notice an odd sensation of numbness within your groin. Your {self.clothesBottom()} feels looser, something going missing within. By the time you open your {self.clothesBottom()} you notice that you have lost something.")
+            self.cockTotal += totalChange
+            while (totalChange < 0):
+                self.cockLoss()
+                totalChange += 1
+            self.stats(0, 0, 2 * totalChange, 0)
+            if self.statusTweaks and sizeChange > 0:
+                self.cockChange(sizeChange, 0)
 
-      # Size change
-      elif (self.cockTotal > 0):
-         self.cockSize += sizeChange
-      if self.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
-         if self.lizardCocks == self.cockTotal and self.cockTotal != 0:
-            self.showBalls = False
-         else:
-            self.showBalls = True
+        # Size change
+        elif (self.cockTotal > 0):
+            self.cockSize += sizeChange
+        if self.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
+            if self.lizardCocks == self.cockTotal and self.cockTotal != 0:
+                self.showBalls = False
+            else:
+                self.showBalls = True
 
     def cockLoss(self):
-      hasHumanCock = 101
-      hasHorseCock = 101
-      hasWolfCock = 101
-      hasCatCock = 101
-      hasLizardCock = 101
-      hasRabbitCock = 101
-      hasBugCock = 101
-      if (self.humanCocks > 0):
-         hasHumanCock = self.humanAffinity
-      if (self.horseCocks > 0):
-         hasHorseCock = self.horseAffinity
-      if (self.wolfCocks > 0):
-         hasWolfCock = self.wolfAffinity
-      if (self.catCocks > 0):
-         hasCatCock = self.catAffinity
-      if (self.lizardCocks > 0):
-         hasLizardCock = self.lizardAffinity
-      if (self.rabbitCocks > 0):
-         hasRabbitCock = self.rabbitAffinity
-      if (self.bugCocks > 0):
-         hasBugCock = self.bugAffinity
-      minCock = Math.min(hasHumanCock, hasHorseCock, hasWolfCock, hasCatCock, hasLizardCock, hasRabbitCock, hasBugCock)
-      if (minCock == self.humanAffinity and self.humanCocks > 0):
-         self.doMainText("\n\nYou have lost one human cock.")
-         self.humanCocks -= 1
-      elif (minCock == self.horseAffinity and self.horseCocks > 0):
-         self.doMainText("\n\nYou have lost one horse cock.")
-         self.horseCocks -= 1
-      elif (minCock == self.wolfAffinity and self.wolfCocks > 0):
-         self.doMainText("\n\nYou have lost one wolf cock.")
-         self.wolfCocks -= 1
-      elif (minCock == self.catAffinity and self.catCocks > 0):
-         self.doMainText("\n\nYou have lost one cat cock.")
-         self.catCocks -= 1
-      elif (minCock == self.lizardAffinity and self.lizardCocks > 0):
-         self.doMainText("\n\nYou have lost one lizard cock.")
-         self.lizardCocks -= 1
-      elif (minCock == self.rabbitAffinity and self.rabbitCocks > 0):
-         self.doMainText("\n\nYou have lost one rabbit cock.")
-         self.rabbitCocks -= 1
-      elif (minCock == self.bugAffinity and self.bugCocks > 0):
-         self.doMainText("\n\nYou have lost one bug cock.")
-         self.bugCocks -= 1
-      if self.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
-         if self.lizardCocks == self.cockTotal:
-            self.showBalls = False
-         else:
-            self.showBalls = True
+        hasHumanCock = 101
+        hasHorseCock = 101
+        hasWolfCock = 101
+        hasCatCock = 101
+        hasLizardCock = 101
+        hasRabbitCock = 101
+        hasBugCock = 101
+        if (self.humanCocks > 0):
+            hasHumanCock = self.humanAffinity
+        if (self.horseCocks > 0):
+            hasHorseCock = self.horseAffinity
+        if (self.wolfCocks > 0):
+            hasWolfCock = self.wolfAffinity
+        if (self.catCocks > 0):
+            hasCatCock = self.catAffinity
+        if (self.lizardCocks > 0):
+            hasLizardCock = self.lizardAffinity
+        if (self.rabbitCocks > 0):
+            hasRabbitCock = self.rabbitAffinity
+        if (self.bugCocks > 0):
+            hasBugCock = self.bugAffinity
+        minCock = Math.min(hasHumanCock, hasHorseCock, hasWolfCock, hasCatCock, hasLizardCock, hasRabbitCock, hasBugCock)
+        if (minCock == self.humanAffinity and self.humanCocks > 0):
+            self.doMainText("\n\nYou have lost one human cock.")
+            self.humanCocks -= 1
+        elif (minCock == self.horseAffinity and self.horseCocks > 0):
+            self.doMainText("\n\nYou have lost one horse cock.")
+            self.horseCocks -= 1
+        elif (minCock == self.wolfAffinity and self.wolfCocks > 0):
+            self.doMainText("\n\nYou have lost one wolf cock.")
+            self.wolfCocks -= 1
+        elif (minCock == self.catAffinity and self.catCocks > 0):
+            self.doMainText("\n\nYou have lost one cat cock.")
+            self.catCocks -= 1
+        elif (minCock == self.lizardAffinity and self.lizardCocks > 0):
+            self.doMainText("\n\nYou have lost one lizard cock.")
+            self.lizardCocks -= 1
+        elif (minCock == self.rabbitAffinity and self.rabbitCocks > 0):
+            self.doMainText("\n\nYou have lost one rabbit cock.")
+            self.rabbitCocks -= 1
+        elif (minCock == self.bugAffinity and self.bugCocks > 0):
+            self.doMainText("\n\nYou have lost one bug cock.")
+            self.bugCocks -= 1
+        if self.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
+            if self.lizardCocks == self.cockTotal:
+                self.showBalls = False
+            else:
+                self.showBalls = True
 
     def vagChange(self, sizeChange: int, totalChange: int):
+      # HERE
       if (self.cockSnakePreg > 0):
          birthCount = 0
          if (sizeChange < 0 or totalChange < 0):
@@ -26311,18 +26314,19 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.vagSize += sizeChange
 
     def vagBellyChange(self, sizeChange: int, totalChange: int):
-      newBelly = (self.vagSize + sizeChange) * (self.vagTotal + totalChange) * self.vagSizeMod - self.tallness / 2
-      if (newBelly < 0):
-         newBelly = 0
-      if (newBelly < self.vagBellyMod):
-         self.doMainText("\n\nYour belly flattens slightly as the amount of vaginal flesh within becomes less disproportionate to your body.")
-      elif (newBelly > self.vagBellyMod):
-         self.doMainText("\n\nYour belly bulges slightly more as the vaginal flesh within takes up more room than your belly can handle...")
-      self.vagBellyMod = newBelly
-      if (self.vagBellyMod < 0):
-         self.vagBellyMod = 0
+        newBelly = (self.vagSize + sizeChange) * (self.vagTotal + totalChange) * self.vagSizeMod - self.tallness / 2
+        if (newBelly < 0):
+            newBelly = 0
+        if (newBelly < self.vagBellyMod):
+            self.doMainText("\n\nYour belly flattens slightly as the amount of vaginal flesh within becomes less disproportionate to your body.")
+        elif (newBelly > self.vagBellyMod):
+            self.doMainText("\n\nYour belly bulges slightly more as the vaginal flesh within takes up more room than your belly can handle...")
+        self.vagBellyMod = newBelly
+        if (self.vagBellyMod < 0):
+            self.vagBellyMod = 0
 
     def legChange(self, which: int):
+      # HERE
       if (self.legType > 1000 and which < 1000):
          self.doMainText(f"\n\nA strange sensation envelopes your tauric half. Things pop and grow tight as the backside shrinks, your back legs dwindling down into your rear crotch while your secondary chest shrivels and your spine shortens up. The entirety of your tauric half shrinks back to your primary body, leaving you to fall back onto your {self.buttDesc()} ass while your crotch shifts forward to nestle between your front legs.")
          if (self.legType == 1001):
@@ -26437,64 +26441,64 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       self.legType = which
 
     def boobChange(self, sizeChange: int):
-      self.breastSize += sizeChange
-      self.nippleSize += sizeChange
+        self.breastSize += sizeChange
+        self.nippleSize += sizeChange
 
     def udderChange(self, sizeChange: int):
-      self.udderSize += sizeChange
-      self.teatSize += sizeChange
+        self.udderSize += sizeChange
+        self.teatSize += sizeChange
 
     def udderCheck(self, which: int):
-      return (which == 1 and self.legType == 1001 or which == 2 and self.cowAffinity >= 55)
+        return (which == 1 and self.legType == 1001 or which == 2 and self.cowAffinity >= 55)
 
     def lactChange(self, which: int, amount: int):
-      if (which == 1 and self.lactation + amount >= 1 and self.lactation < 1):
-         self.doMainText(f"\n\nBlotches spread across your {self.clothesTop()} around your nipples. Curiously, you dab your finger in the moistness and take a taste. Milk... Your breasts seem to have begun lactating!")
-         self.nipplePlay = 20
-      elif (which == 2 and self.udderLactation + amount >= 1 and self.udderLactation < 1 and self.udders):
-         self.doMainText(f"\n\nBlotches spread across your {self.clothesBottom()}, starting from your teats. Curiously, you dab your finger in the moistness and take a taste. Milk... Your udder seems to have begun lactating!")
-         self.udderPlay = 20
-      if (which == 1 and self.lactation + amount < 1 and self.lactation >= 1):
-         self.doMainText("\n\nYour nipples feel exceptionally dry... It seems your breasts are no longer producing milk.")
-         self.nipplePlay = 0
-         if (self.milkEngorgementLevel == 1):
-            self.boobChange(-1)
-         elif (self.milkEngorgementLevel == 2):
-            self.boobChange(-2)
-         elif (self.milkEngorgementLevel == 3):
-            self.boobChange(-3)
-         self.milkEngorgementLevel = 0
-         self.milkEngorgement = 0
-      elif (which == 2 and self.udderLactation + amount < 1 and self.udderLactation >= 1 and self.udders):
-         self.doMainText("\n\nYour teats feel exceptionally dry... It seems your udder is no longer producing milk.")
-         if (self.udderEngorgementLevel == 1):
-            self.udderChange(-2)
-         elif (self.udderEngorgementLevel == 2):
-            self.udderChange(-5)
-         elif (self.udderEngorgementLevel == 3):
-            self.udderChange(-8)
-         self.udderEngorgementLevel = 0
-         self.udderEngorgement = 0
-         self.udderPlay = 0
-      if (which == 1):
-         self.lactation += amount
-      elif (which == 2):
-         self.udderLactation += amount
-      if (self.milkSuppressant <= 0):
-         if ((self.lactation <= 0 or self.udderLactation <= 0 and self.udders) and self.pregStatus > 0):
-            self.doMainText(" ...However a few minutes later your milk starts right back up. Seems your body needs the milk for something else.")
-            self.lactation = 20
-            if (self.udders):
-               self.udderLactation = 20
-         if ((self.lactation < 3000 or self.udderLactation < 3000 and self.udders) and self.checkItem(252)):
-            self.doMainText(" ...However a few minutes later you begin to squirt again, soaking your outfit. The milky pendant feels warmer than usual, suffusing its essence back into your body and preventing you from being less drippy...")
-            self.lactation = 3000
-            if (self.udders):
-               self.udderLactation = 3000
-      if (self.lactation < 0):
-         self.lactation = 0
-      if (self.udderLactation < 0):
-         self.udderLactation = 0
+        if (which == 1 and self.lactation + amount >= 1 and self.lactation < 1):
+            self.doMainText(f"\n\nBlotches spread across your {self.clothesTop()} around your nipples. Curiously, you dab your finger in the moistness and take a taste. Milk... Your breasts seem to have begun lactating!")
+            self.nipplePlay = 20
+        elif (which == 2 and self.udderLactation + amount >= 1 and self.udderLactation < 1 and self.udders):
+            self.doMainText(f"\n\nBlotches spread across your {self.clothesBottom()}, starting from your teats. Curiously, you dab your finger in the moistness and take a taste. Milk... Your udder seems to have begun lactating!")
+            self.udderPlay = 20
+        if (which == 1 and self.lactation + amount < 1 and self.lactation >= 1):
+            self.doMainText("\n\nYour nipples feel exceptionally dry... It seems your breasts are no longer producing milk.")
+            self.nipplePlay = 0
+            if (self.milkEngorgementLevel == 1):
+                self.boobChange(-1)
+            elif (self.milkEngorgementLevel == 2):
+                self.boobChange(-2)
+            elif (self.milkEngorgementLevel == 3):
+                self.boobChange(-3)
+            self.milkEngorgementLevel = 0
+            self.milkEngorgement = 0
+        elif (which == 2 and self.udderLactation + amount < 1 and self.udderLactation >= 1 and self.udders):
+            self.doMainText("\n\nYour teats feel exceptionally dry... It seems your udder is no longer producing milk.")
+            if (self.udderEngorgementLevel == 1):
+                self.udderChange(-2)
+            elif (self.udderEngorgementLevel == 2):
+                self.udderChange(-5)
+            elif (self.udderEngorgementLevel == 3):
+                self.udderChange(-8)
+            self.udderEngorgementLevel = 0
+            self.udderEngorgement = 0
+            self.udderPlay = 0
+        if (which == 1):
+            self.lactation += amount
+        elif (which == 2):
+            self.udderLactation += amount
+        if (self.milkSuppressant <= 0):
+            if ((self.lactation <= 0 or self.udderLactation <= 0 and self.udders) and self.pregStatus > 0):
+                self.doMainText(" ...However a few minutes later your milk starts right back up. Seems your body needs the milk for something else.")
+                self.lactation = 20
+                if (self.udders):
+                    self.udderLactation = 20
+            if ((self.lactation < 3000 or self.udderLactation < 3000 and self.udders) and self.checkItem(252)):
+                self.doMainText(" ...However a few minutes later you begin to squirt again, soaking your outfit. The milky pendant feels warmer than usual, suffusing its essence back into your body and preventing you from being less drippy...")
+                self.lactation = 3000
+                if (self.udders):
+                    self.udderLactation = 3000
+        if (self.lactation < 0):
+            self.lactation = 0
+        if (self.udderLactation < 0):
+            self.udderLactation = 0
 
     def pregCheck(self, amount: int):
         if (amount == 0):
@@ -26516,237 +26520,236 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doImpregnate(erace)
 
     def doImpregnate(self, erace: int):
-      # HERE
-      chance = self.percent()
-      tempPregMod = 0
-      if (self.babyFree > 0):
-         tempPregMod -= 50
-      if (self.cockSnakePreg > 0):
-         self.doMainText(f"\n\nAs the cum fills your {self.bellyDesc()} belly, you feel it diminish from your passage as the cum-hungry snake inside squirms to drink it down. It then settles, happy with its meal and giving you some rest...", False, "snakes")
-         self.cockSnakePreg += 25
-         if (self.cockSnakePreg > 100):
-            self.cockSnakePreg = 100
-         tempPregMod -= 100000
-      trace(f"{chance} {self.pregChanceMod} {tempPregMod}")
-      if (self.pregCheck(1) and chance + self.pregChanceMod + tempPregMod >= 90):
-         i = 0
-         extra = 0
-         while (self.percent() < self.extraPregChance + 10 - 4 * (i + 1) * i):
-            extra += 1
-            i += 1
-         for i in range(0, self.pregArray.length, 5):
-            if (not self.pregArray[i]):
-               if erace == 1:
-                  self.pregArray[i + 2] = 140 + Math.floor(self.percent() / 5) + extra * 70
-                  self.pregArray[i + 4] = extra
-               elif erace == 2:
-                  self.pregArray[i + 2] = 210 + Math.floor(self.percent() / 5) + extra * 100
-                  self.pregArray[i + 4] = extra
-               elif erace == 3:
-                  self.pregArray[i + 2] = 110 + Math.floor(self.percent() / 5) + extra * 40
-                  self.pregArray[i + 4] = extra * 2
-               elif erace == 4:
-                  self.pregArray[i + 2] = 90 + Math.floor(self.percent() / 5) + extra * 35
-                  self.pregArray[i + 4] = extra * 2
-               elif erace == 5:
-                  self.pregArray[i + 2] = 240 + Math.floor(self.percent() / 5) + extra * 120
-                  self.pregArray[i + 4] = extra
-               elif erace == 6:
-                  self.pregArray[i + 2] = 80 + Math.floor(self.percent() / 10) + extra * 60
-                  self.pregArray[i + 4] = extra * 3
-               elif erace == 7:
-                  self.pregArray[i + 2] = 50 + Math.floor(self.percent() / 10) + extra * 40
-                  self.pregArray[i + 4] = extra * 3
-               elif erace == 8:
-                  self.pregArray[i + 2] = 40 + Math.floor(self.percent() / 10) + extra * 60
-                  self.pregArray[i + 4] = extra * 5
-               elif erace == 9:
-                  self.pregArray[i + 2] = 90 + Math.floor(self.percent() / 10) + extra * 40
-                  self.pregArray[i + 4] = extra
-               elif erace == 10:
-                  self.pregArray[i + 2] = 180 + Math.floor(self.percent() / 10) + extra * 70
-                  self.pregArray[i + 4] = extra * 2
-               elif erace == 11:
-                  self.pregArray[i + 2] = 120 + Math.floor(self.percent() / 10) + extra * 50
-                  self.pregArray[i + 4] = extra * 2
-               elif erace == 12:
-                  self.pregArray[i + 2] = 50 + Math.floor(self.percent() / 10) + extra * 40
-                  self.pregArray[i + 4] = extra * 4
-               elif erace == 100:
-                  self.pregArray[i + 2] = 80 + Math.floor(self.percent() / 10) + extra * 30
-                  self.pregArray[i + 4] = extra * 2
-               elif erace == 101:
-                  self.pregArray[i + 2] = 220 + Math.floor(self.percent() / 5) + extra * 110
-                  self.pregArray[i + 4] = extra
-               elif erace == 307:
-                  self.pregArray[i + 2] = 280 + Math.floor(self.percent() / 5) + extra * 140
-                  self.pregArray[i + 4] = extra
-               elif erace == 308:
-                  self.pregArray[i + 2] = 80 + Math.floor(self.percent() / 5) + extra * 30
-                  self.pregArray[i + 4] = extra * 2
-               self.pregArray[i + 1] = erace
-               self.pregArray[i] = True
-               break
+        chance = self.percent()
+        tempPregMod = 0
+        if (self.babyFree > 0):
+            tempPregMod -= 50
+        if (self.cockSnakePreg > 0):
+            self.doMainText(f"\n\nAs the cum fills your {self.bellyDesc()} belly, you feel it diminish from your passage as the cum-hungry snake inside squirms to drink it down. It then settles, happy with its meal and giving you some rest...", False, "snakes")
+            self.cockSnakePreg += 25
+            if (self.cockSnakePreg > 100):
+                self.cockSnakePreg = 100
+            tempPregMod -= 100000
+        trace(f"{chance} {self.pregChanceMod} {tempPregMod}")
+        if (self.pregCheck(1) and chance + self.pregChanceMod + tempPregMod >= 90):
+            i = 0
+            extra = 0
+            while (self.percent() < self.extraPregChance + 10 - 4 * (i + 1) * i):
+                extra += 1
+                i += 1
+            for i in range(0, self.pregArray.length, 5):
+                if (not self.pregArray[i]):
+                    if erace == 1:
+                        self.pregArray[i + 2] = 140 + Math.floor(self.percent() / 5) + extra * 70
+                        self.pregArray[i + 4] = extra
+                    elif erace == 2:
+                        self.pregArray[i + 2] = 210 + Math.floor(self.percent() / 5) + extra * 100
+                        self.pregArray[i + 4] = extra
+                    elif erace == 3:
+                        self.pregArray[i + 2] = 110 + Math.floor(self.percent() / 5) + extra * 40
+                        self.pregArray[i + 4] = extra * 2
+                    elif erace == 4:
+                        self.pregArray[i + 2] = 90 + Math.floor(self.percent() / 5) + extra * 35
+                        self.pregArray[i + 4] = extra * 2
+                    elif erace == 5:
+                        self.pregArray[i + 2] = 240 + Math.floor(self.percent() / 5) + extra * 120
+                        self.pregArray[i + 4] = extra
+                    elif erace == 6:
+                        self.pregArray[i + 2] = 80 + Math.floor(self.percent() / 10) + extra * 60
+                        self.pregArray[i + 4] = extra * 3
+                    elif erace == 7:
+                        self.pregArray[i + 2] = 50 + Math.floor(self.percent() / 10) + extra * 40
+                        self.pregArray[i + 4] = extra * 3
+                    elif erace == 8:
+                        self.pregArray[i + 2] = 40 + Math.floor(self.percent() / 10) + extra * 60
+                        self.pregArray[i + 4] = extra * 5
+                    elif erace == 9:
+                        self.pregArray[i + 2] = 90 + Math.floor(self.percent() / 10) + extra * 40
+                        self.pregArray[i + 4] = extra
+                    elif erace == 10:
+                        self.pregArray[i + 2] = 180 + Math.floor(self.percent() / 10) + extra * 70
+                        self.pregArray[i + 4] = extra * 2
+                    elif erace == 11:
+                        self.pregArray[i + 2] = 120 + Math.floor(self.percent() / 10) + extra * 50
+                        self.pregArray[i + 4] = extra * 2
+                    elif erace == 12:
+                        self.pregArray[i + 2] = 50 + Math.floor(self.percent() / 10) + extra * 40
+                        self.pregArray[i + 4] = extra * 4
+                    elif erace == 100:
+                        self.pregArray[i + 2] = 80 + Math.floor(self.percent() / 10) + extra * 30
+                        self.pregArray[i + 4] = extra * 2
+                    elif erace == 101:
+                        self.pregArray[i + 2] = 220 + Math.floor(self.percent() / 5) + extra * 110
+                        self.pregArray[i + 4] = extra
+                    elif erace == 307:
+                        self.pregArray[i + 2] = 280 + Math.floor(self.percent() / 5) + extra * 140
+                        self.pregArray[i + 4] = extra
+                    elif erace == 308:
+                        self.pregArray[i + 2] = 80 + Math.floor(self.percent() / 5) + extra * 30
+                        self.pregArray[i + 4] = extra * 2
+                    self.pregArray[i + 1] = erace
+                    self.pregArray[i] = True
+                    break
 
     def doBirth(self, pregnancyType: int, extra: int, birthCount: int):
-      if (self.pregArray.length > self.vagTotal * 5):
-         self.vagChange(0, 1)
-      self.hrs += 1
-      if (birthCount == 0):
-         self.doMainText(f"\n\nSuddenly, you feel water splash across your thighs, flooding from {self.oneYour(2)} cunt{self.plural(2)}. You've gone into labor!\n\nYou sit on the ground, huffing and heaving as pain envelops your body. Between each heave and your hands on your belly, you push with all your might!")
-      elif (birthCount > 0):
-         self.doMainText("\n\nYet, you're still not quite done with the birthing process as fluid splashes out of another one of your vaginas. You tense yourself, already on the ground, and your breathing progresses rapidly as your nearly crush your belly, trying to get more of your babies out!")
-      if pregnancyType == 1:
-         birthNumber = 1 + extra
-         self.doMainText(f" Slowly, a large round head pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a cry as it breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your {self.boobDesc()} chest. With a round face and soft skin, it's easy to tell you've given birth to a human child. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting it suckle from its mother.")
-         if (self.vagLimit() < 16):
-            self.vulvaSize += 1
-            self.vagChange(1, 0)
-         if (birthNumber > 1):
-            self.doMainText(f"\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out {birthNumber - 1} more human babies, each about the same size as the first. By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.")
-         if (birthNumber == 1):
-            self.doMainText("\n\nEventually, you prepare the human child to bring to your own personal day-care the next time you're in town.")
-         if (birthNumber > 1):
-            self.doMainText("\n\nEventually, you prepare the human children to bring to your own personal day-care the next time you're in town.")
-         self.humanChildren += birthNumber
-      elif pregnancyType == 2:
-         birthNumber = 1 + extra
-         self.doMainText(f" Slowly, a large body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a snort as the long muzzle breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your {self.boobDesc()} chest. With a horse-like muzzle and rather large body, it's easy to tell you've given birth to an equan child. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting it suckle from its mother.")
-         if (self.vagLimit() < 36):
-            self.vulvaSize += 1
-            self.vagChange(1, 0)
-         if (self.vagLimit() < 20):
-            self.doMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...")
-            self.vulvaSize += 2
-            self.vagChange(2, 0)
-         if (birthNumber > 1):
-            self.doMainText(f"\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out {birthNumber - 1} more equan babies, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.")
-         if (birthNumber == 1):
-            self.doMainText("\n\nEventually, you prepare the equan child to bring to your own personal day-care the next time you're in town.")
-         if (birthNumber > 1):
-            self.doMainText("\n\nEventually, you prepare the equan children to your bring to own personal day-care the next time you're in town.")
-         self.equanChildren += birthNumber
-      elif pregnancyType == 3:
-         birthNumber = Math.floor(self.percent() / 20 + 2 + extra)
-         self.doMainText(f" Quite soon, you feel a small fuzzy body push out {self.legWhere(1)} your {self.legDesc(2)}. A soft yip escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with wolf-like ears and tail. Especially small, the lupan child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another whimper cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of {birthNumber} pup-like lupan babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.")
-         self.lupanChildren += birthNumber
-      elif pregnancyType == 4:
-         birthNumber = Math.floor(self.percent() / 20 + 2 + extra)
-         self.doMainText(f" Quite soon, you feel a small fuzzy body push out {self.legWhere(1)} your {self.legDesc(2)}. A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with cat-like ears and tail. Especially small, the felin child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of {birthNumber} kitten-like felin babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.")
-         self.felinChildren += birthNumber
-      elif pregnancyType == 5:
-         birthNumber = 1 + extra
-         self.doMainText(f" Slowly, a large body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a quiet groan as the muzzle breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your {self.boobDesc()} chest. With a cow-like muzzle and rather large body, it seems as though you have given birth to a cow-like child. The relatively large nipples for a newborn and small udder, its obviously a she before even checking her genitals, and a long thin tail that ends with a bushy-haired tip. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting her suckle from her mother.")
-         if (self.vagLimit() < 36):
-            self.vulvaSize += 1
-            self.vagChange(1, 0)
-         if (self.vagLimit() < 20):
-            self.doMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...")
-            self.vulvaSize += 2
-            self.vagChange(2, 0)
-         if (birthNumber > 1):
-            self.doMainText(f"\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out {birthNumber - 1} more bovine baby girls, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom")
-            if (self.udders):
-               self.doMainText(" and udder")
-            self.doMainText(", letting them suckle as they can, which they do to great length.")
-         if (birthNumber == 1):
-            self.doMainText("\n\nEventually, you prepare the bovine child to bring to your own personal day-care the next time you're in town.")
-         if (birthNumber > 1):
-            self.doMainText("\n\nEventually, you prepare the bovine children to your bring to own personal day-care the next time you're in town.")
-         self.cowChildren += birthNumber
-      elif pregnancyType == 6:
-         birthNumber = Math.floor(self.percent() / 15 + 3 + extra)
-         self.doMainText(f" You soon feel your passage begin to stretch as a hard, smooth body begins to slip out past your lips. It doesn't take much effort before it plops to the floor and rolls a little, a white egg a bit larger than your average unfertilized Lizan egg. Another contraction gets you pushing again as the rest of its brood push out, one egg right after the next.\n\nEventually, you have laid a batch of {birthNumber} fertilized eggs, all with Lizan embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.")
-         self.lizanEggs += birthNumber
-      elif pregnancyType == 7:
-         birthNumber = Math.floor(self.percent() / 20 + 3 + extra)
-         self.doMainText(f" Quite rapidly, you feel a small fuzzy body push out {self.legWhere(1)} your {self.legDesc(2)}. Cute squeaks erupt from it as it takes its first breaths, writhing around softly. You pull it up to your chest, cradling the small humanoid body that is covered in downy fur with long ears and a puffy tail. So small, the bunny-like child is just the first, as more are most definitely on the way. They don't call it 'breeding like rabbits' for nothing...\n\nMore squeaks are soon heard as the bunny-like babes pour from your womb, until you have a litter of {birthNumber}. They kick about your body, trying to crawl and suckle from you, until you eventually prepare them to bring to your personal day-care the next time you're in town.")
-         self.bunnionChildren += birthNumber
-      elif pregnancyType == 8:
-         birthNumber = Math.floor(self.percent() / 20 + 4 + extra)
-         self.doMainText(f" Quite rapidly, you feel a small naked body push out {self.legWhere(1)} your {self.legDesc(2)}. Cute squeaks erupt from it as it takes its first breaths, pawing at the ground confusedly. You pull it up to your chest, cradling the small humanoid body that is quite naked, not having grown any fur yet, with large circular ears and long thin tail. So small, the mouse-like child is just the first, as more are most definitely on the way. Mice are very... 'excessive' breeders...\n\nMore squeaks are soon heard as the mouse-like babes pour from your womb, until you have a litter of {birthNumber}. They blindly grope about your body, trying to figure out what the hell is going on, drinking from your nipples when they can, until you eventually prepare them to bring to your personal day-care the next time you're in town.")
-         self.miceChildren += birthNumber
-      elif pregnancyType == 9:
-         birthNumber = Math.floor(self.percent() / 15 + 3 + extra)
-         self.doMainText(f" You soon feel your passage begin to stretch as a hard, smooth body begins to slip out past your lips. It takes a bit of effort before it plops to the floor and rolls a little, a speckled egg much larger than your average unfertilized egg. Another contraction gets you pushing again as the rest of the clutch push out, one egg right after the next.\n\nEventually, you have laid a batch of {birthNumber} fertilized eggs, all with embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.")
-         self.birdEggs += birthNumber
-      elif pregnancyType == 10:
-         birthNumber = Math.floor(self.percent() / 33 + 1 + extra)
-         self.doMainText(f" Slowly, a round body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a squeal cutely as it breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air before the next body begins to make its way out. A litter of {birthNumber} smooth-skinned babes cry and squeal, trying to crawl around and looking for their mother's bosom. With snubbed noses and long floppy ears with little curly tails, these humanoid babies look a bit like pigs. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting them suckle before you bring them to the day-care where they'll be carefully watched after.")
-         self.pigChildren += birthNumber
-      elif pregnancyType == 11:
-         birthNumber = Math.floor(self.percent() / 20 + 2 + extra)
-         self.doMainText(f" Quite soon, you feel a small fuzzy body push out {self.legWhere(1)} your {self.legDesc(2)}. A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with skunk-like ears and a big fluffy tail. Especially small, the skunk-like child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of {birthNumber} skunk-like babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.")
-         self.skunkChildren += birthNumber
-      elif pregnancyType == 12:
-         birthNumber = Math.floor(self.percent() / 10 + 4 + extra)
-         self.doMainText(f" You soon feel your passage begin to stretch as a soft, smooth body begins to slip out past your lips. It slides out rather quickly, hitting the floor with a wet plop and rolls away, a soft-shelled translucent gooey egg much larger than your average bug egg, a body visibly growing within. Another contraction gets you pushing again as the rest of the clutch push out, one egg right after the next until you have a small pile.\n\nEventually, you have laid a batch of {birthNumber} fertilized eggs, all with embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.")
-         self.bugEggs += birthNumber
-      elif pregnancyType == 100:
-         birthNumber = Math.floor(self.percent() / 20 + 3 + extra)
-         self.doMainText(f" Rather quickly, a small body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a small, high-pitched whine come from it. Pausing from your labor, you pull the child up to your chest, cradling it. Covered in fur, eyes shut to the world, it's a small puppy. A wolf puppy, to be more accurate. Although, you have little time to consider the symantics as another contraction makes you seize in pain. Soon, another whine cries out. Followed by another contraction... Until you have given birth to a litter of {birthNumber} wolf pups! Congratulations, Mommy!\n\nYou'll bring the pups to your personal day-care the next time you're in town.")
-         if (self.vagLimit() < 12):
-            self.vulvaSize += 1
-            self.vagChange(1, 0)
-         self.wolfPupChildren += birthNumber
-      elif pregnancyType == 101:
-         birthNumber = 1 + extra
-         self.doMainText(f" Slowly, a large body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. Hooves scrape across the ground as the forelegs come out first. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn lets out a surprised moo, trying to figure out what happened, you reach down and bring it up to your {self.boobDesc()} chest. A cow from head to hoof, the calf is already licking over the fabric in an attempt to latch onto your teat. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting it suckle from its mother.")
-         if (self.vagLimit() < 36):
-            self.vulvaSize += 1
-            self.vagChange(1, 0)
-         if (self.vagLimit() < 20):
-            self.doMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...")
-            self.vulvaSize += 2
-            self.vagChange(2, 0)
-         if (birthNumber > 1):
-            self.doMainText(f"\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out {birthNumber - 1} more calves, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.")
-         if (birthNumber == 1):
-            self.doMainText("\n\nEventually, you prepare the calf to bring to your own personal day-care the next time you're in town.")
-         if (birthNumber > 1):
-            self.doMainText("\n\nEventually, you prepare the calves to your bring to own personal day-care the next time you're in town.")
-         self.calfChildren += birthNumber
-      elif pregnancyType == 200:
-         self.doMainText(f" It doesn't take much effort as you feel a round object roll out of {self.oneYour(2)} {self.vulvaDesc()} cunt{self.plural(2)} with a wet plop. You attempt to look around your body to see what it is, but you don't have much time before another squeezes through your cervix, demanding your attention to get back to pushing.\n\nThere's not much of a rest in between contractions to see what is coming out exactly, but all you can tell is that there are a lot. At least a dozen; although it's impossible to keep track amidst all the birthing. It's not until the very last one exits that you're given a long enough reprieve to actually look...\n\nYou seem to be just in time to spot the clear, jelly-like egg unravel around something pink in the center. The pink thing tumbles out from the egg, spreading apart into several small tentacles. Eight, to be exact. And in the center of them is a cute little girl. Not quite a baby, just a really small child, no taller than half a foot. You can hear her giggle a little as she kisses your thighs, thanking you a little before wiggling her way away from you.\n\nYour {self.legDesc(2)} are too weak at the moment to chase after her, but you can see a trail of slime that all of the others had used. They seem to be headed in the same direction: back to the beach where you had obtained them.")
-         self.itemAdd(217)
-      elif pregnancyType == 201:
-         self.doMainText(f" However, it takes less effort than you thought possible as small hands manually spread you wider and then anchor themselves further and further out. Two tall, narrow ears pop out {self.legWhere(1)} your {self.legDesc(2)}, your slime forming a web between them. In another moment, an entire body rolls out of you, wet and almost covered in white fur, around two feet tall.\n\nHer well-developed chest wobbles about as she turns to look at you with am absolutely naughty grin. Then she dashes off, hopping away with her large feet and one hand still jerking furiously between her legs...\n\nSeems like you had obtained a horny stowaway during your time as a giant, though you're unsure if it was an accident on your part or intentional on hers... Shortly after, however, you realize she had left something behind, fishing it out after having been caught between your {self.vulvaDesc()} pussy-lips. ")
-         self.itemAdd(222)
-      elif pregnancyType == 202:
-         self.doMainText(f" However, it takes less effort than you thought possible as small hands manually spread you wider and then anchor themselves further and further out. Two tall, narrow ears pop out {self.legWhere(1)} your {self.legDesc(2)}, your slime forming a web between them. In another moment, an entire body rolls out of you, wet and almost covered in white fur, around two feet tall.\n\nHis hand still on his pointy prick, a strand of cum drooling from its tip back to your pussy, he turns to look at you with am absolutely naughty grin. Then he dashes off, hopping away with his large feet and one hand still jerking furiously between his legs...\n\nSeems like you had obtained a horny stowaway during your time as a giant, though you're unsure if it was an accident on your part or intentional on his... Shortly after, however, you realize he had left something behind, fishing it out after having been caught between your {self.vulvaDesc()} pussy-lips. ")
-         self.doImpregnate(7)
-         self.itemAdd(222)
-      elif pregnancyType == 307:
-         birthNumber = 1 + extra
-         self.doMainText(f" Slowly, a large body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a snort as the long muzzle breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your {self.boobDesc()} chest. With a bull-like muzzle, small horns, and rather huge human-like body, it looks like you've given birth to the Minotaur's child. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting it suckle from its mother.")
-         if (self.vagLimit() < 25):
-            self.vulvaSize += 1
-            self.vagChange(1, 0)
-         if (self.vagLimit() < 15):
-            self.doMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...")
-            self.vulvaSize += 3
-            self.vagChange(3, 0)
-         if (birthNumber > 1):
-            self.doMainText(f"\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out {birthNumber - 1} more minotaur babies, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.")
-         if (birthNumber == 1):
-            self.doMainText("\n\nEventually, you prepare the Minotaur's child to bring to your own personal day-care the next time you're in town.")
-         if (birthNumber > 1):
-            self.doMainText("\n\nEventually, you prepare the Minotaur's children to your bring to own personal day-care the next time you're in town.")
-         self.minotaurChildren += birthNumber
-      elif pregnancyType == 308:
-         birthNumber = Math.floor(self.percent() / 20 + 2 + extra)
-         self.doMainText(f" Quite soon, you feel a small fuzzy body push out {self.legWhere(1)} your {self.legDesc(2)}. A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, it's... just a ball of fuzz with the face of a human in the center and two large long ears poking out on either side. You're not exactly sure what it is, only the ears look familiar, like that girl from the cave... Plus it's rather small, obviously just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a pile of {birthNumber} strange round fuzzy babies. They roll around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.")
-         self.freakyGirlChildren += birthNumber
-      elif pregnancyType == 501:
-         self.doMainText(f" Thick bull-cum splorts out from between your legs, coating your {self.legDesc(4)} with the white sticky spunk. More continues to lewdly pour from your vagina, your belly deflating as the stuff forms a puddle beneath you. You shudder as the warm stuff flows out, feeling like you just ejaculated through your cunt...\n\nIt is like a great weight has been lifted from you, your womb twitching from holding all that stuff inside for several hours. Rather embarassing, you leave the puddle behind, quickly escaping while some leftover stuff dribbles out as you go...")
-         self.doMultiImpregnate(101, 5)
-         self.doLust(-Math.floor(self.sen / 4), 2, 2)
-      elif pregnancyType == 502:
-         self.doMainText(f" Your own thick cum splorts out from between your legs, coating your {self.legDesc(4)} with the white sticky spunk. More continues to lewdly pour from your vagina, your belly deflating as the stuff forms a puddle beneath you. You shudder as the warm stuff flows out, feeling like you just ejaculated through your cunt...\n\nIt is like a great weight has been lifted from you, your womb twitching from holding all that stuff inside for several hours. Rather embarassing, you leave the puddle behind, quickly escaping while some leftover stuff dribbles out as you go...")
-         self.doMultiImpregnate(self.dominant, 3)
-         self.doLust(-Math.floor(self.sen / 4), 2, 2)
-      elif pregnancyType == 504:
-         self.doMainText(f" White fluids explode from your fresh pussy, drenching your {self.legDesc(4)} and slightly flooding the area around you. It only takes a few moments for it to all escape, your belly quickly deflating. Dabbing your fresh new pussy and taking a taste, the white fluid was a bunch of milk...\n\nThe statue must have enjoyed it's practical joke on you.")
+        if (self.pregArray.length > self.vagTotal * 5):
+            self.vagChange(0, 1)
+        self.hrs += 1
+        if (birthCount == 0):
+            self.doMainText(f"\n\nSuddenly, you feel water splash across your thighs, flooding from {self.oneYour(2)} cunt{self.plural(2)}. You've gone into labor!\n\nYou sit on the ground, huffing and heaving as pain envelops your body. Between each heave and your hands on your belly, you push with all your might!")
+        elif (birthCount > 0):
+            self.doMainText("\n\nYet, you're still not quite done with the birthing process as fluid splashes out of another one of your vaginas. You tense yourself, already on the ground, and your breathing progresses rapidly as your nearly crush your belly, trying to get more of your babies out!")
+        if pregnancyType == 1:
+            birthNumber = 1 + extra
+            self.doMainText(f" Slowly, a large round head pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a cry as it breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your {self.boobDesc()} chest. With a round face and soft skin, it's easy to tell you've given birth to a human child. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting it suckle from its mother.")
+            if (self.vagLimit() < 16):
+                self.vulvaSize += 1
+                self.vagChange(1, 0)
+            if (birthNumber > 1):
+                self.doMainText(f"\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out {birthNumber - 1} more human babies, each about the same size as the first. By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.")
+            if (birthNumber == 1):
+                self.doMainText("\n\nEventually, you prepare the human child to bring to your own personal day-care the next time you're in town.")
+            if (birthNumber > 1):
+                self.doMainText("\n\nEventually, you prepare the human children to bring to your own personal day-care the next time you're in town.")
+            self.humanChildren += birthNumber
+        elif pregnancyType == 2:
+            birthNumber = 1 + extra
+            self.doMainText(f" Slowly, a large body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a snort as the long muzzle breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your {self.boobDesc()} chest. With a horse-like muzzle and rather large body, it's easy to tell you've given birth to an equan child. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting it suckle from its mother.")
+            if (self.vagLimit() < 36):
+                self.vulvaSize += 1
+                self.vagChange(1, 0)
+            if (self.vagLimit() < 20):
+                self.doMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...")
+                self.vulvaSize += 2
+                self.vagChange(2, 0)
+            if (birthNumber > 1):
+                self.doMainText(f"\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out {birthNumber - 1} more equan babies, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.")
+            if (birthNumber == 1):
+                self.doMainText("\n\nEventually, you prepare the equan child to bring to your own personal day-care the next time you're in town.")
+            if (birthNumber > 1):
+                self.doMainText("\n\nEventually, you prepare the equan children to your bring to own personal day-care the next time you're in town.")
+            self.equanChildren += birthNumber
+        elif pregnancyType == 3:
+            birthNumber = Math.floor(self.percent() / 20 + 2 + extra)
+            self.doMainText(f" Quite soon, you feel a small fuzzy body push out {self.legWhere(1)} your {self.legDesc(2)}. A soft yip escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with wolf-like ears and tail. Especially small, the lupan child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another whimper cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of {birthNumber} pup-like lupan babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.")
+            self.lupanChildren += birthNumber
+        elif pregnancyType == 4:
+            birthNumber = Math.floor(self.percent() / 20 + 2 + extra)
+            self.doMainText(f" Quite soon, you feel a small fuzzy body push out {self.legWhere(1)} your {self.legDesc(2)}. A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with cat-like ears and tail. Especially small, the felin child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of {birthNumber} kitten-like felin babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.")
+            self.felinChildren += birthNumber
+        elif pregnancyType == 5:
+            birthNumber = 1 + extra
+            self.doMainText(f" Slowly, a large body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a quiet groan as the muzzle breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, your reach down and bring it up to your {self.boobDesc()} chest. With a cow-like muzzle and rather large body, it seems as though you have given birth to a cow-like child. The relatively large nipples for a newborn and small udder, its obviously a she before even checking her genitals, and a long thin tail that ends with a bushy-haired tip. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting her suckle from her mother.")
+            if (self.vagLimit() < 36):
+                self.vulvaSize += 1
+                self.vagChange(1, 0)
+            if (self.vagLimit() < 20):
+                self.doMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...")
+                self.vulvaSize += 2
+                self.vagChange(2, 0)
+            if (birthNumber > 1):
+                self.doMainText(f"\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out {birthNumber - 1} more bovine baby girls, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom")
+                if (self.udders):
+                    self.doMainText(" and udder")
+                self.doMainText(", letting them suckle as they can, which they do to great length.")
+            if (birthNumber == 1):
+                self.doMainText("\n\nEventually, you prepare the bovine child to bring to your own personal day-care the next time you're in town.")
+            if (birthNumber > 1):
+                self.doMainText("\n\nEventually, you prepare the bovine children to your bring to own personal day-care the next time you're in town.")
+            self.cowChildren += birthNumber
+        elif pregnancyType == 6:
+            birthNumber = Math.floor(self.percent() / 15 + 3 + extra)
+            self.doMainText(f" You soon feel your passage begin to stretch as a hard, smooth body begins to slip out past your lips. It doesn't take much effort before it plops to the floor and rolls a little, a white egg a bit larger than your average unfertilized Lizan egg. Another contraction gets you pushing again as the rest of its brood push out, one egg right after the next.\n\nEventually, you have laid a batch of {birthNumber} fertilized eggs, all with Lizan embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.")
+            self.lizanEggs += birthNumber
+        elif pregnancyType == 7:
+            birthNumber = Math.floor(self.percent() / 20 + 3 + extra)
+            self.doMainText(f" Quite rapidly, you feel a small fuzzy body push out {self.legWhere(1)} your {self.legDesc(2)}. Cute squeaks erupt from it as it takes its first breaths, writhing around softly. You pull it up to your chest, cradling the small humanoid body that is covered in downy fur with long ears and a puffy tail. So small, the bunny-like child is just the first, as more are most definitely on the way. They don't call it 'breeding like rabbits' for nothing...\n\nMore squeaks are soon heard as the bunny-like babes pour from your womb, until you have a litter of {birthNumber}. They kick about your body, trying to crawl and suckle from you, until you eventually prepare them to bring to your personal day-care the next time you're in town.")
+            self.bunnionChildren += birthNumber
+        elif pregnancyType == 8:
+            birthNumber = Math.floor(self.percent() / 20 + 4 + extra)
+            self.doMainText(f" Quite rapidly, you feel a small naked body push out {self.legWhere(1)} your {self.legDesc(2)}. Cute squeaks erupt from it as it takes its first breaths, pawing at the ground confusedly. You pull it up to your chest, cradling the small humanoid body that is quite naked, not having grown any fur yet, with large circular ears and long thin tail. So small, the mouse-like child is just the first, as more are most definitely on the way. Mice are very... 'excessive' breeders...\n\nMore squeaks are soon heard as the mouse-like babes pour from your womb, until you have a litter of {birthNumber}. They blindly grope about your body, trying to figure out what the hell is going on, drinking from your nipples when they can, until you eventually prepare them to bring to your personal day-care the next time you're in town.")
+            self.miceChildren += birthNumber
+        elif pregnancyType == 9:
+            birthNumber = Math.floor(self.percent() / 15 + 3 + extra)
+            self.doMainText(f" You soon feel your passage begin to stretch as a hard, smooth body begins to slip out past your lips. It takes a bit of effort before it plops to the floor and rolls a little, a speckled egg much larger than your average unfertilized egg. Another contraction gets you pushing again as the rest of the clutch push out, one egg right after the next.\n\nEventually, you have laid a batch of {birthNumber} fertilized eggs, all with embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.")
+            self.birdEggs += birthNumber
+        elif pregnancyType == 10:
+            birthNumber = Math.floor(self.percent() / 33 + 1 + extra)
+            self.doMainText(f" Slowly, a round body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a squeal cutely as it breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air before the next body begins to make its way out. A litter of {birthNumber} smooth-skinned babes cry and squeal, trying to crawl around and looking for their mother's bosom. With snubbed noses and long floppy ears with little curly tails, these humanoid babies look a bit like pigs. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting them suckle before you bring them to the day-care where they'll be carefully watched after.")
+            self.pigChildren += birthNumber
+        elif pregnancyType == 11:
+            birthNumber = Math.floor(self.percent() / 20 + 2 + extra)
+            self.doMainText(f" Quite soon, you feel a small fuzzy body push out {self.legWhere(1)} your {self.legDesc(2)}. A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, the small humanoid body is covered in fur with skunk-like ears and a big fluffy tail. Especially small, the skunk-like child is just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a litter of {birthNumber} skunk-like babies. They crawl around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.")
+            self.skunkChildren += birthNumber
+        elif pregnancyType == 12:
+            birthNumber = Math.floor(self.percent() / 10 + 4 + extra)
+            self.doMainText(f" You soon feel your passage begin to stretch as a soft, smooth body begins to slip out past your lips. It slides out rather quickly, hitting the floor with a wet plop and rolls away, a soft-shelled translucent gooey egg much larger than your average bug egg, a body visibly growing within. Another contraction gets you pushing again as the rest of the clutch push out, one egg right after the next until you have a small pile.\n\nEventually, you have laid a batch of {birthNumber} fertilized eggs, all with embryos slowly growing inside them. You have no idea how long they'll take to hatch, but you'll bring them back to your personal day-care anyways to make sure they're taken care of until they do.")
+            self.bugEggs += birthNumber
+        elif pregnancyType == 100:
+            birthNumber = Math.floor(self.percent() / 20 + 3 + extra)
+            self.doMainText(f" Rather quickly, a small body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a small, high-pitched whine come from it. Pausing from your labor, you pull the child up to your chest, cradling it. Covered in fur, eyes shut to the world, it's a small puppy. A wolf puppy, to be more accurate. Although, you have little time to consider the symantics as another contraction makes you seize in pain. Soon, another whine cries out. Followed by another contraction... Until you have given birth to a litter of {birthNumber} wolf pups! Congratulations, Mommy!\n\nYou'll bring the pups to your personal day-care the next time you're in town.")
+            if (self.vagLimit() < 12):
+                self.vulvaSize += 1
+                self.vagChange(1, 0)
+            self.wolfPupChildren += birthNumber
+        elif pregnancyType == 101:
+            birthNumber = 1 + extra
+            self.doMainText(f" Slowly, a large body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. Hooves scrape across the ground as the forelegs come out first. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn lets out a surprised moo, trying to figure out what happened, you reach down and bring it up to your {self.boobDesc()} chest. A cow from head to hoof, the calf is already licking over the fabric in an attempt to latch onto your teat. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting it suckle from its mother.")
+            if (self.vagLimit() < 36):
+                self.vulvaSize += 1
+                self.vagChange(1, 0)
+            if (self.vagLimit() < 20):
+                self.doMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...")
+                self.vulvaSize += 2
+                self.vagChange(2, 0)
+            if (birthNumber > 1):
+                self.doMainText(f"\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out {birthNumber - 1} more calves, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.")
+            if (birthNumber == 1):
+                self.doMainText("\n\nEventually, you prepare the calf to bring to your own personal day-care the next time you're in town.")
+            if (birthNumber > 1):
+                self.doMainText("\n\nEventually, you prepare the calves to your bring to own personal day-care the next time you're in town.")
+            self.calfChildren += birthNumber
+        elif pregnancyType == 200:
+            self.doMainText(f" It doesn't take much effort as you feel a round object roll out of {self.oneYour(2)} {self.vulvaDesc()} cunt{self.plural(2)} with a wet plop. You attempt to look around your body to see what it is, but you don't have much time before another squeezes through your cervix, demanding your attention to get back to pushing.\n\nThere's not much of a rest in between contractions to see what is coming out exactly, but all you can tell is that there are a lot. At least a dozen; although it's impossible to keep track amidst all the birthing. It's not until the very last one exits that you're given a long enough reprieve to actually look...\n\nYou seem to be just in time to spot the clear, jelly-like egg unravel around something pink in the center. The pink thing tumbles out from the egg, spreading apart into several small tentacles. Eight, to be exact. And in the center of them is a cute little girl. Not quite a baby, just a really small child, no taller than half a foot. You can hear her giggle a little as she kisses your thighs, thanking you a little before wiggling her way away from you.\n\nYour {self.legDesc(2)} are too weak at the moment to chase after her, but you can see a trail of slime that all of the others had used. They seem to be headed in the same direction: back to the beach where you had obtained them.")
+            self.itemAdd(217)
+        elif pregnancyType == 201:
+            self.doMainText(f" However, it takes less effort than you thought possible as small hands manually spread you wider and then anchor themselves further and further out. Two tall, narrow ears pop out {self.legWhere(1)} your {self.legDesc(2)}, your slime forming a web between them. In another moment, an entire body rolls out of you, wet and almost covered in white fur, around two feet tall.\n\nHer well-developed chest wobbles about as she turns to look at you with am absolutely naughty grin. Then she dashes off, hopping away with her large feet and one hand still jerking furiously between her legs...\n\nSeems like you had obtained a horny stowaway during your time as a giant, though you're unsure if it was an accident on your part or intentional on hers... Shortly after, however, you realize she had left something behind, fishing it out after having been caught between your {self.vulvaDesc()} pussy-lips. ")
+            self.itemAdd(222)
+        elif pregnancyType == 202:
+            self.doMainText(f" However, it takes less effort than you thought possible as small hands manually spread you wider and then anchor themselves further and further out. Two tall, narrow ears pop out {self.legWhere(1)} your {self.legDesc(2)}, your slime forming a web between them. In another moment, an entire body rolls out of you, wet and almost covered in white fur, around two feet tall.\n\nHis hand still on his pointy prick, a strand of cum drooling from its tip back to your pussy, he turns to look at you with am absolutely naughty grin. Then he dashes off, hopping away with his large feet and one hand still jerking furiously between his legs...\n\nSeems like you had obtained a horny stowaway during your time as a giant, though you're unsure if it was an accident on your part or intentional on his... Shortly after, however, you realize he had left something behind, fishing it out after having been caught between your {self.vulvaDesc()} pussy-lips. ")
+            self.doImpregnate(7)
+            self.itemAdd(222)
+        elif pregnancyType == 307:
+            birthNumber = 1 + extra
+            self.doMainText(f" Slowly, a large body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a snort as the long muzzle breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your {self.boobDesc()} chest. With a bull-like muzzle, small horns, and rather huge human-like body, it looks like you've given birth to the Minotaur's child. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting it suckle from its mother.")
+            if (self.vagLimit() < 25):
+                self.vulvaSize += 1
+                self.vagChange(1, 0)
+            if (self.vagLimit() < 15):
+                self.doMainText("\n\nYou're also quite a bit looser than before, from giving birth to such a big body...")
+                self.vulvaSize += 3
+                self.vagChange(3, 0)
+            if (birthNumber > 1):
+                self.doMainText(f"\n\nHowever, a contraction in the middle of suckling returns your attention to your spread loins. Apparently, the single newborn wasn't the only one in there. You grunt and heave some more as you push out {birthNumber - 1} more minotaur babies, each as large as the first! By the time you're finished, you're quite exhausted, holding them all to your bosom and letting them suckle as they can.")
+            if (birthNumber == 1):
+                self.doMainText("\n\nEventually, you prepare the Minotaur's child to bring to your own personal day-care the next time you're in town.")
+            if (birthNumber > 1):
+                self.doMainText("\n\nEventually, you prepare the Minotaur's children to your bring to own personal day-care the next time you're in town.")
+            self.minotaurChildren += birthNumber
+        elif pregnancyType == 308:
+            birthNumber = Math.floor(self.percent() / 20 + 2 + extra)
+            self.doMainText(f" Quite soon, you feel a small fuzzy body push out {self.legWhere(1)} your {self.legDesc(2)}. A soft mewl escapes its lips, taking its first gasp of air. Pulling the babe up to your chest and cradling it, it's... just a ball of fuzz with the face of a human in the center and two large long ears poking out on either side. You're not exactly sure what it is, only the ears look familiar, like that girl from the cave... Plus it's rather small, obviously just the first, as several more could easily fit within your belly... As another contraction yanks back your attention, another mewl cries out, with another soon on its way...\n\nEventually, you have given birth to a pile of {birthNumber} strange round fuzzy babies. They roll around your body as you let them suckle from your nipples and you eventually prepare them to bring to your personal day-care the next time you're in town.")
+            self.freakyGirlChildren += birthNumber
+        elif pregnancyType == 501:
+            self.doMainText(f" Thick bull-cum splorts out from between your legs, coating your {self.legDesc(4)} with the white sticky spunk. More continues to lewdly pour from your vagina, your belly deflating as the stuff forms a puddle beneath you. You shudder as the warm stuff flows out, feeling like you just ejaculated through your cunt...\n\nIt is like a great weight has been lifted from you, your womb twitching from holding all that stuff inside for several hours. Rather embarassing, you leave the puddle behind, quickly escaping while some leftover stuff dribbles out as you go...")
+            self.doMultiImpregnate(101, 5)
+            self.doLust(-Math.floor(self.sen / 4), 2, 2)
+        elif pregnancyType == 502:
+            self.doMainText(f" Your own thick cum splorts out from between your legs, coating your {self.legDesc(4)} with the white sticky spunk. More continues to lewdly pour from your vagina, your belly deflating as the stuff forms a puddle beneath you. You shudder as the warm stuff flows out, feeling like you just ejaculated through your cunt...\n\nIt is like a great weight has been lifted from you, your womb twitching from holding all that stuff inside for several hours. Rather embarassing, you leave the puddle behind, quickly escaping while some leftover stuff dribbles out as you go...")
+            self.doMultiImpregnate(self.dominant, 3)
+            self.doLust(-Math.floor(self.sen / 4), 2, 2)
+        elif pregnancyType == 504:
+            self.doMainText(f" White fluids explode from your fresh pussy, drenching your {self.legDesc(4)} and slightly flooding the area around you. It only takes a few moments for it to all escape, your belly quickly deflating. Dabbing your fresh new pussy and taking a taste, the white fluid was a bunch of milk...\n\nThe statue must have enjoyed it's practical joke on you.")
 
     def ptweaksGrammar(self, topic: int, capital: bool = False):
         # femme-boy/femboy
