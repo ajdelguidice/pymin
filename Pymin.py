@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import as3lib
 from as3lib import (Array, as3state, each, EnableDebug, Error, Number,
-                    RangeError, setHeaderInfo, TOML, trace)  # Math
+                    RangeError, setHeaderInfo, TOML, trace, Vector)  # Math
 from as3lib.helpers import isValidDirectory, textObject
 from as3lib.flash.desktop import _ToolkitEvent, _TkMouse
 from as3lib.flash.text import Font
@@ -1532,6 +1532,67 @@ class ApothecaryItems:
         return 0
 
 
+class PlayerItemStorage:
+    @property
+    def items(self):
+        return self._items
+
+    @property
+    def stack(self):
+        return self._stack
+
+    @property
+    def page(self):
+        return self._page
+
+    @page.setter
+    def page(self, value):
+        # TODO: Implement page wrapping behaviour here so choiceListSelect doesn't have to handle it
+        self._page = value
+
+    def __init__(self, items=None, stack=None):
+        if items is None or stack is None:
+            self._items = Vector[int]([0] * 27, True)
+            self._stack = Vector[int]([0] * 27, True)
+        else:
+            self._items = Vector[int](items, True)
+            self._stack = Vector[int](stack, True)
+        self._page = 1
+
+    def __contains__(self, item):
+        return item in self.items
+
+    def clear(self):
+        self._items = Vector[int]([0] * 27, True)
+        self._stack = Vector[int]([0] * 27, True)
+        self._page = 1
+
+    def hasItem(self, ID: int):  # checkItem
+        return ID in self.items
+
+    def hasMagicItem(self):  # checkMagicItem
+        for i in {101, 102, 200, 215, 232, 233, 234, 235, 236, 237, 252}:
+            if self.hasItem(i):
+                return True
+        return False
+
+    def getCount(self, ID: int):  # countItem
+        tempInt = 0
+        for i in range(27):
+            if (self.items[i] == ID):
+                tempInt += self.stack[i]
+        return tempInt
+
+    def getEmptySlot(self, ID: int):  # checkOpenSlot
+        for i in range(27):
+            if (self.stack[i] < Items.stackMax(ID) and self.items[i] == ID):
+                return i
+        for i in range(27):
+            if (not self.items[i]):
+                return i
+        return -1
+
+# Windows
 class PyminWindow:
     @property
     def enforceSize(self):
@@ -4214,17 +4275,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.tempColor = 0
 
         # bag
-        self.bagPage = 1
-        # self.bagArray = Array()
-        # self.bagStackArray = Array()
+        self.bag = PlayerItemStorage()
         self.itemGainArray = Array()
         self.mts = False
         self.mtb = False
 
         # stash
-        self.stashPage = 1  # Tracks stash page
-        # self.stashArray = Array()
-        # self.stashStackArray = Array()
+        self.stash = PlayerItemStorage()
 
         # choiceList
         self.choicePage = 0
@@ -5379,14 +5436,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif self.sideFocus == 8:
             self.detailedCredits()
 
-    def bsShowButtons(self, itemArray, stackArray):
+    def bsShowButtons(self, storage: PlayerItemStorage):
         self.detailedDebug()
         if self.inShop:
             self.hideDiscard()
         else:
             self.showDiscard()
         buttonDict = {12: "Return", 4: "<<", 8: ">>"}
-        itemNameArray = tuple(Items.name(i) for i in each(itemArray))
+        itemNameArray = tuple(Items.name(i) for i in each(storage.items))
         for i in range(9):
             tempI = i + (self.choicePage * 9 - 9)
             if (itemNameArray[tempI] != " "):
@@ -5402,9 +5459,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.buttonsVisible[i] = True
             if i not in {4, 8, 12}:
                 tempI = Calc.showButtonsBag(i, self.choicePage)
-                if (text and stackArray[tempI] > 1):
+                if (text and storage.stack[tempI] > 1):
                     self.showAmount(i)
-                    self.writeAmount(i, f'{stackArray[tempI]}')
+                    self.writeAmount(i, f'{storage.stack[tempI]}')
                 else:
                     self.hideAmount(i)
 
@@ -5420,20 +5477,20 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def displayBag(self):
         if (self.inBag):
-            self.choicePage = self.bagPage
+            self.choicePage = self.bag.page
         elif (self.mtb):
             self.choicePage = self.tempBagPage
         self.showPage('Bag')
-        self.bsShowButtons(self.bagArray, self.bagStackArray)
+        self.bsShowButtons(self.bag)
         self.bsUpdateButtonsWhenMoveItem('Stash')
 
     def displayStash(self):
         if (self.inStash):
-            self.choicePage = self.stashPage
+            self.choicePage = self.stash.page
         elif (self.mts):
             self.choicePage = self.tempBagPage
         self.showPage('Stash')
-        self.bsShowButtons(self.stashArray, self.stashStackArray)
+        self.bsShowButtons(self.stash)
         self.bsUpdateButtonsWhenMoveItem('Bag')
 
     def bagDisableEmpty(self):
@@ -5468,10 +5525,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.disableSelectedButtons(i for i in self.bMap if not self.buttonsVisible[i])
 
     def choiceListSelect(self, which: str):
+        # TODO: See if bag/stash stuff can be split into a separate function
         if which == 'Bag':
-            tempArray = self.bagArray
+            tempArray = self.bag.items
         elif which == 'Stash':
-            tempArray = self.stashArray
+            tempArray = self.stash.items
         else:
             tempArray = self.choiceListArray
         if self.buttonChoice in {12, 13}:
@@ -5500,12 +5558,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (self.mts):
                 self.tempBagPage = self.choicePage
             else:
-                self.bagPage = self.choicePage
+                self.bag.page = self.choicePage
         elif (self.inStash):
             if (self.mtb):
                 self.tempBagPage = self.choicePage
             else:
-                self.stashPage = self.choicePage
+                self.stash.page = self.choicePage
         if (self.buttonChoice != 4 and self.buttonChoice != 8):
             if not (self.inBag or self.inStash):
                 if not self.inShop:
@@ -5816,48 +5874,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText(f"\n\nYou are rather aware of the weight of your {self.bellyDesc()} belly. You often subconsciously center your weight more by resting your hands on top of it rather than let them hang at your sides.")
         self.displayMainText()
         return tempBool
-
-    def checkItem(self, ID: int):
-        '''
-        Checks if player has item ID in their bag
-        '''
-        return ID in self.bagArray
-
-    def checkMagicItem(self):
-        '''
-        Checks if player has a magic item in their bag
-        '''
-        for i in {101, 102, 200, 215, 232, 233, 234, 235, 236, 237, 252}:
-            if (self.checkItem(i)):
-                return True
-        return False
-
-    def checkStash(self, ID: int):
-        '''
-        Checks if player has item ID in their stash
-        '''
-        return ID in self.stashArray
-
-    def countItem(self, ID: int):
-        '''
-        Counts how many of item ID player has in their bag
-        '''
-        tempInt = 0
-        for i in range(27):
-            if (self.bagArray[i] == ID):
-                tempInt += self.bagStackArray[i]
-        return tempInt
-
-    # not currently used
-    def countStash(self, ID: int):
-        '''
-        Counts how many of item ID player has in their stash
-        '''
-        tempInt = 0
-        for i in range(27):
-            if (self.stashArray[i] == ID):
-                tempInt += self.stashStackArray[i]
-        return tempInt
 
     def chooseFrom(self):
         '''
@@ -6527,13 +6543,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.freakyGirlChildren = 0
                 self.wolfPupChildren = 0
                 self.calfChildren = 0
-                self.bagPage = 1
-                self.stashPage = 1
                 self.neuterizerHideBalls = False
-                self.bagArray = Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-                self.bagStackArray = Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-                self.stashArray = Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
-                self.stashStackArray = Array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)
+                self.bag.clear()
+                self.stash.clear()
                 self.doRace()
             else:
                 self.doReturn()
@@ -6626,9 +6638,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.tail == 11):
                     tempStr += " where they connect to the stripes on your tail"
         tempStr += f". {self.earDesc()}."
-        if (self.checkItem(234)):
+        if (self.bag.hasItem(234)):
             tempStr += " Large, multi-pointed, slightly fuzzy antlers grow out from atop your head, feeling slightly heavy but perfectly melded to your skull so you can easily lift them."
-        if (self.checkItem(101)):
+        if (self.bag.hasItem(101)):
             tempStr += " Soft padding protects the palms of your hands, making them look much like paws, your nails being sharp claws."
         elif (self.dominant == 9):
             tempStr += " Pointy talons grow from the tips of your fingers, more menacing than normal nails but not useful enough to be a threat."
@@ -6639,13 +6651,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.legType == 1002:
                 tempStr += f" This second body matches the {self.skinDesc()} of your upper half, with a thin and lithe torso, looking somewhat like a humans and not exactly made for riding but makes up for the frailness with plantigrade feet that easily support yourself, even though they aren't the speediest."
         # TODO: Add other foot types here
-        if (self.checkItem(102) or self.legType in {2, 1001}):
+        if (self.bag.hasItem(102) or self.legType in {2, 1001}):
             tempStr += " Keratin extends from your combined toes like hooves, your ankle angled upward and high up like a second backwards knee, making you walk on the tips of your hooved toes with a clap against the ground every step."
         elif (self.legType == 1):
             tempStr += " Your ankles elongated and lithe, the front of your feet are large wide paws that help balance you as you walk digitigrade, your steps nothing but a soft and gentle patter against the ground."
         elif (self.skinType == 5 and self.legDesc(10) == "feet"):
             tempStr += " Chitin extends further past your heels, making you stand higher and balancing more on your toes."
-        if (self.checkItem(234)):
+        if (self.bag.hasItem(234)):
             tempStr += f" Your {self.buttDesc()} butt also looks a bit tighter for its size with the {self.skinDesc()} around it a lighter color than the rest, acting like a bullseye to your nethers. Below, the bone structure of your {self.legDesc(2)} is also fairly lithe, causing you to step with a graceful swagger and wave your {self.hipDesc()} hips erotically with every footfall."
         tempStr += "\n\nYou are currently wearing a "
         if (self.attireTop != self.attireBot):
@@ -7196,10 +7208,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr = textObject()
         tempStr += "You have the following items in your Bag:\n"
         for i in range(27):
-            if (self.bagArray[i]):
-                tempStr += f"\n{Items.name(self.bagArray[i])}"
-                if (self.bagStackArray[i] > 1):
-                    tempStr += f" x{self.bagStackArray[i]}"
+            if (self.bag.items[i]):
+                tempStr += f"\n{Items.name(self.bag.items[i])}"
+                if (self.bag.stack[i] > 1):
+                    tempStr += f" x{self.bag.stack[i]}"
         if (self.showSide):
             self.outputSideText(tempStr.get(), True)
         else:
@@ -7719,10 +7731,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             "minorFetish": {"pregnancyFetish": self.pregnancyFetish, "bestialityFetish": self.bestialityFetish, "milkFetish": self.milkFetish, "sizeFetish": self.sizeFetish, "unbirthingFetish": self.unbirthingFetish, "ovipositionFetish": self.ovipositionFetish, "toyFetish": self.toyFetish, "hyperFetish": self.hyperFetish},
             "kid": {"humanChildren": self.humanChildren, "equanChildren": self.equanChildren, "lupanChildren": self.lupanChildren, "felinChildren": self.felinChildren, "cowChildren": self.cowChildren, "lizanChildren": self.lizanChildren, "lizanEggs": self.lizanEggs, "bunnionChildren": self.bunnionChildren, "wolfPupChildren": self.wolfPupChildren, "miceChildren": self.miceChildren, "birdEggs": self.birdEggs, "birdChildren": self.birdChildren, "pigChildren": self.pigChildren, "calfChildren": self.calfChildren, "bugEggs": self.bugEggs, "bugChildren": self.bugChildren, "skunkChildren": self.skunkChildren, "minotaurChildren": self.minotaurChildren, "freakyGirlChildren": self.freakyGirlChildren},
             "trav": [],
-            "bag": list(each(self.bagArray)),
-            "bagStack": list(each(self.bagStackArray)),
-            "stash": list(each(self.stashArray)),
-            "stashStack": list(each(self.stashStackArray)),
+            "bag": list(each(self.bag.items)),
+            "bagStack": list(each(self.bag.stack)),
+            "stash": list(each(self.stash.items)),
+            "stashStack": list(each(self.stash.stack)),
             "preg": list(each(self.pregArray))
         })
         sfext = savefilename.suffix.lower()
@@ -8081,18 +8093,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.minotaurChildren = int(skid['minotaurChildren'])
         self.freakyGirlChildren = int(skid['freakyGirlChildren'])
         # trav = data['trav']
-        self.bagArray = Array(*data['bag'])
-        self.bagStackArray = Array(*data['bagStack'])
-        self.stashArray = Array(*data['stash'])
-        self.stashStackArray = Array(*data['stashStack'])
+        self.bag = PlayerItemStorage(data['bag'], data['bagStack'])
+        self.stash = PlayerItemStorage(data['stash'], data['stashStack'])
         self.pregArray = Array(*data['preg'])
 
         self.outputMainText("Your file has been successfully loaded.", True)
         self.hideNewSaveLoadDialog()
         self.hideDiscard()
         self.hideNSLDBlinder()
-        self.bagPage = 1
-        self.stashPage = 1
         self.hideUpDown()
         self.showStatsPane()
         self.regionChange(self.currentZone)
@@ -8713,10 +8721,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.buttonShiftOverride = False
                 if (self.buttonChoice == 6):
                     if (Items.isConsumable(ID)):
-                        if (self.bagStackArray[self.choiceListResult[1]] <= 1):
+                        if (self.bag.stack[self.choiceListResult[1]] <= 1):
                             self.bagSlotClear(self.choiceListResult[1])
                         else:
-                            self.bagStackArray[self.choiceListResult[1]] = self.bagStackArray[self.choiceListResult[1]] - 1
+                            self.bag.stack[self.choiceListResult[1]] = self.bag.stack[self.choiceListResult[1]] - 1
                     self.hunger += Items.foodValue(ID)
                     self.buttonShiftOverride = True
                     self.doItemUse(ID)
@@ -8747,14 +8755,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Function for losing multiple items
         '''
         for i in range(26, -1, -1):
-            if (self.bagArray[i] == ID and amount > 0):
-                if (amount >= self.bagStackArray[i]):
-                    self.passiveItemRemove(self.bagArray[i])
-                    self.bagArray[i] = 0
-                    amount -= self.bagStackArray[i]
-                    self.bagStackArray[i] = 0
+            if (self.bag.items[i] == ID and amount > 0):
+                if (amount >= self.bag.stack[i]):
+                    self.passiveItemRemove(self.bag.items[i])
+                    self.bag.items[i] = 0
+                    amount -= self.bag.stack[i]
+                    self.bag.stack[i] = 0
                 else:
-                    self.bagStackArray[i] -= amount
+                    self.bag.stack[i] -= amount
                     amount = 0
 
     def gainItem(self, ID: int):
@@ -8763,26 +8771,26 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         self.hideAmountAll()
         tempNum = 0
-        openSlot = self.checkOpenSlot(ID)
+        openSlot = self.bag.getEmptySlot(ID)
         if openSlot < 0:
             self.outputMainText(f"You have obtained a {Items.name(ID)}!\n\nHowever, you do not have enough room in your bag. Click on an item in your bag to replace it with the new one or click a non-item button to ignore the new item.", True)
             self.doDiscard(ID)
             return
-        if (self.bagArray[openSlot] == 0):
-            self.bagArray[openSlot] = ID
-            self.bagStackArray[openSlot] = 1
+        if (self.bag.items[openSlot] == 0):
+            self.bag.items[openSlot] = ID
+            self.bag.stack[openSlot] = 1
             self.passiveItemAdd(ID)
             tempNum += 1
-            while (self.bagStackArray[openSlot] < Items.stackMax(ID) and ID in self.itemGainArray):
+            while (self.bag.stack[openSlot] < Items.stackMax(ID) and ID in self.itemGainArray):
                 self.itemGainArray.pop()
-                self.bagStackArray[openSlot] += 1
+                self.bag.stack[openSlot] += 1
                 tempNum += 1
         else:
             tempNum += 1
-            self.bagStackArray[openSlot] += 1
-            while (self.bagStackArray[openSlot] < Items.stackMax(ID) and ID in self.itemGainArray):
+            self.bag.stack[openSlot] += 1
+            while (self.bag.stack[openSlot] < Items.stackMax(ID) and ID in self.itemGainArray):
                 self.itemGainArray.pop()
-                self.bagStackArray[openSlot] += 1
+                self.bag.stack[openSlot] += 1
                 tempNum += 1
         if (tempNum < 2):
             self.outputMainText(f"You have obtained a {Items.name(ID)}!", True)
@@ -8790,31 +8798,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText(f"You have obtained {tempNum}x {Items.name(ID)}!", True)
         self.doEnd()
 
-    def checkOpenSlot(self, ID: int):
-        for i in range(27):
-            if (self.bagStackArray[i] < Items.stackMax(ID) and self.bagArray[i] == ID):
-                return i
-        for i in range(27):
-            if (not self.bagArray[i]):
-                return i
-        return -1
-
     def bagSlotClear(self, slot: int):
         '''
         Clears a slot in the bag
         '''
-        self.passiveItemRemove(self.bagArray[slot])
-        self.bagArray[slot] = 0
-        self.bagStackArray[slot] = 0
+        self.passiveItemRemove(self.bag.items[slot])
+        self.bag.items[slot] = 0
+        self.bag.stack[slot] = 0
 
     def clearEmptySlots(self):
         for i in range(27):
-            if not self.bagArray[i] or not self.bagStackArray[i]:
-                self.bagStackArray[i] = 0
-                self.bagArray[i] = 0
-            if not self.stashArray[i] or not self.stashStackArray[i]:
-                self.stashStackArray[i] = 0
-                self.stashArray[i] = 0
+            if not self.bag.items[i] or not self.bag.stack[i]:
+                self.bag.stack[i] = 0
+                self.bag.items[i] = 0
+            if not self.stash.items[i] or not self.stash.stack[i]:
+                self.stash.stack[i] = 0
+                self.stash.items[i] = 0
 
     def doDiscard(self, ID: int):
         '''
@@ -8833,8 +8832,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.displayBag()
             elif (self.canLose(self.choiceListResult[0])):
                 self.doMainText(f"{self.itemDescription(self.choiceListResult[0])}\n\n{self.itemDescription(self.tempID)}\n\nDo you want to replace {Items.name(self.choiceListResult[0])} with {Items.name(self.tempID)}?", True)
-                if (self.bagStackArray[self.choiceListResult[1]] > 1):
-                    self.doMainText(f"\n\nYou will lose all {self.bagStackArray[self.choiceListResult[1]]} of {Items.name(self.choiceListResult[0])} if you do.")
+                if (self.bag.stack[self.choiceListResult[1]] > 1):
+                    self.doMainText(f"\n\nYou will lose all {self.bag.stack[self.choiceListResult[1]]} of {Items.name(self.choiceListResult[0])} if you do.")
                 self.displayMainText()
                 self.buttonConfirm()
 
@@ -8860,39 +8859,39 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if slot < 12:
             tempI -= Math.floor(slot / 4) + 1
         if self.inBag:
-            if (self.moveItemID == self.bagArray[tempI] and self.bagStackArray[tempI] < Items.stackMax(self.bagArray[tempI])):
-                if (self.moveItemStack + self.bagStackArray[tempI] <= Items.stackMax(self.bagArray[tempI])):
-                    self.bagStackArray[tempI] += self.moveItemStack
+            if (self.moveItemID == self.bag.items[tempI] and self.bag.stack[tempI] < Items.stackMax(self.bag.items[tempI])):
+                if (self.moveItemStack + self.bag.stack[tempI] <= Items.stackMax(self.bag.items[tempI])):
+                    self.bag.stack[tempI] += self.moveItemStack
                     self.moveItemID = 0
                     self.moveItemStack = 0
                 else:
-                    self.moveItemStack -= Items.stackMax(self.bagArray[tempI]) - self.bagStackArray[tempI]
-                    self.bagStackArray[tempI] = Items.stackMax(self.bagArray[tempI])
+                    self.moveItemStack -= Items.stackMax(self.bag.items[tempI]) - self.bag.stack[tempI]
+                    self.bag.stack[tempI] = Items.stackMax(self.bag.items[tempI])
             else:
-                self.moveItemID = self.bagArray[tempI]
-                self.moveItemStack = self.bagStackArray[tempI]
-                self.bagArray[tempI] = tempInt
-                self.bagStackArray[tempI] = tempInt2
+                self.moveItemID = self.bag.items[tempI]
+                self.moveItemStack = self.bag.stack[tempI]
+                self.bag.items[tempI] = tempInt
+                self.bag.stack[tempI] = tempInt2
                 trace(tempI)
-                trace(self.bagArray)
-                trace(self.bagStackArray)
+                trace(self.bag.items)
+                trace(self.bag.stack)
         elif self.inStash:
-            if (self.moveItemID == self.stashArray[tempI] and self.stashStackArray[tempI] < Items.stackMax(self.stashArray[tempI])):
-                if (self.moveItemStack + self.stashStackArray[tempI] <= Items.stackMax(self.stashArray[tempI])):
-                    self.stashStackArray[tempI] += self.moveItemStack
+            if (self.moveItemID == self.stash.items[tempI] and self.stash.stack[tempI] < Items.stackMax(self.stash.items[tempI])):
+                if (self.moveItemStack + self.stash.stack[tempI] <= Items.stackMax(self.stash.items[tempI])):
+                    self.stash.stack[tempI] += self.moveItemStack
                     self.moveItemID = 0
                     self.moveItemStack = 0
                 else:
-                    self.moveItemStack -= Items.stackMax(self.stashArray[tempI]) - self.stashStackArray[tempI]
-                    self.stashStackArray[tempI] = Items.stackMax(self.stashArray[tempI])
+                    self.moveItemStack -= Items.stackMax(self.stash.items[tempI]) - self.stash.stack[tempI]
+                    self.stash.stack[tempI] = Items.stackMax(self.stash.items[tempI])
             else:
-                self.moveItemID = self.stashArray[tempI]
-                self.moveItemStack = self.stashStackArray[tempI]
-                self.stashArray[tempI] = tempInt
-                self.stashStackArray[tempI] = tempInt2
+                self.moveItemID = self.stash.items[tempI]
+                self.moveItemStack = self.stash.stack[tempI]
+                self.stash.items[tempI] = tempInt
+                self.stash.stack[tempI] = tempInt2
                 trace(tempI)
-                trace(self.stashArray)
-                trace(self.stashStackArray)
+                trace(self.stash.items)
+                trace(self.stash.stack)
         if (self.moveItemID == 0):
             self.showMoveItem(False)
         else:
@@ -8902,10 +8901,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.buttonWrite(12, "Stash" if (self.inBag) else "Bag")
         # self.hideAmountAll()
         if (self.inBag):
-            self.choicePage = self.bagPage
+            self.choicePage = self.bag.page
             self.displayBag()
         elif (self.inStash):
-            self.choicePage = self.stashPage
+            self.choicePage = self.stash.page
             self.displayStash()
 
     def showMoveItem(self, which: bool):
@@ -9212,7 +9211,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Returns True if item ID can be lost
         '''
-        return not (ID == 244 and self.countItem(244) == check and self.snuggleBall or ID == 247 and self.countItem(247) == check and self.suppHarness)
+        return not (ID == 244 and self.bag.getCount(244) == check and self.snuggleBall or ID == 247 and self.bag.getCount(247) == check and self.suppHarness)
 
     def passiveItemAdd(self, ID: int):
         '''
@@ -9696,8 +9695,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd()
         elif ID == 109:
-            if (self.checkItem(219)):
-                if (self.knowPheromone and self.silRep < 1 and not (self.checkItem(530) or self.checkStash(530) or self.checkItem(532) or self.checkStash(532)) and self.pheromone < 1):
+            if (self.bag.hasItem(219)):
+                if (self.knowPheromone and self.silRep < 1 and not (self.bag.hasItem(530) or self.stash.hasItem(530) or self.bag.hasItem(532) or self.stash.hasItem(532)) and self.pheromone < 1):
                     self.loseManyItem(219, 1)
                     self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\nInto the reception bin rolls a white-shelled egg with pretty red hearts all over.", True)
                     self.itemAdd(530)
@@ -11425,7 +11424,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif self.buttonChoice in {4, 8}:
                     self.doStash()
                 else:
-                    self.choicePage = self.stashPage
+                    self.choicePage = self.stash.page
                     self.itemMove(self.buttonChoice)
             self.doListen = doListen
         else:
@@ -11463,22 +11462,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.canLose(self.moveItemID, 0):
                 tempNum = self.moveItemID
                 tempNum2 = self.moveItemStack
-                if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < Items.stackMax(tempNum)):
-                    if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
-                        self.moveItemStack -= Items.stackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
-                        self.stashStackArray[self.choiceListResult[1]] = Items.stackMax(tempNum)
+                if (tempNum == self.stash.items[self.choiceListResult[1]] and self.stash.stack[self.choiceListResult[1]] < Items.stackMax(tempNum)):
+                    if (self.stash.stack[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
+                        self.moveItemStack -= Items.stackMax(tempNum) - self.stash.stack[self.choiceListResult[1]]
+                        self.stash.stack[self.choiceListResult[1]] = Items.stackMax(tempNum)
                         self.refreshMoveItem(self.moveItemID, self.moveItemStack)
                         self.moveToStash()
                     else:
-                        self.stashStackArray[self.choiceListResult[1]] += tempNum2
+                        self.stash.stack[self.choiceListResult[1]] += tempNum2
                         self.refreshMoveItem(0, 0)
                         self.doBag()
                 else:
-                    tempmoveItemID = self.stashArray[self.choiceListResult[1]]
-                    tempmoveItemStack = self.stashStackArray[self.choiceListResult[1]]
+                    tempmoveItemID = self.stash.items[self.choiceListResult[1]]
+                    tempmoveItemStack = self.stash.stack[self.choiceListResult[1]]
                     self.passiveItemRemove(self.moveItemID)
-                    self.stashArray[self.choiceListResult[1]] = tempNum
-                    self.stashStackArray[self.choiceListResult[1]] = tempNum2
+                    self.stash.items[self.choiceListResult[1]] = tempNum
+                    self.stash.stack[self.choiceListResult[1]] = tempNum2
                     self.refreshMoveItem(tempmoveItemID, tempmoveItemStack)
                     if tempmoveItemID != 0 and tempmoveItemStack != 0:
                         self.moveToStash()
@@ -11505,22 +11504,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 tempNum = self.moveItemID
                 tempNum2 = self.moveItemStack
-                if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < Items.stackMax(tempNum)):
-                    if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
-                        self.moveItemStack -= Items.stackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
-                        self.bagStackArray[self.choiceListResult[1]] = Items.stackMax(tempNum)
+                if (tempNum == self.bag.items[self.choiceListResult[1]] and self.bag.stack[self.choiceListResult[1]] < Items.stackMax(tempNum)):
+                    if (self.bag.stack[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
+                        self.moveItemStack -= Items.stackMax(tempNum) - self.bag.stack[self.choiceListResult[1]]
+                        self.bag.stack[self.choiceListResult[1]] = Items.stackMax(tempNum)
                         self.refreshMoveItem(self.moveItemID, self.moveItemStack)
                         self.moveToBag()
                     else:
-                        self.bagStackArray[self.choiceListResult[1]] += tempNum2
+                        self.bag.stack[self.choiceListResult[1]] += tempNum2
                         self.refreshMoveItem(0, 0)
                         self.doStash()
                 else:
-                    tempmoveItemID = self.bagArray[self.choiceListResult[1]]
-                    tempmoveItemStack = self.bagStackArray[self.choiceListResult[1]]
+                    tempmoveItemID = self.bag.items[self.choiceListResult[1]]
+                    tempmoveItemStack = self.bag.stack[self.choiceListResult[1]]
                     self.bagSlotClear(self.choiceListResult[1])
-                    self.bagArray[self.choiceListResult[1]] = tempNum
-                    self.bagStackArray[self.choiceListResult[1]] = tempNum2
+                    self.bag.items[self.choiceListResult[1]] = tempNum
+                    self.bag.stack[self.choiceListResult[1]] = tempNum2
                     self.refreshMoveItem(tempmoveItemID, tempmoveItemStack)
                     if tempmoveItemID != 0 and tempmoveItemStack != 0:
                         self.moveToBag()
@@ -11557,8 +11556,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.displayBag()
                 self.bagDisableEmpty()
             else:
-                trace(self.bagArray[self.choiceListResult[1]])
-                if (self.canLose(self.bagArray[self.choiceListResult[1]])):
+                trace(self.bag.items[self.choiceListResult[1]])
+                if (self.canLose(self.bag.items[self.choiceListResult[1]])):
                     self.stashStore(self.choiceListResult[1])
                 else:
                     self.doStoreStash()
@@ -11584,7 +11583,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def stashStore(self, storeItem: int):
         self.tempStoreItem = storeItem
         self.displayStash()
-        self.outputMainText(f"Click on the stash slot you would like to place {Items.name(self.bagArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+        self.outputMainText(f"Click on the stash slot you would like to place {Items.name(self.bag.items[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
         def doListen():
             self.choiceListSelect("Stash")
@@ -11593,28 +11592,28 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.buttonChoice == 4 or self.buttonChoice == 8):
                 self.displayStash()
             else:
-                tempNum = self.bagArray[self.tempStoreItem]
-                tempNum2 = self.bagStackArray[self.tempStoreItem]
-                if (tempNum == self.stashArray[self.choiceListResult[1]] and self.stashStackArray[self.choiceListResult[1]] < Items.stackMax(tempNum)):
-                    if (self.stashStackArray[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
-                        self.bagStackArray[self.tempStoreItem] -= Items.stackMax(tempNum) - self.stashStackArray[self.choiceListResult[1]]
-                        self.stashStackArray[self.choiceListResult[1]] = Items.stackMax(tempNum)
+                tempNum = self.bag.items[self.tempStoreItem]
+                tempNum2 = self.bag.stack[self.tempStoreItem]
+                if (tempNum == self.stash.items[self.choiceListResult[1]] and self.stash.stack[self.choiceListResult[1]] < Items.stackMax(tempNum)):
+                    if (self.stash.stack[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
+                        self.bag.stack[self.tempStoreItem] -= Items.stackMax(tempNum) - self.stash.stack[self.choiceListResult[1]]
+                        self.stash.stack[self.choiceListResult[1]] = Items.stackMax(tempNum)
                     else:
-                        self.stashStackArray[self.choiceListResult[1]] += tempNum2
+                        self.stash.stack[self.choiceListResult[1]] += tempNum2
                         self.bagSlotClear(self.tempStoreItem)
                 else:
                     self.bagSlotClear(self.tempStoreItem)
-                    self.bagArray[self.tempStoreItem] = self.choiceListResult[0]
-                    self.bagStackArray[self.tempStoreItem] = self.stashStackArray[self.choiceListResult[1]]
-                    self.stashArray[self.choiceListResult[1]] = tempNum
-                    self.stashStackArray[self.choiceListResult[1]] = tempNum2
+                    self.bag.items[self.tempStoreItem] = self.choiceListResult[0]
+                    self.bag.stack[self.tempStoreItem] = self.stash.stack[self.choiceListResult[1]]
+                    self.stash.items[self.choiceListResult[1]] = tempNum
+                    self.stash.stack[self.choiceListResult[1]] = tempNum2
                 self.doStoreStash()
         self.doListen = doListen
 
     def stashRemove(self, storeItem: int):
         self.tempStoreItem = storeItem
         self.displayBag()
-        self.outputMainText(f"Click on the bag slot you would like to place {Items.name(self.stashArray[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+        self.outputMainText(f"Click on the bag slot you would like to place {Items.name(self.stash.items[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
         def doListen():
             self.choiceListSelect("Bag")
@@ -11623,22 +11622,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.buttonChoice == 4 or self.buttonChoice == 8):
                 self.displayBag()
             elif (self.canLose(self.choiceListResult[0])):
-                tempNum = self.stashArray[self.tempStoreItem]
-                tempNum2 = self.stashStackArray[self.tempStoreItem]
-                if (tempNum == self.bagArray[self.choiceListResult[1]] and self.bagStackArray[self.choiceListResult[1]] < Items.stackMax(tempNum)):
-                    if (self.bagStackArray[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
-                        self.stashStackArray[self.tempStoreItem] -= Items.stackMax(tempNum) - self.bagStackArray[self.choiceListResult[1]]
-                        self.bagStackArray[self.choiceListResult[1]] = Items.stackMax(tempNum)
+                tempNum = self.stash.items[self.tempStoreItem]
+                tempNum2 = self.stash.stack[self.tempStoreItem]
+                if (tempNum == self.bag.items[self.choiceListResult[1]] and self.bag.stack[self.choiceListResult[1]] < Items.stackMax(tempNum)):
+                    if (self.bag.stack[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
+                        self.stash.stack[self.tempStoreItem] -= Items.stackMax(tempNum) - self.bag.stack[self.choiceListResult[1]]
+                        self.bag.stack[self.choiceListResult[1]] = Items.stackMax(tempNum)
                     else:
-                        self.bagStackArray[self.choiceListResult[1]] += tempNum2
-                        self.stashArray[self.tempStoreItem] = 0
-                        self.stashStackArray[self.tempStoreItem] = 0
+                        self.bag.stack[self.choiceListResult[1]] += tempNum2
+                        self.stash.items[self.tempStoreItem] = 0
+                        self.stash.stack[self.tempStoreItem] = 0
                 else:
-                    self.stashArray[self.tempStoreItem] = self.choiceListResult[0]
-                    self.stashStackArray[self.tempStoreItem] = self.bagStackArray[self.choiceListResult[1]]
+                    self.stash.items[self.tempStoreItem] = self.choiceListResult[0]
+                    self.stash.stack[self.tempStoreItem] = self.bag.stack[self.choiceListResult[1]]
                     self.bagSlotClear(self.choiceListResult[1])
-                    self.bagArray[self.choiceListResult[1]] = tempNum
-                    self.bagStackArray[self.choiceListResult[1]] = tempNum2
+                    self.bag.items[self.choiceListResult[1]] = tempNum
+                    self.bag.stack[self.choiceListResult[1]] = tempNum2
                 self.doRemoveStash()
             else:
                 self.stashRemove(self.tempStoreItem)
@@ -11733,7 +11732,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             def doListen():
                                 self.doShop()
                             self.doListen = doListen
-                        elif (self.checkItem(self.goodsID(self.buy)) and not Items.isConsumable(self.goodsID(self.buy))):
+                        elif (self.bag.hasItem(self.goodsID(self.buy)) and not Items.isConsumable(self.goodsID(self.buy))):
                             self.outputMainText(f"Sorry, but you cannot buy {Items.name(self.goodsID(self.buy))} if you already have one. Please choose something else.", True)
                             self.doNext()
 
@@ -11776,7 +11775,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if canSellItem:
                     self.hideAmountAll()
                     self.hidePage()
-                if (self.bagStackArray[self.choiceListResult[1]] < 2):
+                if (self.bag.stack[self.choiceListResult[1]] < 2):
                     if not canSellItem:
                         self.outputMainText("You cannot sell the selected item. Either it is not yours to sell or needs to be unequipped first. Please select another item.", True)
                         self.doSell(False)
@@ -11787,7 +11786,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         def doListen():
                             if (self.buttonChoice == 6):
                                 self.doCoin(Items.value(self.choiceListResult[0]))
-                                self.bagArray[self.choiceListResult[1]] = 0
+                                self.bag.items[self.choiceListResult[1]] = 0
                                 self.passiveItemRemove(self.choiceListResult[0])
                             self.doSell()
                         self.doListen = doListen
@@ -11795,10 +11794,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.outputMainText(f"{Items.name(self.choiceListResult[0])} sells for {Items.value(self.choiceListResult[0])} each.\n\nHow many would you like to sell?", True)
                     buttonlist = ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0)
                     tempDict = {1: "1", 3: "2", 9: "All", 11: "None"}
-                    if (self.bagStackArray[self.choiceListResult[1]] >= 5):
+                    if (self.bag.stack[self.choiceListResult[1]] >= 5):
                         tempDict[5] = "5"
                         buttonlist[5] = 1
-                    if (self.bagStackArray[self.choiceListResult[1]] >= 10):
+                    if (self.bag.stack[self.choiceListResult[1]] >= 10):
                         tempDict[7] = "10"
                         buttonlist[7] = 1
                     self.showButtons(buttonlist)
@@ -11815,11 +11814,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         elif (self.buttonChoice == 7):
                             tempInt = 10
                         elif (self.buttonChoice == 9):
-                            tempInt = self.bagStackArray[self.choiceListResult[1]]
-                        if (self.bagStackArray[self.choiceListResult[1]] == tempInt):
+                            tempInt = self.bag.stack[self.choiceListResult[1]]
+                        if (self.bag.stack[self.choiceListResult[1]] == tempInt):
                             self.bagSlotClear(self.choiceListResult[1])
                         else:
-                            self.bagStackArray[self.choiceListResult[1]] -= tempInt
+                            self.bag.stack[self.choiceListResult[1]] -= tempInt
                         if (tempInt > 0):
                             self.doCoin(tempInt * Items.value(self.choiceListResult[0]))
                         self.doSell()
@@ -12059,7 +12058,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             def doListen():
                                 self.doApothecary()
                             self.doListen = doListen
-                        elif (self.checkItem(self.apothID(self.buy)) and not Items.isConsumable(self.apothID(self.buy))):
+                        elif (self.bag.hasItem(self.apothID(self.buy)) and not Items.isConsumable(self.apothID(self.buy))):
                             self.outputMainText(f"Sorry, but you cannot buy {ApothecaryItems.name(self.apothID(self.buy))} if you already have one. Please choose something else.", True)
                             self.doNext()
 
@@ -13333,7 +13332,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                else:
                   self.doMainText(" you don’t even bother to make sure you’re alone as you ravenously turn your attention upon him.")
                self.doMainText(f" Sinking to your {self.legDesc(6)} and unfastening his trousers, you emit a gasp of lustful delight as you find it isn’t only his stature that is large. Your")
-               if (self.checkItem(101)):
+               if (self.bag.hasItem(101)):
                   self.doMainText(" paws")
                else:
                   self.doMainText(" hands")
@@ -14735,55 +14734,55 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempBool = False
             if (self.buttonChoice == 6):
                 tempBool = False
-                if ID == 220 and self.countItem(209) >= 7:
+                if ID == 220 and self.bag.getCount(209) >= 7:
                     tempBool = True
-                elif ID == 221 and self.countItem(210) >= 6 and self.checkItem(114):
+                elif ID == 221 and self.bag.getCount(210) >= 6 and self.bag.hasItem(114):
                     tempBool = True
-                elif ID == 503 and (self.checkItem(209) and (self.checkItem(114) or self.checkItem(523) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
+                elif ID == 503 and (self.bag.hasItem(209) and (self.bag.hasItem(114) or self.bag.hasItem(523) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
                     tempBool = True
-                elif ID == 504 and self.checkItem(115) and self.checkItem(203):
+                elif ID == 504 and self.bag.hasItem(115) and self.bag.hasItem(203):
                     tempBool = True
-                elif ID == 506 and self.checkItem(114) and self.checkItem(219):
+                elif ID == 506 and self.bag.hasItem(114) and self.bag.hasItem(219):
                     tempBool = True
-                elif ID == 507 and self.checkItem(208):
+                elif ID == 507 and self.bag.hasItem(208):
                     tempBool = True
-                elif ID == 508 and (self.countItem(209) >= 3 and (self.countItem(112) >= 2 or self.checkItem(524) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
+                elif ID == 508 and (self.bag.getCount(209) >= 3 and (self.bag.getCount(112) >= 2 or self.bag.hasItem(524) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
                     tempBool = True
-                elif ID == 509 and (self.checkItem(503) and (self.checkItem(501) or self.countItem(500) >= 3)):
+                elif ID == 509 and (self.bag.hasItem(503) and (self.bag.hasItem(501) or self.bag.getCount(500) >= 3)):
                     tempBool = True
-                elif ID == 511 and self.checkItem(213) and self.countItem(219) >= 3:
+                elif ID == 511 and self.bag.hasItem(213) and self.bag.getCount(219) >= 3:
                     tempBool = True
-                elif ID == 512 and self.checkItem(208) and self.checkItem(218):
+                elif ID == 512 and self.bag.hasItem(208) and self.bag.hasItem(218):
                     tempBool = True
-                elif ID == 513 and self.checkItem(110) and self.checkItem(120):
+                elif ID == 513 and self.bag.hasItem(110) and self.bag.hasItem(120):
                     tempBool = True
-                elif ID == 514 and self.countItem(203) >= 2 and self.checkItem(503):
+                elif ID == 514 and self.bag.getCount(203) >= 2 and self.bag.hasItem(503):
                     tempBool = True
-                elif ID == 515 and self.countItem(203) >= 5:
+                elif ID == 515 and self.bag.getCount(203) >= 5:
                     tempBool = True
-                elif ID == 516 and self.checkItem(110) and self.checkItem(203):
+                elif ID == 516 and self.bag.hasItem(110) and self.bag.hasItem(203):
                     tempBool = True
-                elif ID == 517 and self.countItem(507) >= 3 and self.checkItem(523):
+                elif ID == 517 and self.bag.getCount(507) >= 3 and self.bag.hasItem(523):
                     tempBool = True
-                elif ID == 518 and self.checkItem(201) and self.checkItem(202) and self.checkItem(207) and self.checkItem(210):
+                elif ID == 518 and self.bag.hasItem(201) and self.bag.hasItem(202) and self.bag.hasItem(207) and self.bag.hasItem(210):
                     tempBool = True
-                elif ID == 519 and self.checkItem(222) and self.checkItem(206) and self.checkItem(504):
+                elif ID == 519 and self.bag.hasItem(222) and self.bag.hasItem(206) and self.bag.hasItem(504):
                     tempBool = True
-                elif ID == 520 and self.checkItem(216) and self.countItem(212) >= 3:
+                elif ID == 520 and self.bag.hasItem(216) and self.bag.getCount(212) >= 3:
                     tempBool = True
-                elif ID == 521 and self.checkItem(120) and self.checkItem(210):
+                elif ID == 521 and self.bag.hasItem(120) and self.bag.hasItem(210):
                     tempBool = True
-                elif ID == 522 and self.countItem(512) >= 3 and self.checkItem(524):
+                elif ID == 522 and self.bag.getCount(512) >= 3 and self.bag.hasItem(524):
                     tempBool = True
-                elif ID == 532 and self.checkItem(530) and self.checkItem(212) and self.checkItem(206):
+                elif ID == 532 and self.bag.hasItem(530) and self.bag.hasItem(212) and self.bag.hasItem(206):
                     tempBool = True
-                elif ID == 533 and self.countItem(110) >= 2:
+                elif ID == 533 and self.bag.getCount(110) >= 2:
                     tempBool = True
-                elif ID == 534 and (self.countItem(202) >= 2 and (self.checkItem(208) or self.checkItem(218))):
+                elif ID == 534 and (self.bag.getCount(202) >= 2 and (self.bag.hasItem(208) or self.bag.hasItem(218))):
                     tempBool = True
-                elif ID == 535 and self.checkItem(201) and self.checkItem(533):
+                elif ID == 535 and self.bag.hasItem(201) and self.bag.hasItem(533):
                     tempBool = True
-                elif ID == 536 and self.countItem(207) >= 2 and self.countItem(212) >= 3 and self.checkItem(501) and self.checkItem(529):
+                elif ID == 536 and self.bag.getCount(207) >= 2 and self.bag.getCount(212) >= 3 and self.bag.hasItem(501) and self.bag.hasItem(529):
                     tempBool = True
                 if (tempBool):
                     if ID == 220:
@@ -14794,7 +14793,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     elif ID == 503:
                         self.loseManyItem(209, 1)
                         if not (self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000):
-                            if (self.checkItem(523)):
+                            if (self.bag.hasItem(523)):
                                 self.loseManyItem(523, 1)
                             else:
                                 self.loseManyItem(114, 1)
@@ -14809,13 +14808,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     elif ID == 508:
                         self.loseManyItem(209, 3)
                         if not (self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000):
-                            if (self.checkItem(524)):
+                            if (self.bag.hasItem(524)):
                                 self.loseManyItem(524, 1)
                             else:
                                 self.loseManyItem(112, 2)
                     elif ID == 509:
                         self.loseManyItem(503, 1)
-                        if (self.countItem(500) >= 3):
+                        if (self.bag.getCount(500) >= 3):
                             self.loseManyItem(500, 3)
                         else:
                             self.loseManyItem(501, 1)
@@ -14865,7 +14864,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.loseManyItem(110, 2)
                     elif ID == 534:
                         self.loseManyItem(202, 2)
-                        if (self.checkItem(208)):
+                        if (self.bag.hasItem(208)):
                             self.loseManyItem(208, 1)
                         else:
                             self.loseManyItem(218, 1)
@@ -16022,7 +16021,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif which == "Plains":
             # Snuggle Ball
             tempArray = (1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0)
-            if (tempArray[self.hour] and self.checkOpenSlot(244) > 0):
+            if (tempArray[self.hour] and self.bag.getEmptySlot(244) > 0):
                 self.rndArray.push(1)
             # Cock Snake
             tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
@@ -16169,7 +16168,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif which == "Den":
             # Strap
             tempArray = (0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0)
-            if (tempArray[self.hour] and not self.silTied and not (self.checkItem(229) or self.checkStash(229))):
+            if (tempArray[self.hour] and not self.silTied and not (self.bag.hasItem(229) or self.stash.hasItem(229))):
                 self.rndArray.push(1)
             # Sil
             tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
@@ -16258,7 +16257,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen = doListen
         elif chance == 3:
             self.doMainText("In the process of passing by a building, you hear some ruckus and an elderly man with wild white hair comes bursting out of the door before you.\n\n\"Dagnabbit! Another failed batch!\" He shouts as he carries out a small crate filled with half a dozen vials of swirling liquid.", True)
-            if (self.checkItem(211)):
+            if (self.bag.hasItem(211)):
                 self.doMainText("\n\nHe bursts out in such a tirade that he catches you off guard and sends you stumbling into him. You mostly catch yourself, merely bumping into him slightly without causing a catastrophe with what he is carrying. However, a loose DairE pill in your bag pops out from the sudden stop and flies through the air until it lands in one of the vials with a plop. The solution inside the vial turns white with small black clouds puffing throughout it.\n\nThe man doesn't mind the bump you gave him, but he stares down at the vial you've just tainted and then turns his attention to you. \"Now look at what you've gone and done! This solution was already a failure as it was, but it was at least sellable! Now I don't have any idea what it's become; I can't sell that! Give me 50 coins for your damned accident and take your mistake with you!\"")
                 if (self.coin < 50):
                     self.doMainText("\n\n\"What? You don't have that many?!\" He grumbles under his breath. \"Fine, give me all you've got and let that be a lesson to you...\"")
@@ -16349,9 +16348,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.outputMainText("You start below the testicles, lifting them from the base with your palms and feeling how heavy they are. Easily at least five pounds each... They almost feel hot compared to the rest of his body, the warmth forming a bubble around them. And despite being so heavy and dense, they feel so soft, like you could squish them in you hands a bit. So you do, kneading them gently as you make your way up, causing a surprised yet pleasured snort to come out of the boy. Then you feel the scrotum below his sheath, a few inches of it stretched downward to hold the huge things, so thin comparatively yet still so thick. A bit ticklish as well, elliciting some more snorting as he shudders spontaneously.\n\nIt doesn't take long before you make it to the sheath, however. A head already poking its way through, despite the boy's best efforts to hold it back, an erection gradually grows out as you study it. Almost as warm as the balls below, the sheath gives off its own warmth, with a much more plush sensation as well. You can actually grab it and squeeze it, your fingers easily descending into the meaty flesh. It's also quite weighty as well, maybe not so much as the testicles but enough to quickly plop back down into your hands as you try to toss up the thick ring of flesh a little. It only grows heavier as the cock draws out from it.\n\nThe long rod of stiff sausage easily reaches over your shoulder from this distance, resting against your neck. The skin is sort of leathery by the way it stretches out and has a bit of shiny reflection to it, but rather thin and pliable in your hands. You can easily feel the skin move beneath your fingertips as you stroke across it, moving separately from the blood-engorged meat within. Most normal-sized people wouldn't be able to completely wrap their hands around something that large, and definitely not this boy...\n\nWith his balls and sheath in your grasp, and his schlong hung over your shoulder, you look up at him with a smile.", True)
                      self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0))
                      tempDict = {3: "Crossdress", 11: "Maybe Later"}
-                     if (self.checkItem(533)):
+                     if (self.bag.hasItem(533)):
                         tempDict[1] = "Reduc Reduc"
-                     if (self.checkItem(534)):
+                     if (self.bag.hasItem(534)):
                         tempDict[5] = "Male Enhance"
                      self.doButtonChoices(tempDict)
 
@@ -16422,9 +16421,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.outputMainText("You look the boy over again, especially focusing on his profound package, and restate with more emphasis that, yeah, you can probably help him.\n\n\"R-Really? I mean, after last time, I don't really have much reason to not trust you. But... H-How do you think you can help me?\"", True)
                   self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0))
                   tempDict = {3: "Crossdress", 11: "Maybe Later"}
-                  if (self.checkItem(533)):
+                  if (self.bag.hasItem(533)):
                      tempDict[1] = "Reduc Reduc"
-                  if (self.checkItem(534)):
+                  if (self.bag.hasItem(534)):
                      tempDict[5] = "Male Enhance"
                   self.doButtonChoices(tempDict)
 
@@ -16523,9 +16522,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.outputMainText("You look the boy over again, especially focusing on his profound package, and restate with more emphasis that, yeah, you can probably help him.\n\n\"You think you can now? I still have no idea what you were thinking of doing, but... H-How do you think you can help me?\"", True)
                   self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0))
                   tempDict = {3: "Crossdress", 11: "Maybe Later"}
-                  if (self.checkItem(533)):
+                  if (self.bag.hasItem(533)):
                      tempDict[1] = "Reduc Reduc"
-                  if (self.checkItem(534)):
+                  if (self.bag.hasItem(534)):
                      tempDict[5] = "Male Enhance"
                   self.doButtonChoices(tempDict)
 
@@ -16586,9 +16585,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.outputMainText("You start below the testicles, lifting them from the base with your palms and feeling how heavy they are. Easily at least five pounds each... They almost feel hot compared to the rest of his body, the warmth forming a bubble around them. And despite being so heavy and dense, they feel so soft, like you could squish them in you hands a bit. So you do, kneading them gently as you make your way up, causing a surprised yet pleasured snort to come out of the boy. Then you feel the scrotum below his sheath, a few inches of it stretched downward to hold the huge things, so thin comparatively yet still so thick. A bit ticklish as well, elliciting some more snorting as he shudders spontaneously.\n\nIt doesn't take long before you make it to the sheath, however. A head already poking its way through, despite the boys best efforts to hold it back, an erection gradually grows out as you study it. Almost as warm as the balls below, the sheath gives off its own warmth, with a much more plush sensation as well. You can actually grab it and squeeze it, your fingers easily descending into the meaty flesh. It's also quite weighty as well, maybe not so much as the testicles but enough to quickly plop back down into your hands as you try to toss up the thick ring of flesh a little. It only grows heavier as the cock draws out from it.\n\nThe long rod of stiff sausage easily reaches over your shoulder from this distance, resting against your neck. The skin is sort of leathery by the way it stretches out and has a bit of shiny reflection to it, but rather thin and pliable in your hands. You can easily feel the skin move beneath your fingertips as you stroke across it, moving separately from the blood-engorged meat within. Most normal-sized people wouldn't be able to completely wrap their hands around something that large, and definitely not this boy...\n\nWith his balls and sheath in your grasp, and his schlong hung over your shoulder, you look up at him with a smile.", True)
                      self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0))
                      tempDict = {3: "Crossdress", 11: "Maybe Later"}
-                     if (self.checkItem(533)):
+                     if (self.bag.hasItem(533)):
                         tempDict[1] = "Reduc Reduc"
-                     if (self.checkItem(534)):
+                     if (self.bag.hasItem(534)):
                         tempDict[5] = "Male Enhance"
                      self.doButtonChoices(tempDict)
 
@@ -16678,9 +16677,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText("\"I was wondering if you would be interested in... 'helping' me again at all?\"")
             self.showButtons(ButtonList(1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1))
             tempDict = {12: "Not Now"}
-            if (self.checkItem(533)):
+            if (self.bag.hasItem(533)):
                tempDict[1] = "Reduc Reduc"
-            if (self.checkItem(534)):
+            if (self.bag.hasItem(534)):
                tempDict[3] = "Male Enhance"
             if (self.vagLimit() >= (self.jamieSize + 1) * 4 and self.vagTotal > 0):
                tempDict[6] = "Sex"
@@ -16724,7 +16723,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (self.jamieButt and self.jamieRep1 >= 3 and self.cockTotal > 0 and self.cockSize * self.cockSizeMod < self.eVagLimit(96)):
                buttonlist[5] = 1
                tempDict[5] = "Sexy Butt"
-            elif (self.jamieRep1 == 2 and self.countItem(209) >= 4):
+            elif (self.jamieRep1 == 2 and self.bag.getCount(209) >= 4):
                buttonlist[5] = 1
                tempDict[5] = "4x Grain"
             else:
@@ -16732,7 +16731,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (self.jamieBreasts and self.jamieRep2 >= 3):
                tempDict[6] = "Boob Fun"
                buttonlist[6] = 1
-            elif (self.jamieRep2 == 2 and self.countItem(212) >= 3):
+            elif (self.jamieRep2 == 2 and self.bag.getCount(212) >= 3):
                tempDict[6] = "3x Red Mush"
                buttonlist[6] = 1
             else:
@@ -17078,9 +17077,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   tempDict[6] = "Unbirth"
             if (self.gender != 0 and (self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva) and self.cockTotal > 0) or self.vagTotal > 0):
                tempDict[7] = "Sex"
-            if (self.checkItem(105)):
+            if (self.bag.hasItem(105)):
                tempDict[9] = "Cat's Meow"
-            if (self.checkItem(221)):
+            if (self.bag.hasItem(221)):
                tempDict[10] = "Puss Juice"
             self.showButtons(buttonlist)
             self.doButtonChoices(tempDict)
@@ -17226,7 +17225,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                      def doListen():
                         self.doMainText("After a few minutes of continuous orgasm, Lila spends several more simply panting and gasping for air. You crawl up between her legs and hug around her belly, easing her nerves and helping bring her back to this world. She eventually regains enough of her wits to hug you back, kissing your forehead.\n\n\"Thank yew... That was... That was...\" She can't really finish the statement, merely pressing her plush vulva up against you and kissing your waist in another sense.\n\nAt a loss for words, the two of you lay there for a while until the feeling returns to her legs. Lila stands, swaying slightly while she catches her balance, and lowers her soaked dress the best she can. \"I need to go home nao and take a nice long nap... I weally enjoyed this, though, and won't mind if it happens again...\" She blushes with embarassment over her naughty desire for more and is quick to escape the hut, her tail writhing about as she recounts what happened in her mind, her knees twitching as she nearly climaxes from the memory alone...\n\nTaking your time with wiping yourself down from the deluge, you also think about what happened. Overall, it's rather arousing and feels quite pleasant...", True)
-                        if (self.checkItem(200)):
+                        if (self.bag.hasItem(200)):
                            self.doMainText("\n\nHowever, once you're dry, you notice a blotch still forming. You quickly open up your bag and take out the culprit. The gift Lila had given to you when you first met her now seems much... 'wetter'. The leaves and flowers of the little charm sweat with drops of 'dew', producing a small amount of familiar honey from nothing. There's also a general warmth to the object that wasn't there before and seems to be having an effect on yourself. It seems Lila's gift has become more imbued with the girl's nature with the rather intimate 'connection' you two shared...")
                            self.loseManyItem(200, 1)
                            self.itemAdd(237)
@@ -17711,7 +17710,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText("You come across Lila as you walk through the city. She grins and runs up to you, pouncing you with a great big hug around your waist. She thanks you again, although she shifts awkwardly as she lets go. 6 blotches form across her dress from chest to belly, with another, smaller one below...\n\n\"Uhh... Umm... I-I kinda have a diffewent problem now... The other kids don't know yet,\" she reaches under her dress, pulling out a large square of absorbant cloth that has been soaked through, \"and I'm afwaid of Mommy finding out. C-Can yew help me again?\" She blushes.\n\nNodding, you think it best to at least see what is going on. You take her hand and once again lead her up to your private hut. As you enter, you turn to shut the door-like curtain so nobody outside can see. Yet, as you turn back, you already find Lila pulling up her dress to show you her new issue. She get a bit stuck trying to pull it over her head, leaving the rest of her body completely naked. Thin streams of white liquid slowly drizzle down her half-dozen nipples, soaking into her fur. Not quite as bad as the slimy mess that has returned between her legs, but enough to leave her with a bashful blush as she finally frees herself and finds you staring at her dribbly nipples.\n\n\"I-I thought if I took a dwink like Mommy sometimes does, I would be older like her. But then the othew day my chest felt funny. I wubbed it and then milk stawted leaking. I keep wubbing it when I get milky, but it doesn't stop and I have to walk awound with a towel so nobody sees. What should I do?\"", True)
             self.showButtons(ButtonList(1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0))
             tempDict = {5: "Lick", 10: "Get Help"}
-            if (self.checkItem(103)):
+            if (self.bag.hasItem(103)):
                tempDict[1] = "Dry Sand"
             self.doButtonChoices(tempDict)
 
@@ -17788,7 +17787,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText("You come across the small felin girl you had met before as you walk through the city. She walks up with a smile to say hello and thanks you again, though she shifts awkwardly as she stands, a small blotch forming on her dress at her groin as she recalls how you helped her...\n\nWith some slight embarrassment in her tone, she speaks \"Uhh... Umm... D-Do yew mind helping me like you did before? I-It seems to have come back...\"\n\nHer feet rub against each other as she looks up at you with an adorable expression. Obviously whatever you did before was only a temporary solution, for some reason. Not that it's a problem though, as she seems to enjoy your help.", True)
             self.showButtons(ButtonList(1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0))
             tempDict = {5: "Fondle Her", 10: "Get Help"}
-            if (self.checkItem(103)):
+            if (self.bag.hasItem(103)):
                tempDict[1] = "Dry Sand"
             self.doButtonChoices(tempDict)
 
@@ -17852,9 +17851,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText(" Could yew take cawe of it?\"")
             self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1))
             tempDict = {9: "Lick", 12: "Not Now"}
-            if (self.checkItem(103)):
+            if (self.bag.hasItem(103)):
                tempDict[1] = "Dry Sand"
-            if (self.checkItem(213)):
+            if (self.bag.hasItem(213)):
                tempDict[3] = "Wet Cloth"
             self.doButtonChoices(tempDict)
 
@@ -17992,7 +17991,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText("\n\n\nWhat do you do?")
             self.showButtons(ButtonList(1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0))
             tempDict = {3: "Diaper", 5: "Masturbate", 6: "Lick", 7: "Sex", 10: "Get Help"}
-            if (self.checkItem(103)):
+            if (self.bag.hasItem(103)):
                tempDict[1] = "Dry Sand"
             self.doButtonChoices(tempDict)
 
@@ -18249,14 +18248,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doMainText("Fidoris speaks out \"Mistress, I have brought the traveler once again!\"\n\nThe woman rolls over, her belly and massive vulva rolling with her. \"Good boy! I hope you have brought along something nice for me?\" Her eyes light up.", True)
                   tempDict = {11: "Nothing"}
                   buttonlist = ButtonList(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0)
-                  if (self.checkItem(210)):
+                  if (self.bag.hasItem(210)):
                      tempDict[1] = "Puss Fruit"
                   if (self.mistressRep > 10):
                      self.doMainText(" Then her hands grope across her belly, squishing the aroused passage within. \"Mmm... You've been so good to me, though, so I'll let you in on another deal. If you can bring me three of the fruits at a time, I'll have Fidoris cook up my special concoction. Just between you and I, of course, for all the fun we've had~,\" she gives you a naughty wink. \"I'll also let you in on the recipe, but without dear Fidoris I'm afraid it might be less efficient for you.\"")
                      buttonlist[3] = 1
                      if (not self.knowPussJuice):
                         self.knowPussJuice = True
-                  if (self.countItem(210) >= 3 and self.mistressRep > 10):
+                  if (self.bag.getCount(210) >= 3 and self.mistressRep > 10):
                      tempDict[3] = "3x"
                   self.displayMainText()
                   self.showButtons(buttonlist)
@@ -18437,7 +18436,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
       if chance == 1:
          if self.silRep == 0:
             self.doMainText("Walking through Oviasis' bazaar, you spot an odd figure amongst all the lizan folk. A humanoid shape wrapped in a white hooded cloak, the most you can manage to make out are some long fuzzy ears, a lizard-like tail, some slight curvature to the apparently feminine figure, and nearly seven feet tall, towering over most others. The person walks around, going from stall to stall trading food and trinkets, especially taking interest in whatever magical wares are available. Feathery wings peek out from her cloak whenever she reaches out for something, with finger-like talons at the tips acting like hands.", True)
-            if (self.pheromone > 0 and self.checkMagicItem()):
+            if (self.pheromone > 0 and self.bag.hasMagicItem()):
                self.outputMainText(f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up an odd scent that seems to make her act a little funny. As she follows her nose towards its source, she sways back and forth a little, her hips twisting around as her thighs begin to rub together. Her wings fold inward, the three finger-like talons at the ends of them awkwardly roaming about her breasts and down to her groin, fondling herself sporadically. It seems her wings are her arms, being attached at her shoulders like a bird's.\n\nOnce she gets close enough, you can see more under her cloak. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and a hot blush seems to have washed across her cheeks that almost matches her auburn hair. Soft fur nearly covers her body, parted in front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, though with the way she fumbles to fondle herself she threatens to undo the clasp at any moment. Her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid desert weather - which seems to be... tenting as her other hand works at herself beneath.\n\nShe bends forward as her short muzzle follows the scent right up to you, immediately nuzzling against your body. The wing at her bosom stops playing with herself to hug around you, the fingers digging into your back tenderly as she tries to hold you close.\n\n\"You... You smell sooo good~\" A long tongue reaches out to lick up your chest, the pheromone that exudes from you enrapturing her keen senses while her tail wraps around your {self.legDesc(2)}. \"I don't even think I've ever...\"\n\nHer sentence simply trails off as her hips push into you, a phallic object peaking in her loin cloth and running up your side, pre smearing along its path. You can feel a feminine attribute press against your thigh as she slowly begins to gyrate on it, her other wing also encompassing you to surround you with her vibrant feathers. She gasps again and again as she tries to speak, but her words are lost to the smothering lust. Her talons pick at your {self.clothesBottom()}, trying to burrow her way in for a more intimate connection, but her lack of mental coherence makes the effort futile.\n\nHowever, as her nuzzling brings her muzzle closer to your pack, she begins to sniff again. Her voice wavers much less as she speaks; not undone by the lust this time, \"M-Magic?\"\n\nShe firmly presses into you as her muzzle dives into your pack for an even bigger whiff. \"Y-Yes, something neat in there...\" The sudden distraction seems to have helped her mind gain focus, able to make her think more clearly despite the thing that throbs against you. She leans back to look you directly in the eyes. Fear fills her own eyes, her normally shy and meek demeanor commanding her to flee, but even deeper beyond that you can see a lonely longing inside. Her cheeks more flushed with embarrassment than arousal now, the situation already quite shameful and far out of her usual comfort zone, especially in such a public place, she takes a deep breath and ventures a chance.\n\n\"Would... Would you like to come to my home?\"")
                self.buttonConfirm()
 
@@ -18524,7 +18523,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.hrs = 2
                   self.doEnd()
                self.doListen = doListen
-            elif (self.checkMagicItem()):
+            elif (self.bag.hasMagicItem()):
                self.outputMainText(f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up a scent and slowly moving towards you as she uses her nose to follow it, not yet noticing your actual presence just yet.\n\nAs she moves closer, you can see more under her robe. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and long auburn hair. Soft fur nearly covers her body, parted down her front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. Her wings and arms are one in the same, each tipped with three finger-like talons that make up her hands. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, while her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather.\n\nAnd as she finally closes in on you, she ducks down as her short muzzle continues to sniff about. She sniffs right up your {self.legDesc(2)} and at your pack, quietly speaking to herself in a feminine voice.\n\n\"Ooo, definitely some magic emanating from here. I wonder what it could be? Crafted? Naturally imbued? A weapon? Or maybe a charm? It's been a few weeks since I've found anything neat around here to add to my collection, I can't wait to see it!\" Her fingers dig into your pack and start to shuffle around for the magical goody, but slowly comes to a stop as she looks up. It wasn't until now that she realizes that it has been attached to a person this whole time - you. She hops back with a blush, her head ducking between her shoulders with embarrassment. \"Oh dear, I'm so sorry! I-I was just hunting for magical treasures!...\" Her toes curl awkwardly over her sandals. \"Umm... Bye!\"\n\nShe disappears into the crowd and heads out of the bazaar in embarrassment before dashing off upon her wings, her shyness getting the best off her.\n\nNot quite sure what just happened, you ask around about this strange woman and find that she's a frequent visitor to Oviasis. Although nobody really knows who she is, she has been coming by for years to trade for supplies or to pick up magical goods, which she is quite fond of. It seems she is quite a shy person, hence her little stint with you, so they don't know much more beyond her market habits and friendly demeanor.")
                self.hrs = 2
                self.doEnd()
@@ -18782,7 +18781,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                tempDict = {6: "Help Lay"}
                if (self.ment >= 30):
                   tempDict[1] = "Plug"
-               if (self.checkItem(230)):
+               if (self.bag.hasItem(230)):
                   tempDict[11] = "Eggcelerator"
                self.doMainText("You slowly push through the cattails and approach the troubled female.", True)
                self.tempInt = Math.ceil(Utils.percent() / 33)
@@ -19520,7 +19519,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
       elif chance == 2:
          self.doMainText("Out of the corner of your eye, you spot a fluttering flash in the distance. Turning to view it more clearly, you can see it's literally flying over the sand, just a couple feet in the air. It seems to be scanning the ground for something, muzzle moving from side to side as it goes, sniffing away at the sandy dunes. A humanoid shape wrapped in a white hooded cloak, the most you can manage to make out are some long fuzzy ears, a lizard-like tail, some slight curvature to the apparently feminine figure, and large feathery wings that flutter gracefully to keep her aloft.", True)
-         if (self.pheromone > 0 and self.checkMagicItem()):
+         if (self.pheromone > 0 and self.bag.hasMagicItem()):
             self.outputMainText(f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up an odd scent that seems to make her act a little funny. As she follows her nose towards its source, she sways back and forth a little, her hips twisting around as her thighs begin to rub together. She has to land on her sandle-protected paws as her wings fold inward, three finger-like talons at the ends of them awkwardly roaming about her breasts and down to her groin, functioning as hands. It seems her wings are her arms, being attached at her shoulders like a bird's.\n\nOnce she gets close enough, you can see more under her cloak. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and a hot blush seems to have washed across her cheeks that almost matches her auburn hair. Soft fur nearly covers her body, parted in front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, though with the way she fumbles to fondle herself she threatens to undo the clasp at any moment. Her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather - which seems to be... tenting as her other hand works at herself beneath.\n\nJust over 7 feet in height, she bends forward as her short muzzle follows the scent right up to you, immediately nuzzling against your body. The wing at her bosom stops playing with herself to hug around you, the fingers digging into your back tenderly as she tries to hold you close.\n\n\"You... You smell sooo good~\" A long tongue reaches out to lick up your chest, the pheromone that exudes from you enrapturing her keen senses while her tail wraps around your {self.legDesc(2)}. \"I don't even think I've ever...\"\n\nHer sentence simply trails off as her hips push into you, a phallic object peaking in her loin cloth and running up your side, pre smearing along its path. You can feel a feminine attribute press against your thigh as she slowly begins to gyrate on it, her other wing also encompassing you to surround you with her vibrant feathers. She gasps again and again as she tries to speak, but her words are lost to the smothering lust. Her talons pick at your {self.clothesBottom()}, trying to burrow her way in for a more intimate connection, but her lack of mental coherence makes the effort futile.\n\nHowever, as her nuzzling brings her muzzle closer to your pack, she begins to sniff again. Her voice wavers much less as she speaks; not undone by the lust this time, \"M-Magic?\"\n\nShe firmly presses into you as her muzzle dives into your pack for an even bigger whiff. \"Y-Yes, something neat in there...\" The sudden distraction seems to have helped her mind gain focus, able to make her think more clearly despite the thing that throbs against you. She leans back to look you directly in the eyes. Fear fills her own eyes, her normally shy and meek demeanor commanding her to flee, but even deeper beyond that you can see a lonely longing inside. Her cheeks more flushed with embarrassment than arousal now, the situation already quite shameful and far out of her usual comfort zone, she takes a deep breath and ventures a chance.\n\n\"Would... Would you like to come to my home?\"")
             self.buttonConfirm()
 
@@ -19608,7 +19607,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.hrs = 2
                self.doEnd()
             self.doListen = doListen
-         elif (self.checkMagicItem()):
+         elif (self.bag.hasMagicItem()):
             self.outputMainText(f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up a scent and slowly moving towards you as she uses her nose to follow it, not yet noticing your actual presence just yet.\n\nAs she moves closer, you can see more under her robe. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and long auburn hair. Soft fur nearly covers her body, parted down her front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. Her wings and arms are one in the same, each tipped with three finger-like talons that make up her hands. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, while her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather.\n\nAnd as she finally closes in on you, her paw-like feet touch down on the sand, little sandles protecting them from being burned. Just over 7 feet in height, she ducks down as her short muzzle continues to sniff about. She sniffs right up your {self.legDesc(2)} and at your pack, quietly speaking to herself in a feminine voice.\n\n\"Ooo, definitely some magic emanating from here. I wonder what it could be? Crafted? Naturally imbued? A weapon? Or maybe a charm? It's been a few weeks since I've found anything neat around here to add to my collection, I can't wait to see it!\" Her fingers dig into your pack and start to shuffle around for the magical goody, but slowly comes to a stop as she looks up. It wasn't until now that she realizes that it has been attached to a person this whole time - you. She hops back with a blush, her head ducking between her shoulders with embarrassment. \"Oh dear, I'm so sorry! I-I was just hunting for magical treasures!...\" Her toes burrow awkwardly in the sand as she stands there. \"Umm... Bye!\"\n\nAs quickly as she appeared, she turns and dashes off upon her wings, her shyness getting the best off her.\n\nNot quite sure what just happened, you turn and head back for now.")
             self.hrs = 2
             self.doEnd()
@@ -19825,7 +19824,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
 
         elif chance == 2:
-            if (self.countItem(219) >= 5):
+            if (self.bag.getCount(219) >= 5):
                 self.outputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him.\n\n\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I'm a little low on my bait so I'm just going on luck. It's been a while since I've been able to get me those things from the people down south...\"\n\nHis hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard's. This man has obviously traveled a bit...\n\n\"If I could get maybe 5 of those eggs they kept plopping out, I'm sure one of them would be just what I need to really haul in some nice catch!\"\n\nAt this you realize that you actually have 5 such eggs on you right now. Would you like to offer them?", True)
                 self.buttonConfirm()
 
@@ -21095,7 +21094,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                   def doListen():
                      self.doMainText("You both sigh as you try to stand up. The milk everywhere doesn't exactly help, flowing down from your bodies and making the ground even more slippery. Yet, you manage to lean against each other and eventually stand, giving each other one last kiss before parting.\n\n\"I'm surprised...\" Malon can't help but comment. \"You... You actually made a lot more milk than me... And it felt fantastic~\" She blushes at the thought, her long erect nipples pratically bare through the soaking wet white shirt. Then she looks around. \"Though... I guess we're worse than the cows... Not that I'm embarassed about that anymore but... We made quite a mess!\"\n\nWith a giggle, she steps over and grabs some empty milk jugs. She strategically places them on the floor, laying them down sideways. \"Howabout we just say some cows kicked over some 'filled' jugs,\" She says with a wink.\n\nYou aren't one to object and quickly depart in the opposite direction as Malon to ensure nobody notices what has transpired...", True)
-                     if (self.checkItem(215)):
+                     if (self.bag.hasItem(215)):
                         self.doMainText(" However, you notice a warmth from the pendant Malon had given you. Inspecting it, you notice it has been turned almost completely white, but somewhat pearlescant. A sort of milky complexion that looks like it's slowly flowing around the pendant, though nothing actually moves. Whatever the case may be, things seem lighter now, like you're able to, well, support your milky habits more easily...")
                         self.loseManyItem(215, 1)
                         self.itemAdd(252)
@@ -21303,7 +21302,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen = doListen
 
       elif chance == 3:
-         if (self.checkItem(254)):
+         if (self.bag.hasItem(254)):
             self.outputMainText("Normally this cave is too dark to go inside. However, you have a lantern that can provide enough light to venture within. Would you like to go inside?", True)
             self.buttonConfirm()
 
@@ -21349,26 +21348,26 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doNext()
 
          def doListen():
-            if (self.checkStash(232) or self.checkStash(233) or self.checkStash(234) or self.checkStash(235) or self.checkStash(236)):
+            if (self.stash.hasItem(232) or self.stash.hasItem(233) or self.stash.hasItem(234) or self.stash.hasItem(235) or self.stash.hasItem(236)):
                self.outputMainText("While you may potentially want another one of Silandrias' magical goodies, you recall you left the current one you are borrowing back in your stash. You wouldn't want to take advantage of a waiting mother (you wouldn't, RIGHT?!), so you decline and thank her kindly before heading out.", True)
                self.doEnd()
             else:
                self.showButtons(ButtonList(0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1))
                tempDict = {12: "No Thanks"}
                self.doMainText("\"Anything you might be interested in?\"", True)
-               if (not self.checkItem(232)):
+               if (not self.bag.hasItem(232)):
                   tempDict[2] = "Flying Carp"
                   self.doMainText("\n\nFlying Carpet - A flying carpet just like Naeru and Daeru used to help Silandrias, it can help you get from town to town.")
-               if (not self.checkItem(233)):
+               if (not self.bag.hasItem(233)):
                   tempDict[5] = "A-Grav Rock"
                   self.doMainText("\n\nAnti-Gravity Rock - A small rock that floats in the air and can make you feel a little floaty as well if you hold it.")
-               if (not self.checkItem(234)):
+               if (not self.bag.hasItem(234)):
                   tempDict[6] = "Rein Charm"
                   self.doMainText("\n\nReindeer Charm - A large sapphire gem carved in the shape of a reindeers head with large antlers, it can fill you with the essence of the reindeer mother.")
-               if (not self.checkItem(235)):
+               if (not self.bag.hasItem(235)):
                   tempDict[7] = "Fell Rod"
                   self.doMainText("\n\nFellatio Rod - A lewd-looking rod, it is not a sexual toy but rather a weapon that can drain the life-force from an opponent.")
-               if (not self.checkItem(236)):
+               if (not self.bag.hasItem(236)):
                   tempDict[10] = "Recept Bell"
                   self.doMainText("\n\nReception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences.")
                self.displayMainText()
@@ -21380,21 +21379,21 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doEnd()
                   else:
                      self.doMainText("You are, in fact, interested in something. ", True)
-                     if (self.checkItem(232) or self.checkItem(233) or self.checkItem(234) or self.checkItem(235) or self.checkItem(236)):
+                     if (self.bag.hasItem(232) or self.bag.hasItem(233) or self.bag.hasItem(234) or self.bag.hasItem(235) or self.bag.hasItem(236)):
                         self.doMainText("Handing back the ", True)
-                        if (self.checkItem(232)):
+                        if (self.bag.hasItem(232)):
                            self.doMainText("Flying Carpet")
                            self.loseManyItem(232, 1)
-                        if (self.checkItem(233)):
+                        if (self.bag.hasItem(233)):
                            self.doMainText("Anti-Gravity Rock")
                            self.loseManyItem(233, 1)
-                        if (self.checkItem(234)):
+                        if (self.bag.hasItem(234)):
                            self.doMainText("Reindeer Charm")
                            self.loseManyItem(234, 1)
-                        if (self.checkItem(235)):
+                        if (self.bag.hasItem(235)):
                            self.doMainText("Fellatio Rod")
                            self.loseManyItem(235, 1)
-                        if (self.checkItem(236)):
+                        if (self.bag.hasItem(236)):
                            self.doMainText("Reception Bell")
                            self.loseManyItem(236, 1)
                         self.doMainText(" you borrowed before, you thank her graciously again for letting you try it out. ")
@@ -21528,11 +21527,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempDict[1] = "Fuck"
          if (self.vagTotal > 0 and self.vagLimit() > 22 + self.silPreg / 24):
             tempDict[3] = "Be Fucked"
-         if (self.checkItem(229) and not self.silTied):
+         if (self.bag.hasItem(229) and not self.silTied):
             tempDict[5] = "Tie Tail"
          if (self.silTied):
             tempDict[5] = "Untie"
-         if (self.checkItem(230) and self.silPreg > 30):
+         if (self.bag.hasItem(230) and self.silPreg > 30):
             tempDict[7] = "Eggcelerator"
          self.doButtonChoices(tempDict)
 
@@ -21918,11 +21917,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempDict[1] = "Fuck"
          if (self.vagTotal > 0 and self.vagLimit() > 22 + self.silPreg / 24):
             tempDict[3] = "Be Fucked"
-         if (self.checkItem(229) and not self.silTied):
+         if (self.bag.hasItem(229) and not self.silTied):
             tempDict[5] = "Tie Tail"
          if (self.silTied):
             tempDict[5] = "Untie"
-         if (self.checkItem(230) and self.silPreg > 30):
+         if (self.bag.hasItem(230) and self.silPreg > 30):
             tempDict[7] = "Eggcelerator"
          self.doButtonChoices(tempDict)
 
@@ -22164,9 +22163,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if self.buttonChoice == 1:
                self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
                tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-               if (self.checkItem(207)):
+               if (self.bag.hasItem(207)):
                   tempDict[9] = "Cock Carv"
-               if (self.checkItem(500) or self.checkItem(501)):
+               if (self.bag.hasItem(500) or self.bag.hasItem(501)):
                   tempDict[11] = "Milk Bottle"
                self.outputMainText("What would you like to do with the statue's open mouth?", True)
                self.doButtonChoices(tempDict)
@@ -22220,12 +22219,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doEnd()
                   elif self.buttonChoice == 11:
                      self.doMainText("You pour the milk into the statue's open mouth. The sweet fluids flow down inside of her and she seems pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
-                     if (self.checkItem(254) or self.checkStash(254)):
+                     if (self.bag.hasItem(254) or self.stash.hasItem(254)):
                         self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
                      else:
                         self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and you're left having to head back to town.")
                         self.itemAdd(254)
-                     if (self.checkItem(500)):
+                     if (self.bag.hasItem(500)):
                         self.loseManyItem(500, 1)
                      else:
                         self.loseManyItem(501, 1)
@@ -22236,9 +22235,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.buttonChoice == 3:
                self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
                tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-               if (self.checkItem(207)):
+               if (self.bag.hasItem(207)):
                   tempDict[9] = "Cock Carv"
-               if (self.checkItem(500) or self.checkItem(501)):
+               if (self.bag.hasItem(500) or self.bag.hasItem(501)):
                   tempDict[11] = "Milk Bottle"
                self.outputMainText("What would you like to do with the statue's ear?", True)
                self.doButtonChoices(tempDict)
@@ -22246,7 +22245,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                def doListen():
                   if self.buttonChoice == 1:
                      self.doMainText("You lick the statue's ear. The subtle and sensual act nearly makes the statue shiver in delight and she seems rather pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
-                     if (self.checkItem(254) or self.checkStash(254)):
+                     if (self.bag.hasItem(254) or self.stash.hasItem(254)):
                         self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
                      else:
                         self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.")
@@ -22307,7 +22306,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      if (self.ment > 60):
                         self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
                      self.fertilityStatueCurse = 48
-                     if (self.checkItem(500)):
+                     if (self.bag.hasItem(500)):
                         self.loseManyItem(500, 1)
                      else:
                         self.loseManyItem(501, 1)
@@ -22321,9 +22320,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.buttonChoice == 6:
                self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
                tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-               if (self.checkItem(207)):
+               if (self.bag.hasItem(207)):
                   tempDict[9] = "Cock Carv"
-               if (self.checkItem(500) or self.checkItem(501)):
+               if (self.bag.hasItem(500) or self.bag.hasItem(501)):
                   tempDict[11] = "Milk Bottle"
                self.outputMainText("What would you like to do with the statue's four breasts?", True)
                self.doButtonChoices(tempDict)
@@ -22371,7 +22370,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText(" However, it's completely empty. You already took the recipe that was in here before, so there's nothing left within.")
                      self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
                      self.hrs = 2
-                     if (self.checkItem(500)):
+                     if (self.bag.hasItem(500)):
                         self.loseManyItem(500, 1)
                      else:
                         self.loseManyItem(501, 1)
@@ -22381,9 +22380,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.buttonChoice == 10:
                self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
                tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-               if (self.checkItem(207)):
+               if (self.bag.hasItem(207)):
                   tempDict[9] = "Cock Carv"
-               if (self.checkItem(500) or self.checkItem(501)):
+               if (self.bag.hasItem(500) or self.bag.hasItem(501)):
                   tempDict[11] = "Milk Bottle"
                self.outputMainText("What would you like to do with the statue's gaping pussy?", True)
                self.doButtonChoices(tempDict)
@@ -22405,7 +22404,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doEnd()
                   elif self.buttonChoice == 9:
                      self.doMainText("You slide a cock carving up into the statue's open pussy. The penis-like object seems to be a perfect fit and you hear a click as the thing unlocks something within. The statue seems rather pleased with the pleasurable gesture...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
-                     if (self.checkItem(254) or self.checkStash(254)):
+                     if (self.bag.hasItem(254) or self.stash.hasItem(254)):
                         self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
                      else:
                         self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.")
@@ -22417,7 +22416,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   elif self.buttonChoice == 11:
                      self.outputMainText("You push the bottle of milk up against the statue's pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you're looking rather pregnant!\n\nThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...", True)
                      self.pregArray.push(True, 504, 208, 200, 0)
-                     if (self.checkItem(500)):
+                     if (self.bag.hasItem(500)):
                         self.loseManyItem(500, 1)
                      else:
                         self.loseManyItem(501, 1)
@@ -26607,7 +26606,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.lactation = 20
                 if (self.udders):
                     self.udderLactation = 20
-            if ((self.lactation < 3000 or self.udderLactation < 3000 and self.udders) and self.checkItem(252)):
+            if ((self.lactation < 3000 or self.udderLactation < 3000 and self.udders) and self.bag.hasItem(252)):
                 self.doMainText(" ...However a few minutes later you begin to squirt again, soaking your outfit. The milky pendant feels warmer than usual, suffusing its essence back into your body and preventing you from being less drippy...")
                 self.lactation = 3000
                 if (self.udders):
@@ -27802,13 +27801,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if part == 9:
             if (self.legType == 1):
                 return "paw"
-            if (self.legType in {2, 1001} or self.checkItem(102)):
+            if (self.legType in {2, 1001} or self.bag.hasItem(102)):
                 return "hoof"
             return "foot"
         if part == 10:
             if (self.legType == 1):
                 return "paws"
-            if (self.legType in {2, 1001} or self.checkItem(102)):
+            if (self.legType in {2, 1001} or self.bag.hasItem(102)):
                 return "hooves"
             return "feet"
         return f"LEG ERROR PART {part} TYPE {self.legType}"
@@ -27987,7 +27986,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.milkEngorgementLevel = 0
                 self.boobChange(-3)
             elif self.milkEngorgementLevel > 3:
-                Error(f"Pymin.milkAmount; self.milkEngorgementLevel is too high. Expected <=3, got {self.milkEngorgementLevel}")
+                Error(f"[Pymin.milkAmount] self.milkEngorgementLevel is too high. Expected <=3, got {self.milkEngorgementLevel}")
             self.milkEngorgement = 0
 
         elif origin == 2:
@@ -28007,8 +28006,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempNum = self.udderEngorgement * 3.5
                 self.udderEngorgementLevel = 0
                 self.udderChange(-8)
-            if self.udderEngorgementLevel > 3:
-                Error(f"Pymin.milkAmount; self.udderEngorgementLevel is too high. Expected <=3, got {self.udderEngorgementLevel}")
+            elif self.udderEngorgementLevel > 3:
+                Error(f"[Pymin.milkAmount] self.udderEngorgementLevel is too high. Expected <=3, got {self.udderEngorgementLevel}")
             self.udderEngorgement = 0
         return Math.floor(tempNum)
 
@@ -28457,8 +28456,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def debugVariableDisplayText(self):
         if self.currentState == 0:
-            return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nstashPage: {self.stashPage}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
-        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bagPage}\nbagArray = {self.bagArray}\nbagStackArray = {self.bagStackArray}\nstashPage: {self.stashPage}\nstashArray = {self.stashArray}\nstashStackArray = {self.stashStackArray}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
+            return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nstashPage: {self.stash.page}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
+        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nbagArray = {self.bag.items}\nbagStackArray = {self.bag.stack}\nstashPage: {self.stash.page}\nstashArray = {self.stash.items}\nstashStackArray = {self.stash.stack}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndResult: {self.rndResult}\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
 
     def detailedDebug(self, *e):
         self.debugvarwindow.updateText()
