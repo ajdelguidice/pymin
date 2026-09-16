@@ -7596,7 +7596,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.window.addScrolledListbox("display", "savefileselect", x=200, y=30, width=460, height=154, font=self.font, sbwidth=12, background="#FFFFFF", foreground="#000000")
             self.window.bindChild("savefileselect", "<<ListboxSelect>>", self.nsldSetEntryFromListbox)
             self.window.bindChild("savefileselect", "<Double-Button-1>", self.buttonEvent8)
-            self.window.bindChild("savefileselect", "<FocusIn>", partial(self._disableKeys, keys={109, 82, 107, 70, 13, 86, 96, 66, 104, 87, 101, 83, 102, 68}))
+            self.window.bindChild("savefileselect", "<FocusIn>", partial(self._disableKeys, keys={Keyboard.NUMPAD_SUBTRACT, Keyboard.R, Keyboard.NUMPAD_ADD, Keyboard.F, Keyboard.NUMPAD_ENTER, Keyboard.V, Keyboard.NUMPAD_0, Keyboard.B, Keyboard.NUMPAD_8, Keyboard.W, Keyboard.NUMPAD_5, Keyboard.S, Keyboard.NUMPAD_6, Keyboard.D}))
             self.window.bindChild("savefileselect", "<FocusOut>", self._enableKeys)
             self.window.addLabel("display", "savefilelabel", x=200, y=184, width=75, height=24, font=("Times New Roman", 12), background=self.backgroundColor, foreground=self.textColor, text="File Name:")
             self.window.addEntry("display", "savefileentry", x=275, y=184, width=385, height=24, font=("Times New Roman", 12), background="#FFFFFF", foreground="#000000")
