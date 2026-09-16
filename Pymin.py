@@ -13090,105 +13090,105 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.attireBot = ID
 
     def doDayCare(self):
-      # HERE
-      self.doMainText("Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo).", True)
-      if (self.currentDayCare != self.currentZone):
-         self.doMainText(f"\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in {self.regionName(self.currentDayCare)}.\n\nIf you would like to send a party of well-experienced travelers to {self.regionName(self.currentDayCare)} to safely bring your children here, it will cost 500 coins.")
-         tempDict = {12: "Leave"}
-         if (self.coin < 500):
-            self.doMainText(" Which you don't have enough of anyways.")
-         elif (self.coin >= 500):
-            tempDict[1] = "Transfer"
-         self.displayMainText()
-         self.showButtons(ButtonList(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1))
-         self.doButtonChoices(tempDict)
+        self.doMainText("Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo).", True)
+        if (self.currentDayCare != self.currentZone):
+            self.doMainText(f"\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in {self.regionName(self.currentDayCare)}.\n\nIf you would like to send a party of well-experienced travelers to {self.regionName(self.currentDayCare)} to safely bring your children here, it will cost 500 coins.")
+            tempDict = {12: "Leave"}
+            if (self.coin < 500):
+                self.doMainText(" Which you don't have enough of anyways.")
+            elif (self.coin >= 500):
+                tempDict[1] = "Transfer"
+            self.displayMainText()
+            self.showButtons(ButtonList(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1))
+            self.doButtonChoices(tempDict)
 
-         def doListen():
-            if (self.buttonChoice == 1):
-               self.outputMainText("Spending your 500 coins, a caravan is gathered and sent out immediately, thanks to there being a few groups that do this sort of thing for a living. You wait around the Day-Care, anxiously awaiting the safe return of your children (and if you don't have any you're just silly). About 8 hours pass and the caravan comes rolling back in, without a scratch or any other problems, thanks to the skill of those you hired and your children are successfully transported to their new location!", True)
-               self.currentDayCare = self.currentZone
-               self.hrs = 8
-               self.doCoin(-500)
-               self.doEnd()
-            else:
-               self.doReturn()
-         self.doListen = doListen
-      else:
-         if (self.humanChildren == 1):
-            self.doMainText(f"\n\nYou have {self.humanChildren} human kid. It gets along well in its surroundings, curiously exploring.")
-         elif (self.humanChildren > 0):
-            self.doMainText(f"\n\nYou have {self.humanChildren} human kids. They get along well in their surroundings, curiously exploring.")
-         if (self.equanChildren == 1):
-            self.doMainText(f"\n\nYou have {self.equanChildren} equan foal. It tends to compare sizes with everyone it meets...")
-         elif (self.equanChildren > 0):
-            self.doMainText(f"\n\nYou have {self.equanChildren} equan foals. They tend to compare sizes with everyone they meet...")
-         if (self.lupanChildren > 0):
-            self.doMainText(f"\n\nYou have {self.lupanChildren} lupan pups. They growl and playfully pretend to bark at each other while they wrestle innocently.")
-         if (self.felinChildren > 0):
-            self.doMainText(f"\n\nYou have {self.felinChildren} felin kittens. They mewl and cuddle against each other, and often sneaking in shots at their siblings with a paw when the other isn't paying attention.")
-         if (self.cowChildren == 1):
-            self.doMainText(f"\n\nYou have {self.cowChildren} half-cow girl. She tends to latch onto a milky nipple whenever she gets the chance and plays with her own nipples and udder absent-mindedly, as though they are strangely warm to her.")
-         elif (self.cowChildren > 0):
-            self.doMainText(f"\n\nYou have {self.cowChildren} half-cow girls. They tend to latch onto milky nipples whenever they get the chance and play with their own nipples and udders absent-mindedly, as though they are strangely warm to them.")
-         if (self.lizanChildren > 0):
-            self.doMainText(f"\n\nYou have {self.lizanChildren} lizan hatchlings. They tend to find the sunniest spots and lounge around.")
-         if (self.lizanEggs > 0):
-            self.doMainText(f"\n\nYou have {self.lizanEggs} lizan children, still growing within their eggs and all tucked away in a padded crate with blankets draped over them to keep them nice and warm.")
-            if (Utils.percent() <= 20):
-               self.doMainText(" Some of them are in the process of hatching! You rush over as they begin to crack, spotting their scaley muzzles push through. After they have cleared away a good hole, you assist them the rest of the way, helping them crawl out and dry off. They seem to purr a little before drifting off to sleep, exhausted from the effort. You bundle them up and know they'll be well taken care of here.")
-               tempInt = Math.floor(Utils.percent() / 20 + 2)
-               if (tempInt > self.lizanEggs):
-                  tempInt = self.lizanEggs
-               self.lizanEggs -= tempInt
-               self.lizanChildren += tempInt
-         if (self.bunnionChildren > 0):
-            self.doMainText(f"\n\nYou have {self.bunnionChildren} rabbit-like bunnies. You and the nannies try to keep them from humping everything, to little success...")
-         if (self.miceChildren > 0):
-            self.doMainText(f"\n\nYou have {self.miceChildren} mouse-like babies. Still rather naked with soft fuzz coming in, they're temporarily clothed. They crawl around the ground curiously, but jump at even the slightest loud noise or movement. But they're very affectionate when held safely.")
-         if (self.birdChildren > 0):
-            self.doMainText(f"\n\nYou have {self.birdChildren} bird-like hatchlings. They hop about, a bit unbalanced by their undeveloped wings and have a tendency to collect shiny things.")
-         if (self.birdEggs > 0):
-            self.doMainText(f"\n\nYou have {self.birdEggs} children, still growing within their eggs and all tucked away in a padded crate with blankets draped over them to keep them nice and warm.")
-            if (Utils.percent() <= 20):
-               self.doMainText(" Some of them are in the process of hatching! You rush over as they begin to crack, spotting their stiff beaks break through. After they have cleared away a good hole, you assist them the rest of the way, helping them preen away the broken shells and dry off. They chirp a little before drifting off to sleep, exhausted from the effort. You bundle them up and know they'll be well taken care of here.")
-               tempInt = Math.floor(Utils.percent() / 25 + 1)
-               if (tempInt > self.birdEggs):
-                  tempInt = self.birdEggs
-               self.birdEggs -= tempInt
-               self.birdChildren += tempInt
-         if (self.pigChildren > 0):
-            self.doMainText(f"\n\nYou have {self.pigChildren} piglet-like babies. They crawl about, sniffing everything with they're upturned noses. They aren't obese, but they sure do like food, feeding from you whenever they can and munching on any snacks they find.")
-         if (self.skunkChildren > 0):
-            self.doMainText(f"\n\nYou have {self.skunkChildren} skunk-like kits. When they're enjoying themselves and resting, they smell divine. When they're scared or frustrated, however, steer clear...")
-         if (self.bugChildren > 0):
-            self.doMainText(f"\n\nYou have {self.bugChildren} bug-like hatchlings. They crawl around, inspecting everything closely and taking a keen liking to anything that's even mildly sweet.")
-         if (self.bugEggs > 0):
-            self.doMainText(f"\n\nYou have {self.bugEggs} bug-like children, still growing within their soft squishy eggs and all tucked away in a padded crate with blankets draped over them to keep them nice and warm.")
-            if (Utils.percent() <= 20):
-               self.doMainText(" Some of them are in the process of hatching! You rush over as they begin to split, spotting their chitinous faces push through. It doesn't take much effort for them to slip out of the eggs, allowing you to quickly help wipe them clean of the gooey gunk. They seem to click rapidly and softly, like a stuttered purr, before drifting off to sleep, exhausted from the effort. You bundle them up and know they'll be well taken care of here.")
-               tempInt = Math.floor(Utils.percent() / 20 + 3)
-               if (tempInt > self.bugEggs):
-                  tempInt = self.bugEggs
-               self.bugEggs -= tempInt
-               self.bugChildren += tempInt
-         if (self.wolfPupChildren > 0):
-            self.doMainText(f"\n\nYou have {self.wolfPupChildren} domesticated wolf pups. They growl and nip at each other playfully, jumping and crashing into each other again and again.")
-         if (self.calfChildren == 1):
-            self.doMainText(f"\n\nYou have {self.calfChildren} baby calf. It stumbles around on all four hooves, rather large and clumsy, drinking milk whenever it can. Otherwise it's beginning to learn how to eat grass pretty quickly.")
-         elif (self.calfChildren > 1):
-            self.doMainText(f"\n\nYou have {self.calfChildren} baby calves. They stumble around on all four hooves, rather large and clumsy, drinking milk whenever they can. Otherwise they're beginning to learn how to eat grass pretty quickly.")
-         if (self.minotaurChildren == 1):
-            self.doMainText(f"\n\nYou have {self.minotaurChildren} baby from the Minotaur. It is quite large and hulking compared to other babies, and powerful as well. It doesn't seem like the smartest child in the world, but it likes to help out by lifting and carrying things.")
-         elif (self.minotaurChildren > 1):
-            self.doMainText(f"\n\nYou have {self.minotaurChildren} babies from the Minotaur. They are quite large and hulking compared to other babies, and powerful as well. They don't seem like the smartest children in the world, but they like to help out by lifting and carrying things.")
-         if (self.freakyGirlChildren > 0):
-            self.doMainText(f"\n\nYou have {self.freakyGirlChildren} cute little balls of fuzz babies with adorable human-like faces and long ears. They roll and bounce about, acting adorable, but if you're not careful and make them angry, you might lose a finger... You're not entirely sure if they'll grow legs and a full body like their 'father'; you don't know much about them at all, really.")
-         if (self.currentText == "Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo)."):
-            self.doMainText("\n\nYou have yet to have any children that you keep in your day-care, it seems.", True)
-         self.displayMainText()
-         self.doEnd(leave=True)
+            def doListen():
+                if (self.buttonChoice == 1):
+                    self.outputMainText("Spending your 500 coins, a caravan is gathered and sent out immediately, thanks to there being a few groups that do this sort of thing for a living. You wait around the Day-Care, anxiously awaiting the safe return of your children (and if you don't have any you're just silly). About 8 hours pass and the caravan comes rolling back in, without a scratch or any other problems, thanks to the skill of those you hired and your children are successfully transported to their new location!", True)
+                    self.currentDayCare = self.currentZone
+                    self.hrs = 8
+                    self.doCoin(-500)
+                    self.doEnd()
+                else:
+                    self.doReturn()
+            self.doListen = doListen
+        else:
+            if (self.humanChildren == 1):
+                self.doMainText(f"\n\nYou have {self.humanChildren} human kid. It gets along well in its surroundings, curiously exploring.")
+            elif (self.humanChildren > 0):
+                self.doMainText(f"\n\nYou have {self.humanChildren} human kids. They get along well in their surroundings, curiously exploring.")
+            if (self.equanChildren == 1):
+                self.doMainText(f"\n\nYou have {self.equanChildren} equan foal. It tends to compare sizes with everyone it meets...")
+            elif (self.equanChildren > 0):
+                self.doMainText(f"\n\nYou have {self.equanChildren} equan foals. They tend to compare sizes with everyone they meet...")
+            if (self.lupanChildren > 0):
+                self.doMainText(f"\n\nYou have {self.lupanChildren} lupan pups. They growl and playfully pretend to bark at each other while they wrestle innocently.")
+            if (self.felinChildren > 0):
+                self.doMainText(f"\n\nYou have {self.felinChildren} felin kittens. They mewl and cuddle against each other, and often sneaking in shots at their siblings with a paw when the other isn't paying attention.")
+            if (self.cowChildren == 1):
+                self.doMainText(f"\n\nYou have {self.cowChildren} half-cow girl. She tends to latch onto a milky nipple whenever she gets the chance and plays with her own nipples and udder absent-mindedly, as though they are strangely warm to her.")
+            elif (self.cowChildren > 0):
+                self.doMainText(f"\n\nYou have {self.cowChildren} half-cow girls. They tend to latch onto milky nipples whenever they get the chance and play with their own nipples and udders absent-mindedly, as though they are strangely warm to them.")
+            if (self.lizanChildren > 0):
+                self.doMainText(f"\n\nYou have {self.lizanChildren} lizan hatchlings. They tend to find the sunniest spots and lounge around.")
+            if (self.lizanEggs > 0):
+                self.doMainText(f"\n\nYou have {self.lizanEggs} lizan children, still growing within their eggs and all tucked away in a padded crate with blankets draped over them to keep them nice and warm.")
+                if (Utils.percent() <= 20):
+                    self.doMainText(" Some of them are in the process of hatching! You rush over as they begin to crack, spotting their scaley muzzles push through. After they have cleared away a good hole, you assist them the rest of the way, helping them crawl out and dry off. They seem to purr a little before drifting off to sleep, exhausted from the effort. You bundle them up and know they'll be well taken care of here.")
+                    tempInt = Math.floor(Utils.percent() / 20 + 2)
+                    if (tempInt > self.lizanEggs):
+                        tempInt = self.lizanEggs
+                    self.lizanEggs -= tempInt
+                    self.lizanChildren += tempInt
+            if (self.bunnionChildren > 0):
+                self.doMainText(f"\n\nYou have {self.bunnionChildren} rabbit-like bunnies. You and the nannies try to keep them from humping everything, to little success...")
+            if (self.miceChildren > 0):
+                self.doMainText(f"\n\nYou have {self.miceChildren} mouse-like babies. Still rather naked with soft fuzz coming in, they're temporarily clothed. They crawl around the ground curiously, but jump at even the slightest loud noise or movement. But they're very affectionate when held safely.")
+            if (self.birdChildren > 0):
+                self.doMainText(f"\n\nYou have {self.birdChildren} bird-like hatchlings. They hop about, a bit unbalanced by their undeveloped wings and have a tendency to collect shiny things.")
+            if (self.birdEggs > 0):
+                self.doMainText(f"\n\nYou have {self.birdEggs} children, still growing within their eggs and all tucked away in a padded crate with blankets draped over them to keep them nice and warm.")
+                if (Utils.percent() <= 20):
+                    self.doMainText(" Some of them are in the process of hatching! You rush over as they begin to crack, spotting their stiff beaks break through. After they have cleared away a good hole, you assist them the rest of the way, helping them preen away the broken shells and dry off. They chirp a little before drifting off to sleep, exhausted from the effort. You bundle them up and know they'll be well taken care of here.")
+                    tempInt = Math.floor(Utils.percent() / 25 + 1)
+                    if (tempInt > self.birdEggs):
+                        tempInt = self.birdEggs
+                    self.birdEggs -= tempInt
+                    self.birdChildren += tempInt
+            if (self.pigChildren > 0):
+                self.doMainText(f"\n\nYou have {self.pigChildren} piglet-like babies. They crawl about, sniffing everything with they're upturned noses. They aren't obese, but they sure do like food, feeding from you whenever they can and munching on any snacks they find.")
+            if (self.skunkChildren > 0):
+                self.doMainText(f"\n\nYou have {self.skunkChildren} skunk-like kits. When they're enjoying themselves and resting, they smell divine. When they're scared or frustrated, however, steer clear...")
+            if (self.bugChildren > 0):
+                self.doMainText(f"\n\nYou have {self.bugChildren} bug-like hatchlings. They crawl around, inspecting everything closely and taking a keen liking to anything that's even mildly sweet.")
+            if (self.bugEggs > 0):
+                self.doMainText(f"\n\nYou have {self.bugEggs} bug-like children, still growing within their soft squishy eggs and all tucked away in a padded crate with blankets draped over them to keep them nice and warm.")
+                if (Utils.percent() <= 20):
+                    self.doMainText(" Some of them are in the process of hatching! You rush over as they begin to split, spotting their chitinous faces push through. It doesn't take much effort for them to slip out of the eggs, allowing you to quickly help wipe them clean of the gooey gunk. They seem to click rapidly and softly, like a stuttered purr, before drifting off to sleep, exhausted from the effort. You bundle them up and know they'll be well taken care of here.")
+                    tempInt = Math.floor(Utils.percent() / 20 + 3)
+                    if (tempInt > self.bugEggs):
+                        tempInt = self.bugEggs
+                    self.bugEggs -= tempInt
+                    self.bugChildren += tempInt
+            if (self.wolfPupChildren > 0):
+                self.doMainText(f"\n\nYou have {self.wolfPupChildren} domesticated wolf pups. They growl and nip at each other playfully, jumping and crashing into each other again and again.")
+            if (self.calfChildren == 1):
+                self.doMainText(f"\n\nYou have {self.calfChildren} baby calf. It stumbles around on all four hooves, rather large and clumsy, drinking milk whenever it can. Otherwise it's beginning to learn how to eat grass pretty quickly.")
+            elif (self.calfChildren > 1):
+                self.doMainText(f"\n\nYou have {self.calfChildren} baby calves. They stumble around on all four hooves, rather large and clumsy, drinking milk whenever they can. Otherwise they're beginning to learn how to eat grass pretty quickly.")
+            if (self.minotaurChildren == 1):
+                self.doMainText(f"\n\nYou have {self.minotaurChildren} baby from the Minotaur. It is quite large and hulking compared to other babies, and powerful as well. It doesn't seem like the smartest child in the world, but it likes to help out by lifting and carrying things.")
+            elif (self.minotaurChildren > 1):
+                self.doMainText(f"\n\nYou have {self.minotaurChildren} babies from the Minotaur. They are quite large and hulking compared to other babies, and powerful as well. They don't seem like the smartest children in the world, but they like to help out by lifting and carrying things.")
+            if (self.freakyGirlChildren > 0):
+                self.doMainText(f"\n\nYou have {self.freakyGirlChildren} cute little balls of fuzz babies with adorable human-like faces and long ears. They roll and bounce about, acting adorable, but if you're not careful and make them angry, you might lose a finger... You're not entirely sure if they'll grow legs and a full body like their 'father'; you don't know much about them at all, really.")
+            if (self.currentText == "Welcome to your personal Day-Care! However, there isn't much to do yet except gawk awkwardly at your children (you weirdo)."):
+                self.doMainText("\n\nYou have yet to have any children that you keep in your day-care, it seems.", True)
+            self.displayMainText()
+            self.doEnd(leave=True)
 
     def doProstitute(self):
+      # HERE
       # TODO: Spellcheck
       if (Utils.percent() < 33 - self.enticeMod):
          self.outputMainText(f"You wait around {self.regionName(self.currentZone)}, shaking your assets and hoping to catch the eye of someone looking for a bit of sensual company. Unfortunately, despite some lustful gazes, nobody steps forward to take you up on your offer. Either you just weren't attractive enough or they just weren't in the mood at the moment.", True)
@@ -16188,100 +16188,100 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return self.chooseFrom()
 
     def doSoftlik(self):
-      # HERE
-      chance = self.eventSelect("Softlik")
-      if chance == 1:
-         self.outputMainText("You pass by an alley while exploring when a scent catches your nose. Savory and salty and strong, you sniff your way between the buildings down to some empty crates.\n\nIn one, there's a slice of perfectly good cheese. You pick it up and it's a bit dry on the outside, squeaking in your fingers as they rub over it. There's no dirt or mold or anything, looking quite edible and smelling quite tasty,. Since it was left out here like trash, there's no harm in taking it, so you do.", True)
-         self.itemAdd(238)
-         self.hrs = 2
-         self.doEnd()
-
-      elif chance == 2:
-         tempDict = {1: "Buy one", 3: "Buy six", 11: "Leave"}
-         self.doMainText("Walking through the streets, a cloaked man notices your browsing and interjects your path.\n\n\"Hello there, stranger. You look like you might be interested in some products. I have a very special deal I'm trying to get around. Have you ever wished you were 'bigger' in the downstairs department?", True)
-         if (self.gender == 2):
-            self.doMainText(" Or in your case, your husband or boyfriend?")
-         self.doMainText(" Well, I've got the thing for you.\" He lifts open one side of his cloak, revealing many pockets filled with little pills. \"These babies will make any man bigger in no time. Male Enhancement, is what I call them. And if you're interested, I can sell you one for 20 coins, or six for 100.")
-         if (not self.knowMaleEnhance):
-            self.doMainText(" Or, for the low low price of 200 coins, I can give you the recipe to making them.")
-            tempDict[6] = "Buy recipe"
-         self.doMainText("\"\n\n\"Would you be interested in any?\"")
-         self.displayMainText()
-         self.showButtons(ButtonList(1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0))
-         self.doButtonChoices(tempDict)
-
-         def doListen():
-            self.hrs = 1
-            if self.buttonChoice == 1:
-               if (self.coin < 20):
-                  self.doMainText("\"Err... You don't exactly have enough to buy that... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.", True)
-               else:
-                  self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops a single pill into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
-                  self.doCoin(-20)
-                  self.itemAdd(534)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 3:
-               if (self.coin < 100):
-                  self.doMainText("\"Err... You don't exactly have enough to buy that many... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.", True)
-               else:
-                  self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops six pills into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
-                  self.doCoin(-100)
-                  self.addManyItem(534, 6)
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 6:
-               if (self.coin < 200):
-                  self.doMainText("\"Sorry, but you don't have enough coins to buy that and I definitely can't afford to give the recipe away for free... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.", True)
-               else:
-                  self.doMainText("\"Aha, an entrepreneur yourself, eh? Well, since you've got the coins to invest, here you go.\" He takes your money and hands you the parchment with the recipe. \"Thank you for your business and may we deal again in the future. Good luck to your ventures as well. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
-                  self.doCoin(-200)
-                  self.knowMaleEnhance = True
-               self.displayMainText()
-               self.doEnd()
-            elif self.buttonChoice == 11:
-               self.outputMainText("\"Alright, maybe next time then.\" And just as quickly as he appeared, he vanishes into the town to sell off his wares.", True)
-               self.doEnd()
-         self.doListen = doListen
-      elif chance == 3:
-         self.doMainText("In the process of passing by a building, you hear some ruckus and an elderly man with wild white hair comes bursting out of the door before you.\n\n\"Dagnabbit! Another failed batch!\" He shouts as he carries out a small crate filled with half a dozen vials of swirling liquid.", True)
-         if (self.checkItem(211)):
-            self.doMainText("\n\nHe bursts out in such a tirade that he catches you off guard and sends you stumbling into him. You mostly catch yourself, merely bumping into him slightly without causing a catastrophe with what he is carrying. However, a loose DairE pill in your bag pops out from the sudden stop and flies through the air until it lands in one of the vials with a plop. The solution inside the vial turns white with small black clouds puffing throughout it.\n\nThe man doesn't mind the bump you gave him, but he stares down at the vial you've just tainted and then turns his attention to you. \"Now look at what you've gone and done! This solution was already a failure as it was, but it was at least sellable! Now I don't have any idea what it's become; I can't sell that! Give me 50 coins for your damned accident and take your mistake with you!\"")
-            if (self.coin < 50):
-               self.doMainText("\n\n\"What? You don't have that many?!\" He grumbles under his breath. \"Fine, give me all you've got and let that be a lesson to you...\"")
-               self.doCoin(-self.coin)
-            else:
-               self.doCoin(-50)
-            self.doMainText("\n\nNot wanting to make even more of a scene and, granted, it was your pill and your mistake that caused it, you give him the money. He shoves the vial into your hand in turn and doesn't pay you any more mind, still rather frustrated over his own misfortune and he huffs off down the street.")
-            self.displayMainText()
+        chance = self.eventSelect("Softlik")
+        if chance == 1:
+            self.outputMainText("You pass by an alley while exploring when a scent catches your nose. Savory and salty and strong, you sniff your way between the buildings down to some empty crates.\n\nIn one, there's a slice of perfectly good cheese. You pick it up and it's a bit dry on the outside, squeaking in your fingers as they rub over it. There's no dirt or mold or anything, looking quite edible and smelling quite tasty,. Since it was left out here like trash, there's no harm in taking it, so you do.", True)
+            self.itemAdd(238)
             self.hrs = 2
-            self.loseManyItem(211, 1)
-            self.itemAdd(258)
             self.doEnd()
-         else:
-            self.doMainText(" With you right next to him, his attention turns your way. \"Hey you, would you like to buy one of these? Since the people around here have a tendancy of changing into other things, I've been trying to come up with a brew that will help make humans more human rather than something else. But I keep coming up with this failure that is TOO human... Anyways, I just bring it down to some traveling salesman, but if you want one you can have one for 100 coins. It'll save me some effort from trying to haggle them all to that cutthroat...\"")
+
+        elif chance == 2:
+            tempDict = {1: "Buy one", 3: "Buy six", 11: "Leave"}
+            self.doMainText("Walking through the streets, a cloaked man notices your browsing and interjects your path.\n\n\"Hello there, stranger. You look like you might be interested in some products. I have a very special deal I'm trying to get around. Have you ever wished you were 'bigger' in the downstairs department?", True)
+            if (self.gender == 2):
+                self.doMainText(" Or in your case, your husband or boyfriend?")
+            self.doMainText(" Well, I've got the thing for you.\" He lifts open one side of his cloak, revealing many pockets filled with little pills. \"These babies will make any man bigger in no time. Male Enhancement, is what I call them. And if you're interested, I can sell you one for 20 coins, or six for 100.")
+            if (not self.knowMaleEnhance):
+                self.doMainText(" Or, for the low low price of 200 coins, I can give you the recipe to making them.")
+                tempDict[6] = "Buy recipe"
+            self.doMainText("\"\n\n\"Would you be interested in any?\"")
             self.displayMainText()
-            self.buttonConfirm(b6=False if (self.coin < 100) else True)
+            self.showButtons(ButtonList(1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0))
+            self.doButtonChoices(tempDict)
 
             def doListen():
-               if (self.buttonChoice == 6):
-                  self.doMainText("\"Well, here you go.\" He hands you a vial as he takes your coins. \"Now I've got to get going to catch that rat bastard who's going to rip me off. Good luck to you!\"\n\nHe starts trudging down the street, but turns back for only a moment to shout, \"Oh! And don't forget to read the warning label!\" And with that he's gone.\n\nLooking down at the vial, you can't seem to find any kind of warning... Now that you think about it, wasn't there a label on the crate?", True)
-                  self.doCoin(-100)
-                  self.itemAdd(257)
-                  self.hrs = 2
-               else:
-                  self.doMainText("\"Ahh, that's fine. I just hope you have a better day than I've had...\" He trudges off down the street, grumbling over his continued failures.", True)
-                  self.hrs = 1
-               self.displayMainText()
-               self.doEnd()
+                self.hrs = 1
+                if self.buttonChoice == 1:
+                    if (self.coin < 20):
+                        self.doMainText("\"Err... You don't exactly have enough to buy that... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.", True)
+                    else:
+                        self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops a single pill into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
+                        self.doCoin(-20)
+                        self.itemAdd(534)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 3:
+                    if (self.coin < 100):
+                        self.doMainText("\"Err... You don't exactly have enough to buy that many... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.", True)
+                    else:
+                        self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops six pills into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
+                        self.doCoin(-100)
+                        self.addManyItem(534, 6)
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 6:
+                    if (self.coin < 200):
+                        self.doMainText("\"Sorry, but you don't have enough coins to buy that and I definitely can't afford to give the recipe away for free... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.", True)
+                    else:
+                        self.doMainText("\"Aha, an entrepreneur yourself, eh? Well, since you've got the coins to invest, here you go.\" He takes your money and hands you the parchment with the recipe. \"Thank you for your business and may we deal again in the future. Good luck to your ventures as well. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
+                        self.doCoin(-200)
+                        self.knowMaleEnhance = True
+                    self.displayMainText()
+                    self.doEnd()
+                elif self.buttonChoice == 11:
+                    self.outputMainText("\"Alright, maybe next time then.\" And just as quickly as he appeared, he vanishes into the town to sell off his wares.", True)
+                    self.doEnd()
             self.doListen = doListen
+        elif chance == 3:
+            self.doMainText("In the process of passing by a building, you hear some ruckus and an elderly man with wild white hair comes bursting out of the door before you.\n\n\"Dagnabbit! Another failed batch!\" He shouts as he carries out a small crate filled with half a dozen vials of swirling liquid.", True)
+            if (self.checkItem(211)):
+                self.doMainText("\n\nHe bursts out in such a tirade that he catches you off guard and sends you stumbling into him. You mostly catch yourself, merely bumping into him slightly without causing a catastrophe with what he is carrying. However, a loose DairE pill in your bag pops out from the sudden stop and flies through the air until it lands in one of the vials with a plop. The solution inside the vial turns white with small black clouds puffing throughout it.\n\nThe man doesn't mind the bump you gave him, but he stares down at the vial you've just tainted and then turns his attention to you. \"Now look at what you've gone and done! This solution was already a failure as it was, but it was at least sellable! Now I don't have any idea what it's become; I can't sell that! Give me 50 coins for your damned accident and take your mistake with you!\"")
+                if (self.coin < 50):
+                    self.doMainText("\n\n\"What? You don't have that many?!\" He grumbles under his breath. \"Fine, give me all you've got and let that be a lesson to you...\"")
+                    self.doCoin(-self.coin)
+                else:
+                    self.doCoin(-50)
+                self.doMainText("\n\nNot wanting to make even more of a scene and, granted, it was your pill and your mistake that caused it, you give him the money. He shoves the vial into your hand in turn and doesn't pay you any more mind, still rather frustrated over his own misfortune and he huffs off down the street.")
+                self.displayMainText()
+                self.hrs = 2
+                self.loseManyItem(211, 1)
+                self.itemAdd(258)
+                self.doEnd()
+            else:
+                self.doMainText(" With you right next to him, his attention turns your way. \"Hey you, would you like to buy one of these? Since the people around here have a tendancy of changing into other things, I've been trying to come up with a brew that will help make humans more human rather than something else. But I keep coming up with this failure that is TOO human... Anyways, I just bring it down to some traveling salesman, but if you want one you can have one for 100 coins. It'll save me some effort from trying to haggle them all to that cutthroat...\"")
+                self.displayMainText()
+                self.buttonConfirm(b6=False if (self.coin < 100) else True)
 
-      elif chance == 4:
-         self.outputMainText("There's not terribly much to do in Softlik yet, but there might be something hidden away.", True)
-         self.hrs = 1
-         self.doEnd()
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.doMainText("\"Well, here you go.\" He hands you a vial as he takes your coins. \"Now I've got to get going to catch that rat bastard who's going to rip me off. Good luck to you!\"\n\nHe starts trudging down the street, but turns back for only a moment to shout, \"Oh! And don't forget to read the warning label!\" And with that he's gone.\n\nLooking down at the vial, you can't seem to find any kind of warning... Now that you think about it, wasn't there a label on the crate?", True)
+                        self.doCoin(-100)
+                        self.itemAdd(257)
+                        self.hrs = 2
+                    else:
+                        self.doMainText("\"Ahh, that's fine. I just hope you have a better day than I've had...\" He trudges off down the street, grumbling over his continued failures.", True)
+                        self.hrs = 1
+                    self.displayMainText()
+                    self.doEnd()
+                self.doListen = doListen
+
+        elif chance == 4:
+            self.outputMainText("There's not terribly much to do in Softlik yet, but there might be something hidden away.", True)
+            self.hrs = 1
+            self.doEnd()
 
     def doFirmshaft(self):
+      # HERE
       chance = self.eventSelect("Firmshaft")
       # Jamie Event
       if (chance == 1 and self.jamieRep >= 0 and self.jamieRep < 10):
@@ -22744,175 +22744,189 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doEnd()
 
     def knotholeUpstairs(self):
-      # HERE
-      self.outputMainText(f"The staircase going up is wide, accommodating as many as five people side by side. With enough space, you make it up without bumping into anyone, though you're sure you felt some eyes on your rear as you climbed the stairs. Looking back, you don’t see anyone staring at you but you still sense eyes admiring your {self.bodyDesc()} figure.\n\nDismissing the odd paranoia, you look around the area, deciding to get accustomed to the environment. The room looks like it covers the whole area above the first floor. Pillars here and there support the roof, standing above pillars and supporting walls you saw below, though these ones have four iron rings midway up their height. Many of these rings sport Lupans, both male and female, chained to the pillars, mostly nude or wearing exotic clothing, and exposing themselves in erotic displays, looking like they are enjoying themselves in front of their audience.\n\nA large area of the room is taken up by rigs. X-crosses, suspension rigs, stockades, padded sawhorses, and cushioning on the walls with more iron rings and padded metal restraints. Aside the pillars and walls with the rings, there are several wooden posts standing in various spots around the room, half of those also linked to what looks to be more personal 'displays' of Lupans acting as pets.\n\nIn the area filled with rigs, there stands a small gathering as submissive Lupans toy, tease, get teased, beg, seduce, and outright presenting themselves for their audience. The apparent Dominants either stand or seat themselves on lavish sofas and chairs; a group of voyeurs enjoying the exhibitions.", True)
-      self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1))
-      self.doButtonChoices({1: "Relax", 3: "Exhibition", 9: "Downstairs", 12: "Leave"})
+        self.outputMainText(f"The staircase going up is wide, accommodating as many as five people side by side. With enough space, you make it up without bumping into anyone, though you're sure you felt some eyes on your rear as you climbed the stairs. Looking back, you don’t see anyone staring at you but you still sense eyes admiring your {self.bodyDesc()} figure.\n\nDismissing the odd paranoia, you look around the area, deciding to get accustomed to the environment. The room looks like it covers the whole area above the first floor. Pillars here and there support the roof, standing above pillars and supporting walls you saw below, though these ones have four iron rings midway up their height. Many of these rings sport Lupans, both male and female, chained to the pillars, mostly nude or wearing exotic clothing, and exposing themselves in erotic displays, looking like they are enjoying themselves in front of their audience.\n\nA large area of the room is taken up by rigs. X-crosses, suspension rigs, stockades, padded sawhorses, and cushioning on the walls with more iron rings and padded metal restraints. Aside the pillars and walls with the rings, there are several wooden posts standing in various spots around the room, half of those also linked to what looks to be more personal 'displays' of Lupans acting as pets.\n\nIn the area filled with rigs, there stands a small gathering as submissive Lupans toy, tease, get teased, beg, seduce, and outright presenting themselves for their audience. The apparent Dominants either stand or seat themselves on lavish sofas and chairs; a group of voyeurs enjoying the exhibitions.", True)
+        self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1))
+        self.doButtonChoices({1: "Relax", 3: "Exhibition", 9: "Downstairs", 12: "Leave"})
 
-      def doListen():
-         if self.buttonChoice == 1:
-            if (self.breastSize > 2 and self.hips > 2 and self.body < 20):
-               self.outputMainText(f"Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone.\n\nThe moment you take a seat on the soft comfortable cushions, a dark gray collared Lupan takes notice of you and makes their way over to you. Slowly approaching you (and crawling on all fours), you notice that they are male, and he is avoiding eye contact with you, focusing more on your {self.legDesc(10)} and {self.legDesc(2)}.\n\nReaching your corner of the room, the collared male kneels at your {self.legDesc(10)}, keeping his eyes low and bows his head. “Would you like me to dance for you?” he asks almost indirectly, his voice sounding timid.\n\nYou consider for a moment, looking over the dark fur of the male's slender, nude frame before you.", True)
-            else:
-               self.outputMainText("Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone.\n\nThe moment you take a seat on the soft, comfortable cushions, a collared Lupan takes notice of you and makes their way over to you. Getting closer to you (and crawling on all fours), you notice that they are female, and she avoids eye contact despite you almost getting lost in her beautiful deep emerald green eyes.\n\nReaching your corner of the room, she kneels before you, pressing her bare chest out to display her ample breasts, showing her Lupan qualities to you. Her legs spread to expose her snatch between her legs, her hands on her legs with palms up. “Would you like me to dance for you?” she asks, still avoiding eye contact and keeping her head down, her tone of voice very timid.\n\nYou consider for a moment, looking over the dark fur of the female's slender, nude frame before you.", True)
-            self.buttonConfirm()
+        def doListen():
+            if self.buttonChoice == 1:
+                if (self.breastSize > 2 and self.hips > 2 and self.body < 20):
+                    self.outputMainText(f"Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone.\n\nThe moment you take a seat on the soft comfortable cushions, a dark gray collared Lupan takes notice of you and makes their way over to you. Slowly approaching you (and crawling on all fours), you notice that they are male, and he is avoiding eye contact with you, focusing more on your {self.legDesc(10)} and {self.legDesc(2)}.\n\nReaching your corner of the room, the collared male kneels at your {self.legDesc(10)}, keeping his eyes low and bows his head. “Would you like me to dance for you?” he asks almost indirectly, his voice sounding timid.\n\nYou consider for a moment, looking over the dark fur of the male's slender, nude frame before you.", True)
+                else:
+                    self.outputMainText("Feeling the need to relax, you find an empty seat in the corner of the room that looks like you would be alone.\n\nThe moment you take a seat on the soft, comfortable cushions, a collared Lupan takes notice of you and makes their way over to you. Getting closer to you (and crawling on all fours), you notice that they are female, and she avoids eye contact despite you almost getting lost in her beautiful deep emerald green eyes.\n\nReaching your corner of the room, she kneels before you, pressing her bare chest out to display her ample breasts, showing her Lupan qualities to you. Her legs spread to expose her snatch between her legs, her hands on her legs with palms up. “Would you like me to dance for you?” she asks, still avoiding eye contact and keeping her head down, her tone of voice very timid.\n\nYou consider for a moment, looking over the dark fur of the female's slender, nude frame before you.", True)
+                self.buttonConfirm()
 
-            def doListen():
-               if (self.buttonChoice == 6):
-                  if (self.breastSize > 2 and self.hips > 2 and self.body < 20):
-                     self.doMainText(f"The male Lupan with a collar before you nods and slowly comes to a stand, keeping his head down. With the stand, you have full view of his endowment, an already fully erect deep-red canine cock, with knot and all at attention out of his sheath.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan male before you counts himself down, then starts with a spin, and slide, giving you a very nice view of his furred ass.\n\nThe dance quickly turns erotic, his hands sliding over his body as his torso weaves in concert, putting on a rather arousing display for his audience. His tail sways with his motions, in rhythm to the drumbeat.\n\nThe collar he wears has a slight jingle of an oval, golden tag bearing his name. With how he moves, you don't get a good view of it, but you don't believe he is available for an owner anyway. Instead, you enjoy his display, watching the slender figure move and twist, showing off his supple ass and throbbing knotted canine shaft.\n\nAfter a couple hours of watching him dance almost nonstop to the ever-changing rhythm of the drum-house below, he is called by a female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be his owner and you watch as he obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to his collar.\n\nSeeing as you became rather aroused by his performance, you decide to leave the Knothole for now, leaving the male Lupan to his Mistress.", True)
-                     self.doLust(Math.floor(self.lib / 4), 0)
-                  else:
-                     self.doMainText(f"The female Lupan with a collar before you nods and slowly comes to a stand, keeping her head down. With the stand, you have a wondrous view of her supple bosom and damp pussy.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan female before you counts herself down, then starts with a spin, and slide, giving you a very nice view of her soft and firm furred ass.\n\nThe dance quickly turns erotic, her hands sliding over her breasts and slender belly as her torso weaves in concert, putting on a rather arousing display for her audience. Her fluffy tail sways with her motions, in rhythm to the drumbeat.\n\nThe collar she wears has a slight jingle of an oval, golden tag bearing her name. With how she moves, you don't get a good view of it, but you don't believe she is available for an owner anyway. Instead, you enjoy her erotic display, watching the slender figure move and twist, showing off her firm slim ass and damp cunny.\n\nAfter a couple hours of watching her dance almost nonstop to the ever-changing rhythm of the drum-house below, she is called by another female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be her owner and you watch as she obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to her collar.\n\nSeeing as you became rather aroused by her performance, you decide to leave the Knothole for now, leaving the female Lupan to her Mistress.", True)
-                     self.doLust(Math.floor(self.lib / 4), 0)
-                  self.hrs += 3
-               else:
-                  self.doMainText("Dismissing the submissive Lupan before you, you lay your head back and relax, listening to the dulled beat of the drum-house below and the mixed sounds of pleasure, conversation, and ecstasy around the large room.\n\nSometime later, you don't know how long, you take a heavy yawn and stretch, having your rest filled with wet dreams and imaginings of the events around you. Seeing not much else to do, you take your leave of the Knothole.", True)
-                  self.hrs += 1
-                  self.doLust(10, 0)
-               self.displayMainText()
-               self.doEnd()
-            self.doListen = doListen
-         elif self.buttonChoice == 3:
-            self.outputMainText(f"Feeling like showing off, you walk to an open area of the room, swaying your hips a bit.\n\nAlmost right away, you notice you've already caught someone's eye, relaxing on a bench. A smirk crosses your lips as your motions, now directed in their general direction, make your body sway and twist.\n\nWhile turned away from your observer, you slowly strip off your {self.currentClothes()}, letting the outfit drop to the floor. The patron you are entertaining, now standing and a bit closer to watch, a Lupan male, nude, with a full erection and deep-red throbbing knot, raises his brow to your naked backside, intrigued by what he sees.\n\nWithout breaking stride, feeling the beat of the drum-house through the floor, and your {self.legDesc(10)}, you swirl your hips and twirl, giving him a round-view of your naked body. This gets both his brows raised, and leaving him licking his lips as he watches.\n\nYour now-exposed rump has his attention now, his eyes following it whenever you spin and twist as you dance before him. Having a bit more fun, you inch closer to the Lupan, teasing with your ass as you wiggle it, only to pull it away.", True)
-            self.doNext()
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        if (self.breastSize > 2 and self.hips > 2 and self.body < 20):
+                            self.doMainText(f"The male Lupan with a collar before you nods and slowly comes to a stand, keeping his head down. With the stand, you have full view of his endowment, an already fully erect deep-red canine cock, with knot and all at attention out of his sheath.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan male before you counts himself down, then starts with a spin, and slide, giving you a very nice view of his furred ass.\n\nThe dance quickly turns erotic, his hands sliding over his body as his torso weaves in concert, putting on a rather arousing display for his audience. His tail sways with his motions, in rhythm to the drumbeat.\n\nThe collar he wears has a slight jingle of an oval, golden tag bearing his name. With how he moves, you don't get a good view of it, but you don't believe he is available for an owner anyway. Instead, you enjoy his display, watching the slender figure move and twist, showing off his supple ass and throbbing knotted canine shaft.\n\nAfter a couple hours of watching him dance almost nonstop to the ever-changing rhythm of the drum-house below, he is called by a female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be his owner and you watch as he obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to his collar.\n\nSeeing as you became rather aroused by his performance, you decide to leave the Knothole for now, leaving the male Lupan to his Mistress.", True)
+                            self.doLust(Math.floor(self.lib / 4), 0)
+                        else:
+                            self.doMainText(f"The female Lupan with a collar before you nods and slowly comes to a stand, keeping her head down. With the stand, you have a wondrous view of her supple bosom and damp pussy.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan female before you counts herself down, then starts with a spin, and slide, giving you a very nice view of her soft and firm furred ass.\n\nThe dance quickly turns erotic, her hands sliding over her breasts and slender belly as her torso weaves in concert, putting on a rather arousing display for her audience. Her fluffy tail sways with her motions, in rhythm to the drumbeat.\n\nThe collar she wears has a slight jingle of an oval, golden tag bearing her name. With how she moves, you don't get a good view of it, but you don't believe she is available for an owner anyway. Instead, you enjoy her erotic display, watching the slender figure move and twist, showing off her firm slim ass and damp cunny.\n\nAfter a couple hours of watching her dance almost nonstop to the ever-changing rhythm of the drum-house below, she is called by another female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be her owner and you watch as she obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to her collar.\n\nSeeing as you became rather aroused by her performance, you decide to leave the Knothole for now, leaving the female Lupan to her Mistress.", True)
+                            self.doLust(Math.floor(self.lib / 4), 0)
+                        self.hrs += 3
+                    else:
+                        self.doMainText("Dismissing the submissive Lupan before you, you lay your head back and relax, listening to the dulled beat of the drum-house below and the mixed sounds of pleasure, conversation, and ecstasy around the large room.\n\nSometime later, you don't know how long, you take a heavy yawn and stretch, having your rest filled with wet dreams and imaginings of the events around you. Seeing not much else to do, you take your leave of the Knothole.", True)
+                        self.hrs += 1
+                        self.doLust(10, 0)
+                    self.displayMainText()
+                    self.doEnd()
+                self.doListen = doListen
+            elif self.buttonChoice == 3:
+                self.outputMainText(f"Feeling like showing off, you walk to an open area of the room, swaying your hips a bit.\n\nAlmost right away, you notice you've already caught someone's eye, relaxing on a bench. A smirk crosses your lips as your motions, now directed in their general direction, make your body sway and twist.\n\nWhile turned away from your observer, you slowly strip off your {self.currentClothes()}, letting the outfit drop to the floor. The patron you are entertaining, now standing and a bit closer to watch, a Lupan male, nude, with a full erection and deep-red throbbing knot, raises his brow to your naked backside, intrigued by what he sees.\n\nWithout breaking stride, feeling the beat of the drum-house through the floor, and your {self.legDesc(10)}, you swirl your hips and twirl, giving him a round-view of your naked body. This gets both his brows raised, and leaving him licking his lips as he watches.\n\nYour now-exposed rump has his attention now, his eyes following it whenever you spin and twist as you dance before him. Having a bit more fun, you inch closer to the Lupan, teasing with your ass as you wiggle it, only to pull it away.", True)
+                self.doNext()
 
-            def doListen():
-               if self.gender == 1:
-                  self.outputMainText("Bending over and leaning up against a pillar, your hand slides down your body to your stiffened shaft. You wiggle your ass teasingly and spread your legs wide, giving him a nice view of your tailhole. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you start to tease your cock, lightly stroking it with a few fingers, starting to please yourself in front of the Lupan male.\n\nThe teasing not enough, you grip your rod tighter, stroking faster, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nHard, moaning, and so lost in yourself, you don't notice the male now behind you. The next thing you feel, is a thick, canine shaft thrusting into your ass, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your tight hole.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your ass drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your tailhole stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your rump feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
-               elif self.gender == 2:
-                  self.outputMainText(f"Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread your pussy lips wide, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunn{self.plural(16)}. The next thing you feel, is a thick, canine shaft thrusting into {self.oneYour(2)} puss{self.plural(16)}, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
-               elif self.gender == 3:
-                  self.outputMainText(f"Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread pussy lips wide and pressing {self.oneYour(1)} shaft{self.plural(1)} down {self.legWhere(1)} your {self.legDesc(2)}, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, your other hand stroking and playing with your throbbing cock, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure, stroking your shaft harder and faster.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunt{self.plural(16)}. The next thing you feel, is a thick, canine shaft thrusting into {self.oneYour(2)} puss{self.plural(16)}, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, your cock spraying your load all over the ground and pillar in front of you, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
-               self.doNext()
+                def doListen():
+                    if self.gender == 1:
+                        self.outputMainText("Bending over and leaning up against a pillar, your hand slides down your body to your stiffened shaft. You wiggle your ass teasingly and spread your legs wide, giving him a nice view of your tailhole. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you start to tease your cock, lightly stroking it with a few fingers, starting to please yourself in front of the Lupan male.\n\nThe teasing not enough, you grip your rod tighter, stroking faster, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nHard, moaning, and so lost in yourself, you don't notice the male now behind you. The next thing you feel, is a thick, canine shaft thrusting into your ass, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your tight hole.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your ass drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your tailhole stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your rump feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
+                    elif self.gender == 2:
+                        self.outputMainText(f"Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread your pussy lips wide, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunn{self.plural(16)}. The next thing you feel, is a thick, canine shaft thrusting into {self.oneYour(2)} puss{self.plural(16)}, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
+                    elif self.gender == 3:
+                        self.outputMainText(f"Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread pussy lips wide and pressing {self.oneYour(1)} shaft{self.plural(1)} down {self.legWhere(1)} your {self.legDesc(2)}, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, your other hand stroking and playing with your throbbing cock, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure, stroking your shaft harder and faster.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunt{self.plural(16)}. The next thing you feel, is a thick, canine shaft thrusting into {self.oneYour(2)} puss{self.plural(16)}, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, your cock spraying your load all over the ground and pillar in front of you, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
+                    self.doNext()
 
-               def doListen():
-                  self.doMainText("A couple hours later, you wake up and find yourself laying on a bench, clothes stacked next to you, and feeling very relieved from the experience.\n\nGathering your clothes, and trying to stand, you wobble a bit, still feeling the fuck you had not long ago, your ", True)
-                  if (self.vagTotal > 0):
-                     self.doMainText("pussy")
-                     self.doImpregnate(3)
-                  else:
-                     self.doMainText("ass")
-                  self.doMainText(" dripping a bit from the cum still filling it as you -slowly- take your leave of the knothole.")
-                  self.doLust(-Math.floor(self.sen / 2), 2, 2, 5)
-                  self.displayMainText()
-                  self.hrs += 2
-                  self.doEnd()
-               self.doListen = doListen
-            self.doListen = doListen
-         elif self.buttonChoice == 9:
-            self.knotholeMain(False)
-         elif self.buttonChoice == 12:
-            self.knotholeLeave()
-      self.doListen = doListen
+                    def doListen():
+                        self.doMainText("A couple hours later, you wake up and find yourself laying on a bench, clothes stacked next to you, and feeling very relieved from the experience.\n\nGathering your clothes, and trying to stand, you wobble a bit, still feeling the fuck you had not long ago, your ", True)
+                        if (self.vagTotal > 0):
+                            self.doMainText("pussy")
+                            self.doImpregnate(3)
+                        else:
+                            self.doMainText("ass")
+                        self.doMainText(" dripping a bit from the cum still filling it as you -slowly- take your leave of the knothole.")
+                        self.doLust(-Math.floor(self.sen / 2), 2, 2, 5)
+                        self.displayMainText()
+                        self.hrs += 2
+                        self.doEnd()
+                    self.doListen = doListen
+                self.doListen = doListen
+            elif self.buttonChoice == 9:
+                self.knotholeMain(False)
+            elif self.buttonChoice == 12:
+                self.knotholeLeave()
+        self.doListen = doListen
 
     def doBattle(self):
-      tempDict = {1: "Bag", 2: "Run", 5: "Attack", 7: "Special", 9: "Rape", 10: "Entice"}
-      # tempDict[6] = "Lust-Cast"
-      if (self.lust >= 15):
-         tempDict[12] = "Submit"
-      self.showButtons(ButtonList(1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1))
-      self.doButtonChoices(tempDict)
+        tempDict = {1: "Bag", 2: "Run", 5: "Attack", 7: "Special", 9: "Rape", 10: "Entice"}
+        # tempDict[6] = "Lust-Cast"
+        if (self.lust >= 15):
+            tempDict[12] = "Submit"
+        self.showButtons(ButtonList(1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 1))
+        self.doButtonChoices(tempDict)
 
-      def doListen():
-         self.dmg = 0
-         if self.buttonChoice == 1:
-            self.doBag()
-         elif self.buttonChoice == 2:
-            if (Utils.percent() <= 20 + self.runMod):
-               self.doMainText("You successfully run away!", True)
-               if (self.inDungeon):
-                  self.regionChange(self.currentZone)
-                  self.inDungeon = False
-                  self.doMainText(f"\n\nTo escape, you run all the way back to {self.regionName(self.currentZone)}.")
-               self.displayMainText()
-               self.currentState = 1
-               self.hrs = 1
-               self.doEnd()
-            else:
-               self.outputMainText("You fail to run away...", True)
-               if (self.currentState == 2):
-                  self.enemyAttack()
-               if (self.currentState == 2):
-                  self.doBattle()
-         elif self.buttonChoice == 5:
-            self.weaponAttack()
-            if (self.currentState == 2):
-               self.enemyAttack()
-            if (self.currentState == 2):
-               self.doBattle()
-         # elif (self.buttonChoice == 6):
-         #   self.doLustCast()
-         elif self.buttonChoice == 7:
-            self.doSpecialAbility(1)
-         elif self.buttonChoice == 9:
-            if (self.gender == 0 or self.eGen == 0):
-               self.outputMainText("What are you going to rape it with? Good intentions?\n\nChoose another option.", True)
-               if (self.currentState == 2):
-                  self.doBattle()
-            else:
-               self.doMainText(f"You attempt to toss the {self.enemyName()} to the ground and fuck it wildly!", True)
-               if (self.lust < 15):
-                  self.outputMainText("\n\nHowever, you aren't nearly aroused enough to even think about penetration, leaving your efforts futile.")
-                  if (self.currentState == 2):
-                     self.enemyAttack()
-               elif (Utils.percent() / 5 + self.str + self.rapeMod <= Utils.percent() / 5 + self.eStr - self.eLust / 2):
-                  self.outputMainText(f"\n\nHowever, the {self.enemyName()} overpowers you and tosses you off!")
-                  if (self.currentState == 2):
-                     self.enemyAttack()
-               elif (self.ePref != self.gender and self.ePref != 4 and self.gender != 3 or self.ePref == 0):
-                  self.dmg = Math.floor(Utils.percent() / 10 + self.lust / 10)
-                  self.doMainText(f"\n\nHowever, the {self.enemyName()} is sorely turned off by your rough pounding on its sensitive area, merely hurting its genitals and its pride.\n\nBut you do deal {self.dmg} damage and satisfy yourself a bit.")
-                  self.doeHP(-self.dmg)
-                  self.doLust(-Math.floor(Utils.percent() / 20 + self.sen / 10), 2, 1, 2)
-                  self.displayMainText()
-               else:
-                  self.doRape()
-                  eLustChange = Math.floor(Utils.percent() / 10 + self.eSen / 5)
-                  if (self.eLust - eLustChange <= 0):
-                     self.eLust = 0
-                  if (self.eMenta - eLustChange < 0):
-                     self.specialRapeWin()
-                     self.outputMainText("\n\nYou win!")
-                     self.currentState = 1
-                     self.doNext()
+        def doListen():
+            self.dmg = 0
+            # Bag
+            if self.buttonChoice == 1:
+                self.doBag()
 
-                     def doListen():
-                        self.battleWin()
-                     self.doListen = doListen
-                  else:
-                     self.outputMainText(f"\n\nThe {self.enemyName()} picks itself up after you had your way with it, a little distraught but not yet defeated.")
-                     self.eLust -= eLustChange
-                  self.eMenta -= eLustChange
-               if (self.currentState == 2):
-                  self.doBattle()
-         elif self.buttonChoice == 10:
-            self.doEntice()
-            if (self.currentState == 2):
-               self.enemyAttack()
-            if (self.currentState == 2):
-               self.doBattle()
-         elif self.buttonChoice == 12:
-            self.doMainText(f"No longer wishing to fight, you attempt to submit yourself to the {self.enemyName()}'s whims in hopes of leaving the battle with a little fun.", True)
-            if (self.ePref == 0 or self.ePref == 1 and self.gender == 2 or self.ePref == 2 and self.gender == 1 or self.gender == 0):
-               self.outputMainText("\n\nHowever, it is quickly apparent that the enemy has no interest in you, in that fashion.")
-               if (self.currentState == 2):
-                  self.enemyAttack()
-            elif (self.eLust < self.eMenta):
-               self.outputMainText(f"\n\nHowever, the {self.enemyName()} isn't nearly aroused enough, a bit too cautious at the moment to assault you in such a way.")
-               if (self.currentState == 2):
-                  self.enemyAttack()
-            else:
-               self.displayMainText()
-               self.currentState = 1
-               self.doNext()
+            # Run
+            elif self.buttonChoice == 2:
+                if (Utils.percent() <= 20 + self.runMod):
+                    self.doMainText("You successfully run away!", True)
+                    if (self.inDungeon):
+                        self.regionChange(self.currentZone)
+                        self.inDungeon = False
+                        self.doMainText(f"\n\nTo escape, you run all the way back to {self.regionName(self.currentZone)}.")
+                    self.displayMainText()
+                    self.currentState = 1
+                    self.hrs = 1
+                    self.doEnd()
+                else:
+                    self.outputMainText("You fail to run away...", True)
+                    if (self.currentState == 2):
+                        self.enemyAttack()
+                    if (self.currentState == 2):
+                        self.doBattle()
 
-               def doListen():
-                  self.doGetRaped()
-               self.doListen = doListen
-            if (self.currentState == 2):
-               self.doBattle()
-      self.doListen = doListen
+            # Attack
+            elif self.buttonChoice == 5:
+                self.weaponAttack()
+                if (self.currentState == 2):
+                    self.enemyAttack()
+                if (self.currentState == 2):
+                    self.doBattle()
+
+            # Lust-Cast (Cut/Unfinished Content)
+            # elif (self.buttonChoice == 6):
+            #    self.doLustCast()
+
+            # Use Special Ability
+            elif self.buttonChoice == 7:
+                self.doSpecialAbility(1)
+
+            # Rape
+            elif self.buttonChoice == 9:
+                if (self.gender == 0 or self.eGen == 0):
+                    self.outputMainText("What are you going to rape it with? Good intentions?\n\nChoose another option.", True)
+                    if (self.currentState == 2):
+                        self.doBattle()
+                else:
+                    self.doMainText(f"You attempt to toss the {self.enemyName()} to the ground and fuck it wildly!", True)
+                    if (self.lust < 15):
+                        self.outputMainText("\n\nHowever, you aren't nearly aroused enough to even think about penetration, leaving your efforts futile.")
+                        if (self.currentState == 2):
+                            self.enemyAttack()
+                    elif (Utils.percent() / 5 + self.str + self.rapeMod <= Utils.percent() / 5 + self.eStr - self.eLust / 2):
+                        self.outputMainText(f"\n\nHowever, the {self.enemyName()} overpowers you and tosses you off!")
+                        if (self.currentState == 2):
+                            self.enemyAttack()
+                    elif (self.ePref != self.gender and self.ePref != 4 and self.gender != 3 or self.ePref == 0):
+                        self.dmg = Math.floor(Utils.percent() / 10 + self.lust / 10)
+                        self.doMainText(f"\n\nHowever, the {self.enemyName()} is sorely turned off by your rough pounding on its sensitive area, merely hurting its genitals and its pride.\n\nBut you do deal {self.dmg} damage and satisfy yourself a bit.")
+                        self.doeHP(-self.dmg)
+                        self.doLust(-Math.floor(Utils.percent() / 20 + self.sen / 10), 2, 1, 2)
+                        self.displayMainText()
+                    else:
+                        self.doRape()
+                        eLustChange = Math.floor(Utils.percent() / 10 + self.eSen / 5)
+                        if (self.eLust - eLustChange <= 0):
+                            self.eLust = 0
+                        if (self.eMenta - eLustChange < 0):
+                            self.specialRapeWin()
+                            self.outputMainText("\n\nYou win!")
+                            self.currentState = 1
+                            self.doNext()
+
+                            def doListen():
+                                self.battleWin()
+                            self.doListen = doListen
+                        else:
+                            self.outputMainText(f"\n\nThe {self.enemyName()} picks itself up after you had your way with it, a little distraught but not yet defeated.")
+                            self.eLust -= eLustChange
+                        self.eMenta -= eLustChange
+                    if (self.currentState == 2):
+                        self.doBattle()
+
+            # Entice
+            elif self.buttonChoice == 10:
+                self.doEntice()
+                if (self.currentState == 2):
+                    self.enemyAttack()
+                if (self.currentState == 2):
+                    self.doBattle()
+
+            # Submit
+            elif self.buttonChoice == 12:
+                self.doMainText(f"No longer wishing to fight, you attempt to submit yourself to the {self.enemyName()}'s whims in hopes of leaving the battle with a little fun.", True)
+                if (self.ePref == 0 or self.ePref == 1 and self.gender == 2 or self.ePref == 2 and self.gender == 1 or self.gender == 0):
+                    self.outputMainText("\n\nHowever, it is quickly apparent that the enemy has no interest in you, in that fashion.")
+                    if (self.currentState == 2):
+                        self.enemyAttack()
+                elif (self.eLust < self.eMenta):
+                    self.outputMainText(f"\n\nHowever, the {self.enemyName()} isn't nearly aroused enough, a bit too cautious at the moment to assault you in such a way.")
+                    if (self.currentState == 2):
+                        self.enemyAttack()
+                else:
+                    self.displayMainText()
+                    self.currentState = 1
+                    self.doNext()
+
+                    def doListen():
+                        self.doGetRaped()
+                    self.doListen = doListen
+                if (self.currentState == 2):
+                    self.doBattle()
+        self.doListen = doListen
 
     def weaponAttack(self):
         self.dmg = 0
@@ -25128,902 +25142,931 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.bug += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
 
     def affinityChange(self):
-      # HERE
-      self.doMainText("Something feels odd...", True)
-      affinityCheckArray = Array(self.humanAffinity + self.human, self.horseAffinity + self.horse, self.wolfAffinity + self.wolf, self.catAffinity + self.cat, self.cowAffinity + self.cow, self.lizardAffinity + self.lizard, self.rabbitAffinity + self.rabbit, self.mouseAffinity + self.mouse, self.birdAffinity + self.bird, self.pigAffinity + self.pig, self.skunkAffinity + self.skunk, self.bugAffinity + self.bug)
-      affinityCheckArray.sort(16)
-      domCheck = affinityCheckArray[-1]
-      second = affinityCheckArray[-2]
-      if (domCheck == self.humanAffinity + self.human and self.human >= 0):
-         self.dominant = 1
-      elif (domCheck == self.horseAffinity + self.horse and self.horse >= 0):
-         self.dominant = 2
-      elif (domCheck == self.wolfAffinity + self.wolf and self.wolf >= 0):
-         self.dominant = 3
-      elif (domCheck == self.catAffinity + self.cat and self.cat >= 0):
-         self.dominant = 4
-      elif (domCheck == self.cowAffinity + self.cow and self.cow >= 0):
-         self.dominant = 5
-      elif (domCheck == self.lizardAffinity + self.lizard and self.lizard >= 0):
-         self.dominant = 6
-      elif (domCheck == self.rabbitAffinity + self.rabbit and self.rabbit >= 0):
-         self.dominant = 7
-      elif (domCheck == self.mouseAffinity + self.mouse and self.mouse >= 0):
-         self.dominant = 8
-      elif (domCheck == self.birdAffinity + self.bird and self.bird >= 0):
-         self.dominant = 9
-      elif (domCheck == self.pigAffinity + self.pig and self.pig >= 0):
-         self.dominant = 10
-      elif (domCheck == self.skunkAffinity + self.skunk and self.skunk >= 0):
-         self.dominant = 11
-      elif (domCheck == self.bugAffinity + self.bug and self.bug >= 0):
-         self.dominant = 12
-      if (self.humanAffinity + self.human >= 40 and self.humanAffinity < 40):
-         self.doMainText("\n\nYour body feels quite... adaptive? There's a strange sense of being more susceptible to change")
-         self.changeMod += 0.5
-      if (self.humanAffinity + self.human < 40 and self.humanAffinity >= 40):
-         self.doMainText("\n\nYour body feels less ready to bend to your surroundings as much as it had anymore.")
-         self.changeMod -= 0.5
-      if (self.horseAffinity + self.horse >= 40 and self.horseAffinity < 40):
-         if (self.cockTotal > 0):
-            self.doMainText(f"\n\nYour {self.clothesBottom()} grows tight, filling with extra cockflesh. Opening the {self.clothesBottom()}, your cock{self.plural(1)} spill{self.plural(3)} out, dangling while swelling larger and larger. The growth slows to a halt, much, much longer than before. 'Hung like a horse' seems like the appropriate phrase. And you're also going to have to sneak back into town while you hide your perverse excess flesh, rushing to a tailor to refit you.")
-         if (self.vagTotal > 0):
-            self.doMainText("\n\nDoubling over, you hug your belly as it begins to cramp. You can clearly feel your vaginal flesh grow within, the walls growing much deeper. By the time it's over, you feel somewhat like a mare, able to take cocks much larger than you could have before...")
-         self.cockSizeMod += 1
-         self.vagSizeMod += 1
-         self.vagBellyChange(0, 0)
-      if (self.horseAffinity + self.horse < 40 and self.horseAffinity >= 40):
-         if (self.cockTotal > 0):
-            self.doMainText(f"\n\nYour {self.clothesBottom()} feel baggier. Opening the {self.clothesBottom()}, your cock{self.plural(1)} shrinking towards your groin, losing a great deal of length. It seems like you have lost your equine engorgement.")
-         if (self.vagTotal > 0):
-            self.doMainText("\n\nYour belly feels rather empty all of a sudden. Placing your hand over it, you can feel the vaginal flesh recede, no longer built like mare.")
-         self.cockSizeMod -= 1
-         self.vagSizeMod -= 1
-         self.vagBellyChange(0, 0)
-      if (self.wolfAffinity + self.wolf >= 40 and self.wolfAffinity < 40):
-         if (self.cockTotal > 0):
-            self.doMainText(f"\n\nA sudden wave of lust washes over you, your cock{self.plural(1)} growing stiff in your {self.clothesBottom()}. You quickly open open your {self.clothesBottom()} to see what's going on. Within, the base{self.plural(1)} of your shaft{self.plural(1)} swell{self.plural(3)}. In an instant, you're surprised by spurts of cum that shower you, a small volley from a quick unexpected orgasm. Wiping your eyes so you can see, the swelling persists as you continue to come for a while. It would be very difficult to remove your cock from a hot hole with a large 'knot' like that, until finished draining your seed.")
-         self.knot = True
-         self.cumMod += 0.5
-      if (self.wolfAffinity + self.wolf < 40 and self.wolfAffinity >= 40):
-         if (self.cockTotal > 0):
-            self.doMainText(f"\n\nAn odd draining fills your {self.clothesBottom()}. Looking within, you see your cock{self.plural(1)} grow slightly stiff, your knot{self.plural(1)} swelling. Pre lazily seeps from your urethra{self.plural(1)} as the knot{self.plural(1)} deflate{self.plural(1)} immediately while your cock{self.plural(1)} remain{self.plural(3)} stiff. It seems as though you have lost your knot{self.plural(1)}.")
-         self.knot = False
-         self.cumMod -= 0.5
-      if (self.catAffinity + self.cat >= 40 and self.catAffinity < 40):
-         if (self.vagTotal > 0):
-            self.doMainText(f"\n\nYour {self.clothesBottom()} grows slightly moist, your cunt{self.plural(2)} burning with arousal. The feeling quickly fades, but something tells you your reproductive instincts might occasionally take over...")
-         if (self.heat < 1):
-            self.heatMaxTime = 96
-            self.heatTime = 96
-            self.heat += 1
-         elif (self.heat >= 1):
-            self.heatMaxTime -= 12
-            self.heat += 1
-      if (self.catAffinity + self.cat < 40 and self.catAffinity >= 40):
-         if (self.vagTotal > 0):
-            self.doMainText(f" You also feel your vagina{self.plural(2)} cool a little, no longer as eager to be impregnated on certain days.")
-         if (self.heat >= 2):
-            self.heatMaxTime += 12
-         self.heat -= 1
-      # trace(self.cowAffinity + self.cow)
-      if (self.cowAffinity + self.cow >= 10 and self.cowAffinity < 10):
-         self.doMainText(f"\n\nYour nipples stiffen beneath your {self.clothesTop()}. They protrude nearly half an inch further than before!")
-         self.nippleSize += 2
-         self.milkMod += 50
-      if (self.cowAffinity + self.cow >= 25 and self.cowAffinity < 25):
-         self.doMainText(f"\n\nYour nipples stiffen beneath your {self.clothesTop()}. They protrude an inch further than before! And your hips seem slightly broader...")
-         self.lactChange(1, 75)
-         self.nippleSize += 5
-         self.hips += 4
-         self.milkMod += 50
-      if (self.cowAffinity + self.cow >= 40 and self.cowAffinity < 40):
-         self.doMainText(f"\n\nYour nipples squirm within your {self.clothesTop()}. They've grown over an inch and a half in length! And your hips feel like they're more 'square' than before...")
-         self.lactChange(1, 75)
-         self.nippleSize += 8
-         self.hips += 6
-         self.milkMod += 50
-      if (self.cowAffinity + self.cow >= 55 and self.cowAffinity < 55):
-         self.doMainText(f"\n\nJust above your groin, your belly begins to feel bloated. You wince as it pushes against your {self.clothesBottom()}, especially noticing the increased sensitivity of four spots in particular. Before you can act, your {self.clothesBottom()} tears at the waist, as a mound crashes through. Hanging naked and free, with four teats twice as long as your nipples, an udder about twice as large as your chest dribbles milk. You'll definitely be getting a special bra or perhaps adjust your {self.clothesBottom()} when you get back to town, at least to account for your surprisingly wider hips... ")
-         self.lactChange(1, 150)
-         self.lactChange(2, self.lactation)
-         self.hips += 8
-         self.udders = True
-         self.udderSize = 2 * self.breastSize
-         self.teatSize = 2 * self.nippleSize
-      if (self.cowAffinity + self.cow < 10 and self.cowAffinity >= 10):
-         self.doMainText("\n\nYour nipples are less noticeable, shrinking by nearly half an inch.")
-         self.nippleSize -= 2
-         self.milkMod -= 50
-      if (self.cowAffinity + self.cow < 25 and self.cowAffinity >= 25):
-         self.doMainText("\n\nYour nipples seem less noticeable as they shrink by an inch and your hips are less wide.")
-         self.lactChange(1, -50)
-         if (self.udders):
-            self.lactChange(2, -50)
-         self.nippleSize -= 5
-         self.hips -= 4
-         self.milkMod -= 50
-      if (self.cowAffinity + self.cow < 40 and self.cowAffinity >= 40):
-         self.doMainText(f"\n\nYour {self.clothesTop()} feels slightly looser, as your nipples shrink by over an inch and a half. You hips also narrow a little, protruding less than before.")
-         self.lactChange(1, -50)
-         if (self.udders):
-            self.lactChange(2, -50)
-         self.hips -= 6
-         self.nippleSize -= 8
-         self.milkMod -= 50
-      if (self.cowAffinity + self.cow < 55 and self.cowAffinity >= 55):
-         if (not self.udderCheck(1)):
-            self.doMainText("\n\nThe fleshy bag of milk at your abdomen shrinks to nothing, disappearing along with its teats. You're no longer lugging around an udder. Plus your waistbands seem quite loose after your hips shrink by a few inches.")
-            self.udders = False
-            self.udderLactation = 0
-            self.udderEngorgement = 0
-            self.udderEngorgementLevel = 0
-            self.udderPlay = 0
-            self.udderSize = 0
-            self.teatSize = 0
-         else:
-            self.doMainText("\n\nYour waistbands seem quite loose after your hips shrink by a few inches.")
-         self.lactChange(1, -100)
-         self.hips -= 8
-      if (self.lizardAffinity + self.lizard >= 40 and self.lizardAffinity < 40):
-         if (self.cockTotal == 1):
-            self.cockChange(0, 1)
-         if (self.vagTotal > 0):
-            self.doMainText(f"\n\nAn odd sensation of warmth fills your womb{self.plural(2)}. You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you're not pregnant.")
-         if (self.eggLaying == 0):
-            self.eggLaying += 1
-            self.eggType = 0
-            self.eggMaxTime = 36
-            self.eggTime = 36
-         else:
-            self.eggMaxTime -= 6
-            self.eggLaying += 1
-      if (self.lizardAffinity + self.lizard < 40 and self.lizardAffinity >= 40):
-         if (self.cockTotal == 2):
-            self.cockChange(0, -1)
-         if (self.vagTotal > 0):
-            self.doMainText(f"\n\nYour womb{self.plural(2)} calm{self.plural(4)} down, no longer working as hard to pop out more eggs.")
-         if (self.eggLaying == 1):
-            self.eggLaying -= 1
-            self.eggMaxTime = 0
-            self.eggTime = 0
-         elif (self.eggLaying > 1):
-            self.eggMaxTime += 6
-            self.eggLaying -= 1
-      if (self.rabbitAffinity + self.rabbit >= 10 and self.rabbitAffinity < 10):
-         self.stats(0, 0, 2, 0)
-      if (self.rabbitAffinity + self.rabbit >= 30 and self.rabbitAffinity < 30):
-         self.stats(0, 0, 5, 0)
-      if (self.rabbitAffinity + self.rabbit >= 40 and self.rabbitAffinity < 40):
-         if (self.vagTotal > 0):
-            self.doMainText(f"\n\nYour womb{self.plural(2)} feel{self.plural(4)} a bit... hyperactive. It feels as though you could breed like some sort of cute, small, fuzzy animal.")
-         self.pregRate += 1
-      if (self.rabbitAffinity + self.rabbit >= 50 and self.rabbitAffinity < 50):
-         self.stats(0, 0, 7, 0)
-      if (self.rabbitAffinity + self.rabbit < 10 and self.rabbitAffinity >= 10):
-         self.stats(0, 0, -2, 0)
-      if (self.rabbitAffinity + self.rabbit < 30 and self.rabbitAffinity >= 30):
-         self.stats(0, 0, -5, 0)
-      if (self.rabbitAffinity + self.rabbit < 40 and self.rabbitAffinity >= 40):
-         if (self.vagTotal > 0):
-            self.doMainText(f"\n\nYour womb{self.plural(2)} feel{self.plural(4)} calmer. Now you can take your fertility nice and easy... relatively.")
-         self.pregRate -= 1
-      if (self.rabbitAffinity + self.rabbit < 50 and self.rabbitAffinity >= 50):
-         self.stats(0, 0, -7, 0)
-      if (self.mouseAffinity + self.mouse >= 40 and self.mouseAffinity < 40):
-         self.doMainText("\n\nA slight paranoia lingers in your mind, making you feel quite skittish. If you needed to, you could probably run from a threat at the drop of a needle.")
-         if (self.balls > 0 and self.showBalls):
-            self.doMainText(f" Your {self.ballDesc()} nuts also feel slightly 'skittish', like they're making far more than they just were...")
-         self.runMod += 25
-         self.cumMod += 3
-      if (self.mouseAffinity + self.mouse < 40 and self.mouseAffinity >= 40):
-         self.doMainText("\n\nThe paranoia dissipates from your mind, your body languishing and no longer as flighty.")
-         if (self.balls > 0 and self.showBalls):
-            self.doMainText(f" Your {self.ballDesc()} nuts also calm down, their production diminishing.")
-         self.runMod -= 25
-         self.cumMod -= 3
-      if (self.birdAffinity + self.bird >= 40 and self.birdAffinity < 40):
-         self.doMainText("\n\nYours eyes dart about for a moment as shiny things become suddenly more noticeable. After a few moments, you calm down, but your definitely able to spot shiny things more accurately, able to find an extra couple coins whenever you come across any.")
-         self.coinMod += 2
-         if (self.vagTotal > 0):
-            self.doMainText(f"\n\nAn odd sensation of warmth fills your womb{self.plural(2)}. You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you're not pregnant.")
-         if (self.eggLaying == 0):
-            self.eggLaying += 1
-            self.eggMaxTime = 36
-            self.eggTime = 36
-            self.eggType = 0
-         else:
-            self.eggMaxTime -= 6
-            self.eggLaying += 1
-      if (self.birdAffinity + self.bird < 40 and self.birdAffinity >= 40):
-         self.doMainText("\n\nYour affinity for shinies dissipates. Not quite as focused on them, you aren't able to find an extra couple coins anymore.")
-         self.coinMod -= 2
-         if (self.vagTotal > 0):
-            self.doMainText(f"\n\nYour womb{self.plural(2)} calm{self.plural(4)} down, no longer working as hard to pop out more eggs.")
-         if (self.eggLaying == 1):
-            self.eggLaying -= 1
-            self.eggMaxTime = 0
-            self.eggTime = 0
-         elif (self.eggLaying > 1):
-            self.eggLaying -= 1
-            self.eggMaxTime += 6
-      if (self.pigAffinity + self.pig >= 10 and self.pigAffinity < 10):
-         self.doMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...")
-         self.bellyMod += 20
-      if (self.pigAffinity + self.pig >= 30 and self.pigAffinity < 30):
-         self.doMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...")
-         self.bellyMod += 20
-      if (self.pigAffinity + self.pig >= 40 and self.pigAffinity < 40):
-         self.doMainText("\n\nYou groan as you feel some of your extra weight grow heavier. Your hips grow wider and your ass grows larger, exaggerating your chubbiness.")
-         if (self.balls > 0 and self.showBalls):
-            self.doMainText(f" Your {self.ballDesc()} balls also feel rather 'fat', growing heavy with seed...")
-         self.cumMod += 5
-         self.hipMod += 0.5
-         self.buttMod += 0.5
-      if (self.pigAffinity + self.pig >= 50 and self.pigAffinity < 50):
-         self.doMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...")
-         self.bellyMod += 20
-      if (self.pigAffinity + self.pig >= 70 and self.pigAffinity < 70):
-         self.doMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...")
-         self.bellyMod += 20
-      if (self.pigAffinity + self.pig < 10 and self.pigAffinity >= 10):
-         self.doMainText("\n\nYour belly feels lighter, your extra porkiness dissipating.")
-         self.bellyMod -= 20
-      if (self.pigAffinity + self.pig < 30 and self.pigAffinity >= 30):
-         self.doMainText("\n\nYour belly feels lighter, your extra porkiness diminishing.")
-         self.bellyMod -= 20
-      if (self.pigAffinity + self.pig < 40 and self.pigAffinity >= 40):
-         self.doMainText("\n\nYou moan as you feel some of your extra weight lift from you. Your hips and rump shrink, no longer nearly as chubby.")
-         if (self.balls > 0 and self.showBalls):
-            self.doMainText(f" Your {self.ballDesc()} balls also feel lighter, no longer producing as much seed.")
-         self.cumMod -= 5
-         self.hipMod -= 0.5
-         self.buttMod -= 0.5
-      if (self.pigAffinity + self.pig < 50 and self.pigAffinity >= 50):
-         self.doMainText("\n\nYour belly feels lighter, your extra porkiness diminishing.")
-         self.bellyMod -= 20
-      if (self.pigAffinity + self.pig < 70 and self.pigAffinity >= 70):
-         self.doMainText("\n\nYour belly feels lighter, your extra porkiness diminishing.")
-         self.bellyMod -= 20
-      if (self.skunkAffinity + self.skunk >= 40 and self.skunkAffinity < 40):
-         self.doMainText(f"\n\nYou feel your {self.buttDesc()} rump grow slightly larger. Then a strange scent fills your nose, casually rising from your backside. It... It doesn't stink at all like you would expect from the area, but rather smells quite pleasant. A nice, pleasing, and even somewhat alluring aroma.\n\nYou try to see if you can control this scent, pushing some glands inside you never noticed before. And sure enough, you manage to spray out a more concentrated mist. However, you immediately start gagging. It smells horrible... Not something you want to try normally, but rather reserve for more severe occassions.")
-         if (self.skinType == 2):
-            self.doMainText("\n\nAnd to accentuate the change further, two parallel stripes emerge in your fur, connecting together at your brow and rung over your head all the way down to your rump")
-            if (self.tail == 11):
-               self.doMainText(" where it connects to the stripes on your tail")
-            self.doMainText(".")
-         self.enticeMod += 10
-         self.butt += 2
-      if (self.skunkAffinity + self.skunk < 40 and self.skunkAffinity >= 40):
-         self.doMainText(f"\n\nYou feel your {self.buttDesc()} rump shrink slightly. The pleasant scent that exudes from it disappears, as well as the other scent you could produce.")
-         if (self.skinType == 2):
-            self.doMainText("\n\nThe twin stripes in your fur from your head to your rump also fade")
-            if (self.tail == 11):
-               self.doMainText(", though the ones on your tail remain")
-            self.doMainText(".")
-         self.enticeMod -= 10
-         self.butt -= 2
-      if (self.bugAffinity + self.bug >= 40 and self.bugAffinity < 40):
-         if (self.vagTotal > 0):
-            self.doMainText(f"\n\nAn odd sensation of warmth fills your womb{self.plural(2)}. You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing soft shells to protect them, whenever you're not pregnant.")
-         if (self.eggLaying == 0):
-            self.eggLaying += 1
-            self.eggType = 1
-            self.eggMaxTime = 14
-            self.eggTime = 14
-         else:
-            self.eggMaxTime -= 6
-            self.eggLaying += 1
-      if (self.bugAffinity + self.bug < 40 and self.bugAffinity >= 40):
-         if (self.vagTotal > 0):
-            self.doMainText(f"\n\nYour womb{self.plural(2)} calm{self.plural(4)} down, no longer working as hard to pop out more insect-like eggs.")
-         if (self.eggLaying == 1):
-            self.eggLaying -= 1
-            self.eggMaxTime = 0
-            self.eggTime = 0
-         elif (self.eggLaying > 1):
-            self.eggMaxTime += 6
-            self.eggLaying -= 1
-      if (self.humanAffinity + self.human < 0):
-         self.humanAffinity = 0
-      elif (self.humanAffinity + self.human > 100):
-         self.humanAffinity = 100
-      else:
-         self.humanAffinity += self.human
-      if (self.horseAffinity + self.horse < 0):
-         self.horseAffinity = 0
-      elif (self.horseAffinity + self.horse > 100):
-         self.horseAffinity = 100
-      else:
-         self.horseAffinity += self.horse
-      if (self.wolfAffinity + self.wolf < 0):
-         self.wolfAffinity = 0
-      elif (self.wolfAffinity + self.wolf > 100):
-         self.wolfAffinity = 100
-      else:
-         self.wolfAffinity += self.wolf
-      if (self.catAffinity + self.cat < 0):
-         self.catAffinity = 0
-      elif (self.catAffinity + self.cat > 100):
-         self.catAffinity = 100
-      else:
-         self.catAffinity += self.cat
-      if (self.cowAffinity + self.cow < 0):
-         self.cowAffinity = 0
-      elif (self.cowAffinity + self.cow > 100):
-         self.cowAffinity = 100
-      else:
-         self.cowAffinity += self.cow
-      if (self.lizardAffinity + self.lizard < 0):
-         self.lizardAffinity = 0
-      elif (self.lizardAffinity + self.lizard > 100):
-         self.lizardAffinity = 100
-      else:
-         self.lizardAffinity += self.lizard
-      if (self.rabbitAffinity + self.rabbit < 0):
-         self.rabbitAffinity = 0
-      elif (self.rabbitAffinity + self.rabbit > 100):
-         self.rabbitAffinity = 100
-      else:
-         self.rabbitAffinity += self.rabbit
-      if (self.mouseAffinity + self.mouse < 0):
-         self.mouseAffinity = 0
-      elif (self.mouseAffinity + self.mouse > 100):
-         self.mouseAffinity = 100
-      else:
-         self.mouseAffinity += self.mouse
-      if (self.birdAffinity + self.bird < 0):
-         self.birdAffinity = 0
-      elif (self.birdAffinity + self.bird > 100):
-         self.birdAffinity = 100
-      else:
-         self.birdAffinity += self.bird
-      if (self.pigAffinity + self.pig < 0):
-         self.pigAffinity = 0
-      elif (self.pigAffinity + self.pig > 100):
-         self.pigAffinity = 100
-      else:
-         self.pigAffinity += self.pig
-      if (self.skunkAffinity + self.skunk < 0):
-         self.skunkAffinity = 0
-      elif (self.skunkAffinity + self.skunk > 100):
-         self.skunkAffinity = 100
-      else:
-         self.skunkAffinity += self.skunk
-      if (self.bugAffinity + self.bug < 0):
-         self.bugAffinity = 0
-      elif (self.bugAffinity + self.bug > 100):
-         self.bugAffinity = 100
-      else:
-         self.bugAffinity += self.bug
-      if (not self.lockSkin):
-         maxSkin = Math.max(self.humanAffinity, self.pigAffinity)
-         maxFur = Math.max(self.horseAffinity, self.wolfAffinity, self.catAffinity, self.cowAffinity, self.rabbitAffinity, self.mouseAffinity, self.skunkAffinity)
-         maxScale = Math.max(self.lizardAffinity)
-         maxFeather = Math.max(self.birdAffinity)
-         maxChitin = Math.max(self.bugAffinity)
-         maxNonSkin = Math.max(maxFur, maxScale, maxFeather, maxChitin)
-         maxNonFur = Math.max(maxSkin, maxScale, maxFeather, maxChitin)
-         maxNonScale = Math.max(maxFur, maxSkin, maxFeather, maxChitin)
-         maxNonFeather = Math.max(maxFur, maxScale, maxSkin, maxChitin)
-         maxNonChitin = Math.max(maxFur, maxScale, maxSkin, maxFeather)
-         if (maxSkin > maxNonSkin + 35 and self.skinType != 1):
-            self.doMainText(f"\n\nYour {self.skinDesc()} feels oddly cool. Looking at it, your {self.skinDesc()} shrinks into your skin, leaving you 'bald' all over. You feel a little naked as you get used to your bare skin.")
-            self.skinType = 1
-         if (maxFur > maxNonFur + 35 and self.skinType != 2):
-            self.doMainText(f"\n\nYour {self.skinDesc()} begins to itch all over as soft hairs begin to sprout in patches. Before you know it, your whole body is soon covered in a coat of fur.")
-            self.skinType = 2
-            if (self.skunkAffinity >= 40):
-               self.doMainText(" The fur is mostly a single color, except for two parallel stripes that connect at your brow and run over your head and down your back to your rump")
-               if (self.tail == 11):
-                  self.doMainText(" where it connects to the stripes on your tail")
-               self.doMainText(".")
-         if (maxScale > maxNonScale + 35 and self.skinType != 3):
-            self.doMainText(f"\n\nYour {self.skinDesc()} begins to feel oddly dry, feeling somewhat flaky. Before you know it, your whole body feels soft and extremely smooth, covered in a thin layer of scales.")
-            self.skinType = 3
-         if (maxFeather > maxNonFeather + 35 and self.skinType != 4):
-            self.doMainText(f"\n\nYour {self.skinDesc()} begins to tickle all over, tiny hair sprouting up all over and collecting into groups. Before you know it, you're rustling and fluffing up, sleeking back a layer of feathers.")
-            self.skinType = 4
-         if (maxChitin > maxNonChitin + 35 and self.skinType != 5):
-            self.doMainText(f"\n\nYour {self.skinDesc()} begins to feel stiff, as though it were getting harder. Before you know it, your whole body is covered with a layer of chitin, almost like full suit of segmented armor. However, unlike armor, this doesn't really afford you any protection, since you seem to have all the usual sensations through it like any other kind of skin.")
-            if (self.legDesc(10) == "feet"):
-               self.doMainText(" And more of the chitin extends from your heels, making you stand higher without actually being taller as you walk more on your toes.")
-            self.skinType = 5
-      self.hasMuzzle = False
-      if (not self.lockFace):
-         if (self.faceType == 21 or self.faceType == 31 or self.faceType == 61):
-            self.hasMuzzle = True
-         if (self.dominant == 1 and self.faceType != 10):
-            self.doMainText("\n\n")
-            if (self.hasMuzzle):
-               self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
-            self.doMainText("Your face rounds out and your nose resizes so it nestles neatly between your eyes, reaching from your brow down to just above your mouth and looks much like a human's.")
-            self.faceType = 10
-            self.hasMuzzle = False
-         if (self.dominant == 2 and (self.faceType != 20 or self.faceType != 21)):
-            if (self.faceType != 20 and self.faceType != 21):
-               if (self.hasMuzzle):
-                  self.doMainText("\n\nYour facial demeanor softens and becomes more focused as your eyes grow wide and round, giving you a more considerate yet strong appearance.")
-               else:
-                  self.doMainText("\n\nYour jaw seems to be a bit low and wide, your face looking longer than average. Your nose also appears wider to make up for the slightly stretched appearance.")
-               self.faceType = 20
-            elif (self.faceType != 21 and self.horseAffinity > 70):
-               if (self.hasMuzzle):
-                  self.doMainText("\n\nYour muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large eyes peering down the strong jaw, you seem to have a more equine appearance.")
-               else:
-                  self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its width and strength of character, you look much more like a horse.")
-               self.faceType = 21
-               self.hasMuzzle = True
-         if (self.dominant == 3 and (self.faceType != 30 or self.faceType != 31)):
-            if (self.faceType != 30 and self.faceType != 31):
-               if (self.hasMuzzle):
-                  self.doMainText("\n\nYour facial demeanor becomes more fierce as your eyes narrow slightly and your teeth become sharper, giving you a more carnivorous appearance.")
-               else:
-                  self.doMainText("\n\nYour teeth grow sharper and your eyes focus more. The tip of your nose also moistens and becomes softer, giving you a more feral appearance.")
-               self.faceType = 30
-            elif (self.faceType != 31 and self.wolfAffinity > 70):
-               if (self.hasMuzzle):
-                  self.doMainText("\n\nYour muzzle narrows and your teeth grow long and sharp, your canines especially visible. With your narrow eyes peering down the vicious jaw, you seem to have a more lupin appearance.")
-               else:
-                  self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and nose with it. The bridge of your nose flattens as it stretches from your brow, molding around your upper teeth and forming a distinct muzzle. The whole muzzle narrow and filled with sharp teeth, you look much more like a wolf.")
-               self.faceType = 31
-               self.hasMuzzle = True
-         if (self.dominant == 4 and (self.faceType != 40 or self.faceType != 41)):
-            if (self.faceType != 40 and self.faceType != 41):
-               self.doMainText("\n\n")
-               if (self.hasMuzzle):
-                  self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
-               self.doMainText("Your face flattens and your nose shrinks a bit, the tip changing color slightly and becoming softer. Your eyes grow narrow as well, making you seem like a hunter.")
-               self.faceType = 40
-               self.hasMuzzle = False
-            elif (self.faceType != 41 and self.catAffinity > 60):
-               self.doMainText("\n\nYour upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. They're a bit sensitive when you touch them and give you a rather cat-like appearance.")
-               self.faceType = 41
-         if (self.dominant == 5 and (self.faceType != 50 or self.faceType != 51)):
-            if (self.faceType != 50 and self.faceType != 51):
-               if (self.hasMuzzle):
-                  self.doMainText("\n\nYour facial demeanor softens and becomes more focused as your eyes grow round and slightly droopy, giving you a domesticated appearance.")
-               else:
-                  self.doMainText("\n\nYour jaw seems to be a bit low and wide, your face looking longer than average. Your nose also seems noticeably broader.")
-               self.faceType = 50
-            elif (self.faceType != 51 and self.cowAffinity > 70):
-               if (self.hasMuzzle):
-                  self.doMainText("\n\nYour muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large droopy eyes peering down the broad muzzle, you seem to have a more bovine appearance.")
-               else:
-                  self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its broadness and rather sedate appearance, you look much more like a cow.")
-               self.faceType = 51
-               self.hasMuzzle = True
-         if (self.dominant == 6 and (self.faceType != 60 or self.faceType != 61)):
-            if (self.faceType != 60 and self.faceType != 61):
-               if (self.hasMuzzle):
-                  self.doMainText("\n\nYour nostrils flatten into slits against your muzzle, giving you a more reptillian appearance.")
-               else:
-                  self.doMainText("\n\nYour nose flattens until your nostrils are almost merely slits. Your lips also thin slightly, giving you a more reptillian appearance.")
-               self.faceType = 60
-            elif (self.faceType != 61 and self.lizardAffinity > 70):
-               if (self.hasMuzzle):
-                  self.doMainText("\n\nYour muzzle narrows and flattens out a bit more, making you look more like some kind of lizard.")
-               else:
-                  self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and nostrils with it, forming a sort of muzzle. It narrows almost to a point as it stretches, making you look like some kind of lizard.")
-               self.faceType = 61
-               self.hasMuzzle = True
-         if (self.dominant == 7 and (self.faceType != 70 or self.faceType != 71)):
-            if (self.faceType != 70 and self.faceType != 71):
-               self.doMainText("\n\n")
-               if (self.hasMuzzle):
-                  self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
-               self.doMainText("Your face flattens while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become round and soft, making you seem relatively meek.")
-               self.faceType = 70
-               self.hasMuzzle = False
-            elif (self.faceType != 71 and self.rabbitAffinity > 60):
-               self.doMainText("\n\nYour upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a bunny.")
-               self.faceType = 71
-         if (self.dominant == 8 and (self.faceType != 80 or self.faceType != 81)):
-            if (self.faceType != 80 and self.faceType != 81):
-               self.doMainText("\n\n")
-               if (self.hasMuzzle):
-                  self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
-               self.doMainText("Your lower face protrudes outward while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become slightly smaller yet more open, making you seem more cautious of your surroundings.")
-               self.faceType = 80
-               self.hasMuzzle = False
-            elif (self.faceType != 81 and self.mouseAffinity > 60):
-               self.doMainText("\n\nThin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a mouse.")
-               self.faceType = 81
-         if (self.dominant == 9 and (self.faceType != 90 or self.faceType != 91)):
-            if (self.faceType != 90 and self.faceType != 91):
-               self.doMainText("\n\n")
-               if (self.hasMuzzle):
-                  self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
-               self.doMainText("Your jaw becomes sharper while your nose grows larger from the rest of your face, almost have a hooked shape. Your eyes become wide and aware, making you seem more focused.")
-               self.faceType = 90
-               self.hasMuzzle = False
-            elif (self.faceType != 91 and self.birdAffinity > 70):
-               self.doMainText("\n\nYour upper lip molds up against your large nose, becoming stiff and hard while the bottom lip protrudes and matches the hooked shape. Your nose and mouth morph into a sturdy powerful beak, making you look much like a bird.")
-               self.faceType = 91
-         if (self.dominant == 10 and (self.faceType != 100 or self.faceType != 101 or self.faceType != 102)):
-            if (self.faceType != 100 and self.faceType != 101 and self.faceType != 102):
-               self.doMainText("\n\n")
-               if (self.hasMuzzle):
-                  self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
-               self.doMainText("Your cheeks become fuller, your face growing fatter, giving you a bit of a pudgy look.")
-               self.faceType = 100
-               self.hasMuzzle = False
-            elif (self.faceType != 101 and self.faceType != 102 and self.pigAffinity > 60):
-               self.doMainText("\n\nYour nose flattens and turns upward, your nostrils growing larger and pointing straight out, making you look much like a pig.")
-               self.faceType = 101
-            elif (self.faceType != 102 and self.pigAffinity > 85):
-               self.doMainText("\n\nTwo of your lower teeth suddenly begin to surge outward, growing rapidly into two large tusks that stick out from your lips and curl upward.")
-               self.faceType = 102
-         if (self.dominant == 11 and (self.faceType != 110 or self.faceType != 111)):
-            if (self.faceType != 110 and self.faceType != 111):
-               self.doMainText("\n\n")
-               if (self.hasMuzzle):
-                  self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
-               self.doMainText("Your face stretches out along your nose a bit, the tip growing smaller and more narrow and becoming softer. Your eyes become soft and gentle, but with the potential to become defensive and vicious at any moment.")
-               self.faceType = 110
-               self.hasMuzzle = False
-            elif (self.faceType != 111 and self.skunkAffinity > 60):
-               self.doMainText("\n\nLong stiff thin whiskers sprout from the front of your cheeks. They're a bit sensitive when you touch them and give you a rather skunk-like appearance.")
-               self.faceType = 111
-         if (self.dominant == 12 and (self.faceType != 120 or self.faceType != 121)):
-            if (self.faceType != 120 and self.faceType != 121):
-               self.doMainText("\n\n")
-               if (self.hasMuzzle):
-                  self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
-               self.doMainText("Your face flattens and your nose shrinks a bit, a chitinous 'bandage' forming over the bridge of your nose to protect it. Your eyes grow much larger compared to the rest of your face, almost alien but still able to show plenty of emotion.")
-               self.faceType = 120
-               self.hasMuzzle = False
-            elif (self.faceType != 121 and self.bugAffinity > 60):
-               self.doMainText("\n\nYour lips grow large and plush, looking like they could suck nectar out of even the largest flowers. Your eyes also turn completely black, and with their large size they give you a rather bug-like appearance.")
-               self.faceType = 121
-      if (not self.lockTail):
-         tempTailArray = Array(self.horseAffinity, self.wolfAffinity, self.catAffinity, self.cowAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.pigAffinity, self.skunkAffinity, self.bugAffinity, self.humanTaurAffinity)
-         tempTailArray.sort(16)
-         maxTail = tempTailArray[-1]
-         secondTail = tempTailArray[-2]
-         maxNonTail = self.humanAffinity
-         if (self.tail < 1):
-            if (self.dominant == 2 and self.horseAffinity > maxNonTail + 15):
-               self.tail = 2
-            if (self.dominant == 3 and self.wolfAffinity > maxNonTail + 15):
-               self.tail = 3
-            if (self.dominant == 4 and self.catAffinity > maxNonTail + 15):
-               self.tail = 4
-            if (self.dominant == 5 and self.cowAffinity > maxNonTail + 15):
-               self.tail = 5
-            if (self.dominant == 6 and self.lizardAffinity > maxNonTail + 15):
-               self.tail = 6
-            if (self.dominant == 7 and self.rabbitAffinity > maxNonTail + 15):
-               self.tail = 7
-            if (self.dominant == 8 and self.mouseAffinity > maxNonTail + 15):
-               self.tail = 8
-            if (self.dominant == 9 and self.birdAffinity > maxNonTail + 15):
-               self.tail = 9
-            if (self.dominant == 10 and self.pigAffinity > maxNonTail + 15):
-               self.tail = 10
-            if (self.dominant == 11 and self.skunkAffinity > maxNonTail + 15):
-               self.tail = 11
-            if (self.dominant == 12 and self.bugAffinity > maxNonTail + 15):
-               self.tail = 12
-            if (self.tail > 1):
-               self.doMainText(f"\n\nYou feel a tickle upon your backside as your {self.clothesBottom()} feels tight. With a groan, the pressure builds behind you, until a tearing sound fills the air and the pain is gone. Checking your backside, you see a new {self.tailDesc()} tail bobbing above your {self.buttDesc()} bum. Next time you go to town, you'll be visiting a tailor to fix your clothes to account for your new appendage...")
-         if (self.dominant == 1 and self.humanAffinity > maxTail + 10 and self.tail > 1):
-            self.tail = 0
-            self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, disappearing altogether. You no longer have a tail.")
-         if (self.dominant == 2 and self.horseAffinity > secondTail + 10 and self.tail > 1 and self.tail != 2):
-            self.tail = 2
-            self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it bursts into hundreds of long hairs. Any control you had over it before is gone, save for the muscles at the base that allow you to swish it with your mood and swat against your thighs. Just like a horse's.")
-         if (self.dominant == 3 and self.wolfAffinity > secondTail + 10 and self.tail > 1 and self.tail != 3):
-            self.tail = 3
-            self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it widens with long hairs around a skeletal base. It wags with your mood and reflexes, though you don't really have control over it otherwise, and it's oh so fluffy. Just like a wolf's.")
-         if (self.dominant == 4 and self.catAffinity > secondTail + 10 and self.tail > 1 and self.tail != 4):
-            self.tail = 4
-            self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base. It wags with your mood and reflexes and likes to curl around your touch with limited control, and it's oh so soft. Just like a cat's.")
-         if (self.dominant == 5 and self.cowAffinity > secondTail + 10 and self.tail > 1 and self.tail != 5):
-            self.tail = 5
-            self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base and a tuft of long hair bursts at the tip. It sways lazily across your {self.buttDesc()} backside and you can swat yourself with the tip like a soft whip. Just like a cow's.")
-         if (self.dominant == 6 and self.lizardAffinity > secondTail + 10 and self.tail > 1 and self.tail != 6):
-            self.tail = 6
-            self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it thickens at the base and narrows gradually to a point. It's quite agile, able to move at your whim, the tip even being slightly prehensile. Much like a lizard's.")
-         if (self.dominant == 7 and self.rabbitAffinity > secondTail + 10 and self.tail > 1 and self.tail != 7):
-            self.tail = 7
-            self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as shrinks into your back, exploding into a tuft of soft puffy hair before it disappears. It wiggles above your {self.buttDesc()} bum cutely and quite fluffy. Much like a rabbit's.")
-         if (self.dominant == 8 and self.mouseAffinity > secondTail + 10 and self.tail > 1 and self.tail != 8):
-            self.tail = 8
-            self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with fine hairs around a skeletal base. Thin and lithe, the fur doesn't really hide the pink skin underneath. It whips above your {self.buttDesc()} bum and you can curl it around with limited control. Just like a mouse's.")
-         if (self.dominant == 9 and self.birdAffinity > secondTail + 10 and self.tail > 1 and self.tail != 9):
-            self.tail = 9
-            self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks to your back and burst into a plume of feathers. Long and somewhat controllable, you can adjust their direction for aerodynamic turning. Just like a bird's.")
-         if (self.dominant == 10 and self.pigAffinity > secondTail + 10 and self.tail > 1 and self.tail != 10):
-            self.tail = 10
-            self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, shriveling in girth and coiling around. It twitches a bit when you try to wiggle it and you can try to straighten it out but it pops right back into its curly state. Just like a pig's.")
-         if (self.dominant == 11 and self.skunkAffinity > secondTail + 10 and self.tail > 1 and self.tail != 11):
-            self.tail = 11
-            self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it poofs into a large, long, wide fluffy tail that curls up behind your back with the pointed tip gently sagging away from you. Two parrallel stripes run closely together from the tip of your tail, widening with the tail, and down to the base")
-            if (self.skinType == 2 and self.skunkAffinity >= 40):
-               self.doMainText(" where it meets up with the stripes of your fur")
-            self.doMainText(". Just like a skunk's.")
-         if (self.dominant == 12 and self.bugAffinity > secondTail + 10 and self.tail > 1 and self.tail != 12):
-            self.tail = 12
-            self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it bloats up, growing nearly as thick as your waist and nearly as stout. It's so big and weighty with flesh that you can hardly move it, merely resting against your {self.buttDesc()} butt. And at the tip where it's rather blunt, you can feel another hole. It's not terribly large, but it looks large enough to fit a small-ish egg, your finger able to easily poke up inside to feel the warm moist interior. If you were to venture a guess, it seems more like an ovipositor than an actual tail, though such a large change to your anatomy would be impossible, so what could it be for?")
-         if (self.weapon == 127 and self.tail != 4 and self.tail != 5 and self.tail != 6 and self.tail != 8):
-            self.weapon = 10
-      maxNonWings = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.cowAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.pigAffinity)
-      maxWings = Math.max(self.birdAffinity)
-      if (self.wings < 1 and maxWings > maxNonWings + 60):
-         if (self.dominant == 9 and self.birdAffinity > maxNonWings + 60):
-            self.doMainText(f"\n\nA sharp pain engulfs your back, centered around your shoulder blades. You keel forward, falling to your hands and {self.legDesc(6)} as you try to brace yourself against the sharp ache. Then, you cry out as feathers tear through your {self.clothesTop()}, stretching out across new appendages. As soon as they grow, the pain stops and you gather yourself.\n\nStanding, you flap your new feathery wings. While not strong enough to carry you long distances, they'll definitely help you flee from unwanted threats.")
-            self.wings = 9
-         self.runMod += 20
-      if (self.wings > 0 and maxNonWings > maxWings + 60):
-         self.doMainText(f"\n\nYour wings feel strange and rapidly begin to shrivel. Shrinking down, they disappear into your shoulder blades, the {self.skinDesc()} left smooth as though there were never anything there. You have lost your wings, it seems.")
-         self.runMod -= 20
-         self.wings = 0
-      if (self.wings > 0 and self.dominant != self.wings):
-         ...
-      if (not self.lockEars):
-         if (self.dominant == 1 and self.humanAffinity > second + 15 and self.ears != 1):
-            self.ears = 1
-            self.doMainText("\n\nYour ears twitch as they become rounded and hug the sides of you head, looking more like a human's.")
-         if (self.dominant == 2 and self.horseAffinity > second + 15 and self.ears != 2):
-            self.ears = 2
-            self.doMainText("\n\nYour ears twitch as they become rounded and pointed at the tip, flicking atop your head, looking more like a horse's.")
-         if (self.dominant == 3 and self.wolfAffinity > second + 15 and self.ears != 3):
-            self.ears = 3
-            self.doMainText("\n\nYour ears twitch as they become triangular, standing pert atop your head, looking more like a wolf's.")
-         if (self.dominant == 4 and self.catAffinity > second + 15 and self.ears != 4):
-            self.ears = 4
-            self.doMainText("\n\nYour ears twitch as they become triangular, standing pert atop your head, looking more like a cat's.")
-         if (self.dominant == 5 and self.cowAffinity > second + 15 and self.ears != 5):
-            self.ears = 5
-            self.doMainText("\n\nYour ears twitch as they become rounded and large, standing several inches out from the sides of your head, looking more like a cow's.")
-         if (self.dominant == 6 and self.lizardAffinity > second + 15 and self.ears != 6):
-            self.ears = 6
-            self.doMainText("\n\nYour ears feel quite strange, shrinking into the sides of your head before they disappear, becoming sleek holes.")
-         if (self.dominant == 7 and self.rabbitAffinity > second + 15 and self.ears != 7):
-            self.ears = 7
-            self.doMainText("\n\nYour ears twitch as they become quite long, standing several inches high atop your head, looking more like a rabbit's.")
-         if (self.dominant == 8 and self.mouseAffinity > second + 15 and self.ears != 8):
-            self.ears = 8
-            self.doMainText("\n\nYour ears twitch as they grow larger and larger, rounding out into thin discs standing out from the sides of your head, looking more like a mouse's.")
-         if (self.dominant == 9 and self.birdAffinity > second + 15 and self.ears != 9):
-            self.ears = 9
-            self.doMainText("\n\nYour ears feel quite strange, shrinking into the sides of your head before disappearing behind a small patch of feathers, looking more like a bird's.")
-         if (self.dominant == 10 and self.pigAffinity > second + 15 and self.ears != 10):
-            self.ears = 10
-            self.doMainText("\n\nYour ears feel quite strange, growing long and triangular out the sides of your head, folding over and dropping as they get too long, looking more like a pig's.")
-         if (self.dominant == 11 and self.skunkAffinity > second + 15 and self.ears != 11):
-            self.ears = 11
-            self.doMainText("\n\nYour ears twitch as they become rounded and small, standing pert atop your head, looking more like a skunk's.")
-         if (self.dominant == 12 and self.bugAffinity > second + 15 and self.ears != 12):
-            self.ears = 12
-            self.doMainText("\n\nYour ears twitch as they grow long and narrow to a point on the sides of your head, becoming a vibrant color while the lobes become wavy with a delicate design, looking almost like butterfly wings.")
-      if (not self.lockBreasts):
-         twoBoob = Math.max(self.twoBoobAffinity, self.humanAffinity, self.horseAffinity, self.cowAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.birdAffinity)
-         sixBoob = Math.max(self.sixBoobAffinity, self.catAffinity, self.wolfAffinity, self.skunkAffinity)
-         fourBoob = Math.max(self.fourBoobAffinity)
-         eightBoob = Math.max(self.eightBoobAffinity, self.pigAffinity)
-         tenBoob = Math.max(self.tenBoobAffinity, self.bugAffinity)
-         nonTwoBoob = Math.max(sixBoob, fourBoob, eightBoob, tenBoob)
-         nonSixBoob = Math.max(twoBoob, fourBoob, eightBoob, tenBoob)
-         nonFourBoob = Math.max(twoBoob, sixBoob, eightBoob, tenBoob)
-         nonEightBoob = Math.max(twoBoob, sixBoob, fourBoob, tenBoob)
-         nonTenBoob = Math.max(twoBoob, fourBoob, eightBoob, sixBoob)
-         # TODO: if/else-ify
-         if (twoBoob > nonTwoBoob + 20 and self.boobTotal != 2):
-            if (self.boobTotal == 4):
-               self.doMainText("\n\nYour lower chest tickles")
-               if (self.breastSize > 4):
-                  self.doMainText(", both growing much lighter")
-               self.doMainText(f". Checking, you catch your second set of nipples disappear flat into your {self.skinDesc()}, leaving you with only the highest pair on your chest.")
-            if (self.boobTotal == 6):
-               self.doMainText("\n\nYour lower chest and belly tickle")
-               if (self.breastSize > 4):
-                  self.doMainText(", both growing much lighter")
-               self.doMainText(f". Checking, you catch your extra sets of nipples disappear flat into your {self.skinDesc()}, leaving you with only the primary pair on your chest.")
-            if (self.boobTotal == 8):
-               self.doMainText("\n\nYour lower chest and belly tickle")
-               if (self.breastSize > 4):
-                  self.doMainText(", both growing much lighter")
-               self.doMainText(f". Checking, you catch your extra sets of nipples disappear flat into your {self.skinDesc()}, leaving you with only the primary pair on your chest, which seems to have grown larger.")
-            if (self.boobTotal == 10):
-               self.doMainText("\n\nYour lower chest and belly tickle")
-               if (self.breastSize > 4):
-                  self.doMainText(", both growing much lighter")
-               self.doMainText(f". Checking, you catch your extra sets of nipples disappear flat into your {self.skinDesc()}, leaving you with only the primary pair on your chest, which seems to have grown larger.")
-            self.boobTotal = 2
-         if (fourBoob > nonFourBoob + 20 and self.boobTotal != 4):
-            if (self.boobTotal == 2):
-               self.doMainText(f"\n\nYour lower chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
-               if (self.breastSize > 4):
-                  self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            if (self.boobTotal == 6):
-               self.doMainText("\n\nYour belly tickles")
-               if (self.breastSize > 4):
-                  self.doMainText(", growing much lighter")
-               self.doMainText(f". Checking, you catch your bottom set of nipples disappear flat into your {self.skinDesc()}, while your middle pair swells to match the first, leaving you with two sets of equally sized breasts, the top resting upon the bottom.")
-            if (self.boobTotal == 8):
-               self.doMainText("\n\nYour belly tickles")
-               if (self.breastSize > 4):
-                  self.doMainText(", growing much lighter")
-               self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
-            if (self.boobTotal == 10):
-               self.doMainText("\n\nYour belly tickles")
-               if (self.breastSize > 4):
-                  self.doMainText(", growing much lighter")
-               self.doMainText(f". Checking, you catch your three lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
-            self.boobTotal = 4
-         if (sixBoob > nonSixBoob + 20 and self.boobTotal != 6):
-            if (self.boobTotal == 2):
-               self.doMainText(f"\n\nYour lower chest and belly tickle. Four new nipples form amongst your {self.skinDesc()}, a fresh pair below your original two and another pair below that, leaving you with three rows of two breasts from your chest down to your upper belly.")
-               if (self.breastSize > 4):
-                  self.doMainText(f" The nipples protrude as fleshy mounds form beneath them. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            if (self.boobTotal == 4):
-               self.doMainText(f"\n\nYour belly tickles. Two new nipples form amongst your {self.skinDesc()}, right below your second pair on your upper belly, leaving you with three rows of two breasts.")
-               if (self.breastSize > 4):
-                  self.doMainText(f" The nipples protrude as fleshy mounds form beneath them, while your second pair seems to shrink in turn. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            if (self.boobTotal == 8):
-               self.doMainText("\n\nYour lower belly tickles")
-               if (self.breastSize > 4):
-                  self.doMainText(", growing much lighter")
-               self.doMainText(f". Checking, you catch your lowest set of nipples disappear flat into your {self.skinDesc()}, while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.")
-            if (self.boobTotal == 10):
-               self.doMainText("\n\nYour lower belly and the area above your crotch tickle")
-               if (self.breastSize > 4):
-                  self.doMainText(", growing much lighter")
-               self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.")
-            self.boobTotal = 6
-         if (eightBoob > nonEightBoob + 20 and self.boobTotal != 8):
-            if (self.boobTotal == 2):
-               self.doMainText(f"\n\nYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals. The process repeats twice more, for a total of 8 breasts from your chest to your lower belly! And they're all slightly smaller than your original pair.")
-               if (self.breastSize > 4):
-                  self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            if (self.boobTotal == 4):
-               self.doMainText(f"\n\nYour chest and belly tickle. Four new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.")
-               if (self.breastSize > 4):
-                  self.doMainText(f" Your original breasts shrink a little to match the ingrowing ones, until they're all the same size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            if (self.boobTotal == 6):
-               self.doMainText(f"\n\nYour belly tickles. Two new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.")
-               if (self.breastSize > 4):
-                  self.doMainText(f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            if (self.boobTotal == 10):
-               self.doMainText("\n\nThe area above your crotch tickles")
-               if (self.breastSize > 4):
-                  self.doMainText(", growing much lighter")
-               self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the rest grow slightly larger.")
-            self.boobTotal = 8
-         if (tenBoob > nonTenBoob + 20 and self.boobTotal != 10):
-            if (self.boobTotal == 2):
-               self.doMainText(f"\n\nYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals. The process repeats three more times, for a total of 10 breasts from your chest to your just above your crotch! And they're all slightly smaller than your original pair.")
-               if (self.breastSize > 4):
-                  self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            if (self.boobTotal == 4):
-               self.doMainText(f"\n\nYour chest and belly tickle. Six new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with five rows of two breasts, from your chest to just above your crotch.")
-               if (self.breastSize > 4):
-                  self.doMainText(f" Your original breasts shrink a little to match the ingrowing ones, until they're all the same size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            if (self.boobTotal == 6):
-               self.doMainText(f"\n\nYour lower belly  and the area above your crotch tickle. Four new nipples form amongst your {self.skinDesc()}, right below your third pair, leaving you with five rows of two breasts, from your chest down to your crotch.")
-               if (self.breastSize > 4):
-                  self.doMainText(f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            if (self.boobTotal == 8):
-               self.doMainText(f"\n\nThe area above your crotch tickles. Two new nipples form amongst your {self.skinDesc()}, right below your fourth pair below your belly, leaving you with five rows of two breasts, from your chest to your crotch.")
-               if (self.breastSize > 4):
-                  self.doMainText(f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-            self.boobTotal = 10
-      if (not self.lockLegs):
-         if self.correctBeastRaceFeet:
-            bipedal = Math.max(self.humanAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.birdAffinity, self.pigAffinity)
-            bipedalDigiPaw = Math.max(self.wolfAffinity, self.catAffinity, self.skunkAffinity)
-            bipedalHooves = Math.max(self.horseAffinity, self.cowAffinity)
-            otherLegs = Array(self.cowTaurAffinity, self.humanTaurAffinity)
-         else:
-            bipedal = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.cowAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.birdAffinity, self.pigAffinity)
-            bipedalDigiPaw = Math.max(self.skunkAffinity)
-            bipedalHooves = -1000
-            otherLegs = Array(self.cowTaurAffinity, self.humanTaurAffinity)
-         legArray = Array(bipedal, bipedalDigiPaw, bipedalHooves, 0)
-         legArray = legArray.concat(otherLegs)
-         legArray.sort(16)
-         secondLegs = legArray[-2]
-         if (bipedalHooves > secondLegs + 50 and self.legType != 2):
-            self.legChange(2)
-         if (bipedalDigiPaw > secondLegs + 50 and self.legType != 1):
-            self.legChange(1)
-         if (bipedal > secondLegs + 50 and self.legType != 0):
-            self.legChange(0)
-         if (self.cowTaurAffinity > secondLegs + 50 and self.legType != 1001):
-            self.legChange(1001)
-         if (self.humanTaurAffinity > secondLegs + 50 and self.legType != 1002):
-            self.legChange(1002)
-      if (not self.lockNipples):
-         nip0 = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.birdAffinity, self.pigAffinity)
-         nip1 = Math.max(self.cowAffinity)
-         nip2 = Math.max(self.bugAffinity)
-         nonNip0 = Math.max(nip1, nip2)
-         nonNip1 = Math.max(nip0, nip2)
-         nonNip2 = Math.max(nip0, nip1)
-         if (nip0 > nonNip0 + 60 and self.nipType != 0):
-            if (self.nipType == 1):
-               self.doMainText(f"\n\nMany of your nipples begin to tickle. They begin to shrink beneath your {self.clothesTop()}, receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each.")
-            if (self.nipType == 2):
-               self.doMainText("\n\nYour nipples pop out from your breast, no longer sunken or hidden within.")
-            self.nipType = 0
-         if (nip1 > nonNip1 + 60 and self.nipType != 1):
-            if (self.nipType == 2):
-               self.doMainText("\n\nYour nipples pop out from your breast, no longer sunken or hidden within.")
-            if (self.nipType == 0 or self.nipType == 2):
-               self.doMainText(f"\n\nSpots begin to tingle around your nipples. Your hand roves under your {self.clothesTop()} to inspect the areas, noticeably more sensitive than before. The patches grow softer and puff up beneath your fingertips, feeling rather... familiar? Pulling your {self.clothesTop()} {self.pullUD(1)}, you can see extra nipples form around the ones you already have, complete with darkened areoles and matching size.\n\nYour breasts now each have four nipples equidistant from each other, just as functional as the originals, and just as sensitive, each looking almost like a cow's udder...")
-            self.nipType = 1
-         if (nip2 > nonNip2 + 60 and self.nipType != 2):
-            if (self.nipType == 1):
-               self.doMainText(f"\n\nMany of your nipples begin to tickle. They begin to shrink beneath your {self.clothesTop()}, receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each.")
-            if (self.nipType == 0 or self.nipType == 1):
-               self.doMainText("\n\nYour nipples sink into your breasts, becoming inverted slits within your areola, only coming out when aroused.")
-            self.nipType = 2
-      if (self.eggLaying > 0):
-         egg0 = Math.max(self.lizardAffinity, self.birdAffinity)
-         egg1 = Math.max(self.bugAffinity)
-         nonEgg0 = Math.max(egg1)
-         nonEgg1 = Math.max(egg0)
-         if (egg0 > nonEgg0 + 20 and self.eggType != 0):
-            if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
-               self.doMainText("\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.")
-            if (self.eggType == 1):
-               self.eggMaxTime += 22
-            self.eggType = 0
-         if (egg1 > nonEgg1 + 20 and self.eggType != 1):
-            if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
-               self.doMainText("\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.")
-            if (self.eggType == 0):
-               self.eggMaxTime -= 22
-            self.eggType = 1
-      if (not self.lockCock):
-         if (self.dominant == 1 and self.humanAffinity > second + 25 and self.human > 0 and self.cockTotal > 0 and self.humanCocks < self.cockTotal):
-            self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to see {self.oneYour(1)} cock{self.plural(1)} hanging out from your body, limp and flaccid. It's smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human's.")
-            self.humanCocks += 1
-            self.cockLoss()
-         if (self.dominant == 2 and self.horseAffinity > second + 25 and self.horse > 0 and self.cockTotal > 0 and self.horseCocks < self.cockTotal):
-            self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thick sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Relaxing your muscles, the cock slowly droops out over your {self.clothesBottom()}. It's long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse's.")
-            self.horseCocks += 1
-            self.cockLoss()
-         if (self.dominant == 3 and self.wolfAffinity > second + 25 and self.wolf > 0 and self.cockTotal > 0 and self.wolfCocks < self.cockTotal):
-            self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, red and hard, no matter how aroused you are. It's veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf's.")
-            self.wolfCocks += 1
-            self.cockLoss()
-         if (self.dominant == 4 and self.catAffinity > second + 25 and self.cat > 0 and self.cockTotal > 0 and self.catCocks < self.cockTotal):
-            self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, pink and soft. It's smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat's.")
-            self.catCocks += 1
-            self.cockLoss()
-         if (self.dominant == 6 and self.lizardAffinity > second + 25 and self.lizard > 0 and self.cockTotal > 0 and self.lizardCocks < self.cockTotal):
-            self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as your cock{self.plural(1)} sink{self.plural(3)} into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, looking quite purple. It's bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard's?")
-            self.lizardCocks += 1
-            self.cockLoss()
-         if (self.dominant == 7 and self.rabbitAffinity > second + 25 and self.rabbit > 0 and self.cockTotal > 0 and self.rabbitCocks < self.cockTotal):
-            self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, red and pointy. It's smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit's.")
-            self.rabbitCocks += 1
-            self.cockLoss()
-         if (self.dominant == 12 and self.bugAffinity > second + 25 and self.bug > 0 and self.cockTotal > 0 and self.bugCocks < self.cockTotal):
-            self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to see {self.oneYour(1)} cock{self.plural(1)} hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You're not really sure what it is, but some bugs do have rather... 'wild' penises that could come close.")
-            self.bugCocks += 1
-            self.cockLoss()
-      self.human = 0
-      self.horse = 0
-      self.wolf = 0
-      self.cat = 0
-      self.cow = 0
-      self.lizard = 0
-      self.rabbit = 0
-      self.mouse = 0
-      self.bird = 0
-      self.pig = 0
-      self.skunk = 0
-      self.bug = 0
-      if (self.currentText == "Something feels odd..."):
-         self.outputMainText("", True)
-         self.doProcess()
-      else:
-         self.displayMainText()
-         self.doEnd()
+        self.doMainText("Something feels odd...", True)
+
+        # Dominant change
+        affinityCheckArray = Array(self.humanAffinity + self.human, self.horseAffinity + self.horse, self.wolfAffinity + self.wolf, self.catAffinity + self.cat, self.cowAffinity + self.cow, self.lizardAffinity + self.lizard, self.rabbitAffinity + self.rabbit, self.mouseAffinity + self.mouse, self.birdAffinity + self.bird, self.pigAffinity + self.pig, self.skunkAffinity + self.skunk, self.bugAffinity + self.bug)
+        affinityCheckArray.sort(16)
+        domCheck = affinityCheckArray[-1]
+        second = affinityCheckArray[-2]
+        if (domCheck == self.humanAffinity + self.human and self.human >= 0):
+            self.dominant = 1
+        elif (domCheck == self.horseAffinity + self.horse and self.horse >= 0):
+            self.dominant = 2
+        elif (domCheck == self.wolfAffinity + self.wolf and self.wolf >= 0):
+            self.dominant = 3
+        elif (domCheck == self.catAffinity + self.cat and self.cat >= 0):
+            self.dominant = 4
+        elif (domCheck == self.cowAffinity + self.cow and self.cow >= 0):
+            self.dominant = 5
+        elif (domCheck == self.lizardAffinity + self.lizard and self.lizard >= 0):
+            self.dominant = 6
+        elif (domCheck == self.rabbitAffinity + self.rabbit and self.rabbit >= 0):
+            self.dominant = 7
+        elif (domCheck == self.mouseAffinity + self.mouse and self.mouse >= 0):
+            self.dominant = 8
+        elif (domCheck == self.birdAffinity + self.bird and self.bird >= 0):
+            self.dominant = 9
+        elif (domCheck == self.pigAffinity + self.pig and self.pig >= 0):
+            self.dominant = 10
+        elif (domCheck == self.skunkAffinity + self.skunk and self.skunk >= 0):
+            self.dominant = 11
+        elif (domCheck == self.bugAffinity + self.bug and self.bug >= 0):
+            self.dominant = 12
+
+        # General change
+        if (self.humanAffinity + self.human >= 40 and self.humanAffinity < 40):
+            self.doMainText("\n\nYour body feels quite... adaptive? There's a strange sense of being more susceptible to change")
+            self.changeMod += 0.5
+        if (self.humanAffinity + self.human < 40 and self.humanAffinity >= 40):
+            self.doMainText("\n\nYour body feels less ready to bend to your surroundings as much as it had anymore.")
+            self.changeMod -= 0.5
+        if (self.horseAffinity + self.horse >= 40 and self.horseAffinity < 40):
+            if (self.cockTotal > 0):
+                self.doMainText(f"\n\nYour {self.clothesBottom()} grows tight, filling with extra cockflesh. Opening the {self.clothesBottom()}, your cock{self.plural(1)} spill{self.plural(3)} out, dangling while swelling larger and larger. The growth slows to a halt, much, much longer than before. 'Hung like a horse' seems like the appropriate phrase. And you're also going to have to sneak back into town while you hide your perverse excess flesh, rushing to a tailor to refit you.")
+            if (self.vagTotal > 0):
+                self.doMainText("\n\nDoubling over, you hug your belly as it begins to cramp. You can clearly feel your vaginal flesh grow within, the walls growing much deeper. By the time it's over, you feel somewhat like a mare, able to take cocks much larger than you could have before...")
+            self.cockSizeMod += 1
+            self.vagSizeMod += 1
+            self.vagBellyChange(0, 0)
+        if (self.horseAffinity + self.horse < 40 and self.horseAffinity >= 40):
+            if (self.cockTotal > 0):
+                self.doMainText(f"\n\nYour {self.clothesBottom()} feel baggier. Opening the {self.clothesBottom()}, your cock{self.plural(1)} shrinking towards your groin, losing a great deal of length. It seems like you have lost your equine engorgement.")
+            if (self.vagTotal > 0):
+                self.doMainText("\n\nYour belly feels rather empty all of a sudden. Placing your hand over it, you can feel the vaginal flesh recede, no longer built like mare.")
+            self.cockSizeMod -= 1
+            self.vagSizeMod -= 1
+            self.vagBellyChange(0, 0)
+        if (self.wolfAffinity + self.wolf >= 40 and self.wolfAffinity < 40):
+            if (self.cockTotal > 0):
+                self.doMainText(f"\n\nA sudden wave of lust washes over you, your cock{self.plural(1)} growing stiff in your {self.clothesBottom()}. You quickly open open your {self.clothesBottom()} to see what's going on. Within, the base{self.plural(1)} of your shaft{self.plural(1)} swell{self.plural(3)}. In an instant, you're surprised by spurts of cum that shower you, a small volley from a quick unexpected orgasm. Wiping your eyes so you can see, the swelling persists as you continue to come for a while. It would be very difficult to remove your cock from a hot hole with a large 'knot' like that, until finished draining your seed.")
+            self.knot = True
+            self.cumMod += 0.5
+        if (self.wolfAffinity + self.wolf < 40 and self.wolfAffinity >= 40):
+            if (self.cockTotal > 0):
+                self.doMainText(f"\n\nAn odd draining fills your {self.clothesBottom()}. Looking within, you see your cock{self.plural(1)} grow slightly stiff, your knot{self.plural(1)} swelling. Pre lazily seeps from your urethra{self.plural(1)} as the knot{self.plural(1)} deflate{self.plural(1)} immediately while your cock{self.plural(1)} remain{self.plural(3)} stiff. It seems as though you have lost your knot{self.plural(1)}.")
+            self.knot = False
+            self.cumMod -= 0.5
+        if (self.catAffinity + self.cat >= 40 and self.catAffinity < 40):
+            if (self.vagTotal > 0):
+                self.doMainText(f"\n\nYour {self.clothesBottom()} grows slightly moist, your cunt{self.plural(2)} burning with arousal. The feeling quickly fades, but something tells you your reproductive instincts might occasionally take over...")
+            if (self.heat < 1):
+                self.heatMaxTime = 96
+                self.heatTime = 96
+                self.heat += 1
+            elif (self.heat >= 1):
+                self.heatMaxTime -= 12
+                self.heat += 1
+        if (self.catAffinity + self.cat < 40 and self.catAffinity >= 40):
+            if (self.vagTotal > 0):
+                self.doMainText(f" You also feel your vagina{self.plural(2)} cool a little, no longer as eager to be impregnated on certain days.")
+            if (self.heat >= 2):
+                self.heatMaxTime += 12
+            self.heat -= 1
+        # trace(self.cowAffinity + self.cow)
+        if (self.cowAffinity + self.cow >= 10 and self.cowAffinity < 10):
+            self.doMainText(f"\n\nYour nipples stiffen beneath your {self.clothesTop()}. They protrude nearly half an inch further than before!")
+            self.nippleSize += 2
+            self.milkMod += 50
+        if (self.cowAffinity + self.cow >= 25 and self.cowAffinity < 25):
+            self.doMainText(f"\n\nYour nipples stiffen beneath your {self.clothesTop()}. They protrude an inch further than before! And your hips seem slightly broader...")
+            self.lactChange(1, 75)
+            self.nippleSize += 5
+            self.hips += 4
+            self.milkMod += 50
+        if (self.cowAffinity + self.cow >= 40 and self.cowAffinity < 40):
+            self.doMainText(f"\n\nYour nipples squirm within your {self.clothesTop()}. They've grown over an inch and a half in length! And your hips feel like they're more 'square' than before...")
+            self.lactChange(1, 75)
+            self.nippleSize += 8
+            self.hips += 6
+            self.milkMod += 50
+        if (self.cowAffinity + self.cow >= 55 and self.cowAffinity < 55):
+            self.doMainText(f"\n\nJust above your groin, your belly begins to feel bloated. You wince as it pushes against your {self.clothesBottom()}, especially noticing the increased sensitivity of four spots in particular. Before you can act, your {self.clothesBottom()} tears at the waist, as a mound crashes through. Hanging naked and free, with four teats twice as long as your nipples, an udder about twice as large as your chest dribbles milk. You'll definitely be getting a special bra or perhaps adjust your {self.clothesBottom()} when you get back to town, at least to account for your surprisingly wider hips... ")
+            self.lactChange(1, 150)
+            self.lactChange(2, self.lactation)
+            self.hips += 8
+            self.udders = True
+            self.udderSize = 2 * self.breastSize
+            self.teatSize = 2 * self.nippleSize
+        if (self.cowAffinity + self.cow < 10 and self.cowAffinity >= 10):
+            self.doMainText("\n\nYour nipples are less noticeable, shrinking by nearly half an inch.")
+            self.nippleSize -= 2
+            self.milkMod -= 50
+        if (self.cowAffinity + self.cow < 25 and self.cowAffinity >= 25):
+            self.doMainText("\n\nYour nipples seem less noticeable as they shrink by an inch and your hips are less wide.")
+            self.lactChange(1, -50)
+            if (self.udders):
+                self.lactChange(2, -50)
+            self.nippleSize -= 5
+            self.hips -= 4
+            self.milkMod -= 50
+        if (self.cowAffinity + self.cow < 40 and self.cowAffinity >= 40):
+            self.doMainText(f"\n\nYour {self.clothesTop()} feels slightly looser, as your nipples shrink by over an inch and a half. You hips also narrow a little, protruding less than before.")
+            self.lactChange(1, -50)
+            if (self.udders):
+                self.lactChange(2, -50)
+            self.hips -= 6
+            self.nippleSize -= 8
+            self.milkMod -= 50
+        if (self.cowAffinity + self.cow < 55 and self.cowAffinity >= 55):
+            if (not self.udderCheck(1)):
+                self.doMainText("\n\nThe fleshy bag of milk at your abdomen shrinks to nothing, disappearing along with its teats. You're no longer lugging around an udder. Plus your waistbands seem quite loose after your hips shrink by a few inches.")
+                self.udders = False
+                self.udderLactation = 0
+                self.udderEngorgement = 0
+                self.udderEngorgementLevel = 0
+                self.udderPlay = 0
+                self.udderSize = 0
+                self.teatSize = 0
+            else:
+                self.doMainText("\n\nYour waistbands seem quite loose after your hips shrink by a few inches.")
+            self.lactChange(1, -100)
+            self.hips -= 8
+        if (self.lizardAffinity + self.lizard >= 40 and self.lizardAffinity < 40):
+            if (self.cockTotal == 1):
+                self.cockChange(0, 1)
+            if (self.vagTotal > 0):
+                self.doMainText(f"\n\nAn odd sensation of warmth fills your womb{self.plural(2)}. You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you're not pregnant.")
+            if (self.eggLaying == 0):
+                self.eggLaying += 1
+                self.eggType = 0
+                self.eggMaxTime = 36
+                self.eggTime = 36
+            else:
+                self.eggMaxTime -= 6
+                self.eggLaying += 1
+        if (self.lizardAffinity + self.lizard < 40 and self.lizardAffinity >= 40):
+            if (self.cockTotal == 2):
+                self.cockChange(0, -1)
+            if (self.vagTotal > 0):
+                self.doMainText(f"\n\nYour womb{self.plural(2)} calm{self.plural(4)} down, no longer working as hard to pop out more eggs.")
+            if (self.eggLaying == 1):
+                self.eggLaying -= 1
+                self.eggMaxTime = 0
+                self.eggTime = 0
+            elif (self.eggLaying > 1):
+                self.eggMaxTime += 6
+                self.eggLaying -= 1
+        if (self.rabbitAffinity + self.rabbit >= 10 and self.rabbitAffinity < 10):
+            self.stats(0, 0, 2, 0)
+        if (self.rabbitAffinity + self.rabbit >= 30 and self.rabbitAffinity < 30):
+            self.stats(0, 0, 5, 0)
+        if (self.rabbitAffinity + self.rabbit >= 40 and self.rabbitAffinity < 40):
+            if (self.vagTotal > 0):
+                self.doMainText(f"\n\nYour womb{self.plural(2)} feel{self.plural(4)} a bit... hyperactive. It feels as though you could breed like some sort of cute, small, fuzzy animal.")
+            self.pregRate += 1
+        if (self.rabbitAffinity + self.rabbit >= 50 and self.rabbitAffinity < 50):
+            self.stats(0, 0, 7, 0)
+        if (self.rabbitAffinity + self.rabbit < 10 and self.rabbitAffinity >= 10):
+            self.stats(0, 0, -2, 0)
+        if (self.rabbitAffinity + self.rabbit < 30 and self.rabbitAffinity >= 30):
+            self.stats(0, 0, -5, 0)
+        if (self.rabbitAffinity + self.rabbit < 40 and self.rabbitAffinity >= 40):
+            if (self.vagTotal > 0):
+                self.doMainText(f"\n\nYour womb{self.plural(2)} feel{self.plural(4)} calmer. Now you can take your fertility nice and easy... relatively.")
+            self.pregRate -= 1
+        if (self.rabbitAffinity + self.rabbit < 50 and self.rabbitAffinity >= 50):
+            self.stats(0, 0, -7, 0)
+        if (self.mouseAffinity + self.mouse >= 40 and self.mouseAffinity < 40):
+            self.doMainText("\n\nA slight paranoia lingers in your mind, making you feel quite skittish. If you needed to, you could probably run from a threat at the drop of a needle.")
+            if (self.balls > 0 and self.showBalls):
+                self.doMainText(f" Your {self.ballDesc()} nuts also feel slightly 'skittish', like they're making far more than they just were...")
+            self.runMod += 25
+            self.cumMod += 3
+        if (self.mouseAffinity + self.mouse < 40 and self.mouseAffinity >= 40):
+            self.doMainText("\n\nThe paranoia dissipates from your mind, your body languishing and no longer as flighty.")
+            if (self.balls > 0 and self.showBalls):
+                self.doMainText(f" Your {self.ballDesc()} nuts also calm down, their production diminishing.")
+            self.runMod -= 25
+            self.cumMod -= 3
+        if (self.birdAffinity + self.bird >= 40 and self.birdAffinity < 40):
+            self.doMainText("\n\nYours eyes dart about for a moment as shiny things become suddenly more noticeable. After a few moments, you calm down, but your definitely able to spot shiny things more accurately, able to find an extra couple coins whenever you come across any.")
+            self.coinMod += 2
+            if (self.vagTotal > 0):
+                self.doMainText(f"\n\nAn odd sensation of warmth fills your womb{self.plural(2)}. You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing hard shells to protect them, whenever you're not pregnant.")
+            if (self.eggLaying == 0):
+                self.eggLaying += 1
+                self.eggMaxTime = 36
+                self.eggTime = 36
+                self.eggType = 0
+            else:
+                self.eggMaxTime -= 6
+                self.eggLaying += 1
+        if (self.birdAffinity + self.bird < 40 and self.birdAffinity >= 40):
+            self.doMainText("\n\nYour affinity for shinies dissipates. Not quite as focused on them, you aren't able to find an extra couple coins anymore.")
+            self.coinMod -= 2
+            if (self.vagTotal > 0):
+                self.doMainText(f"\n\nYour womb{self.plural(2)} calm{self.plural(4)} down, no longer working as hard to pop out more eggs.")
+            if (self.eggLaying == 1):
+                self.eggLaying -= 1
+                self.eggMaxTime = 0
+                self.eggTime = 0
+            elif (self.eggLaying > 1):
+                self.eggLaying -= 1
+                self.eggMaxTime += 6
+        if (self.pigAffinity + self.pig >= 10 and self.pigAffinity < 10):
+            self.doMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...")
+            self.bellyMod += 20
+        if (self.pigAffinity + self.pig >= 30 and self.pigAffinity < 30):
+            self.doMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...")
+            self.bellyMod += 20
+        if (self.pigAffinity + self.pig >= 40 and self.pigAffinity < 40):
+            self.doMainText("\n\nYou groan as you feel some of your extra weight grow heavier. Your hips grow wider and your ass grows larger, exaggerating your chubbiness.")
+            if (self.balls > 0 and self.showBalls):
+                self.doMainText(f" Your {self.ballDesc()} balls also feel rather 'fat', growing heavy with seed...")
+            self.cumMod += 5
+            self.hipMod += 0.5
+            self.buttMod += 0.5
+        if (self.pigAffinity + self.pig >= 50 and self.pigAffinity < 50):
+            self.doMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...")
+            self.bellyMod += 20
+        if (self.pigAffinity + self.pig >= 70 and self.pigAffinity < 70):
+            self.doMainText("\n\nYour belly jiggles a bit more than you remember. Seems you've gotten a bit chubbier, despite what you have eaten...")
+            self.bellyMod += 20
+        if (self.pigAffinity + self.pig < 10 and self.pigAffinity >= 10):
+            self.doMainText("\n\nYour belly feels lighter, your extra porkiness dissipating.")
+            self.bellyMod -= 20
+        if (self.pigAffinity + self.pig < 30 and self.pigAffinity >= 30):
+            self.doMainText("\n\nYour belly feels lighter, your extra porkiness diminishing.")
+            self.bellyMod -= 20
+        if (self.pigAffinity + self.pig < 40 and self.pigAffinity >= 40):
+            self.doMainText("\n\nYou moan as you feel some of your extra weight lift from you. Your hips and rump shrink, no longer nearly as chubby.")
+            if (self.balls > 0 and self.showBalls):
+                self.doMainText(f" Your {self.ballDesc()} balls also feel lighter, no longer producing as much seed.")
+            self.cumMod -= 5
+            self.hipMod -= 0.5
+            self.buttMod -= 0.5
+        if (self.pigAffinity + self.pig < 50 and self.pigAffinity >= 50):
+            self.doMainText("\n\nYour belly feels lighter, your extra porkiness diminishing.")
+            self.bellyMod -= 20
+        if (self.pigAffinity + self.pig < 70 and self.pigAffinity >= 70):
+            self.doMainText("\n\nYour belly feels lighter, your extra porkiness diminishing.")
+            self.bellyMod -= 20
+        if (self.skunkAffinity + self.skunk >= 40 and self.skunkAffinity < 40):
+            self.doMainText(f"\n\nYou feel your {self.buttDesc()} rump grow slightly larger. Then a strange scent fills your nose, casually rising from your backside. It... It doesn't stink at all like you would expect from the area, but rather smells quite pleasant. A nice, pleasing, and even somewhat alluring aroma.\n\nYou try to see if you can control this scent, pushing some glands inside you never noticed before. And sure enough, you manage to spray out a more concentrated mist. However, you immediately start gagging. It smells horrible... Not something you want to try normally, but rather reserve for more severe occassions.")
+            if (self.skinType == 2):
+                self.doMainText("\n\nAnd to accentuate the change further, two parallel stripes emerge in your fur, connecting together at your brow and rung over your head all the way down to your rump")
+                if (self.tail == 11):
+                    self.doMainText(" where it connects to the stripes on your tail")
+                self.doMainText(".")
+            self.enticeMod += 10
+            self.butt += 2
+        if (self.skunkAffinity + self.skunk < 40 and self.skunkAffinity >= 40):
+            self.doMainText(f"\n\nYou feel your {self.buttDesc()} rump shrink slightly. The pleasant scent that exudes from it disappears, as well as the other scent you could produce.")
+            if (self.skinType == 2):
+                self.doMainText("\n\nThe twin stripes in your fur from your head to your rump also fade")
+                if (self.tail == 11):
+                    self.doMainText(", though the ones on your tail remain")
+                self.doMainText(".")
+            self.enticeMod -= 10
+            self.butt -= 2
+        if (self.bugAffinity + self.bug >= 40 and self.bugAffinity < 40):
+            if (self.vagTotal > 0):
+                self.doMainText(f"\n\nAn odd sensation of warmth fills your womb{self.plural(2)}. You can literally feel your eggs stir within, preparing themselves to cycle much more frequently, growing soft shells to protect them, whenever you're not pregnant.")
+            if (self.eggLaying == 0):
+                self.eggLaying += 1
+                self.eggType = 1
+                self.eggMaxTime = 14
+                self.eggTime = 14
+            else:
+                self.eggMaxTime -= 6
+                self.eggLaying += 1
+        if (self.bugAffinity + self.bug < 40 and self.bugAffinity >= 40):
+            if (self.vagTotal > 0):
+                self.doMainText(f"\n\nYour womb{self.plural(2)} calm{self.plural(4)} down, no longer working as hard to pop out more insect-like eggs.")
+            if (self.eggLaying == 1):
+                self.eggLaying -= 1
+                self.eggMaxTime = 0
+                self.eggTime = 0
+            elif (self.eggLaying > 1):
+                self.eggMaxTime += 6
+                self.eggLaying -= 1
+
+        # Bounds check
+        if (self.humanAffinity + self.human < 0):
+            self.humanAffinity = 0
+        elif (self.humanAffinity + self.human > 100):
+            self.humanAffinity = 100
+        else:
+            self.humanAffinity += self.human
+        if (self.horseAffinity + self.horse < 0):
+            self.horseAffinity = 0
+        elif (self.horseAffinity + self.horse > 100):
+            self.horseAffinity = 100
+        else:
+            self.horseAffinity += self.horse
+        if (self.wolfAffinity + self.wolf < 0):
+            self.wolfAffinity = 0
+        elif (self.wolfAffinity + self.wolf > 100):
+            self.wolfAffinity = 100
+        else:
+            self.wolfAffinity += self.wolf
+        if (self.catAffinity + self.cat < 0):
+            self.catAffinity = 0
+        elif (self.catAffinity + self.cat > 100):
+            self.catAffinity = 100
+        else:
+            self.catAffinity += self.cat
+        if (self.cowAffinity + self.cow < 0):
+            self.cowAffinity = 0
+        elif (self.cowAffinity + self.cow > 100):
+            self.cowAffinity = 100
+        else:
+            self.cowAffinity += self.cow
+        if (self.lizardAffinity + self.lizard < 0):
+            self.lizardAffinity = 0
+        elif (self.lizardAffinity + self.lizard > 100):
+            self.lizardAffinity = 100
+        else:
+            self.lizardAffinity += self.lizard
+        if (self.rabbitAffinity + self.rabbit < 0):
+            self.rabbitAffinity = 0
+        elif (self.rabbitAffinity + self.rabbit > 100):
+            self.rabbitAffinity = 100
+        else:
+            self.rabbitAffinity += self.rabbit
+        if (self.mouseAffinity + self.mouse < 0):
+            self.mouseAffinity = 0
+        elif (self.mouseAffinity + self.mouse > 100):
+            self.mouseAffinity = 100
+        else:
+            self.mouseAffinity += self.mouse
+        if (self.birdAffinity + self.bird < 0):
+            self.birdAffinity = 0
+        elif (self.birdAffinity + self.bird > 100):
+            self.birdAffinity = 100
+        else:
+            self.birdAffinity += self.bird
+        if (self.pigAffinity + self.pig < 0):
+            self.pigAffinity = 0
+        elif (self.pigAffinity + self.pig > 100):
+            self.pigAffinity = 100
+        else:
+            self.pigAffinity += self.pig
+        if (self.skunkAffinity + self.skunk < 0):
+            self.skunkAffinity = 0
+        elif (self.skunkAffinity + self.skunk > 100):
+            self.skunkAffinity = 100
+        else:
+            self.skunkAffinity += self.skunk
+        if (self.bugAffinity + self.bug < 0):
+            self.bugAffinity = 0
+        elif (self.bugAffinity + self.bug > 100):
+            self.bugAffinity = 100
+        else:
+            self.bugAffinity += self.bug
+
+        # Skin change
+        if (not self.lockSkin):
+            maxSkin = Math.max(self.humanAffinity, self.pigAffinity)
+            maxFur = Math.max(self.horseAffinity, self.wolfAffinity, self.catAffinity, self.cowAffinity, self.rabbitAffinity, self.mouseAffinity, self.skunkAffinity)
+            maxScale = Math.max(self.lizardAffinity)
+            maxFeather = Math.max(self.birdAffinity)
+            maxChitin = Math.max(self.bugAffinity)
+            maxNonSkin = Math.max(maxFur, maxScale, maxFeather, maxChitin)
+            maxNonFur = Math.max(maxSkin, maxScale, maxFeather, maxChitin)
+            maxNonScale = Math.max(maxFur, maxSkin, maxFeather, maxChitin)
+            maxNonFeather = Math.max(maxFur, maxScale, maxSkin, maxChitin)
+            maxNonChitin = Math.max(maxFur, maxScale, maxSkin, maxFeather)
+            if (maxSkin > maxNonSkin + 35 and self.skinType != 1):
+                self.doMainText(f"\n\nYour {self.skinDesc()} feels oddly cool. Looking at it, your {self.skinDesc()} shrinks into your skin, leaving you 'bald' all over. You feel a little naked as you get used to your bare skin.")
+                self.skinType = 1
+            if (maxFur > maxNonFur + 35 and self.skinType != 2):
+                self.doMainText(f"\n\nYour {self.skinDesc()} begins to itch all over as soft hairs begin to sprout in patches. Before you know it, your whole body is soon covered in a coat of fur.")
+                self.skinType = 2
+                if (self.skunkAffinity >= 40):
+                    self.doMainText(" The fur is mostly a single color, except for two parallel stripes that connect at your brow and run over your head and down your back to your rump")
+                    if (self.tail == 11):
+                        self.doMainText(" where it connects to the stripes on your tail")
+                    self.doMainText(".")
+            if (maxScale > maxNonScale + 35 and self.skinType != 3):
+                self.doMainText(f"\n\nYour {self.skinDesc()} begins to feel oddly dry, feeling somewhat flaky. Before you know it, your whole body feels soft and extremely smooth, covered in a thin layer of scales.")
+                self.skinType = 3
+            if (maxFeather > maxNonFeather + 35 and self.skinType != 4):
+                self.doMainText(f"\n\nYour {self.skinDesc()} begins to tickle all over, tiny hair sprouting up all over and collecting into groups. Before you know it, you're rustling and fluffing up, sleeking back a layer of feathers.")
+                self.skinType = 4
+            if (maxChitin > maxNonChitin + 35 and self.skinType != 5):
+                self.doMainText(f"\n\nYour {self.skinDesc()} begins to feel stiff, as though it were getting harder. Before you know it, your whole body is covered with a layer of chitin, almost like full suit of segmented armor. However, unlike armor, this doesn't really afford you any protection, since you seem to have all the usual sensations through it like any other kind of skin.")
+                if (self.legDesc(10) == "feet"):
+                    self.doMainText(" And more of the chitin extends from your heels, making you stand higher without actually being taller as you walk more on your toes.")
+                self.skinType = 5
+
+        # Face change
+        self.hasMuzzle = False
+        if (not self.lockFace):
+            if (self.faceType == 21 or self.faceType == 31 or self.faceType == 61):
+                self.hasMuzzle = True
+            if (self.dominant == 1 and self.faceType != 10):
+                self.doMainText("\n\n")
+                if (self.hasMuzzle):
+                    self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
+                self.doMainText("Your face rounds out and your nose resizes so it nestles neatly between your eyes, reaching from your brow down to just above your mouth and looks much like a human's.")
+                self.faceType = 10
+                self.hasMuzzle = False
+            if (self.dominant == 2 and (self.faceType != 20 or self.faceType != 21)):
+                if (self.faceType != 20 and self.faceType != 21):
+                    if (self.hasMuzzle):
+                        self.doMainText("\n\nYour facial demeanor softens and becomes more focused as your eyes grow wide and round, giving you a more considerate yet strong appearance.")
+                    else:
+                        self.doMainText("\n\nYour jaw seems to be a bit low and wide, your face looking longer than average. Your nose also appears wider to make up for the slightly stretched appearance.")
+                    self.faceType = 20
+                elif (self.faceType != 21 and self.horseAffinity > 70):
+                    if (self.hasMuzzle):
+                        self.doMainText("\n\nYour muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large eyes peering down the strong jaw, you seem to have a more equine appearance.")
+                    else:
+                        self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its width and strength of character, you look much more like a horse.")
+                    self.faceType = 21
+                    self.hasMuzzle = True
+            if (self.dominant == 3 and (self.faceType != 30 or self.faceType != 31)):
+                if (self.faceType != 30 and self.faceType != 31):
+                    if (self.hasMuzzle):
+                        self.doMainText("\n\nYour facial demeanor becomes more fierce as your eyes narrow slightly and your teeth become sharper, giving you a more carnivorous appearance.")
+                    else:
+                        self.doMainText("\n\nYour teeth grow sharper and your eyes focus more. The tip of your nose also moistens and becomes softer, giving you a more feral appearance.")
+                    self.faceType = 30
+                elif (self.faceType != 31 and self.wolfAffinity > 70):
+                    if (self.hasMuzzle):
+                        self.doMainText("\n\nYour muzzle narrows and your teeth grow long and sharp, your canines especially visible. With your narrow eyes peering down the vicious jaw, you seem to have a more lupin appearance.")
+                    else:
+                        self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and nose with it. The bridge of your nose flattens as it stretches from your brow, molding around your upper teeth and forming a distinct muzzle. The whole muzzle narrow and filled with sharp teeth, you look much more like a wolf.")
+                    self.faceType = 31
+                    self.hasMuzzle = True
+            if (self.dominant == 4 and (self.faceType != 40 or self.faceType != 41)):
+                if (self.faceType != 40 and self.faceType != 41):
+                    self.doMainText("\n\n")
+                    if (self.hasMuzzle):
+                        self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
+                    self.doMainText("Your face flattens and your nose shrinks a bit, the tip changing color slightly and becoming softer. Your eyes grow narrow as well, making you seem like a hunter.")
+                    self.faceType = 40
+                    self.hasMuzzle = False
+                elif (self.faceType != 41 and self.catAffinity > 60):
+                    self.doMainText("\n\nYour upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. They're a bit sensitive when you touch them and give you a rather cat-like appearance.")
+                    self.faceType = 41
+            if (self.dominant == 5 and (self.faceType != 50 or self.faceType != 51)):
+                if (self.faceType != 50 and self.faceType != 51):
+                    if (self.hasMuzzle):
+                        self.doMainText("\n\nYour facial demeanor softens and becomes more focused as your eyes grow round and slightly droopy, giving you a domesticated appearance.")
+                    else:
+                        self.doMainText("\n\nYour jaw seems to be a bit low and wide, your face looking longer than average. Your nose also seems noticeably broader.")
+                    self.faceType = 50
+                elif (self.faceType != 51 and self.cowAffinity > 70):
+                    if (self.hasMuzzle):
+                        self.doMainText("\n\nYour muzzle widens along with your teeth until your smile is full and your teeth gently rest flatly upon each other. With your large droopy eyes peering down the broad muzzle, you seem to have a more bovine appearance.")
+                    else:
+                        self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its broadness and rather sedate appearance, you look much more like a cow.")
+                    self.faceType = 51
+                    self.hasMuzzle = True
+            if (self.dominant == 6 and (self.faceType != 60 or self.faceType != 61)):
+                if (self.faceType != 60 and self.faceType != 61):
+                    if (self.hasMuzzle):
+                        self.doMainText("\n\nYour nostrils flatten into slits against your muzzle, giving you a more reptillian appearance.")
+                    else:
+                        self.doMainText("\n\nYour nose flattens until your nostrils are almost merely slits. Your lips also thin slightly, giving you a more reptillian appearance.")
+                    self.faceType = 60
+                elif (self.faceType != 61 and self.lizardAffinity > 70):
+                    if (self.hasMuzzle):
+                        self.doMainText("\n\nYour muzzle narrows and flattens out a bit more, making you look more like some kind of lizard.")
+                    else:
+                        self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and nostrils with it, forming a sort of muzzle. It narrows almost to a point as it stretches, making you look like some kind of lizard.")
+                    self.faceType = 61
+                    self.hasMuzzle = True
+            if (self.dominant == 7 and (self.faceType != 70 or self.faceType != 71)):
+                if (self.faceType != 70 and self.faceType != 71):
+                    self.doMainText("\n\n")
+                    if (self.hasMuzzle):
+                        self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
+                    self.doMainText("Your face flattens while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become round and soft, making you seem relatively meek.")
+                    self.faceType = 70
+                    self.hasMuzzle = False
+                elif (self.faceType != 71 and self.rabbitAffinity > 60):
+                    self.doMainText("\n\nYour upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a bunny.")
+                    self.faceType = 71
+            if (self.dominant == 8 and (self.faceType != 80 or self.faceType != 81)):
+                if (self.faceType != 80 and self.faceType != 81):
+                    self.doMainText("\n\n")
+                    if (self.hasMuzzle):
+                        self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
+                    self.doMainText("Your lower face protrudes outward while your nose shrinks a bit, the tip changing color slightly and becoming softer and twitchy. Your eyes become slightly smaller yet more open, making you seem more cautious of your surroundings.")
+                    self.faceType = 80
+                    self.hasMuzzle = False
+                elif (self.faceType != 81 and self.mouseAffinity > 60):
+                    self.doMainText("\n\nThin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a mouse.")
+                    self.faceType = 81
+            if (self.dominant == 9 and (self.faceType != 90 or self.faceType != 91)):
+                if (self.faceType != 90 and self.faceType != 91):
+                    self.doMainText("\n\n")
+                    if (self.hasMuzzle):
+                        self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
+                    self.doMainText("Your jaw becomes sharper while your nose grows larger from the rest of your face, almost have a hooked shape. Your eyes become wide and aware, making you seem more focused.")
+                    self.faceType = 90
+                    self.hasMuzzle = False
+                elif (self.faceType != 91 and self.birdAffinity > 70):
+                    self.doMainText("\n\nYour upper lip molds up against your large nose, becoming stiff and hard while the bottom lip protrudes and matches the hooked shape. Your nose and mouth morph into a sturdy powerful beak, making you look much like a bird.")
+                    self.faceType = 91
+            if (self.dominant == 10 and (self.faceType != 100 or self.faceType != 101 or self.faceType != 102)):
+                if (self.faceType != 100 and self.faceType != 101 and self.faceType != 102):
+                    self.doMainText("\n\n")
+                    if (self.hasMuzzle):
+                        self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
+                    self.doMainText("Your cheeks become fuller, your face growing fatter, giving you a bit of a pudgy look.")
+                    self.faceType = 100
+                    self.hasMuzzle = False
+                elif (self.faceType != 101 and self.faceType != 102 and self.pigAffinity > 60):
+                    self.doMainText("\n\nYour nose flattens and turns upward, your nostrils growing larger and pointing straight out, making you look much like a pig.")
+                    self.faceType = 101
+                elif (self.faceType != 102 and self.pigAffinity > 85):
+                    self.doMainText("\n\nTwo of your lower teeth suddenly begin to surge outward, growing rapidly into two large tusks that stick out from your lips and curl upward.")
+                    self.faceType = 102
+            if (self.dominant == 11 and (self.faceType != 110 or self.faceType != 111)):
+                if (self.faceType != 110 and self.faceType != 111):
+                    self.doMainText("\n\n")
+                    if (self.hasMuzzle):
+                        self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
+                    self.doMainText("Your face stretches out along your nose a bit, the tip growing smaller and more narrow and becoming softer. Your eyes become soft and gentle, but with the potential to become defensive and vicious at any moment.")
+                    self.faceType = 110
+                    self.hasMuzzle = False
+                elif (self.faceType != 111 and self.skunkAffinity > 60):
+                    self.doMainText("\n\nLong stiff thin whiskers sprout from the front of your cheeks. They're a bit sensitive when you touch them and give you a rather skunk-like appearance.")
+                    self.faceType = 111
+            if (self.dominant == 12 and (self.faceType != 120 or self.faceType != 121)):
+                if (self.faceType != 120 and self.faceType != 121):
+                    self.doMainText("\n\n")
+                    if (self.hasMuzzle):
+                        self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
+                    self.doMainText("Your face flattens and your nose shrinks a bit, a chitinous 'bandage' forming over the bridge of your nose to protect it. Your eyes grow much larger compared to the rest of your face, almost alien but still able to show plenty of emotion.")
+                    self.faceType = 120
+                    self.hasMuzzle = False
+                elif (self.faceType != 121 and self.bugAffinity > 60):
+                    self.doMainText("\n\nYour lips grow large and plush, looking like they could suck nectar out of even the largest flowers. Your eyes also turn completely black, and with their large size they give you a rather bug-like appearance.")
+                    self.faceType = 121
+
+        # Tail change
+        if (not self.lockTail):
+            tempTailArray = Array(self.horseAffinity, self.wolfAffinity, self.catAffinity, self.cowAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.pigAffinity, self.skunkAffinity, self.bugAffinity, self.humanTaurAffinity)
+            tempTailArray.sort(16)
+            maxTail = tempTailArray[-1]
+            secondTail = tempTailArray[-2]
+            maxNonTail = self.humanAffinity
+            if (self.tail < 1):
+                if (self.dominant == 2 and self.horseAffinity > maxNonTail + 15):
+                    self.tail = 2
+                if (self.dominant == 3 and self.wolfAffinity > maxNonTail + 15):
+                    self.tail = 3
+                if (self.dominant == 4 and self.catAffinity > maxNonTail + 15):
+                    self.tail = 4
+                if (self.dominant == 5 and self.cowAffinity > maxNonTail + 15):
+                    self.tail = 5
+                if (self.dominant == 6 and self.lizardAffinity > maxNonTail + 15):
+                    self.tail = 6
+                if (self.dominant == 7 and self.rabbitAffinity > maxNonTail + 15):
+                    self.tail = 7
+                if (self.dominant == 8 and self.mouseAffinity > maxNonTail + 15):
+                    self.tail = 8
+                if (self.dominant == 9 and self.birdAffinity > maxNonTail + 15):
+                    self.tail = 9
+                if (self.dominant == 10 and self.pigAffinity > maxNonTail + 15):
+                    self.tail = 10
+                if (self.dominant == 11 and self.skunkAffinity > maxNonTail + 15):
+                    self.tail = 11
+                if (self.dominant == 12 and self.bugAffinity > maxNonTail + 15):
+                    self.tail = 12
+                if (self.tail > 1):
+                    self.doMainText(f"\n\nYou feel a tickle upon your backside as your {self.clothesBottom()} feels tight. With a groan, the pressure builds behind you, until a tearing sound fills the air and the pain is gone. Checking your backside, you see a new {self.tailDesc()} tail bobbing above your {self.buttDesc()} bum. Next time you go to town, you'll be visiting a tailor to fix your clothes to account for your new appendage...")
+            if (self.dominant == 1 and self.humanAffinity > maxTail + 10 and self.tail > 1):
+                self.tail = 0
+                self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, disappearing altogether. You no longer have a tail.")
+            if (self.dominant == 2 and self.horseAffinity > secondTail + 10 and self.tail > 1 and self.tail != 2):
+                self.tail = 2
+                self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it bursts into hundreds of long hairs. Any control you had over it before is gone, save for the muscles at the base that allow you to swish it with your mood and swat against your thighs. Just like a horse's.")
+            if (self.dominant == 3 and self.wolfAffinity > secondTail + 10 and self.tail > 1 and self.tail != 3):
+                self.tail = 3
+                self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it widens with long hairs around a skeletal base. It wags with your mood and reflexes, though you don't really have control over it otherwise, and it's oh so fluffy. Just like a wolf's.")
+            if (self.dominant == 4 and self.catAffinity > secondTail + 10 and self.tail > 1 and self.tail != 4):
+                self.tail = 4
+                self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base. It wags with your mood and reflexes and likes to curl around your touch with limited control, and it's oh so soft. Just like a cat's.")
+            if (self.dominant == 5 and self.cowAffinity > secondTail + 10 and self.tail > 1 and self.tail != 5):
+                self.tail = 5
+                self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base and a tuft of long hair bursts at the tip. It sways lazily across your {self.buttDesc()} backside and you can swat yourself with the tip like a soft whip. Just like a cow's.")
+            if (self.dominant == 6 and self.lizardAffinity > secondTail + 10 and self.tail > 1 and self.tail != 6):
+                self.tail = 6
+                self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it thickens at the base and narrows gradually to a point. It's quite agile, able to move at your whim, the tip even being slightly prehensile. Much like a lizard's.")
+            if (self.dominant == 7 and self.rabbitAffinity > secondTail + 10 and self.tail > 1 and self.tail != 7):
+                self.tail = 7
+                self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as shrinks into your back, exploding into a tuft of soft puffy hair before it disappears. It wiggles above your {self.buttDesc()} bum cutely and quite fluffy. Much like a rabbit's.")
+            if (self.dominant == 8 and self.mouseAffinity > secondTail + 10 and self.tail > 1 and self.tail != 8):
+                self.tail = 8
+                self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with fine hairs around a skeletal base. Thin and lithe, the fur doesn't really hide the pink skin underneath. It whips above your {self.buttDesc()} bum and you can curl it around with limited control. Just like a mouse's.")
+            if (self.dominant == 9 and self.birdAffinity > secondTail + 10 and self.tail > 1 and self.tail != 9):
+                self.tail = 9
+                self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks to your back and burst into a plume of feathers. Long and somewhat controllable, you can adjust their direction for aerodynamic turning. Just like a bird's.")
+            if (self.dominant == 10 and self.pigAffinity > secondTail + 10 and self.tail > 1 and self.tail != 10):
+                self.tail = 10
+                self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, shriveling in girth and coiling around. It twitches a bit when you try to wiggle it and you can try to straighten it out but it pops right back into its curly state. Just like a pig's.")
+            if (self.dominant == 11 and self.skunkAffinity > secondTail + 10 and self.tail > 1 and self.tail != 11):
+                self.tail = 11
+                self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it poofs into a large, long, wide fluffy tail that curls up behind your back with the pointed tip gently sagging away from you. Two parrallel stripes run closely together from the tip of your tail, widening with the tail, and down to the base")
+                if (self.skinType == 2 and self.skunkAffinity >= 40):
+                    self.doMainText(" where it meets up with the stripes of your fur")
+                self.doMainText(". Just like a skunk's.")
+            if (self.dominant == 12 and self.bugAffinity > secondTail + 10 and self.tail > 1 and self.tail != 12):
+                self.tail = 12
+                self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it bloats up, growing nearly as thick as your waist and nearly as stout. It's so big and weighty with flesh that you can hardly move it, merely resting against your {self.buttDesc()} butt. And at the tip where it's rather blunt, you can feel another hole. It's not terribly large, but it looks large enough to fit a small-ish egg, your finger able to easily poke up inside to feel the warm moist interior. If you were to venture a guess, it seems more like an ovipositor than an actual tail, though such a large change to your anatomy would be impossible, so what could it be for?")
+            if (self.weapon == 127 and self.tail != 4 and self.tail != 5 and self.tail != 6 and self.tail != 8):
+                self.weapon = 10
+
+        # Wings change
+        maxNonWings = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.cowAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.pigAffinity)
+        maxWings = Math.max(self.birdAffinity)
+        if (self.wings < 1 and maxWings > maxNonWings + 60):
+            if (self.dominant == 9 and self.birdAffinity > maxNonWings + 60):
+                self.doMainText(f"\n\nA sharp pain engulfs your back, centered around your shoulder blades. You keel forward, falling to your hands and {self.legDesc(6)} as you try to brace yourself against the sharp ache. Then, you cry out as feathers tear through your {self.clothesTop()}, stretching out across new appendages. As soon as they grow, the pain stops and you gather yourself.\n\nStanding, you flap your new feathery wings. While not strong enough to carry you long distances, they'll definitely help you flee from unwanted threats.")
+                self.wings = 9
+            self.runMod += 20
+        if (self.wings > 0 and maxNonWings > maxWings + 60):
+            self.doMainText(f"\n\nYour wings feel strange and rapidly begin to shrivel. Shrinking down, they disappear into your shoulder blades, the {self.skinDesc()} left smooth as though there were never anything there. You have lost your wings, it seems.")
+            self.runMod -= 20
+            self.wings = 0
+        if (self.wings > 0 and self.dominant != self.wings):
+            ...
+
+        # Ears change
+        if (not self.lockEars):
+            if (self.dominant == 1 and self.humanAffinity > second + 15 and self.ears != 1):
+                self.ears = 1
+                self.doMainText("\n\nYour ears twitch as they become rounded and hug the sides of you head, looking more like a human's.")
+            if (self.dominant == 2 and self.horseAffinity > second + 15 and self.ears != 2):
+                self.ears = 2
+                self.doMainText("\n\nYour ears twitch as they become rounded and pointed at the tip, flicking atop your head, looking more like a horse's.")
+            if (self.dominant == 3 and self.wolfAffinity > second + 15 and self.ears != 3):
+                self.ears = 3
+                self.doMainText("\n\nYour ears twitch as they become triangular, standing pert atop your head, looking more like a wolf's.")
+            if (self.dominant == 4 and self.catAffinity > second + 15 and self.ears != 4):
+                self.ears = 4
+                self.doMainText("\n\nYour ears twitch as they become triangular, standing pert atop your head, looking more like a cat's.")
+            if (self.dominant == 5 and self.cowAffinity > second + 15 and self.ears != 5):
+                self.ears = 5
+                self.doMainText("\n\nYour ears twitch as they become rounded and large, standing several inches out from the sides of your head, looking more like a cow's.")
+            if (self.dominant == 6 and self.lizardAffinity > second + 15 and self.ears != 6):
+                self.ears = 6
+                self.doMainText("\n\nYour ears feel quite strange, shrinking into the sides of your head before they disappear, becoming sleek holes.")
+            if (self.dominant == 7 and self.rabbitAffinity > second + 15 and self.ears != 7):
+                self.ears = 7
+                self.doMainText("\n\nYour ears twitch as they become quite long, standing several inches high atop your head, looking more like a rabbit's.")
+            if (self.dominant == 8 and self.mouseAffinity > second + 15 and self.ears != 8):
+                self.ears = 8
+                self.doMainText("\n\nYour ears twitch as they grow larger and larger, rounding out into thin discs standing out from the sides of your head, looking more like a mouse's.")
+            if (self.dominant == 9 and self.birdAffinity > second + 15 and self.ears != 9):
+                self.ears = 9
+                self.doMainText("\n\nYour ears feel quite strange, shrinking into the sides of your head before disappearing behind a small patch of feathers, looking more like a bird's.")
+            if (self.dominant == 10 and self.pigAffinity > second + 15 and self.ears != 10):
+                self.ears = 10
+                self.doMainText("\n\nYour ears feel quite strange, growing long and triangular out the sides of your head, folding over and dropping as they get too long, looking more like a pig's.")
+            if (self.dominant == 11 and self.skunkAffinity > second + 15 and self.ears != 11):
+                self.ears = 11
+                self.doMainText("\n\nYour ears twitch as they become rounded and small, standing pert atop your head, looking more like a skunk's.")
+            if (self.dominant == 12 and self.bugAffinity > second + 15 and self.ears != 12):
+                self.ears = 12
+                self.doMainText("\n\nYour ears twitch as they grow long and narrow to a point on the sides of your head, becoming a vibrant color while the lobes become wavy with a delicate design, looking almost like butterfly wings.")
+
+        # Breasts change
+        if (not self.lockBreasts):
+            twoBoob = Math.max(self.twoBoobAffinity, self.humanAffinity, self.horseAffinity, self.cowAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.birdAffinity)
+            sixBoob = Math.max(self.sixBoobAffinity, self.catAffinity, self.wolfAffinity, self.skunkAffinity)
+            fourBoob = Math.max(self.fourBoobAffinity)
+            eightBoob = Math.max(self.eightBoobAffinity, self.pigAffinity)
+            tenBoob = Math.max(self.tenBoobAffinity, self.bugAffinity)
+            nonTwoBoob = Math.max(sixBoob, fourBoob, eightBoob, tenBoob)
+            nonSixBoob = Math.max(twoBoob, fourBoob, eightBoob, tenBoob)
+            nonFourBoob = Math.max(twoBoob, sixBoob, eightBoob, tenBoob)
+            nonEightBoob = Math.max(twoBoob, sixBoob, fourBoob, tenBoob)
+            nonTenBoob = Math.max(twoBoob, fourBoob, eightBoob, sixBoob)
+            # TODO: if/else-ify
+            if (twoBoob > nonTwoBoob + 20 and self.boobTotal != 2):
+                if (self.boobTotal == 4):
+                    self.doMainText("\n\nYour lower chest tickles")
+                    if (self.breastSize > 4):
+                        self.doMainText(", both growing much lighter")
+                    self.doMainText(f". Checking, you catch your second set of nipples disappear flat into your {self.skinDesc()}, leaving you with only the highest pair on your chest.")
+                if (self.boobTotal == 6):
+                    self.doMainText("\n\nYour lower chest and belly tickle")
+                    if (self.breastSize > 4):
+                        self.doMainText(", both growing much lighter")
+                    self.doMainText(f". Checking, you catch your extra sets of nipples disappear flat into your {self.skinDesc()}, leaving you with only the primary pair on your chest.")
+                if (self.boobTotal == 8):
+                    self.doMainText("\n\nYour lower chest and belly tickle")
+                    if (self.breastSize > 4):
+                        self.doMainText(", both growing much lighter")
+                    self.doMainText(f". Checking, you catch your extra sets of nipples disappear flat into your {self.skinDesc()}, leaving you with only the primary pair on your chest, which seems to have grown larger.")
+                if (self.boobTotal == 10):
+                    self.doMainText("\n\nYour lower chest and belly tickle")
+                    if (self.breastSize > 4):
+                        self.doMainText(", both growing much lighter")
+                    self.doMainText(f". Checking, you catch your extra sets of nipples disappear flat into your {self.skinDesc()}, leaving you with only the primary pair on your chest, which seems to have grown larger.")
+                self.boobTotal = 2
+            if (fourBoob > nonFourBoob + 20 and self.boobTotal != 4):
+                if (self.boobTotal == 2):
+                    self.doMainText(f"\n\nYour lower chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
+                    if (self.breastSize > 4):
+                        self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                if (self.boobTotal == 6):
+                    self.doMainText("\n\nYour belly tickles")
+                    if (self.breastSize > 4):
+                        self.doMainText(", growing much lighter")
+                    self.doMainText(f". Checking, you catch your bottom set of nipples disappear flat into your {self.skinDesc()}, while your middle pair swells to match the first, leaving you with two sets of equally sized breasts, the top resting upon the bottom.")
+                if (self.boobTotal == 8):
+                    self.doMainText("\n\nYour belly tickles")
+                    if (self.breastSize > 4):
+                        self.doMainText(", growing much lighter")
+                    self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
+                if (self.boobTotal == 10):
+                    self.doMainText("\n\nYour belly tickles")
+                    if (self.breastSize > 4):
+                        self.doMainText(", growing much lighter")
+                    self.doMainText(f". Checking, you catch your three lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
+                self.boobTotal = 4
+            if (sixBoob > nonSixBoob + 20 and self.boobTotal != 6):
+                if (self.boobTotal == 2):
+                    self.doMainText(f"\n\nYour lower chest and belly tickle. Four new nipples form amongst your {self.skinDesc()}, a fresh pair below your original two and another pair below that, leaving you with three rows of two breasts from your chest down to your upper belly.")
+                    if (self.breastSize > 4):
+                        self.doMainText(f" The nipples protrude as fleshy mounds form beneath them. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                if (self.boobTotal == 4):
+                    self.doMainText(f"\n\nYour belly tickles. Two new nipples form amongst your {self.skinDesc()}, right below your second pair on your upper belly, leaving you with three rows of two breasts.")
+                    if (self.breastSize > 4):
+                        self.doMainText(f" The nipples protrude as fleshy mounds form beneath them, while your second pair seems to shrink in turn. Breast-flesh wobbles, each row a fraction in size of the one above it. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                if (self.boobTotal == 8):
+                    self.doMainText("\n\nYour lower belly tickles")
+                    if (self.breastSize > 4):
+                        self.doMainText(", growing much lighter")
+                    self.doMainText(f". Checking, you catch your lowest set of nipples disappear flat into your {self.skinDesc()}, while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.")
+                if (self.boobTotal == 10):
+                    self.doMainText("\n\nYour lower belly and the area above your crotch tickle")
+                    if (self.breastSize > 4):
+                        self.doMainText(", growing much lighter")
+                    self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the next lowest pair shrinks and the top pair swells, giving you a slope of three rows of breasts.")
+                self.boobTotal = 6
+            if (eightBoob > nonEightBoob + 20 and self.boobTotal != 8):
+                if (self.boobTotal == 2):
+                    self.doMainText(f"\n\nYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals. The process repeats twice more, for a total of 8 breasts from your chest to your lower belly! And they're all slightly smaller than your original pair.")
+                    if (self.breastSize > 4):
+                        self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                if (self.boobTotal == 4):
+                    self.doMainText(f"\n\nYour chest and belly tickle. Four new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.")
+                    if (self.breastSize > 4):
+                        self.doMainText(f" Your original breasts shrink a little to match the ingrowing ones, until they're all the same size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                if (self.boobTotal == 6):
+                    self.doMainText(f"\n\nYour belly tickles. Two new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with four rows of two breasts, from your chest to your lower belly.")
+                    if (self.breastSize > 4):
+                        self.doMainText(f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                if (self.boobTotal == 10):
+                    self.doMainText("\n\nThe area above your crotch tickles")
+                    if (self.breastSize > 4):
+                        self.doMainText(", growing much lighter")
+                    self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the rest grow slightly larger.")
+                self.boobTotal = 8
+            if (tenBoob > nonTenBoob + 20 and self.boobTotal != 10):
+                if (self.boobTotal == 2):
+                    self.doMainText(f"\n\nYour lower chest and belly, close beneath your nipples, begin to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals. The process repeats three more times, for a total of 10 breasts from your chest to your just above your crotch! And they're all slightly smaller than your original pair.")
+                    if (self.breastSize > 4):
+                        self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                if (self.boobTotal == 4):
+                    self.doMainText(f"\n\nYour chest and belly tickle. Six new nipples form amongst your {self.skinDesc()}, right below your second pair above your belly, leaving you with five rows of two breasts, from your chest to just above your crotch.")
+                    if (self.breastSize > 4):
+                        self.doMainText(f" Your original breasts shrink a little to match the ingrowing ones, until they're all the same size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                if (self.boobTotal == 6):
+                    self.doMainText(f"\n\nYour lower belly  and the area above your crotch tickle. Four new nipples form amongst your {self.skinDesc()}, right below your third pair, leaving you with five rows of two breasts, from your chest down to your crotch.")
+                    if (self.breastSize > 4):
+                        self.doMainText(f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                if (self.boobTotal == 8):
+                    self.doMainText(f"\n\nThe area above your crotch tickles. Two new nipples form amongst your {self.skinDesc()}, right below your fourth pair below your belly, leaving you with five rows of two breasts, from your chest to your crotch.")
+                    if (self.breastSize > 4):
+                        self.doMainText(f" The lower pairs continue to grow while your top pair shrinks a little, all equalizing in size. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                self.boobTotal = 10
+
+        # Legs change
+        if (not self.lockLegs):
+            if self.correctBeastRaceFeet:
+                bipedal = Math.max(self.humanAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.birdAffinity, self.pigAffinity)
+                bipedalDigiPaw = Math.max(self.wolfAffinity, self.catAffinity, self.skunkAffinity)
+                bipedalHooves = Math.max(self.horseAffinity, self.cowAffinity)
+                otherLegs = Array(self.cowTaurAffinity, self.humanTaurAffinity)
+            else:
+                bipedal = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.cowAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.birdAffinity, self.pigAffinity)
+                bipedalDigiPaw = Math.max(self.skunkAffinity)
+                bipedalHooves = -1000
+                otherLegs = Array(self.cowTaurAffinity, self.humanTaurAffinity)
+            legArray = Array(bipedal, bipedalDigiPaw, bipedalHooves, 0)
+            legArray = legArray.concat(otherLegs)
+            legArray.sort(16)
+            secondLegs = legArray[-2]
+            if (bipedalHooves > secondLegs + 50 and self.legType != 2):
+                self.legChange(2)
+            if (bipedalDigiPaw > secondLegs + 50 and self.legType != 1):
+                self.legChange(1)
+            if (bipedal > secondLegs + 50 and self.legType != 0):
+                self.legChange(0)
+            if (self.cowTaurAffinity > secondLegs + 50 and self.legType != 1001):
+                self.legChange(1001)
+            if (self.humanTaurAffinity > secondLegs + 50 and self.legType != 1002):
+                self.legChange(1002)
+
+        # Nipples change
+        if (not self.lockNipples):
+            nip0 = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.birdAffinity, self.pigAffinity)
+            nip1 = Math.max(self.cowAffinity)
+            nip2 = Math.max(self.bugAffinity)
+            nonNip0 = Math.max(nip1, nip2)
+            nonNip1 = Math.max(nip0, nip2)
+            nonNip2 = Math.max(nip0, nip1)
+            if (nip0 > nonNip0 + 60 and self.nipType != 0):
+                if (self.nipType == 1):
+                    self.doMainText(f"\n\nMany of your nipples begin to tickle. They begin to shrink beneath your {self.clothesTop()}, receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each.")
+                if (self.nipType == 2):
+                    self.doMainText("\n\nYour nipples pop out from your breast, no longer sunken or hidden within.")
+                self.nipType = 0
+            if (nip1 > nonNip1 + 60 and self.nipType != 1):
+                if (self.nipType == 2):
+                    self.doMainText("\n\nYour nipples pop out from your breast, no longer sunken or hidden within.")
+                if (self.nipType == 0 or self.nipType == 2):
+                    self.doMainText(f"\n\nSpots begin to tingle around your nipples. Your hand roves under your {self.clothesTop()} to inspect the areas, noticeably more sensitive than before. The patches grow softer and puff up beneath your fingertips, feeling rather... familiar? Pulling your {self.clothesTop()} {self.pullUD(1)}, you can see extra nipples form around the ones you already have, complete with darkened areoles and matching size.\n\nYour breasts now each have four nipples equidistant from each other, just as functional as the originals, and just as sensitive, each looking almost like a cow's udder...")
+                self.nipType = 1
+            if (nip2 > nonNip2 + 60 and self.nipType != 2):
+                if (self.nipType == 1):
+                    self.doMainText(f"\n\nMany of your nipples begin to tickle. They begin to shrink beneath your {self.clothesTop()}, receding back into your breasts. As you lift the clothing away to see what's going on, the extra three nipples on each of your breasts fade away, leaving you with only one each.")
+                if (self.nipType == 0 or self.nipType == 1):
+                    self.doMainText("\n\nYour nipples sink into your breasts, becoming inverted slits within your areola, only coming out when aroused.")
+                self.nipType = 2
+
+        # Egg change
+        if (self.eggLaying > 0):
+            egg0 = Math.max(self.lizardAffinity, self.birdAffinity)
+            egg1 = Math.max(self.bugAffinity)
+            nonEgg0 = Math.max(egg1)
+            nonEgg1 = Math.max(egg0)
+            if (egg0 > nonEgg0 + 20 and self.eggType != 0):
+                if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
+                    self.doMainText("\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.")
+                if (self.eggType == 1):
+                    self.eggMaxTime += 22
+                self.eggType = 0
+            if (egg1 > nonEgg1 + 20 and self.eggType != 1):
+                if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
+                    self.doMainText("\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.")
+                if (self.eggType == 0):
+                    self.eggMaxTime -= 22
+                self.eggType = 1
+
+        # Cock change
+        if (not self.lockCock):
+            if (self.dominant == 1 and self.humanAffinity > second + 25 and self.human > 0 and self.cockTotal > 0 and self.humanCocks < self.cockTotal):
+                self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to see {self.oneYour(1)} cock{self.plural(1)} hanging out from your body, limp and flaccid. It's smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human's.")
+                self.humanCocks += 1
+                self.cockLoss()
+            if (self.dominant == 2 and self.horseAffinity > second + 25 and self.horse > 0 and self.cockTotal > 0 and self.horseCocks < self.cockTotal):
+                self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thick sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Relaxing your muscles, the cock slowly droops out over your {self.clothesBottom()}. It's long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse's.")
+                self.horseCocks += 1
+                self.cockLoss()
+            if (self.dominant == 3 and self.wolfAffinity > second + 25 and self.wolf > 0 and self.cockTotal > 0 and self.wolfCocks < self.cockTotal):
+                self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, red and hard, no matter how aroused you are. It's veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf's.")
+                self.wolfCocks += 1
+                self.cockLoss()
+            if (self.dominant == 4 and self.catAffinity > second + 25 and self.cat > 0 and self.cockTotal > 0 and self.catCocks < self.cockTotal):
+                self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, pink and soft. It's smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat's.")
+                self.catCocks += 1
+                self.cockLoss()
+            if (self.dominant == 6 and self.lizardAffinity > second + 25 and self.lizard > 0 and self.cockTotal > 0 and self.lizardCocks < self.cockTotal):
+                self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as your cock{self.plural(1)} sink{self.plural(3)} into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, looking quite purple. It's bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard's?")
+                self.lizardCocks += 1
+                self.cockLoss()
+            if (self.dominant == 7 and self.rabbitAffinity > second + 25 and self.rabbit > 0 and self.cockTotal > 0 and self.rabbitCocks < self.cockTotal):
+                self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, red and pointy. It's smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit's.")
+                self.rabbitCocks += 1
+                self.cockLoss()
+            if (self.dominant == 12 and self.bugAffinity > second + 25 and self.bug > 0 and self.cockTotal > 0 and self.bugCocks < self.cockTotal):
+                self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to see {self.oneYour(1)} cock{self.plural(1)} hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You're not really sure what it is, but some bugs do have rather... 'wild' penises that could come close.")
+                self.bugCocks += 1
+                self.cockLoss()
+
+        # Reset delta affinities
+        self.human = 0
+        self.horse = 0
+        self.wolf = 0
+        self.cat = 0
+        self.cow = 0
+        self.lizard = 0
+        self.rabbit = 0
+        self.mouse = 0
+        self.bird = 0
+        self.pig = 0
+        self.skunk = 0
+        self.bug = 0
+
+        # Display text
+        if (self.currentText == "Something feels odd..."):
+            self.outputMainText("", True)
+            self.doProcess()
+        else:
+            self.displayMainText()
+            self.doEnd()
 
     def cockChange(self, sizeChange: int, totalChange: int):
         nonCock = False  # Variable storing whether current race doesn't have its own cock type
@@ -26211,96 +26254,105 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.showBalls = True
 
     def vagChange(self, sizeChange: int, totalChange: int):
-      # HERE
-      if (self.cockSnakePreg > 0):
-         birthCount = 0
-         if (sizeChange < 0 or totalChange < 0):
-            self.doMainText(f"\n\nWith the changing size of your passageway, you feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your {self.clothesBottom()} becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your {self.vulvaDesc()} lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your {self.legDesc(1)}. You gasp and regain yourself, the snake slithering away. It must have been frightened by the shrinking of its home and fleed...")
-            self.cockSnakePreg = 0
-            for i in range(0, self.pregArray.length, 5):
-               if (self.pregArray[i + 1] == 503):
-                  self.pregArray[i] = False
-                  self.pregArray[i + 3] = 0
-                  if (birthCount == 2):
-                     self.doMainText(f"\n\nAnd it's not the first; you shudder again as another snake in another womb escapes out from your {self.clothesBottom()} and down your {self.legDesc(1)}, fleeing like the first.")
-                  if (birthCount == 3):
-                     self.doMainText("\n\nFollowed by another...")
-                  if (birthCount > 3):
-                     self.doMainText("\n\nAnd another...")
-                  birthCount += 1
-                  self.doLust(-Math.floor(self.sen / 4), 2, 2)
-            self.cockSnakePreg = 0
-      if ((self.vagSize + sizeChange <= 0 or self.vagTotal + totalChange < 1) and self.vagSize > 0 and self.vagTotal > 0):  # Loose all vag
-         self.doMainText(f"\n\nSudden intense cramping makes you double over. A slight moistness in your {self.clothesBottom()} causes your hand to inspect the situation. It reaches your once {self.vulvaDesc()} vulva just in time to feel it shrink to nothing, sealing over with {self.skinDesc()}. It seems you have lost your vagina{self.plural(2)}, ")
-         if (self.cockTotal > 0):
-            self.doMainText(f"leaving only your cock{self.plural(1)} remaining. You are now considered only male.")
-            self.gender = 1
-         elif (self.cockTotal < 1):
-            self.doMainText("leaving you with no genetalia, completely androgynous where it matters. Things might be difficult...")
-            self.gender = 0
-         self.vagBellyChange(sizeChange, totalChange)
-         self.stats(0, 0, 2 * self.vagTotal, 0)
-         self.vagSize = 0
-         self.vagTotal = 0
-         self.vulvaSize = 0
-         self.clitSize = 0
-         i = 0
-         while (i < self.pregArray.length):
-            if (self.pregArray[i]):
-               i += 5
+        if (self.cockSnakePreg > 0):
+            birthCount = 0
+            if (sizeChange < 0 or totalChange < 0):
+                self.doMainText(f"\n\nWith the changing size of your passageway, you feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your {self.clothesBottom()} becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your {self.vulvaDesc()} lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your {self.legDesc(1)}. You gasp and regain yourself, the snake slithering away. It must have been frightened by the shrinking of its home and fleed...")
+                self.cockSnakePreg = 0
+                for i in range(0, self.pregArray.length, 5):
+                    if (self.pregArray[i + 1] == 503):
+                        self.pregArray[i] = False
+                        self.pregArray[i + 3] = 0
+                        if (birthCount == 2):
+                            self.doMainText(f"\n\nAnd it's not the first; you shudder again as another snake in another womb escapes out from your {self.clothesBottom()} and down your {self.legDesc(1)}, fleeing like the first.")
+                        if (birthCount == 3):
+                            self.doMainText("\n\nFollowed by another...")
+                        if (birthCount > 3):
+                            self.doMainText("\n\nAnd another...")
+                        birthCount += 1
+                        self.doLust(-Math.floor(self.sen / 4), 2, 2)
+                self.cockSnakePreg = 0
+
+        # Loose all vag
+        if ((self.vagSize + sizeChange <= 0 or self.vagTotal + totalChange < 1) and self.vagSize > 0 and self.vagTotal > 0):
+            self.doMainText(f"\n\nSudden intense cramping makes you double over. A slight moistness in your {self.clothesBottom()} causes your hand to inspect the situation. It reaches your once {self.vulvaDesc()} vulva just in time to feel it shrink to nothing, sealing over with {self.skinDesc()}. It seems you have lost your vagina{self.plural(2)}, ")
+            if (self.cockTotal > 0):
+                self.doMainText(f"leaving only your cock{self.plural(1)} remaining. You are now considered only male.")
+                self.gender = 1
+            elif (self.cockTotal < 1):
+                self.doMainText("leaving you with no genetalia, completely androgynous where it matters. Things might be difficult...")
+                self.gender = 0
+            self.vagBellyChange(sizeChange, totalChange)
+            self.stats(0, 0, 2 * self.vagTotal, 0)
+            self.vagSize = 0
+            self.vagTotal = 0
+            self.vulvaSize = 0
+            self.clitSize = 0
+            i = 0
+            while (i < self.pregArray.length):
+                if (self.pregArray[i]):
+                    i += 5
+                else:
+                    self.pregArray.splice(i, 5)
+
+        # Gain vag when have none
+        elif (self.vagTotal + totalChange > 0 and self.vagTotal < 1):
+            self.doMainText(f"\n\nYour tummy feels weird as your thighs rub against each other. Your {self.clothesBottom()} feels wet in the crotch, an oddly new sensation. Reaching in, your hand slips across sensitive and supple flesh. It splits beneath your touch, letting your finger slip in between the moist folds. You let out a moan as your palm slips across the sensitive bump at the front of the crevice, your finger sinking into a hole. The tip brushes against an even more sensitive ring that sinks further into your body - a fresh womb.")
+            if (totalChange > 1):
+                self.doMainText(f" Yet, that's simply the first. More moistness slimes your hand as {totalChange} more gashes fill your {self.vulvaDesc()} groin, all as sensitive and large as the first. A bevy of pussies for your fingers to slip into, your hand rolling over all the labia and making you gasp with all the separate erotic thrills.")
+            self.vagSize = 1
+            self.vulvaSize = 1
+            self.clitSize = 1
+            self.stats(0, 0, 2 * totalChange, 0)
+            self.vagBellyChange(sizeChange, totalChange)
+            self.vagTotal += totalChange
+            self.vagSize += sizeChange
+            if (self.cockTotal > 0):
+                self.doMainText(f"\n\nYou lay your {self.cockDesc()} cock back down to cover your new slit, as you're now considered to be both genders... A herm.")
+                self.gender = 3
             else:
-               self.pregArray.splice(i, 5)
-      elif (self.vagTotal + totalChange > 0 and self.vagTotal < 1):  # Gain vag when have none
-         self.doMainText(f"\n\nYour tummy feels weird as your thighs rub against each other. Your {self.clothesBottom()} feels wet in the crotch, an oddly new sensation. Reaching in, your hand slips across sensitive and supple flesh. It splits beneath your touch, letting your finger slip in between the moist folds. You let out a moan as your palm slips across the sensitive bump at the front of the crevice, your finger sinking into a hole. The tip brushes against an even more sensitive ring that sinks further into your body - a fresh womb.")
-         if (totalChange > 1):
-            self.doMainText(f" Yet, that's simply the first. More moistness slimes your hand as {totalChange} more gashes fill your {self.vulvaDesc()} groin, all as sensitive and large as the first. A bevy of pussies for your fingers to slip into, your hand rolling over all the labia and making you gasp with all the separate erotic thrills.")
-         self.vagSize = 1
-         self.vulvaSize = 1
-         self.clitSize = 1
-         self.stats(0, 0, 2 * totalChange, 0)
-         self.vagBellyChange(sizeChange, totalChange)
-         self.vagTotal += totalChange
-         self.vagSize += sizeChange
-         if (self.cockTotal > 0):
-            self.doMainText(f"\n\nYou lay your {self.cockDesc()} cock back down to cover your new slit, as you're now considered to be both genders... A herm.")
-            self.gender = 3
-         else:
-            self.doMainText("\n\nYou have now graduated from androgynous to female, congratulations!")
-            self.gender = 2
-         for i in range(totalChange):
-            if (self.pregArray.length / 5 >= self.vagTotal):
-               break
-            self.pregArray.push(False, 0, 0, 0, 0)
-      elif (totalChange > 0 and self.vagTotal > 0):  # Gain vag
-         self.doMainText(f"\n\nYour {self.clothesBottom()} feels wet in the crotch, an oddly new sensation. Reaching in, your hand slips across another slit of sensitive and supple flesh. It splits beneath your touch, letting your finger slip in between the moist folds. You let out a moan as your palm slips across another bump at the front of the crevice, your finger sinking into a hole. A brand new vagina to go with the rest.")
-         if (totalChange > 1):
-            self.doMainText(f" Yet, that's simply the first. More moistness slimes your hand as {totalChange} more gashes fill your {self.vulvaDesc()} groin, all as sensitive and large as the first. A bevy of pussies for your fingers to slip into, your hand rolling over all the labia and making you gasp with all the separate erotic thrills.")
-         self.vagBellyChange(sizeChange, totalChange)
-         self.stats(0, 0, 2 * totalChange, 0)
-         self.vagTotal += totalChange
-         self.vagSize += sizeChange
-         for i in range(totalChange):
-            if (self.pregArray.length / 5 >= self.vagTotal):
-               break
-            self.pregArray.push(False, 0, 0, 0, 0)
-      elif (totalChange < 0 and self.vagTotal + totalChange > 0):  # Loose vag
-         self.doMainText(f"\n\nYou notice an odd sensation of numbness within your groin. Slipping a hand into your {self.clothesBottom()}, you notice you're missing {-totalChange} of your vaginas.")
-         self.vagBellyChange(sizeChange, totalChange)
-         self.stats(0, 0, 2 * totalChange, 0)
-         self.vagTotal += totalChange
-         self.vagSize += sizeChange
-         while (totalChange < 0):
-            if (self.pregCheck(1)):
-               for i in range(0, self.pregArray.length, 5):
-                  if (not self.pregArray[i]):
-                     self.pregArray.splice(i, 5)
-                     totalChange += 1
-                     break
-            else:
-               totalChange = 0
-      elif (self.vagTotal > 0):  # Size change
-         self.vagBellyChange(sizeChange, totalChange)
-         self.vagSize += sizeChange
+                self.doMainText("\n\nYou have now graduated from androgynous to female, congratulations!")
+                self.gender = 2
+            for i in range(totalChange):
+                if (self.pregArray.length / 5 >= self.vagTotal):
+                    break
+                self.pregArray.push(False, 0, 0, 0, 0)
+
+        # Gain vag
+        elif (totalChange > 0 and self.vagTotal > 0):
+            self.doMainText(f"\n\nYour {self.clothesBottom()} feels wet in the crotch, an oddly new sensation. Reaching in, your hand slips across another slit of sensitive and supple flesh. It splits beneath your touch, letting your finger slip in between the moist folds. You let out a moan as your palm slips across another bump at the front of the crevice, your finger sinking into a hole. A brand new vagina to go with the rest.")
+            if (totalChange > 1):
+                self.doMainText(f" Yet, that's simply the first. More moistness slimes your hand as {totalChange} more gashes fill your {self.vulvaDesc()} groin, all as sensitive and large as the first. A bevy of pussies for your fingers to slip into, your hand rolling over all the labia and making you gasp with all the separate erotic thrills.")
+            self.vagBellyChange(sizeChange, totalChange)
+            self.stats(0, 0, 2 * totalChange, 0)
+            self.vagTotal += totalChange
+            self.vagSize += sizeChange
+            for i in range(totalChange):
+                if (self.pregArray.length / 5 >= self.vagTotal):
+                    break
+                self.pregArray.push(False, 0, 0, 0, 0)
+
+        # Loose vag
+        elif (totalChange < 0 and self.vagTotal + totalChange > 0):
+            self.doMainText(f"\n\nYou notice an odd sensation of numbness within your groin. Slipping a hand into your {self.clothesBottom()}, you notice you're missing {-totalChange} of your vaginas.")
+            self.vagBellyChange(sizeChange, totalChange)
+            self.stats(0, 0, 2 * totalChange, 0)
+            self.vagTotal += totalChange
+            self.vagSize += sizeChange
+            while (totalChange < 0):
+                if (self.pregCheck(1)):
+                    for i in range(0, self.pregArray.length, 5):
+                        if (not self.pregArray[i]):
+                            self.pregArray.splice(i, 5)
+                            totalChange += 1
+                            break
+                else:
+                    totalChange = 0
+
+        # Size change
+        elif (self.vagTotal > 0):
+            self.vagBellyChange(sizeChange, totalChange)
+            self.vagSize += sizeChange
 
     def vagBellyChange(self, sizeChange: int, totalChange: int):
         newBelly = (self.vagSize + sizeChange) * (self.vagTotal + totalChange) * self.vagSizeMod - self.tallness / 2
@@ -26315,119 +26367,118 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.vagBellyMod = 0
 
     def legChange(self, which: int):
-      # HERE
-      if (self.legType > 1000 and which < 1000):
-         self.doMainText(f"\n\nA strange sensation envelopes your tauric half. Things pop and grow tight as the backside shrinks, your back legs dwindling down into your rear crotch while your secondary chest shrivels and your spine shortens up. The entirety of your tauric half shrinks back to your primary body, leaving you to fall back onto your {self.buttDesc()} ass while your crotch shifts forward to nestle between your front legs.")
-         if (self.legType == 1001):
-            self.doMainText(f" Your keratin hooves soften and elongate into bipedal feet, the black and white fur disappearing to match your {self.skinDesc()}.")
-            if (not self.udderCheck(2) and self.udders):
-               self.doMainText(" Your udder also shrinks away into nothing...")
-               self.udders = False
-               self.udderLactation = 0
-               self.udderEngorgement = 0
-               self.udderEngorgementLevel = 0
-               self.udderPlay = 0
-               self.udderSize = 0
-               self.teatSize = 0
-            else:
-               self.doMainText(" Your udder is still there, though, hanging just below your belly, having slipped up through your legs just before your crotch came through.")
-         if (self.legType == 1002):
-            if (self.tail == 1002):
-               self.doMainText(f" Your {self.tailDesc()} tail, also disappears with your extra half, no longer swishing above your backside.")
-               self.tail = 0
+        if (self.legType > 1000 and which < 1000):
+            self.doMainText(f"\n\nA strange sensation envelopes your tauric half. Things pop and grow tight as the backside shrinks, your back legs dwindling down into your rear crotch while your secondary chest shrivels and your spine shortens up. The entirety of your tauric half shrinks back to your primary body, leaving you to fall back onto your {self.buttDesc()} ass while your crotch shifts forward to nestle between your front legs.")
+            if (self.legType == 1001):
+                self.doMainText(f" Your keratin hooves soften and elongate into bipedal feet, the black and white fur disappearing to match your {self.skinDesc()}.")
+                if (not self.udderCheck(2) and self.udders):
+                    self.doMainText(" Your udder also shrinks away into nothing...")
+                    self.udders = False
+                    self.udderLactation = 0
+                    self.udderEngorgement = 0
+                    self.udderEngorgementLevel = 0
+                    self.udderPlay = 0
+                    self.udderSize = 0
+                    self.teatSize = 0
+                else:
+                    self.doMainText(" Your udder is still there, though, hanging just below your belly, having slipped up through your legs just before your crotch came through.")
+            if (self.legType == 1002):
+                if (self.tail == 1002):
+                    self.doMainText(f" Your {self.tailDesc()} tail, also disappears with your extra half, no longer swishing above your backside.")
+                    self.tail = 0
+                self.runMod += 10
+                self.carryMod -= 15
+            self.doMainText("\n\nIt takes several minutes before you can manage to stand without the extra legs to square you off... It feels so strange, like a great weight has been lifted yet at the same time things feel heavier. It's going to take a bit of walking to get used to...")
+            self.carryMod -= 100
+        if (self.legType != 0 and which == 0):
+            if (self.legType == 1):
+                self.doMainText("\n\nYour paws feel strange as they begin to narrow and shrink. You almost lose your balance and fall over, but your ankles touch against the floor, having grown away from your knees and forming heels. The space between your paws and ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier.")
+            elif (self.legType == 2):
+                self.doMainText("\n\nYour hooves feel strange as they begin to grow. You almost lose your balance and fall over, but your ankles touch against the floor, forming heels. The tip of your hooves start to break apart into toes. Your ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier.")
+        if (self.legType != 1 and which == 1):
+            if (self.legType == 0):
+                self.doMainText("\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. ")
+                if self.grammarFixes:
+                    self.doMainText("Y")
+                else:
+                    self.doMainText("Eventually, y")
+                self.doMainText("ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things.")
+            if (self.legType == 2):
+                self.doMainText("\n\nYour hooves ache as your hooves start to separate into toes. As the toes grow larger, the bottoms of your hooves also change, growing soft pads. Your new paws are very soft and nice to walk on. Your capabilities don't seem to have been affected.")
+            if (self.legType >= 1000):
+                self.doMainText("\n\nBut then, your feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. ")
+                if self.grammarFixes:
+                    self.doMainText("Y")
+                else:
+                    self.doMainText("Eventually, y")
+                self.doMainText("ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things.")
+            self.carryMod -= 10
             self.runMod += 10
-            self.carryMod -= 15
-         self.doMainText("\n\nIt takes several minutes before you can manage to stand without the extra legs to square you off... It feels so strange, like a great weight has been lifted yet at the same time things feel heavier. It's going to take a bit of walking to get used to...")
-         self.carryMod -= 100
-      if (self.legType != 0 and which == 0):
-         if (self.legType == 1):
-            self.doMainText("\n\nYour paws feel strange as they begin to narrow and shrink. You almost lose your balance and fall over, but your ankles touch against the floor, having grown away from your knees and forming heels. The space between your paws and ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier.")
-         elif (self.legType == 2):
-            self.doMainText("\n\nYour hooves feel strange as they begin to grow. You almost lose your balance and fall over, but your ankles touch against the floor, forming heels. The tip of your hooves start to break apart into toes. Your ankles thicken, providing a wider base to stand upon. Feet. Not quite as agile, but a bit sturdier.")
-      if (self.legType != 1 and which == 1):
-         if (self.legType == 0):
-            self.doMainText("\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. ")
-            if self.grammarFixes:
-               self.doMainText("Y")
-            else:
-               self.doMainText("Eventually, y")
-            self.doMainText("ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things.")
-         if (self.legType == 2):
-            self.doMainText("\n\nYour hooves ache as your hooves start to separate into toes. As the toes grow larger, the bottoms of your hooves also change, growing soft pads. Your new paws are very soft and nice to walk on. Your capabilities don't seem to have been affected.")
-         if (self.legType >= 1000):
-            self.doMainText("\n\nBut then, your feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. ")
-            if self.grammarFixes:
-               self.doMainText("Y")
-            else:
-               self.doMainText("Eventually, y")
-            self.doMainText("ou quickly learn to balance and walk with these paws on your digitigrade legs, feeling much lighter on your 'feet', though it's more difficult to carry as much weight on such agile things.")
-         self.carryMod -= 10
-         self.runMod += 10
-      if (self.legType == 1 and which != 1):
-         self.carryMod += 10
-         self.runMod -= 10
-      if (self.legType != 2 and which == 2):  # gain
-         # TODO: These
-         if (self.legType == 0):
-            ...
-         if (self.legType == 1):
-            ...
-         if (self.legType == 1001):
-            ...
-         if (self.legType == 1002):
-            ...
-         self.carryMod -= 10
-         self.runMod += 10
-      if (self.legType == 2 and which != 2):  # loose
-         self.carryMod += 10
-         self.runMod -= 10
-      if (self.legType < 1000 and which > 1000):
-         if (self.legType == 0 or self.legType == 1):
-            self.doMainText(f"\n\nYour {self.hipDesc()} hips begin to ache as you feel something grow from them within your {self.clothesBottom()}. Not outward, however, but towards your backside. As your hands grasp them, you can feel your thickening pelvis split in two. Your {self.buttDesc()} rear moves away from your body as the second pelvis grows along your tailbone, your spine forming more vertebrae to extend further. You collapse to your knees while your ass tears through your {self.clothesBottom()}, taking your crotch away from your original legs with it. Bumps form from the new pelvis as two new limbs begin to grow from the sides of your crotch, a second set of legs that touch down upon the ground, making you stumble as they grow longer and turn your rump and crotch upwards to face straight out, as though you were bending over. Your insides feel even stranger as many of your internal organs shift around, doubling or expanding down in between your two sets of legs. More ribs sprout from the lengthening spine, forming a second chest cavity that guards the organs.\n\nIt takes a few minutes before your body finishes growing its second set of legs and nearly a complete second body. A tauric body. You falter a bit as you try to stand on all 4 of your legs, your arms helping pick you up from the ground but waving for balance as your original torso teeters on top. It's a very strange sensation as your mind adjusts to account for a second set of legs, working them in unison until you can walk while your second belly swings between them. Though you do feel like you can hold up much more with this strong, broader frame, so that's a plus. On the other hand, your ass and genital region are much further away now, while your original crotch feels more like a neck to the second body, so that's going to take some getting used to...")
-         if (self.legType == 1):
+        if (self.legType == 1 and which != 1):
             self.carryMod += 10
             self.runMod -= 10
-         self.changeBot(-1)
-         self.carryMod += 100
-      if (self.legType != 1001 and which == 1001):
-         self.doMainText("\n\nYour tauric half feels strange and tingly.")
-         if (self.skinType != 2):
-            self.doMainText(f" Short fur sprouts up from your {self.skinDesc()}, only on your tauric half, white in color with large black spots")
-         else:
-            self.doMainText(" The fur on your tauric half turns white in color, with large black spots around it")
-         self.doMainText(f", while your {self.buttDesc()} ass grows larger and more square from the second hips. The ends of your legs harden, your ankles rising as the balls of your feet terminate in keratin hooves.")
-         if (not self.udders):
-            self.doMainText(" And you feel a weight growing from your tauric belly. You look around yourself to see 4 long teats extend, an udder growing beneath you, making your lower half look much like a dairy cow...")
-            self.udders = True
-            self.udderSize = 2 * self.breastSize
-            self.teatSize = 2 * self.nippleSize
-         else:
-            self.doMainText(" Your udder also went along with the rest of your crotch, now hanging down from your tauric belly and threatening to drag across the ground if it gets too big, instead of sitting at your normal waist.")
-      if (self.legType == 1001 and which != 1001 and which > 1000):
-         if (not self.udderCheck(2) and self.udders):
-            self.doMainText(f"\n\nYour udder shrinks into your {self.skinDesc()} and disappears...")
-            self.udders = False
-            self.udderLactation = 0
-            self.udderEngorgement = 0
-            self.udderEngorgementLevel = 0
-            self.udderPlay = 0
-            self.udderSize = 0
-            self.teatSize = 0
-      if (self.legType != 1002 and which == 1002):
-         self.doMainText("\n\nAll four feet relax themselves against the ground, level from toes to heels, standing plantigrade and sturdy. Not exactly fast and a bit awkward, but they can hold much more weight, especially considering your second half is as thin as the first and would have otherwise not been the best frame for carrying things across your extended back.")
-         if (self.tail > 0 and self.tail != 1002 and self.hair != 0):
-            self.doMainText(f" And your {self.tailDesc()} shifts into hairs that matches the hair on your head.")
-         elif (self.tail == 0 and self.hair != 0):
-            self.doMainText(" And to finish off the transformation, just above your butt sprouts a tail of hairs from your tailbone that matches the hair on your head and swishes with your control.")
-         else:
-            self.doMainText(" You also feel some extra muscle control above your butt, around your tailbone, where it feels like you've got a tail, but there's nothing there to speak of yet.")
-         self.tail = 1002
-         self.runMod -= 10
-         self.carryMod += 15
-      if (self.legType == 1002 and which != 1002 and which > 1000):
-         self.runMod += 10
-         self.carryMod -= 15
-      self.legType = which
+        if (self.legType != 2 and which == 2):  # gain
+            # TODO: These
+            if (self.legType == 0):
+                ...
+            if (self.legType == 1):
+                ...
+            if (self.legType == 1001):
+                ...
+            if (self.legType == 1002):
+                ...
+            self.carryMod -= 10
+            self.runMod += 10
+        if (self.legType == 2 and which != 2):  # loose
+            self.carryMod += 10
+            self.runMod -= 10
+        if (self.legType < 1000 and which > 1000):
+            if (self.legType == 0 or self.legType == 1):
+                self.doMainText(f"\n\nYour {self.hipDesc()} hips begin to ache as you feel something grow from them within your {self.clothesBottom()}. Not outward, however, but towards your backside. As your hands grasp them, you can feel your thickening pelvis split in two. Your {self.buttDesc()} rear moves away from your body as the second pelvis grows along your tailbone, your spine forming more vertebrae to extend further. You collapse to your knees while your ass tears through your {self.clothesBottom()}, taking your crotch away from your original legs with it. Bumps form from the new pelvis as two new limbs begin to grow from the sides of your crotch, a second set of legs that touch down upon the ground, making you stumble as they grow longer and turn your rump and crotch upwards to face straight out, as though you were bending over. Your insides feel even stranger as many of your internal organs shift around, doubling or expanding down in between your two sets of legs. More ribs sprout from the lengthening spine, forming a second chest cavity that guards the organs.\n\nIt takes a few minutes before your body finishes growing its second set of legs and nearly a complete second body. A tauric body. You falter a bit as you try to stand on all 4 of your legs, your arms helping pick you up from the ground but waving for balance as your original torso teeters on top. It's a very strange sensation as your mind adjusts to account for a second set of legs, working them in unison until you can walk while your second belly swings between them. Though you do feel like you can hold up much more with this strong, broader frame, so that's a plus. On the other hand, your ass and genital region are much further away now, while your original crotch feels more like a neck to the second body, so that's going to take some getting used to...")
+            if (self.legType == 1):
+                self.carryMod += 10
+                self.runMod -= 10
+            self.changeBot(-1)
+            self.carryMod += 100
+        if (self.legType != 1001 and which == 1001):
+            self.doMainText("\n\nYour tauric half feels strange and tingly.")
+            if (self.skinType != 2):
+                self.doMainText(f" Short fur sprouts up from your {self.skinDesc()}, only on your tauric half, white in color with large black spots")
+            else:
+                self.doMainText(" The fur on your tauric half turns white in color, with large black spots around it")
+            self.doMainText(f", while your {self.buttDesc()} ass grows larger and more square from the second hips. The ends of your legs harden, your ankles rising as the balls of your feet terminate in keratin hooves.")
+            if (not self.udders):
+                self.doMainText(" And you feel a weight growing from your tauric belly. You look around yourself to see 4 long teats extend, an udder growing beneath you, making your lower half look much like a dairy cow...")
+                self.udders = True
+                self.udderSize = 2 * self.breastSize
+                self.teatSize = 2 * self.nippleSize
+            else:
+                self.doMainText(" Your udder also went along with the rest of your crotch, now hanging down from your tauric belly and threatening to drag across the ground if it gets too big, instead of sitting at your normal waist.")
+        if (self.legType == 1001 and which != 1001 and which > 1000):
+            if (not self.udderCheck(2) and self.udders):
+                self.doMainText(f"\n\nYour udder shrinks into your {self.skinDesc()} and disappears...")
+                self.udders = False
+                self.udderLactation = 0
+                self.udderEngorgement = 0
+                self.udderEngorgementLevel = 0
+                self.udderPlay = 0
+                self.udderSize = 0
+                self.teatSize = 0
+        if (self.legType != 1002 and which == 1002):
+            self.doMainText("\n\nAll four feet relax themselves against the ground, level from toes to heels, standing plantigrade and sturdy. Not exactly fast and a bit awkward, but they can hold much more weight, especially considering your second half is as thin as the first and would have otherwise not been the best frame for carrying things across your extended back.")
+            if (self.tail > 0 and self.tail != 1002 and self.hair != 0):
+                self.doMainText(f" And your {self.tailDesc()} shifts into hairs that matches the hair on your head.")
+            elif (self.tail == 0 and self.hair != 0):
+                self.doMainText(" And to finish off the transformation, just above your butt sprouts a tail of hairs from your tailbone that matches the hair on your head and swishes with your control.")
+            else:
+                self.doMainText(" You also feel some extra muscle control above your butt, around your tailbone, where it feels like you've got a tail, but there's nothing there to speak of yet.")
+            self.tail = 1002
+            self.runMod -= 10
+            self.carryMod += 15
+        if (self.legType == 1002 and which != 1002 and which > 1000):
+            self.runMod += 10
+            self.carryMod -= 15
+        self.legType = which
 
     def boobChange(self, sizeChange: int):
         self.breastSize += sizeChange
