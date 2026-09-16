@@ -6,6 +6,7 @@ from as3lib.helpers import isValidDirectory, textObject
 from as3lib.flash.desktop import _ToolkitEvent, _TkMouse
 from as3lib.flash.events import MouseEvent
 from as3lib.flash.text import Font
+from as3lib.flash.ui import Keyboard
 import as3lib.interface_tk as itk
 from dataclasses import dataclass
 from functools import partial, cache
@@ -1795,19 +1796,19 @@ class PyminWiki(PyminWindow):
         self.displayText()
 
     def hotKeys(self, keyCode):
-        if keyCode in {81, 8, 103} and self.isOpen:  # q,backspace,numPad7
+        if keyCode in {Keyboard.Q, Keyboard.BACKSPACE, Keyboard.NUMPAD_7} and self.isOpen:
             self.close()
-        elif keyCode in {87, 'midKeyW', 104}:  # w,<>,numPad8
+        elif keyCode in {Keyboard.W, 'midKeyW', Keyboard.NUMPAD_8}:
             self.selectionUp()
-        elif keyCode in {69, 190, 105}:  # e,.,numPad9
+        elif keyCode in {Keyboard.E, Keyboard.PERIOD, Keyboard.NUMPAD_9}:
             self.toPreviousPage()
-        elif keyCode in {82, 191, 109}:  # r,/,numPadMinus
+        elif keyCode in {Keyboard.R, Keyboard.SLASH, Keyboard.NUMPAD_SUBTRACT}:
             self.switchFocus()
-        elif keyCode in {65, 37, 100}:  # a,←,numPad4
+        elif keyCode in {Keyboard.A, Keyboard.LEFT, Keyboard.NUMPAD_4}:
             self.menu = 'Back'
-        elif keyCode in {83, 'midKeyS', 101}:  # s,<>,numPad5
+        elif keyCode in {Keyboard.S, 'midKeyS', Keyboard.NUMPAD_5}:
             self.selectionDown()
-        elif keyCode in {68, 39, 102, 13}:  # d,→,numPad6,enter
+        elif keyCode in {Keyboard.D, Keyboard.RIGHT, Keyboard.NUMPAD_6, Keyboard.ENTER}:
             self.selectOption()
 
     def selectionUp(self, *e):
@@ -4697,13 +4698,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         self.detailedDebug()
         key = _ToolkitEvent.GetKeyCode(e)
-        if key == 16:  # Shift
+        if key == Keyboard.SHIFT:
             self.shiftHeld = True
-        elif key == 17:  # Ctrl
+        elif key == Keyboard.CONTROL:
             self.ctrlHeld = True
-        elif key == 18:  # Alt
+        elif key == Keyboard.ALTERNATE:
             self.altHeld = True
-        elif key == 81 and self.ctrlHeld and self.shiftHeld and self.altHeld:
+        elif key == Keyboard.Q and self.ctrlHeld and self.shiftHeld and self.altHeld:
             self.close()
         elif func is not None:
             func(key)
@@ -4713,11 +4714,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Function activated on key release
         '''
         kc = _ToolkitEvent.GetKeyCode(e)
-        if kc == 16:  # Shift
+        if kc == Keyboard.SHIFT:
             self.shiftHeld = False
-        if kc == 17:  # Ctrl
+        if kc == Keyboard.CONTROL:
             self.ctrlHeld = False
-        if kc == 18:  # Alt
+        if kc == Keyboard.ALTERNATE:
             self.altHeld = False
 
     def buttonEvent1(self, *e):
@@ -4899,16 +4900,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.detailedDebug()
         keyEnabled = (self.keyboardTypingDisable and keyCode in self.hotkeysDisabled or not self.keyboardTypingDisable and keyCode not in self.hotkeysDisabled) or self.altHeld
 
-        # q, numpad7
-        if (keyCode == 103 or keyCode == 81) and keyEnabled and self.buttonsVisible[1]:
+        if (keyCode == Keyboard.Q or keyCode == Keyboard.NUMPAD_7) and keyEnabled and self.buttonsVisible[1]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                 self.itemMove(1)
             elif self.window._children['button1'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                 self.buttonChoice = 1
                 self.hideUpDown()
                 self.doListen()
-        # w, numpad8
-        elif (keyCode == 104 or keyCode == 87):
+
+        elif (keyCode == Keyboard.W or keyCode == Keyboard.NUMPAD_8):
             if self.newSLDialogVisible and not self.nsldblindervisible and keyEnabled:
                 self.nsldSelectionUp()
             elif keyEnabled and self.buttonsVisible[2]:
@@ -4918,30 +4918,30 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.buttonChoice = 2
                     self.hideUpDown()
                     self.doListen()
-        # e, numpad9
-        elif (keyCode == 105 or keyCode == 69) and keyEnabled and self.buttonsVisible[3]:
+
+        elif (keyCode == Keyboard.E or keyCode == Keyboard.NUMPAD_9) and keyEnabled and self.buttonsVisible[3]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                 self.itemMove(3)
             elif self.window._children['button3'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                 self.buttonChoice = 3
                 self.hideUpDown()
                 self.doListen()
-        # r, numpadMinus
-        elif (keyCode == 109 or keyCode == 82) and keyEnabled and self.buttonsVisible[4]:
+
+        elif (keyCode == Keyboard.R or keyCode == Keyboard.NUMPAD_SUBTRACT) and keyEnabled and self.buttonsVisible[4]:
             if self.window._children['button4'].state == 'normal':
                 self.buttonChoice = 4
                 self.hideUpDown()
                 self.doListen()
-        # a, numpad4
-        elif (keyCode == 100 or keyCode == 65) and keyEnabled and self.buttonsVisible[5]:
+
+        elif (keyCode == Keyboard.A or keyCode == Keyboard.NUMPAD_4) and keyEnabled and self.buttonsVisible[5]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                 self.itemMove(5)
             elif self.window._children['button5'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                 self.buttonChoice = 5
                 self.hideUpDown()
                 self.doListen()
-        # s, numpad5
-        elif (keyCode == 101 or keyCode == 83):
+
+        elif (keyCode == Keyboard.S or keyCode == Keyboard.NUMPAD_5):
             if self.newSLDialogVisible and not self.nsldblindervisible and keyEnabled:
                 self.nsldSelectionDown()
             elif keyEnabled and self.buttonsVisible[6]:
@@ -4951,113 +4951,113 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.buttonChoice = 6
                     self.hideUpDown()
                     self.doListen()
-        # d, numpad6
-        elif (keyCode == 102 or keyCode == 68) and keyEnabled and self.buttonsVisible[7]:
+
+        elif (keyCode == Keyboard.D or keyCode == Keyboard.NUMPAD_6) and keyEnabled and self.buttonsVisible[7]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                 self.itemMove(7)
             elif self.window._children['button7'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                 self.buttonChoice = 7
                 self.hideUpDown()
                 self.doListen()
-        # f, numpadPlus
-        elif (keyCode == 107 or keyCode == 70) and keyEnabled and self.buttonsVisible[8]:
+
+        elif (keyCode == Keyboard.F or keyCode == Keyboard.NUMPAD_ADD) and keyEnabled and self.buttonsVisible[8]:
             if self.window._children['button8'].state == 'normal':
                 self.buttonChoice = 8
                 self.hideUpDown()
                 self.doListen()
-        # z, numpad1
-        elif (keyCode == 97 or keyCode == 90) and keyEnabled and self.buttonsVisible[9]:
+
+        elif (keyCode == Keyboard.Z or keyCode == Keyboard.NUMPAD_1) and keyEnabled and self.buttonsVisible[9]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                 self.itemMove(9)
             elif self.window._children['button9'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                 self.buttonChoice = 9
                 self.hideUpDown()
                 self.doListen()
-        # x, numpad2
-        elif (keyCode == 98 or keyCode == 88) and keyEnabled and self.buttonsVisible[10]:
+
+        elif (keyCode == Keyboard.X or keyCode == Keyboard.NUMPAD_2) and keyEnabled and self.buttonsVisible[10]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                 self.itemMove(10)
             elif self.window._children['button10'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                 self.buttonChoice = 10
                 self.hideUpDown()
                 self.doListen()
-        # c, numpad3
-        elif (keyCode == 99 or keyCode == 67) and keyEnabled and self.buttonsVisible[11]:
+
+        elif (keyCode == Keyboard.C or keyCode == Keyboard.NUMPAD_3) and keyEnabled and self.buttonsVisible[11]:
             if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
                 self.itemMove(11)
             elif self.window._children['button11'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
                 self.buttonChoice = 11
                 self.hideUpDown()
                 self.doListen()
-        # v, numpadReturn
-        elif (keyCode == 13 or keyCode == 86) and keyEnabled and self.buttonsVisible[12]:
+
+        elif (keyCode == Keyboard.V or keyCode == Keyboard.NUMPAD_ENTER) and keyEnabled and self.buttonsVisible[12]:
             if self.window._children['button12'].state == 'normal':
                 self.buttonChoice = 12
                 self.hideUpDown()
                 self.doListen()
-        # numpade0, b
-        elif (keyCode == 96 or keyCode == 66) and keyEnabled and self.buttonsVisible[13]:
+
+        elif (keyCode == Keyboard.B or keyCode == Keyboard.NUMPAD_0) and keyEnabled and self.buttonsVisible[13]:
             if self.newSLDialogVisible and not self.nsldblindervisible or self.moveItemID != 0 and (self.inBag or self.inStash):
                 self.buttonChoice = 13
                 self.hideUpDown()
                 self.doListen()
-        # ArrowLeft
-        elif (keyCode == 37) and keyEnabled and not self.customthemecolor:
+
+        elif (keyCode == Keyboard.LEFT) and keyEnabled and not self.customthemecolor:
             self.toggleTheme()
-        # ArrowUp
-        elif (keyCode == 38) and keyEnabled:
+
+        elif (keyCode == Keyboard.UP) and keyEnabled:
             self.fontSizeUp()
-        # ArrowRight
-        elif (keyCode == 39) and keyEnabled and not self.customfontcolor:
+
+        elif (keyCode == Keyboard.RIGHT) and keyEnabled and not self.customfontcolor:
             self.toggleColor()
-        # ArrowDown
-        elif (keyCode == 40) and keyEnabled:
+
+        elif (keyCode == Keyboard.DOWN) and keyEnabled:
             self.fontSizeDown()
-        # Control
-        elif (keyCode == 17) and keyEnabled:
+
+        elif (keyCode == Keyboard.CONTROL) and keyEnabled:
+            # TODO: Use a different key for this
             self.fontSizeReset()
-        # .
-        elif (keyCode == 190) and keyEnabled and self.option7Visible and self.window._children['themebutton7'].state == 'normal':
+
+        elif (keyCode == Keyboard.PERIOD) and keyEnabled and self.option7Visible and self.window._children['themebutton7'].state == 'normal':
             self.toggleSide()
-        # /
-        elif (keyCode == 191) and keyEnabled:
+
+        elif (keyCode == Keyboard.SLASH) and keyEnabled:
             self.toggleBold()
-        # F2
-        elif (keyCode == 113) and keyEnabled and self.showsavegame:
+
+        elif (keyCode == Keyboard.F1) and keyEnabled and self.showsavegame:
             self.saveGo()
-        # F4
-        elif (keyCode == 115) and keyEnabled and self.showloadgame:
+
+        elif (keyCode == Keyboard.F4) and keyEnabled and self.showloadgame:
             self.loadGo()
-        # Backspace
-        elif (keyCode == 8) and keyEnabled and self.shownewgame:
+
+        elif (keyCode == Keyboard.BACKSPACE) and keyEnabled and self.shownewgame:
             self.newGameGo()
-        # ~, numpadDivide
-        elif (keyCode == 192 or keyCode == 111) and keyEnabled:
+
+        elif (keyCode == Keyboard.BACKQUOTE or keyCode == Keyboard.NUMPAD_DIVIDE) and keyEnabled:
             self.wiki.open()
-        # u
-        elif (keyCode == 85 and self.currentState != 0 and keyEnabled):
+
+        elif (keyCode == Keyboard.U and self.currentState != 0 and keyEnabled):
             self.sideEvent(1)
         elif self.showSide and self.currentState != 0 and keyEnabled:
-            # i
-            if (keyCode == 73):
+            if (keyCode == Keyboard.I):
                 self.sideEvent(2)
-            # o
-            elif (keyCode == 79):
+
+            elif (keyCode == Keyboard.O):
                 self.sideEvent(3)
-            # p
-            elif (keyCode == 80):
+
+            elif (keyCode == Keyboard.P):
                 self.sideEvent(4)
-            # h
-            elif (keyCode == 72):
+
+            elif (keyCode == Keyboard.H):
                 self.sideEvent(5)
-            # j
-            elif (keyCode == 74):
+
+            elif (keyCode == Keyboard.J):
                 self.sideEvent(6)
-            # k
-            elif (keyCode == 75):
+
+            elif (keyCode == Keyboard.K):
                 self.sideEvent(7)
-            # l
-            elif (keyCode == 76):
+
+            elif (keyCode == Keyboard.L):
                 self.sideEvent(8)
 
     def appearance(self):
