@@ -2703,7 +2703,7 @@ class PyminWiki(PyminWindow):
         if Num == 3:
             return "<h4><u>Tips</u></h4><u>Carry Capacity</u>\nDetermined by strength, height, body type, and modifiers. Determines how much of yourself you can carry.\n\n<u>Shops</u>\nEach town has unique wares in many of their shops, so it's good to look around.\n\n<u>Race</u>\nSome racial features are based on whatever blood is most dominant. Some features can be shared.\n\n<u>Bust Size</u>\n1 inch of bust circumference = 1 cup in real life. 1 inch = A-cup, 4 inches = D-cup, 4.5 inches = DD-cup, 26 inches = Z-cup.\n\n<u>Breasts</u>\nEverybody has breasts. Yes, even males. How many is determined by your race.\n\n<u>Empty Button</u>\nOutside of inventories, these mean you have access to something, but do not currently have the correct item/requirements."
         if Num == 4:
-            return "<h4><u>Hotkeys</u></h4>Hotkeys for each window will only work when their window is focused.\n\n<b>Panic button:</b> Ctrl + Shift + Alt + Q\nCloses everything immediately. All unsaved progress will be lost.\n\n<u>Game</u>\nHotkeys in this section only function when their buttons are shown.\n<b>Save:</b> F2 | <b>Load:</b> F4 | <b>New Game:</b> Backspace | <b>Appearance:</b> U\n<b>Font Size+:</b> Up | <b>Font Size-:</b> Down | <b>Theme:</b> Left | <b>Font Color:</b> Right\n<b>Reset Font Size:</b> Ctrl | <b>Font Bold:</b> /? | <b>Toggle Side Window:</b> .\n<b>Side window buttons (in order):</b>\n\tUIOP\n\tHJKL\n<b>Main choice buttons (both keyboard and NumPad in order):</b>\n\tQWER\t789-\n\tASDFG\t456+.\n\tZXCVB\t123Enter0\n\n<u>Wiki</u>\n<b>Open the wiki:</b> Tilde, numPadDivide\n<b>Close the wiki:</b> q, backspace, numPad7\n<b>Move selection up:</b> w, ↑, numPad8\n<b>Move selection down:</b> s, ↓, numPad6\n<b>Previous menu:</b> a, ←, numPad4\n<b>Select option:</b> d, →, numPad6, enter\n<b>Previous page:</b> e, ., numPad9\n<b>Switch selection between menu and text:</b> r, /, numPadMinus"
+            return "<h4><u>Hotkeys</u></h4>Hotkeys for each window will only work when their window is focused.\n\n<b>Panic button:</b> Ctrl + Shift + Alt + Q\nCloses everything immediately. All unsaved progress will be lost.\n\n<u>Game</u>\nHotkeys in this section only function when their buttons are shown.\n<b>Save:</b> F2 | <b>Load:</b> F4 | <b>New Game:</b> Backspace | <b>Appearance:</b> U\n<b>Font Size+:</b> Up | <b>Font Size-:</b> Down | <b>Theme:</b> Left | <b>Font Color:</b> Right\n<b>Reset Font Size:</b> , | <b>Font Bold:</b> /? | <b>Toggle Side Window:</b> .\n<b>Side window buttons (in order):</b>\n\tUIOP\n\tHJKL\n<b>Main choice buttons (both keyboard and NumPad in order):</b>\n\tQWER\t789-\n\tASDFG\t456+.\n\tZXCVB\t123Enter0\n\n<u>Wiki</u>\n<b>Open the wiki:</b> Tilde, numPadDivide\n<b>Close the wiki:</b> q, backspace, numPad7\n<b>Move selection up:</b> w, ↑, numPad8\n<b>Move selection down:</b> s, ↓, numPad6\n<b>Previous menu:</b> a, ←, numPad4\n<b>Select option:</b> d, →, numPad6, enter\n<b>Previous page:</b> e, ., numPad9\n<b>Switch selection between menu and text:</b> r, /, numPadMinus"
         if Num == 5:
             return "<h4><u>Wiki Key</u></h4>This page includes all of the symbols and notations that are used in this wiki and what they mean.\n\n<h6><u>General Notations</u></h6><b><u>Header 4 with underline</u></b>: page title\n<u>Header 6 with underline</u>: section title\n<u>Underline</u>: Subsection title\n\n<u>Location menus</u>\nArrows\u2196\u2191\u2197\u2190\u2192\u2199\u2193\u2198: the direction in which the area is located relative to the current one\nFilled in circle inside of another circle \u29BF: directly connected to currect area\nEmpty in circle inside of another circle \u25CE: current area leads to discovery of the area"
         if Num == 6:
@@ -5014,8 +5014,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (keyCode == Keyboard.DOWN) and keyEnabled:
             self.fontSizeDown()
 
-        elif (keyCode == Keyboard.CONTROL) and keyEnabled:
-            # TODO: Use a different key for this
+        elif (keyCode == Keyboard.COMMA) and keyEnabled:
             self.fontSizeReset()
 
         elif (keyCode == Keyboard.PERIOD) and keyEnabled and self.option7Visible and self.window._children['themebutton7'].state == 'normal':
@@ -7253,7 +7252,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += "\nOnly function when they show."
         tempStr += "\n-Save = F2, Load = F4, New Game = Backspace, Appearance = U"
         tempStr += "\n-Font Size+ = Up, Font Size- = Down, Theme = Left, Font Color = Right"
-        tempStr += "\n-Reset Font Size = Ctrl, Font Bold = /?, Toggle Side Window = ."
+        tempStr += "\n-Reset Font Size = ',', Font Bold = '/?', Toggle Side Window = '.'"
         tempStr += "\n-Side window buttons (in order):"
         tempStr += "\n\tUIOP"
         tempStr += "\n\tHJKL"
