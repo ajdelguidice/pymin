@@ -4697,28 +4697,28 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Function activated on key press
         '''
         self.detailedDebug()
-        key = _ToolkitEvent.GetKeyCode(e)
-        if key == Keyboard.SHIFT:
+        keyCode = _ToolkitEvent.GetKeyboardEvent(e).keyCode
+        if keyCode == Keyboard.SHIFT:
             self.shiftHeld = True
-        elif key == Keyboard.CONTROL:
+        elif keyCode == Keyboard.CONTROL:
             self.ctrlHeld = True
-        elif key == Keyboard.ALTERNATE:
+        elif keyCode == Keyboard.ALTERNATE:
             self.altHeld = True
-        elif key == Keyboard.Q and self.ctrlHeld and self.shiftHeld and self.altHeld:
+        elif keyCode == Keyboard.Q and self.ctrlHeld and self.shiftHeld and self.altHeld:
             self.close()
         elif func is not None:
-            func(key)
+            func(keyCode)
 
     def keysUp(self, e):
         '''
         Function activated on key release
         '''
-        kc = _ToolkitEvent.GetKeyCode(e)
-        if kc == Keyboard.SHIFT:
+        keyCode = _ToolkitEvent.GetKeyboardEvent(e).keyCode
+        if keyCode == Keyboard.SHIFT:
             self.shiftHeld = False
-        if kc == Keyboard.CONTROL:
+        if keyCode == Keyboard.CONTROL:
             self.ctrlHeld = False
-        if kc == Keyboard.ALTERNATE:
+        if keyCode == Keyboard.ALTERNATE:
             self.altHeld = False
 
     def buttonEvent1(self, *e):
