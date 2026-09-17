@@ -291,6 +291,17 @@ class Utils:
             return "Pancakes"
         return "GIB BUTTON ERROR"
 
+    def isValidHex(hexstr: str):
+        '''
+        Checks if a given string is a valid (6 digit) hexadecimal colour code
+        '''
+        if len(hexstr) == 7 and hexstr[0] == '#':
+            for i in hexstr[1:]:
+                if i not in '0123456789ABCDEFabcdef':
+                    return False
+            return True
+        return False
+
 
 class DirUtils:
     def makeDir(path, silent=False):
@@ -354,17 +365,6 @@ class DirUtils:
 
 
 class SaveUtils:
-    def checkValidHex(hexstr: str):
-        '''
-        Checks if a given string is a valid (6 digit) hexadecimal colour code
-        '''
-        if len(hexstr) == 7 and hexstr[0] == '#':
-            for i in hexstr[1:]:
-                if i not in '0123456789ABCDEFabcdef':
-                    return False
-            return True
-        return False
-
     def getdhXML(file):
         '''
         Gets day and hour from a XML save file
@@ -3985,7 +3985,7 @@ class OptionsWindow(PyminWindow):
             if self.window._children['Theme'].get() == '':
                 self.window._children['Theme']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomThemeColor is empty')
-            if not SaveUtils.checkValidHex(self.window._children['Theme'].get()):
+            if not Utils.isValidHex(self.window._children['Theme'].get()):
                 self.window._children['Theme']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomThemeColor is not a valid hexadecimal color code')
             if not main.customthemecolor:
@@ -4005,7 +4005,7 @@ class OptionsWindow(PyminWindow):
             if self.window._children['FontColor'].get() == '':
                 self.window._children['FontColor']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomFontColor is empty')
-            if not SaveUtils.checkValidHex(self.window._children['FontColor'].get()):
+            if not Utils.isValidHex(self.window._children['FontColor'].get()):
                 self.window._children['FontColor']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomFontColor is not a valid hexadecimal color code')
             if not main.customfontcolor:
@@ -5247,7 +5247,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.fontBold = bool(game.get('fontBold', False))
             tempTheme = str(game.get('theme', '#FFFFFF'))
             tempFontColor = str(game.get('fontColor', '#000000'))
-            if SaveUtils.checkValidHex(tempTheme) and SaveUtils.checkValidHex(tempFontColor):
+            if Utils.isValidHex(tempTheme) and Utils.isValidHex(tempFontColor):
                 self.backgroundColor = tempTheme
                 self.textColor = tempFontColor
             else:
@@ -5320,7 +5320,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.fontBold = Utils.strtobool(prefs.find('fontBold').text)
             temptheme = prefs.find('theme').text
             tempfontColor = prefs.find('fontColor').text
-            if (SaveUtils.checkValidHex(temptheme) or temptheme.isdecimal() and len(temptheme) == 1 and int(temptheme) >= 0 and int(temptheme) < 6) and SaveUtils.checkValidHex(tempfontColor):
+            if (Utils.isValidHex(temptheme) or temptheme.isdecimal() and len(temptheme) == 1 and int(temptheme) >= 0 and int(temptheme) < 6) and Utils.isValidHex(tempfontColor):
                 if (temptheme.isdecimal() and len(temptheme) == 1):
                     self.backgroundColor = ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[int(temptheme)]
                 else:
