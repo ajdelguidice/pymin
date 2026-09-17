@@ -61,6 +61,12 @@ DOWN_IMAGE = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00d\x00\x00\x00d\x08
 
 TK_EXTERNAL_FILE_FILTER = (('Supported Files', ('*.toml', '*.xml', '*.sol', '*.nim')), ("TOML Files", "*.toml"), ("XML Files", "*.xml"), ("Shared Objects", "*.sol"), ("Nimin Saves", "*.nim"), ("All Files", "*"))
 TK_EXTERNAL_FILE_FILTER_COMPAT = (("Nimin Saves", "*.nim"))
+VALID_SAVE_FORMATS = ('.xml', '.toml', '.sol', '.nim')
+
+
+RANGE9_BUTTON_MAP = (1, 2, 3, 5, 6, 7, 9, 10, 11)
+SIDE_PANEL_BUTTON_NAMES = ('looksbutton', 'statsbutton', 'effectsbutton', 'helpbutton', 'levelsbutton', 'gearbutton', 'titlesbutton', 'creditsbutton')
+SIDE_PANEL_BUTTON_TEXT = ('Look', 'Stats', 'Effects', 'Help', 'Levels', 'Gear', 'Titles', 'Credits')
 
 
 class TimesFont(Font):
@@ -4088,11 +4094,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     # viewButtonOutline -> showButtons
     # showPage -> showPage, hidePage
 
-    bMap = (1, 2, 3, 5, 6, 7, 9, 10, 11)  # Maps button numbers to range(9)
-    sidepanelbuttonnames = ('looksbutton', 'statsbutton', 'effectsbutton', 'helpbutton', 'levelsbutton', 'gearbutton', 'titlesbutton', 'creditsbutton')
-    sidepanelbuttontext = ('Look', 'Stats', 'Effects', 'Help', 'Levels', 'Gear', 'Titles', 'Credits')
-    validsaveformats = ('.xml', '.toml', '.sol', '.nim')
-
     @property
     def backgroundColor(self):
         return self._backgroundColor
@@ -5446,7 +5447,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         for i in range(9):
             tempI = i + (self.choicePage * 9 - 9)
             if (itemNameArray[tempI] != " "):
-                buttonDict[self.bMap[i]] = itemNameArray[tempI]
+                buttonDict[RANGE9_BUTTON_MAP[i]] = itemNameArray[tempI]
         for i in range(1, 13):
             text = buttonDict.get(i, '')
             if self.buttonsVisible[i]:
@@ -5493,7 +5494,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.bsUpdateButtonsWhenMoveItem('Bag')
 
     def bagDisableEmpty(self):
-        self.disableSelectedButtons(i for i in self.bMap if self.window._children[f'button{i}'].text in {'', ' '})
+        self.disableSelectedButtons(i for i in RANGE9_BUTTON_MAP if self.window._children[f'button{i}'].text in {'', ' '})
 
     def choiceListButtons(self, which: str):
         tempDict = {12: 'Return'}
@@ -5507,7 +5508,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         for i in range(9):
             tempI = i + (self.choicePage * 9 - 9)
             if tempArray[tempI]:
-                tempInt = self.bMap[i]
+                tempInt = RANGE9_BUTTON_MAP[i]
                 buttonlist[tempInt] = 1
                 if (tempArray[tempI] != ' '):
                     tempDict[tempInt] = tempArray[tempI]
@@ -5521,7 +5522,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if self.buttonsVisible[i] and i not in {4, 8}:
                 dlist.remove(i)
         '''
-        self.disableSelectedButtons(i for i in self.bMap if not self.buttonsVisible[i])
+        self.disableSelectedButtons(i for i in RANGE9_BUTTON_MAP if not self.buttonsVisible[i])
 
     def choiceListSelect(self, which: str):
         # TODO: See if bag/stash stuff can be split into a separate function
@@ -7367,8 +7368,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doSave(4)
                 elif self.buttonChoice == 8:
                     temp = self.window._children["savefileentry"].text
-                    if not temp.endswith(self.validsaveformats):
-                        temp += self.validsaveformats[0]
+                    if not temp.endswith(VALID_SAVE_FORMATS):
+                        temp += VALID_SAVE_FORMATS[0]
                     temp2 = self.savelocation / temp
                     if temp2.is_file():
                         temp1 = str(temp)
@@ -7388,8 +7389,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                     def doListen():
                         temp = self.window._children["savefileentry"].text
-                        if not temp.endswith(self.validsaveformats):
-                            temp += self.validsaveformats[0]
+                        if not temp.endswith(VALID_SAVE_FORMATS):
+                            temp += VALID_SAVE_FORMATS[0]
                         if (self.buttonChoice == 6):
                             self.doSave(0, self.savelocation / temp)
                         else:
@@ -7405,7 +7406,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         else:
             self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
             tempDict = {4: "Save as", 12: "Return"}
-            for i in self.bMap:
+            for i in RANGE9_BUTTON_MAP:
                 if ((self.savelocation / f"Nimin_Save{i}.xml").is_file() and not self.solonlymode):
                     dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
                     tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
@@ -7473,7 +7474,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                     def doListen():
                         temp = self.window._children["savefileentry"].text
-                        if (self.buttonChoice == 6 and temp in DirUtils.listFiles(self.savelocation, self.validsaveformats)):
+                        if (self.buttonChoice == 6 and temp in DirUtils.listFiles(self.savelocation, VALID_SAVE_FORMATS)):
                             self.doLoad(0, self.savelocation / temp)
                         else:
                             self.loadGo()
@@ -7491,12 +7492,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if self.currentState != 0:
                 tempDict[12] = "Return"
             if self.solonlymode:
-                for i in self.bMap:
+                for i in RANGE9_BUTTON_MAP:
                     if ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
                         dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
                         tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
             else:
-                for i in self.bMap:
+                for i in RANGE9_BUTTON_MAP:
                     if ((self.savelocation / f"Nimin_Save{i}.xml").is_file()):
                         dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
                         tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
@@ -7557,15 +7558,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Sorts the save file list in nsld
         '''
         if self.nsldSortOrder == 0:
-            return DirUtils.listFiles_SortCustomExt(self.savelocation, self.validsaveformats)
+            return DirUtils.listFiles_SortCustomExt(self.savelocation, VALID_SAVE_FORMATS)
         if self.nsldSortOrder == 1:
-            return DirUtils.listFiles_SortCustomNum(self.savelocation, self.validsaveformats)
+            return DirUtils.listFiles_SortCustomNum(self.savelocation, VALID_SAVE_FORMATS)
         if self.nsldSortOrder == 2:
-            return DirUtils.listFiles_SortCustomExt(self.savelocation, self.validsaveformats, True)
+            return DirUtils.listFiles_SortCustomExt(self.savelocation, VALID_SAVE_FORMATS, True)
         if self.nsldSortOrder == 3:
-            return DirUtils.listFiles_SortAlpha(self.savelocation, self.validsaveformats)
+            return DirUtils.listFiles_SortAlpha(self.savelocation, VALID_SAVE_FORMATS)
         if self.nsldSortOrder == 4:
-            return DirUtils.listFiles(self.savelocation, self.validsaveformats)
+            return DirUtils.listFiles(self.savelocation, VALID_SAVE_FORMATS)
 
     def nsldDisplay(self):
         '''
@@ -11669,7 +11670,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1))
         tempDict = {4: "Buy", 8: "Sell", 12: "Return"}
         dlist = []
-        for i in self.bMap:
+        for i in RANGE9_BUTTON_MAP:
             tempDict[i] = Items.name(self.goodsID(i))
             if (Items.name(self.goodsID(i)) == " "):
                 dlist.append(i)
@@ -11927,7 +11928,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
         tempDict = {4: "Buy", 12: "Return"}
         dlist = []
-        for i in self.bMap:
+        for i in RANGE9_BUTTON_MAP:
             tempDict[i] = Items.name(Items.dyeID(i))
             if (Items.name(Items.dyeID(i)) == " "):
                 dlist.append(i)
@@ -11995,7 +11996,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
         dlist = []
         tempDict = {4: "Buy", 12: "Return"}
-        for i in self.bMap:
+        for i in RANGE9_BUTTON_MAP:
             tempDict[i] = ApothecaryItems.name(self.apothID(i))
             if (ApothecaryItems.name(self.apothID(i)) == ""):
                 dlist.append(i)
@@ -12240,7 +12241,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
         dlist = [10]
         tempDict = {4: "Buy", 12: "Return"}
-        for i in self.bMap:
+        for i in RANGE9_BUTTON_MAP:
             if i != 10:
                 tempDict[i] = Hairstyles.name(self.hairstyleID(i))
         self.outputMainText("Click on a hairstyle to view a description of the hairstyle. If you would like to purchase it, click the Buy button.\n\nNote: Buying hairstyles automatically replaces your current hairstyle. You cannot sell hairstyles.", True)
@@ -12461,7 +12462,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.buy = 0
         self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
         tempDict = {4: "Buy", 12: "Return"}
-        for i in self.bMap:
+        for i in RANGE9_BUTTON_MAP:
             tempDict[i] = Clothes.name(self.clothesID(i))
         self.outputMainText("Click on a piece of clothing to view a description for the piece. If you would like to purchase it, click the Buy button.\n\nNote: Buying clothes automatically replaces what you're already wearing. You cannot sell outfits.", True)
         self.doButtonChoices(tempDict)
@@ -28366,7 +28367,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if not self.sidepanelvisible:
             for i in range(8):
                 tempcalc = Calc.showSidePanel(i)
-                self.window.addWidget(PyminButton, 'display', self.sidepanelbuttonnames[i], x=tempcalc[0], y=tempcalc[1], width=80, height=30, font=self.font, text=self.sidepanelbuttontext[i], command=partial(self.sideEvent, i + 1))
+                self.window.addWidget(PyminButton, 'display', SIDE_PANEL_BUTTON_NAMES[i], x=tempcalc[0], y=tempcalc[1], width=80, height=30, font=self.font, text=SIDE_PANEL_BUTTON_TEXT[i], command=partial(self.sideEvent, i + 1))
             self.window.addHTMLScrolledText('display', 'textside', x=823, y=275, width=330, height=315, font=self.font, border=self.scrolledTextBorders, text='Test', cursor='arrow', wrap='word', background=self.backgroundColor, foreground=self.textColor)
             self.displaySideText()
         self.sidepanelvisible = True
@@ -28375,7 +28376,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def hideSidePanel(self):
         if self.sidepanelvisible:
             for i in range(8):
-                self.window.destroyChild(self.sidepanelbuttonnames[i])
+                self.window.destroyChild(SIDE_PANEL_BUTTON_NAMES[i])
             self.window.destroyChild('textside')
         self.sidepanelvisible = False
         self.showAPButton()
