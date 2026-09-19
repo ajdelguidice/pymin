@@ -106,7 +106,7 @@ class KeyStateStorage:
 
     @property
     def shiftHeld(self):
-        return self._shiftHeld
+        return self._shiftHeld and not self.overrideShift
 
     @shiftHeld.setter
     def shiftHeld(self, value):
@@ -115,7 +115,6 @@ class KeyStateStorage:
     @property
     def overrideShift(self):  # buttonShiftOverride
         # Forces shift to be off. Used for the button panel
-        # TODO: See if this can be handled in shiftHeld instead of needing special casing everywhere
         return self._overrideShift
 
     @overrideShift.setter
@@ -4872,7 +4871,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent1(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(1)
         else:
             self.buttonChoice = 1
@@ -4881,7 +4880,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent2(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(2)
         else:
             self.buttonChoice = 2
@@ -4890,7 +4889,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent3(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(3)
         else:
             self.buttonChoice = 3
@@ -4905,7 +4904,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent5(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(5)
         else:
             self.buttonChoice = 5
@@ -4914,7 +4913,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent6(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(6)
         else:
             self.buttonChoice = 6
@@ -4923,7 +4922,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent7(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(7)
         else:
             self.buttonChoice = 7
@@ -4938,7 +4937,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent9(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(9)
         else:
             self.buttonChoice = 9
@@ -4947,7 +4946,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent10(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(10)
         else:
             self.buttonChoice = 10
@@ -4956,7 +4955,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent11(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(11)
         else:
             self.buttonChoice = 11
@@ -5050,9 +5049,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         keyEnabled = (KeyState.hotkeysDisabled and keyCode in KeyState.disabledKeys or not KeyState.hotkeysDisabled and keyCode not in KeyState.disabledKeys) or KeyState.altHeld
 
         if (keyCode == Keyboard.Q or keyCode == Keyboard.NUMPAD_7) and keyEnabled and self.buttonsVisible[1]:
-            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(1)
-            elif self.window._children['button1'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
+            elif self.window._children['button1'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 1
                 self.hideUpDown()
                 self.doListen()
@@ -5061,17 +5060,17 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if self.newSLDialogVisible and not self.nsldblindervisible and keyEnabled:
                 self.nsldSelectionUp()
             elif keyEnabled and self.buttonsVisible[2]:
-                if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+                if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                     self.itemMove(2)
-                elif self.window._children['button2'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
+                elif self.window._children['button2'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                     self.buttonChoice = 2
                     self.hideUpDown()
                     self.doListen()
 
         elif (keyCode == Keyboard.E or keyCode == Keyboard.NUMPAD_9) and keyEnabled and self.buttonsVisible[3]:
-            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(3)
-            elif self.window._children['button3'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
+            elif self.window._children['button3'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 3
                 self.hideUpDown()
                 self.doListen()
@@ -5083,9 +5082,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doListen()
 
         elif (keyCode == Keyboard.A or keyCode == Keyboard.NUMPAD_4) and keyEnabled and self.buttonsVisible[5]:
-            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(5)
-            elif self.window._children['button5'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
+            elif self.window._children['button5'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 5
                 self.hideUpDown()
                 self.doListen()
@@ -5094,17 +5093,17 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if self.newSLDialogVisible and not self.nsldblindervisible and keyEnabled:
                 self.nsldSelectionDown()
             elif keyEnabled and self.buttonsVisible[6]:
-                if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+                if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                     self.itemMove(6)
-                elif self.window._children['button6'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
+                elif self.window._children['button6'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                     self.buttonChoice = 6
                     self.hideUpDown()
                     self.doListen()
 
         elif (keyCode == Keyboard.D or keyCode == Keyboard.NUMPAD_6) and keyEnabled and self.buttonsVisible[7]:
-            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(7)
-            elif self.window._children['button7'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
+            elif self.window._children['button7'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 7
                 self.hideUpDown()
                 self.doListen()
@@ -5116,25 +5115,25 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doListen()
 
         elif (keyCode == Keyboard.Z or keyCode == Keyboard.NUMPAD_1) and keyEnabled and self.buttonsVisible[9]:
-            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(9)
-            elif self.window._children['button9'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
+            elif self.window._children['button9'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 9
                 self.hideUpDown()
                 self.doListen()
 
         elif (keyCode == Keyboard.X or keyCode == Keyboard.NUMPAD_2) and keyEnabled and self.buttonsVisible[10]:
-            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(10)
-            elif self.window._children['button10'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
+            elif self.window._children['button10'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 10
                 self.hideUpDown()
                 self.doListen()
 
         elif (keyCode == Keyboard.C or keyCode == Keyboard.NUMPAD_3) and keyEnabled and self.buttonsVisible[11]:
-            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(11)
-            elif self.window._children['button11'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
+            elif self.window._children['button11'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 11
                 self.hideUpDown()
                 self.doListen()
