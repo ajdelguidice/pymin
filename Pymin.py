@@ -69,6 +69,107 @@ SIDE_PANEL_BUTTON_NAMES = ('looksbutton', 'statsbutton', 'effectsbutton', 'helpb
 SIDE_PANEL_BUTTON_TEXT = ('Look', 'Stats', 'Effects', 'Help', 'Levels', 'Gear', 'Titles', 'Credits')
 
 
+class KeyStateStorage:
+    @property
+    def hotkeysDisabled(self):  # keyboardTypingDisable
+        # Used to disable hotkeys when in a text input field
+        return self._hotkeysDisabled
+
+    @hotkeysDisabled.setter
+    def hotkeysDisabled(self, value):
+        self._hotkeysDisabled = value
+
+    @property
+    def disabledKeys(self):  # hotkeysDisabled
+        # Set of disabled hotkeys by keycode. If self.hotkeysDisabled is True, this will be used as a whitelist instead.
+        return self._disabledKeys
+
+    @disabledKeys.setter
+    def disabledKeys(self, value):
+        self._disabledKeys = value
+
+    @property
+    def altHeld(self):
+        return self._altHeld
+
+    @altHeld.setter
+    def altHeld(self, value):
+        self._altHeld = value
+
+    @property
+    def ctrlHeld(self):
+        return self._ctrlHeld
+
+    @ctrlHeld.setter
+    def ctrlHeld(self, value):
+        self._ctrlHeld = value
+
+    @property
+    def shiftHeld(self):
+        return self._shiftHeld
+
+    @shiftHeld.setter
+    def shiftHeld(self, value):
+        self._shiftHeld = value
+
+    @property
+    def overrideShift(self):  # buttonShiftOverride
+        # Forces shift to be off. Used for the button panel
+        # TODO: See if this can be handled in shiftHeld instead of needing special casing everywhere
+        return self._overrideShift
+
+    @overrideShift.setter
+    def overrideShift(self, value):
+        self._overrideShift = value
+
+    def __init__(self):
+        self.hotkeysDisabled = False
+        self.disabledKeys = set()
+        self.altHeld = False
+        self.ctrlHeld = False
+        self.shiftHeld = False
+        self.overrideShift = False
+
+    def keyPress(self, e):
+        '''
+        Function activated on key press
+        '''
+        # self.detailedDebug()
+        keyCode = _ToolkitEvent.GetKeyboardEvent(e).keyCode
+        if keyCode == Keyboard.SHIFT:
+            self.shiftHeld = True
+        elif keyCode == Keyboard.CONTROL:
+            self.ctrlHeld = True
+        elif keyCode == Keyboard.ALTERNATE:
+            self.altHeld = True
+        elif keyCode == Keyboard.Q and self.ctrlHeld and self.shiftHeld and self.altHeld:
+            mainobject.close()
+
+    def keyRelease(self, e):
+        '''
+        Function activated on key release
+        '''
+        keyCode = _ToolkitEvent.GetKeyboardEvent(e).keyCode
+        if keyCode == Keyboard.SHIFT:
+            self.shiftHeld = False
+        elif keyCode == Keyboard.CONTROL:
+            self.ctrlHeld = False
+        elif keyCode == Keyboard.ALTERNATE:
+            self.altHeld = False
+
+    def disableKeys(self, e, disabledKeys: set = None):  # _disableKeys
+        self.hotkeysDisabled = True
+        if disabledKeys is not None:
+            self.disabledKeys = disabledKeys
+
+    def enableKeys(self, *e):  # _enableKeys
+        self.hotkeysDisabled = False
+        self.disabledKeys = set()
+
+
+KeyState = KeyStateStorage()
+
+
 class TimesFont(Font):
     source = 'assets/fonts/Times New Roman.ttf'
     fontName = 'Times New Roman'
@@ -1598,6 +1699,7 @@ class PlayerItemStorage:
                 return i
         return -1
 
+
 # Windows
 class PyminWindow:
     @property
@@ -1637,6 +1739,20 @@ class PyminWindow:
         self._backgroundColor = '#FFFFFF'
         self._textColor = '#000000'
         self.callback = callback
+
+    def keyPress(self, e):
+        KeyState.keyPress(e)
+        self._key_press_handler(_ToolkitEvent.GetKeyboardEvent(e).keyCode)
+
+    def _key_press_handler(self, keyCode):
+        ...
+
+    def keyRelease(self, e):
+        KeyState.keyRelease(e)
+        self._key_release_handler(_ToolkitEvent.GetKeyboardEvent(e).keyCode)
+
+    def _key_release_handler(self, keyCode):
+        ...
 
     def _close(self, *e):
         self._isOpen = False
@@ -1679,8 +1795,8 @@ class AboutWindow(PyminWindow):
 
         self._window = itk.itkWindow(width=350, height=155, title='About Pymin', background=self.backgroundColor)
         self.window.bind('<Destroy>', self._close)
-        self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
-        self.window.bind('<KeyRelease>', self.callback.keysUp)
+        self.window.bind('<KeyPress>', self.keyPress)
+        self.window.bind('<KeyRelease>', self.keyRelease)
         self.window.transient(self.callback.window)
         self.window.resizable = False
 
@@ -1830,8 +1946,8 @@ class PyminWiki(PyminWindow):
         # Set up window
         self._window = itk.itkWindow(width=700, height=500, title='Pymin: Wiki', background='#A0A0A0')
         self.window.bind('<Destroy>', self._close)
-        self.window.bind('<KeyPress>', partial(self.callback.keyPress, self.hotKeys))
-        self.window.bind('<KeyRelease>', self.callback.keysUp)
+        self.window.bind('<KeyPress>', self.keyPress)
+        self.window.bind('<KeyRelease>', self.keyRelease)
         self.window.transient(self.callback.window)
 
         if self.enforceSize:
@@ -1876,6 +1992,8 @@ class PyminWiki(PyminWindow):
             self.selectionDown()
         elif keyCode in {Keyboard.D, Keyboard.RIGHT, Keyboard.NUMPAD_6, Keyboard.ENTER}:
             self.selectOption()
+
+    _key_press_handler = hotKeys
 
     def selectionUp(self, *e):
         temp = self.window._children['menu'].curselection()[0]
@@ -3326,8 +3444,6 @@ class SaveConverter(PyminWindow):
 
         if startType:
             self.savelocation = GAME_DIR / 'nimin_saves'
-            self.window.bind('<KeyPress>', partial(PyminMain.keyPress, self, None))
-            self.window.bind('<KeyRelease>', partial(PyminMain.keysUp, self))
             self.style = ttk.Style(self.window)
             if THEME_DIR.is_dir():
                 self.window.tk.call('source', f'{THEME_DIR}/nimin.tcl')
@@ -3335,8 +3451,9 @@ class SaveConverter(PyminWindow):
         else:
             self.savelocation = self.callback.savelocation
             self.window.transient(self.callback.window)
-            self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
-            self.window.bind('<KeyRelease>', self.callback.keysUp)
+
+        self.window.bind('<KeyPress>', self.keyPress)
+        self.window.bind('<KeyRelease>', self.keyRelease)
 
         labelFont = ('Times New Roman', 12)
 
@@ -3443,8 +3560,8 @@ class SaveEditor(PyminWindow):
         self.window.resizable(False, False)
         self.window.transient(self.callback.window)
         self.window.bind('<Destroy>', self._close)
-        self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
-        self.window.bind('<KeyRelease>', self.callback.keysUp)
+        self.window.bind('<KeyPress>', self.keyPress)
+        self.window.bind('<KeyRelease>', self.keyRelease)
 
         self.loadbutton = tkinter.Button(self.window, text='Load', font=('TkTextFont', 9), command=self.loadFile)
         self.loadbutton.place(x=5, y=5, width=50, height=20, anchor='nw')
@@ -3570,8 +3687,8 @@ class DebugVariableDisplay(PyminWindow):
 
         self._window = itk.itkWindow(width=400, height=400, title='Pymin Debug: Variable Display', background=self.backgroundColor)
         self.window.bind('<Destroy>', self._close)
-        self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
-        self.window.bind('<KeyRelease>', self.callback.keysUp)
+        self.window.bind('<KeyPress>', self.keyPress)
+        self.window.bind('<KeyRelease>', self.keyRelease)
         self.window.transient(self.callback.window)
 
         if self.enforceSize:
@@ -3606,8 +3723,8 @@ class DebugAffinityChange(PyminWindow):
 
         self._window = itk.itkWindow(width=170, height=100, title='Affinity')
         self.window.bind('<Destroy>', self._close)
-        self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
-        self.window.bind('<KeyRelease>', self.callback.keysUp)
+        self.window.bind('<KeyPress>', self.keyPress)
+        self.window.bind('<KeyRelease>', self.keyRelease)
         self.window.transient(self.callback.window)
 
         if self.enforceSize:
@@ -3672,8 +3789,8 @@ class DebugGiveItem(PyminWindow):
 
         self._window = itk.itkWindow(width=150, height=100, title='Give Item')
         self.window.bind('<Destroy>', self._close)
-        self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
-        self.window.bind('<KeyRelease>', self.callback.keysUp)
+        self.window.bind('<KeyPress>', self.keyPress)
+        self.window.bind('<KeyRelease>', self.keyRelease)
         self.window.transient(self.callback.window)
 
         if self.enforceSize:
@@ -3750,8 +3867,8 @@ class OptionsWindow(PyminWindow):
         # Window
         self._window = itk.itkWindow(width=420, height=207, title='Options', background=self.backgroundColor)
         self.window.bind('<Destroy>', self._close)
-        self.window.bind('<KeyPress>', partial(self.callback.keyPress, None))
-        self.window.bind('<KeyRelease>', self.callback.keysUp)
+        self.window.bind('<KeyPress>', self.keyPress)
+        self.window.bind('<KeyRelease>', self.keyRelease)
         self.window.transient(self.callback.window)
 
         if self.enforceSize:
@@ -4205,13 +4322,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.debuggiveitemwindow = DebugGiveItem(self)
 
         # Misc added variables
-        self.buttonShiftOverride = False  # Forces shift to be off. Used for the button panel
         self.tempBagPage = 1  # Used in moveToBag, moveToStash, and doSell to decouple the page number from the real one
         self.nsldSortOrder = 0  # The current sort order of save files in the new save/load dialog
-        self.keyboardTypingDisable = False  # Used to disable hotkeys when in a text input field
-        self.hotkeysDisabled = set()  # Set of disabled hotkeys by keycode. If self.keyboardTypingDisable is True, this will be used as a whitelist instead.
-        self.altHeld = False  # When alt is held
-        self.ctrlHeld = False  # When ctrl is held
 
         # Options window variables
         self.savelocation = GAME_DIR / "nimin_saves"  # Where save files are stored
@@ -4294,7 +4406,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.moveItemStack = 0
 
         # game state
-        self.shiftHeld = False
         self.currentState = 0  # 0 - Title Screen/New Game, 1 - General, 2 - Battle, 3 - Masturbate
         self.inBag = False
         self.inStash = False  # Like inBag but for stash
@@ -4675,8 +4786,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         # window
         self._window = itk.itkWindow(width=1176, height=662, title='Nimin: Fetish Fantasy (Python port)', main=True, menu=True, defaultMenu=False)
-        self.window.bind('<KeyPress>', partial(self.keyPress, self.hotKeys))
-        self.window.bind('<KeyRelease>', self.keysUp)
+        self.window.bind('<KeyPress>', self.keyPress)
+        self.window.bind('<KeyRelease>', self.keyRelease)
 
         self.style = ttk.Style(self.window)
         if THEME_DIR.is_dir():
@@ -4759,38 +4870,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     open = MainTimeline
 
-    def keyPress(self, func, e):
-        '''
-        Function activated on key press
-        '''
-        self.detailedDebug()
-        keyCode = _ToolkitEvent.GetKeyboardEvent(e).keyCode
-        if keyCode == Keyboard.SHIFT:
-            self.shiftHeld = True
-        elif keyCode == Keyboard.CONTROL:
-            self.ctrlHeld = True
-        elif keyCode == Keyboard.ALTERNATE:
-            self.altHeld = True
-        elif keyCode == Keyboard.Q and self.ctrlHeld and self.shiftHeld and self.altHeld:
-            self.close()
-        elif func is not None:
-            func(keyCode)
-
-    def keysUp(self, e):
-        '''
-        Function activated on key release
-        '''
-        keyCode = _ToolkitEvent.GetKeyboardEvent(e).keyCode
-        if keyCode == Keyboard.SHIFT:
-            self.shiftHeld = False
-        if keyCode == Keyboard.CONTROL:
-            self.ctrlHeld = False
-        if keyCode == Keyboard.ALTERNATE:
-            self.altHeld = False
-
     def buttonEvent1(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
             self.itemMove(1)
         else:
             self.buttonChoice = 1
@@ -4799,7 +4881,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent2(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
             self.itemMove(2)
         else:
             self.buttonChoice = 2
@@ -4808,7 +4890,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent3(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
             self.itemMove(3)
         else:
             self.buttonChoice = 3
@@ -4823,7 +4905,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent5(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
             self.itemMove(5)
         else:
             self.buttonChoice = 5
@@ -4832,7 +4914,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent6(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
             self.itemMove(6)
         else:
             self.buttonChoice = 6
@@ -4841,7 +4923,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent7(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
             self.itemMove(7)
         else:
             self.buttonChoice = 7
@@ -4856,7 +4938,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent9(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
             self.itemMove(9)
         else:
             self.buttonChoice = 9
@@ -4865,7 +4947,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent10(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
             self.itemMove(10)
         else:
             self.buttonChoice = 10
@@ -4874,7 +4956,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def buttonEvent11(self, *e):
         self.detailedDebug()
-        if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+        if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
             self.itemMove(11)
         else:
             self.buttonChoice = 11
@@ -4965,12 +5047,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Executes hotkey behaviour from its actionscript keycode
         '''
         self.detailedDebug()
-        keyEnabled = (self.keyboardTypingDisable and keyCode in self.hotkeysDisabled or not self.keyboardTypingDisable and keyCode not in self.hotkeysDisabled) or self.altHeld
+        keyEnabled = (KeyState.hotkeysDisabled and keyCode in KeyState.disabledKeys or not KeyState.hotkeysDisabled and keyCode not in KeyState.disabledKeys) or KeyState.altHeld
 
         if (keyCode == Keyboard.Q or keyCode == Keyboard.NUMPAD_7) and keyEnabled and self.buttonsVisible[1]:
-            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
                 self.itemMove(1)
-            elif self.window._children['button1'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+            elif self.window._children['button1'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
                 self.buttonChoice = 1
                 self.hideUpDown()
                 self.doListen()
@@ -4979,17 +5061,17 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if self.newSLDialogVisible and not self.nsldblindervisible and keyEnabled:
                 self.nsldSelectionUp()
             elif keyEnabled and self.buttonsVisible[2]:
-                if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+                if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
                     self.itemMove(2)
-                elif self.window._children['button2'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+                elif self.window._children['button2'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
                     self.buttonChoice = 2
                     self.hideUpDown()
                     self.doListen()
 
         elif (keyCode == Keyboard.E or keyCode == Keyboard.NUMPAD_9) and keyEnabled and self.buttonsVisible[3]:
-            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
                 self.itemMove(3)
-            elif self.window._children['button3'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+            elif self.window._children['button3'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
                 self.buttonChoice = 3
                 self.hideUpDown()
                 self.doListen()
@@ -5001,9 +5083,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doListen()
 
         elif (keyCode == Keyboard.A or keyCode == Keyboard.NUMPAD_4) and keyEnabled and self.buttonsVisible[5]:
-            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
                 self.itemMove(5)
-            elif self.window._children['button5'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+            elif self.window._children['button5'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
                 self.buttonChoice = 5
                 self.hideUpDown()
                 self.doListen()
@@ -5012,17 +5094,17 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if self.newSLDialogVisible and not self.nsldblindervisible and keyEnabled:
                 self.nsldSelectionDown()
             elif keyEnabled and self.buttonsVisible[6]:
-                if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+                if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
                     self.itemMove(6)
-                elif self.window._children['button6'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+                elif self.window._children['button6'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
                     self.buttonChoice = 6
                     self.hideUpDown()
                     self.doListen()
 
         elif (keyCode == Keyboard.D or keyCode == Keyboard.NUMPAD_6) and keyEnabled and self.buttonsVisible[7]:
-            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
                 self.itemMove(7)
-            elif self.window._children['button7'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+            elif self.window._children['button7'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
                 self.buttonChoice = 7
                 self.hideUpDown()
                 self.doListen()
@@ -5034,25 +5116,25 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doListen()
 
         elif (keyCode == Keyboard.Z or keyCode == Keyboard.NUMPAD_1) and keyEnabled and self.buttonsVisible[9]:
-            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
                 self.itemMove(9)
-            elif self.window._children['button9'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+            elif self.window._children['button9'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
                 self.buttonChoice = 9
                 self.hideUpDown()
                 self.doListen()
 
         elif (keyCode == Keyboard.X or keyCode == Keyboard.NUMPAD_2) and keyEnabled and self.buttonsVisible[10]:
-            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
                 self.itemMove(10)
-            elif self.window._children['button10'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+            elif self.window._children['button10'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
                 self.buttonChoice = 10
                 self.hideUpDown()
                 self.doListen()
 
         elif (keyCode == Keyboard.C or keyCode == Keyboard.NUMPAD_3) and keyEnabled and self.buttonsVisible[11]:
-            if self.inBag and not self.mts and (self.shiftHeld or self.moveItemID != 0) and not self.buttonShiftOverride:
+            if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0) and not KeyState.overrideShift:
                 self.itemMove(11)
-            elif self.window._children['button11'].state == 'normal' and (not self.inBag or self.inBag and not self.shiftHeld or self.inStash or self.mts or self.buttonShiftOverride):
+            elif self.window._children['button11'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts or KeyState.overrideShift):
                 self.buttonChoice = 11
                 self.hideUpDown()
                 self.doListen()
@@ -5125,6 +5207,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             elif (keyCode == Keyboard.L):
                 self.sideEvent(8)
+
+    _key_press_handler = hotKeys
 
     def appearance(self):
         if not (self.inBag or self.inStash or self.inShop):
@@ -7600,14 +7684,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.nsldDisplay()
             self.savePreferences()
 
-    def _disableKeys(self, *e, **kwargs):
-        self.keyboardTypingDisable = True
-        self.hotkeysDisabled = kwargs.pop('keys', set())
-
-    def _enableKeys(self, *e):
-        self.keyboardTypingDisable = False
-        self.hotkeysDisabled = set()
-
     def showNewSaveLoadDialog(self):
         '''
         Displays nsld
@@ -7616,12 +7692,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.window.addScrolledListbox("display", "savefileselect", x=200, y=30, width=460, height=154, font=self.font, sbwidth=12, background="#FFFFFF", foreground="#000000")
             self.window.bindChild("savefileselect", "<<ListboxSelect>>", self.nsldSetEntryFromListbox)
             self.window.bindChild("savefileselect", "<Double-Button-1>", self.buttonEvent8)
-            self.window.bindChild("savefileselect", "<FocusIn>", partial(self._disableKeys, keys={Keyboard.NUMPAD_SUBTRACT, Keyboard.R, Keyboard.NUMPAD_ADD, Keyboard.F, Keyboard.NUMPAD_ENTER, Keyboard.V, Keyboard.NUMPAD_0, Keyboard.B, Keyboard.NUMPAD_8, Keyboard.W, Keyboard.NUMPAD_5, Keyboard.S, Keyboard.NUMPAD_6, Keyboard.D}))
-            self.window.bindChild("savefileselect", "<FocusOut>", self._enableKeys)
+            self.window.bindChild("savefileselect", "<FocusIn>", partial(KeyState.disableKeys, disabledKeys={Keyboard.NUMPAD_SUBTRACT, Keyboard.R, Keyboard.NUMPAD_ADD, Keyboard.F, Keyboard.NUMPAD_ENTER, Keyboard.V, Keyboard.NUMPAD_0, Keyboard.B, Keyboard.NUMPAD_8, Keyboard.W, Keyboard.NUMPAD_5, Keyboard.S, Keyboard.NUMPAD_6, Keyboard.D}))
+            self.window.bindChild("savefileselect", "<FocusOut>", KeyState.enableKeys)
             self.window.addLabel("display", "savefilelabel", x=200, y=184, width=75, height=24, font=("Times New Roman", 12), background=self.backgroundColor, foreground=self.textColor, text="File Name:")
             self.window.addEntry("display", "savefileentry", x=275, y=184, width=385, height=24, font=("Times New Roman", 12), background="#FFFFFF", foreground="#000000")
-            self.window.bindChild("savefileentry", "<FocusIn>", self._disableKeys)
-            self.window.bindChild("savefileentry", "<FocusOut>", self._enableKeys)
+            self.window.bindChild("savefileentry", "<FocusIn>", KeyState.disableKeys)
+            self.window.bindChild("savefileentry", "<FocusOut>", KeyState.enableKeys)
             self.nsldDisplay()
             self.window._children["savefileselect"].focus_force()
             self.newSLDialogVisible = True
@@ -7647,7 +7723,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.window.destroyChild("savefilelabel")
             self.window.destroyChild("savefileentry")
             self.newSLDialogVisible = False
-            self._enableKeys()
+            KeyState.enableKeys()
 
     def showNSLDBlinder(self):
         '''
@@ -8670,10 +8746,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText(f" x{self.moveItemStack}")
                         self.outputMainText("?")
                         self.buttonConfirm()
-                        self.buttonShiftOverride = True
+                        KeyState.overrideShift = True
 
                         def doListen():
-                            self.buttonShiftOverride = False
+                            KeyState.overrideShift = False
                             if (self.buttonChoice == 6):
                                 self.passiveItemRemove(self.moveItemID)
                                 self.moveItemID = 0
@@ -8714,10 +8790,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nWarning: Using this item will consume it.")
             self.displayMainText()
             self.buttonConfirm()
-            self.buttonShiftOverride = True
+            KeyState.overrideShift = True
 
             def doListen():
-                self.buttonShiftOverride = False
+                KeyState.overrideShift = False
                 if (self.buttonChoice == 6):
                     if (Items.isConsumable(ID)):
                         if (self.bag.stack[self.choiceListResult[1]] <= 1):
@@ -8725,9 +8801,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         else:
                             self.bag.stack[self.choiceListResult[1]] = self.bag.stack[self.choiceListResult[1]] - 1
                     self.hunger += Items.foodValue(ID)
-                    self.buttonShiftOverride = True
+                    KeyState.overrideShift = True
                     self.doItemUse(ID)
-                    self.buttonShiftOverride = False
+                    KeyState.overrideShift = False
                     self.statDisplay()
                 else:
                     self.doBag()
@@ -11378,10 +11454,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.outputMainText("?")
         self.hideAmountAll()
         self.buttonConfirm()
-        self.buttonShiftOverride = True
+        KeyState.overrideShift = True
 
         def doListen():
-            self.buttonShiftOverride = False
+            KeyState.overrideShift = False
             if (self.buttonChoice == 6):
                 if which == "Bag":
                     self.passiveItemRemove(self.moveItemID)
@@ -11747,7 +11823,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doSell()
             elif (self.buttonChoice == 12):
                 self.inShop = False
-                if (self.doShopsReturn and not self.shiftHeld):
+                if (self.doShopsReturn and not KeyState.shiftHeld):
                     self.doShops()
                 else:
                     self.doReturn()
@@ -11961,7 +12037,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doDyeShop()
                 self.doListen = doListen
             elif (self.buttonChoice == 12):
-                if (self.doShopsReturn and not self.shiftHeld):
+                if (self.doShopsReturn and not KeyState.shiftHeld):
                     self.doShops()
                 else:
                     self.doReturn()
@@ -12073,7 +12149,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doProcess()
                 self.doListen = doListen
             elif (self.buttonChoice == 12):
-                if (self.doShopsReturn and not self.shiftHeld):
+                if (self.doShopsReturn and not KeyState.shiftHeld):
                     self.doShops()
                 else:
                     self.doReturn()
@@ -12292,7 +12368,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doSalon()
                 self.doListen = doListen
             elif (self.buttonChoice == 12):
-                if (self.doShopsReturn and not self.shiftHeld):
+                if (self.doShopsReturn and not KeyState.shiftHeld):
                     self.doShops()
                 else:
                     self.doReturn()
@@ -12494,7 +12570,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doTailor()
                 self.doListen = doListen
             elif (self.buttonChoice == 12):
-                if (self.doShopsReturn and not self.shiftHeld):
+                if (self.doShopsReturn and not KeyState.shiftHeld):
                     self.doShops()
                 else:
                     self.doReturn()
@@ -28461,8 +28537,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def debugVariableDisplayText(self):
         if self.currentState == 0:
-            return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nstashPage: {self.stash.page}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
-        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {self.shiftHeld}\naltHeld: {self.altHeld}\nctrlHeld: {self.ctrlHeld}\nbuttonShiftOverride: {self.buttonShiftOverride}\nnsldSortOrder: {self.nsldSortOrder}\nkeyboardTypingDisable: {self.keyboardTypingDisable}\nhotkeysDisabled: {self.hotkeysDisabled}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nbagArray = {self.bag.items}\nbagStackArray = {self.bag.stack}\nstashPage: {self.stash.page}\nstashArray = {self.stash.items}\nstashStackArray = {self.stash.stack}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
+            return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {KeyState.shiftHeld}\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\noverrideShift: {KeyState.overrideShift}\nnsldSortOrder: {self.nsldSortOrder}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nstashPage: {self.stash.page}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
+        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {KeyState.shiftHeld}\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\noverrideShift: {KeyState.overrideShift}\nnsldSortOrder: {self.nsldSortOrder}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ndmg: {self.dmg}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nbagArray = {self.bag.items}\nbagStackArray = {self.bag.stack}\nstashPage: {self.stash.page}\nstashArray = {self.stash.items}\nstashStackArray = {self.stash.stack}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
 
     def detailedDebug(self, *e):
         self.debugvarwindow.updateText()
