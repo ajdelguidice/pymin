@@ -3,17 +3,16 @@ from tkinter import filedialog, ttk
 from miniamf import sol, amf3
 from pathlib import Path
 import xml.etree.ElementTree as xmletree
-from platform import system
 from io import StringIO
-try:
-   import tomllib
-except:
+import platform
+import sys
+if sys.hexversion < 0x030b0000:
    import tomli as tomllib
+else:
+   import tomllib
 
 # TODO: Clean up interface logic
 # TODO: General cleanup
-
-platform = system()
 
 
 class NullData(Exception):...
@@ -92,8 +91,7 @@ class TOML:
          for k in nontables:
             text.write(f'{k} = {TOML.Value(valDict[k])}\n')
          for k in tables:
-            text.write('\n')  # This doesn't work when combined with next line for some reason
-            text.write(f'["{k}"]\n' if str(k).find('.') != -1 else f'[{k}]\n')
+            text.write(f'\n["{k}"]\n' if str(k).find('.') != -1 else f'\n[{k}]\n')
             for k2, v2 in valDict[k].items():
                text.write(f'{k2} = {TOML.Value(v2)}\n')
          return text.getvalue()
@@ -457,9 +455,9 @@ class Converter:
       if path is None:
          return ''
       if isinstance(path,str):
-         if platform == 'Windows':
+         if platform.system() == 'Windows':
             filename = path.split('\\')[-1].split('.')
-         elif platform in {'Linux','Darwin'}:
+         elif platform.system() in {'Linux','Darwin'}:
             filename = path.split('/')[-1].split('.')
       else: #Is path object
          filename = path.resolve().name.split('.')
@@ -590,7 +588,6 @@ class Converter:
                print('Aborted')
                exit()
          self.convertSave(str(inputfile), 'detect', str(outputfile), output)
-         print(self.message['text'])
       else:
          self.cli_checkOutputFile(output)
          outputfile = Path(output).resolve()
@@ -603,7 +600,7 @@ class Converter:
                print('Aborted')
                exit()
          self.convertSave(str(inputfile), 'detect', str(outputfile), 'detect')
-         print(self.message['text'])
+      print(self.message['text'])
 
    def command_many(self, outputformat, files):
       if not outputformat.startswith('.'):
@@ -640,13 +637,16 @@ class Converter:
       files = [str(f) for f in dir_.iterdir() if f.is_file() and f.name.endswith(('.xml','.sol','.nim','.toml')) and not f.name.endswith(outputformat)]
       c.command_many(outputformat, files)
 
+
 def help():
    print('Nimin_Savefile_Converter.py <mode> [...args]\nModes:\n\t-s --single\tTakes two arguesments, inputfile and outputfile/format. If a format is used instead of an output file, the file will be of the same name as the original with the new format.\n\t-m --many\tConverts all specified files to a format. ... -m <extension> [...files]\n\t-d --dir\tConverts all files in a directory (non-recursive). ... -d <dir> <extension>')
+
 
 def checkOutputFormat(outformat):
    if outformat in {'.xml', '.sol', '.nim', '.toml'}:
       return outformat
    raise Exception('Invalid output format "%s"' % outformat)
+
 
 if __name__ == '__main__':
    from sys import argv
