@@ -15,7 +15,8 @@ else:
 # TODO: General cleanup
 
 
-class FileTypeError(TypeError):...
+class FileTypeError(TypeError):
+    ...
 
 
 def repintorfloat(number):
@@ -34,7 +35,7 @@ def repintorfloat(number):
     return number
 
 
-def strtobool(a:str):
+def strtobool(a: str):
     low = a.lower()
     if low == 'true':
         return True
@@ -207,7 +208,7 @@ class SaveUtils:
         if path is None:
             return ''
         if isinstance(path, str):
-            if as3state.platform == 'Windows':
+            if platform.system() == 'Windows':
                 filename = path.split('\\')[-1].split('.')
             else:
                 filename = path.split('/')[-1].split('.')
@@ -218,7 +219,7 @@ class SaveUtils:
         if len(filename) > 1:
             return '.'.join(filename[:-1])
 
-    def returnSOL(dictionary:dict, outputfile):
+    def returnSOL(dictionary: dict, outputfile):
         data = sol.SOL(SaveUtils.solGetFileName(outputfile))
         data['track'] = list(dictionary['track'].values())
         data['versionNumber'] = dictionary['version']['original']
@@ -252,20 +253,20 @@ class SaveUtils:
         data['pregSave'] = dictionary['preg']
         return data
 
-    def saveTOML(dictionary:dict, outputfile):
+    def saveTOML(dictionary: dict, outputfile):
         TOML.write(outputfile, dictionary)
 
-    def saveNIM(dictionary:dict, outputfile):
+    def saveNIM(dictionary: dict, outputfile):
         so = {'data': SaveUtils.returnSOL(dictionary, outputfile)}
         byteData = amf3.ByteArray()
         byteData.writeObject(so)
         with open(outputfile, 'wb') as f:
             f.write(byteData.getvalue())
 
-    def saveSOL(dictionary:dict, outputfile):
+    def saveSOL(dictionary: dict, outputfile):
         sol.save(SaveUtils.returnSOL(dictionary, outputfile), str(outputfile), 3)
 
-    def saveXML(dictionary:dict, outputfile):
+    def saveXML(dictionary: dict, outputfile):
         strack = list(dictionary['track'].values())
         sver = list(dictionary['version'].values())
         sstats = list(dictionary['stats'].values())
@@ -391,7 +392,7 @@ class SaveUtils:
 
     def loadNIM(filename):
         with open(filename, 'rb') as file:
-            return SaveUtils._loadSharedObject(ByteArray(file).readObject()['data'])
+            return SaveUtils._loadSharedObject(amf3.ByteArray(file).readObject()['data'])
 
     def loadSOL(filename):
         return SaveUtils._loadSharedObject(sol.load(str(filename)))
@@ -501,9 +502,9 @@ class Converter:
                 }
             }
         )
-        self.font = ('TimesNewRoman',12)
+        self.font = ('TimesNewRoman', 12)
 
-        self.titlelabel = tkinter.Label(self.root, justify='center', text='Pymin Savefile Converter', font=('TimesNewRoman',20,'bold'))
+        self.titlelabel = tkinter.Label(self.root, justify='center', text='Pymin Savefile Converter', font=('TimesNewRoman', 20, 'bold'))
         self.titlelabel.place(x=250, y=50, width=300, height=32, anchor='n')
         self.titlelabel['background'] = '#FFFFFF'
 
@@ -561,7 +562,7 @@ class Converter:
                 raise FileTypeError(f'Detected input file type {ext} is not a supported file type.')
         if data is None:
             self.message['text'] = 'Error: Input file data is null. Try again.'
-            raise NullData('Input file data is null. Try again.')
+            raise Exception('Input file data is null. Try again.')
         data = SaveUtils.dictSAVE(data)
         if outputtype == '.xml':
             SaveUtils.saveXML(data, outputfile)
@@ -588,7 +589,8 @@ class Converter:
 
         self.message['text'] = 'Success'
 
-    def close(self):...
+    def close(self):
+        ...
 
     def cli_checkInputFile(self, file):
         file = Path(file).resolve()
@@ -619,24 +621,19 @@ class Converter:
                 raise Exception('Input and output can not be of the same file type')
             outputfile = inputfile.parent / (inputfile.stem + output)
             self.cli_checkOutputFile(outputfile)
-            if outputfile.exists():
-                ans = input('Output file exists, would you like to overwrite it? (y/N) ')
-                if ans.lower() in {'','n'}:
-                    print('Aborted')
-                    exit()
-            self.convertSave(str(inputfile), 'detect', str(outputfile), output)
         else:
+            output = 'detect'
             self.cli_checkOutputFile(output)
             outputfile = Path(output).resolve()
             tempout = outputfile.name.split('.')
             if tempout[-1] == tempin[-1]:
                 raise Exception('Output file type can not be the same as input file type')
-            if outputfile.exists():
-                ans = input('Output file exists, would you like to overwrite it? (y/N) ')
-                if ans.lower() in ('','n'):
-                    print('Aborted')
-                    exit()
-            self.convertSave(str(inputfile), 'detect', str(outputfile), 'detect')
+        if outputfile.exists():
+            ans = input('Output file exists, would you like to overwrite it? (y/N) ')
+            if ans.lower() in ('', 'n'):
+                print('Aborted')
+                exit()
+        self.convertSave(str(inputfile), 'detect', str(outputfile), output)
         print(self.message['text'])
 
     def command_many(self, outputformat, files):
@@ -671,7 +668,7 @@ class Converter:
         if not dir_.is_dir():
             raise Exception('Provided path must be a directory')
         outputformat = checkOutputFormat(outputformat)
-        files = [str(f) for f in dir_.iterdir() if f.is_file() and f.name.endswith(('.xml','.sol','.nim','.toml')) and not f.name.endswith(outputformat)]
+        files = [str(f) for f in dir_.iterdir() if f.is_file() and f.name.endswith(('.xml', '.sol', '.nim', '.toml')) and not f.name.endswith(outputformat)]
         c.command_many(outputformat, files)
 
 
