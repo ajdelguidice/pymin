@@ -15,6 +15,11 @@ else:
 # TODO: General cleanup
 
 
+START_DIR = Path(__file__).parent
+MAIN_FONT = ('Times New Roman', 12)
+TITLE_FONT = ('Times New Roman', 20, 'bold')
+
+
 class FileTypeError(TypeError):
     ...
 
@@ -161,10 +166,9 @@ class FileEntry(tkinter.Frame):
     def __init__(self, master, *args, **kwargs):
         text = kwargs.pop('text')
         icon = kwargs.pop('icon')
-        self.cls = kwargs.pop('cls')
         tkinter.Frame.__init__(self, master)
         self['background'] = '#FFFFFF'
-        self.label = tkinter.Label(self, text=text, font=self.cls.font)
+        self.label = tkinter.Label(self, text=text, font=MAIN_FONT)
         self.label.place(x=0, y=0, height=24)
         self.label['background'] = '#FFFFFF'
 
@@ -174,18 +178,18 @@ class FileEntry(tkinter.Frame):
         self.button = ConvButton(self, command=self.chooseFile, image=icon)
         self.button.place(x=296, y=24, width=24, height=24, anchor='nw')
 
-        self.typelabel = tkinter.Label(self, text='Type', font=self.cls.font)
+        self.typelabel = tkinter.Label(self, text='Type', font=MAIN_FONT)
         self.typelabel.place(x=340, y=0, width=40, height=24, anchor='nw')
         self.typelabel['background'] = '#FFFFFF'
 
         self.combovar = tkinter.StringVar()
-        self.combo = ttk.Combobox(self, font=self.cls.font, textvariable=self.combovar, state='readonly')
+        self.combo = ttk.Combobox(self, font=MAIN_FONT, textvariable=self.combovar, state='readonly')
         self.combo['values'] = ('detect', 'xml', 'sol', 'nim', 'toml')
         self.combo.set('detect')
         self.combo.place(x=340, y=24, width=60, height=24, anchor='nw')
 
     def chooseFile(self):
-        f = filedialog.askopenfilename(initialdir=self.cls.path)
+        f = filedialog.askopenfilename(initialdir=START_DIR)
         if not isinstance(f, tuple) and f != '':
             self.entryvar.set(f)
 
@@ -475,11 +479,40 @@ class SaveUtils:
 
 class Converter:
     # TODO: Move converter stuff into here so global variables can be avoided
+    @property
+    def isOpen(self):
+        return self._isOpen
+
+    @property
+    def messageText(self):
+        if self.isOpen:
+            return self.message['text']
+        return self._messageText
+
+    @messageText.setter
+    def messageText(self, value):
+        if self.isOpen:
+            self.message['text'] = value
+        else:
+            self._messageText = value
+
+    @property
+    def messageColor(self):
+        if self.isOpen:
+            return self.message['foreground']
+
+    @messageColor.setter
+    def messageColor(self, value):
+        if self.isOpen:
+            self.message['foreground'] = value
+
     def __init__(self):
-        self.path = None
+        self._isOpen = False
+        self._messageText = ''
 
     def open(self):
         self.root = tkinter.Tk()
+        self.root.bind('<Destroy>', self.close)
         self.root.geometry('500x334')
         self.root.resizable(False, False)
         self.root.title('Pymin Savefile Converter')
@@ -502,25 +535,25 @@ class Converter:
                 }
             }
         )
-        self.font = ('TimesNewRoman', 12)
-
-        self.titlelabel = tkinter.Label(self.root, justify='center', text='Pymin Savefile Converter', font=('TimesNewRoman', 20, 'bold'))
+        self.titlelabel = tkinter.Label(self.root, justify='center', text='Pymin Savefile Converter', font=TITLE_FONT)
         self.titlelabel.place(x=250, y=50, width=300, height=32, anchor='n')
         self.titlelabel['background'] = '#FFFFFF'
 
-        self.message = tkinter.Label(self.root, justify='center', text='', font=self.font, wraplength=300)
+        self.message = tkinter.Label(self.root, justify='center', text='', font=MAIN_FONT, wraplength=300)
         self.message.place(x=250, y=100, width=300, height=50, anchor='n')
         self.message['foreground'] = '#FF1111'
         self.message['background'] = '#FFFFFF'
 
-        self.inputfile = FileEntry(self.root, text='Input File', icon=self.fileicon, cls=self)
+        self.inputfile = FileEntry(self.root, text='Input File', icon=self.fileicon)
         self.inputfile.place(x=50, y=150, width=400, height=48)
 
-        self.outputfile = FileEntry(self.root, text='Output File', icon=self.fileicon, cls=self)
+        self.outputfile = FileEntry(self.root, text='Output File', icon=self.fileicon)
         self.outputfile.place(x=50, y=210, width=400, height=48)
 
-        self.convertbutton = ConvButton(self.root, font=self.font, text='Convert', command=self.convertButton)
+        self.convertbutton = ConvButton(self.root, font=MAIN_FONT, text='Convert', command=self.convertButton)
         self.convertbutton.place(x=386, y=270, width=64, height=24, anchor='nw')
+
+        self._isOpen = True
 
         self.root.mainloop()
 
@@ -528,15 +561,15 @@ class Converter:
         self.convertSave(self.inputfile.file, self.inputfile.type, self.outputfile.file, self.outputfile.type)
 
     def convertSave(self, inputfile, inputtype, outputfile, outputtype):
-        #self.message['foreground'] = '#FF1111'
+        self.messageColor = '#FF1111'
         if inputfile in {None, ''} or outputfile in {None, ''}:
-            self.message['text'] = 'Error: Input/Output file can not be empty.'
+            self.messageText = 'Error: Input/Output file can not be empty.'
             raise Exception('Input/Output file can not be empty.')
         if inputtype == outputtype and inputtype != 'detect':
-            self.message['text'] = 'Error: Input and Output file types can not be the same.'
+            self.messageText = 'Error: Input and Output file types can not be the same.'
             raise Exception('Input and Output file types can not be the same.')
         if inputfile == outputfile:
-            self.message['text'] = 'Error: Input and Output files can not be the same.'
+            self.messageText = 'Error: Input and Output files can not be the same.'
             raise Exception('Input and Output files can not be the same.')
         if inputtype == '.xml':
             data = SaveUtils.loadXML(inputfile)
@@ -558,10 +591,10 @@ class Converter:
                 data = SaveUtils.loadTOML(inputfile)
             else:
                 ext = inputfile.split('.')[-1].lower()
-                self.message['text'] = f'Error: Detected input file type {ext} is not a supported file type.'
+                self.messageText = f'Error: Detected input file type {ext} is not a supported file type.'
                 raise FileTypeError(f'Detected input file type {ext} is not a supported file type.')
         if data is None:
-            self.message['text'] = 'Error: Input file data is null. Try again.'
+            self.messageText = 'Error: Input file data is null. Try again.'
             raise Exception('Input file data is null. Try again.')
         data = SaveUtils.dictSAVE(data)
         if outputtype == '.xml':
@@ -584,13 +617,14 @@ class Converter:
                 SaveUtils.saveTOML(data, outputfile)
             else:
                 ext = outputfile.split('.')[-1].lower()
-                self.message['text'] = f'Error: Detected output file type {ext} is not a supported file type'
+                self.messageText = f'Error: Detected output file type {ext} is not a supported file type'
                 raise FileTypeError(f'Detected output file type {ext} is not a supported file type')
 
-        self.message['text'] = 'Success'
+        self.messageColor = '#11FF11'
+        self.messageText = 'Success'
 
-    def close(self):
-        ...
+    def close(self, *e):
+        self._isOpen = False
 
     def cli_checkInputFile(self, file):
         file = Path(file).resolve()
@@ -634,14 +668,14 @@ class Converter:
                 print('Aborted')
                 exit()
         self.convertSave(str(inputfile), 'detect', str(outputfile), output)
-        print(self.message['text'])
+        print(self.messageText)
 
     def command_many(self, outputformat, files):
         if not outputformat.startswith('.'):
             outputformat = '.' + outputformat
         for i in files:
             try:
-                self.message['text'] = ''
+                self.messageText = ''
                 self.cli_checkInputFile(i)
                 inputfile = Path(i)
                 tempin = str(inputfile.name).split('.')
@@ -655,21 +689,19 @@ class Converter:
                         print('[%s] Aborted' % i)
                         continue
                 self.convertSave(str(inputfile), 'detect', str(outputfile), outputformat)
-                if self.message['text'] != 'Success':
-                    print('[%s] %s' % (i, self.message['text']))
             except Exception as e:
                 print('[%s] %s: %s' % (i, type(e).__name__, e))
         print('Done')
 
     def command_dir(self, directory, outputformat):
-        dir_ = Path(directory).resolve()
-        if not dir_.exists():
+        dir = Path(directory).resolve()
+        if not dir.exists():
             raise Exception('Provided path does not exist')
-        if not dir_.is_dir():
+        if not dir.is_dir():
             raise Exception('Provided path must be a directory')
         outputformat = checkOutputFormat(outputformat)
-        files = [str(f) for f in dir_.iterdir() if f.is_file() and f.name.endswith(('.xml', '.sol', '.nim', '.toml')) and not f.name.endswith(outputformat)]
-        c.command_many(outputformat, files)
+        files = [str(f) for f in dir.iterdir() if f.is_file() and f.name.endswith(('.xml', '.sol', '.nim', '.toml')) and not f.name.endswith(outputformat)]
+        self.command_many(outputformat, files)
 
 
 def help():
@@ -683,26 +715,32 @@ def checkOutputFormat(outformat):
 
 
 if __name__ == '__main__':
-    from sys import argv
     c = Converter()
-    if len(argv) == 1:
-        c.path = Path(__file__).parent
+    # GUI
+    if len(sys.argv) == 1:
         c.open()
-    else:  # Comandline args
-        c.message = {'text': ''}
-        if argv[1] == 'help' or '--help' in argv or '-h' in argv:
-            help()
-        elif argv[1] in {'-s', '--single'}:
-            # One file then output file or output type
-            c.command_single(argv[2], argv[3])
-        elif argv[1] in {'-m', '--many'}:
-            # Convert all after this
-            if len(argv) < 4:
-                raise Exception('Not enough arguements')
-            c.command_many(checkOutputFormat(argv[2]), argv[3:])
-        elif argv[1] in {'-d', '--dir'}:
-            if len(argv) != 4:
-                raise Exception('Incorrect number of arguements')
-            c.command_dir(argv[2], argv[3])
-        else:
-            help()
+
+    # Help
+    elif sys.argv[1] == 'help' or '--help' in sys.argv or '-h' in sys.argv:
+        help()
+
+    # Convert Single File
+    elif sys.argv[1] in {'-s', '--single'}:
+        # One file then output file or output type
+        c.command_single(sys.argv[2], sys.argv[3])
+
+    # Convert Multiple Files
+    elif sys.argv[1] in {'-m', '--many'}:
+        # Convert all after this
+        if len(sys.argv) < 4:
+            raise Exception('Not enough arguements')
+        c.command_many(checkOutputFormat(sys.argv[2]), sys.argv[3:])
+
+    # Convert Directory
+    elif sys.argv[1] in {'-d', '--dir'}:
+        if len(sys.argv) != 4:
+            raise Exception('Incorrect number of arguements')
+        c.command_dir(sys.argv[2], sys.argv[3])
+
+    else:
+        help()
