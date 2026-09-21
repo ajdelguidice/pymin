@@ -1929,13 +1929,12 @@ class PyminWiki(PyminWindow):
         self._fontSize = 12
         self.pageHistory = Array()
         self.text = ''
-        temp = itk.itkHTMLScrolledText(itkWindow=self.callback.window)
-        if getattr(temp.html_parser, 'callobject', OBJECT_NOT_FOUND) is OBJECT_NOT_FOUND:
+        from tkhtmlview import html_parser
+        if getattr(html_parser.HTMLTextParser(), 'callobject', OBJECT_NOT_FOUND) is OBJECT_NOT_FOUND:
             self._hasCustomHTMLParser = False
             trace('Warning: [PyminWiki] Custom tkhtmlview html_parser is not installed. Wiki links will not work')
         else:
             self._hasCustomHTMLParser = True
-        temp.destroy()
 
     def open(self):
         if self.isOpen:
@@ -4313,7 +4312,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # Windows
         self.aboutwindow = AboutWindow(self)
         self.options = OptionsWindow(self)
-        self.wiki = None
+        self.wiki = PyminWiki(self)
         self.saveconverter = SaveConverter(self)
         self.saveeditor = SaveEditor(self)
         self.debugvarwindow = DebugVariableDisplay(self)
@@ -4791,9 +4790,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.style = ttk.Style(self.window)
         if THEME_DIR.is_dir():
             self.window.tk.call('source', f'{THEME_DIR}/nimin.tcl')
-
-        # Set up wiki
-        self.wiki = PyminWiki(self)
 
         menuFont = ('Terminal', 8)
 
@@ -27187,7 +27183,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             return tempStr + "stiff haired"
         if self.hair == 14:
             return tempStr + "poofball"
-        return ""
+        return tempStr
 
     def earDesc(self):
         if self.ears == 1:
