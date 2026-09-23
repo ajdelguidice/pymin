@@ -48,9 +48,6 @@ __version__ = '13'
 NIMIN_VERSION = '0.975o'
 
 
-OBJECT_NOT_FOUND = object()
-
-
 GAME_DIR = as3state.appdatadirectory
 THEME_DIR = GAME_DIR / 'nimintheme'
 
@@ -1930,7 +1927,7 @@ class PyminWiki(PyminWindow):
         self.pageHistory = Array()
         self.text = ''
         from tkhtmlview import html_parser
-        if getattr(html_parser.HTMLTextParser(), 'callobject', OBJECT_NOT_FOUND) is OBJECT_NOT_FOUND:
+        if not hasattr(html_parser, 'HLinkSlot_Command'):
             self._hasCustomHTMLParser = False
             trace('Warning: [PyminWiki] Custom tkhtmlview html_parser is not installed. Wiki links will not work')
         else:
