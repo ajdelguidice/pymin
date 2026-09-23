@@ -755,13 +755,13 @@ class HTMLTextParser(HTMLParser):
             self._w.tag_config(key, font=font.Font(**tag[Fnt.KEY]), **tag[WCfg.KEY])
             if tag[Bind.KEY][Bind.LINK]:
                 url = tag[Bind.KEY][Bind.LINK]
-                if url.startswith('exec://'):
+                if url.startswith('call_args://'):
                     if self.callobect is None:
                         callobject = print
                     else:
                         callobject = self.callobject
                     self.hlink_slots.append(
-                        HLinkSlot_Command(self._w, key, callobject, url.split('&'))
+                        HLinkSlot_Command(self._w, key, callobject, url[12:].split('&'))
                     )
                 else:
                     self.hlink_slots.append(
