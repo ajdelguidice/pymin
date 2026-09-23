@@ -256,6 +256,18 @@ class HLinkSlot:
         self._w.config(cursor="")
 
 
+class HLinkSlot_Command(HLinkSlot):
+    def __init__(self, w, tag_name, command, args):
+        self._w = w
+        self.tag_name = tag_name
+        self.command = command
+        self.args = args
+
+    def call(self, event):
+        self.command(*args)
+        self._w.tag_config(self.tag_name, foreground="purple")
+
+
 class ListTag:
     # ----------------------------------------------------------------------------------------------
     def __init__(self, ordered: bool, list_type=None):
@@ -742,9 +754,19 @@ class HTMLTextParser(HTMLParser):
             self._w.tag_add(key, tag[WTag.START_INDEX], tag[WTag.END_INDEX])
             self._w.tag_config(key, font=font.Font(**tag[Fnt.KEY]), **tag[WCfg.KEY])
             if tag[Bind.KEY][Bind.LINK]:
-                self.hlink_slots.append(
-                    HLinkSlot(self._w, key, tag[Bind.KEY][Bind.LINK],self.callobject)
-                )
+                url = tag[Bind.KEY][Bind.LINK]
+                if url.startswith('exec://'):
+                    if self.callobect is None:
+                        callobject = print
+                    else:
+                        callobject = self.callobject
+                    self.hlink_slots.append(
+                        HLinkSlot_Command(self._w, key, callobject, url.split('&'))
+                    )
+                else:
+                    self.hlink_slots.append(
+                        HLinkSlot(self._w, key, url, self.callobject)
+                    )
                 self._w.tag_bind(key, "<Button-1>", self.hlink_slots[-1].call)
                 self._w.tag_bind(key, "<Leave>", self.hlink_slots[-1].leave)
                 self._w.tag_bind(key, "<Enter>", self.hlink_slots[-1].enter)
