@@ -2,6 +2,7 @@ import tkinter
 from tkinter import filedialog, ttk
 from miniamf import sol, amf3
 import xml.etree.ElementTree as xmletree
+from pathlib import Path
 from io import StringIO
 import os
 import sys
@@ -568,7 +569,6 @@ class CLI(Converter):
         CLI.checkFile(file)
 
     def doConvert(self, inputfile, inputtype, outputfile, outputtype):
-        self.file = inputfile
         self.convertSave(inputfile, inputtype, outputfile, outputtype)
 
     def doSuccess(self):
@@ -589,8 +589,9 @@ class CLI(Converter):
         temp = os.path.splitext(inputFile)
         inputName = temp[0]
         inputType = temp[1]
-        if output.startswith('.'):
-            outputFile = inputName + output
+        if output.startswith('.') and not output.startswith(('./', '.\\')):
+            outputType = output
+            outputFile = inputName + outputType
             CLI.checkOutputFile(outputFile)
         else:
             outputFile = os.path.realpath(output)
@@ -631,7 +632,8 @@ class CLI(Converter):
         if not os.path.isdir(dir):
             raise Exception('Provided path must be a directory')
         outputType = self.checkOutputFormat(outputType)
-        files = [f for f in os.path.listdir(dir) if os.path.isfile(f) and os.path.splitext(f)[-1] in {'.xml', '.sol', '.nim', '.toml'} and os.path.splitext[-1] != outputType]
+        # TODO: Find a way to not use pathlib here
+        files = [f for f in Path(dir).iterdir() if os.path.isfile(f) and os.path.splitext(f)[-1] in {'.xml', '.sol', '.nim', '.toml'} and os.path.splitext(f)[-1] != outputType]
         self.command_many(outputType, files)
 
 
