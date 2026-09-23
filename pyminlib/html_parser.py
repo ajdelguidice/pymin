@@ -232,20 +232,16 @@ def get_existing_font(font_families):
 class HLinkSlot:
     # ----------------------------------------------------------------------------------------------
 
-    def __init__(self, w, tag_name, url, callobject=None):
+    def __init__(self, w, tag_name, url):
         # ------------------------------------------------------------------------------------------
         self._w = w
         self.tag_name = tag_name
         self.URL = url
-        self.callobject = print if callobject is None else callobject
 
     def call(self, event):
         # ------------------------------------------------------------------------------------------
-        if self.URL[0] == "\uFFFF":
-            self.callobject(*self.URL[1:].split("\uFFFF"))
-        else:
-            webbrowser.open(self.URL)
-            self._w.tag_config(self.tag_name, foreground="purple")
+        webbrowser.open(self.URL)
+        self._w.tag_config(self.tag_name, foreground="purple")
 
     def enter(self, event):
         # ------------------------------------------------------------------------------------------
@@ -260,11 +256,11 @@ class HLinkSlot_Command(HLinkSlot):
     def __init__(self, w, tag_name, command, args):
         self._w = w
         self.tag_name = tag_name
-        self.command = command
+        self.command = print if command is None else command
         self.args = args
 
     def call(self, event):
-        self.command(*args)
+        self.command(*self.args)
         self._w.tag_config(self.tag_name, foreground="purple")
 
 
@@ -755,17 +751,17 @@ class HTMLTextParser(HTMLParser):
             self._w.tag_config(key, font=font.Font(**tag[Fnt.KEY]), **tag[WCfg.KEY])
             if tag[Bind.KEY][Bind.LINK]:
                 url = tag[Bind.KEY][Bind.LINK]
-                if url.startswith('call_args://'):
-                    if self.callobect is None:
-                        callobject = print
-                    else:
-                        callobject = self.callobject
+                if url[0] == '\uFFFF':
                     self.hlink_slots.append(
-                        HLinkSlot_Command(self._w, key, callobject, url[12:].split('&'))
+                        HLinkSlot_Command(self._w, key, self.callobject, url[1:].split('\uFFFF'))
+                    )
+                elif url.startswith('call_args://'):
+                    self.hlink_slots.append(
+                        HLinkSlot_Command(self._w, key, self.callobject, url[12:].split('&'))
                     )
                 else:
                     self.hlink_slots.append(
-                        HLinkSlot(self._w, key, url, self.callobject)
+                        HLinkSlot(self._w, key, url)
                     )
                 self._w.tag_bind(key, "<Button-1>", self.hlink_slots[-1].call)
                 self._w.tag_bind(key, "<Leave>", self.hlink_slots[-1].leave)
