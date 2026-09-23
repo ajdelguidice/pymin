@@ -11,17 +11,12 @@ if sys.hexversion < 0x030b0000:
 else:
     import tomllib
 
-# TODO: Clean up interface logic
-# TODO: General cleanup
-
 
 START_DIR = os.path.dirname(os.path.realpath(__file__))
 MAIN_FONT = ('Times New Roman', 12)
 TITLE_FONT = ('Times New Roman', 20, 'bold')
 
-
-class FileTypeError(TypeError):
-    ...
+FILE_ICON = b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x10\x00\x00\x00\x0c\x08\x06\x00\x00\x00k\xe7=\x81\x00\x00\x00\x01sRGB\x01\xd9\xc9,\x7f\x00\x00\x00\x04gAMA\x00\x00\xb1\x8f\x0b\xfca\x05\x00\x00\x00 cHRM\x00\x00z&\x00\x00\x80\x84\x00\x00\xfa\x00\x00\x00\x80\xe8\x00\x00u0\x00\x00\xea`\x00\x00:\x98\x00\x00\x17p\x9c\xbaQ<\x00\x00\x00\x06bKGD\x00\xd3\x00\x9d\x00JT\xd4=\xdb\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x00JIDAT(\xcfc` \x00^l\xcf\xe1{\xb1=\x87\t\x97<\x0bT\xd1\x7f<fp3000300\xfc\xc3&\xc9H\x84\x018\x81\x84\xe7\x14F\x16B\x8a^?\xbb\x87W\x9e\x85\x18E\xf8\x00\x13\x03\x85`\xd4\x00*\x18@1\x00\x00l\t\x11\xb4\x84N\xcd\xaf\x00\x00\x00\x00IEND\xaeB`\x82'
 
 
 def repintorfloat(number):
@@ -109,11 +104,7 @@ class TOML:
 
 class ConvButton(tkinter.Button):
     def __init__(self, master, *args, **kwargs):
-        super().__init__(master, *args, **kwargs)
-        self['background'] = '#FFFFFF'
-        self['activebackground'] = '#FFFFFF'
-        self['highlightcolor'] = '#000000'
-        self['highlightbackground'] = '#000000'
+        super().__init__(master, *args, background='#FFFFFF', activebackground='#FFFFFF', highlightcolor='#000000', highlightbackground='#000000', **kwargs)
         self.bind('<Enter>', self._borderSet)
         self.bind('<Leave>', self._borderUnset)
         self.bind('<Button-1>', self._backgroundSet)
@@ -138,10 +129,7 @@ class ConvButton(tkinter.Button):
 
 class ConvEntry(tkinter.Entry):
     def __init__(self, master, *args, **kwargs):
-        super().__init__(master, *args, **kwargs)
-        self['background'] = '#FFFFFF'
-        self['highlightcolor'] = '#000000'
-        self['highlightbackground'] = '#000000'
+        super().__init__(master, *args, background='#FFFFFF', highlightcolor='#000000', highlightbackground='#000000', **kwargs)
         self.bind('<Enter>', self._borderSet)
         self.bind('<Leave>', self._borderUnset)
 
@@ -168,9 +156,8 @@ class FileEntry(tkinter.Frame):
         icon = kwargs.pop('icon')
         tkinter.Frame.__init__(self, master)
         self['background'] = '#FFFFFF'
-        self.label = tkinter.Label(self, text=text, font=MAIN_FONT)
+        self.label = tkinter.Label(self, text=text, font=MAIN_FONT, background='#FFFFFF')
         self.label.place(x=0, y=0, height=24)
-        self.label['background'] = '#FFFFFF'
 
         self.entryvar = tkinter.StringVar()
         self.entry = ConvEntry(self, textvariable=self.entryvar)
@@ -178,9 +165,8 @@ class FileEntry(tkinter.Frame):
         self.button = ConvButton(self, command=self.chooseFile, image=icon)
         self.button.place(x=296, y=24, width=24, height=24, anchor='nw')
 
-        self.typelabel = tkinter.Label(self, text='Type', font=MAIN_FONT)
+        self.typelabel = tkinter.Label(self, text='Type', font=MAIN_FONT, background='#FFFFFF')
         self.typelabel.place(x=340, y=0, width=40, height=24, anchor='nw')
-        self.typelabel['background'] = '#FFFFFF'
 
         self.combovar = tkinter.StringVar()
         self.combo = ttk.Combobox(self, font=MAIN_FONT, textvariable=self.combovar, state='readonly')
@@ -423,10 +409,10 @@ class SaveUtils:
         stash = data.find('stash')
         stashStack = data.find('stashStack')
         preg = data.find('preg')
-        _bagArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        _bagStackArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        _stashArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        _stashStackArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        _bagArray = [0] * 27
+        _bagStackArray = [0] * 27
+        _stashArray = [0] * 27
+        _stashStackArray = [0] * 27
         _preg = []
         for i in range(27):
             tempstr = f'slot{i}'
@@ -468,7 +454,7 @@ class SaveUtils:
 
 
 class Converter:
-    def doConvert(self):
+    def __init__(self):
         ...
 
     def doSuccess(self):
@@ -540,7 +526,6 @@ class Converter:
 class CLI(Converter):
     def __init__(self):
         self._multifile = True
-        self.file = ''
 
     @staticmethod
     def checkOutputFormat(outformat):
@@ -554,7 +539,7 @@ class CLI(Converter):
         if os.path.isdir(file):
             raise Exception('"%s" is not a file.' % file)
         if os.path.splitext(file)[-1] not in ('.xml', '.sol', '.nim', '.toml'):
-            raise FileTypeError('"%s" is not of a supported file type' % file)
+            raise Exception('"%s" is not of a supported file type' % file)
         if len(os.path.basename(file).split('.')) == 1:
             raise Exception('"%s" does not have an extension' % file)
 
@@ -567,9 +552,6 @@ class CLI(Converter):
     @staticmethod
     def checkOutputFile(file):
         CLI.checkFile(file)
-
-    def doConvert(self, inputfile, inputtype, outputfile, outputtype):
-        self.convertSave(inputfile, inputtype, outputfile, outputtype)
 
     def doSuccess(self):
         if self._multifile:
@@ -602,7 +584,7 @@ class CLI(Converter):
             if ans.lower() in ('', 'n'):
                 print('Aborted')
                 exit()
-        self.doConvert(inputFile, inputType, outputFile, outputType)
+        self.convertSave(inputFile, inputType, outputFile, outputType)
 
     def command_many(self, outputType, files):
         if not outputType.startswith('.'):
@@ -620,7 +602,7 @@ class CLI(Converter):
                     ans = input('Output file exists, would you like to overwrite it? (y/N) ')
                     if ans.lower() in {'', 'n'}:
                         self.doFailure('Aborted')
-                self.doConvert(inputFile, inputType, outputFile, outputType)
+                self.convertSave(inputFile, inputType, outputFile, outputType)
             except Exception as e:
                 print('[%s] %s: %s' % (i, type(e).__name__, e))
         print('Done')
@@ -638,14 +620,6 @@ class CLI(Converter):
 
 
 class GUI(Converter):
-    # TODO: Move converter stuff into here so global variables can be avoided
-    @property
-    def isOpen(self):
-        return self._isOpen
-
-    def __init__(self):
-        self._isOpen = False
-
     def doConvert(self, *e):
         self.convertSave(self.inputfile.file, self.inputfile.type, self.outputfile.file, self.outputfile.type)
 
@@ -660,13 +634,12 @@ class GUI(Converter):
 
     def open(self):
         self.root = tkinter.Tk()
-        self.root.bind('<Destroy>', self.close)
         self.root.geometry('500x334')
         self.root.resizable(False, False)
         self.root.title('Pymin Savefile Converter')
         self.root['background'] = '#FFFFFF'
 
-        self.fileicon = tkinter.PhotoImage(data=b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x10\x00\x00\x00\x0c\x08\x06\x00\x00\x00k\xe7=\x81\x00\x00\x00\x01sRGB\x01\xd9\xc9,\x7f\x00\x00\x00\x04gAMA\x00\x00\xb1\x8f\x0b\xfca\x05\x00\x00\x00 cHRM\x00\x00z&\x00\x00\x80\x84\x00\x00\xfa\x00\x00\x00\x80\xe8\x00\x00u0\x00\x00\xea`\x00\x00:\x98\x00\x00\x17p\x9c\xbaQ<\x00\x00\x00\x06bKGD\x00\xd3\x00\x9d\x00JT\xd4=\xdb\x00\x00\x00\tpHYs\x00\x00.#\x00\x00.#\x01x\xa5?v\x00\x00\x00JIDAT(\xcfc` \x00^l\xcf\xe1{\xb1=\x87\t\x97<\x0bT\xd1\x7f<fp3000300\xfc\xc3&\xc9H\x84\x018\x81\x84\xe7\x14F\x16B\x8a^?\xbb\x87W\x9e\x85\x18E\xf8\x00\x13\x03\x85`\xd4\x00*\x18@1\x00\x00l\t\x11\xb4\x84N\xcd\xaf\x00\x00\x00\x00IEND\xaeB`\x82')
+        self.fileicon = tkinter.PhotoImage(data=FILE_ICON)
 
         self.style = ttk.Style()
         self.style.theme_settings(
@@ -683,14 +656,11 @@ class GUI(Converter):
                 }
             }
         )
-        self.titlelabel = tkinter.Label(self.root, justify='center', text='Pymin Savefile Converter', font=TITLE_FONT)
+        self.titlelabel = tkinter.Label(self.root, justify='center', text='Pymin Savefile Converter', font=TITLE_FONT, background='#FFFFFF')
         self.titlelabel.place(x=250, y=50, width=300, height=32, anchor='n')
-        self.titlelabel['background'] = '#FFFFFF'
 
-        self.message = tkinter.Label(self.root, justify='center', text='', font=MAIN_FONT, wraplength=300)
+        self.message = tkinter.Label(self.root, justify='center', text='', font=MAIN_FONT, wraplength=300, background='#FFFFFF')
         self.message.place(x=250, y=100, width=300, height=50, anchor='n')
-        self.message['foreground'] = '#FF1111'
-        self.message['background'] = '#FFFFFF'
 
         self.inputfile = FileEntry(self.root, text='Input File', icon=self.fileicon)
         self.inputfile.place(x=50, y=150, width=400, height=48)
@@ -701,12 +671,10 @@ class GUI(Converter):
         self.convertbutton = ConvButton(self.root, font=MAIN_FONT, text='Convert', command=self.doConvert)
         self.convertbutton.place(x=386, y=270, width=64, height=24, anchor='nw')
 
-        self._isOpen = True
-
         self.root.mainloop()
 
-    def close(self, *e):
-        self._isOpen = False
+    def close(self):
+        self.root.destroy()
 
 
 def help():
