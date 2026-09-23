@@ -1,10 +1,9 @@
 import tkinter
 from tkinter import filedialog, ttk
 from miniamf import sol, amf3
-from pathlib import Path, PurePath
 import xml.etree.ElementTree as xmletree
 from io import StringIO
-import platform
+import os
 import sys
 if sys.hexversion < 0x030b0000:
     import tomli as tomllib
@@ -15,7 +14,7 @@ else:
 # TODO: General cleanup
 
 
-START_DIR = Path(__file__).parent
+START_DIR = os.path.dirname(os.path.realpath(__file__))
 MAIN_FONT = ('Times New Roman', 12)
 TITLE_FONT = ('Times New Roman', 20, 'bold')
 
@@ -208,20 +207,10 @@ class SaveUtils:
                 dictionary[k][i] = repintorfloat(dictionary[k][i])
         return dictionary
 
-    def solGetFileName(path: str | PurePath):
+    def solGetFileName(path: str):
         if path is None:
             return ''
-        if isinstance(path, str):
-            if platform.system() == 'Windows':
-                filename = path.split('\\')[-1].split('.')
-            else:
-                filename = path.split('/')[-1].split('.')
-        else:  # Is path object
-            filename = path.resolve().name.split('.')
-        if len(filename) == 1:
-            return filename[0]
-        if len(filename) > 1:
-            return '.'.join(filename[:-1])
+        return os.path.splitext(os.path.basename(path))[0]
 
     def returnSOL(dictionary: dict, outputfile):
         data = sol.SOL(SaveUtils.solGetFileName(outputfile))
@@ -478,37 +467,194 @@ class SaveUtils:
 
 
 class Converter:
+    def doConvert(self):
+        ...
+
+    def doSuccess(self):
+        ...
+
+    def doFailure(self, message):
+        ...
+
+    def convertSave(self, inputfile, inputtype, outputfile, outputtype):
+        if inputfile in {None, ''} or outputfile in {None, ''}:
+            self.doFailure('Input/Output file can not be empty.')
+        if inputtype == outputtype and inputtype != 'detect':
+            self.doFailure('Input and Output file types can not be the same.')
+        if inputfile == outputfile:
+            self.doFailure('Input and Output files can not be the same.')
+        if inputtype == '.xml':
+            data = SaveUtils.loadXML(inputfile)
+        elif inputtype == '.sol':
+            data = SaveUtils.loadSOL(inputfile)
+        elif inputtype == '.nim':
+            data = SaveUtils.loadNIM(inputfile)
+        elif inputtype == '.toml':
+            data = SaveUtils.loadTOML(inputfile)
+        elif inputtype == 'detect':
+            infile = inputfile.lower()
+            if infile.endswith('.xml'):
+                data = SaveUtils.loadXML(inputfile)
+            elif infile.endswith('.sol'):
+                data = SaveUtils.loadSOL(inputfile)
+            elif infile.endswith('.nim'):
+                data = SaveUtils.loadNIM(inputfile)
+            elif infile.endswith('.toml'):
+                data = SaveUtils.loadTOML(inputfile)
+            else:
+                ext = inputfile.split('.')[-1].lower()
+                self.doFailure(f'Detected input file type {ext} is not a supported file type.')
+        else:
+            self.doFailure(f'Invalid output type {inputtype}')
+        if data is None:
+            self.doFailure('Input file data is null. Try again.')
+        data = SaveUtils.dictSAVE(data)
+        if outputtype == '.xml':
+            SaveUtils.saveXML(data, outputfile)
+        elif outputtype == '.sol':
+            SaveUtils.saveSOL(data, outputfile)
+        elif outputtype == '.nim':
+            SaveUtils.saveNIM(data, outputfile)
+        elif outputtype == '.toml':
+            SaveUtils.saveTOML(data, outputfile)
+        elif outputtype == 'detect':
+            outfile = outputfile.lower()
+            if outfile.endswith('.xml'):
+                SaveUtils.saveXML(data, outputfile)
+            elif outfile.endswith('.sol'):
+                SaveUtils.saveSOL(data, outputfile)
+            elif outfile.endswith('.nim'):
+                SaveUtils.saveNIM(data, outputfile)
+            elif outfile.endswith('.toml'):
+                SaveUtils.saveTOML(data, outputfile)
+            else:
+                ext = outputfile.split('.')[-1].lower()
+                self.doFailure(f'Detected output file type {ext} is not a supported file type')
+        else:
+            self.doFailure(f'Invalid output type {outputtype}')
+
+        self.doSuccess()
+
+
+class CLI(Converter):
+    def __init__(self):
+        self._multifile = True
+        self.file = ''
+
+    @staticmethod
+    def checkOutputFormat(outformat):
+        if outformat in {'.xml', '.sol', '.nim', '.toml'}:
+            return outformat
+        raise Exception('Invalid output format "%s"' % outformat)
+
+    @staticmethod
+    def checkFile(file):
+        file = os.path.realpath(file)
+        if os.path.isdir(file):
+            raise Exception('"%s" is not a file.' % file)
+        if os.path.splitext(file)[-1] not in ('.xml', '.sol', '.nim', '.toml'):
+            raise FileTypeError('"%s" is not of a supported file type' % file)
+        if len(os.path.basename(file).split('.')) == 1:
+            raise Exception('"%s" does not have an extension' % file)
+
+    @staticmethod
+    def checkInputFile(file):
+        if not os.path.exists(file):
+            raise Exception('"%s" does not exist.' % file)
+        CLI.checkFile(file)
+
+    @staticmethod
+    def checkOutputFile(file):
+        CLI.checkFile(file)
+
+    def doConvert(self, inputfile, inputtype, outputfile, outputtype):
+        self.file = inputfile
+        self.convertSave(inputfile, inputtype, outputfile, outputtype)
+
+    def doSuccess(self):
+        if self._multifile:
+            # Don't do anything in this case because multifile converts don't
+            # announce individual success
+            ...
+        else:
+            print('Success')
+
+    def doFailure(self, message):
+        raise Exception(message)
+
+    def command_single(self, inputFile, output):
+        self._multifile = False
+        inputFile = os.path.realpath(inputFile)
+        CLI.checkInputFile(inputFile)
+        temp = os.path.splitext(inputFile)
+        inputName = temp[0]
+        inputType = temp[1]
+        if output.startswith('.'):
+            outputFile = inputName + output
+            CLI.checkOutputFile(outputFile)
+        else:
+            outputFile = os.path.realpath(output)
+            CLI.checkOutputFile(outputFile)
+            outputType = os.path.splitext(outputFile)[-1]
+        if os.path.exists(outputFile):
+            ans = input('Output file exists, would you like to overwrite it? (y/N) ')
+            if ans.lower() in ('', 'n'):
+                print('Aborted')
+                exit()
+        self.doConvert(inputFile, inputType, outputFile, outputType)
+
+    def command_many(self, outputType, files):
+        if not outputType.startswith('.'):
+            outputType = '.' + outputType
+        for i in files:
+            try:
+                inputFile = os.path.realpath(i)
+                CLI.checkInputFile(inputFile)
+                temp = os.path.splitext(inputFile)
+                inputName = temp[0]
+                inputType = temp[1]
+                outputFile = inputName + outputType
+                CLI.checkOutputFile(outputFile)
+                if os.path.exists(outputFile):
+                    ans = input('Output file exists, would you like to overwrite it? (y/N) ')
+                    if ans.lower() in {'', 'n'}:
+                        self.doFailure('Aborted')
+                self.doConvert(inputFile, inputType, outputFile, outputType)
+            except Exception as e:
+                print('[%s] %s: %s' % (i, type(e).__name__, e))
+        print('Done')
+
+    def command_dir(self, directory, outputType):
+        dir = os.path.realpath(directory)
+        if not os.path.exists(dir):
+            raise Exception('Provided path does not exist')
+        if not os.path.isdir(dir):
+            raise Exception('Provided path must be a directory')
+        outputType = self.checkOutputFormat(outputType)
+        files = [f for f in os.path.listdir(dir) if os.path.isfile(f) and os.path.splitext(f)[-1] in {'.xml', '.sol', '.nim', '.toml'} and os.path.splitext[-1] != outputType]
+        self.command_many(outputType, files)
+
+
+class GUI(Converter):
     # TODO: Move converter stuff into here so global variables can be avoided
     @property
     def isOpen(self):
         return self._isOpen
 
-    @property
-    def messageText(self):
-        if self.isOpen:
-            return self.message['text']
-        return self._messageText
-
-    @messageText.setter
-    def messageText(self, value):
-        if self.isOpen:
-            self.message['text'] = value
-        else:
-            self._messageText = value
-
-    @property
-    def messageColor(self):
-        if self.isOpen:
-            return self.message['foreground']
-
-    @messageColor.setter
-    def messageColor(self, value):
-        if self.isOpen:
-            self.message['foreground'] = value
-
     def __init__(self):
         self._isOpen = False
-        self._messageText = ''
+
+    def doConvert(self, *e):
+        self.convertSave(self.inputfile.file, self.inputfile.type, self.outputfile.file, self.outputfile.type)
+
+    def doSuccess(self):
+        self.message['foreground'] = '#11FF11'
+        self.message['text'] = 'Success'
+
+    def doFailure(self, message):
+        self.message['foreground'] = '#FF1111'
+        self.message['text'] = f'Error: {message}'
+        raise Exception(message)
 
     def open(self):
         self.root = tkinter.Tk()
@@ -550,175 +696,25 @@ class Converter:
         self.outputfile = FileEntry(self.root, text='Output File', icon=self.fileicon)
         self.outputfile.place(x=50, y=210, width=400, height=48)
 
-        self.convertbutton = ConvButton(self.root, font=MAIN_FONT, text='Convert', command=self.convertButton)
+        self.convertbutton = ConvButton(self.root, font=MAIN_FONT, text='Convert', command=self.doConvert)
         self.convertbutton.place(x=386, y=270, width=64, height=24, anchor='nw')
 
         self._isOpen = True
 
         self.root.mainloop()
 
-    def convertButton(self, *args):
-        self.convertSave(self.inputfile.file, self.inputfile.type, self.outputfile.file, self.outputfile.type)
-
-    def convertSave(self, inputfile, inputtype, outputfile, outputtype):
-        self.messageColor = '#FF1111'
-        if inputfile in {None, ''} or outputfile in {None, ''}:
-            self.messageText = 'Error: Input/Output file can not be empty.'
-            raise Exception('Input/Output file can not be empty.')
-        if inputtype == outputtype and inputtype != 'detect':
-            self.messageText = 'Error: Input and Output file types can not be the same.'
-            raise Exception('Input and Output file types can not be the same.')
-        if inputfile == outputfile:
-            self.messageText = 'Error: Input and Output files can not be the same.'
-            raise Exception('Input and Output files can not be the same.')
-        if inputtype == '.xml':
-            data = SaveUtils.loadXML(inputfile)
-        elif inputtype == '.sol':
-            data = SaveUtils.loadSOL(inputfile)
-        elif inputtype == '.nim':
-            data = SaveUtils.loadNIM(inputfile)
-        elif inputtype == '.toml':
-            data = SaveUtils.loadTOML(inputfile)
-        elif inputtype == 'detect':
-            infile = inputfile.lower()
-            if infile.endswith('.xml'):
-                data = SaveUtils.loadXML(inputfile)
-            elif infile.endswith('.sol'):
-                data = SaveUtils.loadSOL(inputfile)
-            elif infile.endswith('.nim'):
-                data = SaveUtils.loadNIM(inputfile)
-            elif infile.endswith('.toml'):
-                data = SaveUtils.loadTOML(inputfile)
-            else:
-                ext = inputfile.split('.')[-1].lower()
-                self.messageText = f'Error: Detected input file type {ext} is not a supported file type.'
-                raise FileTypeError(f'Detected input file type {ext} is not a supported file type.')
-        if data is None:
-            self.messageText = 'Error: Input file data is null. Try again.'
-            raise Exception('Input file data is null. Try again.')
-        data = SaveUtils.dictSAVE(data)
-        if outputtype == '.xml':
-            SaveUtils.saveXML(data, outputfile)
-        elif outputtype == '.sol':
-            SaveUtils.saveSOL(data, outputfile)
-        elif outputtype == '.nim':
-            SaveUtils.saveNIM(data, outputfile)
-        elif outputtype == '.toml':
-            SaveUtils.saveTOML(data, outputfile)
-        elif outputtype == 'detect':
-            outfile = outputfile.lower()
-            if outfile.endswith('.xml'):
-                SaveUtils.saveXML(data, outputfile)
-            elif outfile.endswith('.sol'):
-                SaveUtils.saveSOL(data, outputfile)
-            elif outfile.endswith('.nim'):
-                SaveUtils.saveNIM(data, outputfile)
-            elif outfile.endswith('.toml'):
-                SaveUtils.saveTOML(data, outputfile)
-            else:
-                ext = outputfile.split('.')[-1].lower()
-                self.messageText = f'Error: Detected output file type {ext} is not a supported file type'
-                raise FileTypeError(f'Detected output file type {ext} is not a supported file type')
-
-        self.messageColor = '#11FF11'
-        self.messageText = 'Success'
-
     def close(self, *e):
         self._isOpen = False
-
-    def cli_checkInputFile(self, file):
-        file = Path(file).resolve()
-        if not file.exists():
-            raise Exception('"%s" does not exist.' % file)
-        self.cli_checkFile(file)
-
-    def cli_checkOutputFile(self, file):
-        file = Path(file).resolve()
-        self.cli_checkFile(file)
-
-    def cli_checkFile(self, file):
-        file = Path(file).resolve()
-        if file.is_dir():
-            raise Exception('"%s" is not a file.' % file)
-        if not file.name.endswith(('.xml', '.sol', '.nim', '.toml')):
-            raise FileTypeError('"%s" is not of a supported file type' % file)
-        name = file.name.split('.')
-        if len(name) == 1:
-            raise Exception('"%s" does not have an extension' % file)
-
-    def command_single(self, inputfile, output):
-        self.cli_checkInputFile(inputfile)
-        inputfile = Path(inputfile).resolve()
-        tempin = inputfile.name.split('.')
-        if output in {'.xml', '.sol', '.nim', '.toml'}:
-            if tempin[-1] == output:
-                raise Exception('Input and output can not be of the same file type')
-            outputfile = inputfile.parent / (inputfile.stem + output)
-            self.cli_checkOutputFile(outputfile)
-        else:
-            output = 'detect'
-            self.cli_checkOutputFile(output)
-            outputfile = Path(output).resolve()
-            tempout = outputfile.name.split('.')
-            if tempout[-1] == tempin[-1]:
-                raise Exception('Output file type can not be the same as input file type')
-        if outputfile.exists():
-            ans = input('Output file exists, would you like to overwrite it? (y/N) ')
-            if ans.lower() in ('', 'n'):
-                print('Aborted')
-                exit()
-        self.convertSave(str(inputfile), 'detect', str(outputfile), output)
-        print(self.messageText)
-
-    def command_many(self, outputformat, files):
-        if not outputformat.startswith('.'):
-            outputformat = '.' + outputformat
-        for i in files:
-            try:
-                self.messageText = ''
-                self.cli_checkInputFile(i)
-                inputfile = Path(i)
-                tempin = str(inputfile.name).split('.')
-                if tempin[-1] == outputformat:
-                    raise Exception('Output file type can not be the same as input file type')
-                outputfile = inputfile.parent / (inputfile.stem + outputformat)
-                self.cli_checkOutputFile(outputfile)
-                if outputfile.exists():
-                    ans = input('Output file exists, would you like to overwrite it? (y/N) ')
-                    if ans.lower() in {'', 'n'}:
-                        print('[%s] Aborted' % i)
-                        continue
-                self.convertSave(str(inputfile), 'detect', str(outputfile), outputformat)
-            except Exception as e:
-                print('[%s] %s: %s' % (i, type(e).__name__, e))
-        print('Done')
-
-    def command_dir(self, directory, outputformat):
-        dir = Path(directory).resolve()
-        if not dir.exists():
-            raise Exception('Provided path does not exist')
-        if not dir.is_dir():
-            raise Exception('Provided path must be a directory')
-        outputformat = checkOutputFormat(outputformat)
-        files = [str(f) for f in dir.iterdir() if f.is_file() and f.name.endswith(('.xml', '.sol', '.nim', '.toml')) and not f.name.endswith(outputformat)]
-        self.command_many(outputformat, files)
 
 
 def help():
     print('Nimin_Savefile_Converter.py <mode> [...args]\nModes:\n\t-s --single\tTakes two arguesments, inputfile and outputfile/format. If a format is used instead of an output file, the file will be of the same name as the original with the new format.\n\t-m --many\tConverts all specified files to a format. ... -m <extension> [...files]\n\t-d --dir\tConverts all files in a directory (non-recursive). ... -d <dir> <extension>')
 
 
-def checkOutputFormat(outformat):
-    if outformat in {'.xml', '.sol', '.nim', '.toml'}:
-        return outformat
-    raise Exception('Invalid output format "%s"' % outformat)
-
-
 if __name__ == '__main__':
-    c = Converter()
     # GUI
     if len(sys.argv) == 1:
-        c.open()
+        GUI().open()
 
     # Help
     elif sys.argv[1] == 'help' or '--help' in sys.argv or '-h' in sys.argv:
@@ -727,20 +723,20 @@ if __name__ == '__main__':
     # Convert Single File
     elif sys.argv[1] in {'-s', '--single'}:
         # One file then output file or output type
-        c.command_single(sys.argv[2], sys.argv[3])
+        CLI().command_single(sys.argv[2], sys.argv[3])
 
     # Convert Multiple Files
     elif sys.argv[1] in {'-m', '--many'}:
         # Convert all after this
         if len(sys.argv) < 4:
             raise Exception('Not enough arguements')
-        c.command_many(checkOutputFormat(sys.argv[2]), sys.argv[3:])
+        CLI().command_many(CLI.checkOutputFormat(sys.argv[2]), sys.argv[3:])
 
     # Convert Directory
     elif sys.argv[1] in {'-d', '--dir'}:
         if len(sys.argv) != 4:
             raise Exception('Incorrect number of arguements')
-        c.command_dir(sys.argv[2], sys.argv[3])
+        CLI().command_dir(sys.argv[2], sys.argv[3])
 
     else:
         help()
