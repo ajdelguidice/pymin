@@ -227,6 +227,22 @@ def get_existing_font(font_families):
     return "TkTextFont"
 
 
+def get_link_object_from_url(w, tag_name, url, command=None):
+    if url[0] == '\uFFFF':
+        return HLinkSlot_Command(w, tag_name, command, url[1:].split('\uFFFF'))
+    if url.startswith('call_args://'):
+        return HLinkSlot_Command(w, tag_name, command, url[12:].split('&'))
+    if url.startswith('call://'):
+        raise NotImplementedError('call://')
+        url = url[7:]
+        parts = url.split('.')
+        file = parts[0].replace('/', '.')
+        temp = parts[-1].split('&')
+        command = parts[1:-1] + [temp[0]]
+        args = temp[1:]
+    return HLinkSlot(w, tag_name, url)
+
+
 # __________________________________________________________________________________________________
 # classes
 class HLinkSlot:
@@ -253,6 +269,8 @@ class HLinkSlot:
 
 
 class HLinkSlot_Command(HLinkSlot):
+    SUPPORTED_FORMATS = ('\uFFFF', 'call_args://')
+
     def __init__(self, w, tag_name, command, args):
         self._w = w
         self.tag_name = tag_name
@@ -674,6 +692,7 @@ class HTMLTextParser(HTMLParser):
             elif self._w.get("end-2c", "end-1c") == " ":
                 data = data.lstrip()
 
+            # TODO: Properly handle tabs
             data = data.replace("\n", " ").replace("\t", " ")
             data = f"{data}" # FIXME: attaching a space in blind is wrong - SPACE REMOVED
             data = self._remove_multi_spaces(data)
@@ -750,19 +769,9 @@ class HTMLTextParser(HTMLParser):
             self._w.tag_add(key, tag[WTag.START_INDEX], tag[WTag.END_INDEX])
             self._w.tag_config(key, font=font.Font(**tag[Fnt.KEY]), **tag[WCfg.KEY])
             if tag[Bind.KEY][Bind.LINK]:
-                url = tag[Bind.KEY][Bind.LINK]
-                if url[0] == '\uFFFF':
-                    self.hlink_slots.append(
-                        HLinkSlot_Command(self._w, key, self.callobject, url[1:].split('\uFFFF'))
-                    )
-                elif url.startswith('call_args://'):
-                    self.hlink_slots.append(
-                        HLinkSlot_Command(self._w, key, self.callobject, url[12:].split('&'))
-                    )
-                else:
-                    self.hlink_slots.append(
-                        HLinkSlot(self._w, key, url)
-                    )
+                self.hlink_slots.append(
+                    get_link_object_from_url(self._w, key, tag[Bind.KEY][Bind.LINK], self.callobject)
+                )
                 self._w.tag_bind(key, "<Button-1>", self.hlink_slots[-1].call)
                 self._w.tag_bind(key, "<Leave>", self.hlink_slots[-1].leave)
                 self._w.tag_bind(key, "<Enter>", self.hlink_slots[-1].enter)
