@@ -32,11 +32,10 @@ env = os.environ.copy()
 def checkExistsMakeDir(dir_):
     if dir_.is_dir():
         return 1
-    elif dir_.exists():
+    if dir_.exists():
         print('Path exists but is not a directory.')
         return -1
-    else:
-        dir_.mkdir(parents=True)
+    dir_.mkdir(parents=True)
 
 venvpath = CURRENT_DIRECTORY / 'Pymin-venv'
 cfgloc = None
@@ -117,7 +116,7 @@ def installmodules():
     #Installs the required modules using pip inside the virtual environment
     if c2['uvLocal']:
         print('Installing UV...')
-        run((pythonvenvloc, '-m', 'pip', 'install', 'uv'))
+        run((VENV_PYTHON, '-m', 'pip', 'install', 'uv'))
         print('Done')
     temp = pipCommand + ['install'] + modlist
     print('Installing dependencies...')
@@ -219,7 +218,7 @@ def recreate(withconf, withsaves, withgameconf):
 def patchTkhtmlviewParser():
     #Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
     if '--nohtmlparser' not in sys.argv or c2['noCustomHTMLParser']:
-        temp = check_output((f'{pythonvenvloc}', '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').strip()
+        temp = check_output((VENV_PYTHON, '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').strip()
         with urlopen('https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/dev/pyminlib/html_parser.py', context=getSSLContext()) as urlfile:
             Path(temp).write_bytes(urlfile.read())
         print('Patched tkhtmlview html_parser.py')
@@ -559,14 +558,14 @@ else:  # Load older config
         hasVenv = False
 
 if platform.system() == 'Windows':
-    pythonvenvloc = venvpath / 'Scripts/python.exe'
+    VENV_PYTHON = os.path.join(venvpath, 'Scripts', 'python.exe')
 else:
-    pythonvenvloc = venvpath / 'bin/python'
-pythonm = [pythonvenvloc, '-m']
+    VENV_PYTHON = os.path.join(venvpath, 'bin', 'python')
+pythonm = [VENV_PYTHON, '-m']
 
 if c2['uvGlobal']:
     pipCommand = ['uv', 'pip']
-    env['UV_PYTHON'] = str(pythonvenvloc)
+    env['UV_PYTHON'] = str(VENV_PYTHON)
 elif c2['uvLocal']:
     pipCommand = pythonm + ['uv', 'pip']
 else:
@@ -576,12 +575,12 @@ if hasVenv:
     pyver = c2['pyInstalledVersion'].split('.')[:2]
     if platform.python_version().split('.')[:2] != pyver and platform.system() != 'Windows':
         updatePythonVersion(pyver)
-    if check_output((f'{pythonvenvloc}', '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
+    if check_output((VENV_PYTHON, '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
         uninstallMiniAMF = True
 
 # Arguement parsing logic
 if c2['defaultToRun'] and (len(sys.argv) < 2 or sys.argv[1].startswith(('-','--','/'))):
-    run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', *sys.argv[1:]))
+    run((VENV_PYTHON, venvpath / 'Pymin/Pymin.py', *sys.argv[1:]))
 elif len(sys.argv) < 2 or sys.argv[1] == 'help' or ('--help' in sys.argv or '-h' in sys.argv or '/?' in sys.argv) and sys.argv[1] not in {'uv','pip','run'}:
     print('venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tdocs\t\t\tAdvanced help information. Put a command after this one to display its docs.\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it\'s dependencies.\n\tcfg\t\t\tFor configuring this script. key/values are in the form "key=value". Use without arguements to list all values.\n\tcfg-game\t\tFor configuring pymin. Works the same as cfg except key/values are in the form "section.key=value". Only works on pymin 12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. This runs automatically if the current config is not present and an old version is detected.\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\ncfg/cfg-game parsing rules:\n\tDo not use spaces unless they are a part of the value, whitespace is not ignored.\n\tMake sure to escape any curly brackets. They are special characters in the terminal (only tested in bash).\n\tDo not use brackets [ ] or curly brackets { } in table keys. They are currently not parsed correctly.\n\tTables use the python format {key:value,} even though they are used as TOML. I was being lazy and didn\'t want to deal it.\n\nArguements {install, update, recreate}:\n\t--unverified\t\tTemporarily disables ssl verification.\n\t--nohtmlparser\t\tSkips installing the custom html parser once.\n\t--version\t\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]\n\t--as3libversion\t\tThe release tag of the as3lib version you want to install. ex: "--as3libversion <tag>" [default: latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--with-config\t\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.\n\t{recreate}\t--with-game-config\tKeeps the game\'s config.')
 elif sys.argv[1] == 'docs':
@@ -667,9 +666,9 @@ elif sys.argv[1] == 'update' and hasVenv:
     downloadgame()
     updatemodules()
 elif sys.argv[1] == 'run' and hasVenv:
-    run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', *sys.argv[2:]))
+    run((VENV_PYTHON, venvpath / 'Pymin/Pymin.py', *sys.argv[2:]))
 elif sys.argv[1] == 'conv' and hasVenv:
-    run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', '--converter'))
+    run((VENV_PYTHON, venvpath / 'Pymin/Pymin.py', '--converter'))
 elif sys.argv[1] == 'recreate' and hasVenv:
     recreate('--with-config' in sys.argv, '--with-saves' in sys.argv, '--with-game-config' in sys.argv)
 elif sys.argv[1] == 'uv' and hasVenv:
