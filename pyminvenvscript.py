@@ -2,13 +2,16 @@
 import requests, platform, configparser, ssl, tempfile, os
 from shutil import rmtree, copytree, copyfile
 from pathlib import Path, PurePath
-from sys import argv
+import sys
 from subprocess import run, check_output
 from urllib.request import urlopen
 from io import StringIO
-from importlib.util import find_spec
 
 # TODO: Improve compatibility with non-uv setups
+
+
+CURRENT_DIRECTORY = Path(__file__).resolve().parent
+
 
 if platform.system() == 'Darwin':
     print('Warning: This script is untested on darwin (MacOS), things might be broken.')
@@ -35,13 +38,12 @@ def checkExistsMakeDir(dir_):
     else:
         dir_.mkdir(parents=True)
 
-curdir = Path(__file__).resolve().parent  # This is a workaround for python on Windows
-venvpath = curdir / 'Pymin-venv'
+venvpath = CURRENT_DIRECTORY / 'Pymin-venv'
 cfgloc = None
 
-if not curdir or not venvpath:
+if not CURRENT_DIRECTORY or not venvpath:
     raise Exception('Path is empty. Exiting to avoid problems.')
-if not (isinstance(curdir, PurePath) and isinstance(venvpath, PurePath)):
+if not (isinstance(CURRENT_DIRECTORY, PurePath) and isinstance(venvpath, PurePath)):
     raise Exception('Path is somehow not a pathlib.Path object. Exiting because something is very wrong.')
 
 class OverrideDev:
@@ -67,14 +69,14 @@ def create():
 
     # Create config
     move = False
-    if (curdir / 'pymin.toml').exists() and venvpath == curdir / 'Pymin-venv':
+    if (CURRENT_DIRECTORY / 'pymin.toml').exists() and venvpath == CURRENT_DIRECTORY / 'Pymin-venv':
         inp = input('Would you like to move the existing config into the created venv? (y/N)').lower()
         if inp == 'y':
             move = True
     global cfgloc, delconf
     if move:
         c2['path'] = ''
-        delconf = curdir / 'pymin.toml'
+        delconf = CURRENT_DIRECTORY / 'pymin.toml'
         cfgloc = venvpath / 'pymin.toml'
     elif cfgloc is None:
         cfgloc = venvpath / 'pymin.toml'
@@ -101,8 +103,8 @@ def create():
     installmodules()
 
 def set_as3libversion(rl):
-    if '--as3libversion' in argv:
-        version = argv[argv.index('--as3libversion') + 1]
+    if '--as3libversion' in sys.argv:
+        version = sys.argv[sys.argv.index('--as3libversion') + 1]
     else:
         version = 'latest'
     if version.lower() == 'none':
@@ -137,8 +139,8 @@ def downloadgame():
         print('Skipped game download.')
         return
     print('Installing game...')
-    if '--version' in argv:
-        versiontag = argv[argv.index('--version') + 1]
+    if '--version' in sys.argv:
+        versiontag = sys.argv[sys.argv.index('--version') + 1]
     else:
         versiontag = requests.get('https://github.com/ajdelguidice/pymin/releases/latest').url.split('/')[-1]
     with urlopen(f'https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py', context=getSSLContext()) as urlfile:
@@ -216,10 +218,8 @@ def recreate(withconf, withsaves, withgameconf):
 
 def patchTkhtmlviewParser():
     #Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
-    if not '--nohtmlparser' in argv or c2['noCustomHTMLParser']:
-        temp = check_output((f'{pythonvenvloc}', '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').replace('\n', '')
-        if platform.system() == 'Windows':
-            temp = temp.replace('\\', '/').replace('\r', '')
+    if '--nohtmlparser' not in sys.argv or c2['noCustomHTMLParser']:
+        temp = check_output((f'{pythonvenvloc}', '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').strip()
         with urlopen('https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/dev/pyminlib/html_parser.py', context=getSSLContext()) as urlfile:
             Path(temp).write_bytes(urlfile.read())
         print('Patched tkhtmlview html_parser.py')
@@ -241,7 +241,7 @@ def updatePythonVersion(version: tuple):
         try:
             recreate(False, False, False)
         except Exception as e:
-            print(f'Temp directory at {tempdir} that contains backed up game files was not deleted to minimise data loss.')
+            print(f'An error has occurred during the  python version change process. The temp directory at {tempdir} contains all backed up files. Manual intervention is required.')
             raise e
         if withconf:
             copyfile(tempdir / 'pymin.toml', cfgloc)
@@ -262,9 +262,9 @@ def migrateConfig():
         conf['defaultToRun'] = True
         (venvpath / '.DEFAULTRUN').unlink(missing_ok=True)
     # Config v2
-    if (curdir / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
-        if (curdir / 'pymin.cfg').exists():
-            temploc = curdir / 'pymin.cfg'
+    if (CURRENT_DIRECTORY / 'pymin.cfg').exists() or (venvpath / 'pymin.cfg').exists():
+        if (CURRENT_DIRECTORY / 'pymin.cfg').exists():
+            temploc = CURRENT_DIRECTORY / 'pymin.cfg'
         else:
             temploc = venvpath / 'pymin.cfg'
         c = configparser.ConfigParser()
@@ -287,7 +287,7 @@ def migrateConfig():
 insecure_context = ssl._create_unverified_context()
 
 def getSSLContext():
-    return insecure_context if c2['noSSLVerify'] or '--unverified' in argv else None
+    return insecure_context if c2['noSSLVerify'] or '--unverified' in sys.argv else None
 
 class TextObject:
     def __init__(self):
@@ -471,14 +471,14 @@ delconf = None
 uninstallMiniAMF = False
 
 modlist = ['requests', 'numpy', 'Pillow', 'as3lib']
-if find_spec('tomllib'):
-    import tomllib
-else:
+if sys.hexversion < 0x030b0000:
     import tomli as tomllib
     modlist.append('tomli')
+else:
+    import tomllib
 
-cfgloc = curdir / 'pymin.toml'
-if (curdir / 'pymin.toml').exists():  # load config and set venvpath
+cfgloc = CURRENT_DIRECTORY / 'pymin.toml'
+if (CURRENT_DIRECTORY / 'pymin.toml').exists():  # load config and set venvpath
     with open(cfgloc, 'rb') as f:
         c1 = TOML.read(f)
     c2 = {
@@ -525,7 +525,7 @@ else:  # Load older config
         'isDevEnv': False
     }
     # Load config v2
-    if (curdir / 'pymin.cfg').exists():
+    if (CURRENT_DIRECTORY / 'pymin.cfg').exists():
         c2.update(migrateConfig())
         if c2['path'] == '':
             raise Exception('Config is not in the default venv location and venvpath is empty.')
@@ -576,15 +576,15 @@ if hasVenv:
     pyver = c2['pyInstalledVersion'].split('.')[:2]
     if platform.python_version().split('.')[:2] != pyver and platform.system() != 'Windows':
         updatePythonVersion(pyver)
-    if check_output((f'{pythonvenvloc}', '-c', 'from importlib.util import find_spec;from pathlib import Path;print(Path(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")).exists())')).decode('utf-8').replace('\n', '').replace('\r', '') == 'True':
+    if check_output((f'{pythonvenvloc}', '-c', 'from importlib.util import find_spec;from pathlib import Path;print(Path(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")).exists())')).decode('utf-8').strip() == 'True':
         uninstallMiniAMF = True
 
 # Arguement parsing logic
-if c2['defaultToRun'] and (len(argv) < 2 or argv[1].startswith(('-','--','/'))):
-    run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', *argv[1:]))
-elif len(argv) < 2 or argv[1] == 'help' or ('--help' in argv or '-h' in argv or '/?' in argv) and argv[1] not in {'uv','pip','run'}:
+if c2['defaultToRun'] and (len(sys.argv) < 2 or sys.argv[1].startswith(('-','--','/'))):
+    run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', *sys.argv[1:]))
+elif len(sys.argv) < 2 or sys.argv[1] == 'help' or ('--help' in sys.argv or '-h' in sys.argv or '/?' in sys.argv) and sys.argv[1] not in {'uv','pip','run'}:
     print('venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tdocs\t\t\tAdvanced help information. Put a command after this one to display its docs.\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it\'s dependencies.\n\tcfg\t\t\tFor configuring this script. key/values are in the form "key=value". Use without arguements to list all values.\n\tcfg-game\t\tFor configuring pymin. Works the same as cfg except key/values are in the form "section.key=value". Only works on pymin 12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. This runs automatically if the current config is not present and an old version is detected.\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\ncfg/cfg-game parsing rules:\n\tDo not use spaces unless they are a part of the value, whitespace is not ignored.\n\tMake sure to escape any curly brackets. They are special characters in the terminal (only tested in bash).\n\tDo not use brackets [ ] or curly brackets { } in table keys. They are currently not parsed correctly.\n\tTables use the python format {key:value,} even though they are used as TOML. I was being lazy and didn\'t want to deal it.\n\nArguements {install, update, recreate}:\n\t--unverified\t\tTemporarily disables ssl verification.\n\t--nohtmlparser\t\tSkips installing the custom html parser once.\n\t--version\t\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]\n\t--as3libversion\t\tThe release tag of the as3lib version you want to install. ex: "--as3libversion <tag>" [default: latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--with-config\t\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.\n\t{recreate}\t--with-game-config\tKeeps the game\'s config.')
-elif argv[1] == 'docs':
+elif sys.argv[1] == 'docs':
     generalArgs = 'This command takes four general arguements (these only apply for one run):\n\t--unverified\tDisables ssl verification.\n\t--nohtmlparser\tSkips installing the custom html parser.\n\t--version\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]\n\t--as3libversion\tThe release tag of the as3lib version you want to install. ex: "--as3libversion <tag>" [default: latest]'
     forwardArgs = 'This command forwards all arguements.'
     parsingRules = 'Custom arguement parsing is used for this command. The rules are as follows:\n  1) Spaces are not ignored, they will always be a part of the result.\n  2) Some terminals use curly brackets as special characters even when inside of\n     quotes. They might have to be escaped using a \\.\n  3) Do not use brackets [ ] or curly brackets { } in table keys, they are not\n     parsed correctly.\n  4) Inline tables must be in the format {key:value,}.\n'
@@ -602,26 +602,26 @@ elif argv[1] == 'docs':
         'uv':            f'Usage: pyminvenvscript.py uv [args]\n\nRuns uv inside of the venv.\n\n{forwardArgs} Running without arguements will run "uv --help".',
         'pip':           f'Usage: pyminvenvscript.py pip [args]\n\nRuns pip inside of the venv.\n\n{forwardArgs} Running without arguements will run "pip --help".',
     }
-    if len(argv) == 2:
+    if len(sys.argv) == 2:
         msg = f'Usage: pyminvenvscript.py docs [command]\n\nThis command contains simple documentation for this script.\n\nValid [command]s are {", ".join(page.keys())}'
     else:
-        msg = page.get(argv[2], f'Page "{argv[2]}" does not exist.')
+        msg = page.get(sys.argv[2], f'Page "{sys.argv[2]}" does not exist.')
     print(msg)
-elif argv[1] == 'migrate-config':
+elif sys.argv[1] == 'migrate-config':
     c2.update(migrateConfig())
-elif argv[1] == 'cfg':
+elif sys.argv[1] == 'cfg':
     if cfgloc is None:
         if hasVenv:
             cfgloc = venvpath / 'pymin.toml'
         else:
-            cfgloc = curdir / 'pymin.toml'
-    if len(argv) == 2:
+            cfgloc = CURRENT_DIRECTORY / 'pymin.toml'
+    if len(sys.argv) == 2:
         with StringIO() as text:
             for k,v in c2.items():
                 text.write(f'{k}: {v}\n')
             print(text.getvalue())
         exit()
-    for key, raw_value in (i.split('=') for i in argv[2:]):
+    for key, raw_value in (i.split('=') for i in sys.argv[2:]):
         if key in {'cfgVersion', 'pyInstalledVersion'} and not c2['isDevEnv']:
             print(f'Warning: {key} is restricted and should not be changed. Skipping.')
             continue
@@ -633,12 +633,12 @@ elif argv[1] == 'cfg':
             print(f'Warning: Type of {key} could not be determined. Skipping.')
             continue
         c2[key] = value
-elif argv[1] == 'cfg-game' and hasVenv:
+elif sys.argv[1] == 'cfg-game' and hasVenv:
     if not (venvpath / 'Pymin/Nimin_Prefs.toml').exists():
         raise Exception('Game config does not exist.')
     with open(venvpath / 'Pymin/Nimin_Prefs.toml', 'rb') as f:
         gameconf = TOML.read(f)
-    if len(argv) == 2:
+    if len(sys.argv) == 2:
         with StringIO() as text:
             for k1, v1 in gameconf.items():
                 text.write(f'[{k1}]\n')
@@ -647,7 +647,7 @@ elif argv[1] == 'cfg-game' and hasVenv:
                 text.write('\n')
             print(text.getvalue())
     else:
-        for variable, raw_value in (i.split('=') for i in argv[2:]):
+        for variable, raw_value in (i.split('=') for i in sys.argv[2:]):
             section, key = variable.split('.')
             if section not in gameconf or key not in gameconf[section]:
                 print(f'Warning: {section}.{key} does not exist.')
@@ -659,35 +659,35 @@ elif argv[1] == 'cfg-game' and hasVenv:
             gameconf[section][key] = value
         TOML.write(venvpath / 'Pymin/Nimin_Prefs.toml', gameconf)
     exit()
-elif argv[1] == 'install':
-    if hasVenv and '--overwrite' not in argv:
+elif sys.argv[1] == 'install':
+    if hasVenv and '--overwrite' not in sys.argv:
         raise Exception('"install" can not be used in an existing directory. Did you mean "update"?')
     create()
-elif argv[1] == 'update' and hasVenv:
+elif sys.argv[1] == 'update' and hasVenv:
     downloadgame()
     updatemodules()
-elif argv[1] == 'run' and hasVenv:
-    run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', *argv[2:]))
-elif argv[1] == 'conv' and hasVenv:
+elif sys.argv[1] == 'run' and hasVenv:
+    run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', *sys.argv[2:]))
+elif sys.argv[1] == 'conv' and hasVenv:
     run((pythonvenvloc, venvpath / 'Pymin/Pymin.py', '--converter'))
-elif argv[1] == 'recreate' and hasVenv:
-    recreate('--with-config' in argv, '--with-saves' in argv, '--with-game-config' in argv)
-elif argv[1] == 'uv' and hasVenv:
+elif sys.argv[1] == 'recreate' and hasVenv:
+    recreate('--with-config' in sys.argv, '--with-saves' in sys.argv, '--with-game-config' in sys.argv)
+elif sys.argv[1] == 'uv' and hasVenv:
     if not (c2['uvGlobal'] or c2['uvLocal']):
         raise Exception('uv is not enabled.')
-    if len(argv) == 2:
+    if len(sys.argv) == 2:
         run(pipCommand[:-1] + ['help'], env=env)
     else:
-        run(pipCommand[:-1] + argv[2:], env=env)
-elif argv[1] == 'pip' and hasVenv:
-    if len(argv) == 2:
+        run(pipCommand[:-1] + sys.argv[2:], env=env)
+elif sys.argv[1] == 'pip' and hasVenv:
+    if len(sys.argv) == 2:
         run(pipCommand + ['--help'])
     else:
-        run(pipCommand + argv[2:])
-elif argv[1] in {'cfg-game','update','run','conv','recreate','uv','pip'}:
-    raise Exception(f'"{argv[1]}" requires a valid virtual environment.')
+        run(pipCommand + sys.argv[2:])
+elif sys.argv[1] in {'cfg-game','update','run','conv','recreate','uv','pip'}:
+    raise Exception(f'"{sys.argv[1]}" requires a valid virtual environment.')
 else:
-    raise Exception(f'Invalid command "{argv[1]}"')
+    raise Exception(f'Invalid command "{sys.argv[1]}"')
 
 if c1 != c2:  # Check if config was modified
     TOML.write(cfgloc, c2)
