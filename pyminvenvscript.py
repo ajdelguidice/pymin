@@ -576,7 +576,7 @@ if hasVenv:
     pyver = c2['pyInstalledVersion'].split('.')[:2]
     if platform.python_version().split('.')[:2] != pyver and platform.system() != 'Windows':
         updatePythonVersion(pyver)
-    if check_output((f'{pythonvenvloc}', '-c', 'from importlib.util import find_spec;from pathlib import Path;print(Path(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")).exists())')).decode('utf-8').strip() == 'True':
+    if check_output((f'{pythonvenvloc}', '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
         uninstallMiniAMF = True
 
 # Arguement parsing logic
