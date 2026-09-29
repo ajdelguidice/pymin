@@ -278,8 +278,8 @@ class HLinkSlot_Command(HLinkSlot):
         self.args = args
 
     def call(self, event):
-        self.command(*self.args)
         self._w.tag_config(self.tag_name, foreground="purple")
+        self.command(*self.args)
 
 
 class ListTag:
@@ -320,6 +320,10 @@ class HTMLTextParser(HTMLParser):
         super().__init__()
         # set list tabs
         self.cached_images = {}
+        self.html_tags = []
+        self.images = []
+        self.list_tags = []
+        self.hlink_slots = []
 
         self.DEFAULT_TEXT_FONT_FAMILY = get_existing_font(Defs.DEFAULT_TEXT_FONT_FAMILY)
         self.PREFORMATTED_FONT_FAMILY = get_existing_font(Defs.PREFORMATTED_FONT_FAMILY)
@@ -339,13 +343,12 @@ class HTMLTextParser(HTMLParser):
             k = k.lower()
             if k == HTML.Attrs.STYLE:
                 for p in v.split(";"):
-                    try:
-                        pair = p.split(":")
-                        p_key = pair[0].strip().lower()
-                        p_value = pair[1].strip().lower()
-                        attrs_dict[HTML.Attrs.STYLE][p_key] = p_value
-                    except:
-                        pass
+                    pair = p.split(':')
+                    if len(pair) < 2:
+                        continue
+                    p_key = pair[0].strip().lower()
+                    p_value = pair[1].strip().lower()
+                    attrs_dict[HTML.Attrs.STYLE][p_key] = p_value
             elif k in {
                 HTML.Attrs.HREF,
                 HTML.Attrs.SRC,
@@ -400,11 +403,8 @@ class HTMLTextParser(HTMLParser):
         # ------------------------------------------------------------------------------------------
         main_key = self._stack_get_main_key(key)
 
-        index = None
         if len(self.stack[main_key][key]) > 1:
             index = self._stack_index(tag, key)
-
-        if index is not None:
             return self.stack[main_key][key].pop(index)[1]
 
     def _parse_styles(self, tag, attrs):
@@ -508,6 +508,10 @@ class HTMLTextParser(HTMLParser):
             self._stack_add(tag, Fnt.UNDERLINE)
             self._stack_add(tag, Fnt.OVERSTRIKE)
 
+    def _cache_image(self, tag_name, image):
+        with Image.open(image) as image:
+            self.cached_images[attrs[HTML.Attrs.SRC]] = deepcopy(image)
+
     def handle_starttag(self, tag, attrs):
         # ------------------------------------------------------------------------------------------
         tag = tag.lower()
@@ -561,11 +565,12 @@ class HTMLTextParser(HTMLParser):
                     if self.strip:
                         self._insert_new_line()
 
-                    line_index = self.list_tags[-1].line_index()
+                    line_index = ("\t" + "\t\t" * (level - 1)
+                                  + self.list_tags[-1].line_index())
                     if self.list_tags[-1].ordered:
-                        line_index = "\t" + "\t\t" * (level - 1) + line_index + ".\t"
+                        line_index += ".\t"
                     else:
-                        line_index = "\t" + "\t\t" * (level - 1) + line_index + "\t"
+                        line_index += "\t"
 
                     self._stack_add(tag, Fnt.UNDERLINE, False)
                     self._stack_add(tag, Fnt.OVERSTRIKE, False)
@@ -575,30 +580,23 @@ class HTMLTextParser(HTMLParser):
                     self._stack_pop(tag, Fnt.OVERSTRIKE)
 
             elif tag in (HTML.Tag.TH, HTML.Tag.TD):
-                    self._w.insert(tk.INSERT, "\t")
+                self._w.insert(tk.INSERT, "\t")
 
         elif tag == HTML.Tag.IMG and attrs[HTML.Attrs.SRC]:
             # -------------------------------------------------------------------- [ UNSTYLED_TAGS ]
-            image = None
             # print(attrs[HTML.Attrs.SRC] , self.cached_images)
-            if attrs[HTML.Attrs.SRC].startswith(("https://", "ftp://", "http://")):
-                if attrs[HTML.Attrs.SRC] in self.cached_images.keys():
-                    image = deepcopy(self.cached_images[attrs[HTML.Attrs.SRC]])
-                else:
+            if attrs[HTML.Attrs.SRC] not in self.cached_images.keys():
+                if attrs[HTML.Attrs.SRC].startswith(("https://", "ftp://", "http://")):
                     try:
-                        image = Image.open(
-                            BytesIO(requests.get(attrs[HTML.Attrs.SRC]).content)
-                        )
-                        self.cached_images[attrs[HTML.Attrs.SRC]] = deepcopy(image)
+                        with BytesIO(requests.get(attrs[HTML.Attrs.SRC]).content) as file:
+                            self._cache_image(attrs[HTML.Attrs.SRC], file)
                     except:
                         pass
+                elif os.path.exists(attrs[HTML.Attrs.SRC]):
+                    self._cache_image(attrs[HTML.Attrs.SRC], attrs[HTML.Attrs.SRC])
 
             if attrs[HTML.Attrs.SRC] in self.cached_images.keys():
                 image = deepcopy(self.cached_images[attrs[HTML.Attrs.SRC]])
-            elif os.path.exists(attrs[HTML.Attrs.SRC]):
-                image = Image.open(attrs[HTML.Attrs.SRC])
-                self.cached_images[attrs[HTML.Attrs.SRC]] = deepcopy(image)
-            if image:
                 width = image.size[0]
                 height = image.size[1]
                 resize = False
@@ -755,13 +753,12 @@ class HTMLTextParser(HTMLParser):
         if self.strip:
             self._text_rstrip()
         end_index = tk.END
-        for key, tag in reversed(tuple(self._w_tags.items())):
+        for key, tag in reversed(self._w_tags.items()):
             tag[WTag.START_INDEX] = key
             tag[WTag.END_INDEX] = end_index
             end_index = key
 
         # add tags
-        self.hlink_slots = []
         for key, tag in self._w_tags.items():
             if "config" in tag: # HF change justify to left for tkinter (only supports left, right, center)
                 if tag["config"].get("justify") == "justify":
@@ -776,6 +773,12 @@ class HTMLTextParser(HTMLParser):
                 self._w.tag_bind(key, "<Leave>", self.hlink_slots[-1].leave)
                 self._w.tag_bind(key, "<Enter>", self.hlink_slots[-1].enter)
 
+    def _reset_tags(self):
+        self.html_tags.clear()
+        self.images.clear()
+        self.list_tags.clear()
+        self.hlink_slots.clear()
+
     def w_set_html(self, w, html, strip):
         # ------------------------------------------------------------------------------------------
         self._w = w
@@ -787,9 +790,7 @@ class HTMLTextParser(HTMLParser):
             ("__DEFAULT__", self.DEFAULT_TEXT_FONT_FAMILY)
         )
         self._w_tags = OrderedDict()
-        self.html_tags = []
-        self.images = []
-        self.list_tags = []
+        self._reset_tags()
         self.strip = strip
         self._w_tags_add()
         self.feed(html)
