@@ -225,30 +225,28 @@ def patchTkhtmlviewParser():
         print('Patched tkhtmlview html_parser.py')
 
 
-def updatePythonVersion(version: tuple):
-    answer = input('(Experimental) Python major version has changed. Would you like to switch this virtual environment to the new one? (Y/n)')
-    if c2['isDevEnv'] and answer.lower() in {'y', ''}:
-        tempdir = Path(tempfile.mkdtemp())
-        withconf = True
-        try:
-            if cfgloc.exists():
-                cfgloc.relative_to(venvpath)
-                copyfile(cfgloc, tempdir / 'pymin.toml')
-            else:
-                withconf = False
-        except ValueError:
+def updatePythonVersion():
+    tempdir = Path(tempfile.mkdtemp())
+    withconf = True
+    try:
+        if cfgloc.exists():
+            cfgloc.relative_to(venvpath)
+            copyfile(cfgloc, tempdir / 'pymin.toml')
+        else:
             withconf = False
-        copytree(venvpath / 'Pymin', tempdir / 'Pymin')
-        try:
-            recreate(False, False, False)
-        except Exception as e:
-            print(f'An error has occurred during the python version change process. The temp directory at {tempdir} contains all backed up files. Manual intervention is required.')
-            raise e
-        if withconf:
-            copyfile(tempdir / 'pymin.toml', cfgloc)
-        rmtree(venvpath / 'Pymin')
-        copytree(tempdir / 'Pymin', venvpath / 'Pymin')
-        c2['pyInstalledVersion'] = platform.python_version()
+    except ValueError:
+        withconf = False
+    copytree(venvpath / 'Pymin', tempdir / 'Pymin')
+    try:
+        recreate(False, False, False)
+    except Exception as e:
+        print(f'An error has occurred during the python version change process. The temp directory at {tempdir} contains all backed up files. Manual intervention is required.')
+        raise e
+    if withconf:
+        copyfile(tempdir / 'pymin.toml', cfgloc)
+    rmtree(venvpath / 'Pymin')
+    copytree(tempdir / 'Pymin', venvpath / 'Pymin')
+    c2['pyInstalledVersion'] = platform.python_version()
 
 
 def migrateConfig():
@@ -600,12 +598,6 @@ elif c2['uvLocal']:
 else:
     pipCommand = [VENV_PYTHON, '-m', 'pip']
 
-if hasVenv:
-    # TODO: Move to update
-    pyver = c2['pyInstalledVersion'].split('.')[:2]
-    if platform.python_version().split('.')[:2] != pyver and platform.system() != 'Windows':
-        updatePythonVersion(pyver)
-
 # Arguement parsing logic
 if c2['defaultToRun'] and (len(sys.argv) < 2 or sys.argv[1].startswith(('-', '--', '/'))) and hasVenv:
     run((VENV_PYTHON, venvpath / 'Pymin/Pymin.py', *sys.argv[1:]))
@@ -686,8 +678,16 @@ elif sys.argv[1] == 'install':
         raise Exception('"install" can not be used in an existing directory. Did you mean "update"?')
     create()
 elif sys.argv[1] == 'update' and hasVenv:
-    downloadgame()
-    updatemodules()
+    doPythonUpdate = False
+    if platform.python_version().split('.')[:2] != c2['pyInstalledVersion'].split('.')[:2] and platform.system() != 'Windows':
+        answer = input('(Experimental) Python major version has changed. Would you like to switch this virtual environment to the new one? (y/N)')
+        # TODO: Remove c2['isDevEnv'] check once this is no longer experimental
+        doPythonUpdate = c2['isDevEnv'] and answer.lower() == 'y':
+    if doPythonUpdate:
+        updatePythonVersion()
+    else:
+        downloadgame()
+        updatemodules()
 elif sys.argv[1] == 'run' and hasVenv:
     run((VENV_PYTHON, venvpath / 'Pymin/Pymin.py', *sys.argv[2:]))
 elif sys.argv[1] == 'conv' and hasVenv:
