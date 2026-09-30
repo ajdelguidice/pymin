@@ -46,7 +46,6 @@ def checkExistsMakeDir(dir_):
 
 
 venvpath = CURRENT_DIRECTORY / 'Pymin-venv'
-cfgloc = None
 
 if not CURRENT_DIRECTORY or not venvpath:
     raise Exception('Path is empty. Exiting to avoid problems.')
@@ -81,25 +80,12 @@ def create():
         inp = input('Would you like to move the existing config into the created venv? (y/N)').lower()
         if inp == 'y':
             move = True
-    global cfgloc, delconf
+    global cfgloc
     if move:
         c2['path'] = ''
-        delconf = CURRENT_DIRECTORY / 'pymin.toml'
         cfgloc = venvpath / 'pymin.toml'
-    elif cfgloc is None:
-        cfgloc = venvpath / 'pymin.toml'
-        cfgDict = {
-            'cfgVersion': 1,
-            'path': '',
-            'pyInstalledVersion': platform.python_version(),
-            'uvGlobal': False,
-            'uvLocal': False,
-            'defaultToRun': False,
-            'noSSLVerify': False,
-            'noCustomHTMLParser': False,
-            'isDevEnv': False
-        }
-        TOML.write(cfgloc, cfgDict)
+        TOML.write(c2, cfgloc)
+        (CURRENT_DIRECTORY / 'pymin.toml').unlink(missing_ok=True)
     else:
         c2['path'] = str(venvpath)
 
@@ -161,7 +147,7 @@ def downloadgame():
 
 def updatemodules():
     # Updates the required modules using pip inside the virtual environment
-    if uninstallMiniAMF:
+    if check_output((VENV_PYTHON, '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
         print('Replacing Mini-AMF with as3lib-miniAMF...')
         run(pipCommand + ['uninstall', 'Mini-AMF'], env=env)
         print('Done')
@@ -338,11 +324,14 @@ class Args:
         # float
         if set(value) - {'.', '-', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'} == set() and value.count('.') == 1:
             return float(value)
+        # true
         if value.lower() == 'true':
             return True
+        # false
         if value.lower() == 'false':
             return False
-        return value  # Unknown
+        # Unknown
+        return value
 
     def ValidateKey(key):
         if key.startswith(('"', "'")) and key.endswith(('"', "'")):  # TODO: Validate these
@@ -505,8 +494,6 @@ class TOML:
 
 
 hasVenv = True
-delconf = None
-uninstallMiniAMF = False
 
 modlist = ['requests', 'numpy', 'Pillow', 'as3lib']
 if sys.hexversion < 0x030b0000:
@@ -604,22 +591,20 @@ if platform.system() == 'Windows':
     VENV_PYTHON = os.path.join(venvpath, 'Scripts', 'python.exe')
 else:
     VENV_PYTHON = os.path.join(venvpath, 'bin', 'python')
-pythonm = [VENV_PYTHON, '-m']
 
 if c2['uvGlobal']:
     pipCommand = ['uv', 'pip']
-    env['UV_PYTHON'] = str(VENV_PYTHON)
+    env['UV_PYTHON'] = VENV_PYTHON
 elif c2['uvLocal']:
-    pipCommand = pythonm + ['uv', 'pip']
+    pipCommand = [VENV_PYTHON, '-m', 'uv', 'pip']
 else:
-    pipCommand = pythonm + ['pip']
+    pipCommand = [VENV_PYTHON, '-m', 'pip']
 
 if hasVenv:
+    # TODO: Move to update
     pyver = c2['pyInstalledVersion'].split('.')[:2]
     if platform.python_version().split('.')[:2] != pyver and platform.system() != 'Windows':
         updatePythonVersion(pyver)
-    if check_output((VENV_PYTHON, '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
-        uninstallMiniAMF = True
 
 # Arguement parsing logic
 if c2['defaultToRun'] and (len(sys.argv) < 2 or sys.argv[1].startswith(('-', '--', '/'))) and hasVenv:
@@ -652,11 +637,6 @@ elif sys.argv[1] == 'docs':
 elif sys.argv[1] == 'migrate-config':
     c2.update(migrateConfig())
 elif sys.argv[1] == 'cfg':
-    if cfgloc is None:
-        if hasVenv:
-            cfgloc = venvpath / 'pymin.toml'
-        else:
-            cfgloc = CURRENT_DIRECTORY / 'pymin.toml'
     if len(sys.argv) == 2:
         with StringIO() as text:
             for k, v in c2.items():
@@ -732,8 +712,5 @@ else:
     raise Exception(f'Invalid command "{sys.argv[1]}"')
 
 # Check if config was modified
-if c1 != c2:
+if c1 != c2 or not cfgloc.exists():
     TOML.write(cfgloc, c2)
-# Delete config if marked for deletion
-if delconf is not None:
-    delconf.unlink(missing_ok=True)
