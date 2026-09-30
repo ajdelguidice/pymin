@@ -2,13 +2,13 @@
 from io import StringIO
 from pathlib import Path, PurePath
 from shutil import rmtree, copytree, copyfile
-from subprocess import run, check_output
 from urllib.request import urlopen
 import configparser
 import os
 import platform
 import requests
 import ssl
+import subprocess
 import sys
 import tempfile
 
@@ -17,23 +17,6 @@ import tempfile
 
 
 CURRENT_DIRECTORY = Path(__file__).resolve().parent
-
-
-if platform.system() == 'Darwin':
-    print('Warning: This script is untested on darwin (MacOS), things might be broken.')
-    '''
-    This script should not need this because it doesn't use os.fork but it's here just in case.
-    https://docs.python.org/3/library/urllib.request.html
-    Warning:
-
-    On macOS it is unsafe to use this module in programs using os.fork() because
-    the getproxies() implementation for macOS uses a higher-level system API.
-    Set the environment variable no_proxy to * to avoid this problem (e.g.
-    os.environ["no_proxy"] = "*").
-    '''
-    os.environ['no_proxy'] = '*'
-
-env = os.environ.copy()
 
 
 def checkExistsMakeDir(dir_):
@@ -70,9 +53,9 @@ def create():
 
     # Create virtual environment
     if c2['uvGlobal']:
-        run(('uv', 'venv', venvpath))
+        subprocess.run(('uv', 'venv', venvpath))
     else:
-        run(('python', '-m', 'venv', venvpath))
+        subprocess.run(('python', '-m', 'venv', venvpath))
 
     # Create config
     move = False
@@ -113,19 +96,19 @@ def installmodules():
     # Installs the required modules using pip inside the virtual environment
     if c2['uvLocal']:
         print('Installing UV...')
-        run((VENV_PYTHON, '-m', 'pip', 'install', 'uv'))
+        run.withVenvPython('-m', 'pip', 'install', 'uv')
         print('Done')
-    temp = pipCommand + ['install'] + modlist
+    temp = modlist.copy()
     print('Installing dependencies...')
     if c2['isDevEnv']:
         print('Skipping as3lib and tkhtmlview.')
         temp.remove('as3lib')
     else:
         set_as3libversion(temp)
-    run(temp, env=env)
+    run.pipInstall(*temp)
     if not c2['isDevEnv']:
         # Install tkhtmlview this way because its dependencies are broken
-        run(pipCommand + ['install', '-U', 'tkhtmlview', '--no-deps'], env=env)
+        run.pipUpdate('tkhtmlview', '--no-deps')
         patchTkhtmlviewParser()
     print('Done')
 
@@ -140,32 +123,32 @@ def downloadgame():
         versiontag = sys.argv[sys.argv.index('--version') + 1]
     else:
         versiontag = requests.get('https://github.com/ajdelguidice/pymin/releases/latest').url.split('/')[-1]
-    with urlopen(f'https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py', context=getSSLContext()) as urlfile:
+    with urlopen(f'https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py', context=run.sslContext) as urlfile:
         (venvpath / 'Pymin/Pymin.py').write_bytes(urlfile.read())
     print('Done')
 
 
 def updatemodules():
     # Updates the required modules using pip inside the virtual environment
-    if check_output((VENV_PYTHON, '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
+    if subprocess.check_output((Runner.VENV_PYTHON, '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
         print('Replacing Mini-AMF with as3lib-miniAMF...')
-        run(pipCommand + ['uninstall', 'Mini-AMF'], env=env)
+        run.pipUninstall('Mini-AMF')
         print('Done')
     if c2['uvLocal']:
         print('Updating UV...')
-        run((*pipCommand, 'install', '-U', 'uv'))
+        run.pipUpdate('uv')
         print('Done')
-    temp = pipCommand + ['install', '-U'] + modlist
+    temp = modlist.copy()
     print('Updating dependencies...')
     if c2['isDevEnv']:
         print('Skipping as3lib and tkhtmlview.')
         temp.remove('as3lib')
     else:
         set_as3libversion(temp)
-    run(temp, env=env)
+    run.pipUpdate(*temp)
     if not c2['isDevEnv']:
         # Update tkhtmlview this way because its dependencies are broken
-        run(pipCommand + ['install', '-U', 'tkhtmlview', '--no-deps'], env=env)
+        run.pipUpdate('tkhtmlview', '--no-deps')
         patchTkhtmlviewParser()
     print('Done')
 
@@ -224,8 +207,8 @@ def recreate(withconf, withsaves, withgameconf, source_tempdir: PurePath = None)
 def patchTkhtmlviewParser():
     # Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
     if '--nohtmlparser' not in sys.argv or c2['noCustomHTMLParser']:
-        temp = check_output((VENV_PYTHON, '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').strip()
-        with urlopen('https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/dev/pyminlib/html_parser.py', context=getSSLContext()) as urlfile:
+        temp = subprocess.check_output((Runner.VENV_PYTHON, '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').strip()
+        with urlopen('https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/dev/pyminlib/html_parser.py', context=run.sslContext) as urlfile:
             Path(temp).write_bytes(urlfile.read())
         print('Patched tkhtmlview html_parser.py')
 
@@ -278,13 +261,6 @@ def migrateConfig():
     if not conf:
         print('Nothing to do.')
     return conf
-
-
-insecure_context = ssl._create_unverified_context()
-
-
-def getSSLContext():
-    return insecure_context if c2['noSSLVerify'] or '--unverified' in sys.argv else None
 
 
 class TextObject:
@@ -580,22 +556,71 @@ else:
         c2['pyInstalledVersion'] = platform.python_version()
         hasVenv = False
 
-if platform.system() == 'Windows':
-    VENV_PYTHON = os.path.join(venvpath, 'Scripts', 'python.exe')
-else:
-    VENV_PYTHON = os.path.join(venvpath, 'bin', 'python')
 
-if c2['uvGlobal']:
-    pipCommand = ['uv', 'pip']
-    env['UV_PYTHON'] = VENV_PYTHON
-elif c2['uvLocal']:
-    pipCommand = [VENV_PYTHON, '-m', 'uv', 'pip']
-else:
-    pipCommand = [VENV_PYTHON, '-m', 'pip']
+class Runner:
+    if platform.system() == 'Windows':
+        VENV_PYTHON = os.path.join(venvpath, 'Scripts', 'python.exe')
+    else:
+        VENV_PYTHON = os.path.join(venvpath, 'bin', 'python')
+    INSECURE_SSL_CONTEXT = ssl._create_unverified_context()
+    if c2['uvGlobal']:
+        PIP_COMMAND = ('uv', 'pip')
+    elif c2['uvLocal']:
+        PIP_COMMAND = (VENV_PYTHON, '-m', 'uv', 'pip')
+    else:
+        PIP_COMMAND = (VENV_PYTHON, '-m', 'pip')
+
+    @property
+    def env(self):
+        return self._environ
+
+    @property
+    def sslContext(self):
+        return Runner.INSECURE_SSL_CONTEXT if c2['noSSLVerify'] or '--unverified' in sys.argv else None
+
+    def __init__(self):
+        self._environ = os.environ.copy()
+        if platform.system() == 'Darwin':
+            print('Warning: This script is untested on darwin (MacOS), things might be broken.')
+            '''
+            This script should not need this because it doesn't use os.fork but it's here just in case.
+            https://docs.python.org/3/library/urllib.request.html
+            Warning:
+
+            On macOS it is unsafe to use this module in programs using os.fork() because
+            the getproxies() implementation for macOS uses a higher-level system API.
+            Set the environment variable no_proxy to * to avoid this problem (e.g.
+            os.environ["no_proxy"] = "*").
+            '''
+            self.env['no_proxy'] = '*'
+
+        if c2['uvGlobal']:
+            self.env['UV_PYTHON'] = Runner.VENV_PYTHON
+
+    def withEnv(self, *args):
+        subprocess.run(args, env=self.env)
+
+    def withVenvPython(self, *args):
+        self.withEnv(Runner.VENV_PYTHON, *args)
+
+    def pip(self, *args):
+        self.withEnv(*Runner.PIP_COMMAND, *args)
+
+    def pipInstall(self, *args):
+        self.pip('install', *args)
+
+    def pipUpdate(self, *args):
+        self.pip('install', '-U', *args)
+
+    def pipUninstall(self, *args):
+        self.pip('uninstall', *args)
+
+
+run = Runner()
 
 # Arguement parsing logic
 if c2['defaultToRun'] and (len(sys.argv) < 2 or sys.argv[1].startswith(('-', '--', '/'))) and hasVenv:
-    run((VENV_PYTHON, venvpath / 'Pymin/Pymin.py', *sys.argv[1:]))
+    run.withVenvPython(venvpath / 'Pymin/Pymin.py', *sys.argv[1:])
 elif len(sys.argv) < 2 or sys.argv[1] == 'help' or ('--help' in sys.argv or '-h' in sys.argv or '/?' in sys.argv) and sys.argv[1] not in {'uv', 'pip', 'run'}:
     print('venvscript [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message. Also --help and -h\n\tdocs\t\t\tAdvanced help information. Put a command after this one to display its docs.\n\tinstall\t\t\tCreates the virtual environment for the game, installs all dependencies, and installs the game.\n\tupdate\t\t\tUpdates the game and all of it\'s dependencies.\n\tcfg\t\t\tFor configuring this script. key/values are in the form "key=value". Use without arguements to list all values.\n\tcfg-game\t\tFor configuring pymin. Works the same as cfg except key/values are in the form "section.key=value". Only works on pymin 12+.\n\tmigrate-config\t\tMigrates the config from a previous version to the current one. This runs automatically if the current config is not present and an old version is detected.\n\trun\t\t\tRuns the game. Forwards all arguements.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguements.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguements.\n\tpip\t\t\tExecutes pip inside of the environment. Does not work if the venv was installed with uv. Forwards all arguements.\n\ncfg/cfg-game parsing rules:\n\tDo not use spaces unless they are a part of the value, whitespace is not ignored.\n\tMake sure to escape any curly brackets. They are special characters in the terminal (only tested in bash).\n\tDo not use brackets [ ] or curly brackets { } in table keys. They are currently not parsed correctly.\n\tTables use the python format {key:value,} even though they are used as TOML. I was being lazy and didn\'t want to deal it.\n\nArguements {install, update, recreate}:\n\t--unverified\t\tTemporarily disables ssl verification.\n\t--nohtmlparser\t\tSkips installing the custom html parser once.\n\t--version\t\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]\n\t--as3libversion\t\tThe release tag of the as3lib version you want to install. ex: "--as3libversion <tag>" [default: latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--with-config\t\tReads the config and writes it to the new environment.\n\t{recreate}\t--with-saves\t\tKeeps the nimin_saves directory.\n\t{recreate}\t--with-game-config\tKeeps the game\'s config.')
 elif sys.argv[1] == 'docs':
@@ -684,23 +709,23 @@ elif sys.argv[1] == 'update' and hasVenv:
         downloadgame()
         updatemodules()
 elif sys.argv[1] == 'run' and hasVenv:
-    run((VENV_PYTHON, venvpath / 'Pymin/Pymin.py', *sys.argv[2:]))
+    run.withVenvPython(venvpath / 'Pymin/Pymin.py', *sys.argv[2:])
 elif sys.argv[1] == 'conv' and hasVenv:
-    run((VENV_PYTHON, venvpath / 'Pymin/Pymin.py', '--converter'))
+    run.withVenvPython(venvpath / 'Pymin/Pymin.py', '--converter')
 elif sys.argv[1] == 'recreate' and hasVenv:
     recreate('--with-config' in sys.argv, '--with-saves' in sys.argv, '--with-game-config' in sys.argv)
 elif sys.argv[1] == 'uv' and hasVenv:
     if not (c2['uvGlobal'] or c2['uvLocal']):
         raise Exception('uv is not enabled.')
     if len(sys.argv) == 2:
-        run(pipCommand[:-1] + ['help'], env=env)
+        run.withEnv(*Runner.PIP_COMMAND[:-1], 'help')
     else:
-        run(pipCommand[:-1] + sys.argv[2:], env=env)
+        run.withEnv(*Runner.PIP_COMMAND[:-1], *sys.argv[2:])
 elif sys.argv[1] == 'pip' and hasVenv:
     if len(sys.argv) == 2:
-        run(pipCommand + ['--help'])
+        run.pip('--help')
     else:
-        run(pipCommand + sys.argv[2:])
+        run.pip(*sys.argv[2:])
 elif sys.argv[1] in {'cfg-game', 'update', 'run', 'conv', 'recreate', 'uv', 'pip'}:
     raise Exception(f'"{sys.argv[1]}" requires a valid virtual environment.')
 else:
