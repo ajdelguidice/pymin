@@ -42,7 +42,6 @@ Python>=3.10 (Pymin 1.0.7 - 1.0.11)
 
 ## Requirements
 <b>Game:</b> tkinter, <a href="https://pypi.org/project/as3lib/">as3lib</a>
-<br><b>Venv script:</b> <a href="https://pypi.org/project/requests/">requests</a>
 
 <b>Unix (including MacOS) requirements:</b>
 <br>&emsp;A C compiler recognised by setuptools (ex: gcc, clang)
