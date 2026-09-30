@@ -1,16 +1,17 @@
 #!/usr/bin/env python
-import requests
-from shutil import rmtree, copytree, copyfile
-import platform
-import configparser
-import ssl
-import tempfile
-import os
+from io import StringIO
 from pathlib import Path, PurePath
-import sys
+from shutil import rmtree, copytree, copyfile
 from subprocess import run, check_output
 from urllib.request import urlopen
-from io import StringIO
+import configparser
+import os
+import platform
+import requests
+import ssl
+import sys
+import tempfile
+
 
 # TODO: Improve compatibility with non-uv setups
 
