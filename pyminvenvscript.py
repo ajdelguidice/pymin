@@ -6,7 +6,6 @@ from urllib.request import urlopen
 import configparser
 import os
 import platform
-import requests
 import ssl
 import subprocess
 import sys
@@ -26,6 +25,10 @@ def checkExistsMakeDir(dir_):
         print('Path exists but is not a directory.')
         return -1
     dir_.mkdir(parents=True)
+
+
+def getRedirectURL(url):
+    return urlopen(url).geturl()
 
 
 venvpath = CURRENT_DIRECTORY / 'Pymin-venv'
@@ -122,7 +125,7 @@ def downloadgame():
     if '--version' in sys.argv:
         versiontag = sys.argv[sys.argv.index('--version') + 1]
     else:
-        versiontag = requests.get('https://github.com/ajdelguidice/pymin/releases/latest').url.split('/')[-1]
+        versiontag = getRedirectURL('https://github.com/ajdelguidice/pymin/releases/latest').split('/')[-1]
     with urlopen(f'https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py', context=run.sslContext) as urlfile:
         (venvpath / 'Pymin/Pymin.py').write_bytes(urlfile.read())
     print('Done')
@@ -464,7 +467,7 @@ class TOML:
 
 hasVenv = True
 
-modlist = ['requests', 'numpy', 'Pillow', 'as3lib']
+modlist = ['numpy', 'Pillow', 'as3lib']
 if sys.hexversion < 0x030b0000:
     import tomli as tomllib
     modlist.append('tomli')
