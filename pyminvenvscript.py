@@ -437,7 +437,7 @@ class TOML:
             text.write(']')
             return text.getvalue()
 
-    def Return(valDict):
+    def dictToTOML(valDict):
         nontables = []
         tables = []
         for k, v in valDict.items():
@@ -456,20 +456,19 @@ class TOML:
 
     def write(file, valDict):
         with open(file, 'w') as f:
-            f.write(TOML.Return(valDict))
-
-    def read(file):
-        return tomllib.load(file)
+            f.write(TOML.dictToTOML(valDict))
 
 
 hasVenv = True
 
 modlist = ['numpy', 'Pillow', 'as3lib']
 if sys.hexversion < 0x030b0000:
-    import tomli as tomllib
+    import tomli
+    TOML.readFile = tomli.load
     modlist.append('tomli')
 else:
     import tomllib
+    TOML.readFile = tomllib.load
 
 
 class Runner:
@@ -554,7 +553,7 @@ cfgloc = CURRENT_DIRECTORY / 'pymin.toml'
 # load config and set venvpath
 if (CURRENT_DIRECTORY / 'pymin.toml').exists():
     with open(cfgloc, 'rb') as f:
-        c1 = TOML.read(f)
+        c1 = TOML.readFile(f)
     c2 = {
         'cfgVersion': c1.get('cfgVersion', 1),
         'path': c1.get('path', run.venvPath),
@@ -575,7 +574,7 @@ if (CURRENT_DIRECTORY / 'pymin.toml').exists():
 elif run.getLocalPath('pymin.toml').exists():
     cfgloc = run.getLocalPath('pymin.toml')
     with open(cfgloc, 'rb') as f:
-        c1 = TOML.read(f)
+        c1 = TOML.readFile(f)
     c2 = {
         'cfgVersion': c1.get('cfgVersion', 1),
         'path': c1.get('path', ''),
@@ -690,7 +689,7 @@ elif sys.argv[1] == 'cfg-game' and hasVenv:
     if not game_config_path.exists():
         raise Exception('Game config does not exist.')
     with open(game_config_path, 'rb') as f:
-        gameconf = TOML.read(f)
+        gameconf = TOML.readFile(f)
     if len(sys.argv) == 2:
         with StringIO() as text:
             for k1, v1 in gameconf.items():
