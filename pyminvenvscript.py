@@ -170,27 +170,33 @@ def updatemodules():
     print('Done')
 
 
-def recreate(withconf, withsaves, withgameconf):
+def recreate_checkWithConfig(withconf):
+    if not withconf or not cfgloc.exists():
+        return False
+    try:
+        # Test if relative to venvpath. Raises ValueError if not.
+        cfgloc.relative_to(venvpath)
+    except ValueError:
+        print('Option "withConfig" specified but config not in venv. Config skipped.')
+        return False
+    return True
+
+
+def recreate(withconf, withsaves, withgameconf, source_tempdir: PurePath = None):
     if not venvpath.is_dir():
         raise Exception(f'Directory "{venvpath}" either doesn\'t exist or is not a directory.')
     if venvpath == venvpath.parent:
         raise Exception('Root directory can not be used for venvpath.')
     if not (venvpath / 'Pymin/Pymin.py').exists():
         raise Exception('venvpath does not look like it contains a valid Pymin virtual environment.')
-    tempdir = None
+    withconf = recreate_checkWithConfig(withconf)
+    if source_tempdir is not None:
+        tempdir = source_tempdir
+    elif withconf or withsaves or withgameconf:
+        tempdir = Path(tempfile.mkdtemp())
     try:
-        if withconf or withsaves or withgameconf:
-            tempdir = Path(tempfile.mkdtemp())
         if withconf:
-            try:
-                if cfgloc.exists():
-                    cfgloc.relative_to(venvpath)  # Test if relative to venvpath. Will raise ValueError if not.
-                    copyfile(cfgloc, tempdir / 'pymin.toml')
-                else:
-                    withconf = False
-            except ValueError:
-                print('--with-config specified but config not in venv. Config skipped.')
-                withconf = False
+            copyfile(cfgloc, tempdir / 'pymin.toml')
         if withsaves:
             copytree(venvpath / 'Pymin/nimin_saves', tempdir / 'nimin_saves')
         if withgameconf:
@@ -207,12 +213,11 @@ def recreate(withconf, withsaves, withgameconf):
     except Exception as e:
         msg = 'Warning: Failed to recreate venv. '
         if tempdir is not None:
-            msg += f'Temp directory at {tempdir} that contains files specified with the "--with-*" arguements was not deleted to minimise data loss. '
-        print(msg + 'Manual intervential is required.')
+            msg += f'Temp directory at "{tempdir}" that contains files specified with the "--with-*" arguements was not deleted to minimise data loss. '
         # TODO: Try to recover
-        raise e
+        raise Exception(msg + 'Manual intervential is required.') from e
     else:
-        if tempdir is not None:
+        if source_tempdir is None and tempdir is not None:
             rmtree(tempdir)
 
 
@@ -227,26 +232,16 @@ def patchTkhtmlviewParser():
 
 def updatePythonVersion():
     tempdir = Path(tempfile.mkdtemp())
-    withconf = True
-    try:
-        if cfgloc.exists():
-            cfgloc.relative_to(venvpath)
-            copyfile(cfgloc, tempdir / 'pymin.toml')
-        else:
-            withconf = False
-    except ValueError:
-        withconf = False
     copytree(venvpath / 'Pymin', tempdir / 'Pymin')
     try:
-        recreate(False, False, False)
+        recreate(True, False, False, tempdir)
     except Exception as e:
-        print(f'An error has occurred during the python version change process. The temp directory at {tempdir} contains all backed up files. Manual intervention is required.')
-        raise e
-    if withconf:
-        copyfile(tempdir / 'pymin.toml', cfgloc)
-    rmtree(venvpath / 'Pymin')
-    copytree(tempdir / 'Pymin', venvpath / 'Pymin')
-    c2['pyInstalledVersion'] = platform.python_version()
+        raise Exception(f'An error has occurred during the python version change process. The temp directory at "{tempdir}" contains all backed up files. Manual intervention is required.') from e
+    else:
+        rmtree(venvpath / 'Pymin')
+        copytree(tempdir / 'Pymin', venvpath / 'Pymin')
+        rmtree(tempdir)
+        c2['pyInstalledVersion'] = platform.python_version()
 
 
 def migrateConfig():
@@ -682,7 +677,7 @@ elif sys.argv[1] == 'update' and hasVenv:
     if platform.python_version().split('.')[:2] != c2['pyInstalledVersion'].split('.')[:2] and platform.system() != 'Windows':
         answer = input('(Experimental) Python major version has changed. Would you like to switch this virtual environment to the new one? (y/N)')
         # TODO: Remove c2['isDevEnv'] check once this is no longer experimental
-        doPythonUpdate = c2['isDevEnv'] and answer.lower() == 'y':
+        doPythonUpdate = c2['isDevEnv'] and answer.lower() == 'y'
     if doPythonUpdate:
         updatePythonVersion()
     else:
