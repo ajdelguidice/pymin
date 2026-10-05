@@ -380,28 +380,23 @@ class Args:
         value.close()
         return arr
 
-    def ParseOuter(value, expected):
-        if isinstance(expected, str):
-            return str(value)
-        if isinstance(expected, bool):
+    def Parse(value, expectedType):
+        if expectedType is bool:
             if value.lower() == 'true':
                 return True
             if value.lower() == 'false':
                 return False
-        if isinstance(expected, int):
-            return int(value)
-        if isinstance(expected, float):
-            return float(value)
-        if isinstance(expected, list):
+        if expectedType is list:
             with StringIO() as text:
                 text.write(value)
                 text.seek(1)
                 return Args.ParseArray(text)
-        if isinstance(expected, dict):
+        if expectedType is dict:
             with StringIO() as text:
                 text.write(value)
                 text.seek(1)
                 return Args.ParseTable(text)
+        return expectedType(value)
 
 
 class TOML:
@@ -676,22 +671,35 @@ elif sys.argv[1] == 'docs':
 elif sys.argv[1] == 'migrate-config':
     config.update(migrateConfig())
 elif sys.argv[1] == 'cfg':
-    if len(sys.argv) == 2:
+    args = sys.argv[2:]
+    if not len(args):
         with StringIO() as text:
             for k, v in config.items():
                 text.write(f'{k}: {v}\n')
             print(text.getvalue())
         exit()
-    for key, raw_value in (i.split('=') for i in sys.argv[2:]):
+    CONFIG_TYPES = {
+        'cfgVersion': int,
+        'path': str,
+        'pyInstalledVersion': str,
+        'uvGlobal': bool,
+        'uvLocal': bool,
+        'defaultToRun': bool,
+        'noSSLVerify': bool,
+        'noCustomHTMLParser': bool,
+        'isDevEnv': bool
+    }
+    for key, raw_value in (i.split('=') for i in args):
         if key in {'cfgVersion', 'pyInstalledVersion'} and not config['isDevEnv']:
             print(f'Warning: {key} is restricted and should not be changed. Skipping.')
             continue
         if key not in config:
             print(f'Warning: Key {key} does not exist.')
             continue
-        value = Args.ParseOuter(raw_value, config[key])
-        if value is None:
-            print(f'Warning: Type of {key} could not be determined. Skipping.')
+        try:
+            value = Args.Parse(raw_value, CONFIG_TYPES[key])
+        except:
+            print(f'Warning: Could not parse {key}. Skipping')
             continue
         config[key] = value
 elif sys.argv[1] == 'cfg-game' and hasVenv:
@@ -700,7 +708,21 @@ elif sys.argv[1] == 'cfg-game' and hasVenv:
         raise Exception('Game config does not exist.')
     with open(game_config_path, 'rb') as f:
         gameconf = TOML.readFile(f)
-    if len(sys.argv) == 2:
+    args = sys.argv[2:]
+    if len(args):
+        for variable, raw_value in (i.split('=') for i in args):
+            section, key = variable.split('.')
+            if section not in gameconf or key not in gameconf[section]:
+                print(f'Warning: {section}.{key} does not exist.')
+                continue
+            try:
+                value = Args.Parse(raw_value, type(gameconf[section][key]))
+            except:
+                print(f'Warning: Could not parse {section}.{key}. Skipping')
+                continue
+            gameconf[section][key] = value
+        TOML.write(game_config_path, gameconf)
+    else:
         with StringIO() as text:
             for k1, v1 in gameconf.items():
                 text.write(f'[{k1}]\n')
@@ -708,18 +730,6 @@ elif sys.argv[1] == 'cfg-game' and hasVenv:
                     text.write(f'{k2}: {v2}\n')
                 text.write('\n')
             print(text.getvalue())
-    else:
-        for variable, raw_value in (i.split('=') for i in sys.argv[2:]):
-            section, key = variable.split('.')
-            if section not in gameconf or key not in gameconf[section]:
-                print(f'Warning: {section}.{key} does not exist.')
-                continue
-            value = Args.ParseOuter(raw_value, gameconf[section][key])
-            if value is None:
-                print(f'Warning: Type of {section}.{key} could not be determined. Skipping.')
-                continue
-            gameconf[section][key] = value
-        TOML.write(game_config_path, gameconf)
     exit()
 elif sys.argv[1] == 'install':
     if hasVenv and '--overwrite' not in sys.argv:
