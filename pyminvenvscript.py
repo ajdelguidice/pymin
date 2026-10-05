@@ -317,18 +317,11 @@ class Args:
         ParseKey = True
         key = TextObject()
         value = TextObject()
-        while True:
-            char = strio.read(1)
+        while (char :=strio.read(1)) != '}':
             if char == '':  # This should only happen at EOF
                 print('Warning: Table was never closed.')
                 break
-            elif char == '}':
-                if value.get() != '':  # Accounts for no trailing comma
-                    table[Args.ValidateKey(key.get())] = Args.ParseInner(value.get())
-                    key.clear()
-                    value.clear()
-                break
-            elif char == '{':
+            if char == '{':
                 if ParseKey:
                     raise Exception('Tables can not used as keys as they can not be parsed.')
                 table[Args.ValidateKey(key.get())] = Args.ParseTable(strio)
@@ -350,6 +343,9 @@ class Args:
                 key.add(char)
             else:
                 value.add(char)
+        # Write final value if there isn't a trailing comma
+        if value.get() != '':
+            table[Args.ValidateKey(key.get())] = Args.ParseInner(value.get())
         key.close()
         value.close()
         return table
@@ -357,17 +353,11 @@ class Args:
     def ParseArray(strio):
         arr = []
         value = TextObject()
-        while True:
-            char = strio.read(1)
+        while (char := strio.read(1)) != ']':
             if char == '':  # This should only happen at EOF
                 print('Warning: Array was never closed.')
                 break
-            elif char == ']':
-                if value.get() != '':  # Accounts for no trailing comma
-                    arr.append(Args.ParseInner(value.get()))
-                    value.clear()
-                break
-            elif char == '[':
+            if char == '[':
                 arr.append(Args.ParseArray(strio))
             elif char == '{':
                 arr.append(Args.ParseTable(strio))
@@ -377,6 +367,9 @@ class Args:
                     value.clear()
             else:
                 value.add(char)
+        # Write final value if there isn't a trailing comma
+        if value.get() != '':
+            arr.append(Args.ParseInner(value.get()))
         value.close()
         return arr
 
