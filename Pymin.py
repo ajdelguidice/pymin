@@ -8,6 +8,7 @@ from as3lib.flash.text import Font
 from as3lib.flash.ui import Keyboard
 import as3lib.interface_tk as itk
 from dataclasses import dataclass
+from enum import IntEnum
 from functools import partial, cache
 from io import BytesIO
 from miniamf import sol
@@ -4194,6 +4195,14 @@ class OptionsWindow(PyminWindow):
             main.debugChooseSenario = self.window._children['ChooseSenario'].getcb()
             main.debugNoDamage = self.window._children['NoDamage'].getcb()
         main.savePreferences()
+
+
+class GameState(IntEnum):
+    # TODO: Use this
+    MAIN_MENU = 0
+    GENERAL = 1
+    BATTLE = 2
+    MASTURBATE = 3
 
 
 class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
@@ -8833,6 +8842,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Function used to actually give the player items
         '''
+        # TODO: Make this work with the discard button
         self.hideAmountAll()
         tempNum = 0
         openSlot = self.bag.getEmptySlot(ID)
@@ -9177,15 +9187,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if ID == 260:
             return "Succubus Draft\n\nOne of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
         if ID == 404:
-            temp = "Item Not Found\n\nItem Not Found"
+            tempStr = "Item Not Found\n\nItem Not Found"
             if as3state.as3DebugEnable:
-                temp += " (This is a joke item referencing status code 404)"
-            return temp
+                tempStr += " (This is a joke item referencing status code 404)"
+            return tempStr
         if ID == 418:
-            temp = "Strange Teapot\n\nInscribed on the side are the words \"I'm a teapot\"."
+            tempStr = "Strange Teapot\n\nInscribed on the side are the words \"I'm a teapot\"."
             if as3state.as3DebugEnable:
-                temp += " (This is a joke item referencing status code 418)"
-            return temp
+                tempStr += " (This is a joke item referencing status code 418)"
+            return tempStr
         if ID == 500:
             return "Bottle of Milk\n\nA bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
         if ID == 501:
@@ -9466,7 +9476,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doButtonChoices(tempDict)
 
                 def doListen():
-                    self.getMilk = 0
+                    getMilk = 0
                     self.doMainText("You uncoil the tubes of your milker, stretching them out and starting up the pump. Attaching the appropriate cups, you slip them onto your ", True)
                     if (self.buttonChoice == 5):
                         tempNum = 1
@@ -9482,7 +9492,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(" feeling all tingly.")
                     if (tempNum == 1 and self.lactation > 0 or tempNum == 2 and self.udderLactation > 0):
                         self.hrs += 1
-                        self.getMilk = self.milkAmount(tempNum)
+                        getMilk = self.milkAmount(tempNum)
                         self.doMainText(" Droplets of milk begin to trickle around your ")
                         if (tempNum == 1):
                             self.doMainText("nipples")
@@ -9494,21 +9504,21 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         elif (tempNum == 2):
                             self.doMainText("teats")
                         self.doMainText(" throb along with the pulse, ")
-                        if self.getMilk <= 500:
+                        if getMilk <= 500:
                             self.doMainText("small dribbles")
-                        elif self.getMilk <= 1000:
+                        elif getMilk <= 1000:
                             self.doMainText("spurts")
-                        elif self.getMilk <= 2000:
+                        elif getMilk <= 2000:
                             self.doMainText("sprays")
-                        elif self.getMilk <= 8000:
+                        elif getMilk <= 8000:
                             self.doMainText("jets")
-                        elif self.getMilk <= 19000:
+                        elif getMilk <= 19000:
                             self.doMainText("steady streams")
                         else:
                             self.doMainText("small floods")
                         self.doMainText(" of milk swishing through the tubes and collecting at the machine.")
                     self.doMainText(" The pleasurable sensation lingers constantly, bringing you to a small orgasm")
-                    if (self.getMilk > 0):
+                    if (getMilk > 0):
                         self.doMainText(" while your flow of milk slows to a stop")
                     self.doMainText(".\n\nYou flip the machine off, the cups making a loud kissing sound as the vacuum is released. As they fall to the floor, you rub your aroused ")
                     if (tempNum == 1):
@@ -9535,10 +9545,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doNext()
 
                     def doListen():
-                        if (self.getMilk < 1000):
-                            self.doMainText(f"You have produced {self.getMilk} ml of milk!", True)
+                        if (getMilk < 1000):
+                            self.doMainText(f"You have produced {getMilk} ml of milk!", True)
                         else:
-                            self.doMainText(f"You have produced {Utils.decGet(self.getMilk / 1000, 1)} liters of milk!", True)
+                            self.doMainText(f"You have produced {Utils.decGet(getMilk / 1000, 1)} liters of milk!", True)
                         if (tempNum == 1):
                             if (self.breastSize > 14):
                                 self.doLust(-Math.floor(self.sen / 4), 2, 3)
@@ -9548,15 +9558,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         elif (tempNum == 2):
                             self.doLust(-Math.floor(self.sen / 4), 2, 4)
                             self.udderPlay += 10
-                        if self.getMilk < 1000:
+                        if getMilk < 1000:
                             self.doMainText("\n\nUnfortunately, you haven't produced enough milk to fill a full bottle yet.")
-                        elif self.getMilk < 3000:
+                        elif getMilk < 3000:
                             self.itemAdd(500)
-                        elif self.getMilk < 6000:
+                        elif getMilk < 6000:
                             self.itemAdd(501)
-                        elif self.getMilk < 17000:
+                        elif getMilk < 17000:
                             self.addManyItem(501, 2)
-                        elif self.getMilk < 25000:
+                        elif getMilk < 25000:
                             self.itemAdd(502)
                         else:
                             self.itemAdd(502)
@@ -27616,12 +27626,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     tempStr = "ridiculous "
                 elif (self.nippleSize > 300):
                     tempStr = "obscene "
-        # TODO: Unecessary else case
         if (self.nipType == 1):
             if (Utils.percent() <= 50):
-                tempStr += " quad-"
-            else:
-                tempStr = f"quartets of {tempStr}"
+                return tempStr + " quad-"
+            return "quartets of " + tempStr
         return tempStr
 
     def clitDesc(self):
