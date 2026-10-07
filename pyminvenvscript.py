@@ -734,10 +734,10 @@ elif sys.argv[1] == 'install':
     create()
 elif sys.argv[1] == 'update' and hasVenv:
     doPythonUpdate = False
-    if platform.python_version().split('.')[:2] != config['pyInstalledVersion'].split('.')[:2] and platform.system() != 'Windows':
+    # TODO: Remove config['isDevEnv'] check once this is no longer experimental
+    if config['isDevEnv'] and platform.python_version().split('.')[:2] != config['pyInstalledVersion'].split('.')[:2] and platform.system() != 'Windows':
         answer = input('(Experimental) Python major version has changed. Would you like to switch this virtual environment to the new one? (y/N)')
-        # TODO: Remove config['isDevEnv'] check once this is no longer experimental
-        doPythonUpdate = config['isDevEnv'] and answer.lower() == 'y'
+        doPythonUpdate = answer.lower() == 'y'
     if doPythonUpdate:
         updatePythonVersion()
     else:
