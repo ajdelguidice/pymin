@@ -317,8 +317,9 @@ class Args:
         ParseKey = True
         key = TextObject()
         value = TextObject()
-        while (char :=strio.read(1)) != '}':
-            if char == '':  # This should only happen at EOF
+        while (char := strio.read(1)) != '}':
+            # No character means end of stream
+            if char == '':
                 print('Warning: Table was never closed.')
                 break
             if char == '{':
@@ -332,7 +333,8 @@ class Args:
                 table[Args.ValidateKey(key.get())] = Args.ParseArray(strio)
                 key.clear()
             elif char == ',':
-                if value.get() != '':  # Accounts for when tables are parsed
+                # Arrays and tables parse separately so avoid writing an empty value
+                if value.get() != '':
                     table[Args.ValidateKey(key.get())] = Args.ParseInner(value.get())
                 value.clear()
                 key.clear()
@@ -354,7 +356,8 @@ class Args:
         arr = []
         value = TextObject()
         while (char := strio.read(1)) != ']':
-            if char == '':  # This should only happen at EOF
+            # No character means end of stream
+            if char == '':
                 print('Warning: Array was never closed.')
                 break
             if char == '[':
@@ -362,9 +365,10 @@ class Args:
             elif char == '{':
                 arr.append(Args.ParseTable(strio))
             elif char == ',':
-                if value.get() != '':  # Accounts for when arrays are parsed
+                # Arrays and tables parse separately so avoid writing an empty value
+                if value.get() != '':
                     arr.append(Args.ParseInner(value.get()))
-                    value.clear()
+                value.clear()
             else:
                 value.add(char)
         # Write final value if there isn't a trailing comma
@@ -492,7 +496,7 @@ class VenvRunner:
     def pipCommand(self):
         if config['uvGlobal']:
             return ('uv', 'pip')
-        elif config['uvLocal']:
+        if config['uvLocal']:
             return (self.python, '-m', 'uv', 'pip')
         return (self.python, '-m', 'pip')
 
