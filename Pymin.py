@@ -4376,11 +4376,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.sideFocus = 1
         self.font = ("Times New Roman", 12)
 
-        # workaround variables. These are to implement things that were a result of actionscript jank (local variables of a function inside of a MovieClip object were treated as variables local to the MovieClip object instead in some circumstances)
+        # Temp variables
         self.buy = 0
-        self.getCum = 0
-        self.tempID = 0
-        self.tempColor = 0
 
         # bag
         self.bag = PlayerItemStorage()
@@ -8886,19 +8883,18 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Function to discard an item
         '''
-        self.tempID = ID
         self.displayBag()
 
         def doListen():
             self.choiceListSelect("Bag")
             if (self.buttonChoice == 12):
-                while self.tempID in self.itemGainArray:
+                while ID in self.itemGainArray:
                     self.itemGainArray.pop()
                 self.doProcess()
             elif (self.buttonChoice == 4 or self.buttonChoice == 8):
                 self.displayBag()
             elif (self.canLose(self.choiceListResult[0])):
-                self.doMainText(f"{self.itemDescription(self.choiceListResult[0])}\n\n{self.itemDescription(self.tempID)}\n\nDo you want to replace {Items.name(self.choiceListResult[0])} with {Items.name(self.tempID)}?", True)
+                self.doMainText(f"{self.itemDescription(self.choiceListResult[0])}\n\n{self.itemDescription(ID)}\n\nDo you want to replace {Items.name(self.choiceListResult[0])} with {Items.name(ID)}?", True)
                 if (self.bag.stack[self.choiceListResult[1]] > 1):
                     self.doMainText(f"\n\nYou will lose all {self.bag.stack[self.choiceListResult[1]]} of {Items.name(self.choiceListResult[0])} if you do.")
                 self.displayMainText()
@@ -8907,13 +8903,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 def doListen():
                     if (self.buttonChoice == 6):
                         self.bagSlotClear(self.choiceListResult[1])
-                        self.gainItem(self.tempID)
+                        self.gainItem(ID)
                     else:
-                        self.doDiscard(self.tempID)
+                        self.doDiscard(ID)
                 self.doListen = doListen
             elif (not self.canLose(self.choiceListResult[0])):
                 self.outputMainText(f"Something is preventing you from removing the {Items.name(self.choiceListResult[0])}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
-                self.doDiscard(self.tempID)
+                self.doDiscard(ID)
         self.doListen = doListen
 
     def itemMove(self, slot: int):
@@ -9370,7 +9366,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Does the behaviour of item "ID"
         '''
         # TODO: optimize
-        self.tempNum = 0
         if ID == 418:
             self.outputMainText("You pour yourself a cup of tea from the strange teapot and drink it. You feel very refreshed.", True)
             self.doHP(100000)
@@ -9387,28 +9382,28 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                 def doListen():
                     self.outputMainText(f"Are you sure that you want to travel to {Items.TeleportScrollAny_GetZoneForButton(self.buttonChoice)}?", True)
-                    self.tempNum = self.buttonChoice
+                    tempNum = self.buttonChoice
                     self.buttonConfirm()
 
                     def doListen():
                         if self.buttonChoice == 6:
                             self.doMainText('You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can\'t see beyond them.\n\n', True)
-                            if self.tempNum == 1:
+                            if tempNum == 1:
                                 self.doMainText("With a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!")
                                 regNum = 3
-                            elif self.tempNum == 3:
+                            elif tempNum == 3:
                                 self.doMainText("With a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!")
                                 regNum = 1
-                            elif self.tempNum == 5:
+                            elif tempNum == 5:
                                 self.doMainText("With a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!")
                                 regNum = 4
-                            elif self.tempNum == 7:
+                            elif tempNum == 7:
                                 self.doMainText("With a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!")
                                 regNum = 2
-                            elif self.tempNum == 8:
+                            elif tempNum == 8:
                                 self.doMainText("With a thump, they quickly disappear and you find yourself back in the city of Sanctuary!")
                                 regNum = 12
-                            elif self.tempNum == 10:
+                            elif tempNum == 10:
                                 self.doMainText("With a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!")
                                 regNum = 6
                             self.displayMainText()
@@ -9463,7 +9458,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.outputMainText("You can only use a milker while masturbating.", True)
                 self.doEnd()
             else:
-                self.tempNum = 0
                 self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0))
                 tempDict = {5: "Breasts"}
                 if (self.udders):
@@ -9475,29 +9469,29 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.getMilk = 0
                     self.doMainText("You uncoil the tubes of your milker, stretching them out and starting up the pump. Attaching the appropriate cups, you slip them onto your ", True)
                     if (self.buttonChoice == 5):
-                        self.tempNum = 1
+                        tempNum = 1
                         self.doMainText(f"{self.nipDesc()} nipples, until the rims press up and seal onto your {self.boobDesc()} breasts with the gentle suction.")
                     elif (self.buttonChoice == 7):
-                        self.tempNum = 2
+                        tempNum = 2
                         self.doMainText(f"{self.teatDesc()} teats, until the rims press up and seal onto your {self.udderDesc()} udder with the gentle suction.")
                     self.doMainText("\n\nYou shudder a little as the stuttered pumping vibrates through your body. Warmth begins to envelop your ")
-                    if (self.tempNum == 1):
+                    if (tempNum == 1):
                         self.doMainText("chest")
-                    elif (self.tempNum == 2):
+                    elif (tempNum == 2):
                         self.doMainText("belly")
                     self.doMainText(" feeling all tingly.")
-                    if (self.tempNum == 1 and self.lactation > 0 or self.tempNum == 2 and self.udderLactation > 0):
+                    if (tempNum == 1 and self.lactation > 0 or tempNum == 2 and self.udderLactation > 0):
                         self.hrs += 1
-                        self.getMilk = self.milkAmount(self.tempNum)
+                        self.getMilk = self.milkAmount(tempNum)
                         self.doMainText(" Droplets of milk begin to trickle around your ")
-                        if (self.tempNum == 1):
+                        if (tempNum == 1):
                             self.doMainText("nipples")
-                        elif (self.tempNum == 2):
+                        elif (tempNum == 2):
                             self.doMainText("teats")
                         self.doMainText(" and slurps through the tubes. Within moments, your ")
-                        if (self.tempNum == 1):
+                        if (tempNum == 1):
                             self.doMainText("nipples")
-                        elif (self.tempNum == 2):
+                        elif (tempNum == 2):
                             self.doMainText("teats")
                         self.doMainText(" throb along with the pulse, ")
                         if self.getMilk <= 500:
@@ -9517,21 +9511,21 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.getMilk > 0):
                         self.doMainText(" while your flow of milk slows to a stop")
                     self.doMainText(".\n\nYou flip the machine off, the cups making a loud kissing sound as the vacuum is released. As they fall to the floor, you rub your aroused ")
-                    if (self.tempNum == 1):
+                    if (tempNum == 1):
                         self.doMainText(f"{self.nipDesc()} nipples")
-                    elif (self.tempNum == 2):
+                    elif (tempNum == 2):
                         self.doMainText(f"{self.teatDesc()} teats")
                     self.doMainText(", shivering from their shortly increased sensitivity, slightly engorged and inflated.")
-                    if (self.boobTotal > 2 or self.tempNum == 2):
+                    if (self.boobTotal > 2 or tempNum == 2):
                         self.doMainText(" Then you move onto the next pair...")
                     self.doMainText(" Eventually you clean yourself up and put the machine away.")
-                    if (self.tempNum == 1):
+                    if (tempNum == 1):
                         self.nipPump += 10
                         if (self.nipPump > 40):
                             self.nipPump = 0
                             self.nippleSize += 1
                             self.doMainText("\n\nHowever, this time your nipples don't seem to relax back to their original state, permanently swollen larger...")
-                    elif (self.tempNum == 2):
+                    elif (tempNum == 2):
                         self.teatPump += 10
                         if (self.teatPump > 40):
                             self.teatPump = 0
@@ -9545,13 +9539,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText(f"You have produced {self.getMilk} ml of milk!", True)
                         else:
                             self.doMainText(f"You have produced {Utils.decGet(self.getMilk / 1000, 1)} liters of milk!", True)
-                        if (self.tempNum == 1):
+                        if (tempNum == 1):
                             if (self.breastSize > 14):
                                 self.doLust(-Math.floor(self.sen / 4), 2, 3)
                             elif (self.breastSize < 4):
                                 self.doLust(-Math.floor(self.sen / 4), 2, 3)
                             self.nipplePlay += 10
-                        elif (self.tempNum == 2):
+                        elif (tempNum == 2):
                             self.doLust(-Math.floor(self.sen / 4), 2, 4)
                             self.udderPlay += 10
                         if self.getMilk < 1000:
@@ -11447,6 +11441,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.buttonConfirm()
         KeyState.overrideShift = True
 
+        # TODO: This is broken
         def doListen():
             KeyState.overrideShift = False
             if (self.buttonChoice == 6):
@@ -11647,7 +11642,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def stashStore(self, storeItem: int):
-        self.tempStoreItem = storeItem
         self.displayStash()
         self.outputMainText(f"Click on the stash slot you would like to place {Items.name(self.bag.items[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
@@ -11658,26 +11652,25 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.buttonChoice == 4 or self.buttonChoice == 8):
                 self.displayStash()
             else:
-                tempNum = self.bag.items[self.tempStoreItem]
-                tempNum2 = self.bag.stack[self.tempStoreItem]
+                tempNum = self.bag.items[storeItem]
+                tempNum2 = self.bag.stack[storeItem]
                 if (tempNum == self.stash.items[self.choiceListResult[1]] and self.stash.stack[self.choiceListResult[1]] < Items.stackMax(tempNum)):
                     if (self.stash.stack[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
-                        self.bag.stack[self.tempStoreItem] -= Items.stackMax(tempNum) - self.stash.stack[self.choiceListResult[1]]
+                        self.bag.stack[storeItem] -= Items.stackMax(tempNum) - self.stash.stack[self.choiceListResult[1]]
                         self.stash.stack[self.choiceListResult[1]] = Items.stackMax(tempNum)
                     else:
                         self.stash.stack[self.choiceListResult[1]] += tempNum2
-                        self.bagSlotClear(self.tempStoreItem)
+                        self.bagSlotClear(storeItem)
                 else:
-                    self.bagSlotClear(self.tempStoreItem)
-                    self.bag.items[self.tempStoreItem] = self.choiceListResult[0]
-                    self.bag.stack[self.tempStoreItem] = self.stash.stack[self.choiceListResult[1]]
+                    self.bagSlotClear(storeItem)
+                    self.bag.items[storeItem] = self.choiceListResult[0]
+                    self.bag.stack[storeItem] = self.stash.stack[self.choiceListResult[1]]
                     self.stash.items[self.choiceListResult[1]] = tempNum
                     self.stash.stack[self.choiceListResult[1]] = tempNum2
                 self.doStoreStash()
         self.doListen = doListen
 
     def stashRemove(self, storeItem: int):
-        self.tempStoreItem = storeItem
         self.displayBag()
         self.outputMainText(f"Click on the bag slot you would like to place {Items.name(self.stash.items[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
@@ -11688,25 +11681,25 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.buttonChoice == 4 or self.buttonChoice == 8):
                 self.displayBag()
             elif (self.canLose(self.choiceListResult[0])):
-                tempNum = self.stash.items[self.tempStoreItem]
-                tempNum2 = self.stash.stack[self.tempStoreItem]
+                tempNum = self.stash.items[storeItem]
+                tempNum2 = self.stash.stack[storeItem]
                 if (tempNum == self.bag.items[self.choiceListResult[1]] and self.bag.stack[self.choiceListResult[1]] < Items.stackMax(tempNum)):
                     if (self.bag.stack[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
-                        self.stash.stack[self.tempStoreItem] -= Items.stackMax(tempNum) - self.bag.stack[self.choiceListResult[1]]
+                        self.stash.stack[storeItem] -= Items.stackMax(tempNum) - self.bag.stack[self.choiceListResult[1]]
                         self.bag.stack[self.choiceListResult[1]] = Items.stackMax(tempNum)
                     else:
                         self.bag.stack[self.choiceListResult[1]] += tempNum2
-                        self.stash.items[self.tempStoreItem] = 0
-                        self.stash.stack[self.tempStoreItem] = 0
+                        self.stash.items[storeItem] = 0
+                        self.stash.stack[storeItem] = 0
                 else:
-                    self.stash.items[self.tempStoreItem] = self.choiceListResult[0]
-                    self.stash.stack[self.tempStoreItem] = self.bag.stack[self.choiceListResult[1]]
+                    self.stash.items[storeItem] = self.choiceListResult[0]
+                    self.stash.stack[storeItem] = self.bag.stack[self.choiceListResult[1]]
                     self.bagSlotClear(self.choiceListResult[1])
                     self.bag.items[self.choiceListResult[1]] = tempNum
                     self.bag.stack[self.choiceListResult[1]] = tempNum2
                 self.doRemoveStash()
             else:
-                self.stashRemove(self.tempStoreItem)
+                self.stashRemove(storeItem)
                 self.outputMainText("You cannot remove that item from your bag. It may be cursed or needs to be unequipped first.\n\nPlease select another slot to move your stashed item into.", True)
         self.doListen = doListen
 
@@ -12035,8 +12028,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def dyeThing(self, ID: int, color: int):
-        self.tempID = ID
-        self.tempColor = color
         self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0))
         self.outputMainText(f"What would you like to apply the {Items.name(ID)} to?", True)
         tempDict = {7: "Body", 10: "Nevermind"}
@@ -12046,14 +12037,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             if self.buttonChoice == 5:
-                self.hairColor = self.tempColor
-                self.doMainText(f"You smear the {Items.name(self.tempID)} around in your {self.hairDesc()}, turning it {self.hairC()} in color.", True)
+                self.hairColor = color
+                self.doMainText(f"You smear the {Items.name(ID)} around in your {self.hairDesc()}, turning it {self.hairC()} in color.", True)
             elif self.buttonChoice == 7:
-                self.skinColor = self.tempColor
-                self.doMainText(f"You rub the {Items.name(self.tempID)} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.", True)
+                self.skinColor = color
+                self.doMainText(f"You rub the {Items.name(ID)} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.", True)
             elif self.buttonChoice == 10:
                 self.doMainText("Apparently you derped and didn't mean to use it, so you put the dye back in your bag.", True)
-                self.itemAdd(self.tempID)
+                self.itemAdd(ID)
             self.displayMainText()
             self.doEnd()
         self.doListen = doListen
@@ -14797,14 +14788,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def makeAlchemy(self, ID: int, level: int):
-        self.tempID = ID
-        self.tempInt = level
         self.outputMainText(f"You have chosen to make a {Items.name(ID)}.\n\nAre you sure?", True)
         self.buttonConfirm()
 
         def doListen():
-            ID = self.tempID
-            level = self.tempInt
             tempBool = False
             if (self.buttonChoice == 6):
                 tempBool = False
@@ -18848,7 +18835,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.buttonConfirm()
 
          def doListen():
-            self.tempInt = 0
             if (self.buttonChoice == 6):
                self.showButtons(ButtonList(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0))
                tempDict = {6: "Help Lay"}
@@ -18857,15 +18843,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                if (self.bag.hasItem(230)):
                   tempDict[11] = "Eggcelerator"
                self.doMainText("You slowly push through the cattails and approach the troubled female.", True)
-               self.tempInt = Math.ceil(Utils.percent() / 33)
-               if (self.tempInt == 4):
-                  self.tempInt = 3
-               trace(self.tempInt)
-               if self.tempInt == 1:
+               tempInt = Math.ceil(Utils.percent() / 33)
+               if (tempInt == 4):
+                  tempInt = 3
+               trace(tempInt)
+               if tempInt == 1:
                   self.doMainText(" A relatively young girl squats in the water in a one-piece bathing suit, with mild curves on her small frame. She gasps and moans as one hand dwells between her legs, holding the crotch of the suit aside, while the other holds onto the plants to steady herself. Below the surface of the clear waters, you can see her exposed slit stretch wide as a white object slips out into a small pile of more eggs that has settled into the sandy floor beneath her. \"Still?!,\" she groans again.\n\nAs she spots you approaching, she lets out a squeak and turns away, her tail pressing down into the water to hide the rear-view of her nethers. \"Please, don't look!\" She blushes heavily. Her soft voice continues on rapidly, trying to explain herself admist her embarrassment. \"I-I'm supposed to go on a date with my new boyfriend tonight and I didn't want to lay in front of him, so I thought if I took some of that stuff it would come out earlier and I wouldn't have to worry. But it didn't seem to do anything so I took a bunch more and it finally came. B-But it didn't stop, instead they just... they just keep coming!\" She whines a little as she feels another one begin to push through, her hips twitching and her knees shaking as she tries to hide it the best she can from you.")
-               elif self.tempInt == 2:
+               elif tempInt == 2:
                   self.doMainText(" A well-developed girl squats in the water in a bikini, with rather attractive curves on her fit frame. She gasps and moans as one hand roams between her thighs, pulling aside the crotch of the bikini bottoms and stroking herself, while the other holds onto the plants for support. Below the surface of the clear waters, you can see her clit stand stiffly as a white object slips out into a small pile more eggs that has settled into the sandy floor beneath her. \"It's too early!,\" she groans again as she fondles herself.\n\nAs she spots you approaching, she shirks and shuts her spread thighs as she blushes, though her hand remains adhered to her erogenous zone. \"You don't understand!\" She blushes with embarrassment at being caught, but tries to explain herself the best she can. \"M-My fiance and I were, umm... planning to have some 'fun' tonight and I thought I'd take some eggcelerator to help liven up the mood. I didn't feel anything right away, so I took a few more doses. A-And, well...\" She looks away as her eyes clench, her body seizing while her hips twitch, laying another egg before your eyes as her thighs split a little to unintentionally give you quite the view.")
-               elif self.tempInt == 3:
+               elif tempInt == 3:
                   self.doMainText(" A mature and attractive woman squats in the water completely nude, her bikini tossed aside, revealing the wide hips from years of egg-laying and breasts hanging large and heavily from past breastfeeding, while her thick tail presses down to keep her balanced. She moans as both hands work her pussy, one rubbing her clit as the other spreads her lips wide. You can see it all below the surface of the clear waters, even the white object that slips through her lips and into a small pile of more eggs that has settled into the sandy floor beneath her. \"Not quite how I planned it...,\" she groans again.\n\nAs she spots you approaching, she makes a small effort to cover her indecency, though isn't too embarrassed. \"Well hello there.\" She still blushes a little from your stares, but explains herself thoroughly. \"I was hoping to speed things up for a nice big cake for the kids' slumber party they're having tomorrow, but I went a bit overboard with the eggcelerator... Now I'm stuck here trying to pass them all until I can walk around again without popping them out in front of everybody!\" The lewd thought makes her hand begin to rub again while you continue to watch, twitching as she lays another egg.")
                self.displayMainText()
                self.doButtonChoices(tempDict)
@@ -18873,17 +18859,17 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                def doListen():
                   if self.buttonChoice == 1:
                      self.doMainText("Using some ingenuinity, you fashion a sort of 'pussy-plug' from one of the surrounding cattails. Soft enough to protect her and her eggs, yet stiff and phallic enough to slip in and stay until she can get to her home in the rock formations, it should suit the situation well.\n\n", True)
-                     if self.tempInt == 1:
+                     if tempInt == 1:
                         self.doMainText("Scooching up behind the shy girl so as to not look directly at her, you console her as you bring the modified cattail down to her loins. Since you are unable to get a good view, she has to guide your hand to her slit, which causes her whole body to warm before you from blushing so hard. However, her inexperience with her own body proves most troublesome...\n\nFrantic and unwary of how she's directing you to insert the makeshift plug, she accidentally pushes into the wrong hole. She lets out a shriek of surprise and pain, her tail whipping up behind her. Whipping up right into your own groin.\n\nYou double over in pain and splash into the water. The girl hops up, rubbing herself and kicking the pile of eggs about as she dances about. Her bathing suit slips back over her slit and she holds it tenderly while she bends over you, trying to prevent another egg from popping out.\n\n\"I-I'm so sorry!\" Apologizing for your pain, she turns and runs to find another place to hide as she can already feel the next egg pressing against her bathing suit from within, leaving you to groan and writhe for a while alone.\n\nAfter some time passes, you gather yourself and limp away...")
                         self.doHP(-5)
                         self.stats(0, 0, -2, 0)
                         self.hrs = 3
-                     elif self.tempInt == 2:
+                     elif tempInt == 2:
                         self.doMainText("Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the makeshift plug into her pussy. Pulling away, she pauses as she feels an egg settle onto the soft fluff but is unable to push further, effectively halting her laying for now. Slipping her bikini back over her exposed nethers, she slowly stands, getting used to the sensation.\n\nThough her belly looks a bit bloated and gradually growing with the buildup, she seems grateful. \"Umm... thanks for that.\" She squirms slightly as her stiff clit presses visibly against the bikini's crotch, becoming more aroused from the swelling sensation. Absent-mindendly, she leans down and gives you a quick kiss, dropping one of her pre-laid eggs into your lap as a gift, before blushing ferociously and running off to find her fiancee.")
                         self.stats(0, 0, 1, 0)
                         self.itemAdd(219)
                         self.hrs = 2
-                     elif self.tempInt == 3:
+                     elif tempInt == 3:
                         self.doMainText("Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You gently press your fingers against her outer labia as you push the makeshift plug in between. Her breathing quickens in pace for a few seconds as you soft touch pleases her sensitive loin. As the next egg slowly comes to a stop upon the soft fluff within, she grins at how effective the treatment was.\n\n\"Wow, that is quite a neat trick! You really deserve some compensation for helping me like that.\" She slowly stands, a hand on her belly as she feels it swell slightly from the buildup before turning away towards her shed suit. Bending down before you, her tail flipping up to balance herself and giving you a generous view of her plump rear, she grabs some coins and an egg from the pile before turning to hand them to you. \"Thanks again!\" She smiles and winks. She then squeezes into her bathing suit, letting her curves fill it in dramatically, and picks up the rest of the eggs to get started on that cake.")
                         self.doCoin(30 + Math.ceil(Utils.percent() / 3))
                         self.itemAdd(219)
@@ -18892,7 +18878,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doEnd()
                   elif self.buttonChoice == 6:
                      self.doMainText("Hoping to help out, you decide to try to assist with the laying, if at least to make the process more comfortable. ", True)
-                     if self.tempInt == 1:
+                     if tempInt == 1:
                         self.doMainText("Scooching up behind the shy girl so as to not look directly at her, you slowly move her hand towards her loins to allow her plenty of time to object if she wanted to. However, she seems to instead prepare herself for your touch, leaning back into you and holding her breath as your hand approaches her exposed genitals. Your fingers slide over her own as you spread her supple lips wider, making her gasp lightly as she feels the next eggs slip through the stretched gap. The palm of your hand over her mons, you notice a churning sensation within as another eggs is already being produced and on its way. To allow her to relax more for ease of laying, your hand begins to gently rub about her sensitive slit, using the warm water and subtle lubrication from her hole to caress her stiffening little clitoris. She gasps and moans exuberantly, relying on your body for support as she completely lays back into you, the next egg soon passing through with a greater moan escaping her lips.\n\nAt least half an hour of this pleasurable oviposition passes in your arms. A large pile of eggs has accumulated beneath the two of you and the girl is quite the quivering mess from the many orgasms. Her nipples stand stiffly against her one-piece bathing suit and the crotch is more soaked with her slime than the oasis waters. However, it seems her egg cycle has slowed closer to a normal pace as no more try to escape her womb. It takes several more minutes before she can thoroughly gather herself, looking back to you and blushing tremendously.\n\n\"Th-Thank you. Th-That was...\" Too embarrassed, she can't muster up the rest of her words. Instead, she slowly stands, her legs shaking and threatening to give out as she turns to face you, her petite slit still exposed. She leans down to hug you, giving you a soft peck on the cheek. And then she subtly slips her hand down for one last pet before pulling her suit back into position, stepping away silently in an ecstatic daze while her tail twitches awkwardly behind her.\n\nThough the kiss itself was quite generous from such a shy girl, it also seems she has left you quite the horde of eggs.")
                         self.addManyItem(219, 6 + Math.ceil(Utils.percent() / 20))
                         self.doLust(Math.floor(self.lib / 2), 0)
@@ -18900,7 +18886,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.displayMainText()
                         self.hrs = 3
                         self.doEnd()
-                     elif self.tempInt == 2:
+                     elif tempInt == 2:
                         self.outputMainText("Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You crawl forward through the shallow water, ducking in between her thighs. She squirms a bit as you reach in towards her exposed slit, making her shiver as you press the sensitive lips with your fingers, spreading and massaging them. Already you can feel her quiver within as a fresh egg begins its voyage out, easily slipping through the widened gap and plopping into the pile below, causing her to let out a low moan the whole way through. Her clitoris stands stiffly amidst her folds, large enough to protrude lewdly, especially with her arousal. Staring at it only makes her blush more and when your mouth comes in to suckle it, she jerks back, wrapping her tail around your abdomen to hold on as she nearly collapses into the water.\n\nThe oasis waters flooding over your tongue as you sip her genitals, the taste of sweet feminine lubrication is nearly overwhelming as she huffs and pants above you. Her hips gyrate around your face, scraping her thighs across your ears. Your efforts to 'soothe' her drive her wild, making her let out an erotic scream as the next egg begins to drop into her passage. The agonizingly slow progress of the ovoid thing through your pleasuring makes her writhe and twist, her tail hugging tighter and tighter and tighter. And, just as the egg begins to breach and make her squeal with ecstasy-\n\nYou pass out from lack of breath, her tail gripping you so strongly.")
                         self.doNext()
 
@@ -18915,7 +18901,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                            self.displayMainText()
                            self.doEnd()
                         self.doListen = doListen
-                     elif self.tempInt == 3:
+                     elif tempInt == 3:
                         self.doMainText("Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You crawl forward through the shallow water, ducking in between her thighs. She squirms a bit as you reach in towards her exposed slit, making her shiver as you press the sensitive lips with your fingers, spreading and massaging them. Already you can feel her quiver within as a fresh egg begins its voyage out, easily slipping through the widened gap and plopping into the pile below, causing her to let out a low moan the whole way through. Her clitoris stands stiffly amidst her dangling folds, all the meaty labia engorged with her arousal. She lets out a squeak as your mouth comes in to nibble on the tasty flesh, surprised at the efforts you are taking to 'comfort' her.\n\nThe oasis waters flooding over your tongue as you sip her genitals, the taste of sweet feminine lubrication is nearly overwhelming as she breathes more heavily above you. As you dip further into the water to nom on more of her labia, her hand briskly sweeps down to grind against her clitoris. The next egg begins to drop into her passage, pouring slime over your lips as it passes through while her ample rump twitches and splashes over the water's surface above you. You come up every now and then for a breath, only to dive back in to continue munching away, making the eggs speed through quicker and quicker as she takes a fondness to your efforts.\n\nAfter about a half hour and a great deal of pussy flavor filling your mouth, the woman seems to have finally finished laying all that the eggcelerator had caused. Coming up to look at her, her face is thoroughly dazed from the experience, her nipples stiff from all her own fondling while you were underwater and even leaking a few drops of milk.\n\n\"Well... that worked out much better than I thought it would. Though I suppose now I should really be getting back to my husband and children.\" She smiles as she teasingly disapproves of the minor infidelity. \"Thank you for your efforts though, it was a pleasant experience.\"\n\nStanding to gather the eggs together, she also bends forward before you, giving you a generous view of her rear, tail up and all, while she grabs some coins to give you in return. Then she gathers up the eggs for the cake she needs in the suit before slowly walking away, her tail swaying from side to side with the rest of her hips, making her way through a nude beach to get home.")
                         self.doCoin(10 + Math.ceil(Utils.percent() / 10))
                         self.aff(6, Math.floor(Utils.percent() / 20 + 6), -5)
@@ -18926,16 +18912,16 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   elif self.buttonChoice == 11:
                      self.loseManyItem(230, 1)
                      self.doMainText("Thinking another dose might somehow help, you pull out an eggcelerator from your bag. ", True)
-                     if self.tempInt == 1:
+                     if tempInt == 1:
                         self.doMainText("Scooching up behind the shy girl so as to not look directly at her, you console her as you bring the dose of eggcelerator down to her loins. Since you are unable to get a good view, she has to guide your hand to her slit, which causes her whole body to warm before you from blushing so hard. With her experience with the previous doses of eggcelerator, she manages to guide you correctly and lets out a squeak as she feels the suppository slip up into her passage.\n\nThe girl begins to quiver slightly as she feels her womb go into overdrive. A gasp escapes her lips as an egg immediately pushes through her folds, past your combined fingers. Suddenly, she seizes back into you, her back arching, as more eggs spill out of her womb. Her pussy lifts out of the water and into the air as her feet drag and kick through the sand below, tossing the pile about. Her exposed cunt spreads wide as another egg plops out into the water with another one right behind firing further out. She moans and whines as her body thrashes about, staring down at herself with fear as she's practically spreading her legs to anybody else in the lake and spreading her private area wide for them all to see as the eggs fly out of her. Jumping away from you with a sob, she stands up with a couple more eggs dropping between her thighs with thick strands of lubricant trailing. The girl hastily covers the exposed genitals with her one-piece suit, a tear shedding as she sees the crotch bulge with the next egg pushing through. Wholly embarrassed, she runs off into the brush, the eggs already slipping back into the rear of the suit as more collect before she disappears.\n\nLeft alone and feeling a little ashamed of how things progressed, you manage to fish out some eggs that survived and head off.")
                         self.addManyItem(219, 3)
                         self.stats(0, 0, 0, -1)
-                     elif self.tempInt == 2:
+                     elif tempInt == 2:
                         self.doMainText("Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the eggcelerator into her pussy, letting it slide up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly while the suppository dissolves, then her eyes grow wide as an egg immediately pushes out through her folds. Moans start to emit from her lips as more eggs cram their way about her pussy, her legs opening and shutting sporadically as she tries to rub herself while they fall into the pile below. However, the squatting position requires too much strength and she collapses forward onto her hands and knees, her rump pointing at the bushes. You can hear more eggs splash into the water behind her as she groans, her eyes clenching shut and her mouth wide with ecstasy.\n\nThe engaged girl's tail whips about behind her while her hips twitch and twist. She tries to reach down to fondle herself, but without the support she merely crashes into the water. In a wavering voice, she begs of you, \"Please... H-Help me!\"\n\nNot wanting to torture her, you move behind to see what you can do. In her shifting, it seems her bikini bottom had drooped back over her slit, only to be destroyed by the next egg on its forceful way out, the fabric torn away with only the outlining bands left intact. Essentially, her pussy is on blatant display as the bands slip behind her outer labia, leaving a gaping cunt that stretches even wider with each ovoid object it expels.\n\nUnsure what to do, you spot a large button that quivers with arousal. Sticking out from her lips and looking closer to a small penis, her clitoris is extremely engorged from the stimulation of her passage. So, you wrap your fingers around it and quickly proceed to jerk it with the plentiful lubrication that dribbles down from above. The girl cries out across the waters, turning some heads in the distance, as she instantly comes to her first orgasm, her whole body quaking. Again and again, with your efforts on her clit and the procession of eggs, the girl trembles and climaxes, her tail curling in the oddest of shapes in the air.\n\nAfter over half an hour of the extreme masturbation, the last egg pops out and the girl collapses onto the pile, crushing them all. She exhales under the water, bubbles floating to the surface before popping up for air. She continues to huff, letting the refreshing water regain some of her consciousness and eventually turns back to you.\n\n\"Wow... I-I didn't know one more eggcelerator could make me do that...\" She gasps again, completely oblivious to the fact that you're still staring into her gaping lewd genitals that she had attempted to hide earlier. \"H-Here, take these. I'm gonna go buy a buttload more and find my fiancee. I just hope he can last a few days...\"\n\nShe reaches into another pile of her belongings she had left amongst the cattails and hands you a couple more doses of eggcelerator, as well as some coins for more compensation. Then she stands. Then she falls back into the water with a splash as her legs give out. Then she stands again and begins to awkwardly walk out of the water and straight to the bazaar. She also seems completely unaware of the missing fabric in bikini bottom, especially as her little 'erection' points the way...")
                         self.addManyItem(230, 2)
                         self.doCoin(15 + Math.ceil(Utils.percent() / 10))
                         self.doLust(Math.floor(self.lib / 2), 0)
-                     elif self.tempInt == 3:
+                     elif tempInt == 3:
                         self.doMainText("Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You gently press your fingers against her outer labia as you push the eggcelerator into her supple hole, letting it slip up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly progress, then her eyes grow wide as an egg immediately pushes out through her folds. Suddenly, she leans backwards even more, pointing her pussy right at your face as more eggs coming flying out. Her strong motherly hips propel an onslaught of eggs at you, smacking and cracking over your head and body. She eventually crashes back into the water, crushing the pile of eggs she had already laid and firing a couple more past you.\n\nThe splash of water across her face snaps her out of the egg-laying haze and she jumps up, just in time for another egg to shoot down between her thighs. \"Oh no, all the eggs for the cake!\" She cries out in dismay and attempts to block the next with her hand, only to result in a yolky mess. With that failing, she turns away from you and bends down, giving you a perfect view of her round rear as well as another egg that propels straight into your face, while she picks up her bathing suit. Rapidly folding the elastic garment a bit and tucking it between her legs, she manages to improvise a basket. Then she takes off through a nude beach, carrying the suit-basket between her legs as it slowly stretches with the depositing eggs, her hips and tail twitching sporadically with each lay.\n\nLeft covered in yolk and slightly pained from the firing squad, there's not much left to do but wash off in the oasis waters and head off...")
                         self.doHP(-10)
                         self.aff(6, Math.floor(Utils.percent() / 20 + 4), -3)
@@ -20053,10 +20039,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                  self.doEnd()
                               self.doListen = doListen
                            elif (self.buttonChoice == 7):
-                              self.getCum = 0
+                              getCum = 0
                               self.doMainText(f"In the midst of your reflection, the sounds of gears grinding and doors opening goes unheeded. It's not until you feel padded mechanical arms clamp around your {self.hipDesc()} hips and hold your backend still that you realize something has gone wrong. Looking back, not only has the machine taken your {self.buttDesc()} rear hostage, but  another cylindar is rising behind your udder. This one looks quite different from the ones on your teats. It's much wider and deeper, with a lot more adjusting straps to take on things much larger than normal teats... It twists and turns from side to side, seemingly searching for something in particular. ", True)
                               if (self.cockTotal > 0):
-                                 self.getCum = self.cumAmount()
+                                 getCum = self.cumAmount()
                                  self.doLust(-Math.floor(self.sen / 1.5), 2, 1)
                                  self.doMainText(f" After a few seconds of scanning, however, it seems to have found a target.\n\nYou let out a loud gasp as the thing engulfs {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}, gently clamping down around it. The inside of the cylinder feels very plush and cushioned, and completely coated in a slick lubricant that drenches your shlong. The new cylindar slowly starts up, a subtle suction gripping your penis and pulling it in. Then the machine begins to rock back and forth, sliding across your sensitive skin with slick slurps. You quickly learn what its purpose is...\n\nYour hips held hostage by the rest of the machine, you can do nothing but moan and pant as the cock-milker sucks you off, even while the other milkers suckle from your teats. The machine obviously wasn't built to account for one over the other. The intense sensations quickly build heat within your body and soon you're blasting your hot spunk into the guzzling machine. Your hips twitch within its grip, your cock bucking against the padding within, and all of your seed drains down into some tanks below. Even after the main spurts have finished, the machine continues to suck out your cum, draining you dry and leaving you feeling numb from the waist down...\n\nOnce you've been fully 'milked' from that appendage, the machine relinquishes its grip on your cock and descends back into the floor, leaving your with a limp dick and some time to catch your breath. ")
                               elif (self.clitSize > 15 and self.vagTotal > 0):
@@ -20074,9 +20060,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                               else:
                                  self.doMainText(" the hole in your ass")
                               self.doMainText(". You clench as it rams its way into you, stretching you open and driving far into your depths. It slides in and out, thrusting in rhythm with the pumping. It grows warmer and warmer as lube exudes from small pores, making your tunnel slick. So powerful, your nerves scream out in sensitive pleasure, taking you to your peak once more.\n\n\"MOOOOOO!\" You shout out subconsciously as spunk spews into your belly. ")
-                              if (self.getCum > 0):
+                              if (getCum > 0):
                                  self.doMainText("The stuff feels rather familiar, actually. Well, as far as you can tell. Then after a few seconds it dawns on you. The machine is pumping your semen back into you! It fills your hole, attempting to make you pregnant with your own cum.")
-                                 if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1) and self.getCum > 5000):
+                                 if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1) and getCum > 5000):
                                     self.doMainText(" With your hole so deep, the cum flows down into your womb, away from the inseminator. The stuff pools inside, your belly swelling and distending as it fills with the stuff. Without the injector detecting a full vagina, it just keeps dumping your own semen into you, making you look like you're pregnant just from the abundant amount of seed within. It sloshes as you climax, finally splashing some back out against the object, triggering it to finish.\n\nHaving spent so much spunk in the one hole, the injector doesn't seem to bother anymore, overloaded by the extended injection period.")
                                     for i in range(0, self.pregArray.length, 5):
                                        if (not self.pregArray[i]):
@@ -20088,20 +20074,20 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                  else:
                                     if (self.vagTotal > 1):
                                        self.doMainText(" Then, once it has given your pussy a nice load, it pulls back out, making you shudder. It swerves from side to side, scanning for any more. Of course, you have more than one, so it doesn't take long before it finds another hole and plunges back in.")
-                                       if (self.getCum < 500):
+                                       if (getCum < 500):
                                           self.doMainText(" Yet, you hear a beep from the machine, indicating an error. You can also hear some swishing around as tanks are moved and shifted below. You must not have had enough seed. And as the next batch of thick stuff pumps into you, it's definitely not your own, though you could probably venture a guess as to what it belonged to!")
                                        if (self.vagTotal > 2):
                                           self.doMainText(" Again and again you're injected with spunk, the dildo checking for each one of your holes.")
-                                          if (self.getCum >= 500 and self.getCum < self.vagTotal * 500):
+                                          if (getCum >= 500 and getCum < self.vagTotal * 500):
                                              self.doMainText(" Until eventually you hear the tank with your semen finally sputter out below. But, the machine doesn't cease there. With more holes to fill, you hear it churn and shift as another tank is put in its place, filling you with another kind of seed that it had in storage.")
-                                          elif (self.getCum >= self.vagTotal * 500):
+                                          elif (getCum >= self.vagTotal * 500):
                                              self.doMainText(" Eventually it fills them all with your own cum, prepped and ready for breeding. Yet, you had fed it so much spunk that the machine continues to pump more out, the dildo jerking against the sides of your rump and moving further and further away, spurting your cum across the floor until it eventually runs dry...")
                                     if (self.vagTotal > 0):
                                        self.doImpregnate(self.dominant)
                                        for i in range(self.vagTotal):
-                                          if (self.getCum > 500):
+                                          if (getCum > 500):
                                              self.doImpregnate(self.dominant)
-                                             self.getCum -= 500
+                                             getCum -= 500
                                           else:
                                              self.doImpregnate(101)
                               else:
@@ -20122,7 +20108,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                  else:
                                     self.doMainText("ass")
                                  self.doMainText(", pooling below you with all the other fluids you released. That final cycle seemed to have shut down the machine as a whole, releasing you within just a couple hours. Though you're a bit stuffed, you're rather pleased with the results, your udder being milked quite well. It takes you a few minutes to regain feeling in your legs, but once you do you're quick to escape")
-                                 if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1) and self.getCum > 5000):
+                                 if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1) and getCum > 5000):
                                     self.doMainText(", your hands wrapping around your cum-inflated belly as it sloshes with each step,")
                                  self.outputMainText(" before anybody catches you with the mess you've made.")
                                  self.milkAmount(2)
@@ -21203,7 +21189,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.buttonConfirm()
 
             def doListen():
-               self.getCum = 0
                if (self.buttonChoice == 6):
                   self.tallness += 2
                   self.doMainText("You pick up the cake and lift it to your lips. Barely a nibble and it's already gone, hardly enough for even a full swallow. It was somewhat sweet, like a cross between chocolate and the number 3, which is rather ludicrous when you think about it. Wondering why it should have been eaten at all, you attempt to check the table for any sort of shenanigans. You begin to bend down to reach it, only to find yourself bending lower and lower with the table seemingly further and further away. It seems to be shrinking beside you, but then again so is everything else at an increasingly rapid rate...\n\nVery quickly, you realize that you're the one who's growing.", True)
@@ -21223,14 +21208,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   else:
                      self.doMainText(" By the time you finish growing, you tower over the hill that the cave resides in. You can see far into the distance and you can feel a great draft in your loins.")
                      if (self.gender == 1 or self.gender == 3 and Utils.percent() <= 50):
-                        self.getCum = self.cumAmount()
+                        getCum = self.cumAmount()
                         if (self.cockSize * self.cockSizeMod > 400):
                            self.outputMainText(f" The wind across your {self.cockDesc()} cock{self.plural(1)} feel{self.plural(3)} rather... nice, to say the least. And considering {self.plural(5)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Quite soon you find yourself barely able to see the {self.plural(5)} tip{self.plural(1)} as {self.plural(11)} grow{self.plural(3)} off into the distance. Quickly, you find yourself falling over your relatively {self.cockDesc()} girth{self.plural(1)}, the ground rumbling around you as you connect, while you feel {self.plural(9)} drag across the open fields, plowing through forests, and who knows what else you manage to destroy.")
                            self.doNext()
 
                            def doListen():
                               self.doMainText(f"The exhilirating sensation of your massive size compared to everything around you excites you even further. Your {self.legDesc(10)} dig into the ground, carving out holes, and thrust your erection{self.plural(1)} forward. You can hear the sounds of wood cracking beneath your massive stiffness in the distance and the air fills with birds flying away to avoid your cock-head{self.plural(1)}. All the little bushes and trees provide a rather unique sensation, their leaves wrapping about your underside{self.plural(1)} en masse. Your voice echoes into the horizon as you let out a loud howl, rapidly coming to climax.", True)
-                              if (self.getCum > 10000):
+                              if (getCum > 10000):
                                  self.doMainText(" More crashing can be heard, along with a roar, as spunk erupts from the other end, flooding the far-off land and rushing into its own river!")
                               else:
                                  self.doMainText(" You cum gushes from the other end, raining down around the far-off terrain like some sort of lewd weather.")
@@ -21249,7 +21234,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                            def doListen():
                               self.doMainText(f"The thought doesn't make it a second time through your mind before you find yourself crashing to your {self.legDesc(6)}, the ground rumbling as you touch down. You collapse over the hill, thrusting {self.oneYour(1)} cock{self.plural(1)} into the natural glory hole. And much to your surprise, the internal walls of the cave seem to be coated with a slick substance, lubricating you through its dark interior. With your giant size, the rocks feel like mere bumps, more pleasurable than you could have imagined, and the ground soon shakes again and again as you hump into the hill.\n\nRather quickly, you let out a loud shout that echoes across the fields.", True)
-                              if (self.getCum > 10000):
+                              if (getCum > 10000):
                                  self.doMainText(" You can feel your spunk churn and gush around you. Though some of it spits back out across your thighs, painting the mouth of the cave, most of it amazingly guzzles deeper into the ground. So much so that you could swear you hear a small \"EEK!\" cry out from within, though your brain is too foggy to be sure.")
                               else:
                                  self.doMainText(" You can hear your spunk splatter about within and seems to run away from your cock-tip, somewhere deeper into the ground. With you brain fuzzy from orgasm, you're not sure if the tiny \"Eehehe!\" you hear is real or just your ears ringing from the slight breeze.")
@@ -27631,6 +27616,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     tempStr = "ridiculous "
                 elif (self.nippleSize > 300):
                     tempStr = "obscene "
+        # TODO: Unecessary else case
         if (self.nipType == 1):
             if (Utils.percent() <= 50):
                 tempStr += " quad-"
@@ -28522,8 +28508,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def debugVariableDisplayText(self):
         if self.currentState == 0:
-            return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {KeyState.shiftHeld}\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\noverrideShift: {KeyState.overrideShift}\nnsldSortOrder: {self.nsldSortOrder}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nstashPage: {self.stash.page}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
-        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {KeyState.shiftHeld}\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\noverrideShift: {KeyState.overrideShift}\nnsldSortOrder: {self.nsldSortOrder}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\ngetCum: {self.getCum}\ntempID: {self.tempID}\ntempColor: {self.tempColor}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nbagArray = {self.bag.items}\nbagStackArray = {self.bag.stack}\nstashPage: {self.stash.page}\nstashArray = {self.stash.items}\nstashStackArray = {self.stash.stack}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
+            return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {KeyState.shiftHeld}\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\noverrideShift: {KeyState.overrideShift}\nnsldSortOrder: {self.nsldSortOrder}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nstashPage: {self.stash.page}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
+        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {KeyState.shiftHeld}\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\noverrideShift: {KeyState.overrideShift}\nnsldSortOrder: {self.nsldSortOrder}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nbagArray = {self.bag.items}\nbagStackArray = {self.bag.stack}\nstashPage: {self.stash.page}\nstashArray = {self.stash.items}\nstashStackArray = {self.stash.stack}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
 
     def detailedDebug(self, *e):
         self.debugvarwindow.updateText()
