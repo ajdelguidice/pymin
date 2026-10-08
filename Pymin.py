@@ -5548,7 +5548,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.window._children[f'button{i}'].text = text
             else:
                 tempcalc = Calc.showButtons(i)
-                self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, text=text, command=partial(self.buttonExecProxy, i))
+                self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, text=text, command=getattr(self, f'buttonEvent{i}'))
                 self.buttonsVisible[i] = True
             if i not in {4, 8, 12}:
                 tempI = Calc.showButtonsBag(i, self.choicePage)
@@ -28110,7 +28110,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def setLustStat(self):
         if isinstance(self.lust, float):
-            self.lust = Math.floor(self.lust)
+            self.lust = int(self.lust)
         self.window._children["lustvallabel"].text = self.lust
 
     def setLevelStat(self):
@@ -28338,32 +28338,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.window.destroyChild('discardbutton')
             self.buttonsVisible[13] = False
 
-    def buttonExecProxy(self, buttonNum: int):
-        if buttonNum == 1:
-            self.buttonEvent1()
-        elif buttonNum == 2:
-            self.buttonEvent2()
-        elif buttonNum == 3:
-            self.buttonEvent3()
-        elif buttonNum == 4:
-            self.buttonEvent4()
-        elif buttonNum == 5:
-            self.buttonEvent5()
-        elif buttonNum == 6:
-            self.buttonEvent6()
-        elif buttonNum == 7:
-            self.buttonEvent7()
-        elif buttonNum == 8:
-            self.buttonEvent8()
-        elif buttonNum == 9:
-            self.buttonEvent9()
-        elif buttonNum == 10:
-            self.buttonEvent10()
-        elif buttonNum == 11:
-            self.buttonEvent11()
-        elif buttonNum == 12:
-            self.buttonEvent12()
-
     def showButtons(self, buttons: ButtonList, hideDiscard: bool = True):
         '''
         Replacement function for viewButtonOutline
@@ -28380,7 +28354,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.window._children[f'button{i}'].state = 'normal'
                 else:
                     tempcalc = Calc.showButtons(i)
-                    self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, command=partial(self.buttonExecProxy, i))
+                    self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, command=getattr(self, f'buttonEvent{i}'))
                     self.buttonsVisible[i] = True
 
     def buttonWrite(self, buttonNumber: int, buttonText: str):
