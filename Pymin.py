@@ -4205,6 +4205,16 @@ class GameState(IntEnum):
     MASTURBATE = 3
 
 
+class Zones(IntEnum):
+    # TODO: Use this
+    SOFTLIK = 1
+    FIRMSHAFT = 2
+    TIEDEN = 3
+    SIZ_CALIT = 4
+    OVIASIS = 6
+    SANCTUARY = 12
+
+
 class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     '''
     Main class
@@ -5972,6 +5982,24 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.rndArray.clear()
         return result
 
+    def doStatsUpDownImages(self, stre: int, menta: int, libi: int, sens: int):
+        if (stre > 0):
+            self.UpDownImage('str', 'up')
+        elif (stre < 0):
+            self.UpDownImage('str', 'down')
+        if (menta > 0):
+            self.UpDownImage('ment', 'up')
+        elif (menta < 0):
+            self.UpDownImage('ment', 'down')
+        if (libi > 0):
+            self.UpDownImage('lib', 'up')
+        elif (libi < 0):
+            self.UpDownImage('lib', 'down')
+        if (sens > 0):
+            self.UpDownImage('sen', 'up')
+        elif (sens < 0):
+            self.UpDownImage('sen', 'down')
+
     def stats(self, stre: int, menta: int, libi: int, sens: int):
         '''
         Updates player stats and displays the up/down images
@@ -6008,22 +6036,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.lust = 100
         elif (self.lust < 0):
             self.lust = 0
-        if (stre > 0):
-            self.UpDownImage('str', 'up')
-        elif (stre < 0):
-            self.UpDownImage('str', 'down')
-        if (menta > 0):
-            self.UpDownImage('ment', 'up')
-        elif (menta < 0):
-            self.UpDownImage('ment', 'down')
-        if (libi > 0):
-            self.UpDownImage('lib', 'up')
-        elif (libi < 0):
-            self.UpDownImage('lib', 'down')
-        if (sens > 0):
-            self.UpDownImage('sen', 'up')
-        elif (sens < 0):
-            self.UpDownImage('sen', 'down')
+        self.doStatsUpDownImages(stre, menta, libi, sens)
         self.statDisplay()
 
     def statsMod(self, stre: int, menta: int, libi: int, sens: int):
@@ -6036,22 +6049,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.mentMod += menta
         self.libMod += libi
         self.senMod += sens
-        if (stre > 0):
-            self.UpDownImage('str', 'up')
-        elif (stre < 0):
-            self.UpDownImage('str', 'down')
-        if (menta > 0):
-            self.UpDownImage('ment', 'up')
-        elif (menta < 0):
-            self.UpDownImage('ment', 'down')
-        if (libi > 0):
-            self.UpDownImage('lib', 'up')
-        elif (libi < 0):
-            self.UpDownImage('lib', 'down')
-        if (sens > 0):
-            self.UpDownImage('sen', 'up')
-        elif (sens < 0):
-            self.UpDownImage('sen', 'down')
+        self.doStatsUpDownImages(stre, menta, libi, sens)
         self.statDisplay()
 
     def statDisplay(self, lsc: bool = True):
@@ -6130,7 +6128,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.coin = int(self.coin)
         self.setSCStats()
 
-    def doHP(self, changes: int, suppressImgChange: bool = False):
+    def doHP(self, changes: int):
         '''
         Changes player's HP
         '''
@@ -6144,11 +6142,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     changes = 0
                 else:
                     self.doMainText('\n\nIt seems that no matter how much fun you had getting beaten like that, there\'s just some things your body wasn\'t meant to withstand.')
-        if (not suppressImgChange):
-            if (changes < 0):
-                self.UpDownImage('hp', 'down')
-            elif (changes > 0):
-                self.UpDownImage('hp', 'up')
+        if (changes < 0):
+            self.UpDownImage('hp', 'down')
+        elif (changes > 0):
+            self.UpDownImage('hp', 'up')
         if (self.HP + changes <= 0):
             self.HP = 1
             changes = 0
@@ -8540,7 +8537,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         self.showRegionPane()
         self.setDHStats()
-        self.doHP(10000, True)
+        self.doHP(10000)
+        self.UpDownImage('hp', '')
         self.setSCStats()
         self.outputMainText("\n\"...Hello?\"", True)
         self.doNext()
