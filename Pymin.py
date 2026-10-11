@@ -4198,8 +4198,7 @@ class OptionsWindow(PyminWindow):
 
 
 class GameState(IntEnum):
-    # TODO: Use this
-    MAIN_MENU = 0
+    GAME_UNLOADED = 0
     GENERAL = 1
     BATTLE = 2
     MASTURBATE = 3
@@ -4417,7 +4416,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.moveItemStack = 0
 
         # game state
-        self.currentState = 0  # 0 - Title Screen/New Game, 1 - General, 2 - Battle, 3 - Masturbate
+        self.currentState = GameState.GAME_UNLOADED
         self.inBag = False
         self.inStash = False  # Like inBag but for stash
         self.inShop = False
@@ -5192,7 +5191,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (keyCode == Keyboard.BACKQUOTE or keyCode == Keyboard.NUMPAD_DIVIDE) and keyEnabled:
             self.wiki.open()
 
-        elif self.showSide and self.currentState != 0 and keyEnabled:
+        elif self.showSide and self.currentState != GameState.GAME_UNLOADED and keyEnabled:
             if (keyCode == Keyboard.U):
                 self.sideEvent(1)
 
@@ -5565,7 +5564,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.window._children["discardbutton"].state = "disabled"
         else:
             self.window._children["discardbutton"].state = "normal"
-            if self.useNewStash and self.currentState == 1:
+            if self.useNewStash and self.currentState == GameState.GENERAL:
                 self.buttonWrite(12, which)
 
     def displayBag(self):
@@ -5789,7 +5788,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.choicePage = 1
         self.hidePage()
         self.statDisplay()
-        if (self.inBag and self.lust > 99 and self.currentState == 2):
+        if (self.inBag and self.lust > 99 and self.currentState == GameState.BATTLE):
             self.inBag = False
             self.hideAmountAll()
             self.doLustForcedMasturbate()
@@ -5878,13 +5877,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doStash()
         elif (self.inShop):
             self.doShop()
-        elif (self.currentState == 2):
+        elif (self.currentState == GameState.BATTLE):
             self.doBattle()
-        elif (self.currentState == 3):
+        elif (self.currentState == GameState.MASTURBATE):
             self.doMasturbate()
         elif (self.inDungeon):
             self.doDungeon()
-        elif (self.currentState == 1):
+        elif (self.currentState == GameState.GENERAL):
             self.doGeneral(djp)
 
     def moistCalc(self, which: int):
@@ -6004,7 +6003,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Updates player stats and displays the up/down images
         '''
-        if self.currentState != 2:
+        if self.currentState != GameState.BATTLE:
             self.hideUpDown()
         self.strength += stre
         self.mentality += menta
@@ -6043,7 +6042,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Updates player stats modifiers and displays the up/down images
         '''
-        if self.currentState != 2:
+        if self.currentState != GameState.BATTLE:
             self.hideUpDown()
         self.strMod += stre
         self.mentMod += menta
@@ -6165,8 +6164,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempNum = self.coin
         self.specialKOLose()
         self.doMainText(f'\n\nYou pass out from all the pain. When you wake back up, you manage to stumble back to town. However, it seems as though your pockets are a bit lighter for some reason or another.\n\nYou have lost {tempNum} coins.')
-        if (self.currentState == 2):
-            self.currentState = 1
+        if (self.currentState == GameState.BATTLE):
+            self.currentState = GameState.GENERAL
         if (self.inDungeon):
             self.goToInDoProcess = self.currentZone
             self.inDungeon = False
@@ -6306,10 +6305,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         For when player's lust gets too high
         '''
-        if (self.currentState == 2):
+        if (self.currentState == GameState.BATTLE):
             self.outputMainText(f"\n\nAmidst the heat of battle, your {self.legDesc(2)} buckle{self.legPlural(1)} from your intense arousal, preventing you from fighting any further.")
             if (not self.inBag):
-                self.currentState = 1
+                self.currentState = GameState.GENERAL
             self.doNext()
 
             def doListen():
@@ -6330,7 +6329,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.hideNewSaveLoadDialog()
         self.hideNSLDBlinder()
         self.outputMainText("Are you sure you would like to start a new game?", True)
-        self.buttonConfirm(b7=False if (self.currentState == 0) else True)
+        self.buttonConfirm(b7=False if (self.currentState == GameState.GAME_UNLOADED) else True)
 
         def doListen():
             if (self.buttonChoice == 6):
@@ -6341,7 +6340,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hideAPButton()
                 self.hideOption7()
                 self.hideUpDown()
-                self.currentState = 0
+                self.currentState = GameState.GAME_UNLOADED
                 self.currentZone = 0
                 self.inBag = False
                 self.inStash = False
@@ -7475,7 +7474,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         else:
                             self.saveGo()
                     self.doListen = doListen
-                elif self.buttonChoice == 12 and self.currentState != 0:
+                elif self.buttonChoice == 12 and self.currentState != GameState.GAME_UNLOADED:
                     self.hideNewSaveLoadDialog()
                     self.hideDiscard()
                     self.doReturn()
@@ -7546,7 +7545,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif self.buttonChoice == 8:
                     temp = self.window._children["savefileselect"].get(self.window._children["savefileselect"].curselection()).split(" | ")
                     self.outputMainText(f"{temp[0].replace('D:', 'Day:').replace('H:', 'Hour:')}:00\n\nAre you sure you want to load {temp[1]}?", True)
-                    if self.currentState != 0:
+                    if self.currentState != GameState.GAME_UNLOADED:
                         self.outputMainText("\n\nYou will lose any unsaved data from the current game.")
                     self.showNSLDBlinder()
                     self.buttonConfirm()
@@ -7558,7 +7557,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         else:
                             self.loadGo()
                     self.doListen = doListen
-                elif self.buttonChoice == 12 and self.currentState != 0:
+                elif self.buttonChoice == 12 and self.currentState != GameState.GAME_UNLOADED:
                     self.hideNewSaveLoadDialog()
                     self.hideDiscard()
                     self.doReturn()
@@ -7568,7 +7567,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         else:
             self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
             tempDict = {4: "Load File"}
-            if self.currentState != 0:
+            if self.currentState != GameState.GAME_UNLOADED:
                 tempDict[12] = "Return"
             if self.solonlymode:
                 for i in RANGE9_BUTTON_MAP:
@@ -7593,7 +7592,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.slot = 0
                 if self.buttonChoice == 4:
                     self.doLoad(4)
-                elif self.buttonChoice == 12 and self.currentState != 0:
+                elif self.buttonChoice == 12 and self.currentState != GameState.GAME_UNLOADED:
                     self.doReturn()
                 else:
                     self.slot = self.buttonChoice
@@ -7625,7 +7624,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         self.showNewSaveLoadDialog()
         tempDict = {4: "Other File", 8: which}
-        if self.currentState != 0:
+        if self.currentState != GameState.GAME_UNLOADED:
             tempDict[12] = "Return"
         self.showButtons(ButtonList(0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1), False)
         self.doButtonChoices(tempDict)
@@ -8602,7 +8601,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Game's main dialog prompt. This is where you go back to after most actions
         '''
         self.bc()
-        self.currentState = 1
+        self.currentState = GameState.GENERAL
         buttonlist = ButtonList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1)
         self.doMainText(f"You are currently in {self.regionName(self.currentZone)}. What would you like to do?", True)
         tempDict = {1: "Bag", 2: "Stash", 3: "Shops", 4: "Day-Care", 5: "Masturbate", 6: "Sleep", 7: "Alchemy", 8: "Level Up", 9: "Wait", 10: "Prostitute", 12: "Explore"}
@@ -8729,7 +8728,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doButtonDiscard("Bag")
             elif self.buttonChoice == 12:
                 if self.moveItemID != 0:
-                    if self.useNewStash and self.currentState == 1:
+                    if self.useNewStash and self.currentState == GameState.GENERAL:
                         if (not self.canLose(self.moveItemID, 0)):
                             self.outputMainText(f"Something is preventing you from removing the {Items.name(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
                         else:
@@ -9383,7 +9382,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.weapon = 2
             self.doEnd()
         elif ID == 3:
-            if self.currentState != 2:
+            if self.currentState != GameState.BATTLE:
                 self.outputMainText("Where would you like to go?", True)
                 self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0))
                 self.doButtonChoices(Items.TeleportScrollAny_GetButtonOrder(self.currentZone))
@@ -9415,7 +9414,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doMainText("With a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!")
                                 regNum = 6
                             self.displayMainText()
-                            self.currentState = 1
+                            self.currentState = GameState.GENERAL
                             self.inBag = False
                             self.inDungeon = False
                             self.regionChange(regNum)
@@ -9462,7 +9461,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doProcess()
             self.doListen = doListen
         elif ID == 104:
-            if (self.currentState != 3):
+            if (self.currentState != GameState.MASTURBATE):
                 self.outputMainText("You can only use a milker while masturbating.", True)
                 self.doEnd()
             else:
@@ -9575,7 +9574,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doListen = doListen
                 self.doListen = doListen
         elif ID == 106:
-            if (self.currentState != 3):
+            if (self.currentState != GameState.MASTURBATE):
                 self.outputMainText("You can only use the a penis pump while masturbating.", True)
                 self.doEnd()
             else:
@@ -9963,35 +9962,35 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen = doListen
         elif ID == 121:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!", True)
-            self.currentState = 1
+            self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(1)
             self.doEnd()
         elif ID == 122:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!", True)
-            self.currentState = 1
+            self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(2)
             self.doEnd()
         elif ID == 123:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!", True)
-            self.currentState = 1
+            self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(3)
             self.doEnd()
         elif ID == 124:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!", True)
-            self.currentState = 1
+            self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(4)
             self.doEnd()
         elif ID == 125:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!", True)
-            self.currentState = 1
+            self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(6)
@@ -10013,7 +10012,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
         elif ID == 128:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a thump, they quickly disappear and you find yourself back in the city of Sanctuary!", True)
-            self.currentState = 1
+            self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(12)
@@ -10380,7 +10379,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd()
         elif ID == 231:
-            if (self.currentState != 2):
+            if (self.currentState != GameState.BATTLE):
                 self.outputMainText("You can only use this dangerous sand in battle. You put the sand back into your bag.", True)
                 self.itemAdd(231)
                 self.doEnd()
@@ -10423,10 +10422,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     else:
                         self.doMainText("Thankfully, it barely touches you and you're left unaffected.")
                 self.displayMainText()
-                if (self.currentState == 2):
+                if (self.currentState == GameState.BATTLE):
                     self.doEnd()
         elif ID == 232:
-            if (self.currentState != 1):
+            if (self.currentState != GameState.GENERAL):
                 self.outputMainText("You cannot activate the flying carpet during battle or while attempting to masturbate. It takes too long to set up during battle and it is not the kind of 'carpet-munching' you should be doing while masturbating.", True)
                 self.doEnd()
             else:
@@ -10632,7 +10631,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd()
         elif ID == 250:
-            if (self.currentState != 2):
+            if (self.currentState != GameState.BATTLE):
                 self.outputMainText("You can only use this escape bomb in battle, it's not really useful otherwise. You put the foomp bomb back into your bag.", True)
                 self.itemAdd(250)
                 self.doEnd()
@@ -10645,7 +10644,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.eGen == 4):
                     self.doMainText(f" The {self.enemyName()}'s midsection grows so large and round that it is unable to move at all.")
                 self.outputMainText(f"\n\nHowever, the bomb's effects are already beginning to wear off as you stare at its results. Taking advantage of this short opportunity, you turn and dash away before the {self.enemyName()} can shrink back down to a manageable size and continue the fight.")
-                self.currentState = 1
+                self.currentState = GameState.GENERAL
                 self.hrs += 1
                 self.doEnd()
         elif ID == 251:
@@ -10781,7 +10780,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd()
         elif ID == 505:
-            if (self.currentState != 2):
+            if (self.currentState != GameState.BATTLE):
                 self.outputMainText("You can only use this explosive potion in battle. You put the bad experiment back into your bag.", True)
                 self.itemAdd(505)
                 self.doEnd()
@@ -10826,7 +10825,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd()
         elif ID == 510:
-            if (self.currentState != 2):
+            if (self.currentState != GameState.BATTLE):
                 self.outputMainText("You can only use this explosive potion in battle. You put the bad experiment back into your bag.", True)
                 self.itemAdd(510)
                 self.doEnd()
@@ -11072,7 +11071,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.addManyItem(524, 3)
             self.doEnd()
         elif ID == 526:
-            if (self.currentState == 2):
+            if (self.currentState == GameState.BATTLE):
                 self.doMainText("You have no use for a barrel full of cum in the midst of battle, so you... tuck it away somewhere in your bag?", True)
                 self.itemAdd(526)
             else:
@@ -11088,7 +11087,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.stats(1, 0, 0, 0)
             self.doEnd()
         elif ID == 528:
-            if (self.currentState != 2):
+            if (self.currentState != GameState.BATTLE):
                 self.outputMainText("You can only use this dangerous egg in battle. You put the bad egg back into your bag.", True)
                 self.itemAdd(528)
                 self.doEnd()
@@ -11096,7 +11095,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 dmg = Math.floor(Math.random() * 11) + 10
                 self.outputMainText(f"You pull the bad egg from your bag and toss it at the {self.enemyName()}. It explodes in a burst of fire, somehow, dealing {dmg} damage!", True)
                 self.doeHP(-dmg)
-                if (self.currentState == 2):
+                if (self.currentState == GameState.BATTLE):
                     self.doEnd()
         elif ID == 529:
             self.doMainText("You crack open the strange egg and down its contents, feeling odd...", True)
@@ -13968,7 +13967,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doEnd()
 
     def doMasturbate(self):
-        self.currentState = 3
+        self.currentState = GameState.MASTURBATE
         tempDict = {4: "Bag", 7: "Breasts", 12: "Return"}
         if (self.cockTotal > 0):
             tempDict[1] = "Penis"
@@ -18966,7 +18965,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
          def doListen():
             self.enemyID = 201
-            self.currentState = 2
+            self.currentState = GameState.BATTLE
             self.enemyBaseStats()
             self.eMaxHP = self.eHP
             self.doBattle()
@@ -18978,7 +18977,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
          def doListen():
             self.enemyID = 202
-            self.currentState = 2
+            self.currentState = GameState.BATTLE
             self.enemyBaseStats()
             self.eMaxHP = self.eHP
             self.doBattle()
@@ -18990,7 +18989,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
          def doListen():
             self.enemyID = 101
-            self.currentState = 2
+            self.currentState = GameState.BATTLE
             self.enemyBaseStats()
             self.eMaxHP = self.eHP
             self.doBattle()
@@ -19308,7 +19307,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
          def doListen():
             self.enemyID = 201
-            self.currentState = 2
+            self.currentState = GameState.BATTLE
             self.enemyBaseStats()
             self.eMaxHP = self.eHP
             self.doBattle()
@@ -19320,7 +19319,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
          def doListen():
             self.enemyID = 202
-            self.currentState = 2
+            self.currentState = GameState.BATTLE
             self.enemyBaseStats()
             self.eMaxHP = self.eHP
             self.doBattle()
@@ -19395,7 +19394,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             def doListen():
                 self.enemyID = 101
-                self.currentState = 2
+                self.currentState = GameState.BATTLE
                 self.enemyBaseStats()
                 self.eMaxHP = self.eHP
                 self.doBattle()
@@ -19407,7 +19406,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             def doListen():
                 self.enemyID = 302
-                self.currentState = 2
+                self.currentState = GameState.BATTLE
                 self.enemyBaseStats()
                 self.eMaxHP = self.eHP
                 self.doBattle()
@@ -19456,7 +19455,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             def doListen():
                 self.enemyID = 301
-                self.currentState = 2
+                self.currentState = GameState.BATTLE
                 self.enemyBaseStats()
                 self.eMaxHP = self.eHP
                 self.doBattle()
@@ -19468,7 +19467,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             def doListen():
                 self.enemyID = 302
-                self.currentState = 2
+                self.currentState = GameState.BATTLE
                 self.enemyBaseStats()
                 self.eMaxHP = self.eHP
                 self.doBattle()
@@ -19689,7 +19688,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
          def doListen():
             self.enemyID = 306
-            self.currentState = 2
+            self.currentState = GameState.BATTLE
             self.enemyBaseStats()
             self.eMaxHP = self.eHP
             self.doBattle()
@@ -19701,7 +19700,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
          def doListen():
             self.enemyID = 102
-            self.currentState = 2
+            self.currentState = GameState.BATTLE
             self.enemyBaseStats()
             self.eMaxHP = self.eHP
             self.doBattle()
@@ -19799,7 +19798,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                             self.enemyID = 303
-                            self.currentState = 2
+                            self.currentState = GameState.BATTLE
                             self.enemyBaseStats()
                             self.eMaxHP = self.eHP
                             self.doBattle()
@@ -21335,7 +21334,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                            self.enemyID = 304
-                           self.currentState = 2
+                           self.currentState = GameState.BATTLE
                            self.enemyBaseStats()
                            self.eMaxHP = self.eHP
                            self.doBattle()
@@ -21351,7 +21350,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                            self.enemyID = 305
-                           self.currentState = 2
+                           self.currentState = GameState.BATTLE
                            self.enemyBaseStats()
                            self.eMaxHP = self.eHP
                            self.doBattle()
@@ -22543,7 +22542,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 def doListen():
                     self.outputMainText("\"Who go there?!\" A loud grunting voice bellows in your direction.\n\nYou blink at first, the hot and smelly breath catching you off guard, but you quickly grow aware of the large figure towering before you. Large horns nearly scraping the ceiling, the bulky muscular man before you stands in your way. The head of a bull, the body of a human, and the crotch... bulging massively beneath a simple loin cloth, this monster does not look pleased.\n\n\"I am Minotaur!,\" You're not entirely sure if he's stating his name or his ancestry... \"I no know you! I guardian! You no pass!\"\n\nYou don't exactly have time for a diplomatic solution as the creature charges towards you, his massive hands balling up into hard-looking fists as he makes his intentions clear.", True)
                     self.enemyID = 307
-                    self.currentState = 2
+                    self.currentState = GameState.BATTLE
                     self.enemyBaseStats()
                     self.eMaxHP = self.eHP
                     self.doBattle()
@@ -22568,7 +22567,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                             self.enemyID = 307
-                            self.currentState = 2
+                            self.currentState = GameState.BATTLE
                             self.enemyBaseStats()
                             self.eMaxHP = self.eHP
                             self.doBattle()
@@ -22601,7 +22600,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                 def doListen():
                     self.enemyID = 308
-                    self.currentState = 2
+                    self.currentState = GameState.BATTLE
                     self.enemyBaseStats()
                     self.eMaxHP = self.eHP
                     self.doBattle()
@@ -22642,7 +22641,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                             self.enemyID = 308
-                            self.currentState = 2
+                            self.currentState = GameState.BATTLE
                             self.enemyBaseStats()
                             self.eMaxHP = self.eHP
                             self.doBattle()
@@ -22667,7 +22666,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                 def doListen():
                     self.enemyID = 309
-                    self.currentState = 2
+                    self.currentState = GameState.BATTLE
                     self.enemyBaseStats()
                     self.eMaxHP = self.eHP
                     self.doBattle()
@@ -22711,7 +22710,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                             self.enemyID = 309
-                            self.currentState = 2
+                            self.currentState = GameState.BATTLE
                             self.enemyBaseStats()
                             self.eMaxHP = self.eHP
                             self.doBattle()
@@ -22907,22 +22906,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.inDungeon = False
                         self.doMainText(f"\n\nTo escape, you run all the way back to {self.regionName(self.currentZone)}.")
                     self.displayMainText()
-                    self.currentState = 1
+                    self.currentState = GameState.GENERAL
                     self.hrs = 1
                     self.doEnd()
                 else:
                     self.outputMainText("You fail to run away...", True)
-                    if (self.currentState == 2):
+                    if (self.currentState == GameState.BATTLE):
                         self.enemyAttack()
-                    if (self.currentState == 2):
+                    if (self.currentState == GameState.BATTLE):
                         self.doBattle()
 
             # Attack
             elif self.buttonChoice == 5:
                 self.weaponAttack()
-                if (self.currentState == 2):
+                if (self.currentState == GameState.BATTLE):
                     self.enemyAttack()
-                if (self.currentState == 2):
+                if (self.currentState == GameState.BATTLE):
                     self.doBattle()
 
             # Lust-Cast (Cut/Unfinished Content)
@@ -22937,17 +22936,17 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.buttonChoice == 9:
                 if (self.gender == 0 or self.eGen == 0):
                     self.outputMainText("What are you going to rape it with? Good intentions?\n\nChoose another option.", True)
-                    if (self.currentState == 2):
+                    if (self.currentState == GameState.BATTLE):
                         self.doBattle()
                 else:
                     self.doMainText(f"You attempt to toss the {self.enemyName()} to the ground and fuck it wildly!", True)
                     if (self.lust < 15):
                         self.outputMainText("\n\nHowever, you aren't nearly aroused enough to even think about penetration, leaving your efforts futile.")
-                        if (self.currentState == 2):
+                        if (self.currentState == GameState.BATTLE):
                             self.enemyAttack()
                     elif (Utils.percent() / 5 + self.str + self.rapeMod <= Utils.percent() / 5 + self.eStr - self.eLust / 2):
                         self.outputMainText(f"\n\nHowever, the {self.enemyName()} overpowers you and tosses you off!")
-                        if (self.currentState == 2):
+                        if (self.currentState == GameState.BATTLE):
                             self.enemyAttack()
                     elif (self.ePref != self.gender and self.ePref != 4 and self.gender != 3 or self.ePref == 0):
                         dmg = Math.floor(Utils.percent() / 10 + self.lust / 10)
@@ -22963,7 +22962,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if (self.eMenta - eLustChange < 0):
                             self.specialRapeWin()
                             self.outputMainText("\n\nYou win!")
-                            self.currentState = 1
+                            self.currentState = GameState.GENERAL
                             self.doNext()
 
                             def doListen():
@@ -22973,15 +22972,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.outputMainText(f"\n\nThe {self.enemyName()} picks itself up after you had your way with it, a little distraught but not yet defeated.")
                             self.eLust -= eLustChange
                         self.eMenta -= eLustChange
-                    if (self.currentState == 2):
+                    if (self.currentState == GameState.BATTLE):
                         self.doBattle()
 
             # Entice
             elif self.buttonChoice == 10:
                 self.doEntice()
-                if (self.currentState == 2):
+                if (self.currentState == GameState.BATTLE):
                     self.enemyAttack()
-                if (self.currentState == 2):
+                if (self.currentState == GameState.BATTLE):
                     self.doBattle()
 
             # Submit
@@ -22989,21 +22988,21 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f"No longer wishing to fight, you attempt to submit yourself to the {self.enemyName()}'s whims in hopes of leaving the battle with a little fun.", True)
                 if (self.ePref == 0 or self.ePref == 1 and self.gender == 2 or self.ePref == 2 and self.gender == 1 or self.gender == 0):
                     self.outputMainText("\n\nHowever, it is quickly apparent that the enemy has no interest in you, in that fashion.")
-                    if (self.currentState == 2):
+                    if (self.currentState == GameState.BATTLE):
                         self.enemyAttack()
                 elif (self.eLust < self.eMenta):
                     self.outputMainText(f"\n\nHowever, the {self.enemyName()} isn't nearly aroused enough, a bit too cautious at the moment to assault you in such a way.")
-                    if (self.currentState == 2):
+                    if (self.currentState == GameState.BATTLE):
                         self.enemyAttack()
                 else:
                     self.displayMainText()
-                    self.currentState = 1
+                    self.currentState = GameState.GENERAL
                     self.doNext()
 
                     def doListen():
                         self.doGetRaped()
                     self.doListen = doListen
-                if (self.currentState == 2):
+                if (self.currentState == GameState.BATTLE):
                     self.doBattle()
         self.doListen = doListen
 
@@ -23141,13 +23140,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             dmg = Math.floor(10 + Utils.percent() / 10)
             self.outputMainText(f"\n\nYou turn around and aim your {self.buttDesc()} butt at the {self.enemyName()} and spray out a foul odor. The {self.enemyName()} snorts and shakes, taking {dmg} damage.")
             self.doeHP(-dmg)
-            if (self.currentState == 2):
+            if (self.currentState == GameState.BATTLE):
                 if (Utils.percent() < 35):
                     self.outputMainText(f"\n\nThe {self.enemyName()} flinches so badly from the stench that it misses its chance to counter.")
                 else:
                     self.enemyAttack()
 
-        if (self.currentState == 2):
+        if (self.currentState == GameState.BATTLE):
             self.doBattle()
 
     def doEntice(self):
@@ -23373,7 +23372,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.displayMainText()
 
     def specialKOLose(self):
-        if (self.currentState == 2):
+        if (self.currentState == GameState.BATTLE):
             if self.enemyID == 303:
                 self.doMainText("\n\nJust as you're about to pass out, you see the octopus girl lean over your body. She wears a disappointed expression, finding you were't strong enough for what she was looking for. Shrugging, she jumps back into the ocean, leaving you to yourself.")
             elif self.enemyID in {304, 305}:
@@ -23963,7 +23962,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.inDungeon):
             self.regionChange(self.currentZone)
             self.inDungeon = False
-        self.currentState = 1
+        self.currentState = GameState.GENERAL
         self.hrs = 2 + Math.floor(Utils.percent() / 20)
         self.exhaustion -= Math.floor(Utils.percent() / 20)
         self.skipExhaustion = True
@@ -23991,7 +23990,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText("\n\nYou win the battle!")
             if (self.inBag):
                 self.inBag = False
-            self.currentState = 1
+            self.currentState = GameState.GENERAL
             self.doNext()
 
             def doListen():
@@ -24525,7 +24524,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (attack <= 25):
                 self.doMainText("\n\nBANG, ZOOM! Straight to the moon! He slams into your chest with such force that he knocks the breath out of you, giving him time for another attack")
                 self.doHP(-self.eDmg(6))
-                if (self.currentState == 2):
+                if (self.currentState == GameState.BATTLE):
                     self.enemyAttack()
             elif (attack <= 45):
                 self.doMainText("\n\n\"Err...\" He stops for a moment, forgetting what he was going to do next... He's not a smart one, that's for sure.")
@@ -24535,7 +24534,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(" It hits you with such force that you're blasted back against the wall and lose your breath for a moment, giving the Minotaur a chance for a followup attack while you catch your breath and wipe off some of the heady thick spooge.")
                     self.doLust(Math.floor(self.eLust / 2), 1)
                     self.eLust -= 20
-                    if (self.currentState == 2):
+                    if (self.currentState == GameState.BATTLE):
                         self.enemyAttack()
                 else:
                     self.doMainText(" The spooge splatters all over you and the heady scent fills your nostrils...")
@@ -25055,7 +25054,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.statsMod(-11, -11, 0, 0)
 
         elif (self.exhaustion > 44):
-            self.currentState = 1
+            self.currentState = GameState.GENERAL
 
         else:
             if self.exhaustionPenalty == 1:
@@ -28487,7 +28486,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.moveitemamountvisible = False
 
     def debugVariableDisplayText(self):
-        if self.currentState == 0:
+        if self.currentState == GameState.GAME_UNLOADED:
             return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {KeyState.shiftHeld}\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\noverrideShift: {KeyState.overrideShift}\nnsldSortOrder: {self.nsldSortOrder}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nstashPage: {self.stash.page}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
         return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Interface State Information|\nshiftHeld: {KeyState.shiftHeld}\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\noverrideShift: {KeyState.overrideShift}\nnsldSortOrder: {self.nsldSortOrder}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nbagArray = {self.bag.items}\nbagStackArray = {self.bag.stack}\nstashPage: {self.stash.page}\nstashArray = {self.stash.items}\nstashStackArray = {self.stash.stack}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
 
@@ -28533,7 +28532,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.eightBoobAffinity += amount
         elif affinity == 'B10':
             self.tenBoobAffinity += amount
-        if self.currentState == 1 and self.showsavegame and self.showloadgame and self.shownewgame:
+        if self.currentState == GameState.GENERAL and self.showsavegame and self.showloadgame and self.shownewgame:
             # Should only happen when in doGeneral
             self.doProcess(override='aff')
         self.detailedDebug()
