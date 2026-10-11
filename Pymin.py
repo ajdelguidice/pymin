@@ -4206,6 +4206,7 @@ class GameState(IntEnum):
 
 class Zones(IntEnum):
     # TODO: Use this
+    NONE = 0
     SOFTLIK = 1
     FIRMSHAFT = 2
     TIEDEN = 3
@@ -4420,14 +4421,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.inBag = False
         self.inStash = False  # Like inBag but for stash
         self.inShop = False
-        # self.currentZone = 0
+        # self.currentZone = Zones.NONE
         # self.day = 0
         # self.hour = 8
         # self.inDungeon = False
         # self.currentDungeon = 0
         self.skipExhaustion = False
         # self.currentDayCare = 0
-        self.goToInDoProcess = -1  # Go to this location in doProcess. This is used instead of setting it manually which can lead to the game looking weird
+        self.goToInDoProcess = Zones.NONE  # Go to this location in doProcess. This is used instead of setting it manually which can lead to the game looking weird
 
         # RND
         self.rndArray = Array()
@@ -5824,9 +5825,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.disableSelectedButtons(dlist)
 
     def doProcess(self, override: str = None):
-        if self.goToInDoProcess != -1:
+        if self.goToInDoProcess != Zones.NONE:
             self.regionChange(self.goToInDoProcess)
-            self.goToInDoProcess = -1
+            self.goToInDoProcess = Zones.NONE
         self.detailedDebug()
         self.choicePage = 1
         if (not (self.inBag or self.inStash) and self.moveItemID != 0):
@@ -6091,17 +6092,17 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.window._children['currentregionlabel'].text = 'Cave Descent'
         else:
             self.currentZone = changes
-            if changes == 1:
+            if changes == Zones.SOFTLIK:
                 self.window._children['currentregionlabel'].text = 'Softlik'
-            elif changes == 2:
+            elif changes == Zones.FIRMSHAFT:
                 self.window._children['currentregionlabel'].text = 'Firmshaft'
-            elif changes == 3:
+            elif changes == Zones.TIEDEN:
                 self.window._children['currentregionlabel'].text = 'Tieden'
-            elif changes == 4:
+            elif changes == Zones.SIZ_CALIT:
                 self.window._children['currentregionlabel'].text = 'Siz\'Calit'
-            elif changes == 6:
+            elif changes == Zones.OVIASIS:
                 self.window._children['currentregionlabel'].text = 'Oviasis'
-            elif changes == 12:
+            elif changes == Zones.SANCTUARY:
                 self.window._children['currentregionlabel'].text = 'Sanctuary'
 
     def dayTime(self, Time: int):
@@ -6341,7 +6342,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hideOption7()
                 self.hideUpDown()
                 self.currentState = GameState.GAME_UNLOADED
-                self.currentZone = 0
+                self.currentZone = Zones.NONE
                 self.inBag = False
                 self.inStash = False
                 self.inShop = False
@@ -7084,7 +7085,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempStr += "\nA Fellow Native"
         else:
             tempStr += "\nA Strange Outsider"
-        if self.currentZone == 1:
+        if self.currentZone == Zones.SOFTLIK:
             if (self.cowAffinity > 50):
                 tempStr += "\nFrom the Dairy Farm"
             if (self.malonRep == 2):
@@ -7095,11 +7096,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += "\nMalon's Loving Partner"
             if (self.malonChildren > 4):
                 tempStr += "\nThe Progenitor of a New Race"
-        elif self.currentZone == 2:
+        elif self.currentZone == Zones.FIRMSHAFT:
             ...
-        elif self.currentZone == 3:
+        elif self.currentZone == Zones.TIEDEN:
             ...
-        elif self.currentZone == 4:
+        elif self.currentZone == Zones.SIZ_CALIT:
             # TODO: Add condition for rep 20
             if (self.lilaRep == 2):
                 tempStr += "\nLila's Friend"
@@ -7109,7 +7110,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += "\nLila's Close Friend"
             elif (self.lilaRep == 5):
                 tempStr += "\nLila's Kinky Mate"
-        elif self.currentZone == 6:
+        elif self.currentZone == Zones.OVIASIS:
             if (self.silRep == 1):
                 tempStr += "\nA Friend of the Strange Woman"
             elif (self.silRep > 1 and self.silRep < 4):
@@ -7120,6 +7121,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += "\nSilandrias' Trusted Lover and Mate"
             elif (self.silRep == 6 and self.silPreg > 5000):
                 tempStr += "\nThe Progenitor of an Extinct Race"
+        elif self.currentZone == Zones.SANCTUARY:
+            ...
         if (self.showSide):
             self.outputSideText(tempStr.get(), True)
         else:
@@ -8197,7 +8200,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if self.buttonChoice == 1:
                 self.race = 2
                 self.foundFirmshaft = True
-                self.currentZone = 2
+                self.currentZone = Zones.FIRMSHAFT
                 self.horseAffinity = 50
                 self.cockSizeMod += 1
                 self.vagSizeMod += 1
@@ -8218,7 +8221,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.buttonChoice == 3:
                 self.race = 3
                 self.foundTieden = True
-                self.currentZone = 3
+                self.currentZone = Zones.TIEDEN
                 self.wolfAffinity = 50
                 self.knot = True
                 self.boobTotal = 6
@@ -8240,7 +8243,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.race = 1
                 self.foundSoftlik = True
                 self.changeMod += 0.5
-                self.currentZone = 1
+                self.currentZone = Zones.SOFTLIK
                 self.humanAffinity = 50
                 self.dominant = 1
                 self.ears = 1
@@ -8253,7 +8256,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.buttonChoice == 9:
                 self.race = 4
                 self.foundSizCalit = True
-                self.currentZone = 4
+                self.currentZone = Zones.SIZ_CALIT
                 self.catAffinity = 50
                 self.dominant = 4
                 self.heat += 1
@@ -8276,7 +8279,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.buttonChoice == 11:
                 self.race = 6
                 self.foundOviasis = True
-                self.currentZone = 6
+                self.currentZone = Zones.OVIASIS
                 self.lizardAffinity = 50
                 self.dominant = 6
                 self.eggLaying = 1
@@ -9397,22 +9400,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText('You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can\'t see beyond them.\n\n', True)
                             if tempNum == 1:
                                 self.doMainText("With a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!")
-                                regNum = 3
+                                regNum = Zones.TIEDEN
                             elif tempNum == 3:
                                 self.doMainText("With a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!")
-                                regNum = 1
+                                regNum = Zones.SOFTLIK
                             elif tempNum == 5:
                                 self.doMainText("With a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!")
-                                regNum = 4
+                                regNum = Zones.SIZ_CALIT
                             elif tempNum == 7:
                                 self.doMainText("With a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!")
-                                regNum = 2
+                                regNum = Zones.FIRMSHAFT
                             elif tempNum == 8:
                                 self.doMainText("With a thump, they quickly disappear and you find yourself back in the city of Sanctuary!")
-                                regNum = 12
+                                regNum = Zones.SANCTUARY
                             elif tempNum == 10:
                                 self.doMainText("With a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!")
-                                regNum = 6
+                                regNum = Zones.OVIASIS
                             self.displayMainText()
                             self.currentState = GameState.GENERAL
                             self.inBag = False
@@ -9965,35 +9968,35 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(1)
+            self.regionChange(Zones.SOFTLIK)
             self.doEnd()
         elif ID == 122:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(2)
+            self.regionChange(Zones.FIRMSHAFT)
             self.doEnd()
         elif ID == 123:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(3)
+            self.regionChange(Zones.TIEDEN)
             self.doEnd()
         elif ID == 124:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(4)
+            self.regionChange(Zones.SIZ_CALIT)
             self.doEnd()
         elif ID == 125:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(6)
+            self.regionChange(Zones.OVIASIS)
             self.doEnd()
         elif ID == 126:
             self.outputMainText("Sipping the refreshing water, you notice a slight aftertaste of something funny, like people have been bathing and doing... things in the water. It's kinda kinky when you think about it, but also feels nice inside of you.", True)
@@ -10015,7 +10018,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(12)
+            self.regionChange(Zones.SANCTUARY)
             self.doEnd()
         elif ID == 201:
             self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1))
@@ -10432,14 +10435,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempDict = {6: "Stay Here"}
                 self.outputMainText("Where would you like to go?", True)
                 buttonlist = ButtonList(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0)
-                if self.currentZone == 1:
+                if self.currentZone == Zones.SOFTLIK:
                     if (self.foundTieden):
                         tempDict[1] = "Tieden"
                         buttonlist[1] = 1
                     if (self.foundFirmshaft):
                         tempDict[10] = "Firmshaft"
                         buttonlist[10] = 1
-                elif self.currentZone == 2:
+                elif self.currentZone == Zones.FIRMSHAFT:
                     if (self.foundSoftlik):
                         tempDict[3] = "Softlik"
                         buttonlist[3] = 1
@@ -10452,14 +10455,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.foundSanctuary):
                         tempDict[11] = "Sanctuary"
                         buttonlist[11] = 1
-                elif self.currentZone == 3:
+                elif self.currentZone == Zones.TIEDEN:
                     if (self.foundSoftlik):
                         tempDict[7] = "Softlik"
                         buttonlist[7] = 1
                     if (self.foundSizCalit):
                         tempDict[9] = "Siz'Calit"
                         buttonlist[9] = 1
-                elif self.currentZone == 4:
+                elif self.currentZone == Zones.SIZ_CALIT:
                     if (self.foundTieden):
                         tempDict[2] = "Tieden"
                         buttonlist[2] = 1
@@ -10469,14 +10472,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.foundOviasis):
                         tempDict[11] = "Oviasis"
                         buttonlist[11] = 1
-                elif self.currentZone == 6:
+                elif self.currentZone == Zones.OVIASIS:
                     if (self.foundSizCalit):
                         tempDict[1] = "Siz'Calit"
                         buttonlist[1] = 1
                     if (self.foundFirmshaft):
                         tempDict[2] = "Firmshaft"
                         buttonlist[2] = 1
-                elif self.currentZone == 12:
+                elif self.currentZone == Zones.SANCTUARY:
                     if (self.foundFirmshaft):
                         tempDict[5] = "Firmshaft"
                         buttonlist[5] = 1
@@ -10485,40 +10488,40 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                 def doListen():
                     self.inDungeon = False
-                    if self.currentZone == 1:
+                    if self.currentZone == Zones.SOFTLIK:
                         if self.buttonChoice == 1:
-                            self.regionChange(3)
+                            self.regionChange(Zones.TIEDEN)
                         elif self.buttonChoice == 10:
-                            self.regionChange(2)
-                    elif self.currentZone == 2:
+                            self.regionChange(Zones.FIRMSHAFT)
+                    elif self.currentZone == Zones.FIRMSHAFT:
                         if self.buttonChoice == 3:
-                            self.regionChange(1)
+                            self.regionChange(Zones.SOFTLIK)
                         elif self.buttonChoice == 5:
-                            self.regionChange(4)
+                            self.regionChange(Zones.SIZ_CALIT)
                         elif self.buttonChoice == 10:
-                            self.regionChange(6)
+                            self.regionChange(Zones.OVIASIS)
                         elif self.buttonChoice == 11:
-                            self.regionChange(12)
-                    elif self.currentZone == 3:
+                            self.regionChange(Zones.SANCTUARY)
+                    elif self.currentZone == Zones.TIEDEN:
                         if self.buttonChoice == 7:
-                            self.regionChange(1)
+                            self.regionChange(Zones.SOFTLIK)
                         elif self.buttonChoice == 9:
-                            self.regionChange(4)
-                    elif self.currentZone == 4:
+                            self.regionChange(Zones.SIZ_CALIT)
+                    elif self.currentZone == Zones.SIZ_CALIT:
                         if self.buttonChoice == 2:
-                            self.regionChange(3)
+                            self.regionChange(Zones.TIEDEN)
                         elif self.buttonChoice == 7:
-                            self.regionChange(2)
+                            self.regionChange(Zones.FIRMSHAFT)
                         elif self.buttonChoice == 11:
-                            self.regionChange(6)
-                    elif self.currentZone == 6:
+                            self.regionChange(Zones.OVIASIS)
+                    elif self.currentZone == Zones.OVIASIS:
                         if self.buttonChoice == 1:
-                            self.regionChange(4)
+                            self.regionChange(Zones.TIEDEN)
                         elif self.buttonChoice == 2:
-                            self.regionChange(2)
-                    elif self.currentZone == 12:
+                            self.regionChange(Zones.FIRMSHAFT)
+                    elif self.currentZone == Zones.SANCTUARY:
                         if self.buttonChoice == 5:
-                            self.regionChange(2)
+                            self.regionChange(Zones.FIRMSHAFT)
                     if self.buttonChoice == 6:
                         self.doProcess()
                     else:
@@ -11892,7 +11895,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def goodsID(self, goodsSlot: int):
-        if self.currentZone == 1:
+        if self.currentZone == Zones.SOFTLIK:
             if goodsSlot == 1:
                 return 104
             if goodsSlot == 2:
@@ -11911,7 +11914,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 115
             if goodsSlot == 11:
                 return 121
-        elif self.currentZone == 2:
+        elif self.currentZone == Zones.FIRMSHAFT:
             if goodsSlot == 1:
                 return 102
             if goodsSlot == 2:
@@ -11926,7 +11929,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 115
             if goodsSlot == 11:
                 return 122
-        elif self.currentZone == 3:
+        elif self.currentZone == Zones.TIEDEN:
             if goodsSlot == 1:
                 return 101
             if goodsSlot == 2:
@@ -11941,7 +11944,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 115
             if goodsSlot == 11:
                 return 123
-        elif self.currentZone == 4:
+        elif self.currentZone == Zones.SIZ_CALIT:
             if goodsSlot == 2:
                 return 114
             if goodsSlot == 3:
@@ -11956,7 +11959,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 115
             if goodsSlot == 11:
                 return 124
-        elif self.currentZone == 6:
+        elif self.currentZone == Zones.OVIASIS:
             if goodsSlot == 1:
                 return 109
             if goodsSlot == 2:
@@ -11973,7 +11976,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 115
             if goodsSlot == 11:
                 return 125
-        elif self.currentZone == 12:
+        elif self.currentZone == Zones.SANCTUARY:
             if goodsSlot == 1:
                 return 247
             if goodsSlot == 2:
@@ -12145,7 +12148,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def apothID(self, goodsSlot: int):
-        if self.currentZone == 1:
+        if self.currentZone == Zones.SOFTLIK:
             if goodsSlot == 1:
                 return 203
             if goodsSlot == 2:
@@ -12160,7 +12163,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 10
             if goodsSlot == 11 and not self.knowBabyFree:
                 return 11
-        elif self.currentZone == 2:
+        elif self.currentZone == Zones.FIRMSHAFT:
             if goodsSlot == 1:
                 return 209
             if goodsSlot == 2:
@@ -12177,7 +12180,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 5
             if goodsSlot == 11 and not self.knowSMasoPot:
                 return 14
-        elif self.currentZone == 3:
+        elif self.currentZone == Zones.TIEDEN:
             if goodsSlot == 1:
                 return 201
             if goodsSlot == 2:
@@ -12192,7 +12195,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 12
             if goodsSlot == 11 and not self.knowSGenSwap:
                 return 13
-        elif self.currentZone == 4:
+        elif self.currentZone == Zones.SIZ_CALIT:
             if goodsSlot == 1:
                 return 210
             if goodsSlot == 2:
@@ -12205,7 +12208,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 9
             if goodsSlot == 11 and not self.knowSBabyFree:
                 return 15
-        elif self.currentZone == 6:
+        elif self.currentZone == Zones.OVIASIS:
             if goodsSlot == 1:
                 return 207
             if goodsSlot == 2:
@@ -12220,7 +12223,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 8
             if goodsSlot == 11 and not self.knowSPotPot:
                 return 16
-        elif self.currentZone == 12:
+        elif self.currentZone == Zones.SANCTUARY:
             if goodsSlot == 9 and not self.knowMilkSuppress:
                 return 17
         return 0
@@ -12431,7 +12434,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return f"HAIR LENGTH ERROR {self.hairLength}"
 
     def hairstyleID(self, choice: int):
-        if self.currentZone == 1:
+        if self.currentZone == Zones.SOFTLIK:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -12446,7 +12449,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 12
             if choice == 9:
                 return 14
-        elif self.currentZone == 2:
+        elif self.currentZone == Zones.FIRMSHAFT:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -12461,7 +12464,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 5
             if choice == 9:
                 return 6
-        elif self.currentZone == 3:
+        elif self.currentZone == Zones.TIEDEN:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -12476,7 +12479,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 12
             if choice == 9:
                 return 13
-        elif self.currentZone == 4:
+        elif self.currentZone == Zones.SIZ_CALIT:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -12491,7 +12494,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 7
             if choice == 9:
                 return 13
-        elif self.currentZone == 6:
+        elif self.currentZone == Zones.OVIASIS:
             if choice == 1:
                 return 2
             if choice == 2:
@@ -12506,7 +12509,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 11
             if choice == 9:
                 return 12
-        elif self.currentZone == 12:
+        elif self.currentZone == Zones.SANCTUARY:
             if choice == 1:
                 return 2
             if choice == 2:
@@ -12566,7 +12569,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def clothesID(self, choice: int):
-        if self.currentZone == 1:
+        if self.currentZone == Zones.SOFTLIK:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -12585,7 +12588,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 22
             if choice == 11:
                 return 27
-        elif self.currentZone == 2:
+        elif self.currentZone == Zones.FIRMSHAFT:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -12604,7 +12607,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 24
             if choice == 11:
                 return 26
-        elif self.currentZone == 3:
+        elif self.currentZone == Zones.TIEDEN:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -12623,7 +12626,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 23
             if choice == 11:
                 return 25
-        elif self.currentZone == 4:
+        elif self.currentZone == Zones.SIZ_CALIT:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -12642,7 +12645,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 20
             if choice == 11:
                 return 28
-        elif self.currentZone == 6:
+        elif self.currentZone == Zones.OVIASIS:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -12661,7 +12664,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return 19
             if choice == 11:
                 return 21
-        elif self.currentZone == 12:
+        elif self.currentZone == Zones.SANCTUARY:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -13271,7 +13274,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doMainText("", True)
         # Softlik Whoring
 
-        if self.currentZone == 1:
+        if self.currentZone == Zones.SOFTLIK:
             self.rndArray = Array(1, 4, 5)
             if self.cockTotal > 0:
                 self.rndArray.push(2, 3)
@@ -13380,7 +13383,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
 
         # Firmshaft Whoring
-        elif self.currentZone == 2:
+        elif self.currentZone == Zones.FIRMSHAFT:
             self.rndArray = Array()
             self.rndArray.push(1)
             if self.gender == 2:
@@ -13484,7 +13487,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hrs = 2
 
         # Tieden Whoring
-        elif self.currentZone == 3:
+        elif self.currentZone == Zones.TIEDEN:
             self.rndArray = Array(2, 4, 6)
             if self.cockTotal > 0:
                 self.rndArray.push(1)
@@ -13601,7 +13604,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hrs = 1
 
         # Siz'Calit Whoring
-        elif self.currentZone == 4:
+        elif self.currentZone == Zones.SIZ_CALIT:
             self.rndArray = Array()
             self.rndArray.push(1)
             if self.cockTotal > 0:
@@ -13770,7 +13773,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hrs = 2
 
         # Oviasis Whoring
-        elif self.currentZone == 6:
+        elif self.currentZone == Zones.OVIASIS:
             self.rndArray = Array()
             if self.cockTotal == 1:
                 self.rndArray.push(1)
@@ -13871,7 +13874,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hrs = 3
 
         # Sanctuary Whoring
-        elif self.currentZone == 12:
+        elif self.currentZone == Zones.SANCTUARY:
             self.doMainText("You walk around, hoping to catch someone's eye. A nondescript figure eventually approaches you, takes you out as an escort, and spends a few hours with you, resulting in nothing worth mentioning save your payment.", True)
             self.hrs = 3
 
@@ -15759,7 +15762,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def doExplore(self):
         self.bc()
-        if self.currentZone == 1:
+        if self.currentZone == Zones.SOFTLIK:
             buttonlist = ButtonList(1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0)
             tempDict = {6: "Softlik", 1: "Forest", 7: "Dairy Farm", 10: "Plains"}
             if (self.foundValley):
@@ -15781,7 +15784,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doPlains()
             self.doListen = doListen
 
-        elif self.currentZone == 2:
+        elif self.currentZone == Zones.FIRMSHAFT:
             buttonlist = ButtonList(0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0)
             tempDict = {6: "Firmshaft", 3: "Plains", 5: "Savanna", 9: "Desert", 11: "Old Cave"}
             if (self.foundValley):
@@ -15809,11 +15812,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif self.buttonChoice == 12:
                     self.outputMainText("You take the stairs that opened up when you defeated the succubus. You now find yourself in sanctuary.", True)
                     self.hrs = 1
-                    self.goToInDoProcess = 12
+                    self.goToInDoProcess = Zones.SANCTUARY
                     self.doEnd()
             self.doListen = doListen
 
-        elif self.currentZone == 3:
+        elif self.currentZone == Zones.TIEDEN:
             buttonlist = ButtonList(0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0)
             tempDict = {6: "Tieden", 5: "Lake", 7: "Forest", 10: "Jungle"}
             if (self.foundValley):
@@ -15835,7 +15838,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doValley()
             self.doListen = doListen
 
-        elif self.currentZone == 4:
+        elif self.currentZone == Zones.SIZ_CALIT:
             buttonlist = ButtonList(0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0)
             tempDict = {6: "Siz'Calit", 2: "Jungle", 7: "Savanna", 9: "Beach", 11: "Desert"}
             if (self.foundValley):
@@ -15859,7 +15862,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doDesert()
             self.doListen = doListen
 
-        elif self.currentZone == 6:
+        elif self.currentZone == Zones.OVIASIS:
             buttonlist = ButtonList(0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0)
             tempDict = {6: "Oviasis", 2: "Desert"}
             if (self.silRep > 0):
@@ -15877,7 +15880,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doOviasis()
             self.doListen = doListen
 
-        elif self.currentZone == 12:
+        elif self.currentZone == Zones.SANCTUARY:
             tempButtons = ButtonList(0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0)
             tempDict = {6: "Sanctuary", 5: "Cave Descent"}
             if (self.directPathToSanctuary):
@@ -15897,7 +15900,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.outputMainText("You walk up to the opening that you discovered when defeated the succubus and went inside. It is supprisingly well lit despite not having any torches and the stairs are in much better shape than the ones you went down before. Once you start climbing, it doesn't take long to reach the top. Weird, you thought it would take longer considering you were going down the stairs to get here long enough for you to feel like they would never end. Anyways, you find yourself in the open next to the enterance to the Old Cave, ready to head back to Firmshaft.", True)
                         self.usedSecretStairs = True
                     self.hrs = 1
-                    self.goToInDoProcess = 2
+                    self.goToInDoProcess = Zones.FIRMSHAFT
                     self.doEnd()
                 elif self.buttonChoice == 5:
                     self.inDungeon = True
@@ -16136,7 +16139,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.rndArray.push(1)
             # Silanrias
             tempArray = (0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-            if (tempArray[self.hour] and self.currentZone == 6 and self.silRep == 0):
+            if (tempArray[self.hour] and self.currentZone == Zones.OVIASIS and self.silRep == 0):
                 self.rndArray.push(2)
             # Dust Devil
             tempArray = (0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0)
@@ -19153,14 +19156,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                if (not self.firstExplore):
                   self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a sense of exhilaration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                   self.firstExplore = True
-               if self.currentZone == 1:
+               if self.currentZone == Zones.SOFTLIK:
                   self.doMainText("Following the path, the trees grow slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                  self.regionChange(3)
+                  self.regionChange(Zones.TIEDEN)
                   if (not self.foundTieden):
                      self.foundTieden = True
-               elif self.currentZone == 3:
+               elif self.currentZone == Zones.TIEDEN:
                   self.doMainText("Following the path, the trees grow much sparser opening up to rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun.\n\nYou have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                  self.regionChange(1)
+                  self.regionChange(Zones.SOFTLIK)
                   if (not self.foundSoftlik):
                      self.foundSoftlik = True
                self.hrs = 4
@@ -19347,14 +19350,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                if (not self.firstExplore):
                   self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                   self.firstExplore = True
-               if self.currentZone == 3:
+               if self.currentZone == Zones.TIEDEN:
                   self.doMainText("Following the path, you begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                  self.regionChange(4)
+                  self.regionChange(Zones.SIZ_CALIT)
                   if (not self.foundSizCalit):
                      self.foundSizCalit = True
-               elif self.currentZone == 4:
+               elif self.currentZone == Zones.SIZ_CALIT:
                   self.doMainText("Following the path, the vegetation grows slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                  self.regionChange(3)
+                  self.regionChange(Zones.TIEDEN)
                   if (not self.foundTieden):
                      self.foundTieden = True
                self.hrs = 4
@@ -19428,14 +19431,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (not self.firstExplore):
                         self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                         self.firstExplore = True
-                    if self.currentZone == 1:
+                    if self.currentZone == Zones.SOFTLIK:
                         self.doMainText("Following the road, signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the road you just took. Getting back might be a bit difficult...")
-                        self.regionChange(2)
+                        self.regionChange(Zones.FIRMSHAFT)
                         if (not self.foundFirmshaft):
                             self.foundFirmshaft = True
-                    elif self.currentZone == 2:
+                    elif self.currentZone == Zones.FIRMSHAFT:
                         self.doMainText("Following the road, the level land breaks up into rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun.\n\nYou have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the road you just took. Getting back might be a bit difficult...")
-                        self.regionChange(1)
+                        self.regionChange(Zones.SOFTLIK)
                         if (not self.foundSoftlik):
                             self.foundSoftlik = True
                     self.hrs = 4
@@ -19496,14 +19499,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (not self.firstExplore):
                         self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                         self.firstExplore = True
-                    if (self.currentZone == 2):
+                    if (self.currentZone == Zones.FIRMSHAFT):
                         self.doMainText("Following the path, the vegetation becomes denser and denser until trees surround you. You begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                        self.regionChange(4)
+                        self.regionChange(Zones.SIZ_CALIT)
                         if (not self.foundSizCalit):
                             self.foundSizCalit = True
-                    elif (self.currentZone == 4):
+                    elif (self.currentZone == Zones.SIZ_CALIT):
                         self.doMainText("Following the path, signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                        self.regionChange(2)
+                        self.regionChange(Zones.FIRMSHAFT)
                         if (not self.foundFirmshaft):
                             self.foundFirmshaft = True
                     self.hrs = 4
@@ -19716,20 +19719,20 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                if (not self.firstExplore):
                   self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                   self.firstExplore = True
-               if self.currentZone == 6:
+               if self.currentZone == Zones.OVIASIS:
                   if (Utils.percent() <= 50):
                      self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through the desert to large fields of swaying grass, free from the storm, and signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                     self.regionChange(2)
+                     self.regionChange(Zones.FIRMSHAFT)
                      if (not self.foundFirmshaft):
                         self.foundFirmshaft = True
                   else:
                      self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through the desert into a dense vegetation with trees surrounding you, protecting you from the storm. You begin to see various wooden structures built amongst the canopy as you continue. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                     self.regionChange(4)
+                     self.regionChange(Zones.SIZ_CALIT)
                      if (not self.foundSizCalit):
                         self.foundSizCalit = True
-               elif self.currentZone in {2, 4}:
+               elif self.currentZone in {Zones.FIRMSHAFT, Zones.SIZ_CALIT}:
                   self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through into an area sheltered from the wind by large rock formations. As you blink and brush the sand from your eyes, you're left in awe by the paradise before you.\n\nAn oasis somewhere within the desert, hidden within a ring of tall rock formations and mountains, you can see the water sparkle from here and the palm trees sway lazily around it. And all along the rocks, built into caves and sprawled across the beaches, reptillian people have made their home here, relaxing and enjoying their gorgeous habitat.\n\nYou have now entered the Lizan home-city of Oviasis! Though thanks to the storm you have no idea how you got here or how to get back...")
-                  self.regionChange(6)
+                  self.regionChange(Zones.OVIASIS)
                   if (not self.foundOviasis):
                      self.foundOviasis = True
                self.hrs = 4
@@ -22589,7 +22592,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         else:
                             self.outputMainText("You leave the beast-man to himself and head towards the stairs.", True)
                         self.inDungeon = False
-                        self.goToInDoProcess = 2
+                        self.goToInDoProcess = Zones.FIRMSHAFT
                         self.doEnd()
                 self.doListen = doListen
 
@@ -22633,7 +22636,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         else:
                             self.outputMainText("She continues on with her doll and you take to the stairs.", True)
                         self.inDungeon = False
-                        self.goToInDoProcess = 2
+                        self.goToInDoProcess = Zones.FIRMSHAFT
                         self.doEnd()
                     elif self.buttonChoice == 6:
                         self.outputMainText("\"Ooo, really?! Yay~!\" The girl hops up to her feet, her skirt flipping up a little to flash you her panties. With Mr. Snuggles in hand, the excitement gets the best of her and she bellows out with her fiercer side. \"I'LL TRY NOT TO TEAR YOU TO SHREDS~\"", True)
@@ -22691,7 +22694,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         else:
                             self.outputMainText("\"Take care~\" She seems relieved as you leave.", True)
                         self.inDungeon = False
-                        self.goToInDoProcess = 2
+                        self.goToInDoProcess = Zones.FIRMSHAFT
                         self.doEnd()
                     elif self.buttonChoice == 7:
                         if (self.currentDungeon == 1007):
@@ -22721,7 +22724,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         else:
                             self.outputMainText("\"Take care~\" She seems relieved as you leave.", True)
                         self.inDungeon = False
-                        self.goToInDoProcess = 12
+                        self.goToInDoProcess = Zones.SANCTUARY
                         self.doEnd()
                 self.doListen = doListen
 
@@ -22731,7 +22734,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nYou look to your side and see an engraving on the wall. It is somewhat faded but you manage make out the phrase \"Only the worthy may use this path.\", strange. You feel an urge to touch it. Once you do, you hear a congradulatory melody, like you've just uncovered a secret. The section of wall next to where the engraving was magically disappears, revealing another set of stairs. You have a feeling that these stairs lead to the surface.")
             self.displayMainText()
             self.inDungeon = False
-            self.regionChange(12)
+            self.regionChange(Zones.SANCTUARY)
             if (not self.foundSanctuary):
                 self.foundSanctuary = True
 
