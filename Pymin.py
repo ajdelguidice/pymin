@@ -514,7 +514,7 @@ class SaveUtils:
         if path is None:
             return ''
         if isinstance(path, str):
-            if as3state.platform == 'Windows':
+            if platform.system() == 'Windows':
                 filename = path.split('\\')[-1].split('.')
             else:
                 filename = path.split('/')[-1].split('.')
@@ -5192,11 +5192,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (keyCode == Keyboard.BACKQUOTE or keyCode == Keyboard.NUMPAD_DIVIDE) and keyEnabled:
             self.wiki.open()
 
-        elif (keyCode == Keyboard.U and self.currentState != 0 and keyEnabled):
-            self.sideEvent(1)
-
         elif self.showSide and self.currentState != 0 and keyEnabled:
-            if (keyCode == Keyboard.I):
+            if (keyCode == Keyboard.U):
+                self.sideEvent(1)
+
+            elif (keyCode == Keyboard.I):
                 self.sideEvent(2)
 
             elif (keyCode == Keyboard.O):
@@ -28400,7 +28400,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if not self.sidepanelvisible:
             for i in range(8):
                 tempcalc = Calc.showSidePanel(i)
-                self.window.addWidget(PyminButton, 'display', SIDE_PANEL_BUTTON_NAMES[i], x=tempcalc[0], y=tempcalc[1], width=80, height=30, font=self.font, text=SIDE_PANEL_BUTTON_TEXT[i], command=partial(self.sideEvent, i + 1))
+                self.window.addWidget(PyminButton, 'display', SIDE_PANEL_BUTTON_NAMES[i], x=tempcalc[0], y=tempcalc[1], width=80, height=30, font=self.font, text=SIDE_PANEL_BUTTON_TEXT[i], command=getattr(self, f'side{i+1}Event'))
             self.window.addHTMLScrolledText('display', 'textside', x=823, y=275, width=330, height=315, font=self.font, border=self.scrolledTextBorders, text='Test', cursor='arrow', wrap='word', background=self.backgroundColor, foreground=self.textColor)
             self.displaySideText()
         self.sidepanelvisible = True
