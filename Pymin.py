@@ -4205,7 +4205,6 @@ class GameState(IntEnum):
 
 
 class Zones(IntEnum):
-    # TODO: Use this
     NONE = 0
     SOFTLIK = 1
     FIRMSHAFT = 2
@@ -4213,6 +4212,27 @@ class Zones(IntEnum):
     SIZ_CALIT = 4
     OVIASIS = 6
     SANCTUARY = 12
+
+
+class Dungeons(IntEnum):
+    # TODO: Use this
+    MINOTAUR = 1001
+    MINOTAUR_DEFEATED = 1002
+    MINOTAUR_RAPED = 1003
+    FREAKY_GIRL = 1004
+    FREAKY_GIRL_DEFEATED = 1005
+    FREAKY_GIRL_RAPED = 1006
+    SUCCUBUS = 1007
+    SUCCUBUS_DEFEATED = 1008
+    SUCCUBUS_RAPED = 1009
+    SUCCUBUS_DEFEATED_FIRST_TIME = 1010
+
+
+class Gender(IntEnum):
+    ANDRO = 0
+    MALE = 1
+    FEMALE = 2
+    HERM = 3
 
 
 class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
@@ -22679,7 +22699,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.outputMainText("On the last floor before Sanctuary, the succubus toys around with her vials filled with the masculinity of various victims. She perks up at your presence, something to cut into the boredom. \"Hello again~ Don't worry. Now that you've defeated all of us, you're free to come and go as you please since you've shown you can handle yourself and won't be dead weight, so I won't fight you. Unless you want to go another round~\" She gives you a wink.", True)
                 elif self.currentDungeon == 1008:
                     self.outputMainText("The succubus smiles at you as she leans up against the wall, trying to pretend like you didn't actually hurt her at all and waiting for you to leave so she can rub the achy bits.", True)
-                elif self.currentDungeon == 1008:
+                elif self.currentDungeon == 1008:  # TODO: This one should probably be 1009
                     self.outputMainText("The succubus smiles at you as she leans up against the wall, trying to pretend like you didn't actually best her in the art of sex and waiting for you to leave so she can rub her tingly bits.", True)
                 self.showButtons(ButtonList(0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1))
                 tempDict = {4: "Firmshaft", 7: "Up", 12: "Sanctuary"}
@@ -23362,6 +23382,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText("\n\nShe growls and curses obsceneties while nursing her pain. \"GAH, NO MORE! TAKE YOUR DAMNED WINNINGS AND GO!\"\n\nShe proceeds to rip off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she throws at you.")
             if (not self.defeatedFreakyGirl):
                 self.defeatedFreakyGirl = True
+            # TODO: Based on the other bosses, this should probably be 1005 instead
             self.currentDungeon = 1004
         elif self.enemyID == 309:
             self.doMainText("\n\n\"Ow, ow, ow, ow. Okay, okay, you win! Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
