@@ -8,7 +8,6 @@ from as3lib.flash.text import Font
 from as3lib.flash.ui import Keyboard
 import as3lib.interface_tk as itk
 from dataclasses import dataclass
-from enum import IntEnum
 from functools import partial, cache
 from io import BytesIO
 from miniamf import sol
@@ -20,6 +19,7 @@ import tkinter
 from tkinter import filedialog, ttk
 import xml.etree.ElementTree as xmletree
 import math
+import os
 import random
 import platform
 
@@ -414,7 +414,7 @@ class DirUtils:
         '''
         if path.is_dir():
             return 1
-        elif path.exists():
+        if path.exists():
             if not silent:
                 raise Error('[DirUtils.makeDir] Path exists but is not a directory.')
             return -1
@@ -514,16 +514,13 @@ class SaveUtils:
         if path is None:
             return ''
         if isinstance(path, str):
-            if platform.system() == 'Windows':
-                filename = path.split('\\')[-1].split('.')
-            else:
-                filename = path.split('/')[-1].split('.')
-        else:  # Is path object
-            filename = path.resolve().name.split('.')
-        if len(filename) == 1:
-            return filename[0]
+            return os.path.splitext(os.path.basename(path))[0]
+        # Is path object
+        filename = path.resolve().name.split('.')
         if len(filename) > 1:
             return '.'.join(filename[:-1])
+        # Split shouldn't return an empty list so this is fine
+        return filename[0]
 
     def returnSOL(dictionary: dict, outputfile):
         data = sol.SOL(SaveUtils.solGetFileName(outputfile))
@@ -2847,7 +2844,7 @@ class PyminWiki(PyminWindow):
         elif page.topic == 'Item':
             text = self.itemDescription(page.num)
         elif page.topic == 'Clothes':
-            text = Clothes.description(page.num)
+            text = self.clothesDescription(page.num)
         elif page.topic == 'Enemy':
             text = self.enemyDescription(page.num)
         elif page.topic == 'Race':
@@ -3968,7 +3965,7 @@ class OptionsWindow(PyminWindow):
 
         # -Status Tweaks
         self.window.addCheckboxWithLabel('gt', 'StatusTweaks', x=10, y=10, width=124, height=20, font=labelFont, text='Status Tweaks', background=self.backgroundColor, foreground=self.textColor)
-        ToolTip(self.window._children['StatusTweaks'].frame, text='Tweaks specific status things (Incompatible with the original game)')
+        ToolTip(self.window._children['StatusTweaks'].frame, text='Tweaks specific status things')
 
         # -Succubus Leaves One
         self.window.addCheckboxWithLabel('gt', 'SuccubusLeavesOne', x=10, y=32, width=164, height=20, font=labelFont, text='Succubus Leaves One', background=self.backgroundColor, foreground=self.textColor)
@@ -4197,14 +4194,15 @@ class OptionsWindow(PyminWindow):
         main.savePreferences()
 
 
-class GameState(IntEnum):
+# NOTE: These can not be enums because of the save system
+class GameState:
     GAME_UNLOADED = 0
     GENERAL = 1
     BATTLE = 2
     MASTURBATE = 3
 
 
-class Zones(IntEnum):
+class Zones:
     NONE = 0
     SOFTLIK = 1
     FIRMSHAFT = 2
@@ -4214,8 +4212,7 @@ class Zones(IntEnum):
     SANCTUARY = 12
 
 
-class Dungeons(IntEnum):
-    # TODO: Use this
+class Dungeons:
     MINOTAUR = 1001
     MINOTAUR_DEFEATED = 1002
     MINOTAUR_RAPED = 1003
@@ -4228,7 +4225,8 @@ class Dungeons(IntEnum):
     SUCCUBUS_DEFEATED_FIRST_TIME = 1010
 
 
-class Gender(IntEnum):
+class Gender:
+    # TODO: Use this
     ANDRO = 0
     MALE = 1
     FEMALE = 2
@@ -4401,7 +4399,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.snuggleBallTweak = False
         self.grammarFixes = False
 
-        # -Debugo options Tab
+        # -Debug Tab
         self.debugChooseSenario = False
         self.debugNoDamage = False
 
@@ -5813,20 +5811,21 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.inBag = False
             self.hideAmountAll()
             self.doLustForcedMasturbate()
+            return
+
+        if (leave):
+            self.doLeave()
+
+            def doListen():
+                if (self.buttonChoice == 12):
+                    self.doProcess()
         else:
-            if (leave):
-                self.doLeave()
+            self.doNext()
 
-                def doListen():
-                    if (self.buttonChoice == 12):
-                        self.doProcess()
-            else:
-                self.doNext()
-
-                def doListen():
-                    if (self.buttonChoice == 6):
-                        self.doProcess()
-            self.doListen = doListen
+            def doListen():
+                if (self.buttonChoice == 6):
+                    self.doProcess()
+        self.doListen = doListen
 
     def doButtonChoices(self, buttondict: dict):
         '''
@@ -6030,16 +6029,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.mentality += menta
         self.libido += libi
         self.sensitivity += sens
-        if self.statusTweaks:
-            if (self.strength > 200):
-                self.strength = 200
-            elif (self.strength < 1):
-                self.strength = 1
-        else:
-            if (self.strength > 100):
-                self.strength = 100
-            elif (self.strength < 1):
-                self.strength = 1
+        if (self.strength > 100):
+            self.strength = 100
+        elif (self.strength < 1):
+            self.strength = 1
         if (self.mentality > 100):
             self.mentality = 100
         elif (self.mentality < 1):
@@ -8747,15 +8740,20 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             self.choiceListSelect("Bag")
+
             if self.buttonChoice == 13:
-                self.doButtonDiscard("Bag")
+                # TODO: This is broken only here
+                self.doButtonDiscard(self.doBag, True)
             elif self.buttonChoice == 12:
-                if self.moveItemID != 0:
+                if self.moveItemID == 0:
+                    self.inBag = False
+                    self.doReturn(False)
+                else:
                     if self.useNewStash and self.currentState == GameState.GENERAL:
-                        if (not self.canLose(self.moveItemID, 0)):
-                            self.outputMainText(f"Something is preventing you from removing the {Items.name(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
-                        else:
+                        if (self.canLose(self.moveItemID, 0)):
                             self.moveToStash()
+                        else:
+                            self.outputMainText(f"Something is preventing you from removing the {Items.name(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
                     else:
                         self.hideAmountAll()
                         self.hidePage()
@@ -8778,9 +8776,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             else:
                                 self.doBag()
                         self.doListen = doListen
-                else:
-                    self.inBag = False
-                    self.doReturn(False)
             elif self.buttonChoice in {4, 8}:
                 self.doBag()
             else:
@@ -11458,7 +11453,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.exhaustion -= 6
             self.doEnd()
 
-    def doButtonDiscard(self, which):
+    def doButtonDiscard(self, returnFunc, passiveRemove = False):
         '''
         Discard button action
         '''
@@ -11471,23 +11466,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.buttonConfirm()
         KeyState.overrideShift = True
 
-        # TODO: This is broken
         def doListen():
             KeyState.overrideShift = False
             if (self.buttonChoice == 6):
-                if which == "Bag":
+                if passiveRemove:
                     self.passiveItemRemove(self.moveItemID)
                 self.moveItemID = 0
                 self.moveItemStack = 0
                 self.showMoveItem(False)
-            if which == "Bag":
-                self.doBag()
-            elif which == "Stash":
-                self.doStash()
-            elif which == "mts":
-                self.moveToStash()
-            elif which == "mtb":
-                self.moveToBag()
+            returnFunc()
         self.doListen = doListen
 
     def doStash(self):
@@ -11505,13 +11492,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             def doListen():
                 self.choiceListSelect("Stash")
                 if self.buttonChoice == 13:
-                    self.doButtonDiscard("Stash")
+                    self.doButtonDiscard(self.doStash)
                 elif self.buttonChoice == 12:
-                    if self.moveItemID != 0:
-                        self.moveToBag()
-                    else:
+                    if self.moveItemID == 0:
                         self.inStash = False
                         self.doReturn(False)
+                    else:
+                        self.moveToBag()
                 elif self.buttonChoice in {4, 8}:
                     self.doStash()
                 else:
@@ -11545,7 +11532,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         def doListen():
             self.choiceListSelect("Stash")
             if (self.buttonChoice == 13):
-                self.doButtonDiscard("mts")
+                self.doButtonDiscard(self.moveToStash)
             elif (self.buttonChoice == 12):
                 self.doBag()
             elif (self.buttonChoice in {4, 8}):
@@ -11587,7 +11574,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         def doListen():
             self.choiceListSelect("Bag")
             if (self.buttonChoice == 13):
-                self.doButtonDiscard("mtb")
+                self.doButtonDiscard(self.moveToBag)
             elif (self.buttonChoice == 12):
                 self.doStash()
             elif (self.buttonChoice in {4, 8}):
@@ -15685,18 +15672,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      def doListen():
                         if (self.buttonChoice == 6):
                            self.outputMainText("You take a moment to focus, channeling the experience you have gained to achieve a state of balance within your body. You feel several sensations begin to whirl around you; your strength, your mind, your naughtiness, your nerves, all shifting and swaying with the ebb and flow of the energies melting together.\n\nOnce they finally settle, you relax with a sense of equilibrium.", True)
-                           combinedStats = self.str + self.ment + self.lib + self.sen
-                           if self.statusTweaks and combinedStats > 400:
-                              tempInt = 100
-                              addStr = combinedStats - 400
-                           else:
-                              tempInt = Math.ceil(combinedStats / 4)
-                              addStr = 0
+                           tempInt = Math.ceil((self.str + self.ment + self.lib + self.sen) / 4)
                            self.str = 0
                            self.ment = 0
                            self.lib = 0
                            self.sen = 0
-                           self.stats(tempInt + addStr, tempInt, tempInt, tempInt)
+                           self.stats(tempInt, tempInt, tempInt, tempInt)
                            self.levelUP -= 3
                            self.doEnd()
                         else:
