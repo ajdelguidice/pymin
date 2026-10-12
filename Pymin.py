@@ -14611,7 +14611,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def simpleAlchemy(self):
-        self.comefromalch = 1
         self.choiceListArray.clear()
         self.doMainText("Click on an item you would like to create.", True)
         self.choiceListArray.push("Blondie")
@@ -14668,7 +14667,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def complexAlchemy(self):
-        self.comefromalch = 2
         self.choiceListArray.clear()
         self.doMainText("Click on an item you would like to create.", True)
         self.choiceListArray.push("Black Dye")
@@ -14721,31 +14719,29 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doAlchemy()
             else:
                 self.choicePage = 1
-            # TODO: Shouldn't this be a different makeAlchemy level than simpleAlchemy?
             if (self.choiceListResult[0] == "Black Dye"):
-                self.makeAlchemy(515, 1)
+                self.makeAlchemy(515, 2)
             elif (self.choiceListResult[0] == "S Lust Draft"):
-                self.makeAlchemy(508, 1)
+                self.makeAlchemy(508, 2)
             elif (self.choiceListResult[0] == "S Rejuv Pot"):
-                self.makeAlchemy(509, 1)
+                self.makeAlchemy(509, 2)
             elif (self.choiceListResult[0] == "S Exp Preg"):
-                self.makeAlchemy(511, 1)
+                self.makeAlchemy(511, 2)
             elif (self.choiceListResult[0] == "S Ball Swell"):
-                self.makeAlchemy(512, 1)
+                self.makeAlchemy(512, 2)
             elif (self.choiceListResult[0] == "Baby Free"):
-                self.makeAlchemy(516, 1)
+                self.makeAlchemy(516, 2)
             elif (self.choiceListResult[0] == "Pot Pot"):
-                self.makeAlchemy(517, 1)
+                self.makeAlchemy(517, 2)
             elif (self.choiceListResult[0] == "Gen Swap"):
-                self.makeAlchemy(513, 1)
+                self.makeAlchemy(513, 2)
             elif (self.choiceListResult[0] == "Maso Pot"):
-                self.makeAlchemy(514, 1)
+                self.makeAlchemy(514, 2)
             elif (self.choiceListResult[0] == "Milk Suppress"):
-                self.makeAlchemy(535, 1)
+                self.makeAlchemy(535, 2)
         self.doListen = doListen
 
     def advancedAlchemy(self):
-        self.comefromalch = 3
         self.choiceListArray.clear()
         self.doMainText("Click on an item you would like to create.", True)
         self.choiceListArray.push("Red Dye")
@@ -14790,23 +14786,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doAlchemy()
             else:
                 self.choicePage = 1
-            # TODO: Shouldn't this be a different makeAlchemy level than simpleAlchemy?
             if (self.choiceListResult[0] == "Red Dye"):
-                self.makeAlchemy(520, 1)
+                self.makeAlchemy(520, 3)
             elif (self.choiceListResult[0] == "S Baby free"):
-                self.makeAlchemy(521, 1)
+                self.makeAlchemy(521, 3)
             elif (self.choiceListResult[0] == "S Pot Pot"):
-                self.makeAlchemy(522, 1)
+                self.makeAlchemy(522, 3)
             elif (self.choiceListResult[0] == "S Gen Swap"):
-                self.makeAlchemy(518, 1)
+                self.makeAlchemy(518, 3)
             elif (self.choiceListResult[0] == "S Maso Pot"):
-                self.makeAlchemy(519, 1)
+                self.makeAlchemy(519, 3)
             elif (self.choiceListResult[0] == "Puss Juice"):
-                self.makeAlchemy(221, 1)
+                self.makeAlchemy(221, 3)
             elif (self.choiceListResult[0] == "Pheromone"):
-                self.makeAlchemy(532, 1)
+                self.makeAlchemy(532, 3)
             elif (self.choiceListResult[0] == "Bazoomba!"):
-                self.makeAlchemy(536, 1)
+                self.makeAlchemy(536, 3)
         self.doListen = doListen
 
     def makeAlchemy(self, ID: int, level: int):
@@ -14992,20 +14987,19 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doNext()
 
                     def doListen():
-                        if self.comefromalch == 1:
+                        if level == 1:
                             self.simpleAlchemy()
-                        elif self.comefromalch == 2:
+                        elif level == 2:
                             self.complexAlchemy()
-                        elif self.comefromalch == 3:
+                        elif level == 3:
                             self.advancedAlchemy()
                     self.doListen = doListen
             else:
-                # TODO: See if this can be simplified by using level argument instead
-                if self.comefromalch == 1:
+                if level == 1:
                     self.simpleAlchemy()
-                elif self.comefromalch == 2:
+                elif level == 2:
                     self.complexAlchemy()
-                elif self.comefromalch == 3:
+                elif level == 3:
                     self.advancedAlchemy()
         self.doListen = doListen
 
