@@ -4226,7 +4226,7 @@ class Dungeons:
 
 
 class Gender:
-    # TODO: Use this
+    # TODO: Use this for eGen as well
     ANDRO = 0
     MALE = 1
     FEMALE = 2
@@ -4551,7 +4551,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.eItem = 0
 
         # Body features
-        # self.gender = 0
+        # self.gender = Gender.ANDRO
         # self.race = 0
         # self.body = 0
         # self.dominant = 0
@@ -6329,7 +6329,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                if (self.ePref == 0 or self.ePref == 1 and self.gender == 2 or self.ePref == 2 and self.gender == 1 or self.gender == 0):
+                if (self.ePref == 0 or self.ePref == 1 and self.gender == Gender.FEMALE or self.ePref == 2 and self.gender == Gender.MALE or self.gender == Gender.ANDRO):
                     self.doMainText(f"Unfortunately, the {self.enemyName()} has no interest in taking advantage of your state and lands a heavy blow, knocking you out.", True)
                     self.doHP(-100000)
                     self.displayMainText()
@@ -6414,7 +6414,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.lockLegs = 0
                 self.lockNipples = 0
                 self.lockCock = 0
-                self.gender = 0
+                self.gender = Gender.ANDRO
                 self.race = 0
                 self.body = 0
                 self.dominant = 0
@@ -8327,7 +8327,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             if self.buttonChoice == 5:
-                self.gender = 1
+                self.gender = Gender.MALE
                 self.cockSize = 12
                 self.ballSize = 3
                 self.balls = 2
@@ -8346,7 +8346,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.lizardCocks = 2
                     self.cockTotal += 1
             elif self.buttonChoice == 6:
-                self.gender = 2
+                self.gender = Gender.FEMALE
                 self.vagSize = 12
                 self.vulvaSize = 5
                 self.pregArray = Array(False, 0, 0, 0, 0)
@@ -8355,7 +8355,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.clitSize = 2
                 self.mentality += 1
             elif self.buttonChoice == 7:
-                self.gender = 3
+                self.gender = Gender.HERM
                 self.cockSize = 8
                 self.ballSize = 2
                 self.balls = 2
@@ -8386,20 +8386,20 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         New game body type selection dialog
         '''
         self.statDisplay(False)
-        if self.gender == 1:
+        if self.gender == Gender.MALE:
             self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0))
             tempDict = {1: "Bodybuilder", 3: "Average", 5: "Cunt Boy", 7: self.ptweaksGrammar(3, True), 10: "Childlike"}
-        elif self.gender == 2:
+        elif self.gender == Gender.FEMALE:
             self.showButtons(ButtonList(0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0))
             tempDict = {2: "Bodybuilder", 5: "Average", 3: "Voluptuous", 10: "Childlike"}
-        elif self.gender == 3:
+        elif self.gender == Gender.HERM:
             self.showButtons(ButtonList(0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0))
             tempDict = {2: "Bodybuilder", 5: "Masculine", 6: "Feminine", 10: "Childlike"}
         self.outputMainText("Choose your body type. Types determine height and a few beginning characteristics. Their names describe what they look like and may potentially alter your true gender.", True)
         self.doButtonChoices(tempDict)
 
         def doListen():
-            if self.gender == 1:
+            if self.gender == Gender.MALE:
                 if self.buttonChoice == 1:
                     self.body = 29
                     self.hips = 4
@@ -8462,7 +8462,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.cockSize = 6
                     self.cockMoist = 1
                     self.ballSize = 1
-            elif self.gender == 2:
+            elif self.gender == Gender.FEMALE:
                 if self.buttonChoice == 2:
                     self.body = 29
                     self.hips = 5
@@ -8502,7 +8502,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.vulvaSize = 2
                     self.clitSize = 1
                     self.vagMoist = 1
-            elif self.gender == 3:
+            elif self.gender == Gender.HERM:
                 if self.buttonChoice == 2:
                     self.body = 29
                     self.hips = 4
@@ -9696,11 +9696,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.cockPump = 0
                                 self.cockSize += 1
                                 self.doMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your cock{self.plural(1)} permanently slightly larger...")
-                            if (self.cockSize * self.cockSizeMod * 4 > self.tallness and self.gender == 3):
+                            if (self.cockSize * self.cockSizeMod * 4 > self.tallness and self.gender == Gender.HERM):
                                 self.doLust(-Math.floor(self.sen / 4), 2, 58, 3, 57, 4)
                             elif (self.cockSize * self.cockSizeMod * 4 > self.tallness):
                                 self.doLust(-Math.floor(self.sen / 4), 2, 58, 1, 57, 4)
-                            elif (self.gender == 3):
+                            elif (self.gender == Gender.HERM):
                                 self.doLust(-Math.floor(self.sen / 4), 2, 3, 57, 4)
                             else:
                                 self.doLust(-Math.floor(self.sen / 4), 2, 1, 57, 4)
@@ -9729,11 +9729,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.clitPump = 0
                                 self.clitSize += 1
                                 self.doMainText(f"\n\nAlthough, after cleaning up, the swelling from the suction doesn't seem to go down, your clit{self.plural(1)} permanently slightly larger...")
-                            if (self.clitSize * 24 > self.tallness and self.gender == 3):
+                            if (self.clitSize * 24 > self.tallness and self.gender == Gender.HERM):
                                 self.doLust(-Math.floor(self.sen / 4), 2, 1)
                             elif (self.clitSize * 24 > self.tallness):
                                 self.doLust(-Math.floor(self.sen / 4), 2, 1)
-                            elif (self.gender == 3):
+                            elif (self.gender == Gender.HERM):
                                 self.doLust(-Math.floor(self.sen / 4), 2, 1)
                             else:
                                 self.doLust(-Math.floor(self.sen / 4), 2, 1)
@@ -10880,7 +10880,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd()
         elif ID == 513:
-            if self.gender == 1:
+            if self.gender == Gender.MALE:
                 self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for a small amount of vaginal flesh inside.", True)
                 if (self.showBalls):
                     self.doMainText(f" Your {self.ballDesc()} balls squeeze up {self.legWhere(1)} your {self.legDesc(2)} before eventually melding into your {self.skinDesc()}, leaving behind 1 tiny pair of feminine lips.")
@@ -10905,8 +10905,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.vagSize = 1
                 self.vulvaSize = 1
                 self.clitSize = 1
-                self.gender = 2
-            elif self.gender == 2:
+                self.gender = Gender.FEMALE
+            elif self.gender == Gender.FEMALE:
                 self.doMainText("You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within.", True)
                 self.cockChange(1, 1)
                 self.doMainText(f"\n\nHowever, it doesn't last long as the last of your vagina{self.plural(2)} shrink{self.plural(4)} to nothing, your {self.vulvaDesc()} lips disintegrating back against your groin before finally vanishing, making you a boy for all intents and purposes.")
@@ -10923,8 +10923,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.pregArray.splice(i, 5)
                 self.vulvaSize = 0
                 self.clitSize = 0
-                self.gender = 1
-            elif self.gender == 3:
+                self.gender = Gender.MALE
+            elif self.gender == Gender.HERM:
                 self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within. Your {self.clothesBottom()} feels loser as your {self.cockDesc()} bulges dwindle as well.", True)
                 if (self.showBalls):
                     self.doMainText(" Even your testicles shrivel up, growing smaller and smaller.")
@@ -10936,7 +10936,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.vagSize = 1
                 self.vulvaSize = 1
                 self.clitSize = 1
-            elif self.gender == 0:
+            elif self.gender == Gender.ANDRO:
                 chance = Utils.percent()
                 self.doMainText("You ingest the potion and quickly begin to feel its effects.", True)
                 if (chance <= 40):
@@ -10972,7 +10972,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd()
         elif ID == 518:
-            if self.gender == 1:
+            if self.gender == Gender.MALE:
                 self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for an equal amount of vaginal flesh inside.", True)
                 if (self.showBalls):
                     self.doMainText(f" Your {self.ballDesc()} balls squeeze up {self.legWhere(1)} your {self.legDesc(2)} before eventually melding into your {self.skinDesc()}, forming mounds of equal size until you have {self.cockTotal} pair{self.plural(1)} of feminine lips.")
@@ -11000,8 +11000,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.lizardCocks = 0
                 self.rabbitCocks = 0
                 self.bugCocks = 0
-                self.gender = 2
-            elif self.gender == 2:
+                self.gender = Gender.FEMALE
+            elif self.gender == Gender.FEMALE:
                 self.doMainText("You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh shrinking within.", True)
                 self.cockChange(self.vagSize, self.vagTotal)
                 self.doMainText(f"\n\nHowever, it doesn't last long as the last of your vagina{self.plural(2)} shrink{self.plural(4)} to nothing, your {self.vulvaDesc()} lips disintegrating into your new scrotum, your testicles growing larger and larger before your lips finally vanish, making you a boy for all intents and purposes.")
@@ -11017,8 +11017,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.pregArray.splice(i, 5)
                 self.vulvaSize = 0
                 self.clitSize = 0
-                self.gender = 1
-            elif self.gender == 3:
+                self.gender = Gender.MALE
+            elif self.gender == Gender.HERM:
                 self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You hug your belly as you feel your insides wrench, your vaginal flesh attempting to match the size of your male anatomy. Your {self.clothesBottom()} shakes as your {self.cockDesc()} bulges try to mimic your female anatomy as well.", True)
                 if (self.showBalls):
                     self.doMainText(f" Even your testicles shift, growing to match your pussy lips, while those lips do the same. Your clit{self.plural(2)} also change{self.plural(4)} to more closely match the size of your different vulva.")
@@ -11034,7 +11034,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.vagSize = tempCockSize
                 self.vulvaSize = tempBallSize
                 self.clitSize = tempBallSize
-            elif self.gender == 0:
+            elif self.gender == Gender.ANDRO:
                 chance = Utils.percent()
                 self.doMainText("You ingest the potion and quickly begin to feel its effects.", True)
                 if (chance <= 40):
@@ -11363,7 +11363,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(".\n\nIt really does work!")
                 self.cockSize += 4
                 self.ballSize += 2
-            elif (self.gender == 2):
+            elif (self.gender == Gender.FEMALE):
                 self.doMainText(f" Yet, despite not having any male genitals to speak of, you feel something growing longer. Pulling {self.pullUD(2)} your {self.clothesBottom()}, you watch with awe as your clit{self.plural(2)} extends further from {self.plural(6)} hood{self.plural(2)}! You also feel more... horny than usual...\n\nThough the pill was meant for males, females have quite a bit in common.")
                 self.clitSize += 3
                 self.stats(0, 0, 1, 0)
@@ -13288,7 +13288,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.rndArray = Array(1, 4, 5)
             if self.cockTotal > 0:
                 self.rndArray.push(2, 3)
-            if self.gender != 0:
+            if self.gender != Gender.ANDRO:
                 self.rndArray.push(6)
             chance = self.chooseFrom()
             if chance == 1:
@@ -13396,11 +13396,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif self.currentZone == Zones.FIRMSHAFT:
             self.rndArray = Array()
             self.rndArray.push(1)
-            if self.gender == 2:
+            if self.gender == Gender.FEMALE:
                 self.rndArray.push(2)
-            if (self.gender in {2, 3} or self.breastSize > 24):
+            if (self.gender in {Gender.FEMALE, Gender.HERM} or self.breastSize > 24):
                 self.rndArray.push(3)
-            if self.gender in {1, 3}:
+            if self.gender in {Gender.MALE, Gender.HERM}:
                 self.rndArray.push(4, 5)
             chance = self.chooseFrom()
 
@@ -13501,7 +13501,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.rndArray = Array(2, 4, 6)
             if self.cockTotal > 0:
                 self.rndArray.push(1)
-            if self.gender in {2, 3}:
+            if self.gender in {Gender.FEMALE, Gender.HERM}:
                 self.rndArray.push(3)
             if self.vagTotal > 0 and self.vagTotal < 3:
                 self.rndArray.push(5)
@@ -13523,23 +13523,23 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             elif chance == 2:
                 self.doMainText("You wander around Tieden, putting yourself on display and making sure your ", True)
-                if (self.gender == 1 or self.gender == 3 and Utils.percent() <= 50):
+                if (self.gender == Gender.MALE or self.gender == Gender.HERM and Utils.percent() <= 50):
                     self.doMainText(f"{self.cockDesc()} bulge is noticeable under your {self.clothesBottom()}.")
-                elif (self.gender == 2 or self.gender == 3):
+                elif (self.gender == Gender.FEMALE or self.gender == Gender.HERM):
                     self.doMainText(f"{self.boobDesc()} breasts are clearly visible under your {self.clothesTop()}.")
-                elif (self.gender == 0):
+                elif (self.gender == Gender.ANDRO):
                     self.doMainText("figure looks nice beneath your clothes.")
                 self.doMainText(f"\n\nA young priest heads towards you, a gleam in his eye. “Excuse me, but you are exactly what we need.” His voice holds a note of desperation. “Would you join us in a ritual?” He looks in your eyes pleedingly. “No harm will be done to you of course. And you will get a compensation...”\n\nNeeding the money, you agree with him and follow him into a temple.\n\nYou enter a chamber in the side of the temple. It is a large room, dimly lit with candles, and sparsely furnished. In fact, other than a throne on a raised dais at the far end, currently occupied by an older man in fancy religious attire reading from a large tome, the only real piece of 'furniture' would be a leather-covered alter with two other priests behind it. You are instructed to disrobe and lay on your back on the padded and leather-covered altar so that your {self.legDesc(2)} are {self.legVerb(2)}, a pad placed underneath your tailbone to leave your lower half raised, exposing your asshole")
-                if self.gender == 1:
+                if self.gender == Gender.MALE:
                     self.doMainText(f" and {self.cockDesc()} cock{self.plural(1)}")
-                elif self.gender == 2:
+                elif self.gender == Gender.FEMALE:
                     self.doMainText(f" and {self.vulvaDesc()} lips")
-                elif self.gender == 3:
+                elif self.gender == Gender.HERM:
                     self.doMainText(f", {self.cockDesc()} cock{self.plural(1)} and {self.vulvaDesc()} lips")
                 self.doMainText(f", and you are desperate enough to comply. The two other priests secure your {self.legDesc(8)} with padded cuffs to rings at the two lower corners of the altar, then do the same with another pair of cuffs for your wrists, pulling your arms taut over your head, to attach them to the other end of the long altar. You instinctively struggle slightly, testing the strength of your restraints and find that you are now completely at their mercy.\n\nThe young priest nods to the older one, who starts to read from the book, chanting words in a sing-song foreign tongue. The other priests disrobe and take up positions around the altar and your bound form upon it. The young priest enters your view carrying a chalice, filled with what looks to be wine, although a faint scent suggested otherwise. Each of the priests take a sip out of the chalice, gulping in harmony with the chants of the old priest. Then after each of the clergy has had their turn with the chalice, he moves towards you. He stands to one side, the other priests closing rank around you, the old priest still chanting in the background.")
                 self.doMainText("\n\nThe three priests stand around you, as the young one carrying the chalice lifts it over your body reverently, then carefully begins dribbling the liquid on your nude form. A drop of the blood-red liquid lands in the middle of your forehead, and begins moving the chalice down your body, allowing a drop to land on your nose, then your neck, as he continues guiding the drops down your body.")
                 if (self.lactation < 1):
-                    if (self.gender != 1 or self.gender == 3 and self.breastSize <= 3):
+                    if (self.gender == Gender.FEMALE or self.gender == Gender.HERM and self.breastSize <= 3):
                         self.doMainText(f"\n\nHe lets some drops fall over your {self.boobDesc()} chest, a single drop hitting each of your {self.nipDesc()}nipples in rhythm with the chants, which causes a warmth and a tingling sensation, making them very erect. He then pours some more of the ruby liquid, coating your cleavage with the stuff. The other priests move closer and start to lick the liquid from your breasts, making you squirm at the stimulation of the now very sensitive flesh being teased by their tongues. The young priest holding the chalice watches the spectacle, looking in your eyes, grinning lustfully. Then he raises a hand in a halting gesture, and the other priests stand back and watch him.")
                         self.nippleSize += 1
                     else:
@@ -13619,7 +13619,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.rndArray.push(1)
             if self.cockTotal > 0:
                 self.rndArray.push(2)
-            if self.gender == 2:
+            if self.gender == Gender.FEMALE:
                 self.rndArray.push(3)
             if self.cockTotal > 1:
                 self.rndArray.push(4)
@@ -13627,9 +13627,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.rndArray.push(5)
             if self.cockTotal > 0 and self.showBalls:
                 self.rndArray.push(6)
-            if self.gender == 1:
+            if self.gender == Gender.MALE:
                 self.rndArray.push(7)
-            if self.gender != 0:
+            if self.gender != Gender.ANDRO:
                 self.rndArray.push(8)
             chance = self.chooseFrom()
 
@@ -13753,26 +13753,26 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             elif chance == 8:
                 self.doMainText(f"You walk the swaying rope bridge around town, hoping to catch a customer. It doesn't take long before you are approached by a lean male feline. He's got the markings of a siamese cat and bright blue eyes that regard your {self.bodyDesc()} form with approval. Coins quickly change hands and he leads you into a dimly light house.\n\nHe begins kissing your form, his crotch grind against yours. You feel his erection against your ", True)
-                if self.gender == 1:
+                if self.gender == Gender.MALE:
                     self.doMainText("hardening")
-                elif self.gender == 2:
+                elif self.gender == Gender.FEMALE:
                     self.doMainText("dripping")
-                elif self.gender == 3:
+                elif self.gender == Gender.HERM:
                     self.doMainText("aroused")
                 self.doMainText(f" sex. With a purr he leans in and begins to nibble your ears, causing your {self.legDesc(2)} to buckle with pleasure.\n\nAs your strength wanes he takes the opportunity to carry you to his silk canopy draped bed. He lays you down and pulls off your {self.currentClothes()} piece by piece, revealing your naked form. He eyes you, then crawls over you, grinding his hardened bulge against your crotch and rubbing your {self.boobDesc()} breasts. His bright blue eyes flick up at you, then he grins and begins sucking on one of your teats as his hand slips down and begins rubbing your sex.\n\nOnce you are aroused to his liking, he begins to strip down, revealing his two massive and completely hard feline cocks. You grin, he must have encountered something in the wild to give him two such large dicks. However you're not complaining. He strokes them both, grunting in pleasure. Then he lowers himself towards you and begins to rub his cockheads against your ")
-                if self.gender == 1:
+                if self.gender == Gender.MALE:
                     self.doMainText(f"{self.buttDesc()} ass. Without any warning he pushes both into your ass")
-                elif self.gender in {2, 3}:
+                elif self.gender in {Gender.FEMALE, Gender.HERM}:
                     self.doMainText(f"{self.vulvaDesc()} puss{self.plural(16)}. Without any warning he pushes both into {self.oneYour(2)} slit{self.plural(2)}")
                 self.doMainText(".\n\nYou groan in pleasure as you are penetrated by two cocks, and gasp with a mixture of pain and pleasure as he begins to rapidly push all the way into your hungry hole with a loud and satisfied sounding grunt. It doesn't take him long to hilt inside of you, his massive balls resting against your bottom.\n\nHe stays that way, letting your hole get used to his size, then he begins to hump into you. He starts slowly, then begins to pick up pace, moaning and gasping with each thrust into your quivering hole. As he fucks you, his hands reach around and begin to rub your ")
-                if self.gender == 2:
+                if self.gender == Gender.FEMALE:
                     self.doMainText(f"{self.clitDesc()} clit{self.plural(2)}")
-                elif self.gender in {1, 3}:
+                elif self.gender in {Gender.MALE, Gender.HERM}:
                     self.doMainText(f"{self.cockDesc()} cock{self.plural(1)}")
                 self.doMainText(".\n\nEach thrust begins to pick up pace and his moaning grows louder as he pounds into your hole. Then with a loud yowl his thick and hot seed spills out of his both his pricks and into your ")
-                if self.gender == 1:
+                if self.gender == Gender.MALE:
                     self.doMainText("ass")
-                elif self.gender in {2, 3}:
+                elif self.gender in {Gender.FEMALE, Gender.HERM}:
                     self.doMainText("pussy")
                 self.doMainText(". Even through his own climax, he keeps rubbing your tender arousal, and brings you to orgasm, making your sexual fluids spill all over the bed.\n\nHe slowly pulls, out grinning at you. \"So, have you ever had a fuck like that sexy?\" he asks, sounding on the arrogant side about his size and skill in the sexual fields. As you turn to leave he presses a few more coins into your hand.\n\n\"A bonus, you're a good fuck.\" he tells you before he steps aside to let you leave his home.")
                 if (self.vagTotal > 0):
@@ -13787,7 +13787,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.rndArray = Array()
             if self.cockTotal == 1:
                 self.rndArray.push(1)
-            if self.gender == 1:
+            if self.gender == Gender.MALE:
                 self.rndArray.push(2)
             if self.cockTotal > 0:
                 self.rndArray.push(3)
@@ -16282,7 +16282,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif chance == 2:
             tempDict = {1: "Buy one", 3: "Buy six", 11: "Leave"}
             self.doMainText("Walking through the streets, a cloaked man notices your browsing and interjects your path.\n\n\"Hello there, stranger. You look like you might be interested in some products. I have a very special deal I'm trying to get around. Have you ever wished you were 'bigger' in the downstairs department?", True)
-            if (self.gender == 2):
+            if (self.gender == Gender.FEMALE):
                 self.doMainText(" Or in your case, your husband or boyfriend?")
             self.doMainText(" Well, I've got the thing for you.\" He lifts open one side of his cloak, revealing many pockets filled with little pills. \"These babies will make any man bigger in no time. Male Enhancement, is what I call them. And if you're interested, I can sell you one for 20 coins, or six for 100.")
             if (not self.knowMaleEnhance):
@@ -17146,7 +17146,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                buttonlist[6] = 1
                if (self.tallness < 6 + 4 * self.lilaVulva):
                   tempDict[6] = "Unbirth"
-            if (self.gender != 0 and (self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva) and self.cockTotal > 0) or self.vagTotal > 0):
+            if (self.gender != Gender.ANDRO and (self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva) and self.cockTotal > 0) or self.vagTotal > 0):
                tempDict[7] = "Sex"
             if (self.bag.hasItem(105)):
                tempDict[9] = "Cat's Meow"
@@ -18119,7 +18119,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.outputMainText("You offer to help her learn how to take care of it herself, though you mention it might be a bit... intimate. Nervous and unsure, she meekly nods. Taking her hand, you lead her to your private hut high in the trees where you have been sleeping.\n\nSitting beside her on your bed, you tell her that she'll have to reach up to where it feels the hottest. Nodding, and without thinking, she pulls up her dress in front of you before you can turn away. Her little fuzzy nether-lips are pink and swollen, with webs of her feminine arousal splayed throughout her small lap. Blushing heavily, she turns to you and mewls,\n\n\"I-I'm scared... C-Can you show me?\"", True)
                   self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0))
                   tempDict = {7: "On her", 10: "Don't"}
-                  if (self.gender != 0):
+                  if (self.gender != Gender.ANDRO):
                      tempDict[5] = "On yourself"
                   self.doButtonChoices(tempDict)
 
@@ -18419,13 +18419,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                  self.doListen = doListen
                               else:
                                  self.doMainText(" Moments later, you feel the walls around you shiver and shudder as the space grows larger. Another body slips in beside you, as wet and slippery and hot as you are, and squeezes against you in a rather intimate fashion.\n\n\"Are you comfortable?\" He whispers. You can feel the vibrations of his voice throughout the stretched walls around you.\n\nYou nod, blushing within the darkness, squeezed so tightly against him. The two of you squirm again and again, trying to find a better position that won't leave you so close, but all the warm, slippery rubbing does is arouse you. And him as well, it seems, as you can feel his small prick poke at you through his loincloth. Slowly, the slipping progresses until ")
-                                 if (self.gender == 1 or self.gender == 3 and Utils.percent() <= 50 or self.gender == 0):
+                                 if (self.gender == Gender.MALE or self.gender == Gender.HERM and Utils.percent() <= 50 or self.gender == Gender.ANDRO):
                                     self.doMainText(f"you find yourself turned away from Fidoris, your {self.buttDesc()} rump grinding his small prick between your cheeks. He lets out a whine of surprise as his loincloth slides away, leaving his pointy erection to feel your butt first-hand. His arms wrap around you in embrace, unable to prevent his cock from gliding into your moist ass.")
-                                 elif (self.gender == 2 or self.gender == 3):
+                                 elif (self.gender == Gender.FEMALE or self.gender == Gender.HERM):
                                     self.doMainText(f"you find your {self.legDesc(2)} {self.legVerb(2)}, straddling Fidoris' lap, your {self.vulvaDesc()} slit{self.plural(2)} wedging around his small prick. He lets out a whine of surprise as his loincloth slides away, leaving his pointy erection to feel your folds first-hand. His arms wrap around you in embrace, unable to prevent his cock from gliding into {self.oneYour(2)} wet cunt{self.plural(2)}.")
                                     self.doImpregnate(4)
                                  self.doMainText("\n\nThe two of you quickly begin writhing against each other within the mistress' belly, Fidoris plunging his cat-cock into you again and again. The barbs around the tip of his tiny prick scrape against the walls of your flesh insides, but not nearly large enough to cause any pain. The scraping merely arouses you further, bringing you to orgasm much faster, despite his small size. His little cock begins to squirt a smoldering batch of cum into you, making your own hips buck back in turn with climax.")
-                                 if (self.gender == 1 or self.gender == 3):
+                                 if (self.gender == Gender.MALE or self.gender == Gender.HERM):
                                     self.doMainText(f" Your cock{self.plural(1)} begin{self.plural(3)} to launch your cum within the confined space, smearing about the mistress' womb and making you both sticky.")
                                     self.cumAmount()
                                  self.outputMainText(" Even the walls themselves begin to shake and quiver as you hear ecstatic moans from outside...\n\nHowever, you quickly find yourself setting back down as the constant warmth and comfort of your room calms you. With Fidoris still inside of you, the two of you drift off to sleep...")
@@ -19021,7 +19021,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.rndArray.push(8)
                if (self.vagTotal > 0):
                   self.rndArray.push(9)
-               if (self.gender != 0):
+               if (self.gender != Gender.ANDRO):
                   self.rndArray.push(10)
                tempInt = self.chooseFrom()
                if tempInt == 1:
@@ -19979,7 +19979,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             def doListen():
                if (self.buttonChoice == 6):
                   self.doMainText(f"You slink your way over to the cellar doors, lifting one and shutting it behind you as you slip inside. All the usual bottles that are stored here are gone, having left with the shipment. However, the path still remains and leads you right to the machine. A panel on the side has been removed from the farmer working on it, but it doesn't seem to be dismantled any further to prevent it from functioning.\n\nQuickly stripping your {self.currentClothes()} until you're naked for complete freedom, you give your {self.udderDesc()} udder a gentle rub-down in preparation. As the {self.teatDesc()} teats stiffen slightly, you then pick up the control board and carry it to the platform. You lean over the rail and let your milky bag hang below you. Fiddling with the control board, you're not exactly how it works, but there's not too many buttons and dials. So you press a few until you hear the machine grind awake and the hidden doors beneath you open.\n\nThe soft cylinders rise up and engulf your drippy teats. The tender touch of the gentle compression makes you gasp and squirt into the machine before the pumping even begins. And when the cylinders start to rise and fall, the suction increasing and tugging on your teats, you gush strongly with a moan, the machine whirring to take it all in. Your rump sways from side to side as the pleasant sensations build. Swiftly coming to your first climax, you squeeze your udder between your {self.legDesc(6)}, making the machine fill the basement with even louder churning for several seconds.", True)
-                  if (self.gender != 0):
+                  if (self.gender != Gender.ANDRO):
                      self.doMainText(f"\n\nAfter the first orgasm, the pleasure lingers with the continuing milking. You reach around your {self.udderDesc()} udder and stroke")
                      if (self.cockTotal > 0):
                         self.doMainText(f" {self.oneYour(1)} growing {self.cockDesc()} erection{self.plural(1)}.")
@@ -20186,16 +20186,16 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doMainText(f"\"Really? Fantastic! Just come with me!\" The farmer nearly hops with joy as he twirls around and eagerly leads you towards one of the milking barns. Though, you don't quite go into it as he swerves off course towards a cellar door at the side. He hoists it open, waving for you to head on in.\n\nHeading down the steps, the scent of milk fills your nose. Candles lighting up the cool cellar, large crates surround you. Bottles and bottles of fresh milk waiting to be delivered surround your path. The farmer urges you forward, leading you deeper in until the crates become tools and parts. Equipment from around the farm is either dismantled or waiting to be repaired. And then there's a small workspace cleared out, filled with nothing but a large, clean machine. In front is a mechanical platform, laying several feet wide from the rest of the machine, with a thick railing surrounding it, perfect for tying cows up to as they stand on top.\n\n\"Well, this is it.\" The farmer proudly motions towards it. \"The Auto-Milker 5000! Why 5000? Eh, I thought it sounded nice. But this little doohickey should help save us plenty of work when milking the cows. Now, if you don't mind...\"\n\nHe directs you onto the platform, facing out towards the rail. A hand presses lightly on your back. \"Just need you to bend forward, you can lean over the rail. The cows don't quite walk on two legs, so you gotta press on the rail for the machine's safety protocols.\" He chuckles. You do as you're told, bending forward and leaning comfortably over the thick rail, crossing your arms to rest your head. Then you jerk a little as you feel him grope about your {self.clothesBottom()}. \"Cows don't quite wear clothes either, so we gotta get yer udder outta there.\"\n\nBefore you can protest, he pulls your {self.clothesBottom()} {self.pullUD(2)}, letting your {self.udderDesc()} udder hang freely. He pauses for a moment before going any further, staring at your ", True)
                   else:
                      self.doMainText(f"\"Really? Great! Let's get going.\" The farmer skips a bit with excitement to try his machine again. Back down into the barn cellar, the large machination awaits you. He helps you to the platform and presses your back down towards the rail. \"I really hope it works this time!\"\n\nAgain, in his eagerness, he pulls {self.pullUD(2)} your {self.clothesBottom()} to let your {self.udderDesc()} udder hang loose, but can't help but stare once more at your ", True)
-                  if (self.gender == 1):
+                  if (self.gender == Gender.MALE):
                      self.doMainText(f"{self.cockDesc()} shlong{self.plural(1)}")
                      if (self.showBalls):
                         self.doMainText(f" and {self.ballDesc()} balls")
                      self.doMainText(" that hang between him and the udder.")
-                  elif (self.gender == 2):
+                  elif (self.gender == Gender.FEMALE):
                      self.doMainText(f"{self.vulvaDesc()} hole{self.plural(2)} that look{self.plural(4)} back at him.")
-                  elif (self.gender == 3):
+                  elif (self.gender == Gender.HERM):
                      self.doMainText(f"{self.cockDesc()} shlong{self.plural(1)} and {self.vulvaDesc()} hole{self.plural(2)} between him and the udder.")
-                  elif (self.gender == 0):
+                  elif (self.gender == Gender.ANDRO):
                      self.doMainText(f"{self.buttDesc()} ass between him and the udder.")
                   if (not self.dairyFarmBrand):
                      self.doMainText(f" He quickly clears his throat. \"Errr... Eh-hem... Cows don't exactly have bits like that either. Or, none that I'd look at in that sorta way... Sorry about that!\"\n\nAverting his eyes and quickly getting off the platform, he returns to the front. Grabbing a small control board attached to the machine by a wire, he begins to press some buttons. \"Okay, this thing here controls the whole machine. I can just press this button...\" As he does so, the platform shakes beneath you.\n\nHidden doors part and four soft cylinders rise up beneath your udder. They each separate into quarters with sheets of a flexible material being stretched out between them. They rise up to your {self.teatDesc()} hanging teats, engulfing them. The cylindars press up into your udder slightly and slowly close around your teats, the material snuggly hugging them. All of your teats are held perfectly by the machine, tight enough to hold pressure but not so much to hurt.\n\n\"And the machine hooks the pumps up all by itself, one size fits all. Then all I have to do is press this button...\"\n\nThe machine begins to hum and you feel a sudden suction on your teats. The cylindars begin to rise and fall, pressing into the flesh of your {self.udderDesc()} bag of milk just enough to help put pressure on the glands inside and then pull back while the vaccum within the tubes increase and descrease in rhythm.")
@@ -21218,7 +21218,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doEnd()
                   else:
                      self.doMainText(" By the time you finish growing, you tower over the hill that the cave resides in. You can see far into the distance and you can feel a great draft in your loins.")
-                     if (self.gender == 1 or self.gender == 3 and Utils.percent() <= 50):
+                     if (self.gender == Gender.MALE or self.gender == Gender.HERM and Utils.percent() <= 50):
                         getCum = self.cumAmount()
                         if (self.cockSize * self.cockSizeMod > 400):
                            self.outputMainText(f" The wind across your {self.cockDesc()} cock{self.plural(1)} feel{self.plural(3)} rather... nice, to say the least. And considering {self.plural(5)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Quite soon you find yourself barely able to see the {self.plural(5)} tip{self.plural(1)} as {self.plural(11)} grow{self.plural(3)} off into the distance. Quickly, you find yourself falling over your relatively {self.cockDesc()} girth{self.plural(1)}, the ground rumbling around you as you connect, while you feel {self.plural(9)} drag across the open fields, plowing through forests, and who knows what else you manage to destroy.")
@@ -21258,7 +21258,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                               self.hrs = 3
                               self.doEnd()
                            self.doListen = doListen
-                     elif (self.gender == 2 or self.gender == 3):
+                     elif (self.gender == Gender.FEMALE or self.gender == Gender.HERM):
                         self.outputMainText(f" The wind through your {self.vulvaDesc()} slit{self.plural(2)} feel{self.plural(4)} a bit... nice, to say the least. And considering {self.plural(6)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Looking down at your swelling attributes your eyes focus on the cave below. From this new perspective, the hill looks rather like a rather... lewdly shaped saddle.")
                         self.doNext()
 
@@ -22860,11 +22860,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doNext()
 
                 def doListen():
-                    if self.gender == 1:
+                    if self.gender == Gender.MALE:
                         self.outputMainText("Bending over and leaning up against a pillar, your hand slides down your body to your stiffened shaft. You wiggle your ass teasingly and spread your legs wide, giving him a nice view of your tailhole. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you start to tease your cock, lightly stroking it with a few fingers, starting to please yourself in front of the Lupan male.\n\nThe teasing not enough, you grip your rod tighter, stroking faster, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nHard, moaning, and so lost in yourself, you don't notice the male now behind you. The next thing you feel, is a thick, canine shaft thrusting into your ass, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your tight hole.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your ass drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your tailhole stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your rump feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
-                    elif self.gender == 2:
+                    elif self.gender == Gender.FEMALE:
                         self.outputMainText(f"Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread your pussy lips wide, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunn{self.plural(16)}. The next thing you feel, is a thick, canine shaft thrusting into {self.oneYour(2)} puss{self.plural(16)}, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
-                    elif self.gender == 3:
+                    elif self.gender == Gender.HERM:
                         self.outputMainText(f"Bending over and leaning up against a pillar, your hand slides down your body to your lower lips. You wiggle your ass teasingly and spread pussy lips wide and pressing {self.oneYour(1)} shaft{self.plural(1)} down {self.legWhere(1)} your {self.legDesc(2)}, giving him a nice view of your nethers. With his almost-full attention (almost because he is now stroking his throbbing, pre-leaking canine dick while watching), you wriggle a finger into your lips with a moan, your other hand stroking and playing with your throbbing cock, starting to please yourself in front of the Lupan male.\n\nOne finger not enough, you push in another, pulling out a loud moan as you finger yourself, getting lost in the pleasure, stroking your shaft harder and faster.\n\nWet, moaning, and so lost in yourself, you don't notice the male now behind you. He grabs your hips, making you gasp in surprise, your fingers pulling out of your soaking wet cunt{self.plural(16)}. The next thing you feel, is a thick, canine shaft thrusting into {self.oneYour(2)} puss{self.plural(16)}, a very loud moan of mixed surprise and pleasure escaping you as you feel the throbbing rod slide in all the way to its knot, the inflation pressing up against your quivering lips.\n\nThe manhood thrust into you gets pulled, almost leaving your body before thrusting back in, and out, and in, getting into a pace. You brace yourself against the pillar, not fighting against his assertion.\n\nFeeling his girth fill your cunny drives you up towards your climax, not quite reaching it. Feeling him grip your waist, and breathe against your neck, you bite your lip to stifle a loud moan. His thrusts get harder, and harder, then -POP- your cunny stretches hard as his knot finally enters your body. You try to stifle a scream of ecstasy, but your own climax, your cock spraying your load all over the ground and pillar in front of you, and feeling him bite down on your neck, it is let loose for all to hear.\n\nThe following moments slowly dim into darkness as you faint, your pussy feeling nice and full, of both his knotted cock, and his thick, warm cream.", True)
                     self.doNext()
 
@@ -22938,7 +22938,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             # Rape
             elif self.buttonChoice == 9:
-                if (self.gender == 0 or self.eGen == 0):
+                if (self.gender == Gender.ANDRO or self.eGen == 0):
                     self.outputMainText("What are you going to rape it with? Good intentions?\n\nChoose another option.", True)
                     if (self.currentState == GameState.BATTLE):
                         self.doBattle()
@@ -22952,7 +22952,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.outputMainText(f"\n\nHowever, the {self.enemyName()} overpowers you and tosses you off!")
                         if (self.currentState == GameState.BATTLE):
                             self.enemyAttack()
-                    elif (self.ePref != self.gender and self.ePref != 4 and self.gender != 3 or self.ePref == 0):
+                    elif (self.ePref != self.gender and self.ePref != 4 and self.gender != Gender.HERM or self.ePref == 0):
                         dmg = Math.floor(Utils.percent() / 10 + self.lust / 10)
                         self.doMainText(f"\n\nHowever, the {self.enemyName()} is sorely turned off by your rough pounding on its sensitive area, merely hurting its genitals and its pride.\n\nBut you do deal {dmg} damage and satisfy yourself a bit.")
                         self.doeHP(-dmg)
@@ -22990,7 +22990,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             # Submit
             elif self.buttonChoice == 12:
                 self.doMainText(f"No longer wishing to fight, you attempt to submit yourself to the {self.enemyName()}'s whims in hopes of leaving the battle with a little fun.", True)
-                if (self.ePref == 0 or self.ePref == 1 and self.gender == 2 or self.ePref == 2 and self.gender == 1 or self.gender == 0):
+                if (self.ePref == 0 or self.ePref == 1 and self.gender == Gender.FEMALE or self.ePref == 2 and self.gender == Gender.MALE or self.gender == Gender.ANDRO):
                     self.outputMainText("\n\nHowever, it is quickly apparent that the enemy has no interest in you, in that fashion.")
                     if (self.currentState == GameState.BATTLE):
                         self.enemyAttack()
@@ -23156,7 +23156,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def doEntice(self):
         # TODO: optimize if/else
         chance = Utils.percent()
-        if (self.eGen == 1 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
+        if (self.eGen == 1 and self.gender == Gender.MALE and self.ePref != 2 and self.ePref != 0):
             if (chance <= 50):
                 self.doMainText(f"You turn around and bend over before the {self.enemyName()} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
                 if (self.tail != 0):
@@ -23169,7 +23169,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.ePref == 3:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
 
-        elif (self.eGen == 1 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
+        elif (self.eGen == 1 and self.gender == Gender.FEMALE and self.ePref != 1 and self.ePref != 0):
             if (chance <= 50):
                 self.doMainText(f"You turn around and bend over before the {self.enemyName()}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}", True)
                 if (self.lust > 20 and self.moistCalc(2) > 3):
@@ -23185,7 +23185,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.ePref == 3:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
 
-        elif (self.eGen == 2 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
+        elif (self.eGen == 2 and self.gender == Gender.MALE and self.ePref != 2 and self.ePref != 0):
             if (chance <= 50):
                 self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your cock-flesh", True)
                 if (self.lust > 20):
@@ -23201,7 +23201,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.ePref == 3:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
 
-        elif (self.eGen == 2 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
+        elif (self.eGen == 2 and self.gender == Gender.FEMALE and self.ePref != 1 and self.ePref != 0):
             if (chance <= 50):
                 self.doMainText(f"You spread your {self.legDesc(6)}, crouching down as both hands grind into your {self.vulvaDesc()} pussy", True)
                 if (self.lust > 20 and self.moistCalc(2) > 3):
@@ -23219,7 +23219,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.ePref == 3:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
 
-        elif (self.eGen == 3 and self.gender == 1 and self.ePref != 2 and self.ePref != 0):
+        elif (self.eGen == 3 and self.gender == Gender.MALE and self.ePref != 2 and self.ePref != 0):
             if (chance <= 25):
                 self.doMainText(f"You turn around and bend over before the {self.enemyName()} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
                 if (self.tail != 0):
@@ -23242,7 +23242,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.ePref == 3:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
 
-        elif (self.eGen == 3 and self.gender == 2 and self.ePref != 1 and self.ePref != 0):
+        elif (self.eGen == 3 and self.gender == Gender.FEMALE and self.ePref != 1 and self.ePref != 0):
             if (chance <= 25):
                 self.doMainText(f"You spread your {self.legDesc(6)}, crouching down as both hands grinding into your {self.vulvaDesc()} pussy", True)
                 if (self.lust > 20 and self.moistCalc(2) > 3):
@@ -23270,7 +23270,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.ePref == 3:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10))
 
-        elif (self.gender == 3 and self.ePref != 0 and self.eGen != 0):
+        elif (self.gender == Gender.HERM and self.ePref != 0 and self.eGen != 0):
             if (chance <= 25):
                 self.doMainText(f"You turn around and bend over before the {self.enemyName()}, patting your {self.buttDesc()} ass and {self.vulvaDesc()} pussy. You waggle your {self.hipDesc()} hips, the {self.cockDesc()} bulge in your {self.clothesBottom()} swaying", True)
                 if (self.tail != 0):
@@ -23292,7 +23292,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.ePref in {1, 2}:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10))
 
-        elif (self.gender == 0 and self.ePref != 0 and self.eGen != 0):
+        elif (self.gender == Gender.ANDRO and self.ePref != 0 and self.eGen != 0):
             self.doMainText(f"Your {self.hipDesc()} hips dance provocatively while you lick and suckle your fingers, trying to show off what you can do with what you've still got.", True)
             self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10))
 
@@ -23390,11 +23390,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         # Test Enemy
         if self.enemyID == 1:
-            if self.gender == 1:
+            if self.gender == Gender.MALE:
                 self.doMainText("You stick your cock in the test enemy's butt and cum.", True)
-            elif self.gender == 2:
+            elif self.gender == Gender.FEMALE:
                 self.doMainText("You sit on the test enemy's cock until you cum.", True)
-            elif self.gender == 3:
+            elif self.gender == Gender.HERM:
                 self.doMainText("You stuff your cock in the test enemy's butt, then sit on its cock and cum.", True)
 
         # Lone Wolf
@@ -23424,7 +23424,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         # Horny Felin
         elif self.enemyID == 301:
-            if (self.gender == 1 or Utils.percent() <= 50 and self.gender == 3):
+            if (self.gender == Gender.MALE or Utils.percent() <= 50 and self.gender == Gender.HERM):
                 self.doMainText(f"The felin woman is easily bent forward by your efforts. Her loincloth droops out of the way, giving you a perfect view of the swollen, supple lips that pucker around the crotch of her bikini bottom. Pulling {self.pullUD(2)} your {self.clothesBottom()}, you slide {self.oneYour(1)} {self.cockDesc()} prick{self.plural(1)} out and through the cheeks of her ample rump, making her quiver with anticipation. Not wanting to leave her waiting for too long, the head of your cock pushes into the bikini bottom, pushing through to kiss the waiting hole within.", True)
                 # TODO: if/else-ify
                 if (self.cockSize * self.cockSizeMod > self.eVagLimit(40)):
@@ -23439,7 +23439,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.cockSize * self.cockSizeMod <= self.eVagLimit(40)):
                     self.doMainText("into her womb, making her let out a long and joyful mewl. Before she can become too content, you pull out of her with a slurp, your cum still dribbling from her used sex.")
                 self.cumAmount()
-            elif (self.gender == 2 or self.gender == 3):
+            elif (self.gender == Gender.FEMALE or self.gender == Gender.HERM):
                 self.doMainText("You knock the felin woman backwards onto her ample ass, her legs spreading wide. She cries out as you duck beneath her loincloth and lick her stiff clit through her bikini. Juices flood within your mouth as she instantly reacts, her swollen cunt-lips gnawing at the crotch of the messy bottom. You pull it aside, diving in and getting a good mouthful of her supple flavor. You devour her folds until she twitches uncontrollably, so desparate to come. But, before she does, you consider your own needs and draw your head out before repaclacing it with your own crotch.", True)
                 self.doMainText(f"\n\nYou grind against her stiff clit as it pokes through her loin cloth, your own {self.clitDesc()} button{self.plural(2)} throbbing through your {self.clothesBottom()}.")
                 if (self.cockTotal > 0 and self.cumAmount() > 0):
@@ -23449,7 +23449,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         # Drunken Equan
         elif self.enemyID == 302:
-            if (self.gender == 2 or Utils.percent() <= 50 and self.gender == 3):
+            if (self.gender == Gender.FEMALE or Utils.percent() <= 50 and self.gender == Gender.HERM):
                 self.doMainText(f"The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling {self.pullUD(2)} your {self.clothesBottom()} and showing him your own hungry flesh. You {self.legVerb(1)} your {self.legDesc(2)} over his twitchy rod, kissing the flat head of the horsy member with your {self.vulvaDesc()} lips.", True)
                 if (self.vagLimit() < 32):
                     self.doMainText(f"\n\nHis man-meat is far too large for your cunt{self.plural(2)} however, so you do the next best thing and sit down in his lap. Grinding your hips forward, your {self.clitDesc()} clit{self.plural(2)} hump{self.plural(4)} into his length. The long prick squeezes between your {self.boobDesc()} tits as you press against him, making him tense even more.")
@@ -23467,7 +23467,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText(", while yours sprays across his chest and face")
                     self.doMainText(f".\n\nYou don't give him much time to recover as you pull him out, a bit of after-cum gushing across your clit{self.plural(2)}.")
                     self.doImpregnate(self.enemyBaby())
-            elif (self.gender == 1 or self.gender == 3):
+            elif (self.gender == Gender.MALE or self.gender == Gender.HERM):
                 self.doMainText(f"The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling {self.pullUD(2)} your {self.clothesBottom()} and brandishing {self.oneYour(1)} own {self.cockDesc()} cock{self.plural(1)}. You roll him over onto all fours, his pants quickly slipping from his tight rump as you give it a slap.", True)
                 self.doMainText(f"\n\nHe whinnies loudly as you plunge your {self.cockDesc()} erection into his backside. Again and again, you pump away at his hole, until he lets out a loud whinny. His eyes going wide, his giant rod explodes across the ground until its massive length is swimming in a puddle of his own stuff,")
                 if (self.cumAmount() > 0):
@@ -23477,7 +23477,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         # Octopus Girl
         elif self.enemyID == 303:
-            if self.gender in {1, 3}:  # TODO: Add a percent chance to 3
+            if self.gender in {Gender.MALE, Gender.HERM}:  # TODO: Add a percent chance to 3
                 self.doMainText(f"Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, you pin her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\n\nA sort of 'beak', like octopuses normally have, encompasses the hole. It looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} erection{self.plural(2)} wobble out. Aligning yourself, you thrust ", True)
                 if (self.cockTotal == 1):
                     self.doMainText("it")
@@ -23492,7 +23492,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.cumAmount() > 2000):
                     self.doMainText(" your massive amount of cum causing her to swell further, her soft skin growing lighter as it stretches,")
                 self.doMainText(" until you're fully spent.\n\nJust as you're about to pull out, you see her squirm, her belly jiggling and growing slightly larger, deforming slightly as the offspring inside her shifts.")
-            elif self.gender == 2:
+            elif self.gender == Gender.FEMALE:
                 self.doMainText(f"Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, pinning her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\n\nA sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull {self.pullUD(2)} your {self.clothesBottom()} and begin to grind your {self.vulvaDesc()} cunt{self.plural(2)} against it.\n\nShe lets out a warbling moan. Her hands leave her face, showing the blush and lustful expression she now wears. The beak nips at your {self.clitDesc()} clit{self.plural(2)} whenever the stiff thing{self.plural(2)} rub against it, making you buck in turn. Her tentacles quickly begin to grope around your body, making you slick as the move towards your crotch.", True)
                 if (self.vagTotal > 1 and self.vagTotal < 9):
                     self.doMainText("\n\nOne tentacle for each of your pussies, they softly dive in, as far as they can go before they feel you begin to stretch. They slip in and out as you hump the girl, quickly driving you towards climax.")
@@ -23514,11 +23514,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doImpregnate(self.enemyBaby())
             else:
                 self.doMainText(f"Rather intimidated by his size, you still manage to pull his head down until he's on all fours. You pull {self.pullUD(2)} your {self.clothesBottom()} and shove his face into your naked groin. He quickly notices your scent and lustfully opens his mouth. You debate whether this is actually rape or not as he seems eager to lap at your", True)
-                if self.gender == 1:
+                if self.gender == Gender.MALE:
                     self.doMainText(f" {self.cockDesc()} cock{self.plural(1)}")
-                elif self.gender == 2:
+                elif self.gender == Gender.FEMALE:
                     self.doMainText(f" {self.vulvaDesc()} cunt{self.plural(2)}")
-                elif self.gender == 3:
+                elif self.gender == Gender.HERM:
                     self.doMainText(f" {self.cockDesc()} cock{self.plural(1)} and {self.vulvaDesc()} cunt{self.plural(2)}")
                 self.doMainText(f", expertly sucking and nibbling at your genitals. One of his hands reaches to his underside and begins to audibly slurp across his growing erection. He quickly drives you to orgasm and as his mouth fills with your fluids, you soon find his spraying about your {self.legDesc(10)} as well.\n\nYou both soon back away from each other, spent from the connection.")
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
@@ -23545,11 +23545,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(".")
             else:
                 self.doMainText(f"Rather intimidated by her size, you still manage to pull her head down until she's on all fours. You pull {self.pullUD(2)} your {self.clothesBottom()} and shove her face into your naked groin. She quickly notices your scent and lustfully opens her mouth. You debate whether this is actually rape or not as she seems to eager lap at your", True)
-                if self.gender == 1:
+                if self.gender == Gender.MALE:
                     self.doMainText(f" {self.cockDesc()} cock{self.plural(1)}")
-                elif self.gender == 2:
+                elif self.gender == Gender.FEMALE:
                     self.doMainText(f" {self.vulvaDesc()} cunt{self.plural(2)}")
-                elif self.gender == 3:
+                elif self.gender == Gender.HERM:
                     self.doMainText(f" {self.cockDesc()} cock{self.plural(1)} and {self.vulvaDesc()} cunt{self.plural(2)}")
                 self.doMainText(f", expertly sucking and nibbling at your genitals. Her hands reach to her underside and begins to audibly slurp in her crotch and rub at her bosom. She quickly drives you to orgasm and as her mouth fills with your fluids, you soon find a puddle of clear slime oozing its way about your {self.legDesc(10)} as well.\n\nYou both soon back away from each other, spent from the connection.")
                 if (self.cockTotal > 0):
@@ -23644,11 +23644,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         # Test Enemy
         if self.enemyID == 1:
-            if self.gender == 1:
+            if self.gender == Gender.MALE:
                 self.doMainText("The test enemy pokes its cock in your butt and cums.", True)
-            elif self.gender == 2:
+            elif self.gender == Gender.FEMALE:
                 self.doMainText("The test enemy pokes its cock in your vagina and cums.", True)
-            elif self.gender == 3:
+            elif self.gender == Gender.HERM:
                 self.doMainText("The test enemy pokes its cock in your vagina and cums while stroking you off.", True)
 
         # Cock-Snake
@@ -23708,7 +23708,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (self.lactation > 0):
                 self.doMainText(", delighting in the taste of your milk")
             self.doMainText(f". However, it doesn't take long until she reaches beneath her loin cloth and pulls her bikini bottom to the side before she goes diving into your {self.clothesBottom()},")
-            if (self.gender == 1 or self.gender == 3):
+            if (self.gender == Gender.MALE or self.gender == Gender.HERM):
                 self.doMainText(f" digging out {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}.")
                 if (self.cockSize * self.cockSizeMod > self.eVagLimit(40)):
                     self.doMainText(f" She attempts to stand and squat down upon it, but, to her dismay, she can't seem to push it into her hungry pussy, even though she tried until tears welled up in her eyes from the painful stretching. Instead, she settles for hugging and humping the {self.cockDesc()} thing, grinding her own stiff little erection into it, her feminine juices spilling down its length and over your body.")
@@ -23726,7 +23726,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\n")
                 if (self.knot and self.cockSize * self.cockSizeMod <= self.eVagLimit(40)):
                     self.doMainText("With a high-pitched squeak, she pulls off of your knot without thinking. She rubs her poor cunny from the pain, only to roll her eyes up into her head with the pleasant masturbation. ")
-            elif (self.gender == 2):
+            elif (self.gender == Gender.FEMALE):
                 self.doMainText(f" lapping at your {self.vulvaDesc()} crotch and rouchly licking your {self.clitDesc()} clit{self.plural(2)}.")
                 if (self.clitSize > 25):
                     self.doMainText(f" With a wicked grin, she eyes your {self.clitDesc()} clit{self.plural(2)} hungrily.")
@@ -23747,9 +23747,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # Drunken Equan
         elif self.enemyID == 302:
             self.doMainText("Seeing you laying defenseless and utterly aroused before him, the drunken equan falls to the ground. With a grunt and a grope, he pulls his huge cock from his pants, his erection barely 2/3 its full potential. Considering how drunk he is, it probably won't get much larger.", True)
-            if (self.gender == 1 or self.gender == 3 and Utils.percent() <= 50):
+            if (self.gender == Gender.MALE or self.gender == Gender.HERM and Utils.percent() <= 50):
                 self.doMainText(f" Nevertheless, not caring whether you're male or female, he turns you over to find the hole everybody has. Giving your {self.buttDesc()} ass a slap with his mug, he leans forward and plunges his erection deep inside.")
-            elif (self.gender == 2 or self.gender == 3):
+            elif (self.gender == Gender.FEMALE or self.gender == Gender.HERM):
                 self.doMainText(f" Nevertheless, he slips his arms behind your {self.legDesc(6)}, pushing them up and foward as his cock plows into {self.oneYour(2)} cunt{self.plural(2)}.")
                 if (self.vagLimit() < 12):
                     self.doMainText(f" You cry out in pain as the cock slams against your entrance, completely unable to fit. So, instead, the the horny equan turns you over, plunging his erection deep into your {self.buttDesc()} ass until you can see it bulge through your belly.")
@@ -23774,7 +23774,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         # Octopus Girl
         elif self.enemyID == 303:
-            if (self.gender == 1):
+            if (self.gender == Gender.MALE):
                 self.doMainText(f"With a giggle at your vulnerable state, her tentacles wrap about your {self.buttDesc()} butt, weaving into your {self.clothesBottom()} and pulling out your {self.cockDesc()} erection{self.plural(1)}. She takes {self.oneYour(1)} cock{self.plural(1)} and fondles it with the slimy appendages, making sure it's nice and hard.", True)
                 if (self.cockSize * self.cockSizeMod > 50):
                     self.doMainText(f" Not wanting to stretch herself to engulf your {self.cockDesc()} thing, she instead wraps her tentacles around it, drawing it towards the center of her webbing, just beneath her hips.\n\nYou can't tell what is going on, but you quickly jerk as something nips at your urethra. Nothing painful, just a soft yet rigid fleshy thing, like cartilage, that gently pinches you. Then your eyes go wide as whatever it is begins to dig into your urethra, spreading the last couple of inches wider as it slips inside, holding your cock-tip open like a gaping hole.\n\nAgain, she is gentle, but any pain you might have noticed quickly disappears as all eight of her tentacles work together in harmony, writhing about your cock and making you twitch sporadically on the ground from the intense pleasure. She wrings your cock powerfully, quickly bringing you to a gushing orgasm, spraying your cum through your gaping urethra and filling her body.")
@@ -23783,7 +23783,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.cumAmount() > 2300):
                     self.doMainText(" You come so much that her belly begins to swell larger, stretching to engulf as much of your seed as she can, before gushing back out and down your cock.")
                 self.doMainText("\n\nHer belly shivers a little as it absorbs your cum. It grows slightly larger as her offspring wiggle inside, maturing. With a grin, she slides off of you and back into the ocean, her tentacles twitching excitedly as she disappears...")
-            elif (self.gender == 2):
+            elif (self.gender == Gender.FEMALE):
                 self.doMainText(f"She grins at you, particularly happy to see you submit before her. She leans in for a wet kiss, licking your cheek with her long tongue, as her tentacles wrap around your {self.buttDesc()} butt. They weave into your {self.clothesBottom()} and pull it {self.pullUD(2)}, exposing your swollen and hungry {self.vulvaDesc()} cunt{self.plural(2)}. She then swings back, her tentacles flying wide for a moment and giving you a view of what's behind her webbing.\n\nIn the center of all the tentacles, right beneath her hips, gasps a gaping hole. A sort of 'beak', like octopuses normally have, encompasses it. The beak looks tougher than the surrounding flesh, able to maintain its shape. However, as she rams it against your groin, you notice it's softer than you expected, more like cartilage. Yet, you don't have much time to reflect about what it is as it begins to nip at your nether-lips, prying them open and burying itself within, a few inches deep.\n\nIt doesn't hurt much, but any pain quickly dissipates as her tentacles wrap around your groin. The suction cups underneath stick to your {self.skinDesc()}, giving her a good grip, while some in particular latch onto your clit{self.plural(2)} and lips, tugging and sliming at your arousal. Your hips quickly begin to buck on the ground as she brings you to orgasm after orgasm, your button{self.plural(2)} and vulva swelling larger as fluids from the cups seep into them.", True)
                 if (self.pregCheck(1)):
                     self.doMainText(f"\n\nWhile your mind is distracted by the multiple climaxes, you hardly notice as she begins to wince and groan, her arms hugging her belly. Then, amidst your ecstatic moans, you let out a gasp as something breaches your {self.vulvaDesc()} pussy, round and large.")
@@ -23802,7 +23802,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText("\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals...")
                     self.clitSize += 4
                     self.vulvaSize += 2
-            elif (self.gender == 3):
+            elif (self.gender == Gender.HERM):
                 self.doMainText(f"With a giggle at your vulnerable state, her tentacles wrap about your {self.buttDesc()} butt, weaving into you {self.clothesBottom()} and pulling out your {self.cockDesc()} erection{self.plural(1)}. She takes {self.oneYour(1)} cock{self.plural(1)} and fondles it with the slimy appendages, making sure it's nice and hard.", True)
                 if (self.cockSize * self.cockSizeMod > 50):
                     self.doMainText(f" Not wanting to stretch herself to engulf your {self.cockDesc()} thing, she instead wraps her tentacles around it, drawing it towards the center of her webbing, just beneath her hips.\n\nYou can't tell what is going on, but you quickly jerk as something nips at your urethra. Nothing painful, just a soft yet rigid fleshy thing, like cartilage, that gently pinches you. Then your eyes go wide as whatever it is begins to dig into your urethra, spreading the last couple of inches wider as it slips inside, holding your cock-tip open like a gaping hole.\n\nAgain, she is gentle, but any pain you might have noticed quickly disappears as all eight of her tentacles work together in harmony, writhing about your cock and making you twitch sporadically on the ground from the intense pleasure. She wrings your cock powerfully, quickly bringing you to a gushing orgasm, spraying your cum through your gaping urethra and filling her body.")
@@ -23828,7 +23828,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText("\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals...")
                     self.clitSize += 4
                     self.vulvaSize += 2
-            if ((self.gender == 2 or self.gender == 3) and self.pregCheck(1)):
+            if ((self.gender == Gender.FEMALE or self.gender == Gender.HERM) and self.pregCheck(1)):
                 self.doLust(-Math.floor(self.sen / 2), 2, 2)
             else:
                 self.doLust(-Math.floor(self.sen / 2), 2, 1)
@@ -23854,7 +23854,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # Little Big Bunny-Girl
         elif self.enemyID == 305:
             self.doMainText('A smile crosses the bunny-girl\'s face as you fall before her', True)
-            if ((self.gender == 1 or self.gender == 3 and Utils.percent() > 50) and (self.cockSize * self.cockSizeMod > 140 or self.cockTotal * self.cockSize * self.cockSizeMod > 280)):
+            if ((self.gender == Gender.MALE or self.gender == Gender.HERM and Utils.percent() > 50) and (self.cockSize * self.cockSizeMod > 140 or self.cockTotal * self.cockSize * self.cockSizeMod > 280)):
                 self.doMainText(f", your cock{self.plural(1)} pushing at your {self.clothesBottom()}. She ducks down and releases your member{self.plural(1)} with one hand while her other disappears between her legs. It quickly reappears as she stands up and hovers over you, her fingers spreading her large snatch wide. Her honey drizzles down around your cock{self.plural(1)} with the rest of her swiftly bearing down after it. She lets out a loud sweet moan as she engulfs your length{self.plural(1)}. Her velvety puffy folds soon hug the rest of your body, covering you like warm wet blankets, and your face is buried by her clit. It's a rather comforting position, somewhat relaxing, that only lasts for a few seconds...\n\nHer strong legs quickly kick up, sending her skyward, before plunging back down upon you again. Her movements are so swift and powerful, your cock{self.plural(1)} can't tell if {self.plural(7)} inside or not, only feeling a constant rubbing against {self.plural(5)} sensitive skin. And despite the fervent efforts on your manhood, the bunny-girl still manages to climax first, as she lets out a succulent shout of ecstasy. Her walls clamp around your appendage{self.plural(1)}, sucking {self.plural(9)} in and tugging {self.plural(9)} along with her as her bouncing only grows more enthused.\n\nIt doesn't take long until your own arousal begins to build pressure, though you find that pressure to grow much greater than you would have expected. The bunny-girl's pussy seems to only be growing tighter and tighter, lifting her from your body as your cock{self.plural(1)} push her away. When you finally reach orgasm, she groans loudly as her belly fills and swells. Opening your eyes, you realize you're growing larger, almost your full size! She flies off your erection{self.plural(1)} with a slick pop before she is really harmed and hops away, leaving you to finish gushing outside of the cave...")
             elif (self.udderSize / 2 > 300):
                 self.doMainText(f". Eyeing your {self.udderDesc()} udder through your {self.clothesTop()}, an idea seems to dawn upon her and she ducks down to releas your relatively massive mammaries. Then she stands and hovers over you, her fingers spreading her large snatch wide. Her honey drizzles down around your udder with the rest of her swiftly bearing down after it. She lets out a loud sweet moan as she engulfs your {self.udderDesc()} bag, letting the fleshy balloon fill her. Her velvety puffy folds soon hug the rest of your body, covering you like warm wet blankets, and your face is buried by her clit. It's a rather comforting position, somewhat relaxing, that only lasts for a few seconds...\n\nHer strong legs quickly kick up, sending her skyward, before plunging back down upon you again. Her movements are so swift and powerful, your whole body is lifted by your stretching udder before being slammed back into the ground with the giant little bunny bum crashing back down upon you.")
@@ -24321,7 +24321,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f"\n\nHis cock beating against his belly with each step, his lust overcomes him for a moment. He runs up to you, jumping onto your {self.legDesc(1)} and humps wildly, smearing his canine pre up and down your {self.legDesc(1)}. A small spurt of cum shoots out, the large drop oozing down to your {self.legDesc(10)}. Not exactly a full climax, but enough for now, the wolf backs off.")
                 self.doLust(self.lib / 3, 1)
                 self.doeLust(-Math.floor(Utils.percent() / 10 + self.eSen / 2))
-            elif (attack > 70 and self.gender != 0 and self.gender != 1):
+            elif (attack > 70 and self.gender != Gender.ANDRO and self.gender != Gender.MALE):
                 self.doMainText(f"\n\nThe lone wolf lifts his leg after running up beside you, a bit of urine splashing out onto your {self.legDesc(10)}. However, he was simply peeing, as the heady smell wafts up to your nose, the pheromones making your body shudder with arousal.")
                 self.doLust(Math.floor(Utils.percent() / 10 + self.lib / 4), 1)
             else:
@@ -24337,7 +24337,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f"\n\nHis cock beating against his belly with each step, his lust overcomes him for a moment. He runs up to you, jumping onto your {self.legDesc(1)} and humps wildly, smearing his canine pre up and down your {self.legDesc(1)}. A small spurt of cum shoots out, the large drop oozing down to your {self.legDesc(10)}. Not exactly a full climax, but enough for now, the wolf backs off.")
                 self.doLust(self.lib / 3, 1)
                 self.doeLust(-Math.floor(Utils.percent() / 10 + self.eSen / 2))
-            elif (attack > 70 and self.gender != 0 and self.gender != 1):
+            elif (attack > 70 and self.gender != Gender.ANDRO and self.gender != Gender.MALE):
                 self.doMainText(f"\n\nThe gay wolf lifts his leg after running up beside you, a bit of urine splashing out onto your {self.legDesc(10)}. However, he was simply peeing, as the heady smell wafts up to your nose, the pheromones making your body shudder with arousal.")
                 self.doLust(Math.floor(Utils.percent() / 10 + self.lib / 4), 1)
             else:
@@ -24514,7 +24514,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     for i in range(0, self.pregArray.length, 5):
                         if (self.pregArray[i]):
                             self.pregArray[i + 3] += 10
-                elif (self.gender != 0):
+                elif (self.gender != Gender.ANDRO):
                     self.doMainText("\n\nYour loins feel suddenly more fertile. If you can consider the desire to fuck as being more 'fertile'...")
                     self.doLust(20, 1)
                 else:
@@ -26223,10 +26223,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText(" into your body, disappearing")
             if (self.vagTotal > 0):
                 self.doMainText(f", leaving you with only your vagina{self.plural(2)} and making you solely female.")
-                self.gender = 2
+                self.gender = Gender.FEMALE
             elif (self.vagTotal < 1):
                 self.doMainText(", leaving you with no genitals whatsoever. This is going to make things tough...")
-                self.gender = 0
+                self.gender = Gender.ANDRO
             self.balls = 0
             self.stats(0, 0, -(2 * self.cockTotal), 0)
             self.ballSize = 0
@@ -26272,10 +26272,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if not self.lizanDontShowBalls or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
                     self.doMainText(f", slipping into your {self.vulvaDesc()} lips")
                 self.doMainText(". You now are considered a cross between genders, a herm.")
-                self.gender = 3
+                self.gender = Gender.HERM
             else:
                 self.doMainText(". You have now graduated from androgynous to male, congratulations!")
-                self.gender = 1
+                self.gender = Gender.MALE
             self.ballSize = 1
             self.balls = 2
             self.neuterizerHideBalls = False
@@ -26416,10 +26416,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText(f"\n\nSudden intense cramping makes you double over. A slight moistness in your {self.clothesBottom()} causes your hand to inspect the situation. It reaches your once {self.vulvaDesc()} vulva just in time to feel it shrink to nothing, sealing over with {self.skinDesc()}. It seems you have lost your vagina{self.plural(2)}, ")
             if (self.cockTotal > 0):
                 self.doMainText(f"leaving only your cock{self.plural(1)} remaining. You are now considered only male.")
-                self.gender = 1
+                self.gender = Gender.MALE
             elif (self.cockTotal < 1):
                 self.doMainText("leaving you with no genetalia, completely androgynous where it matters. Things might be difficult...")
-                self.gender = 0
+                self.gender = Gender.ANDRO
             self.vagBellyChange(sizeChange, totalChange)
             self.stats(0, 0, 2 * self.vagTotal, 0)
             self.vagSize = 0
@@ -26447,10 +26447,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.vagSize += sizeChange
             if (self.cockTotal > 0):
                 self.doMainText(f"\n\nYou lay your {self.cockDesc()} cock back down to cover your new slit, as you're now considered to be both genders... A herm.")
-                self.gender = 3
+                self.gender = Gender.HERM
             else:
                 self.doMainText("\n\nYou have now graduated from androgynous to female, congratulations!")
-                self.gender = 2
+                self.gender = Gender.FEMALE
             for i in range(totalChange):
                 if (self.pregArray.length / 5 >= self.vagTotal):
                     break
@@ -27019,7 +27019,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return f"ONE YOUR ERROR {self.cockTotal} {self.vagTotal}"
 
     def bodyDesc(self):
-        if (self.gender == 1):
+        if (self.gender == Gender.MALE):
             if self.body <= 11:
                 return "childish"
             elif self.body <= 17:
@@ -27033,7 +27033,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.body > 25):
                 return "musclebound"
 
-        elif (self.gender == 2):
+        elif (self.gender == Gender.FEMALE):
             if (self.body <= 9):
                 return "childish"
             elif (self.body <= 14):
@@ -27047,7 +27047,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.body > 20):
                 return "musclebound"
 
-        elif (self.gender == 3):
+        elif (self.gender == Gender.HERM):
             if self.body <= 11:
                 return "childish"
             elif self.body <= 23:
@@ -27057,7 +27057,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.body > 23):
                 return "musclebound"
 
-        elif (self.gender == 0):
+        elif (self.gender == Gender.ANDRO):
             if (self.body <= 11):
                 return "childish"
             elif (self.body <= 15):
@@ -27965,17 +27965,17 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return ID in {-1, 5, 7, 12, 13, 14, 16, 25}
 
     def genName(self):
-        if self.gender == 0:
+        if self.gender == Gender.ANDRO:
             return "n androgynous"
-        if self.gender == 1:
+        if self.gender == Gender.MALE:
             if (self.hips > 3 and self.breastSize > 4):
                 return " female"
             return " male"
-        if self.gender == 2:
+        if self.gender == Gender.FEMALE:
             if (self.body > 17 and self.breastSize <= 2):
                 return " male"
             return " female"
-        if self.gender == 3:
+        if self.gender == Gender.HERM:
             return " herm"
         return f"GENDER ERROR {self.gender}"
 
