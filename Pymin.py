@@ -1726,13 +1726,12 @@ class PyminWindow:
     def _set_enforceSize(self, value):
         ...
 
-    def __init__(self, callback=None):
+    def __init__(self):
         self._enforceSize = False
         self._isOpen = False
         self._window = None
         self._backgroundColor = '#FFFFFF'
         self._textColor = '#000000'
-        self.callback = callback
 
     def keyPress(self, e):
         KeyState.keyPress(e)
@@ -1758,6 +1757,8 @@ class PyminWindow:
 
 
 class AboutWindow(PyminWindow):
+    TEXT = f'Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on Nimin v{NIMIN_VERSION}\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {platform.python_version()}'
+
     @property
     def backgroundColor(self):
         return self._backgroundColor
@@ -1778,10 +1779,6 @@ class AboutWindow(PyminWindow):
         if self.isOpen:
             self.window.configureChild('label', foreground=value)
 
-    def __init__(self, callback):
-        super().__init__(callback)
-        self._text = f'Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on Nimin v{NIMIN_VERSION}\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {platform.python_version()}'
-
     def open(self, *e):
         if self.isOpen:
             self.window.lift()
@@ -1791,10 +1788,10 @@ class AboutWindow(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(self.callback.window)
+        self.window.transient(mainobject.window)
         self.window.resizable = False
 
-        self.window.addnwhLabel('display', 'label', x=7, y=9, font=('TkTextFont', 9), anchor='nw', text=self._text, foreground=self.textColor, background=self.backgroundColor)
+        self.window.addnwhLabel('display', 'label', x=7, y=9, font=('TkTextFont', 9), anchor='nw', text=AboutWindow.TEXT, foreground=self.textColor, background=self.backgroundColor)
         self.window._children['label'].configure(anchor='w', justify='left')
 
         # TODO
@@ -1917,8 +1914,8 @@ class PyminWiki(PyminWindow):
             self.window.geometry('700x500')
         self.window.resizable = not value
 
-    def __init__(self, callback):
-        super().__init__(callback)
+    def __init__(self):
+        super().__init__()
         self._focus = 1
         self._currentMenu = None
         self._fontSize = 12
@@ -1941,7 +1938,7 @@ class PyminWiki(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(self.callback.window)
+        self.window.transient(mainobject.window)
 
         if self.enforceSize:
             self.window.resizable = False
@@ -3429,7 +3426,7 @@ class SaveConverter(PyminWindow):
             self.window.lift()
             return
 
-        startType = self.callback is None
+        startType = mainobject is self
 
         # Set up window
         self._window = itk.itkWindow(width=500, height=334, title='Pymin: Save Converter', main=startType)
@@ -3443,8 +3440,8 @@ class SaveConverter(PyminWindow):
                 self.window.tk.call('source', f'{THEME_DIR}/nimin.tcl')
             PyminMain.loadPreferences(self)
         else:
-            self.savelocation = self.callback.savelocation
-            self.window.transient(self.callback.window)
+            self.savelocation = mainobject.savelocation
+            self.window.transient(mainobject.window)
 
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
@@ -3552,7 +3549,7 @@ class SaveEditor(PyminWindow):
         self.window.title('Pymin: Save Editor')
         self.window.geometry('500x400')
         self.window.resizable(False, False)
-        self.window.transient(self.callback.window)
+        self.window.transient(mainobject.window)
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
@@ -3587,7 +3584,7 @@ class SaveEditor(PyminWindow):
         self._isOpen = True
 
     def loadFile(self):
-        file = Path(filedialog.askopenfilename(initialdir=self.callback.savelocation, filetypes=(('All Files', '*'), ('TOML File', '*.toml'), ('XML Files', '*.xml'), ('Shared Objects', '*.sol'), ('Nimin Saves', '*.nim'))))
+        file = Path(filedialog.askopenfilename(initialdir=mainobject.savelocation, filetypes=(('All Files', '*'), ('TOML File', '*.toml'), ('XML Files', '*.xml'), ('Shared Objects', '*.sol'), ('Nimin Saves', '*.nim'))))
         self.filelabel['text'] = str(file)
         ext = file.suffix.lower()
         if ext == '.sol':
@@ -3683,7 +3680,7 @@ class DebugVariableDisplay(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(self.callback.window)
+        self.window.transient(mainobject.window)
 
         if self.enforceSize:
             self.window.resizable = False
@@ -3697,7 +3694,7 @@ class DebugVariableDisplay(PyminWindow):
     def updateText(self, *e):
         if self.isOpen:
             sbpos = self.window._children['text'].yview()
-            self.window._children['text'].text = self.callback.debugVariableDisplayText()
+            self.window._children['text'].text = mainobject.debugVariableDisplayText()
             # Workaround to try to correct scrollbar position (only works sometimes)
             sbpos = 1.0 if sbpos[1] == 1.0 else sbpos[0]  # TODO: Fix this
             # Keep scrollbar position after text update
@@ -3719,7 +3716,7 @@ class DebugAffinityChange(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(self.callback.window)
+        self.window.transient(mainobject.window)
 
         if self.enforceSize:
             self.window.resizable = False
@@ -3731,7 +3728,7 @@ class DebugAffinityChange(PyminWindow):
         self._isOpen = True
 
     def changeAffinity(self):
-        if self.callback.currentState == 0:
+        if mainobject.currentState == 0:
             self.window.configureChild('errlabel', text='Error: Game not loaded')
             raise Error('[DebugAffinityChange.changeAffinity] Game not loaded.')
         values = self.window._children['combo'].getEntries()
@@ -3765,7 +3762,7 @@ class DebugAffinityChange(PyminWindow):
         except:
             self.window._children['errlabel'].text = 'Amount must be an integer'
             raise Error('[DebugAffinityChange.changeAffinity] Amount must be an integer.')
-        self.callback.debugChangeAffinity(aff, amount)
+        mainobject.debugChangeAffinity(aff, amount)
 
 
 class DebugGiveItem(PyminWindow):
@@ -3785,7 +3782,7 @@ class DebugGiveItem(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(self.callback.window)
+        self.window.transient(mainobject.window)
 
         if self.enforceSize:
             self.window.resizable = False
@@ -3797,7 +3794,7 @@ class DebugGiveItem(PyminWindow):
         self._isOpen = True
 
     def giveItem(self):
-        if self.callback.currentState == 0:
+        if mainobject.currentState == 0:
             self.window._children['errlabel'].text = 'Error: Game not loaded'
             raise Error('[DebugGiveItem.giveItem] Game not loaded.')
         EN = self.window._children['combo'].getEntries()
@@ -3818,8 +3815,8 @@ class DebugGiveItem(PyminWindow):
             self.window._children['errlabel'].text = f'Invalid Quantity: {QUAN}'
             raise Error('[DebugGiveItem.giveItem] Quantity must be greater than zero.')
         for i in range(QUAN):
-            self.callback.itemGainArray.push(ID)
-        self.callback.gainItem(self.callback.itemGainArray.pop())
+            mainobject.itemGainArray.push(ID)
+        mainobject.gainItem(mainobject.itemGainArray.pop())
 
 
 class OptionsWindow(PyminWindow):
@@ -3863,7 +3860,7 @@ class OptionsWindow(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(self.callback.window)
+        self.window.transient(mainobject.window)
 
         if self.enforceSize:
             self.window.resizable = False
@@ -3892,7 +3889,7 @@ class OptionsWindow(PyminWindow):
         self.window.addCheckboxWithEntry('options', 'FontColor', x=210, y=54, width=152, height=20, font=labelFont, text='Custom Font Color', entrytext=(40, 'Color:'), indent=38, background=self.backgroundColor, foreground=self.textColor)
 
         # -Save Location
-        self.window.addFileEntryBox('options', 'SaveLocation', x=10, y=98, width=400, height=20, font=labelFont, text='Save Location', indent=0, filetype='dir', fileaction='open', initdir=str(self.callback.savelocation.resolve()), background=self.backgroundColor, foreground=self.textColor)
+        self.window.addFileEntryBox('options', 'SaveLocation', x=10, y=98, width=400, height=20, font=labelFont, text='Save Location', indent=0, filetype='dir', fileaction='open', initdir=str(mainobject.savelocation.resolve()), background=self.backgroundColor, foreground=self.textColor)
 
         # Interface page
         self.window.addNBFrame('nb', 'if', width=420, height=207, text='Interface', background=self.backgroundColor)
@@ -3948,7 +3945,7 @@ class OptionsWindow(PyminWindow):
         self.window.addCheckboxWithLabel('gs', 'ngrammar', x=10, y=76, width=180, height=20, font=labelFont, text='Use n-grammar', background=self.backgroundColor, foreground=self.textColor)
         ToolTip(self.window._children['ngrammar'].frame, text='There are places in the game where it uses "a" but should use "an". This really\nbugged me so I fixed it. (The use of "an" is different between all of the\nflavours of english so it might not look right for you)')
 
-        self.window.addCheckboxWithCombobox('gs', 'replacefemmiemale', x=10, y=98, width=180, height=20, font=labelFont, text='Replace "femmie male"', indent=70, values=('feminine male', self.callback.ptweaksGrammar(3)), exportselection=0, readonly=True, background=self.backgroundColor, foreground=self.textColor)
+        self.window.addCheckboxWithCombobox('gs', 'replacefemmiemale', x=10, y=98, width=180, height=20, font=labelFont, text='Replace "femmie male"', indent=70, values=('feminine male', mainobject.ptweaksGrammar(3)), exportselection=0, readonly=True, background=self.backgroundColor, foreground=self.textColor)
         ToolTip(self.window._children['replacefemmiemale'].frame, text='Replaces the term "femmie male" with either "feminine male" or "femboy"/"femme boy"')
 
         self.window.addCheckboxWithLabel('gs', 'femboyishtogirly', x=10, y=142, width=180, height=20, font=labelFont, text='femboyish -> girly', background=self.backgroundColor, foreground=self.textColor)
@@ -4012,90 +4009,90 @@ class OptionsWindow(PyminWindow):
             ToolTip(self.window._children['NoDamage'].frame, text='Makes the player take no damage from enemies. Currently only works when eDmg is called.')
 
         # Apply button
-        self.window.addWidget(PyminButton, 'display', 'ApplyButton', x=360, y=172, width=50, height=25, font=('Times New Roman', 12), text='Apply', command=partial(self.save, self.callback))
+        self.window.addWidget(PyminButton, 'display', 'ApplyButton', x=360, y=172, width=50, height=25, font=('Times New Roman', 12), text='Apply', command=self.save)
 
         self._isOpen = True
 
-        self.load(self.callback)
+        self.load()
 
-    def load(self, main):
+    def load(self):
         if not self.isOpen:
             raise Exception('[OptionsWindow.load] Method can not be used when window is not open.')
 
-        self.window._children['Theme'].set(main.backgroundColor)
-        self.window._children['FontColor'].set(main.textColor)
-        self.window._children['SaveLocation'].set(str(main.savelocation.resolve()))
-        if main.solonlymode:
+        self.window._children['Theme'].set(mainobject.backgroundColor)
+        self.window._children['FontColor'].set(mainobject.textColor)
+        self.window._children['SaveLocation'].set(str(mainobject.savelocation.resolve()))
+        if mainobject.solonlymode:
             self.window._children['SOLMode'].select()
-        if main.enforceSize:
+        if mainobject.enforceSize:
             self.window._children['FixedRes'].select()
-        if main.customfontcolor:
+        if mainobject.customfontcolor:
             self.window._children['Theme'].select()
-        if main.customthemecolor:
+        if mainobject.customthemecolor:
             self.window._children['FontColor'].select()
-        if main.statusTweaks:
+        if mainobject.statusTweaks:
             self.window._children['StatusTweaks'].select()
-        if main.succubusLeavesOne:
+        if mainobject.succubusLeavesOne:
             self.window._children['SuccubusLeavesOne'].select()
-        if main.useIsBottomOpen:
+        if mainobject.useIsBottomOpen:
             self.window._children['UseIsBottomOpen'].select()
-        if main.lizanDontShowBalls:
+        if mainobject.lizanDontShowBalls:
             self.window._children['LizanDontShowBalls'].select()
-        if main.hermGetsBoth:
+        if mainobject.hermGetsBoth:
             self.window._children['HermGetsBoth'].select()
-        if main.internalBallsEffectBelly:
+        if mainobject.internalBallsEffectBelly:
             self.window._children['IntBallsEffectBelly'].select()
-        if main.directPathToSanctuary:
+        if mainobject.directPathToSanctuary:
             self.window._children['DirectPathToSanc'].select()
-        if main.correctBeastRaceFeet:
+        if mainobject.correctBeastRaceFeet:
             self.window._children['CorrectBeastRaceFeet'].select()
-        if main.gameTweaksMisc:
+        if mainobject.gameTweaksMisc:
             self.window._children['MiscChanges'].select()
-        if main.useNiminTheme:
+        if mainobject.useNiminTheme:
             self.window._children['NiminTheme'].select()
-        if main.scrolledTextBorders:
+        if mainobject.scrolledTextBorders:
             self.window._children['ScrolledTextBorders'].select()
-        if main.oNewGameButton:
+        if mainobject.oNewGameButton:
             self.window._children['newgameoriginalsize'].select()
-        if main.staticdoLevelUPButtons:
+        if mainobject.staticdoLevelUPButtons:
             self.window._children['doLevelUPStaticButtons'].select()
-        if main.useNewSaveLoadDialog:
+        if mainobject.useNewSaveLoadDialog:
             self.window._children['UseExpandedSaveDialog'].select()
-        if main.useNewStash:
+        if mainobject.useNewStash:
             self.window._children['UseNewStash'].select()
-        if main.helpToWiki:
+        if mainobject.helpToWiki:
             self.window._children['helpToWiki'].select()
-        if main.doShopsReturn:
+        if mainobject.doShopsReturn:
             self.window._children['doShopsReturn'].select()
-        if main.respectShowBalls:
+        if mainobject.respectShowBalls:
             self.window._children['showBalls'].select()
-        if main.femmeboyToFemboy:
+        if mainobject.femmeboyToFemboy:
             self.window._children['femmeboytofemboy'].select()
-        if main.shemaleToFuta:
+        if mainobject.shemaleToFuta:
             self.window._children['shemaletofuta'].select()
-        if main.ngrammar:
+        if mainobject.ngrammar:
             self.window._children['ngrammar'].select()
-        if main.femmieMaleReplacement:
+        if mainobject.femmieMaleReplacement:
             self.window._children['replacefemmiemale'].select()
-            self.window._children['replacefemmiemale'].current(main.femmieMaleReplacement - 1)
-        if main.femboyishToGirly:
+            self.window._children['replacefemmiemale'].current(mainobject.femmieMaleReplacement - 1)
+        if mainobject.femboyishToGirly:
             self.window._children['femboyishtogirly'].select()
-        if main.snuggleBallTweak:
+        if mainobject.snuggleBallTweak:
             self.window._children['snuggleball'].select()
-        if main.grammarFixes:
+        if mainobject.grammarFixes:
             self.window._children['grammarMisc'].select()
         if as3state.as3DebugEnable:
-            if main.debugChooseSenario:
+            if mainobject.debugChooseSenario:
                 self.window._children['ChooseSenario'].select()
-            if main.debugNoDamage:
+            if mainobject.debugNoDamage:
                 self.window._children['NoDamage'].select()
 
-    def save(self, main):
+    def save(self):
         if not self.isOpen:
             raise Exception('[OptionsWindow.save] Method can not be used when window is not open.')
 
-        main.solonlymode = self.window._children['SOLMode'].getcb()
-        main.enforceSize = self.window._children['FixedRes'].getcb()
+        mainobject.solonlymode = self.window._children['SOLMode'].getcb()
+        mainobject.enforceSize = self.window._children['FixedRes'].getcb()
 
         # Custom Theme Colour
         if self.window._children['Theme'].getcb():
@@ -4105,17 +4102,17 @@ class OptionsWindow(PyminWindow):
             if not Utils.isValidHex(self.window._children['Theme'].get()):
                 self.window._children['Theme']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomThemeColor is not a valid hexadecimal color code')
-            if not main.customthemecolor:
-                main.obackgroundcolor = main.backgroundColor
-            main.customthemecolor = True
+            if not mainobject.customthemecolor:
+                mainobject.obackgroundcolor = mainobject.backgroundColor
+            mainobject.customthemecolor = True
             if self.window._children['Theme']["background"] == '#FF3333':
                 self.window._children['Theme']["background"] = '#FFFFFF'
-            main.backgroundColor = self.window._children['Theme'].get()
-            main.window._children['themebutton'].state = 'disabled'
+            mainobject.backgroundColor = self.window._children['Theme'].get()
+            mainobject.window._children['themebutton'].state = 'disabled'
         else:
-            main.customthemecolor = False
-            main.backgroundColor = main.obackgroundcolor
-            main.window._children['themebutton'].state = 'normal'
+            mainobject.customthemecolor = False
+            mainobject.backgroundColor = mainobject.obackgroundcolor
+            mainobject.window._children['themebutton'].state = 'normal'
 
         # Custom Font Colour
         if self.window._children['FontColor'].getcb():
@@ -4125,17 +4122,17 @@ class OptionsWindow(PyminWindow):
             if not Utils.isValidHex(self.window._children['FontColor'].get()):
                 self.window._children['FontColor']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomFontColor is not a valid hexadecimal color code')
-            if not main.customfontcolor:
-                main.otextcolor = main.textColor
-            main.customfontcolor = True
+            if not mainobject.customfontcolor:
+                mainobject.otextcolor = mainobject.textColor
+            mainobject.customfontcolor = True
             if self.window._children['FontColor']['background'] == '#FF3333':
                 self.window._children['FontColor']['background'] = '#FFFFFF'
-            main.textColor = self.window._children['FontColor'].get()
-            main.window._children['textcolorbutton'].state = 'disabled'
+            mainobject.textColor = self.window._children['FontColor'].get()
+            mainobject.window._children['textcolorbutton'].state = 'disabled'
         else:
-            main.customfontcolor = False
-            main.textColor = main.otextcolor
-            main.window._children['textcolorbutton'].state = 'normal'
+            mainobject.customfontcolor = False
+            mainobject.textColor = mainobject.otextcolor
+            mainobject.window._children['textcolorbutton'].state = 'normal'
 
         # Save Location
         if self.window._children['SaveLocation'].get() == '':
@@ -4147,51 +4144,51 @@ class OptionsWindow(PyminWindow):
             raise Error('[OptionsWindow.save] SaveLocation is not a valid location on the current platform')
         if self.window._children['SaveLocation']['background'] == '#FF3333':
             self.window._children['SaveLocation']['background'] = '#FFFFFF'
-        main.savelocation = Path(self.window._children['SaveLocation'].get()).resolve()
+        mainobject.savelocation = Path(self.window._children['SaveLocation'].get()).resolve()
 
-        main.statusTweaks = self.window._children['StatusTweaks'].getcb()
-        main.succubusLeavesOne = self.window._children['SuccubusLeavesOne'].getcb()
-        main.useIsBottomOpen = self.window._children['UseIsBottomOpen'].getcb()
-        main.lizanDontShowBalls = self.window._children['LizanDontShowBalls'].getcb()
-        main.hermGetsBoth = self.window._children['HermGetsBoth'].getcb()
-        main.internalBallsEffectBelly = self.window._children['IntBallsEffectBelly'].getcb()
-        main.directPathToSanctuary = self.window._children['DirectPathToSanc'].getcb()
-        main.correctBeastRaceFeet = self.window._children['CorrectBeastRaceFeet'].getcb()
-        main.gameTweaksMisc = self.window._children['MiscChanges'].getcb()
+        mainobject.statusTweaks = self.window._children['StatusTweaks'].getcb()
+        mainobject.succubusLeavesOne = self.window._children['SuccubusLeavesOne'].getcb()
+        mainobject.useIsBottomOpen = self.window._children['UseIsBottomOpen'].getcb()
+        mainobject.lizanDontShowBalls = self.window._children['LizanDontShowBalls'].getcb()
+        mainobject.hermGetsBoth = self.window._children['HermGetsBoth'].getcb()
+        mainobject.internalBallsEffectBelly = self.window._children['IntBallsEffectBelly'].getcb()
+        mainobject.directPathToSanctuary = self.window._children['DirectPathToSanc'].getcb()
+        mainobject.correctBeastRaceFeet = self.window._children['CorrectBeastRaceFeet'].getcb()
+        mainobject.gameTweaksMisc = self.window._children['MiscChanges'].getcb()
 
         if THEME_DIR.is_dir():
             if self.window._children['NiminTheme'].getcb():
-                main.useNiminTheme = True
-                main.style.theme_use('nimin')
+                mainobject.useNiminTheme = True
+                mainobject.style.theme_use('nimin')
             else:
-                main.useNiminTheme = False
-                main.style.theme_use('default')
-        main.scrolledTextBorders = self.window._children['ScrolledTextBorders'].getcb()
-        tempng = main.oNewGameButton
-        main.oNewGameButton = self.window._children['newgameoriginalsize'].getcb()
-        if tempng != main.oNewGameButton and main.shownewgame:
-            main.hideNGButton()
-            main.showNGButton()
-        main.staticdoLevelUPButtons = self.window._children['doLevelUPStaticButtons'].getcb()
-        main.useNewSaveLoadDialog = self.window._children['UseExpandedSaveDialog'].getcb()
-        main.useNewStash = self.window._children['UseNewStash'].getcb()
-        main.helpToWiki = self.window._children['helpToWiki'].getcb()
-        main.doShopsReturn = self.window._children['doShopsReturn'].getcb()
+                mainobject.useNiminTheme = False
+                mainobject.style.theme_use('default')
+        mainobject.scrolledTextBorders = self.window._children['ScrolledTextBorders'].getcb()
+        tempng = mainobject.oNewGameButton
+        mainobject.oNewGameButton = self.window._children['newgameoriginalsize'].getcb()
+        if tempng != mainobject.oNewGameButton and mainobject.shownewgame:
+            mainobject.hideNGButton()
+            mainobject.showNGButton()
+        mainobject.staticdoLevelUPButtons = self.window._children['doLevelUPStaticButtons'].getcb()
+        mainobject.useNewSaveLoadDialog = self.window._children['UseExpandedSaveDialog'].getcb()
+        mainobject.useNewStash = self.window._children['UseNewStash'].getcb()
+        mainobject.helpToWiki = self.window._children['helpToWiki'].getcb()
+        mainobject.doShopsReturn = self.window._children['doShopsReturn'].getcb()
 
-        main.respectShowBalls = self.window._children['showBalls'].getcb()
-        main.femmeboyToFemboy = self.window._children['femmeboytofemboy'].getcb()
-        main.shemaleToFuta = self.window._children['shemaletofuta'].getcb()
-        main.ngrammar = self.window._children['ngrammar'].getcb()
+        mainobject.respectShowBalls = self.window._children['showBalls'].getcb()
+        mainobject.femmeboyToFemboy = self.window._children['femmeboytofemboy'].getcb()
+        mainobject.shemaleToFuta = self.window._children['shemaletofuta'].getcb()
+        mainobject.ngrammar = self.window._children['ngrammar'].getcb()
         if self.window._children['replacefemmiemale'].getcb():
-            main.femmieMaleReplacement = self.window._children['replacefemmiemale'].current() + 1
+            mainobject.femmieMaleReplacement = self.window._children['replacefemmiemale'].current() + 1
             # TODO: Update the text based on the value of self.femmeboyToFemboy
-        main.femboyishToGirly = self.window._children['femboyishtogirly'].getcb()
-        main.snuggleBallTweak = self.window._children['snuggleball'].getcb()
-        main.grammarFixes = self.window._children['grammarMisc'].getcb()
+        mainobject.femboyishToGirly = self.window._children['femboyishtogirly'].getcb()
+        mainobject.snuggleBallTweak = self.window._children['snuggleball'].getcb()
+        mainobject.grammarFixes = self.window._children['grammarMisc'].getcb()
         if as3state.as3DebugEnable:
-            main.debugChooseSenario = self.window._children['ChooseSenario'].getcb()
-            main.debugNoDamage = self.window._children['NoDamage'].getcb()
-        main.savePreferences()
+            mainobject.debugChooseSenario = self.window._children['ChooseSenario'].getcb()
+            mainobject.debugNoDamage = self.window._children['NoDamage'].getcb()
+        mainobject.savePreferences()
 
 
 # NOTE: These can not be enums because of the save system
@@ -4345,14 +4342,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         super().__init__()
 
         # Windows
-        self.aboutwindow = AboutWindow(self)
-        self.options = OptionsWindow(self)
-        self.wiki = PyminWiki(self)
-        self.saveconverter = SaveConverter(self)
-        self.saveeditor = SaveEditor(self)
-        self.debugvarwindow = DebugVariableDisplay(self)
-        self.debugaffwindow = DebugAffinityChange(self)
-        self.debuggiveitemwindow = DebugGiveItem(self)
+        self.aboutwindow = AboutWindow()
+        self.options = OptionsWindow()
+        self.wiki = PyminWiki()
+        self.saveconverter = SaveConverter()
+        self.saveeditor = SaveEditor()
+        self.debugvarwindow = DebugVariableDisplay()
+        self.debugaffwindow = DebugAffinityChange()
+        self.debuggiveitemwindow = DebugGiveItem()
 
         # Misc added variables
         self.tempBagPage = 1  # Used in moveToBag, moveToStash, and doSell to decouple the page number from the real one
