@@ -15018,762 +15018,762 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def doLevelUP(self):
-      # HERE
-      self.outputMainText(f"You have this many perks pending: {self.levelUP}\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.", True)
-      if self.staticdoLevelUPButtons:
-         self.choiceListArray = Array("Super Perk", "", "Body Build", "Hyper Happy", "", "Alchemist", "", "Shapeshifty")
-         if (self.vagTotal > 0):
-            self.choiceListArray[4] = "Baby Fact"
-         if (self.lactation > 0 or self.udderLactation > 0):
-            self.choiceListArray[6] = "Milk Maid"
-      else:
-         self.choiceListArray = Array("Super Perk", "", "Body Build", "Hyper Happy")
-         if (self.vagTotal > 0):
-            self.choiceListArray.push("Baby Fact")
-         self.choiceListArray.push("Alchemist")
-         if (self.lactation > 0 or self.udderLactation > 0):
-            self.choiceListArray.push("Milk Maid")
-         self.choiceListArray.push("Shapeshifty")
-      self.choiceListButtons("Level Up")
+        self.outputMainText(f"You have this many perks pending: {self.levelUP}\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.", True)
+        if self.staticdoLevelUPButtons:
+            self.choiceListArray = Array("Super Perk", "", "Body Build", "Hyper Happy", "", "Alchemist", "", "Shapeshifty")
+            if (self.vagTotal > 0):
+                self.choiceListArray[4] = "Baby Fact"
+            if (self.lactation > 0 or self.udderLactation > 0):
+                self.choiceListArray[6] = "Milk Maid"
+        else:
+            self.choiceListArray = Array("Super Perk", "", "Body Build", "Hyper Happy")
+            if (self.vagTotal > 0):
+                self.choiceListArray.push("Baby Fact")
+            self.choiceListArray.push("Alchemist")
+            if (self.lactation > 0 or self.udderLactation > 0):
+                self.choiceListArray.push("Milk Maid")
+            self.choiceListArray.push("Shapeshifty")
+        self.choiceListButtons("Level Up")
 
-      def doListen():
-         self.choiceListSelect("Level Up")
-         # NOTE: Unused
-         #if (self.buttonChoice == 4 or self.buttonChoice == 8):
-         #   self.doLevelUP()
-         if (self.buttonChoice == 12):
-            self.doReturn()
-         else:
-            self.choicePage = 1
-         if self.choiceListResult[0] == "Body Build":
-            self.outputMainText(f"Body Builder is training to make you strong and more buff.\n\nWith every level in Body Builder, you gain a +2 increase to your maximum HP.\n\nWith every 2 levels, your Strength score increases by 2.\n\nEvery 3 levels, you grow 2 inches taller and your body fills out more.\n\nYou have {self.bodyBuildLevel} levels in Body Builder.\n\n\nAre you sure you want to spend a Perk on Body Builder?", True)
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.HPMod += 2
-                  self.doHP(2)
-                  self.doMainText("The exercise makes you healthier.", True)
-                  if (Math.floor((self.bodyBuildLevel + 1) / 2) > Math.floor(self.bodyBuildLevel / 2)):
-                     self.stats(2, 0, 0, 0)
-                     self.doMainText(" You flex your muscles, feeling stronger already!")
-                  if (Math.floor((self.bodyBuildLevel + 1) / 3) > Math.floor(self.bodyBuildLevel / 3)):
-                     self.body += 2
-                     self.doMainText("\n\nEven your body feels more developed and you measure 2 inches taller than you were before.")
-                     self.tallness += 2
-                  self.displayMainText()
-                  self.bodyBuildLevel += 1
-                  self.levelUP -= 1
-                  self.doEnd()
-               else:
-                  self.doLevelUP()
-            self.doListen = doListen
-
-         # Cut/Unfinished Content
-         elif self.choiceListResult[0] == "Lust Mage":
-            ...
-
-         elif self.choiceListResult[0] == "Hyper Happy":
-            self.outputMainText(f"Hyper Happy is a perk for those who like things... 'big'.\n\nEvery level of Hyper Happy, you can choose a body part you would like to make a little bigger.\n\nEvery 3 levels, you become slightly used to your growth, increasing your carrying capacity.\n\nEvery 5th level, you forego that level's smaller change for a much greater growth.\n\nYou have {self.hyperHappyLevel} levels in Hyper Happy.", True)
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  if (Math.floor((self.hyperHappyLevel + 1) / 5) == Math.floor(self.hyperHappyLevel / 5)):
-                     self.outputMainText("Choose a body part you would like to increase.", True)
-                     self.choiceListArray = Array("Breasts", "Nipples", "Butt", "Hips")
-                     if (self.vagTotal > 0):
-                        self.choiceListArray.push("Pussy", "Vulva", "Clit")
-                     if (self.cockTotal > 0):
-                        self.choiceListArray.push("Cock")
-                        if (self.showBalls):
-                           self.choiceListArray.push("Balls")
-                     if (self.udders):
-                        self.choiceListArray.push("Udder", "Teats")
-                     self.choiceListButtons("Hyper Happy")
-
-                     def doListen():
-                        self.choiceListSelect("Hyper Happy")
-                        temp = self.choiceListResult[0]
-                        if temp == "Cock":
-                           self.doMainText(f"Your cock{self.plural(1)} grow{self.plural(3)} slightly larger.", True)
-                           self.cockChange(2, 0)
-                        elif temp == "Balls":
-                           self.ballSize += 2
-                           self.doMainText("Your testicles swell a bit.", True)
-                        elif temp == "Pussy":
-                           self.doMainText(f"Your vagina{self.plural(2)} grow{self.plural(4)} slightly deeper.", True)
-                           self.vagChange(2, 0)
-                        elif temp == "Vulva":
-                           self.vulvaSize += 2
-                           self.doMainText("Your pussy lips swell a bit.", True)
-                        elif temp == "Clit":
-                           self.clitSize += 2
-                           self.doMainText(f"Your clit{self.plural(2)} grow{self.plural(4)} slightly larger.", True)
-                        elif temp == "Breasts":
-                           self.breastSize += 2
-                           self.doMainText("Your breasts swell a bit.", True)
-                        elif temp == "Nipples":
-                           self.nippleSize += 2
-                           self.doMainText("Your nipples grow slightly longer.", True)
-                        elif temp == "Udder":
-                           self.udderSize += 2
-                           self.doMainText("Your udder swells a bit.", True)
-                        elif temp == "Teats":
-                           self.teatSize += 2
-                           self.doMainText("Your teats grow slightly longer.", True)
-                        elif temp == "Butt":
-                           self.butt += 2
-                           self.doMainText("Your rump swells a bit.", True)
-                        elif temp == "Hips":
-                           self.hips += 2
-                           self.doMainText("Your hips widen a bit.", True)
-                        self.displayMainText()
-                        if (self.buttonChoice == 4 or self.buttonChoice == 8):
-                           self.choiceListButtons("Hyper Happy")
-                        elif (self.buttonChoice == 12):
-                           self.choicePage = 1
-                           self.doLevelUP()
-                        else:
-                           self.choicePage = 1
-                           self.levelUP -= 1
-                           self.hyperHappyLevel += 1
-                           self.doEnd()
-                     self.doListen = doListen
-                  if (Math.floor((self.hyperHappyLevel + 1) / 5) > Math.floor(self.hyperHappyLevel / 5)):
-                     self.outputMainText("Choose a body part you would like to greatly increase. This will be 10x more effective than a normal level in Hyper Happy, so be careful what you choose.", True)
-                     self.choiceListArray = Array("Breasts", "Nipples", "Butt", "Hips")
-                     if (self.vagTotal > 0):
-                        self.choiceListArray.push("Pussy", "Vulva", "Clit")
-                     if (self.cockTotal > 0):
-                        self.choiceListArray.push("Cock")
-                        if (self.showBalls):
-                           self.choiceListArray.push("Balls")
-                     if (self.udders):
-                        self.choiceListArray.push("Udder", "Teats")
-                     self.choiceListButtons("Hyper Happy")
-
-                     def doListen():
-                        self.choiceListSelect("Hyper Happy")
-                        if (self.buttonChoice != 4 and self.buttonChoice != 8 and self.buttonChoice != 12):
-                           self.outputMainText("With some focus and a sudden surge of growth, your ", True)
-                        temp = self.choiceListResult[0]
-                        if temp == "Cock":
-                           self.doMainText(f"cock{self.plural(1)} extend{self.plural(3)} within your {self.clothesBottom()}, growing thicker and longer until {self.plural(11)} spring{self.plural(3)} out and you catch {self.plural(11)} in your hands. Heavier and more cumbersome, you barely manage to fit {self.plural(9)} back into your {self.clothesBottom()}...")
-                           self.cockChange(20, 0)
-                        elif temp == "Balls":
-                           self.ballSize += 20
-                           self.doMainText(f"testicles swell tremendously within your {self.clothesBottom()}, lifting your cock{self.plural(1)} and pushing against your thighs. You quickly pull {self.pullUD(2)} your {self.clothesBottom()} and breathe a sigh of relief as the orbs settle before you. It takes some time to squeeze them back in...")
-                        elif temp == "Pussy":
-                           self.doMainText(f"vagina{self.plural(2)} grow{self.plural(4)} much deeper, filling you up inside with more tunnel space to plow...")
-                           self.vagChange(20, 0)
-                        elif temp == "Vulva":
-                           self.vulvaSize += 20
-                           self.doMainText(f"pussy lips swell tremendously, bulging in your {self.clothesBottom()} and pressing into your thighs until you have to pull{self.pullUD(2)} your {self.clothesBottom()} and give your labiasome air. So thick and tender, it takes some time to stuff yourself back into your clothes...")
-                        elif temp == "Clit":
-                           self.clitSize += 20
-                           self.doMainText(f"clit{self.plural(2)} extend{self.plural(4)} within your {self.clothesBottom()}, forming a more noticeable bulge in the fabric and nearly driving you to orgasm as {self.plural(12)} drag{self.plural(4)} across the cloth...")
-                        elif temp == "Breasts":
-                           self.breastSize += 20
-                           self.doMainText(f"breasts swell tremendously, pressing against your {self.clothesTop()} until you have to pull the cloth {self.pullUD(1)} and let your bosom fall out with a gasp. They're much heavier and wobble a bit until you can get balanced and take some time to stuff back in...")
-                        elif temp == "Nipples":
-                           self.nippleSize += 20
-                           self.doMainText(f"nipples grow much longer, protruding through your {self.clothesTop()} far more and making you gasp in near-orgasm as they drag across the fabric...")
-                        elif temp == "Udder":
-                           self.udderSize += 20
-                           self.doMainText("udder swells tremendously, making you fall to your knees as it weighs you down until you let it flop over the ground. You take a few moments before you're able to lift yourself back up, swinging your hips slightly as you try to balance yourself with the added mass...")
-                        elif temp == "Teats":
-                           self.teatSize += 20
-                           self.doMainText("teats grow much longer, flopping out over your udder and protruding much further, almost like you've got multiple erections forming over your belly...")
-                        elif temp == "Butt":
-                           self.butt += 20
-                           self.doMainText(f"rump swells tremendously, making your {self.clothesBottom()} creak as your tush pushes at the fabric. You quickly pull the {self.clothesBottom()} {self.pullUD(2)} and bend forward while your ass hangs out behind you, wobbling and jiggling with its sudden spurt. You have quite some trouble fitting back into your clothes, with a good deal of crack and cheek still exposed...")
-                        elif temp == "Hips":
-                           self.hips += 20
-                           self.doMainText(f"hips widen tremendously, making your {self.clothesBottom()} pull tighter and tigher around your waist. The fabric slips over your pelvis as it tries to make room until you're eventually sucking in your gut the best you can to not make the cloth explode...")
-                        self.displayMainText()
-                        if self.buttonChoice in {4, 8}:
-                           self.choiceListButtons("Hyper Happy")
-                        elif self.buttonChoice == 12:
-                           self.choicePage = 1
-                           self.doLevelUP()
-                        else:
-                           self.levelUP -= 1
-                           self.hyperHappyLevel += 1
-                           self.doEnd()
-                     self.doListen = doListen
-                  if (Math.floor((self.hyperHappyLevel + 1) / 3) > Math.floor(self.hyperHappyLevel / 3)):
-                     self.outputMainText("\n\nYou also become a bit more accustomed to your attributes, learning how to carry them more efficiently.")
-                     self.carryMod += 10
-               else:
-                  self.doLevelUP()
-            self.doListen = doListen
-
-         elif self.choiceListResult[0] == "Baby Fact":
-            self.outputMainText(f"Baby Factory makes you much better at making babies.\n\nEvery level of Baby Factory increases your chance to get pregnant by 4%.\n\nEvery 2 levels, you have an increased chance of having more offspring.\n\nEvery 4 levels results in hip and rear growth.\n\nYou have {self.babyFactLevel} levels in Baby Factory.\n\n\nAre you sure you want to spend a Perk on Baby Factory?", True)
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.pregChanceMod += 4
-                  self.doMainText("There's an odd feeling like you... 'need' to get pregnant? Like you could really enjoy some hot come inside of you...", True)
-                  if (Math.floor((self.babyFactLevel + 1) / 2) > Math.floor(self.babyFactLevel / 2)):
-                     self.extraPregChance += 5
-                     self.doMainText("\n\nYour ovaries kinda tickle a little, a tad more likely to pop out more eggs when you ovulate.")
-                  if (Math.floor((self.babyFactLevel + 1) / 4) > Math.floor(self.babyFactLevel / 4)):
-                     self.hips += 3
-                     self.butt += 3
-                     self.doMainText("\n\nWith all of the fertile preparation, your hips widen and your ass swells, giving you a more fecund appearance.")
-                  self.displayMainText()
-                  self.levelUP -= 1
-                  self.babyFactLevel += 1
-                  self.doEnd()
-               else:
-                  self.doLevelUP()
-            self.doListen = doListen
-
-         elif self.choiceListResult[0] == "Alchemist":
-            self.outputMainText(f"When not turning metals into gold, alchemists also dabble in a variety of other... things.\n\nEvery level, you manage to scrounge up an ingredient or two for a recipe you know, finding more as you become more proficient.\n\nAlso, every level of Alchemist increases your chance of creating an extra simple concoction by 2%, complex concoction by 1%, and advanced concoction by .66%, up to a maximum of 4 concoctions from a single batch.\n\nYou have {self.alchemistLevel} levels in Alchemist.\n\n\nAre you sure you want to spend a Perk on Alchemist?", True)
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.outputMainText("Your alchemical prowess has improved!", True)
-                  self.levelUP -= 1
-                  self.alchemistLevel += 1
-                  i = 0
-                  while (Utils.percent() < self.alchemistLevel * (10 + Utils.percent()) - 20 * (i + 2) * i):
-                     self.rndArray = Array(209, 110, 203, 212)
-                     if (self.knowLustDraft):
-                        self.rndArray.push(209, 114, 523)
-                     if (self.knowRejuvPot):
-                        self.rndArray.push(115, 203)
-                     if (self.knowExpPreg):
-                        self.rndArray.push(114, 219)
-                     if (self.knowBallSwell):
-                        self.rndArray.push(208)
-                     if (self.knowMaleEnhance):
-                        self.rndArray.push(201, 208, 218)
-                     if (self.knowSLustDraft):
-                        self.rndArray.push(209, 112, 524)
-                     if (self.knowSRejuvPot):
-                        self.rndArray.push(503, 500, 501)
-                     if (self.knowSExpPreg):
-                        self.rndArray.push(213, 219)
-                     if (self.knowSBallSwell):
-                        self.rndArray.push(208, 218)
-                     if (self.knowGenSwap):
-                        self.rndArray.push(110, 120)
-                     if (self.knowMasoPot):
-                        self.rndArray.push(203, 503)
-                     if (self.knowBabyFree):
-                        self.rndArray.push(110, 203)
-                     if (self.knowPotPot):
-                        self.rndArray.push(507, 523)
-                     if (self.knowMilkSuppress):
-                        self.rndArray.push(201, 533)
-                     if (self.knowSGenSwap):
-                        self.rndArray.push(201, 202, 207, 210)
-                     if (self.knowSMasoPot):
-                        self.rndArray.push(222, 504)
-                     if (self.knowSBabyFree):
-                        self.rndArray.push(120, 210)
-                     if (self.knowSPotPot):
-                        self.rndArray.push(512, 524)
-                     if (self.knowPussJuice):
-                        self.rndArray.push(210, 114)
-                     if (self.knowPheromone):
-                        self.rndArray.push(530, 212, 206)
-                     if (self.knowBazoomba):
-                        self.rndArray.push(207, 212, 501, 529)
-                     self.itemAdd(self.chooseFrom())
-                     i += 1
-                  self.doEnd()
-               else:
-                  self.doLevelUP()
-            self.doListen = doListen
-
-         elif self.choiceListResult[0] == "Milk Maid":
-            self.outputMainText(f"If you want to feed the world, Milk Maid is... well, one way to go I suppose.\n\nWith every level of Milk Maid, your lactation rate increases by 100 ml/hr (and so does your udder lactation rate, if you have an udder).\n\nEvery other level increases your milk modifier (a bonus that won't drop naturally and applies to all sources) by 50 ml/hr. Your milk modifier doesn't deplete naturally and adds to your lactation rate when you're lactating. It also applies to udder lactation as well.\n\nEvery 4th level increases your base milk capacity 300 ml, before engorgement is calculated.\n\nEvery 5th level, your affinity for milk makes you more receptive to the healing powers of milk, increasing the amount of HP restored by 2 whenever you drink it.\n\nYou have {self.milkMaidLevel} levels in Milk Maid.\n\n\nAre you sure you want to spend a Perk on Milk Maid?", True)
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.lactChange(1, 100)
-                  if (self.udders):
-                     self.lactChange(2, 100)
-                  self.doMainText("Your mammaries feel warm and you can already feel them begin to swell with the sudden increase in production.", True)
-                  if (Math.floor((self.milkMaidLevel + 1) / 2) > Math.floor(self.milkMaidLevel / 2)):
-                     self.milkMod += 50
-                     self.doMainText(" So much so that you'll always be prone to large amounts of milking...")
-                  if (Math.floor((self.milkMaidLevel + 1) / 4) > Math.floor(self.milkMaidLevel / 4)):
-                     self.milkCap += 300
-                     self.doMainText("\n\nIt's surprising how much you've grown accustomed to storing milk, your body much more efficient at the task.")
-                  if (Math.floor((self.milkMaidLevel + 1) / 5) > Math.floor(self.milkMaidLevel / 5)):
-                     self.milkHPMod += 2
-                     self.doMainText("\n\nAnd with all this milk flowing within your body, drinking the stuff would make you feel even better.")
-                  self.displayMainText()
-                  self.milkMaidLevel += 1
-                  self.levelUP -= 1
-                  self.doEnd()
-               else:
-                  self.doLevelUP()
-            self.doListen = doListen
-
-         elif self.choiceListResult[0] == "Shapeshifty":
-            self.outputMainText(f"While it is rather difficult to remain in control of one's form in the world of Nimin, some can be a little shifty about it and maintain slight shape-discipline.\n\nAt the first level and every three levels after, you may increase the amount of blood of a race that already exists in your system by a decent amount.\n\nAt the second level and every three levels after, you can choose to increase or decrease your sensitivity to blood changes, making you change more or less frequently.\n\nAt the third level and every six levels after, you can choose to lock a single racial trait, preventing it from being removed or replaced by blood changes. However, this does not prevent your blood from changing, nor does it prevent direct changes to these features, should they occur. Subsequent selections change what you choose to be locked.\n\nAt the sixth level and every six levels after, you may choose a second feature to lock, independent of the first. Subsequent selections change what second feature is locked.\n\nYou have {self.shapeshiftyLevel} levels in Shapeshifty.\n\n\nAre you sure you want to spend a Perk on Shapeshifty?", True)
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  if (Math.floor((self.shapeshiftyLevel + 1) / 3) > Math.floor(self.shapeshiftyLevel / 3)):
-                     self.tempBool = False
-                     if (Math.floor((self.shapeshiftyLevel + 1) / 6) > Math.floor(self.shapeshiftyLevel / 6)):
-                        self.tempBool = True
-                     self.choiceListArray.clear()
-                     self.outputMainText("What feature would you like to lock, preventing it from being changed by racial blood?", True)
-                     if (not self.tempBool):
-                        if (self.shapeshiftySecond != "Face"):
-                           self.choiceListArray.push("Face")
-                        if (self.shapeshiftySecond != "Skin"):
-                           self.choiceListArray.push("Skin")
-                        if (self.shapeshiftySecond != "Ears"):
-                           self.choiceListArray.push("Ears")
-                        if (self.shapeshiftySecond != "Legs"):
-                           self.choiceListArray.push("Legs")
-                        if (self.shapeshiftySecond != "Breasts"):
-                           self.choiceListArray.push("Breasts")
-                        if (self.shapeshiftySecond != "Nipples"):
-                           self.choiceListArray.push("Nipples")
-                        if (self.shapeshiftySecond != "Tail"):
-                           self.choiceListArray.push("Tail")
-                        if (self.shapeshiftySecond != "Cock"):
-                           self.choiceListArray.push("Cock")
-                     else:
-                        if (self.shapeshiftyFirst != "Face"):
-                           self.choiceListArray.push("Face")
-                        if (self.shapeshiftyFirst != "Skin"):
-                           self.choiceListArray.push("Skin")
-                        if (self.shapeshiftyFirst != "Ears"):
-                           self.choiceListArray.push("Ears")
-                        if (self.shapeshiftyFirst != "Legs"):
-                           self.choiceListArray.push("Legs")
-                        if (self.shapeshiftyFirst != "Breasts"):
-                           self.choiceListArray.push("Breasts")
-                        if (self.shapeshiftyFirst != "Nipples"):
-                           self.choiceListArray.push("Nipples")
-                        if (self.shapeshiftyFirst != "Tail"):
-                           self.choiceListArray.push("Tail")
-                        if (self.shapeshiftyFirst != "Cock"):
-                           self.choiceListArray.push("Cock")
-                     self.choiceListButtons("Shapeshifty")
-
-                     def doListen():
-                        self.choiceListSelect("Shapeshifty")
-                        if (self.tempBool):
-                           if self.shapeshiftySecond == "Face":
-                              self.lockFace -= 1
-                           elif self.shapeshiftySecond == "Skin":
-                              self.lockSkin -= 1
-                           elif self.shapeshiftySecond == "Ears":
-                              self.lockEars -= 1
-                           elif self.shapeshiftySecond == "Legs":
-                              self.lockLegs -= 1
-                           elif self.shapeshiftySecond == "Breasts":
-                              self.lockBreasts -= 1
-                           elif self.shapeshiftySecond == "Nipples":
-                              self.lockNipples -= 1
-                           elif self.shapeshiftySecond == "Tail":
-                              self.lockTail -= 1
-                           elif self.shapeshiftySecond == "Cock":
-                              self.lockCock -= 1
-                        else:
-                           if self.shapeshiftyFirst == "Face":
-                              self.lockFace -= 1
-                           elif self.shapeshiftyFirst == "Skin":
-                              self.lockSkin -= 1
-                           elif self.shapeshiftyFirst == "Ears":
-                              self.lockEars -= 1
-                           elif self.shapeshiftyFirst == "Legs":
-                              self.lockLegs -= 1
-                           elif self.shapeshiftyFirst == "Breasts":
-                              self.lockBreasts -= 1
-                           elif self.shapeshiftyFirst == "Nipples":
-                              self.lockNipples -= 1
-                           elif self.shapeshiftyFirst == "Tail":
-                              self.lockTail -= 1
-                           elif self.shapeshiftyFirst == "Cock":
-                              self.lockCock -= 1
-                        if self.choiceListResult[0] == "Face":
-                           if (self.tempBool):
-                              self.shapeshiftySecond = "Face"
-                           else:
-                              self.shapeshiftyFirst = "Face"
-                           self.lockFace += 1
-                        elif self.choiceListResult[0] == "Skin":
-                           if (self.tempBool):
-                              self.shapeshiftySecond = "Skin"
-                           else:
-                              self.shapeshiftyFirst = "Skin"
-                           self.lockSkin += 1
-                        elif self.choiceListResult[0] == "Ears":
-                           if (self.tempBool):
-                              self.shapeshiftySecond = "Ears"
-                           else:
-                              self.shapeshiftyFirst = "Ears"
-                           self.lockEars += 1
-                        elif self.choiceListResult[0] == "Legs":
-                           if (self.tempBool):
-                              self.shapeshiftySecond = "Legs"
-                           else:
-                              self.shapeshiftyFirst = "Legs"
-                           self.lockLegs += 1
-                        elif self.choiceListResult[0] == "Breasts":
-                           if (self.tempBool):
-                              self.shapeshiftySecond = "Breasts"
-                           else:
-                              self.shapeshiftyFirst = "Breasts"
-                           self.lockBreasts += 1
-                        elif self.choiceListResult[0] == "Nipples":
-                           if (self.tempBool):
-                              self.shapeshiftySecond = "Nipples"
-                           else:
-                              self.shapeshiftyFirst = "Nipples"
-                           self.lockNipples += 1
-                        elif self.choiceListResult[0] == "Tail":
-                           if (self.tempBool):
-                              self.shapeshiftySecond = "Tail"
-                           else:
-                              self.shapeshiftyFirst = "Tail"
-                           self.lockTail += 1
-                        elif self.choiceListResult[0] == "Cock":
-                           if (self.tempBool):
-                              self.shapeshiftySecond = "Cock"
-                           else:
-                              self.shapeshiftyFirst = "Cock"
-                           self.lockCock += 1
-                        if (self.buttonChoice == 4 or self.buttonChoice == 8):
-                           self.choiceListButtons("Shapeshifty")
-                        elif (self.buttonChoice == 12):
-                           self.choicePage = 1
-                           self.doLevelUP()
-                        else:
-                           self.outputMainText("With some effort, you manage to gain control of that portion of your body, preventing it from shifting further from blood changes.", True)
-                           self.choicePage = 1
-                           self.levelUP -= 1
-                           self.shapeshiftyLevel += 1
-                           self.doEnd()
-                     self.doListen = doListen
-                  elif (Math.floor((self.shapeshiftyLevel + 2) / 3) > Math.floor(self.shapeshiftyLevel / 3)):
-                     self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1))
-                     tempDict = {1: "Increase", 3: "Decrease", 10: "Lay Egg", 12: "Cancel"}
-                     self.doMainText("Would you like to increase or decrease your racial susceptibility by 10%?", True)
-                     if (self.changeMod == 0):
-                        self.doMainText("\n\nHowever, you're already immune to blood-type changes, so you cannot decrease it any further.")
-                        tempDict.pop(3)
-                     self.displayMainText()
-                     self.doButtonChoices(tempDict)
-
-                     def doListen():
-                        self.choiceListSelect("Shapeshifty")
-                        if self.buttonChoice == 1:
-                           self.outputMainText("You meditate and focus hard, riling up your blood and allowing it to become more influenced by change.", True)
-                           self.changeMod += 0.1
-                        elif self.buttonChoice == 3:
-                           self.outputMainText("You meditate and focus hard, calming your blood and bracing it against change.", True)
-                           self.changeMod -= 0.1
-                        elif self.buttonChoice == 10:
-                           self.outputMainText(f"You meditate and focus hard... but you're not sure what you're focusing on to begin with. You grunt and push, trying to focus with all your might, seeing where it might go!\n\n\n... *Ploop*\n\nFrom somewhere {self.legWhere(1)} your {self.legDesc(2)}, a single... egg descends and gently falls to the ground. You're not sure where it came from and your energy feels as though it had dissipated, but at least you've got a snack.", True)
-                           self.itemAdd(219)
-                        elif self.buttonChoice == 12:
-                           self.doLevelUP()
-                        if (self.buttonChoice != 12):
-                           self.choicePage = 1
-                           self.levelUP -= 1
-                           self.shapeshiftyLevel += 1
-                           self.doEnd()
-                     self.doListen = doListen
-                  elif (Math.floor((self.shapeshiftyLevel + 3) / 3) > Math.floor(self.shapeshiftyLevel / 3)):
-                     self.choiceListArray.clear()
-                     self.outputMainText("What blood-type would you like to increase?", True)
-                     if (self.humanAffinity > 0):
-                        self.choiceListArray.push("Human")
-                     if (self.horseAffinity > 0):
-                        self.choiceListArray.push("Equan")
-                     if (self.wolfAffinity > 0):
-                        self.choiceListArray.push("Lupan")
-                     if (self.catAffinity > 0):
-                        self.choiceListArray.push("Felin")
-                     if (self.cowAffinity > 0):
-                        self.choiceListArray.push("Cow")
-                     if (self.lizardAffinity > 0):
-                        self.choiceListArray.push("Lizan")
-                     if (self.rabbitAffinity > 0):
-                        self.choiceListArray.push("Rabbit")
-                     if (self.mouseAffinity > 0):
-                        self.choiceListArray.push("Mouse")
-                     if (self.birdAffinity > 0):
-                        self.choiceListArray.push("Bird")
-                     if (self.pigAffinity > 0):
-                        self.choiceListArray.push("Pig")
-                     if (self.skunkAffinity > 0):
-                        self.choiceListArray.push("Skunk")
-                     if (self.bugAffinity > 0):
-                        self.choiceListArray.push("Bug")
-                     self.choiceListButtons("Shapeshifty")
-
-                     def doListen():
-                        self.choiceListSelect("Shapeshifty")
-                        temp = self.choiceListResult[0]
-                        if temp == "Human":
-                           self.aff(1, 20, 0)
-                        elif temp == "Equan":
-                           self.aff(2, 20, 0)
-                        elif temp == "Lupan":
-                           self.aff(3, 20, 0)
-                        elif temp == "Felin":
-                           self.aff(4, 20, 0)
-                        elif temp == "Cow":
-                           self.aff(5, 20, 0)
-                        elif temp == "Lizan":
-                           self.aff(6, 20, 0)
-                        elif temp == "Rabbit":
-                           self.aff(7, 20, 0)
-                        elif temp == "Mouse":
-                           self.aff(8, 20, 0)
-                        elif temp == "Bird":
-                           self.aff(9, 20, 0)
-                        elif temp == "Pig":
-                           self.aff(10, 20, 0)
-                        elif temp == "Skunk":
-                           self.aff(11, 20, 0)
-                        elif temp == "Bug":
-                           self.aff(12, 20, 0)
-                        if (self.buttonChoice == 4 or self.buttonChoice == 8):
-                           self.choiceListButtons("Shapeshifty")
-                        elif (self.buttonChoice == 12):
-                           self.choicePage = 1
-                           self.doLevelUP()
-                        else:
-                           self.outputMainText("Breathing slowly and with intense focus, you reach deep within to strengthen an aspect of yourself...\n\nYou feel it stir and well up within, although it is hard to tell how much of an affect it had.", True)
-                           self.choicePage = 1
-                           self.levelUP -= 1
-                           self.shapeshiftyLevel += 1
-                           self.doEnd()
-                     self.doListen = doListen
-               else:
-                  self.doLevelUP()
-            self.doListen = doListen
-
-         elif self.choiceListResult[0] == "Super Perk":
-            self.outputMainText("Super perks focuses the experience from 3 perks to apply a single major effect upon yourself. They can be taken as many times as you like, but cost 3 perks every time.\n\n\nPure Blood - Choose a currently major blood type active within your body (at least 50% maximum or your dominant type). That blood type will get a slight boost while all other blood types will be purged from your body.\n\nRegression - Your body regresses to a more childlike state.\n\nBalance - Your primary stats are added together and evenly distributed amongst them all.\n\nHP Boost - Your body becomes fortified, increasing your maximum HP by 15.\n\nSex Reset - Choose a gender. All genitals not related to the chosen gender will be purged. All extra genitals related to the chosen gender will be purged, leaving you with a single basic set.", True)
-            if (self.levelUP < 3):
-               self.outputMainText("\n\nHowever, you do not have enough levels to achieve any of the perks.")
-               # TODO: See if an existing function can be used here instead
-               self.showButtons(ButtonList(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0))
-               self.doButtonChoices({6: "Back"})
-
-               def doListen():
-                  if (self.buttonChoice == 6):
-                     self.doLevelUP()
-               self.doListen = doListen
+        def doListen():
+            self.choiceListSelect("Level Up")
+            # NOTE: Unused
+            #if (self.buttonChoice == 4 or self.buttonChoice == 8):
+            #   self.doLevelUP()
+            if (self.buttonChoice == 12):
+                self.doReturn()
             else:
-               self.choiceListArray = Array("Pure Blood", "Regression", "Balance", "HP Boost", "Sex Reset")
-               self.choiceListButtons("Super Perks")
+                self.choicePage = 1
+            if self.choiceListResult[0] == "Body Build":
+                self.outputMainText(f"Body Builder is training to make you strong and more buff.\n\nWith every level in Body Builder, you gain a +2 increase to your maximum HP.\n\nWith every 2 levels, your Strength score increases by 2.\n\nEvery 3 levels, you grow 2 inches taller and your body fills out more.\n\nYou have {self.bodyBuildLevel} levels in Body Builder.\n\n\nAre you sure you want to spend a Perk on Body Builder?", True)
+                self.buttonConfirm()
 
-               def doListen():
-                  self.choiceListSelect("Super Perks")
-                  if self.choiceListResult[0] == "Pure Blood":
-                     self.outputMainText("Pure Blood will allow you to select a single racial blood type to make pure, boosting it and flushing out all other blood types currently in your system. Only blood types that are significant in your body will be available.\n\nWARNING: Any items or abilities that prevent racial transformations can and likely will impede Pure Blood.\n\nAre you sure you want to spend 3 perks to gain Pure Blood?", True)
-                     self.buttonConfirm()
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.HPMod += 2
+                        self.doHP(2)
+                        self.doMainText("The exercise makes you healthier.", True)
+                        if (Math.floor((self.bodyBuildLevel + 1) / 2) > Math.floor(self.bodyBuildLevel / 2)):
+                            self.stats(2, 0, 0, 0)
+                            self.doMainText(" You flex your muscles, feeling stronger already!")
+                        if (Math.floor((self.bodyBuildLevel + 1) / 3) > Math.floor(self.bodyBuildLevel / 3)):
+                            self.body += 2
+                            self.doMainText("\n\nEven your body feels more developed and you measure 2 inches taller than you were before.")
+                            self.tallness += 2
+                        self.displayMainText()
+                        self.bodyBuildLevel += 1
+                        self.levelUP -= 1
+                        self.doEnd()
+                    else:
+                        self.doLevelUP()
+                self.doListen = doListen
 
-                     def doListen():
-                        if (self.buttonChoice == 6):
-                           self.choiceListArray.clear()
-                           if (self.humanAffinity > 50 or self.dominant == 1):
-                              self.choiceListArray.push("Human")
-                           if (self.horseAffinity > 50 or self.dominant == 2):
-                              self.choiceListArray.push("Equan")
-                           if (self.wolfAffinity > 50 or self.dominant == 3):
-                              self.choiceListArray.push("Lupan")
-                           if (self.catAffinity > 50 or self.dominant == 4):
-                              self.choiceListArray.push("Felin")
-                           if (self.cowAffinity > 50 or self.dominant == 5):
-                              self.choiceListArray.push("Cow")
-                           if (self.lizardAffinity > 50 or self.dominant == 6):
-                              self.choiceListArray.push("Lizan")
-                           if (self.rabbitAffinity > 50 or self.dominant == 7):
-                              self.choiceListArray.push("Rabbit")
-                           if (self.mouseAffinity > 50 or self.dominant == 8):
-                              self.choiceListArray.push("Mouse")
-                           if (self.birdAffinity > 50 or self.dominant == 9):
-                              self.choiceListArray.push("Bird")
-                           if (self.pigAffinity > 50 or self.dominant == 10):
-                              self.choiceListArray.push("Pig")
-                           if (self.skunkAffinity > 50 or self.dominant == 11):
-                              self.choiceListArray.push("Skunk")
-                           if (self.bugAffinity > 50 or self.dominant == 12):
-                              self.choiceListArray.push("Bug")
-                           self.choiceListButtons("Pure Blood")
-                           self.outputMainText("Select the racial blood type you would like to purify. Only those that are significant in your body are noticeable enough to select.", True)
+            # Cut/Unfinished Content
+            elif self.choiceListResult[0] == "Lust Mage":
+                ...
 
-                           def doListen():
-                              self.choiceListSelect("Pure Blood")
-                              self.outputMainText("You take a moment to focus, channeling the experience you have gained to single out the blood coursing through your body, making yourself racially pure blood-wise, though you may have some 'leftovers'...", True)
-                              temp = self.choiceListResult[0]
-                              if temp == "Human":
-                                 self.aff(1, 10, -1000)
-                              elif temp == "Equan":
-                                 self.aff(2, 10, -1000)
-                              elif temp == "Lupan":
-                                 self.aff(3, 10, -1000)
-                              elif temp == "Felin":
-                                 self.aff(4, 10, -1000)
-                              elif temp == "Cow":
-                                 self.aff(5, 10, -1000)
-                              elif temp == "Lizan":
-                                 self.aff(6, 10, -1000)
-                              elif temp == "Mouse":
-                                 self.aff(8, 10, -1000)
-                              elif temp == "Bird":
-                                 self.aff(9, 10, -1000)
-                              elif temp == "Pig":
-                                 self.aff(10, 10, -1000)
-                              elif temp == "Rabbit":
-                                 self.aff(7, 10, -1000)
-                              elif temp == "Skunk":
-                                 self.aff(11, 10, -1000)
-                              elif temp == "Bug":
-                                 self.aff(12, 10, -1000)
-                              if (self.buttonChoice == 4 or self.buttonChoice == 8):
-                                 self.choiceListButtons("Pure Blood")
-                              elif (self.buttonChoice == 12):
-                                 self.choicePage = 1
-                                 self.doLevelUP()
-                              else:
-                                 self.levelUP -= 3
-                                 self.doEnd()
-                           self.doListen = doListen
-                        else:
-                           self.doLevelUP()
-                     self.doListen = doListen
+            elif self.choiceListResult[0] == "Hyper Happy":
+                self.outputMainText(f"Hyper Happy is a perk for those who like things... 'big'.\n\nEvery level of Hyper Happy, you can choose a body part you would like to make a little bigger.\n\nEvery 3 levels, you become slightly used to your growth, increasing your carrying capacity.\n\nEvery 5th level, you forego that level's smaller change for a much greater growth.\n\nYou have {self.hyperHappyLevel} levels in Hyper Happy.", True)
+                self.buttonConfirm()
 
-                  elif self.choiceListResult[0] == "Regression":
-                     self.outputMainText("Regression will cause your body to regress to a more childlike state, reducing your height by half (to a minimum of 3 inches) and giving you a childlike figure.  Besides your height and body type, this super perk does not affect your sizes. The regression does decrease your strength and mentality by 3 points, however, and increases your libido and sensitivity by 5 points.\n\nAre you sure you want to spend 3 perks to gain Regression?", True)
-                     self.buttonConfirm()
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        if (Math.floor((self.hyperHappyLevel + 1) / 5) == Math.floor(self.hyperHappyLevel / 5)):
+                            self.outputMainText("Choose a body part you would like to increase.", True)
+                            self.choiceListArray = Array("Breasts", "Nipples", "Butt", "Hips")
+                            if (self.vagTotal > 0):
+                                self.choiceListArray.push("Pussy", "Vulva", "Clit")
+                            if (self.cockTotal > 0):
+                                self.choiceListArray.push("Cock")
+                                if (self.showBalls):
+                                    self.choiceListArray.push("Balls")
+                            if (self.udders):
+                                self.choiceListArray.push("Udder", "Teats")
+                            self.choiceListButtons("Hyper Happy")
 
-                     def doListen():
-                        if (self.buttonChoice == 6):
-                           self.doMainText(f"You take a moment to focus, channeling the experience you have gained to return your body to a more youthful state. You close your eyes and concentrate, feeling your {self.skinDesc()} brush across the inside of your {self.currentClothes()} as you shrink within. The feeling slowly grows more and more powerful as you become more sensitive, a breeze licking across you and causing you to shiver erotically.\n\nBy the time you open your eyes, wispy steam floats off of you from the energy you expelled in the process. Your body seems to have fully reverted to a less aged state, your muscles and mind weaker, but your nerves and arousal stronger.", True)
-                           if (self.tallness > 5):
-                              self.doMainText("\n\nThere's also the slight problem of your clothes barely hanging onto you, much of your body being exposed from the overly loose garments. You quickly grab the fabric before it can completely fall away, holding it the best you can to cover yourself as you quickly dash away to the tailor for a quick re-fitting.")
-                              self.hrs += 1
-                           self.displayMainText()
-                           self.tallness -= Math.floor(self.tallness / 2)
-                           self.body = 5
-                           self.stats(-3, -3, 5, 5)
-                           self.levelUP -= 3
-                           self.doEnd()
-                        else:
-                           self.choicePage = 1
-                           self.doLevelUP()
-                     self.doListen = doListen
+                            def doListen():
+                                self.choiceListSelect("Hyper Happy")
+                                temp = self.choiceListResult[0]
+                                if temp == "Cock":
+                                    self.doMainText(f"Your cock{self.plural(1)} grow{self.plural(3)} slightly larger.", True)
+                                    self.cockChange(2, 0)
+                                elif temp == "Balls":
+                                    self.ballSize += 2
+                                    self.doMainText("Your testicles swell a bit.", True)
+                                elif temp == "Pussy":
+                                    self.doMainText(f"Your vagina{self.plural(2)} grow{self.plural(4)} slightly deeper.", True)
+                                    self.vagChange(2, 0)
+                                elif temp == "Vulva":
+                                    self.vulvaSize += 2
+                                    self.doMainText("Your pussy lips swell a bit.", True)
+                                elif temp == "Clit":
+                                    self.clitSize += 2
+                                    self.doMainText(f"Your clit{self.plural(2)} grow{self.plural(4)} slightly larger.", True)
+                                elif temp == "Breasts":
+                                    self.breastSize += 2
+                                    self.doMainText("Your breasts swell a bit.", True)
+                                elif temp == "Nipples":
+                                    self.nippleSize += 2
+                                    self.doMainText("Your nipples grow slightly longer.", True)
+                                elif temp == "Udder":
+                                    self.udderSize += 2
+                                    self.doMainText("Your udder swells a bit.", True)
+                                elif temp == "Teats":
+                                    self.teatSize += 2
+                                    self.doMainText("Your teats grow slightly longer.", True)
+                                elif temp == "Butt":
+                                    self.butt += 2
+                                    self.doMainText("Your rump swells a bit.", True)
+                                elif temp == "Hips":
+                                    self.hips += 2
+                                    self.doMainText("Your hips widen a bit.", True)
+                                self.displayMainText()
+                                if (self.buttonChoice == 4 or self.buttonChoice == 8):
+                                    self.choiceListButtons("Hyper Happy")
+                                elif (self.buttonChoice == 12):
+                                    self.choicePage = 1
+                                    self.doLevelUP()
+                                else:
+                                    self.choicePage = 1
+                                    self.levelUP -= 1
+                                    self.hyperHappyLevel += 1
+                                    self.doEnd()
+                            self.doListen = doListen
+                        if (Math.floor((self.hyperHappyLevel + 1) / 5) > Math.floor(self.hyperHappyLevel / 5)):
+                            self.outputMainText("Choose a body part you would like to greatly increase. This will be 10x more effective than a normal level in Hyper Happy, so be careful what you choose.", True)
+                            self.choiceListArray = Array("Breasts", "Nipples", "Butt", "Hips")
+                            if (self.vagTotal > 0):
+                                self.choiceListArray.push("Pussy", "Vulva", "Clit")
+                            if (self.cockTotal > 0):
+                                self.choiceListArray.push("Cock")
+                                if (self.showBalls):
+                                    self.choiceListArray.push("Balls")
+                            if (self.udders):
+                                self.choiceListArray.push("Udder", "Teats")
+                            self.choiceListButtons("Hyper Happy")
 
-                  elif self.choiceListResult[0] == "Balance":
-                     self.outputMainText("Balance will redistribute your primary stats (strength, mentality, libido, and sensitivity) evenly.\n\nAre you sure you want to spend 3 perks to gain Balance?", True)
-                     self.buttonConfirm()
+                            def doListen():
+                                self.choiceListSelect("Hyper Happy")
+                                if (self.buttonChoice != 4 and self.buttonChoice != 8 and self.buttonChoice != 12):
+                                    self.outputMainText("With some focus and a sudden surge of growth, your ", True)
+                                temp = self.choiceListResult[0]
+                                if temp == "Cock":
+                                    self.doMainText(f"cock{self.plural(1)} extend{self.plural(3)} within your {self.clothesBottom()}, growing thicker and longer until {self.plural(11)} spring{self.plural(3)} out and you catch {self.plural(11)} in your hands. Heavier and more cumbersome, you barely manage to fit {self.plural(9)} back into your {self.clothesBottom()}...")
+                                    self.cockChange(20, 0)
+                                elif temp == "Balls":
+                                    self.ballSize += 20
+                                    self.doMainText(f"testicles swell tremendously within your {self.clothesBottom()}, lifting your cock{self.plural(1)} and pushing against your thighs. You quickly pull {self.pullUD(2)} your {self.clothesBottom()} and breathe a sigh of relief as the orbs settle before you. It takes some time to squeeze them back in...")
+                                elif temp == "Pussy":
+                                    self.doMainText(f"vagina{self.plural(2)} grow{self.plural(4)} much deeper, filling you up inside with more tunnel space to plow...")
+                                    self.vagChange(20, 0)
+                                elif temp == "Vulva":
+                                    self.vulvaSize += 20
+                                    self.doMainText(f"pussy lips swell tremendously, bulging in your {self.clothesBottom()} and pressing into your thighs until you have to pull{self.pullUD(2)} your {self.clothesBottom()} and give your labiasome air. So thick and tender, it takes some time to stuff yourself back into your clothes...")
+                                elif temp == "Clit":
+                                    self.clitSize += 20
+                                    self.doMainText(f"clit{self.plural(2)} extend{self.plural(4)} within your {self.clothesBottom()}, forming a more noticeable bulge in the fabric and nearly driving you to orgasm as {self.plural(12)} drag{self.plural(4)} across the cloth...")
+                                elif temp == "Breasts":
+                                    self.breastSize += 20
+                                    self.doMainText(f"breasts swell tremendously, pressing against your {self.clothesTop()} until you have to pull the cloth {self.pullUD(1)} and let your bosom fall out with a gasp. They're much heavier and wobble a bit until you can get balanced and take some time to stuff back in...")
+                                elif temp == "Nipples":
+                                    self.nippleSize += 20
+                                    self.doMainText(f"nipples grow much longer, protruding through your {self.clothesTop()} far more and making you gasp in near-orgasm as they drag across the fabric...")
+                                elif temp == "Udder":
+                                    self.udderSize += 20
+                                    self.doMainText("udder swells tremendously, making you fall to your knees as it weighs you down until you let it flop over the ground. You take a few moments before you're able to lift yourself back up, swinging your hips slightly as you try to balance yourself with the added mass...")
+                                elif temp == "Teats":
+                                    self.teatSize += 20
+                                    self.doMainText("teats grow much longer, flopping out over your udder and protruding much further, almost like you've got multiple erections forming over your belly...")
+                                elif temp == "Butt":
+                                    self.butt += 20
+                                    self.doMainText(f"rump swells tremendously, making your {self.clothesBottom()} creak as your tush pushes at the fabric. You quickly pull the {self.clothesBottom()} {self.pullUD(2)} and bend forward while your ass hangs out behind you, wobbling and jiggling with its sudden spurt. You have quite some trouble fitting back into your clothes, with a good deal of crack and cheek still exposed...")
+                                elif temp == "Hips":
+                                    self.hips += 20
+                                    self.doMainText(f"hips widen tremendously, making your {self.clothesBottom()} pull tighter and tigher around your waist. The fabric slips over your pelvis as it tries to make room until you're eventually sucking in your gut the best you can to not make the cloth explode...")
+                                self.displayMainText()
+                                if self.buttonChoice in {4, 8}:
+                                    self.choiceListButtons("Hyper Happy")
+                                elif self.buttonChoice == 12:
+                                    self.choicePage = 1
+                                    self.doLevelUP()
+                                else:
+                                    self.levelUP -= 1
+                                    self.hyperHappyLevel += 1
+                                    self.doEnd()
+                            self.doListen = doListen
+                        if (Math.floor((self.hyperHappyLevel + 1) / 3) > Math.floor(self.hyperHappyLevel / 3)):
+                            self.outputMainText("\n\nYou also become a bit more accustomed to your attributes, learning how to carry them more efficiently.")
+                            self.carryMod += 10
+                    else:
+                        self.doLevelUP()
+                self.doListen = doListen
 
-                     def doListen():
-                        if (self.buttonChoice == 6):
-                           self.outputMainText("You take a moment to focus, channeling the experience you have gained to achieve a state of balance within your body. You feel several sensations begin to whirl around you; your strength, your mind, your naughtiness, your nerves, all shifting and swaying with the ebb and flow of the energies melting together.\n\nOnce they finally settle, you relax with a sense of equilibrium.", True)
-                           tempInt = Math.ceil((self.str + self.ment + self.lib + self.sen) / 4)
-                           self.str = 0
-                           self.ment = 0
-                           self.lib = 0
-                           self.sen = 0
-                           self.stats(tempInt, tempInt, tempInt, tempInt)
-                           self.levelUP -= 3
-                           self.doEnd()
-                        else:
-                           self.choicePage = 1
-                           self.doLevelUP()
-                     self.doListen = doListen
+            elif self.choiceListResult[0] == "Baby Fact":
+                self.outputMainText(f"Baby Factory makes you much better at making babies.\n\nEvery level of Baby Factory increases your chance to get pregnant by 4%.\n\nEvery 2 levels, you have an increased chance of having more offspring.\n\nEvery 4 levels results in hip and rear growth.\n\nYou have {self.babyFactLevel} levels in Baby Factory.\n\n\nAre you sure you want to spend a Perk on Baby Factory?", True)
+                self.buttonConfirm()
 
-                  elif self.choiceListResult[0] == "HP Boost":
-                     self.outputMainText("HP Boost will give you a permanent +15 to your maximum health points.\n\nAre you sure you want to spend 3 perks to gain HP Boost?", True)
-                     self.buttonConfirm()
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.pregChanceMod += 4
+                        self.doMainText("There's an odd feeling like you... 'need' to get pregnant? Like you could really enjoy some hot come inside of you...", True)
+                        if (Math.floor((self.babyFactLevel + 1) / 2) > Math.floor(self.babyFactLevel / 2)):
+                            self.extraPregChance += 5
+                            self.doMainText("\n\nYour ovaries kinda tickle a little, a tad more likely to pop out more eggs when you ovulate.")
+                        if (Math.floor((self.babyFactLevel + 1) / 4) > Math.floor(self.babyFactLevel / 4)):
+                            self.hips += 3
+                            self.butt += 3
+                            self.doMainText("\n\nWith all of the fertile preparation, your hips widen and your ass swells, giving you a more fecund appearance.")
+                        self.displayMainText()
+                        self.levelUP -= 1
+                        self.babyFactLevel += 1
+                        self.doEnd()
+                    else:
+                        self.doLevelUP()
+                self.doListen = doListen
 
-                     def doListen():
-                        if (self.buttonChoice == 6):
-                           self.outputMainText("You take a moment to focus, channeling the experience you have gained to fortify your body from harm. It doesn't really take long, and once finished you feel... much healthier.", True)
-                           self.HPMod += 15
-                           self.doHP(15)
-                           self.levelUP -= 3
-                           self.doEnd()
-                        else:
-                           self.choicePage = 1
-                           self.doLevelUP()
-                     self.doListen = doListen
+            elif self.choiceListResult[0] == "Alchemist":
+                self.outputMainText(f"When not turning metals into gold, alchemists also dabble in a variety of other... things.\n\nEvery level, you manage to scrounge up an ingredient or two for a recipe you know, finding more as you become more proficient.\n\nAlso, every level of Alchemist increases your chance of creating an extra simple concoction by 2%, complex concoction by 1%, and advanced concoction by .66%, up to a maximum of 4 concoctions from a single batch.\n\nYou have {self.alchemistLevel} levels in Alchemist.\n\n\nAre you sure you want to spend a Perk on Alchemist?", True)
+                self.buttonConfirm()
 
-                  elif self.choiceListResult[0] == "Sex Reset":
-                     self.outputMainText("Sex Reset will allow you to select a gender (male, female, or herm) and nullify all genitals not belonging to that gender and all excess genitals besides a single pair for that gender. Sizes of genitals will not be affected. Breasts are not genitals and will not be affected. If you select a gender whose genitals you do not have, you will wind up androgynous.\n\nAre you sure you want to spend 3 perks to gain Sex Reset?", True)
-                     self.buttonConfirm()
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.outputMainText("Your alchemical prowess has improved!", True)
+                        self.levelUP -= 1
+                        self.alchemistLevel += 1
+                        i = 0
+                        while (Utils.percent() < self.alchemistLevel * (10 + Utils.percent()) - 20 * (i + 2) * i):
+                            self.rndArray = Array(209, 110, 203, 212)
+                            if (self.knowLustDraft):
+                                self.rndArray.push(209, 114, 523)
+                            if (self.knowRejuvPot):
+                                self.rndArray.push(115, 203)
+                            if (self.knowExpPreg):
+                                self.rndArray.push(114, 219)
+                            if (self.knowBallSwell):
+                                self.rndArray.push(208)
+                            if (self.knowMaleEnhance):
+                                self.rndArray.push(201, 208, 218)
+                            if (self.knowSLustDraft):
+                                self.rndArray.push(209, 112, 524)
+                            if (self.knowSRejuvPot):
+                                self.rndArray.push(503, 500, 501)
+                            if (self.knowSExpPreg):
+                                self.rndArray.push(213, 219)
+                            if (self.knowSBallSwell):
+                                self.rndArray.push(208, 218)
+                            if (self.knowGenSwap):
+                                self.rndArray.push(110, 120)
+                            if (self.knowMasoPot):
+                                self.rndArray.push(203, 503)
+                            if (self.knowBabyFree):
+                                self.rndArray.push(110, 203)
+                            if (self.knowPotPot):
+                                self.rndArray.push(507, 523)
+                            if (self.knowMilkSuppress):
+                                self.rndArray.push(201, 533)
+                            if (self.knowSGenSwap):
+                                self.rndArray.push(201, 202, 207, 210)
+                            if (self.knowSMasoPot):
+                                self.rndArray.push(222, 504)
+                            if (self.knowSBabyFree):
+                                self.rndArray.push(120, 210)
+                            if (self.knowSPotPot):
+                                self.rndArray.push(512, 524)
+                            if (self.knowPussJuice):
+                                self.rndArray.push(210, 114)
+                            if (self.knowPheromone):
+                                self.rndArray.push(530, 212, 206)
+                            if (self.knowBazoomba):
+                                self.rndArray.push(207, 212, 501, 529)
+                            self.itemAdd(self.chooseFrom())
+                            i += 1
+                        self.doEnd()
+                    else:
+                        self.doLevelUP()
+                self.doListen = doListen
 
-                     def doListen():
-                        if (self.buttonChoice == 6):
-                           self.showButtons(ButtonList(0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1))
-                           self.doButtonChoices({5: "Male", 6: "Female", 7: "Herm", 12: "Cancel"})
-                           self.outputMainText("Which gender would you like to reset to? (The one you select is the one you will remain as, if you have the appropriate genitals)", True)
+            elif self.choiceListResult[0] == "Milk Maid":
+                self.outputMainText(f"If you want to feed the world, Milk Maid is... well, one way to go I suppose.\n\nWith every level of Milk Maid, your lactation rate increases by 100 ml/hr (and so does your udder lactation rate, if you have an udder).\n\nEvery other level increases your milk modifier (a bonus that won't drop naturally and applies to all sources) by 50 ml/hr. Your milk modifier doesn't deplete naturally and adds to your lactation rate when you're lactating. It also applies to udder lactation as well.\n\nEvery 4th level increases your base milk capacity 300 ml, before engorgement is calculated.\n\nEvery 5th level, your affinity for milk makes you more receptive to the healing powers of milk, increasing the amount of HP restored by 2 whenever you drink it.\n\nYou have {self.milkMaidLevel} levels in Milk Maid.\n\n\nAre you sure you want to spend a Perk on Milk Maid?", True)
+                self.buttonConfirm()
 
-                           def doListen():
-                              self.doMainText("You take a moment to focus, channeling the experience you have gained to adjust your sex...", True)
-                              if self.buttonChoice == 5:
-                                 self.vagChange(0, -self.vagTotal)
-                                 if (self.cockTotal > 1):
-                                    self.cockChange(0, -(self.cockTotal - 1))
-                                 if (self.balls > 2):
-                                    self.doMainText("\n\nWithin your ")
-                                    if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
-                                       self.doMainText("scrotum")
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.lactChange(1, 100)
+                        if (self.udders):
+                            self.lactChange(2, 100)
+                        self.doMainText("Your mammaries feel warm and you can already feel them begin to swell with the sudden increase in production.", True)
+                        if (Math.floor((self.milkMaidLevel + 1) / 2) > Math.floor(self.milkMaidLevel / 2)):
+                            self.milkMod += 50
+                            self.doMainText(" So much so that you'll always be prone to large amounts of milking...")
+                        if (Math.floor((self.milkMaidLevel + 1) / 4) > Math.floor(self.milkMaidLevel / 4)):
+                            self.milkCap += 300
+                            self.doMainText("\n\nIt's surprising how much you've grown accustomed to storing milk, your body much more efficient at the task.")
+                        if (Math.floor((self.milkMaidLevel + 1) / 5) > Math.floor(self.milkMaidLevel / 5)):
+                            self.milkHPMod += 2
+                            self.doMainText("\n\nAnd with all this milk flowing within your body, drinking the stuff would make you feel even better.")
+                        self.displayMainText()
+                        self.milkMaidLevel += 1
+                        self.levelUP -= 1
+                        self.doEnd()
+                    else:
+                        self.doLevelUP()
+                self.doListen = doListen
+
+            elif self.choiceListResult[0] == "Shapeshifty":
+                self.outputMainText(f"While it is rather difficult to remain in control of one's form in the world of Nimin, some can be a little shifty about it and maintain slight shape-discipline.\n\nAt the first level and every three levels after, you may increase the amount of blood of a race that already exists in your system by a decent amount.\n\nAt the second level and every three levels after, you can choose to increase or decrease your sensitivity to blood changes, making you change more or less frequently.\n\nAt the third level and every six levels after, you can choose to lock a single racial trait, preventing it from being removed or replaced by blood changes. However, this does not prevent your blood from changing, nor does it prevent direct changes to these features, should they occur. Subsequent selections change what you choose to be locked.\n\nAt the sixth level and every six levels after, you may choose a second feature to lock, independent of the first. Subsequent selections change what second feature is locked.\n\nYou have {self.shapeshiftyLevel} levels in Shapeshifty.\n\n\nAre you sure you want to spend a Perk on Shapeshifty?", True)
+                self.buttonConfirm()
+
+                def doListen():
+                    # TODO: See if self.tempBool can be remove here
+                    if (self.buttonChoice == 6):
+                        if (Math.floor((self.shapeshiftyLevel + 1) / 3) > Math.floor(self.shapeshiftyLevel / 3)):
+                            self.tempBool = False
+                            if (Math.floor((self.shapeshiftyLevel + 1) / 6) > Math.floor(self.shapeshiftyLevel / 6)):
+                                self.tempBool = True
+                            self.choiceListArray.clear()
+                            self.outputMainText("What feature would you like to lock, preventing it from being changed by racial blood?", True)
+                            if (not self.tempBool):
+                                if (self.shapeshiftySecond != "Face"):
+                                    self.choiceListArray.push("Face")
+                                if (self.shapeshiftySecond != "Skin"):
+                                    self.choiceListArray.push("Skin")
+                                if (self.shapeshiftySecond != "Ears"):
+                                    self.choiceListArray.push("Ears")
+                                if (self.shapeshiftySecond != "Legs"):
+                                    self.choiceListArray.push("Legs")
+                                if (self.shapeshiftySecond != "Breasts"):
+                                    self.choiceListArray.push("Breasts")
+                                if (self.shapeshiftySecond != "Nipples"):
+                                    self.choiceListArray.push("Nipples")
+                                if (self.shapeshiftySecond != "Tail"):
+                                    self.choiceListArray.push("Tail")
+                                if (self.shapeshiftySecond != "Cock"):
+                                    self.choiceListArray.push("Cock")
+                            else:
+                                if (self.shapeshiftyFirst != "Face"):
+                                    self.choiceListArray.push("Face")
+                                if (self.shapeshiftyFirst != "Skin"):
+                                    self.choiceListArray.push("Skin")
+                                if (self.shapeshiftyFirst != "Ears"):
+                                    self.choiceListArray.push("Ears")
+                                if (self.shapeshiftyFirst != "Legs"):
+                                    self.choiceListArray.push("Legs")
+                                if (self.shapeshiftyFirst != "Breasts"):
+                                    self.choiceListArray.push("Breasts")
+                                if (self.shapeshiftyFirst != "Nipples"):
+                                    self.choiceListArray.push("Nipples")
+                                if (self.shapeshiftyFirst != "Tail"):
+                                    self.choiceListArray.push("Tail")
+                                if (self.shapeshiftyFirst != "Cock"):
+                                    self.choiceListArray.push("Cock")
+                            self.choiceListButtons("Shapeshifty")
+
+                            def doListen():
+                                self.choiceListSelect("Shapeshifty")
+                                if (self.tempBool):
+                                    if self.shapeshiftySecond == "Face":
+                                        self.lockFace -= 1
+                                    elif self.shapeshiftySecond == "Skin":
+                                        self.lockSkin -= 1
+                                    elif self.shapeshiftySecond == "Ears":
+                                        self.lockEars -= 1
+                                    elif self.shapeshiftySecond == "Legs":
+                                        self.lockLegs -= 1
+                                    elif self.shapeshiftySecond == "Breasts":
+                                        self.lockBreasts -= 1
+                                    elif self.shapeshiftySecond == "Nipples":
+                                        self.lockNipples -= 1
+                                    elif self.shapeshiftySecond == "Tail":
+                                        self.lockTail -= 1
+                                    elif self.shapeshiftySecond == "Cock":
+                                        self.lockCock -= 1
+                                else:
+                                    if self.shapeshiftyFirst == "Face":
+                                        self.lockFace -= 1
+                                    elif self.shapeshiftyFirst == "Skin":
+                                        self.lockSkin -= 1
+                                    elif self.shapeshiftyFirst == "Ears":
+                                        self.lockEars -= 1
+                                    elif self.shapeshiftyFirst == "Legs":
+                                        self.lockLegs -= 1
+                                    elif self.shapeshiftyFirst == "Breasts":
+                                        self.lockBreasts -= 1
+                                    elif self.shapeshiftyFirst == "Nipples":
+                                        self.lockNipples -= 1
+                                    elif self.shapeshiftyFirst == "Tail":
+                                        self.lockTail -= 1
+                                    elif self.shapeshiftyFirst == "Cock":
+                                        self.lockCock -= 1
+                                if self.choiceListResult[0] == "Face":
+                                    if (self.tempBool):
+                                        self.shapeshiftySecond = "Face"
                                     else:
-                                       self.doMainText("abdomen")
-                                    self.doMainText(", you feel your extra testicles begin to shrink until they vanish from within, leaving you with a single pair.")
-                                    self.balls = 2
-                              elif self.buttonChoice == 6:
-                                 if (self.vagTotal > 1):
-                                    self.vagChange(0, -(self.vagTotal - 1))
-                                 self.cockChange(0, -self.cockTotal)
-                              elif self.buttonChoice == 7:
-                                 if (self.vagTotal > 1):
-                                    self.vagChange(0, -(self.vagTotal - 1))
-                                 if (self.cockTotal > 1):
-                                    self.cockChange(0, -(self.cockTotal - 1))
-                                 if (self.balls > 2):
-                                    self.doMainText("\n\nWithin your ")
-                                    if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
-                                       self.doMainText("scrotum")
+                                        self.shapeshiftyFirst = "Face"
+                                    self.lockFace += 1
+                                elif self.choiceListResult[0] == "Skin":
+                                    if (self.tempBool):
+                                        self.shapeshiftySecond = "Skin"
                                     else:
-                                       self.doMainText("abdomen")
-                                    self.doMainText(", you feel your extra testicles begin to shrink until they vanish from within, leaving you with a single pair.")
-                                    self.balls = 2
-                              self.displayMainText()
-                              if (self.buttonChoice == 12):
-                                 self.doLevelUP()
-                              else:
-                                 self.levelUP -= 3
-                                 self.doEnd()
-                           self.doListen = doListen
-                        else:
-                           self.choicePage = 1
-                           self.doLevelUP()
-                     self.doListen = doListen
-                  if (self.buttonChoice == 4 or self.buttonChoice == 8):
-                     self.choiceListButtons("Super Perks")
-                  elif (self.buttonChoice == 12):
-                     self.choicePage = 1
-                     self.doLevelUP()
-               self.doListen = doListen
-      self.doListen = doListen
+                                        self.shapeshiftyFirst = "Skin"
+                                    self.lockSkin += 1
+                                elif self.choiceListResult[0] == "Ears":
+                                    if (self.tempBool):
+                                        self.shapeshiftySecond = "Ears"
+                                    else:
+                                        self.shapeshiftyFirst = "Ears"
+                                    self.lockEars += 1
+                                elif self.choiceListResult[0] == "Legs":
+                                    if (self.tempBool):
+                                        self.shapeshiftySecond = "Legs"
+                                    else:
+                                        self.shapeshiftyFirst = "Legs"
+                                    self.lockLegs += 1
+                                elif self.choiceListResult[0] == "Breasts":
+                                    if (self.tempBool):
+                                        self.shapeshiftySecond = "Breasts"
+                                    else:
+                                        self.shapeshiftyFirst = "Breasts"
+                                    self.lockBreasts += 1
+                                elif self.choiceListResult[0] == "Nipples":
+                                    if (self.tempBool):
+                                        self.shapeshiftySecond = "Nipples"
+                                    else:
+                                        self.shapeshiftyFirst = "Nipples"
+                                    self.lockNipples += 1
+                                elif self.choiceListResult[0] == "Tail":
+                                    if (self.tempBool):
+                                        self.shapeshiftySecond = "Tail"
+                                    else:
+                                        self.shapeshiftyFirst = "Tail"
+                                    self.lockTail += 1
+                                elif self.choiceListResult[0] == "Cock":
+                                    if (self.tempBool):
+                                        self.shapeshiftySecond = "Cock"
+                                    else:
+                                        self.shapeshiftyFirst = "Cock"
+                                    self.lockCock += 1
+                                if (self.buttonChoice == 4 or self.buttonChoice == 8):
+                                    self.choiceListButtons("Shapeshifty")
+                                elif (self.buttonChoice == 12):
+                                    self.choicePage = 1
+                                    self.doLevelUP()
+                                else:
+                                    self.outputMainText("With some effort, you manage to gain control of that portion of your body, preventing it from shifting further from blood changes.", True)
+                                    self.choicePage = 1
+                                    self.levelUP -= 1
+                                    self.shapeshiftyLevel += 1
+                                    self.doEnd()
+                            self.doListen = doListen
+                        elif (Math.floor((self.shapeshiftyLevel + 2) / 3) > Math.floor(self.shapeshiftyLevel / 3)):
+                            self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1))
+                            tempDict = {1: "Increase", 3: "Decrease", 10: "Lay Egg", 12: "Cancel"}
+                            self.doMainText("Would you like to increase or decrease your racial susceptibility by 10%?", True)
+                            if (self.changeMod == 0):
+                                self.doMainText("\n\nHowever, you're already immune to blood-type changes, so you cannot decrease it any further.")
+                                tempDict.pop(3)
+                            self.displayMainText()
+                            self.doButtonChoices(tempDict)
+
+                            def doListen():
+                                self.choiceListSelect("Shapeshifty")
+                                if self.buttonChoice == 1:
+                                    self.outputMainText("You meditate and focus hard, riling up your blood and allowing it to become more influenced by change.", True)
+                                    self.changeMod += 0.1
+                                elif self.buttonChoice == 3:
+                                    self.outputMainText("You meditate and focus hard, calming your blood and bracing it against change.", True)
+                                    self.changeMod -= 0.1
+                                elif self.buttonChoice == 10:
+                                    self.outputMainText(f"You meditate and focus hard... but you're not sure what you're focusing on to begin with. You grunt and push, trying to focus with all your might, seeing where it might go!\n\n\n... *Ploop*\n\nFrom somewhere {self.legWhere(1)} your {self.legDesc(2)}, a single... egg descends and gently falls to the ground. You're not sure where it came from and your energy feels as though it had dissipated, but at least you've got a snack.", True)
+                                    self.itemAdd(219)
+                                elif self.buttonChoice == 12:
+                                    self.doLevelUP()
+                                if (self.buttonChoice != 12):
+                                    self.choicePage = 1
+                                    self.levelUP -= 1
+                                    self.shapeshiftyLevel += 1
+                                    self.doEnd()
+                            self.doListen = doListen
+                        elif (Math.floor((self.shapeshiftyLevel + 3) / 3) > Math.floor(self.shapeshiftyLevel / 3)):
+                            self.choiceListArray.clear()
+                            self.outputMainText("What blood-type would you like to increase?", True)
+                            if (self.humanAffinity > 0):
+                                self.choiceListArray.push("Human")
+                            if (self.horseAffinity > 0):
+                                self.choiceListArray.push("Equan")
+                            if (self.wolfAffinity > 0):
+                                self.choiceListArray.push("Lupan")
+                            if (self.catAffinity > 0):
+                                self.choiceListArray.push("Felin")
+                            if (self.cowAffinity > 0):
+                                self.choiceListArray.push("Cow")
+                            if (self.lizardAffinity > 0):
+                                self.choiceListArray.push("Lizan")
+                            if (self.rabbitAffinity > 0):
+                                self.choiceListArray.push("Rabbit")
+                            if (self.mouseAffinity > 0):
+                                self.choiceListArray.push("Mouse")
+                            if (self.birdAffinity > 0):
+                                self.choiceListArray.push("Bird")
+                            if (self.pigAffinity > 0):
+                                self.choiceListArray.push("Pig")
+                            if (self.skunkAffinity > 0):
+                                self.choiceListArray.push("Skunk")
+                            if (self.bugAffinity > 0):
+                                self.choiceListArray.push("Bug")
+                            self.choiceListButtons("Shapeshifty")
+
+                            def doListen():
+                                self.choiceListSelect("Shapeshifty")
+                                temp = self.choiceListResult[0]
+                                if temp == "Human":
+                                    self.aff(1, 20, 0)
+                                elif temp == "Equan":
+                                    self.aff(2, 20, 0)
+                                elif temp == "Lupan":
+                                    self.aff(3, 20, 0)
+                                elif temp == "Felin":
+                                    self.aff(4, 20, 0)
+                                elif temp == "Cow":
+                                    self.aff(5, 20, 0)
+                                elif temp == "Lizan":
+                                    self.aff(6, 20, 0)
+                                elif temp == "Rabbit":
+                                    self.aff(7, 20, 0)
+                                elif temp == "Mouse":
+                                    self.aff(8, 20, 0)
+                                elif temp == "Bird":
+                                    self.aff(9, 20, 0)
+                                elif temp == "Pig":
+                                    self.aff(10, 20, 0)
+                                elif temp == "Skunk":
+                                    self.aff(11, 20, 0)
+                                elif temp == "Bug":
+                                    self.aff(12, 20, 0)
+                                if (self.buttonChoice == 4 or self.buttonChoice == 8):
+                                    self.choiceListButtons("Shapeshifty")
+                                elif (self.buttonChoice == 12):
+                                    self.choicePage = 1
+                                    self.doLevelUP()
+                                else:
+                                    self.outputMainText("Breathing slowly and with intense focus, you reach deep within to strengthen an aspect of yourself...\n\nYou feel it stir and well up within, although it is hard to tell how much of an affect it had.", True)
+                                    self.choicePage = 1
+                                    self.levelUP -= 1
+                                    self.shapeshiftyLevel += 1
+                                    self.doEnd()
+                            self.doListen = doListen
+                    else:
+                        self.doLevelUP()
+                self.doListen = doListen
+
+            elif self.choiceListResult[0] == "Super Perk":
+                self.outputMainText("Super perks focuses the experience from 3 perks to apply a single major effect upon yourself. They can be taken as many times as you like, but cost 3 perks every time.\n\n\nPure Blood - Choose a currently major blood type active within your body (at least 50% maximum or your dominant type). That blood type will get a slight boost while all other blood types will be purged from your body.\n\nRegression - Your body regresses to a more childlike state.\n\nBalance - Your primary stats are added together and evenly distributed amongst them all.\n\nHP Boost - Your body becomes fortified, increasing your maximum HP by 15.\n\nSex Reset - Choose a gender. All genitals not related to the chosen gender will be purged. All extra genitals related to the chosen gender will be purged, leaving you with a single basic set.", True)
+                if (self.levelUP < 3):
+                    self.outputMainText("\n\nHowever, you do not have enough levels to achieve any of the perks.")
+                    # TODO: See if an existing function can be used here instead
+                    self.showButtons(ButtonList(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0))
+                    self.doButtonChoices({6: "Back"})
+
+                    def doListen():
+                        if (self.buttonChoice == 6):
+                            self.doLevelUP()
+                    self.doListen = doListen
+                else:
+                    self.choiceListArray = Array("Pure Blood", "Regression", "Balance", "HP Boost", "Sex Reset")
+                    self.choiceListButtons("Super Perks")
+
+                    def doListen():
+                        self.choiceListSelect("Super Perks")
+                        if self.choiceListResult[0] == "Pure Blood":
+                            self.outputMainText("Pure Blood will allow you to select a single racial blood type to make pure, boosting it and flushing out all other blood types currently in your system. Only blood types that are significant in your body will be available.\n\nWARNING: Any items or abilities that prevent racial transformations can and likely will impede Pure Blood.\n\nAre you sure you want to spend 3 perks to gain Pure Blood?", True)
+                            self.buttonConfirm()
+
+                            def doListen():
+                                if (self.buttonChoice == 6):
+                                    self.choiceListArray.clear()
+                                    if (self.humanAffinity > 50 or self.dominant == 1):
+                                        self.choiceListArray.push("Human")
+                                    if (self.horseAffinity > 50 or self.dominant == 2):
+                                        self.choiceListArray.push("Equan")
+                                    if (self.wolfAffinity > 50 or self.dominant == 3):
+                                        self.choiceListArray.push("Lupan")
+                                    if (self.catAffinity > 50 or self.dominant == 4):
+                                        self.choiceListArray.push("Felin")
+                                    if (self.cowAffinity > 50 or self.dominant == 5):
+                                        self.choiceListArray.push("Cow")
+                                    if (self.lizardAffinity > 50 or self.dominant == 6):
+                                        self.choiceListArray.push("Lizan")
+                                    if (self.rabbitAffinity > 50 or self.dominant == 7):
+                                        self.choiceListArray.push("Rabbit")
+                                    if (self.mouseAffinity > 50 or self.dominant == 8):
+                                        self.choiceListArray.push("Mouse")
+                                    if (self.birdAffinity > 50 or self.dominant == 9):
+                                        self.choiceListArray.push("Bird")
+                                    if (self.pigAffinity > 50 or self.dominant == 10):
+                                        self.choiceListArray.push("Pig")
+                                    if (self.skunkAffinity > 50 or self.dominant == 11):
+                                        self.choiceListArray.push("Skunk")
+                                    if (self.bugAffinity > 50 or self.dominant == 12):
+                                        self.choiceListArray.push("Bug")
+                                    self.choiceListButtons("Pure Blood")
+                                    self.outputMainText("Select the racial blood type you would like to purify. Only those that are significant in your body are noticeable enough to select.", True)
+
+                                    def doListen():
+                                        self.choiceListSelect("Pure Blood")
+                                        self.outputMainText("You take a moment to focus, channeling the experience you have gained to single out the blood coursing through your body, making yourself racially pure blood-wise, though you may have some 'leftovers'...", True)
+                                        temp = self.choiceListResult[0]
+                                        if temp == "Human":
+                                            self.aff(1, 10, -1000)
+                                        elif temp == "Equan":
+                                            self.aff(2, 10, -1000)
+                                        elif temp == "Lupan":
+                                            self.aff(3, 10, -1000)
+                                        elif temp == "Felin":
+                                            self.aff(4, 10, -1000)
+                                        elif temp == "Cow":
+                                            self.aff(5, 10, -1000)
+                                        elif temp == "Lizan":
+                                            self.aff(6, 10, -1000)
+                                        elif temp == "Mouse":
+                                            self.aff(8, 10, -1000)
+                                        elif temp == "Bird":
+                                            self.aff(9, 10, -1000)
+                                        elif temp == "Pig":
+                                            self.aff(10, 10, -1000)
+                                        elif temp == "Rabbit":
+                                            self.aff(7, 10, -1000)
+                                        elif temp == "Skunk":
+                                            self.aff(11, 10, -1000)
+                                        elif temp == "Bug":
+                                            self.aff(12, 10, -1000)
+                                        if (self.buttonChoice == 4 or self.buttonChoice == 8):
+                                            self.choiceListButtons("Pure Blood")
+                                        elif (self.buttonChoice == 12):
+                                            self.choicePage = 1
+                                            self.doLevelUP()
+                                        else:
+                                            self.levelUP -= 3
+                                            self.doEnd()
+                                    self.doListen = doListen
+                                else:
+                                    self.doLevelUP()
+                            self.doListen = doListen
+
+                        elif self.choiceListResult[0] == "Regression":
+                            self.outputMainText("Regression will cause your body to regress to a more childlike state, reducing your height by half (to a minimum of 3 inches) and giving you a childlike figure.  Besides your height and body type, this super perk does not affect your sizes. The regression does decrease your strength and mentality by 3 points, however, and increases your libido and sensitivity by 5 points.\n\nAre you sure you want to spend 3 perks to gain Regression?", True)
+                            self.buttonConfirm()
+
+                            def doListen():
+                                if (self.buttonChoice == 6):
+                                    self.doMainText(f"You take a moment to focus, channeling the experience you have gained to return your body to a more youthful state. You close your eyes and concentrate, feeling your {self.skinDesc()} brush across the inside of your {self.currentClothes()} as you shrink within. The feeling slowly grows more and more powerful as you become more sensitive, a breeze licking across you and causing you to shiver erotically.\n\nBy the time you open your eyes, wispy steam floats off of you from the energy you expelled in the process. Your body seems to have fully reverted to a less aged state, your muscles and mind weaker, but your nerves and arousal stronger.", True)
+                                    if (self.tallness > 5):
+                                        self.doMainText("\n\nThere's also the slight problem of your clothes barely hanging onto you, much of your body being exposed from the overly loose garments. You quickly grab the fabric before it can completely fall away, holding it the best you can to cover yourself as you quickly dash away to the tailor for a quick re-fitting.")
+                                        self.hrs += 1
+                                    self.displayMainText()
+                                    self.tallness -= Math.floor(self.tallness / 2)
+                                    self.body = 5
+                                    self.stats(-3, -3, 5, 5)
+                                    self.levelUP -= 3
+                                    self.doEnd()
+                                else:
+                                    self.choicePage = 1
+                                    self.doLevelUP()
+                            self.doListen = doListen
+
+                        elif self.choiceListResult[0] == "Balance":
+                            self.outputMainText("Balance will redistribute your primary stats (strength, mentality, libido, and sensitivity) evenly.\n\nAre you sure you want to spend 3 perks to gain Balance?", True)
+                            self.buttonConfirm()
+
+                            def doListen():
+                                if (self.buttonChoice == 6):
+                                    self.outputMainText("You take a moment to focus, channeling the experience you have gained to achieve a state of balance within your body. You feel several sensations begin to whirl around you; your strength, your mind, your naughtiness, your nerves, all shifting and swaying with the ebb and flow of the energies melting together.\n\nOnce they finally settle, you relax with a sense of equilibrium.", True)
+                                    tempInt = Math.ceil((self.str + self.ment + self.lib + self.sen) / 4)
+                                    self.str = 0
+                                    self.ment = 0
+                                    self.lib = 0
+                                    self.sen = 0
+                                    self.stats(tempInt, tempInt, tempInt, tempInt)
+                                    self.levelUP -= 3
+                                    self.doEnd()
+                                else:
+                                    self.choicePage = 1
+                                    self.doLevelUP()
+                            self.doListen = doListen
+
+                        elif self.choiceListResult[0] == "HP Boost":
+                            self.outputMainText("HP Boost will give you a permanent +15 to your maximum health points.\n\nAre you sure you want to spend 3 perks to gain HP Boost?", True)
+                            self.buttonConfirm()
+
+                            def doListen():
+                                if (self.buttonChoice == 6):
+                                    self.outputMainText("You take a moment to focus, channeling the experience you have gained to fortify your body from harm. It doesn't really take long, and once finished you feel... much healthier.", True)
+                                    self.HPMod += 15
+                                    self.doHP(15)
+                                    self.levelUP -= 3
+                                    self.doEnd()
+                                else:
+                                    self.choicePage = 1
+                                    self.doLevelUP()
+                            self.doListen = doListen
+
+                        elif self.choiceListResult[0] == "Sex Reset":
+                            self.outputMainText("Sex Reset will allow you to select a gender (male, female, or herm) and nullify all genitals not belonging to that gender and all excess genitals besides a single pair for that gender. Sizes of genitals will not be affected. Breasts are not genitals and will not be affected. If you select a gender whose genitals you do not have, you will wind up androgynous.\n\nAre you sure you want to spend 3 perks to gain Sex Reset?", True)
+                            self.buttonConfirm()
+
+                            def doListen():
+                                if (self.buttonChoice == 6):
+                                    self.showButtons(ButtonList(0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1))
+                                    self.doButtonChoices({5: "Male", 6: "Female", 7: "Herm", 12: "Cancel"})
+                                    self.outputMainText("Which gender would you like to reset to? (The one you select is the one you will remain as, if you have the appropriate genitals)", True)
+
+                                    def doListen():
+                                        self.doMainText("You take a moment to focus, channeling the experience you have gained to adjust your sex...", True)
+                                        if self.buttonChoice == 5:
+                                            self.vagChange(0, -self.vagTotal)
+                                            if (self.cockTotal > 1):
+                                                self.cockChange(0, -(self.cockTotal - 1))
+                                            if (self.balls > 2):
+                                                self.doMainText("\n\nWithin your ")
+                                                if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                                                    self.doMainText("scrotum")
+                                                else:
+                                                    self.doMainText("abdomen")
+                                                self.doMainText(", you feel your extra testicles begin to shrink until they vanish from within, leaving you with a single pair.")
+                                                self.balls = 2
+                                        elif self.buttonChoice == 6:
+                                            if (self.vagTotal > 1):
+                                                self.vagChange(0, -(self.vagTotal - 1))
+                                            self.cockChange(0, -self.cockTotal)
+                                        elif self.buttonChoice == 7:
+                                            if (self.vagTotal > 1):
+                                                self.vagChange(0, -(self.vagTotal - 1))
+                                            if (self.cockTotal > 1):
+                                                self.cockChange(0, -(self.cockTotal - 1))
+                                            if (self.balls > 2):
+                                                self.doMainText("\n\nWithin your ")
+                                                if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                                                    self.doMainText("scrotum")
+                                                else:
+                                                    self.doMainText("abdomen")
+                                                self.doMainText(", you feel your extra testicles begin to shrink until they vanish from within, leaving you with a single pair.")
+                                                self.balls = 2
+                                        self.displayMainText()
+                                        if (self.buttonChoice == 12):
+                                            self.doLevelUP()
+                                        else:
+                                            self.levelUP -= 3
+                                            self.doEnd()
+                                    self.doListen = doListen
+                                else:
+                                    self.choicePage = 1
+                                    self.doLevelUP()
+                            self.doListen = doListen
+                        if (self.buttonChoice == 4 or self.buttonChoice == 8):
+                            self.choiceListButtons("Super Perks")
+                        elif (self.buttonChoice == 12):
+                            self.choicePage = 1
+                            self.doLevelUP()
+                self.doListen = doListen
+        self.doListen = doListen
 
     def doExplore(self):
         self.bc()
@@ -19191,198 +19191,198 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doListen = doListen
 
     def doJungle(self):
-      chance = self.eventSelect("Jungle")
-      # Found Valley
-      if chance == 1:
-         self.outputMainText("You trip on a vine and start rolling down a hill!", True)
-         self.doNext()
-
-         def doListen():
-            self.outputMainText("And keep rolling...", True)
+        chance = self.eventSelect("Jungle")
+        # Found Valley
+        if chance == 1:
+            self.outputMainText("You trip on a vine and start rolling down a hill!", True)
             self.doNext()
 
             def doListen():
-               self.outputMainText("And rolling...", True)
-               self.doNext()
+                self.outputMainText("And keep rolling...", True)
+                self.doNext()
 
-               def doListen():
-                  self.outputMainText("And rolling...", True)
-                  self.doNext()
+                def doListen():
+                    self.outputMainText("And rolling...", True)
+                    self.doNext()
 
-                  def doListen():
-                     self.outputMainText("Oh god, when will it end!", True)
-                     self.doNext()
-
-                     def doListen():
-                        self.outputMainText("Rolling, rolling, rolling...", True)
+                    def doListen():
+                        self.outputMainText("And rolling...", True)
                         self.doNext()
 
                         def doListen():
-                           self.outputMainText("You black out for a moment from all the spinning.", True)
-                           self.doNext()
+                            self.outputMainText("Oh god, when will it end!", True)
+                            self.doNext()
 
-                           def doListen():
-                              self.outputMainText("CRASH!", True)
-                              self.doNext()
+                            def doListen():
+                                self.outputMainText("Rolling, rolling, rolling...", True)
+                                self.doNext()
 
-                              def doListen():
-                                 self.outputMainText("You wake up feeling... rather nice. Despite having fallen for so long, you have landed in a fluffy bed of flowers. You stand, trying to get your bearings. You quickly realize, however, that... you've never seen this place before. A large valley spreads out before you, filled with various lush vegetation of all sorts of bright and lively colors. Tall hills surround it, masking this precious valley from any sort of civilization. If you hadn't accidentally tripped, you would have likely never found it...\n\nTaking caution, you climb your way back out, finding your way back to town. Now that you know about the valley, you think you can return quite easily.", True)
-                                 self.foundValley = True
-                                 self.hrs += 3
-                                 self.doEnd()
-                              self.doListen = doListen
-                           self.doListen = doListen
+                                def doListen():
+                                    self.outputMainText("You black out for a moment from all the spinning.", True)
+                                    self.doNext()
+
+                                    def doListen():
+                                        self.outputMainText("CRASH!", True)
+                                        self.doNext()
+
+                                        def doListen():
+                                            self.outputMainText("You wake up feeling... rather nice. Despite having fallen for so long, you have landed in a fluffy bed of flowers. You stand, trying to get your bearings. You quickly realize, however, that... you've never seen this place before. A large valley spreads out before you, filled with various lush vegetation of all sorts of bright and lively colors. Tall hills surround it, masking this precious valley from any sort of civilization. If you hadn't accidentally tripped, you would have likely never found it...\n\nTaking caution, you climb your way back out, finding your way back to town. Now that you know about the valley, you think you can return quite easily.", True)
+                                            self.foundValley = True
+                                            self.hrs += 3
+                                            self.doEnd()
+                                        self.doListen = doListen
+                                    self.doListen = doListen
+                                self.doListen = doListen
+                            self.doListen = doListen
                         self.doListen = doListen
-                     self.doListen = doListen
-                  self.doListen = doListen
-               self.doListen = doListen
+                    self.doListen = doListen
+                self.doListen = doListen
             self.doListen = doListen
-         self.doListen = doListen
 
-      elif chance == 2:
-         self.outputMainText("You hear ominous swishing through the trees around you...", True)
-         if (Utils.percent() < 10 + self.runMod):
-            self.outputMainText("\n\nYet you manage to run off before anything can catch you.")
-            self.hrs = 1
+        elif chance == 2:
+            self.outputMainText("You hear ominous swishing through the trees around you...", True)
+            if (Utils.percent() < 10 + self.runMod):
+                self.outputMainText("\n\nYet you manage to run off before anything can catch you.")
+                self.hrs = 1
+                self.doEnd()
+            elif (self.breastSize < 6):
+                self.doMainText("\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your chest, feeling about and scratching it roughly.\n\nHowever, the tentacles seem to be uninterested and disappear as quick as they came, leaving you with a rather hurtful chest and wasted time.")
+                self.doHP(-Math.floor(Utils.percent() / 10 + 2))
+                self.displayMainText()
+                self.hrs = 1
+                self.doEnd()
+            elif (self.milkEngorgement >= 400 and self.milkEngorgementLevel > 0):
+                self.outputMainText(f"\n\nA mass of peach-colored tentacles falls from the tree-branches above. Some of the tentacles waver out towards you, mostly aiming at your {self.boobDesc()} chest. They seem rather non-threatening, however, as the mass rolls back and forth on the forest floor, almost as though it were a stumbling drunk.\n\nDo you allow the tentacles to come closer?", True)
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.outputMainText(f"Cautiously standing still, you wait as the tentacles come right up to your breasts. They caress your {self.nipDesc()}nipples, seemingly able to smell the milk within your breasts, and they wiggle even more like a drunk... It seems as though the creature smelled your large amount of milk production as you approached and became intoxicated by it.\n\n\nDo you let the creature indulge itself?", True)
+                        self.buttonConfirm()
+
+                        def doListen():
+                            if (self.buttonChoice == 6):
+                                self.outputMainText(f"You pull your {self.clothesTop()} {self.pullUD(1)}, letting your {self.boobDesc()} chest bob out, practically inviting it to partake of your motherly liquid. Not to forsake such an opportunity, the tentacled mass rolls up to you, the tentacles squirming about your {self.nipDesc()}nipples until they stand hard and erect. Yet, the tentacles pull away, caressing and hugging your body as the main mass comes right up to you.\n\nThe mass of tentacles part, revealing a feminine face, slender and beautiful, with eyes closed. The tentacles dance atop her head, seemingly replacing her hair. Looking down, you can see more of her lithe body, thin with milky skin. Two breasts, barely handfuls, wobble upon her chest as tentacles, particularly thinner than the rest, dance about where her nipples would be. Overall, she seems quite short, maybe 4 feet tall at most, while the mass of tentacles could easily reah 6 feet in height.", True)
+                                self.doNext()
+
+                                def doListen():
+                                    self.outputMainText(f"The fair face moves up to one of your {self.boobDesc()} breasts, the little mouth yawning wide to fit one of your {self.nipDesc()}nipples. She latches on the best she can, suckling intently from your chest. You let out a gasp as her expert suckling makes your body grow warm, a delightful tingling sensation making you quiver. Milk gushes from your tits as she gulps it down. Tentacles much thicker than the rest droop from her hair, their tips opening into soft maws that suckle from and kiss the {self.skinDesc()} of your breasts, leaving none unattended. It doesn't take long before your body is wracked by an intense boobgasm...", True)
+                                    self.doNext()
+
+                                    def doListen():
+                                        self.doMainText(f"Gasping for air as you come down from your climax, the feminine face and all the tentacles collapse, leaving hardly any milk still dribbling from your {self.nipDesc()}nipples. Checking the creature, she seems to have passed out in a drunken slumber. Her face seems content, with a small smile, her tentacles writhing lazily about her. Two tentacles in particular look surprisingly active, though. Her small breasts jiggle about as their tentacle-nipples stiffen and soften. They shiver as you run your hands along them, several feet long before you reach their tips. Short, narrow needles protrude from the tips of these tentacle-nipples and they dribble some pearlescant fluid excessivly. You take an empty vial from your bag and gather some of the fluid before heading on your way...", True)
+                                        self.doSexP(20)
+                                        self.nipplePlay += 7
+                                        self.doLust(-Math.floor(self.breastSize * self.sen / 20), 0, 3)
+                                        self.milkAmount(1)
+                                        self.itemAdd(201)
+                                        self.hrs = 2
+                                        self.displayMainText()
+                                        self.doEnd()
+                                    self.doListen = doListen
+                                self.doListen = doListen
+                            else:
+                                self.outputMainText("You take the opportunity to run from the tentacles before the creature can come to its senses, easily avoiding it.", True)
+                                self.doSexP(7)
+                                self.hrs = 1
+                                self.doEnd()
+                        self.doListen = doListen
+                    elif (self.buttonChoice == 7):
+                        self.outputMainText("You take the opportunity to run from the tentacles before the creature can come to its senses, easily avoiding it.", True)
+                        self.doSexP(4)
+                        self.hrs = 1
+                        self.doEnd()
+                self.doListen = doListen
+            else:
+                self.outputMainText(f"\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your {self.boobDesc()} chest, feeling about and scratching it roughly. They pull back for a moment, but before you can recoup from your confused stupor, even more come flying out from the trees, this time whipping around your wrists and {self.legDesc(8)}.\n\nStruggle as you may, you can't seem to wrench yourself free. You can only watch in fear as more tentacles pull your {self.clothesTop()} away and roam about your {self.boobDesc()} breasts. They poke and tease at your {self.nipDesc()}nipples, causing them to stand hard and erect. Then, short narrow needles draw out of two narrow tentacles. They drip with some sort of pearlescant fluid and they plunge gently into each of your {self.boobTotal} fleshy masses...")
+                self.doNext()
+
+                def doListen():
+                    self.boobChange(1)
+                    self.outputMainText(f"A sudden feeling of warmth overcomes you. Your breasts feel especially hot, heaving with your breath. Staring dazedly, they even seem to grow slightly in size as the tentacles grope and massage them pleasurably.\n\nA moment later, your head jerks back as an intense feeling of fullness and swelling engulfs your sensitive tits. You recoil and watch streams of white liquid spew from your throbbing, {self.nipDesc()}nipples. Milk gushes before you, sprinkling over the ground as much thicker tentacles draw close. Their tips open into wet soft maws, showering themselves in the white rain, gulping the streams down all the way to the source. Each one latches onto your lactating breasts, sucking your {self.nipDesc()} nipples deep, drinking and suckling...\n\nYou feel slightly light-headed from the fuzzy warmth that engulfs you, the pleasurable slurping of the hungry tentacles draining you dry. Eventually, the tantalizing efforts make your body quiver, wracked by a steady orgasm from your {self.boobDesc()} breasts while the tentacles lap up the last of the fluids...", True)
+                    self.doNext()
+
+                    def doListen():
+                        self.doMainText(f"A few minutes later, the tentacles retract from whence they came, leaving you to collapse to your {self.legDesc(6)}. Your breasts still feel larger than before, especially when you stretch your {self.clothesTop()} back into place, along with a constant subtle warmth still emanating within. Wet blotches seep across the fabric, your {self.nipDesc()}nipples still dribbling with milk", True)
+                        if (self.lactation <= 0):
+                            self.doMainText(", but eventually dry back up as they were before, though slightly tingly")
+                        self.doMainText("...")
+                        self.milkAmount(1)
+                        self.nipplePlay += 20
+                        self.milkCPoisonNip += 5
+                        self.doSexP(10)
+                        self.doLust(-Math.floor(self.breastSize * self.sen / 20), 0, 3)
+                        self.doHP(-Math.floor(Utils.percent() / 10))
+                        self.hrs = 2
+                        self.displayMainText()
+                        self.doEnd()
+                    self.doListen = doListen
+                self.doListen = doListen
+
+        elif chance == 3:
+            self.outputMainText("Walking through the jungle, you begin to hear footsteps mix with your own... As you pause to listen in, a creature jumps out before you! A lone wolf, it growls, ready to attack. And judging by the red rod that bobs beneath its belly, it's probably male, and probably frustrated after some failed encounter with a female...", True)
+            self.doNext()
+
+            def doListen():
+                self.enemyID = 201
+                self.currentState = GameState.BATTLE
+                self.enemyBaseStats()
+                self.eMaxHP = self.eHP
+                self.doBattle()
+            self.doListen = doListen
+
+        elif chance == 4:
+            self.outputMainText("Walking through the jungle, you begin to hear footsteps mix with your own... As you pause to listen in, a creature jumps out before you! A lone wolf, it growls, ready to attack. The red rod that bobs beneath its belly indicate it is male, yet it doesn't carry itself like it would dominate a female. Rather, it looks like it is vicious enough to dominate other males, and maybe only males...", True)
+            self.doNext()
+
+            def doListen():
+                self.enemyID = 202
+                self.currentState = GameState.BATTLE
+                self.enemyBaseStats()
+                self.eMaxHP = self.eHP
+                self.doBattle()
+            self.doListen = doListen
+
+        elif chance == 5:
+            self.outputMainText("Within the jungle, you come across a rather tender looking tree. Fruits of a rather... vulgar shape hang from its branches. You pluck one and take it back with you.", True)
+            self.itemAdd(210)
+            self.hrs = 2
             self.doEnd()
-         elif (self.breastSize < 6):
-            self.doMainText("\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your chest, feeling about and scratching it roughly.\n\nHowever, the tentacles seem to be uninterested and disappear as quick as they came, leaving you with a rather hurtful chest and wasted time.")
-            self.doHP(-Math.floor(Utils.percent() / 10 + 2))
-            self.displayMainText()
-            self.hrs = 1
+
+        elif chance == 6:
+            self.outputMainText("Making your way through the foliage the best you can, you stop as something glimmers as you kick it aside. Picking it up, it's actually a rather shiny rock that seems to naturally attract your attention. You pick it up and slip it into your bag in case you want to stare at it more later.", True)
+            self.itemAdd(239)
+            self.hrs = 2
             self.doEnd()
-         elif (self.milkEngorgement >= 400 and self.milkEngorgementLevel > 0):
-            self.outputMainText(f"\n\nA mass of peach-colored tentacles falls from the tree-branches above. Some of the tentacles waver out towards you, mostly aiming at your {self.boobDesc()} chest. They seem rather non-threatening, however, as the mass rolls back and forth on the forest floor, almost as though it were a stumbling drunk.\n\nDo you allow the tentacles to come closer?", True)
+
+        elif chance == 7:
+            self.outputMainText("After a few hours of being lost and randomly wandering through the massive amount of vegetation, you come across a path. Would you like to follow it?", True)
             self.buttonConfirm()
 
             def doListen():
-               if (self.buttonChoice == 6):
-                  self.outputMainText(f"Cautiously standing still, you wait as the tentacles come right up to your breasts. They caress your {self.nipDesc()}nipples, seemingly able to smell the milk within your breasts, and they wiggle even more like a drunk... It seems as though the creature smelled your large amount of milk production as you approached and became intoxicated by it.\n\n\nDo you let the creature indulge itself?", True)
-                  self.buttonConfirm()
-
-                  def doListen():
-                     if (self.buttonChoice == 6):
-                        self.outputMainText(f"You pull your {self.clothesTop()} {self.pullUD(1)}, letting your {self.boobDesc()} chest bob out, practically inviting it to partake of your motherly liquid. Not to forsake such an opportunity, the tentacled mass rolls up to you, the tentacles squirming about your {self.nipDesc()}nipples until they stand hard and erect. Yet, the tentacles pull away, caressing and hugging your body as the main mass comes right up to you.\n\nThe mass of tentacles part, revealing a feminine face, slender and beautiful, with eyes closed. The tentacles dance atop her head, seemingly replacing her hair. Looking down, you can see more of her lithe body, thin with milky skin. Two breasts, barely handfuls, wobble upon her chest as tentacles, particularly thinner than the rest, dance about where her nipples would be. Overall, she seems quite short, maybe 4 feet tall at most, while the mass of tentacles could easily reah 6 feet in height.", True)
-                        self.doNext()
-
-                        def doListen():
-                           self.outputMainText(f"The fair face moves up to one of your {self.boobDesc()} breasts, the little mouth yawning wide to fit one of your {self.nipDesc()}nipples. She latches on the best she can, suckling intently from your chest. You let out a gasp as her expert suckling makes your body grow warm, a delightful tingling sensation making you quiver. Milk gushes from your tits as she gulps it down. Tentacles much thicker than the rest droop from her hair, their tips opening into soft maws that suckle from and kiss the {self.skinDesc()} of your breasts, leaving none unattended. It doesn't take long before your body is wracked by an intense boobgasm...", True)
-                           self.doNext()
-
-                           def doListen():
-                              self.doMainText(f"Gasping for air as you come down from your climax, the feminine face and all the tentacles collapse, leaving hardly any milk still dribbling from your {self.nipDesc()}nipples. Checking the creature, she seems to have passed out in a drunken slumber. Her face seems content, with a small smile, her tentacles writhing lazily about her. Two tentacles in particular look surprisingly active, though. Her small breasts jiggle about as their tentacle-nipples stiffen and soften. They shiver as you run your hands along them, several feet long before you reach their tips. Short, narrow needles protrude from the tips of these tentacle-nipples and they dribble some pearlescant fluid excessivly. You take an empty vial from your bag and gather some of the fluid before heading on your way...", True)
-                              self.doSexP(20)
-                              self.nipplePlay += 7
-                              self.doLust(-Math.floor(self.breastSize * self.sen / 20), 0, 3)
-                              self.milkAmount(1)
-                              self.itemAdd(201)
-                              self.hrs = 2
-                              self.displayMainText()
-                              self.doEnd()
-                           self.doListen = doListen
-                        self.doListen = doListen
-                     else:
-                        self.outputMainText("You take the opportunity to run from the tentacles before the creature can come to its senses, easily avoiding it.", True)
-                        self.doSexP(7)
-                        self.hrs = 1
-                        self.doEnd()
-                  self.doListen = doListen
-               elif (self.buttonChoice == 7):
-                  self.outputMainText("You take the opportunity to run from the tentacles before the creature can come to its senses, easily avoiding it.", True)
-                  self.doSexP(4)
-                  self.hrs = 1
-                  self.doEnd()
+                if (self.buttonChoice == 6):
+                    self.doMainText("", True)
+                    if (not self.firstExplore):
+                        self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
+                        self.firstExplore = True
+                    if self.currentZone == Zones.TIEDEN:
+                        self.doMainText("Following the path, you begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
+                        self.regionChange(Zones.SIZ_CALIT)
+                        if (not self.foundSizCalit):
+                            self.foundSizCalit = True
+                    elif self.currentZone == Zones.SIZ_CALIT:
+                        self.doMainText("Following the path, the vegetation grows slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
+                        self.regionChange(Zones.TIEDEN)
+                        if (not self.foundTieden):
+                            self.foundTieden = True
+                    self.hrs = 4
+                    self.displayMainText()
+                    self.doEnd()
+                else:
+                    self.outputMainText("You return from whence you came.", True)
+                    self.hrs = 1
+                    self.doEnd()
             self.doListen = doListen
-         else:
-            self.outputMainText(f"\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your {self.boobDesc()} chest, feeling about and scratching it roughly. They pull back for a moment, but before you can recoup from your confused stupor, even more come flying out from the trees, this time whipping around your wrists and {self.legDesc(8)}.\n\nStruggle as you may, you can't seem to wrench yourself free. You can only watch in fear as more tentacles pull your {self.clothesTop()} away and roam about your {self.boobDesc()} breasts. They poke and tease at your {self.nipDesc()}nipples, causing them to stand hard and erect. Then, short narrow needles draw out of two narrow tentacles. They drip with some sort of pearlescant fluid and they plunge gently into each of your {self.boobTotal} fleshy masses...")
-            self.doNext()
-
-            def doListen():
-               self.boobChange(1)
-               self.outputMainText(f"A sudden feeling of warmth overcomes you. Your breasts feel especially hot, heaving with your breath. Staring dazedly, they even seem to grow slightly in size as the tentacles grope and massage them pleasurably.\n\nA moment later, your head jerks back as an intense feeling of fullness and swelling engulfs your sensitive tits. You recoil and watch streams of white liquid spew from your throbbing, {self.nipDesc()}nipples. Milk gushes before you, sprinkling over the ground as much thicker tentacles draw close. Their tips open into wet soft maws, showering themselves in the white rain, gulping the streams down all the way to the source. Each one latches onto your lactating breasts, sucking your {self.nipDesc()} nipples deep, drinking and suckling...\n\nYou feel slightly light-headed from the fuzzy warmth that engulfs you, the pleasurable slurping of the hungry tentacles draining you dry. Eventually, the tantalizing efforts make your body quiver, wracked by a steady orgasm from your {self.boobDesc()} breasts while the tentacles lap up the last of the fluids...", True)
-               self.doNext()
-
-               def doListen():
-                  self.doMainText(f"A few minutes later, the tentacles retract from whence they came, leaving you to collapse to your {self.legDesc(6)}. Your breasts still feel larger than before, especially when you stretch your {self.clothesTop()} back into place, along with a constant subtle warmth still emanating within. Wet blotches seep across the fabric, your {self.nipDesc()}nipples still dribbling with milk", True)
-                  if (self.lactation <= 0):
-                     self.doMainText(", but eventually dry back up as they were before, though slightly tingly")
-                  self.doMainText("...")
-                  self.milkAmount(1)
-                  self.nipplePlay += 20
-                  self.milkCPoisonNip += 5
-                  self.doSexP(10)
-                  self.doLust(-Math.floor(self.breastSize * self.sen / 20), 0, 3)
-                  self.doHP(-Math.floor(Utils.percent() / 10))
-                  self.hrs = 2
-                  self.displayMainText()
-                  self.doEnd()
-               self.doListen = doListen
-            self.doListen = doListen
-
-      elif chance == 3:
-         self.outputMainText("Walking through the jungle, you begin to hear footsteps mix with your own... As you pause to listen in, a creature jumps out before you! A lone wolf, it growls, ready to attack. And judging by the red rod that bobs beneath its belly, it's probably male, and probably frustrated after some failed encounter with a female...", True)
-         self.doNext()
-
-         def doListen():
-            self.enemyID = 201
-            self.currentState = GameState.BATTLE
-            self.enemyBaseStats()
-            self.eMaxHP = self.eHP
-            self.doBattle()
-         self.doListen = doListen
-
-      elif chance == 4:
-         self.outputMainText("Walking through the jungle, you begin to hear footsteps mix with your own... As you pause to listen in, a creature jumps out before you! A lone wolf, it growls, ready to attack. The red rod that bobs beneath its belly indicate it is male, yet it doesn't carry itself like it would dominate a female. Rather, it looks like it is vicious enough to dominate other males, and maybe only males...", True)
-         self.doNext()
-
-         def doListen():
-            self.enemyID = 202
-            self.currentState = GameState.BATTLE
-            self.enemyBaseStats()
-            self.eMaxHP = self.eHP
-            self.doBattle()
-         self.doListen = doListen
-
-      elif chance == 5:
-         self.outputMainText("Within the jungle, you come across a rather tender looking tree. Fruits of a rather... vulgar shape hang from its branches. You pluck one and take it back with you.", True)
-         self.itemAdd(210)
-         self.hrs = 2
-         self.doEnd()
-
-      elif chance == 6:
-         self.outputMainText("Making your way through the foliage the best you can, you stop as something glimmers as you kick it aside. Picking it up, it's actually a rather shiny rock that seems to naturally attract your attention. You pick it up and slip it into your bag in case you want to stare at it more later.", True)
-         self.itemAdd(239)
-         self.hrs = 2
-         self.doEnd()
-
-      elif chance == 7:
-         self.outputMainText("After a few hours of being lost and randomly wandering through the massive amount of vegetation, you come across a path. Would you like to follow it?", True)
-         self.buttonConfirm()
-
-         def doListen():
-            if (self.buttonChoice == 6):
-               self.doMainText("", True)
-               if (not self.firstExplore):
-                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
-                  self.firstExplore = True
-               if self.currentZone == Zones.TIEDEN:
-                  self.doMainText("Following the path, you begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                  self.regionChange(Zones.SIZ_CALIT)
-                  if (not self.foundSizCalit):
-                     self.foundSizCalit = True
-               elif self.currentZone == Zones.SIZ_CALIT:
-                  self.doMainText("Following the path, the vegetation grows slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                  self.regionChange(Zones.TIEDEN)
-                  if (not self.foundTieden):
-                     self.foundTieden = True
-               self.hrs = 4
-               self.displayMainText()
-               self.doEnd()
-            else:
-               self.outputMainText("You return from whence you came.", True)
-               self.hrs = 1
-               self.doEnd()
-         self.doListen = doListen
 
     def doPlains(self):
         chance = self.eventSelect("Plains")
