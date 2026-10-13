@@ -10659,7 +10659,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(f" The {self.enemyName()}'s cock propels forward with the growth, flopping down onto the ground many times larger than it was, anchoring itself do the ground and preventing its owner from moving.")
                 if (self.eGen == 2 or self.eGen == 3):
                     self.doMainText(f" The {self.enemyName()}'s breasts swell to obscene sizes, making her fall forward and be cushioned by the pillowy masses, unable to stand.")
-                if (self.eGen == 4):
+                if (self.eGen == 0):  # This was originally 4 for some reason. Gender 4 does not exist and this seems to be refering to Gender.ANDRO anyways.
                     self.doMainText(f" The {self.enemyName()}'s midsection grows so large and round that it is unable to move at all.")
                 self.outputMainText(f"\n\nHowever, the bomb's effects are already beginning to wear off as you stare at its results. Taking advantage of this short opportunity, you turn and dash away before the {self.enemyName()} can shrink back down to a manageable size and continue the fight.")
                 self.currentState = GameState.GENERAL
