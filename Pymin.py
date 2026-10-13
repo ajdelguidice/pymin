@@ -18516,6 +18516,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doEnd()
 
     def doOviasis(self):
+      # HERE
       chance = self.eventSelect("Oviasis")
       if chance == 1:
          if self.silRep == 0:
@@ -18974,220 +18975,219 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doEnd()
 
     def doForest(self):
-      # HERE
-      chance = self.eventSelect("Forest")
-      if chance == 1:
-         self.outputMainText("Walking through the forest, you begin to hear footsteps mix with your own... As you pause to listen in, a creature jumps out before you! A lone wolf, it growls, ready to attack. And judging by the red rod that bobs beneath its belly, it's probably male, and probably frustrated after some failed encounter with a female...", True)
-         self.doNext()
-
-         def doListen():
-            self.enemyID = 201
-            self.currentState = GameState.BATTLE
-            self.enemyBaseStats()
-            self.eMaxHP = self.eHP
-            self.doBattle()
-         self.doListen = doListen
-
-      elif chance == 2:
-         self.outputMainText("Walking through the forest, you begin to hear footsteps mix with your own... As you pause to listen in, a creature jumps out before you! A lone wolf, it growls, ready to attack. The red rod that bobs beneath its belly indicate it is male, yet it doesn't carry itself like it would dominate a female. Rather, it looks like it is vicious enough to dominate other males, and maybe only males...", True)
-         self.doNext()
-
-         def doListen():
-            self.enemyID = 202
-            self.currentState = GameState.BATTLE
-            self.enemyBaseStats()
-            self.eMaxHP = self.eHP
-            self.doBattle()
-         self.doListen = doListen
-
-      elif chance == 3:
-         self.outputMainText("You hear a hiss from behind a tree. Stopping cautiously, you manage to avoid stepping on a particularly dangerous snake. The cock-snake. Aptly named due to its head looking much like the glans of a human cock, this breed of snake is also known to devour that of the same... And if its opponent doesn't have one, they soon will.", True)
-         self.doNext()
-
-         def doListen():
-            self.enemyID = 101
-            self.currentState = GameState.BATTLE
-            self.enemyBaseStats()
-            self.eMaxHP = self.eHP
-            self.doBattle()
-         self.doListen = doListen
-
-      elif chance == 4:
-         self.outputMainText("In the midst of the forest, an odd shadow cascades over your eyes. You glance up just in time to spot a star-shaped flower twirling down towards you. The vibrant blue petals are easy to make out from below and, oddly, don't match any of the foliage you see above. Wherever this flower came from, you step back in time to let it slowly drift down into your hands.\n\nThe iridescent topside of the petals shimmer beautifully, with the center glistening yellow and steadily oscillating like molten gold.\n\n\nWould you like to smell its wondrous scent?", True)
-         self.buttonConfirm()
-
-         def doListen():
-            if (self.buttonChoice == 6):
-               self.doMainText("It just looks so magnificent that you can't help but stuff your nose in and take a big whiff.\n\nYou immediately regret your impulsive inhaling, as an intense tingle erupts within your nose. You're nearly forced to laugh from the intense tickling sensation, but considering the area being affected, you instead halt your breath. Your next attempt to breath only intensifies the sensation further, your chest heaving to hold back. But, you're simply not strong enough...\n\n\"ACHOO!\" You sneeze loud and hard. So hard, in fact, that ", True)
-               self.rndArray = Array(1, 2)
-               if (Hairstyles.hasLengthOptions(self.hair) and self.hairLength < 10):
-                  self.rndArray.push(3)
-               if (self.cockTotal > 0):
-                  self.rndArray.push(4)
-               if (self.balls > 0 and (self.respectShowBalls or self.showBalls)):
-                  self.rndArray.push(5)
-               if (self.cockTotal > 0):
-                  self.rndArray.push(6)
-               if (self.breastSize > 2):
-                  self.rndArray.push(7)
-               if (self.lactation > 0):
-                  self.rndArray.push(8)
-               if (self.vagTotal > 0):
-                  self.rndArray.push(9)
-               if (self.gender != Gender.ANDRO):
-                  self.rndArray.push(10)
-               tempInt = self.chooseFrom()
-               if tempInt == 1:
-                  self.doMainText("your hips stretch outward, becoming wider.")
-                  self.hips += Math.floor(Utils.percent() / 20 + 1)
-               elif tempInt == 2:
-                  self.doMainText(f"your butt balloons outward behind you, straining your {self.clothesBottom()}.")
-                  self.butt += Math.floor(Utils.percent() / 20 + 1)
-               elif tempInt == 3:
-                  self.doMainText("your hair suddenly grows faster than you can blink, much longer than before.")
-                  self.hairLength += 2
-               elif tempInt == 4:
-                  self.doMainText(f"your cock{self.plural(1)} expand{self.plural(3)} in your {self.clothesBottom()}, nearly exploding through the fabric.")
-                  self.cockSize += Math.floor(Utils.percent() / 20 + 1)
-               elif tempInt == 5:
-                  if self.respectShowBalls and not self.showBalls:
-                     self.doMainText("your internal testicles swell, making you hunch over for an instant.")
-                  else:
-                     self.doMainText("your testicles swell between your thighs, making you hunch over your crotch for an instant.")
-                  self.ballSize += Math.floor(Utils.percent() / 20 + 1)
-               elif tempInt == 6:
-                  self.doMainText(f"you blast your semen into your {self.clothesBottom()}, a sudden spontaneous ejaculation.")
-                  self.cumAmount()
-                  self.doLust(-20, 0)
-               elif tempInt == 7:
-                  self.doMainText(f"your breasts inflate, nearly tearing through your {self.clothesTop()}.")
-                  self.breastSize += Math.floor(Utils.percent() / 20 + 1)
-               elif tempInt == 8:
-                  self.doMainText(f"all the milk in your breasts sprays out of your nipples, completely soaking your {self.clothesTop()}.")
-                  self.milkAmount(1)
-               elif tempInt == 9:
-                  self.doMainText(f"your vulva expands {self.legWhere(1)} your {self.legDesc(2)}, squished between your thighs and making you walk awkwardly.")
-                  self.vulvaSize += Math.floor(Utils.percent() / 20 + 1)
-               elif tempInt == 10:
-                  self.doMainText("your blood floods to your genitals, suddenly arousing you.")
-                  self.doLust(Math.floor(Utils.percent() / 5), 0)
-               self.outputMainText(" You also managed to annihilate the flower...\n\nCaught off guard and quite confused, you stumble off, wondering if there's a tissue nearby.")
-               self.hrs += 2
-               self.doEnd()
-            else:
-               self.outputMainText("Wary of strangely beautiful flowers that fall randomly from the sky, you decide to let it continue its path to the ground and head on your way.", True)
-               self.hrs += 1
-               self.doEnd()
-         self.doListen = doListen
-
-      elif chance == 5:
-         self.doMainText("You hear ominous swishing through the trees around you...", True)
-         if (Utils.percent() < 10 + self.runMod):
-            self.outputMainText("\n\nYet you manage to run off before anything can catch you.")
-            self.hrs = 1
-            self.doEnd()
-         elif (self.breastSize < 6):
-            self.doMainText("\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your chest, feeling about and scratching it roughly.\n\nHowever, the tentacles seem to be uninterested and disappear as quick as they came, leaving you with a rather hurtful chest and wasted time.")
-            self.doHP(-Math.floor(Utils.percent() / 10 + 2))
-            self.displayMainText()
-            self.hrs = 1
-            self.doEnd()
-         elif (self.milkEngorgement >= 400 and self.milkEngorgementLevel > 0):
-            self.outputMainText(f"\n\nA mass of peach-colored tentacles falls from the tree-branches above. Some of the tentacles waver out towards you, mostly aiming at your {self.boobDesc()} chest. They seem rather non-threatening, however, as the mass rolls back and forth on the forest floor, almost as though it were a stumbling drunk.\n\nDo you allow the tentacles to come closer?")
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.outputMainText(f"Cautiously standing still, you wait as the tentacles come right up to your breasts. They caress your {self.nipDesc()}nipples, seemingly able to smell the milk within your breasts, and they wiggle even more like a drunk... It seems as though the creature smelled your large amount of milk production as you approached and became intoxicated by it.\n\n\nDo you let the creature indulge itself?", True)
-                  self.buttonConfirm()
-
-                  def doListen():
-                     if (self.buttonChoice == 6):
-                        self.outputMainText(f"You pull your {self.clothesTop()} {self.pullUD(1)}, letting your {self.boobDesc()} chest bob out, practically inviting it to partake of your motherly liquid. Not to forsake such an opportunity, the tentacled mass rolls up to you, the tentacles squirming about your {self.nipDesc()}nipples until they stand hard and erect. Yet, the tentacles pull away, caressing and hugging your body as the main mass comes right up to you.\n\nThe mass of tentacles part, revealing a feminine face, slender and beautiful, with eyes closed. The tentacles dance atop her head, seemingly replacing her hair. Looking down, you can see more of her lithe body, thin with milky skin. Two breasts, barely handfuls, wobble upon her chest as tentacles, particularly thinner than the rest, dance about where her nipples would be. Overall, she seems quite short, maybe 4 feet tall at most, while the mass of tentacles could easily reach 6 feet in height.", True)
-                        self.doNext()
-
-                        def doListen():
-                           self.outputMainText(f"The fair face moves up to one of your {self.boobDesc()} breasts, the little mouth yawning wide to fit one of your {self.nipDesc()}nipples. She latches on the best she can, suckling intently from your chest. You let out a gasp as her expert suckling makes your body grow warm, a delightful tingling sensation making you quiver. Milk gushes from your tits as she gulps it down. Tentacles much thicker than the rest droop from her hair, their tips opening into soft maws that suckle from and kiss the {self.skinDesc()} of your breasts, leaving none unattended. It doesn't take long before your body is wracked by an intense boobgasm...", True)
-                           self.doNext()
-
-                           def doListen():
-                              self.doMainText(f"Gasping for air as you come down from your climax, the feminine face and all the tentacles collapse, leaving hardly any milk still dribbling from your {self.nipDesc()}nipples. Checking the creature, she seems to have passed out in a drunken slumber. Her face seems content, with a small smile, her tentacles writhing lazily about her. Two tentacles in particular look surprisingly active, though. Her small breasts jiggle about as their tentacle-nipples stiffen and soften. They shiver as you run your hands along them, several feet long before you reach their tips. Short, narrow needles protrude from the tips of these tentacle-nipples and they dribble some pearlescant fluid excessivly. You take an empty vial from your bag and gather some of the fluid before heading on your way...", True)
-                              self.doSexP(20)
-                              self.nipplePlay += 7
-                              self.doLust(-Math.floor(self.breastSize * self.sen / 20), 0, 3)
-                              self.displayMainText()
-                              self.milkAmount(1)
-                              self.itemAdd(201)
-                              self.hrs = 2
-                              self.doEnd()
-                           self.doListen = doListen
-                        self.doListen = doListen
-                     else:
-                        self.outputMainText("You take the opportunity to run from the tentacles before the creature can come to its senses, easily avoiding it.", True)
-                        self.doSexP(7)
-                        self.hrs = 1
-                        self.doEnd()
-                  self.doListen = doListen
-               else:
-                  self.outputMainText("You take the opportunity to run from the tentacles before the creature can come to its senses, easily avoiding it.", True)
-                  self.doSexP(4)
-                  self.hrs = 1
-                  self.doEnd()
-            self.doListen = doListen
-         else:
-            self.outputMainText(f"\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your {self.boobDesc()} chest, feeling about and scratching it roughly. They pull back for a moment, but before you can recoup from your confused stupor, even more come flying out from the trees, this time whipping around your wrists and {self.legDesc(8)}.\n\nStruggle as you may, you can't seem to wrench yourself free. You can only watch in fear as more tentacles pull your {self.clothesTop()} away and roam about your {self.boobDesc()} breasts. They poke and tease at your {self.nipDesc()}nipples, causing them to stand hard and erect. Then, short narrow needles draw out of two narrow tentacles. They drip with some sort of pearlescant fluid and they plunge gently into each of your {self.boobTotal} fleshy masses...")
+        chance = self.eventSelect("Forest")
+        if chance == 1:
+            self.outputMainText("Walking through the forest, you begin to hear footsteps mix with your own... As you pause to listen in, a creature jumps out before you! A lone wolf, it growls, ready to attack. And judging by the red rod that bobs beneath its belly, it's probably male, and probably frustrated after some failed encounter with a female...", True)
             self.doNext()
 
             def doListen():
-               self.boobChange(1)
-               self.outputMainText(f"A sudden feeling of warmth overcomes you. Your breasts feel especially hot, heaving with your breath. Staring dazedly, they even seem to grow slightly in size as the tentacles grope and massage them pleasurably.\n\nA moment later, your head jerks back as an intense feeling of fullness and swelling engulfs your sensitive tits. You recoil and watch streams of white liquid spew from your throbbing, {self.nipDesc()}nipples. Milk gushes before you, sprinkling over the ground as much thicker tentacles draw close. Their tips open into wet soft maws, showering themselves in the white rain, gulping the streams down all the way to the source. Each one latches onto your lactating breasts, sucking your {self.nipDesc()} nipples deep, drinking and suckling...\n\nYou feel slightly light-headed from the fuzzy warmth that engulfs you, the pleasurable slurping of the hungry tentacles draining you dry. Eventually, the tantalizing efforts make your body quiver, wracked by a steady orgasm from your {self.boobDesc()} breasts while the tentacles lap up the last of the fluids...", True)
-               self.doNext()
-
-               def doListen():
-                  self.doMainText(f"A few minutes later, the tentacles retract from whence they came, leaving you to collapse to your {self.legDesc(6)}. Your breasts still feel larger than before, especially when you stretch your {self.clothesTop()} back into place, along with a constant subtle warmth still emanating within. Wet blotches seep across the fabric, your {self.nipDesc()}nipples still dribbling with milk", True)
-                  if (self.lactation <= 0):
-                     self.doMainText(", but eventually dry back up as they were before, though slightly tingly")
-                  self.doMainText("...")
-                  self.milkAmount(1)
-                  self.nipplePlay += 20
-                  self.milkCPoisonNip += 5
-                  self.doSexP(10)
-                  self.doLust(-Math.floor(self.breastSize * self.sen / 20), 0, 3)
-                  self.doHP(-Math.floor(Utils.percent() / 10))
-                  self.displayMainText()
-                  self.hrs = 2
-                  self.doEnd()
-               self.doListen = doListen
+                self.enemyID = 201
+                self.currentState = GameState.BATTLE
+                self.enemyBaseStats()
+                self.eMaxHP = self.eHP
+                self.doBattle()
             self.doListen = doListen
 
-      elif chance == 6:
-         self.outputMainText("After a few hours of being lost and randomly wandering through the maze of trees, you come across a path. Would you like to follow it?", True)
-         self.buttonConfirm()
+        elif chance == 2:
+            self.outputMainText("Walking through the forest, you begin to hear footsteps mix with your own... As you pause to listen in, a creature jumps out before you! A lone wolf, it growls, ready to attack. The red rod that bobs beneath its belly indicate it is male, yet it doesn't carry itself like it would dominate a female. Rather, it looks like it is vicious enough to dominate other males, and maybe only males...", True)
+            self.doNext()
 
-         def doListen():
-            if (self.buttonChoice == 6):
-               self.doMainText("", True)
-               if (not self.firstExplore):
-                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a sense of exhilaration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
-                  self.firstExplore = True
-               if self.currentZone == Zones.SOFTLIK:
-                  self.doMainText("Following the path, the trees grow slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                  self.regionChange(Zones.TIEDEN)
-                  if (not self.foundTieden):
-                     self.foundTieden = True
-               elif self.currentZone == Zones.TIEDEN:
-                  self.doMainText("Following the path, the trees grow much sparser opening up to rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun.\n\nYou have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                  self.regionChange(Zones.SOFTLIK)
-                  if (not self.foundSoftlik):
-                     self.foundSoftlik = True
-               self.hrs = 4
-               self.displayMainText()
-               self.doEnd()
+            def doListen():
+                self.enemyID = 202
+                self.currentState = GameState.BATTLE
+                self.enemyBaseStats()
+                self.eMaxHP = self.eHP
+                self.doBattle()
+            self.doListen = doListen
+
+        elif chance == 3:
+            self.outputMainText("You hear a hiss from behind a tree. Stopping cautiously, you manage to avoid stepping on a particularly dangerous snake. The cock-snake. Aptly named due to its head looking much like the glans of a human cock, this breed of snake is also known to devour that of the same... And if its opponent doesn't have one, they soon will.", True)
+            self.doNext()
+
+            def doListen():
+                self.enemyID = 101
+                self.currentState = GameState.BATTLE
+                self.enemyBaseStats()
+                self.eMaxHP = self.eHP
+                self.doBattle()
+            self.doListen = doListen
+
+        elif chance == 4:
+            self.outputMainText("In the midst of the forest, an odd shadow cascades over your eyes. You glance up just in time to spot a star-shaped flower twirling down towards you. The vibrant blue petals are easy to make out from below and, oddly, don't match any of the foliage you see above. Wherever this flower came from, you step back in time to let it slowly drift down into your hands.\n\nThe iridescent topside of the petals shimmer beautifully, with the center glistening yellow and steadily oscillating like molten gold.\n\n\nWould you like to smell its wondrous scent?", True)
+            self.buttonConfirm()
+
+            def doListen():
+                if (self.buttonChoice == 6):
+                    self.doMainText("It just looks so magnificent that you can't help but stuff your nose in and take a big whiff.\n\nYou immediately regret your impulsive inhaling, as an intense tingle erupts within your nose. You're nearly forced to laugh from the intense tickling sensation, but considering the area being affected, you instead halt your breath. Your next attempt to breath only intensifies the sensation further, your chest heaving to hold back. But, you're simply not strong enough...\n\n\"ACHOO!\" You sneeze loud and hard. So hard, in fact, that ", True)
+                    self.rndArray = Array(1, 2)
+                    if (Hairstyles.hasLengthOptions(self.hair) and self.hairLength < 10):
+                        self.rndArray.push(3)
+                    if (self.cockTotal > 0):
+                        self.rndArray.push(4)
+                    if (self.balls > 0 and (self.respectShowBalls or self.showBalls)):
+                        self.rndArray.push(5)
+                    if (self.cockTotal > 0):
+                        self.rndArray.push(6)
+                    if (self.breastSize > 2):
+                        self.rndArray.push(7)
+                    if (self.lactation > 0):
+                        self.rndArray.push(8)
+                    if (self.vagTotal > 0):
+                        self.rndArray.push(9)
+                    if (self.gender != Gender.ANDRO):
+                        self.rndArray.push(10)
+                    tempInt = self.chooseFrom()
+                    if tempInt == 1:
+                        self.doMainText("your hips stretch outward, becoming wider.")
+                        self.hips += Math.floor(Utils.percent() / 20 + 1)
+                    elif tempInt == 2:
+                        self.doMainText(f"your butt balloons outward behind you, straining your {self.clothesBottom()}.")
+                        self.butt += Math.floor(Utils.percent() / 20 + 1)
+                    elif tempInt == 3:
+                        self.doMainText("your hair suddenly grows faster than you can blink, much longer than before.")
+                        self.hairLength += 2
+                    elif tempInt == 4:
+                        self.doMainText(f"your cock{self.plural(1)} expand{self.plural(3)} in your {self.clothesBottom()}, nearly exploding through the fabric.")
+                        self.cockSize += Math.floor(Utils.percent() / 20 + 1)
+                    elif tempInt == 5:
+                        if self.respectShowBalls and not self.showBalls:
+                            self.doMainText("your internal testicles swell, making you hunch over for an instant.")
+                        else:
+                            self.doMainText("your testicles swell between your thighs, making you hunch over your crotch for an instant.")
+                        self.ballSize += Math.floor(Utils.percent() / 20 + 1)
+                    elif tempInt == 6:
+                        self.doMainText(f"you blast your semen into your {self.clothesBottom()}, a sudden spontaneous ejaculation.")
+                        self.cumAmount()
+                        self.doLust(-20, 0)
+                    elif tempInt == 7:
+                        self.doMainText(f"your breasts inflate, nearly tearing through your {self.clothesTop()}.")
+                        self.breastSize += Math.floor(Utils.percent() / 20 + 1)
+                    elif tempInt == 8:
+                        self.doMainText(f"all the milk in your breasts sprays out of your nipples, completely soaking your {self.clothesTop()}.")
+                        self.milkAmount(1)
+                    elif tempInt == 9:
+                        self.doMainText(f"your vulva expands {self.legWhere(1)} your {self.legDesc(2)}, squished between your thighs and making you walk awkwardly.")
+                        self.vulvaSize += Math.floor(Utils.percent() / 20 + 1)
+                    elif tempInt == 10:
+                        self.doMainText("your blood floods to your genitals, suddenly arousing you.")
+                        self.doLust(Math.floor(Utils.percent() / 5), 0)
+                    self.outputMainText(" You also managed to annihilate the flower...\n\nCaught off guard and quite confused, you stumble off, wondering if there's a tissue nearby.")
+                    self.hrs += 2
+                    self.doEnd()
+                else:
+                    self.outputMainText("Wary of strangely beautiful flowers that fall randomly from the sky, you decide to let it continue its path to the ground and head on your way.", True)
+                    self.hrs += 1
+                    self.doEnd()
+            self.doListen = doListen
+
+        elif chance == 5:
+            self.doMainText("You hear ominous swishing through the trees around you...", True)
+            if (Utils.percent() < 10 + self.runMod):
+                self.outputMainText("\n\nYet you manage to run off before anything can catch you.")
+                self.hrs = 1
+                self.doEnd()
+            elif (self.breastSize < 6):
+                self.doMainText("\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your chest, feeling about and scratching it roughly.\n\nHowever, the tentacles seem to be uninterested and disappear as quick as they came, leaving you with a rather hurtful chest and wasted time.")
+                self.doHP(-Math.floor(Utils.percent() / 10 + 2))
+                self.displayMainText()
+                self.hrs = 1
+                self.doEnd()
+            elif (self.milkEngorgement >= 400 and self.milkEngorgementLevel > 0):
+                self.outputMainText(f"\n\nA mass of peach-colored tentacles falls from the tree-branches above. Some of the tentacles waver out towards you, mostly aiming at your {self.boobDesc()} chest. They seem rather non-threatening, however, as the mass rolls back and forth on the forest floor, almost as though it were a stumbling drunk.\n\nDo you allow the tentacles to come closer?")
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.outputMainText(f"Cautiously standing still, you wait as the tentacles come right up to your breasts. They caress your {self.nipDesc()}nipples, seemingly able to smell the milk within your breasts, and they wiggle even more like a drunk... It seems as though the creature smelled your large amount of milk production as you approached and became intoxicated by it.\n\n\nDo you let the creature indulge itself?", True)
+                        self.buttonConfirm()
+
+                        def doListen():
+                            if (self.buttonChoice == 6):
+                                self.outputMainText(f"You pull your {self.clothesTop()} {self.pullUD(1)}, letting your {self.boobDesc()} chest bob out, practically inviting it to partake of your motherly liquid. Not to forsake such an opportunity, the tentacled mass rolls up to you, the tentacles squirming about your {self.nipDesc()}nipples until they stand hard and erect. Yet, the tentacles pull away, caressing and hugging your body as the main mass comes right up to you.\n\nThe mass of tentacles part, revealing a feminine face, slender and beautiful, with eyes closed. The tentacles dance atop her head, seemingly replacing her hair. Looking down, you can see more of her lithe body, thin with milky skin. Two breasts, barely handfuls, wobble upon her chest as tentacles, particularly thinner than the rest, dance about where her nipples would be. Overall, she seems quite short, maybe 4 feet tall at most, while the mass of tentacles could easily reach 6 feet in height.", True)
+                                self.doNext()
+
+                                def doListen():
+                                    self.outputMainText(f"The fair face moves up to one of your {self.boobDesc()} breasts, the little mouth yawning wide to fit one of your {self.nipDesc()}nipples. She latches on the best she can, suckling intently from your chest. You let out a gasp as her expert suckling makes your body grow warm, a delightful tingling sensation making you quiver. Milk gushes from your tits as she gulps it down. Tentacles much thicker than the rest droop from her hair, their tips opening into soft maws that suckle from and kiss the {self.skinDesc()} of your breasts, leaving none unattended. It doesn't take long before your body is wracked by an intense boobgasm...", True)
+                                    self.doNext()
+
+                                    def doListen():
+                                        self.doMainText(f"Gasping for air as you come down from your climax, the feminine face and all the tentacles collapse, leaving hardly any milk still dribbling from your {self.nipDesc()}nipples. Checking the creature, she seems to have passed out in a drunken slumber. Her face seems content, with a small smile, her tentacles writhing lazily about her. Two tentacles in particular look surprisingly active, though. Her small breasts jiggle about as their tentacle-nipples stiffen and soften. They shiver as you run your hands along them, several feet long before you reach their tips. Short, narrow needles protrude from the tips of these tentacle-nipples and they dribble some pearlescant fluid excessivly. You take an empty vial from your bag and gather some of the fluid before heading on your way...", True)
+                                        self.doSexP(20)
+                                        self.nipplePlay += 7
+                                        self.doLust(-Math.floor(self.breastSize * self.sen / 20), 0, 3)
+                                        self.displayMainText()
+                                        self.milkAmount(1)
+                                        self.itemAdd(201)
+                                        self.hrs = 2
+                                        self.doEnd()
+                                    self.doListen = doListen
+                                self.doListen = doListen
+                            else:
+                                self.outputMainText("You take the opportunity to run from the tentacles before the creature can come to its senses, easily avoiding it.", True)
+                                self.doSexP(7)
+                                self.hrs = 1
+                                self.doEnd()
+                        self.doListen = doListen
+                    else:
+                        self.outputMainText("You take the opportunity to run from the tentacles before the creature can come to its senses, easily avoiding it.", True)
+                        self.doSexP(4)
+                        self.hrs = 1
+                        self.doEnd()
+                self.doListen = doListen
             else:
-               self.outputMainText("You return from whence you came.", True)
-               self.hrs = 1
-               self.doEnd()
-         self.doListen = doListen
+                self.outputMainText(f"\n\nPeach-colored tentacles lash out at you from the tree-branches above, catching you by surprise. They flail around your {self.boobDesc()} chest, feeling about and scratching it roughly. They pull back for a moment, but before you can recoup from your confused stupor, even more come flying out from the trees, this time whipping around your wrists and {self.legDesc(8)}.\n\nStruggle as you may, you can't seem to wrench yourself free. You can only watch in fear as more tentacles pull your {self.clothesTop()} away and roam about your {self.boobDesc()} breasts. They poke and tease at your {self.nipDesc()}nipples, causing them to stand hard and erect. Then, short narrow needles draw out of two narrow tentacles. They drip with some sort of pearlescant fluid and they plunge gently into each of your {self.boobTotal} fleshy masses...")
+                self.doNext()
+
+                def doListen():
+                    self.boobChange(1)
+                    self.outputMainText(f"A sudden feeling of warmth overcomes you. Your breasts feel especially hot, heaving with your breath. Staring dazedly, they even seem to grow slightly in size as the tentacles grope and massage them pleasurably.\n\nA moment later, your head jerks back as an intense feeling of fullness and swelling engulfs your sensitive tits. You recoil and watch streams of white liquid spew from your throbbing, {self.nipDesc()}nipples. Milk gushes before you, sprinkling over the ground as much thicker tentacles draw close. Their tips open into wet soft maws, showering themselves in the white rain, gulping the streams down all the way to the source. Each one latches onto your lactating breasts, sucking your {self.nipDesc()} nipples deep, drinking and suckling...\n\nYou feel slightly light-headed from the fuzzy warmth that engulfs you, the pleasurable slurping of the hungry tentacles draining you dry. Eventually, the tantalizing efforts make your body quiver, wracked by a steady orgasm from your {self.boobDesc()} breasts while the tentacles lap up the last of the fluids...", True)
+                    self.doNext()
+
+                    def doListen():
+                        self.doMainText(f"A few minutes later, the tentacles retract from whence they came, leaving you to collapse to your {self.legDesc(6)}. Your breasts still feel larger than before, especially when you stretch your {self.clothesTop()} back into place, along with a constant subtle warmth still emanating within. Wet blotches seep across the fabric, your {self.nipDesc()}nipples still dribbling with milk", True)
+                        if (self.lactation <= 0):
+                            self.doMainText(", but eventually dry back up as they were before, though slightly tingly")
+                        self.doMainText("...")
+                        self.milkAmount(1)
+                        self.nipplePlay += 20
+                        self.milkCPoisonNip += 5
+                        self.doSexP(10)
+                        self.doLust(-Math.floor(self.breastSize * self.sen / 20), 0, 3)
+                        self.doHP(-Math.floor(Utils.percent() / 10))
+                        self.displayMainText()
+                        self.hrs = 2
+                        self.doEnd()
+                    self.doListen = doListen
+                self.doListen = doListen
+
+        elif chance == 6:
+            self.outputMainText("After a few hours of being lost and randomly wandering through the maze of trees, you come across a path. Would you like to follow it?", True)
+            self.buttonConfirm()
+
+            def doListen():
+                if (self.buttonChoice == 6):
+                    self.doMainText("", True)
+                    if (not self.firstExplore):
+                        self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a sense of exhilaration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
+                        self.firstExplore = True
+                    if self.currentZone == Zones.SOFTLIK:
+                        self.doMainText("Following the path, the trees grow slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
+                        self.regionChange(Zones.TIEDEN)
+                        if (not self.foundTieden):
+                            self.foundTieden = True
+                    elif self.currentZone == Zones.TIEDEN:
+                        self.doMainText("Following the path, the trees grow much sparser opening up to rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun.\n\nYou have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
+                        self.regionChange(Zones.SOFTLIK)
+                        if (not self.foundSoftlik):
+                            self.foundSoftlik = True
+                    self.hrs = 4
+                    self.displayMainText()
+                    self.doEnd()
+                else:
+                    self.outputMainText("You return from whence you came.", True)
+                    self.hrs = 1
+                    self.doEnd()
+            self.doListen = doListen
 
     def doJungle(self):
         chance = self.eventSelect("Jungle")
@@ -19533,270 +19533,269 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen = doListen
 
     def doDesert(self):
-      # HERE
-      chance = self.eventSelect("Desert")
-      if chance == 1:
-         #!"sand witch"?
-         self.outputMainText("You have encountered a sand witch!\n\n\n\nIt looks so tasty and full of ham, sitting on a plate on the sand in the middle of nowhere. You have no idea who could have possibly left it or if it's even worth tasting, considering who knows how long it has been sitting out in the sun like this...\n\nWill you eat it?", True)
-         self.buttonConfirm()
-
-         def doListen():
-            if (self.buttonChoice == 6):
-               chance = Utils.percent()
-               #!It says "sandvich"
-               if (chance <= 15):
-                  self.doMainText("You munch on the sandvich, enjoying its meaty goodness, letting it fill your stomach, so moist and delicious. However, an odd gurgling inside makes you worry...", True)
-                  if self.boobTotal == 2:
-                     self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
-                     if (self.breastSize > 4):
-                        self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-                  elif self.boobTotal == 6:
-                     self.doMainText("\n\nYour belly tickles")
-                     if (self.breastSize > 4):
-                        self.doMainText(", growing much lighter")
-                     self.doMainText(f". Checking, you catch your bottom set of nipples disappear flat into your {self.skinDesc()}, while your middle pair swells to match the first, leaving you with two sets of equally sized breasts, the top resting upon the bottom.")
-                  elif self.boobTotal == 8:
-                     self.doMainText("\n\nYour belly tickles")
-                     if (self.breastSize > 4):
-                        self.doMainText(", growing much lighter")
-                     self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
-                  elif self.gameTweaksMisc and self.boobTotal == 10:  # TODO: Make text for this more unique
-                     self.doMainText("\n\nYour belly tickles")
-                     if (self.breastSize > 4):
-                        self.doMainText(", growing much lighter")
-                     self.doMainText(f". Checking, you catch your three lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
-                  self.boobTotal = 4
-                  self.fourBoobAffinity = 100
-                  self.hrs = 2
-               elif (chance <= 35):
-                  self.doMainText("You munch on the sandvich, delighting in the flappy meat on your tongue, letting it fill your stomach, so moist and delicious. However, an odd gurgling inside makes you worry...", True)
-                  if (self.cockTotal > 0 and self.vagTotal < self.cockTotal + 1):
-                     self.vagChange(0, self.cockTotal - self.vagTotal + 1)
-                     self.doMainText(f"\n\nOne more vagina than you have cock{self.plural(1)}. Why that is will forever be a mystery...\n\nWhatever this strange lunch may have been for, it's gone now and you're left heading back with a bit more than you intended.")
-                  else:
-                     self.vagChange(0, 1)
-                     self.doMainText("\n\nMaybe you were enjoying the licking of tasty flaps of meat a little too much?..\n\nWhatever this strange lunch may have been for, it's gone now and you're left heading back with a bit more than you intended.")
-                  self.hrs = 2
-               elif (chance <= 55):
-                  self.doMainText(f"You nibble on the sandvich, the protein so filling. However, your chest quickly begins to feel warm, your {self.nipDesc()}nipples standing erect and burning beneath your {self.clothesTop()}. Your hands quickly reach up to touch them and cup them just in time for milk to begin gushing out across the sand!\n\nThe springs of white fluid spew from your breasts, your {self.clothesTop()} rapidly becoming soaked while small rivers begin to form amongst the sand. You collapse to your {self.legDesc(6)}, pulling {self.pullUD(1)} your {self.clothesTop()} to squeeze and pump your poor nipples as they fill the area with sustenance.\n\nWithin a few minutes, you have made several puddles around the dunes surrounding you, while your mammary glands come to a halt. You rub them gently, feeling their sensitivity arouse you a little, completely confused as to what just happened. The milking has stopped for now, but you still feel a bit... abundant nevertheless. You quickly toss your clothes back on and hurry away from the moist scene, unsure what the sandvich was possibly intended for.", True)
-                  self.milkMod += 15
-                  self.doLust(20, 0)
-                  self.stats(0, 0, 0, 2 * self.boobTotal)
-                  self.hrs = 3
-               elif (chance <= 75):
-                  self.doMainText("You nom the sandvich to death, feeling it make you strong!", True)
-                  self.hrs = 2
-                  self.doHP(150)
-               else:
-                  self.doMainText("You take a bit of the sandvich and... urk! You suddenly feel green in the face as you realize a sandvich sitting out in the sun with this kind of heat... wouldn't have worked out very well. Once you finish expelling the rather spoiled goods, you drudge back to town feeling a bit sick.", True)
-                  self.HP = 1
-                  self.hrs = 4
-                  self.doHP(0)
-               self.displayMainText()
-               self.doEnd()
-            else:
-               self.outputMainText("Thinking it best to leave strange meats to themselves, you turn your back to the sandvich and walk away, feeling it taunting you from behind as you leave.", True)
-               self.hrs = 1
-               self.doEnd()
-         self.doListen = doListen
-
-      elif chance == 2:
-         self.doMainText("Out of the corner of your eye, you spot a fluttering flash in the distance. Turning to view it more clearly, you can see it's literally flying over the sand, just a couple feet in the air. It seems to be scanning the ground for something, muzzle moving from side to side as it goes, sniffing away at the sandy dunes. A humanoid shape wrapped in a white hooded cloak, the most you can manage to make out are some long fuzzy ears, a lizard-like tail, some slight curvature to the apparently feminine figure, and large feathery wings that flutter gracefully to keep her aloft.", True)
-         if (self.pheromone > 0 and self.bag.hasMagicItem()):
-            self.outputMainText(f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up an odd scent that seems to make her act a little funny. As she follows her nose towards its source, she sways back and forth a little, her hips twisting around as her thighs begin to rub together. She has to land on her sandle-protected paws as her wings fold inward, three finger-like talons at the ends of them awkwardly roaming about her breasts and down to her groin, functioning as hands. It seems her wings are her arms, being attached at her shoulders like a bird's.\n\nOnce she gets close enough, you can see more under her cloak. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and a hot blush seems to have washed across her cheeks that almost matches her auburn hair. Soft fur nearly covers her body, parted in front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, though with the way she fumbles to fondle herself she threatens to undo the clasp at any moment. Her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather - which seems to be... tenting as her other hand works at herself beneath.\n\nJust over 7 feet in height, she bends forward as her short muzzle follows the scent right up to you, immediately nuzzling against your body. The wing at her bosom stops playing with herself to hug around you, the fingers digging into your back tenderly as she tries to hold you close.\n\n\"You... You smell sooo good~\" A long tongue reaches out to lick up your chest, the pheromone that exudes from you enrapturing her keen senses while her tail wraps around your {self.legDesc(2)}. \"I don't even think I've ever...\"\n\nHer sentence simply trails off as her hips push into you, a phallic object peaking in her loin cloth and running up your side, pre smearing along its path. You can feel a feminine attribute press against your thigh as she slowly begins to gyrate on it, her other wing also encompassing you to surround you with her vibrant feathers. She gasps again and again as she tries to speak, but her words are lost to the smothering lust. Her talons pick at your {self.clothesBottom()}, trying to burrow her way in for a more intimate connection, but her lack of mental coherence makes the effort futile.\n\nHowever, as her nuzzling brings her muzzle closer to your pack, she begins to sniff again. Her voice wavers much less as she speaks; not undone by the lust this time, \"M-Magic?\"\n\nShe firmly presses into you as her muzzle dives into your pack for an even bigger whiff. \"Y-Yes, something neat in there...\" The sudden distraction seems to have helped her mind gain focus, able to make her think more clearly despite the thing that throbs against you. She leans back to look you directly in the eyes. Fear fills her own eyes, her normally shy and meek demeanor commanding her to flee, but even deeper beyond that you can see a lonely longing inside. Her cheeks more flushed with embarrassment than arousal now, the situation already quite shameful and far out of her usual comfort zone, she takes a deep breath and ventures a chance.\n\n\"Would... Would you like to come to my home?\"")
+        chance = self.eventSelect("Desert")
+        if chance == 1:
+            #!"sand witch"?
+            self.outputMainText("You have encountered a sand witch!\n\n\n\nIt looks so tasty and full of ham, sitting on a plate on the sand in the middle of nowhere. You have no idea who could have possibly left it or if it's even worth tasting, considering who knows how long it has been sitting out in the sun like this...\n\nWill you eat it?", True)
             self.buttonConfirm()
 
             def doListen():
-               if (self.buttonChoice == 6):
-                  self.outputMainText(f"Her eyes light up, her muzzle rushing in to kiss you. Lips locked for a moment, her eyes spring open as she catches her eagerness early. \"Heh, sorry... Umm... Hope you like flying?\"\n\nHer tail readjusts itself for a better grip around your {self.buttDesc()} rump. And since her winged arms will be occupied with flying, her legs wind up cradling your back as she begins to take off, positioning you much lower down her body. You get a mighty whiff of arousal as pre drools over your lips, your face mashed up against the tip of the large erection in her loin cloth... Nevertheless, she avoids humping you too much as she focuses on remaining balanced in flight, giving you a chance to twist around and watch the sand fly by below. The two of you go higher and higher, giving you a fantastic view of the desert. You spot Oviasis in the distance and can clearly see the path to your destination: a large dune about 2 hours away on foot. You wouldn't have given much attention such a dune in your usual exploration, since it looks like many many many of the others, but as you fly over to the opposite side you can make out a large jutting stone overhanging a cave.\n\nThe strange woman takes you down and lands you gently atop the sand, giving you a good view of the outside of 'her place'. A simple tunnel burrowing into the ground beneath the rock, the entrance is decorated with all sorts of crystalline chimes that softly ring out with a slight breeze. There's also some painted barriers to keep the sand out as well as a large barrel of water and towels to allow somebody to remove any sand from themselves as well. Otherwise, you can't quite tell what's in the tunnel.\n\n\"Well, umm... This is my home!\"", True)
-                  self.doNext()
-
-                  def doListen():
-                     self.doMainText("Her eagerness kicks in once again as she grabs your hand and pulls you along. Inside numerous torches line the walls and keep it well lit, though that doesn't help give you any idea where you're going. You pass through several forks in the tunnel, this underground network seemingly quite large, with few markings to help guide you through. Nevertheless, you quickly find yourself in what appears to be a bedroom. Various outfits glitter with jewels along one wall while another has a large bed of fluffy sheets and another leads to more tunnels. You don't exactly have time to look around though, as she pulls you right to the bed and gently pushes you onto the plush sheets.\n\nTaking the hint, you work at removing your clothes as she hastily begins to drop her own. Then undone clasp falls away with the rest of her cloak, her average-sized breasts standing perk with nipples standing beyond the soft smooth scales. Her frame is rather small, despite her height, her body being quite thin and lithe, with her lush fur masking the toned muscles underneath. Then her hands fiddle with her loin cloth for a bit, gasping when the air touches her nude genitals as the cloth falls away. Hefty testicles squirm with seed beneath a sheath that hugs around the large erection. Slick and smooth, the shaft runs straight to the rounded rim of a thick head which tapers to a point that drools with pre. And between her thighs more slick lubricant runs down her fur, a distinctly feminine aspect hidden behind the big balls.", True)
-                     if (self.cockTotal > 0):
-                        self.doMainText(f"\n\nShe crawls up your {self.legDesc(2)}, licking at {self.oneYour(1)} own {self.cockDesc()} phallic endowment{self.plural(1)}, making sure it's nice and stiff. Climbing up onto the bed with you, she carefully lines up over the tip of your ")
-                        if (self.moistCalc(1) < 5):
-                           self.doMainText("slick")
-                        elif (self.moistCalc(1) < 9):
-                           self.doMainText("drooling")
+                if (self.buttonChoice == 6):
+                    chance = Utils.percent()
+                    #!It says "sandvich"
+                    if (chance <= 15):
+                        self.doMainText("You munch on the sandvich, enjoying its meaty goodness, letting it fill your stomach, so moist and delicious. However, an odd gurgling inside makes you worry...", True)
+                        if self.boobTotal == 2:
+                            self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
+                            if (self.breastSize > 4):
+                                self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                        elif self.boobTotal == 6:
+                            self.doMainText("\n\nYour belly tickles")
+                            if (self.breastSize > 4):
+                                self.doMainText(", growing much lighter")
+                            self.doMainText(f". Checking, you catch your bottom set of nipples disappear flat into your {self.skinDesc()}, while your middle pair swells to match the first, leaving you with two sets of equally sized breasts, the top resting upon the bottom.")
+                        elif self.boobTotal == 8:
+                            self.doMainText("\n\nYour belly tickles")
+                            if (self.breastSize > 4):
+                                self.doMainText(", growing much lighter")
+                            self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
+                        elif self.gameTweaksMisc and self.boobTotal == 10:  # TODO: Make text for this more unique
+                            self.doMainText("\n\nYour belly tickles")
+                            if (self.breastSize > 4):
+                                self.doMainText(", growing much lighter")
+                            self.doMainText(f". Checking, you catch your three lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
+                        self.boobTotal = 4
+                        self.fourBoobAffinity = 100
+                        self.hrs = 2
+                    elif (chance <= 35):
+                        self.doMainText("You munch on the sandvich, delighting in the flappy meat on your tongue, letting it fill your stomach, so moist and delicious. However, an odd gurgling inside makes you worry...", True)
+                        if (self.cockTotal > 0 and self.vagTotal < self.cockTotal + 1):
+                            self.vagChange(0, self.cockTotal - self.vagTotal + 1)
+                            self.doMainText(f"\n\nOne more vagina than you have cock{self.plural(1)}. Why that is will forever be a mystery...\n\nWhatever this strange lunch may have been for, it's gone now and you're left heading back with a bit more than you intended.")
                         else:
-                           self.doMainText("pre-flooding")
-                        self.doMainText(" appendage and slowly squats down onto it. The tips of her wings hold her testicles up to allow for a smooth landing upon your manhood and is prompt to let them knock against you as 'slow' just isn't going to cut it. In her pheromone induced state, the arousal having been overhwelming this whole time, she falls down onto the rod, ")
-                        if (self.cockSize * self.cockSizeMod < 36):
-                           self.doMainText("easily engulfing your whole length")
-                        elif (self.cockSize * self.cockSizeMod < 66):
-                           self.doMainText("her pussy squeezing around your thick girth as it seems to barely manage to swallow your entire length")
-                        else:
-                           self.doMainText("her pussy seemingly having trouble taking in your massive girth, your size much greater than her hole, yet her slit stretches more and more, her hips somehow widening to take you in, and even her belly bulges with scales easily spreading to take in all your cock-flesh")
-                        self.doMainText(f", until her smooth scrotum finally slaps against your groin. She reaches down with her wings and her hands grab onto your {self.boobDesc()} chest for balance as her legs begin to powerfully pump. Up and down she goes, wildly riding your bronco as it bucks inside of her in turn, her eyes looking distant as she pants and gasps, so lost with lust. Strands of pre fling about as her own stiff appendage swings about, swatting you again and again with wet splashes as it whacks against your front. You struggle a little to hold onto her thighs so you aren't sucked up into her by your cock from her voracious efforts and quite quickly you begin to feel that oh-so-familiar pressure beginning to build.\n\nWith a loud erotic vulpine howl, this strange woman shudders as she feels you spew within.")
-                        getCum = self.cumAmount()
-                        if (getCum < 1000):
-                           self.doMainText(" Your hot load churns about her tunnel as you spray about, not a single drop slipping from her slit as her womb drinks it in.")
-                        elif (getCum < 5000):
-                           self.doMainText(" Your hot load forces her belly to visibly distend as you spray within, the grand amount of spunk churning around and drowning your gushing head, yet hardly any seems to spill from her slit as her womb drinks it in, thirsty for seed.")
-                        else:
-                           self.doMainText(" Your hot load forces her belly to expand, inflating as you spray within, the massive amount of spunk audibly churning within. However, only a fraction of the stuff spews back out through her slit, as her womb seems to gulp it down as though it were desperately thirsty for seed.")
-                        self.doMainText(" Her own eruption begins, the bobbing cock launching thick threads of white creamy cum over your body, whipping them up and down as she continues to bounce upon you. Eventually, her legs give out from the intense orgasm and she falls forward with her wings outspread to shelter you both within her embrace, forcing your cock to bend and eventually fly out from her heated cunt to let it drizzle on the floor")
-                        if (self.knot):
-                           self.doMainText(", making her yelp in suprise as your swollen knot stretches her for a moment and pops out.")
-                        self.doMainText(". She continues to spurt a bit of cum between the two of you, the smell of sex rapidly intensifying within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones...")
-                        self.doLust(-Math.floor(self.sen / 2), 2, 1)
-                        self.silPreg = 1
-                     elif (self.vagTotal > 0 and self.vagLimit() > 28):
-                        self.doMainText(f"\n\nShe crawls up your {self.legDesc(2)}, licking at {self.oneYour(2)} own {self.vulvaDesc()} slit{self.plural(2)}, making sure it's moist and large enough to fit. Climbing up onto the bed with you, she carefully lines up the tip of her male endowment with your female honey-hole, carefully wedging the head through your supple folds. However, your warmth around her genitals is too much, the intense arousal this entire time from your pheromones getting the best of her senses. She plows into your passage, ")
-                        if (self.tallness / 2 < self.vagSize * self.vagSizeMod):
-                           self.doMainText("pushing your belly out from within, ")
-                        self.doMainText(f"until her balls slam against your {self.buttDesc()} rear beneath. Straddling her own scrotum to grind her hidden slit against as she moves, she begins to thrust through your tender flesh, making her moan and whine from the fantastic sensations your pussy provides. Her wings curl around to embrace you and steady herself, trapping you both within a dome made by her feathers. The heat rapidly begins to build as she pounds into you vigorously, panting and moaning as she begins to drool from the overwhelming lust.\n\nIt doesn't take long before she let's out a loud erotic vulpine howl. Hot spunk floods through your womb, gushing and churning as she presses her breasts against your {self.boobDesc()} chest. Her eyes clench as you climax as well, your walls chewing upon her erection and making her twitch sporadically. The hot heavy feeling of your pussy around her cock proves to be too much, forcing her to pull out to let the cooler air kiss her wet shlong as it finishes its explosion between the two of you, spitting across her scales and fur and your {self.skinDesc()}. The smell of sex rapidly intensifies within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones...")
-                        self.doImpregnate(self.dominant)
-                     else:
-                        if (self.vagTotal > 0):
-                           self.doMainText("\n\nNoticing she is far too large for you and still having the sense to not hurt you,")
-                        else:
-                           self.doMainText("\n\nNoticing a lack of any genitals to use,")
-                        self.doMainText(f" she opts to simply lay down over you, straddling one of your thighs. Her balls push to either side as her slit behind presses against your {self.skinDesc()}, her rod pushing across your belly. Her hands reach out to hug your head while her wings raise up, trapping you both within a dome made by her feathers. The heat rapidly begins to build between you two as she begins to grind vigorously, desparate to finally climax after having been so dreadfully aroused since she first caught onto your pheromones. Moaning and gasping aginst your face, she curls her back again and again to thrust her thick cock across your groin, threads of pre ")
-                        if (self.udders):
-                           self.doMainText(" smearing all over your udder.")
-                        else:
-                           self.doMainText(" trailing up and down your belly.")
-                        self.doMainText(f"\n\nIt doesn't take long before she lets out a low erotic vulpine howl. Hot spunk spews up between the two of you, trapped by her wings and raining down upon you. Her thighs clamp around your {self.legDesc(1)}, her clitoris pulsing upon you {self.skinDesc()} as the backside of her testicles are flooded with fem-cum. The smell of sex intensifies within the feathered confines, her orgasm quickly diminishing as the scent overpowers your pheromones...")
-                     self.displayMainText()
-                     self.doNext()
-
-                     def doListen():
-                        self.doMainText("This strange girl collapses on top of you, huffing and panting and ignoring the sticky mess. Her eyelids droop heavily, the expression on her face so ecstatic yet so exhausted from just the single orgasm, as though a much greater weight had finally been lifted from her, beyond that in her loins.\n\nIt takes her nearly an hour of laying on top of you, nuzzling and licking at you the whole while, before her mind finally returns to her. She blinks, as though finally realizing what just happened, and blushes heavily. Rolling off onto the bed beside you, she gasps. There's a bit of fear in her voice, as though her self-conscious self was regaining, and she turns away.\n\n\"I-I'm so sorry!,\" she spouts meekly. However, she turns back to look you in the eye, a sense of wonder and relief shining in her own. \"Th-Though... It was really nice to have some company for once.\" She smiles.", True)
-                        if (self.cockTotal > 0):
-                           self.doMainText(" She then looks down at her belly and rubs it with a hand, relishing the feeling of your seed in her womb. \"That was a lot more... fulfilling than I had imagined it would be.\" A glow seems to fill her expression as she croons over it.")
-                        self.doMainText("\n\n\"Anyways, let me help clean you up, I see I've made a bit of a mess...\" Again she blushes, though this time it's more from embarrassment at how much of a mess she made between the two of you rather than her shy nature. She lifts herself from the bed, her wings trying to cover her nude front in an attempt at modesty as she heads off into the tunnels to grab some towels. Her tail, on the other hand, is so happy from the experience that it lifts high, giving you a good view of her tight rump anyways. When she soon returns, she has somehow donned a new outfit in the time away, a simple robe of silken cloth that looks more suited for sleepwear than to go out into the desert in, especially with the way it hugs her curves and bulges leaving little to the imagination. Which, of course, in turn makes her blush again, her large ears turning red, as she realizes the indecency of the outfit while you stare at her. It's not something she had worn around others before and she hadn't thought about it...\n\nEventually, she helps clean up the majority of spunk from your body, rubbing you down from head to toe and trying not to focus too much on your naughty bits.\n\nOnce you're all cleaned up, she leads you back to the entrance to her den, knowing she somewhat interrupted your exploration. You note that the tunnel system seems quite extensive for just a single inhabitant, yet there is no sign of others...\n\n\"Well, umm... Thank you for coming to my place. You're welcome back any time. I... I do hope to see you again.\" She smiles awkwardly.\n\nYou give her a hug before you leave, being wrapped up in her feathers once more. And as you turn and step out from the rock overhang, she calls out for one last thing.\n\n\"Oh yeah! Hi, my name is Silandrias! What's yours?\".")
-                        self.displayMainText()
-                        self.hrs = 5
-                        self.silRep = 1
-                        self.doEnd()
-                     self.doListen = doListen
-                  self.doListen = doListen
-               else:
-                  self.outputMainText("Your rejection falls harshly upon her, her ears pinning back against her hood and her tail swinging in between her legs. She jumps away from you, her wings flap around you as they release and snap back to cover herself. She steps backwards, her eyes peering through a couple feathers with tears welling up as she hides behind them, and she gulps to speak, \"Oh... I-I'm so sorry for what happened then!\"\n\nHer sandles kick up the sand as she turns to run away and after a few yards her wings unfurl for a speedier retreat.\n\n\nUnsure of who this stranger was or what exactly happened, it's the last you've seen of her.", True)
-                  self.silRep = -1
-                  self.hrs = 2
-                  self.doEnd()
+                            self.vagChange(0, 1)
+                            self.doMainText("\n\nMaybe you were enjoying the licking of tasty flaps of meat a little too much?..\n\nWhatever this strange lunch may have been for, it's gone now and you're left heading back with a bit more than you intended.")
+                        self.hrs = 2
+                    elif (chance <= 55):
+                        self.doMainText(f"You nibble on the sandvich, the protein so filling. However, your chest quickly begins to feel warm, your {self.nipDesc()}nipples standing erect and burning beneath your {self.clothesTop()}. Your hands quickly reach up to touch them and cup them just in time for milk to begin gushing out across the sand!\n\nThe springs of white fluid spew from your breasts, your {self.clothesTop()} rapidly becoming soaked while small rivers begin to form amongst the sand. You collapse to your {self.legDesc(6)}, pulling {self.pullUD(1)} your {self.clothesTop()} to squeeze and pump your poor nipples as they fill the area with sustenance.\n\nWithin a few minutes, you have made several puddles around the dunes surrounding you, while your mammary glands come to a halt. You rub them gently, feeling their sensitivity arouse you a little, completely confused as to what just happened. The milking has stopped for now, but you still feel a bit... abundant nevertheless. You quickly toss your clothes back on and hurry away from the moist scene, unsure what the sandvich was possibly intended for.", True)
+                        self.milkMod += 15
+                        self.doLust(20, 0)
+                        self.stats(0, 0, 0, 2 * self.boobTotal)
+                        self.hrs = 3
+                    elif (chance <= 75):
+                        self.doMainText("You nom the sandvich to death, feeling it make you strong!", True)
+                        self.hrs = 2
+                        self.doHP(150)
+                    else:
+                        self.doMainText("You take a bit of the sandvich and... urk! You suddenly feel green in the face as you realize a sandvich sitting out in the sun with this kind of heat... wouldn't have worked out very well. Once you finish expelling the rather spoiled goods, you drudge back to town feeling a bit sick.", True)
+                        self.HP = 1
+                        self.hrs = 4
+                        self.doHP(0)
+                    self.displayMainText()
+                    self.doEnd()
+                else:
+                    self.outputMainText("Thinking it best to leave strange meats to themselves, you turn your back to the sandvich and walk away, feeling it taunting you from behind as you leave.", True)
+                    self.hrs = 1
+                    self.doEnd()
             self.doListen = doListen
-         elif (self.pheromone > 0):
-            self.outputMainText(f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up an odd scent that seems to make her act a little funny. As she follows her nose towards its source, she sways back and forth a little, her hips twisting around as her thighs begin to rub together. She has to land on her sandle-protected paws as her wings fold inward, three finger-like talons at the ends of them awkwardly roaming about her breasts and down to her groin, functioning as hands. It seems her wings are her arms, being attached at her shoulders like a bird's.\n\nOnce she gets close enough, you can see more under her cloak. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and a hot blush seems to have washed across her cheek that almost matches her auburn hair. Soft fur nearly covers her body, parted in front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, though with the way she fumbles to fondle herself she threatens to undo the clasp at any moment. Her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather - which seems to be... tenting as her other hand works at herself beneath.\n\nJust over 7 feet in height, she bends forward as her short muzzle follows the scent right up to you, immediately nuzzling against your body. The wing at her bosom stops playing with herself to hug around you, the fingers digging into your back tenderly as she tries to hold you close.\n\n\"You... You smell sooo good~\" A long tongue reaches out to lick up your chest, the pheromone that exudes from you enrapturing her keen senses while her tail wraps around your {self.legDesc(2)}. \"I don't even think I've ever...\"\n\nHer sentence simply trails off as her hips push into you, a phallic object peaking in her loin cloth and running up your side, pre smearing along its path. You can feel a feminine attribute press against your thigh as she slowly begins to gyrate on it, her other wing also encompassing you to surround you with her vibrant feathers. She gasps again and again as she tries to speak, but her words are lost to the smothering lust. Her talons pick at your {self.clothesBottom()}, trying to burrow her way in for a more intimate connection, but her lack of mental coherence makes the effort futile.\n\nYou can begin to see tears well up in her eyes from her failing efforts, her hips grinding so harshly in desperation that you can feel the hard erection throb in preparation for an unrequited premature explosion. She whines and whimpers meekly as she begins to twitch.")
+
+        elif chance == 2:
+            self.doMainText("Out of the corner of your eye, you spot a fluttering flash in the distance. Turning to view it more clearly, you can see it's literally flying over the sand, just a couple feet in the air. It seems to be scanning the ground for something, muzzle moving from side to side as it goes, sniffing away at the sandy dunes. A humanoid shape wrapped in a white hooded cloak, the most you can manage to make out are some long fuzzy ears, a lizard-like tail, some slight curvature to the apparently feminine figure, and large feathery wings that flutter gracefully to keep her aloft.", True)
+            if (self.pheromone > 0 and self.bag.hasMagicItem()):
+                self.outputMainText(f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up an odd scent that seems to make her act a little funny. As she follows her nose towards its source, she sways back and forth a little, her hips twisting around as her thighs begin to rub together. She has to land on her sandle-protected paws as her wings fold inward, three finger-like talons at the ends of them awkwardly roaming about her breasts and down to her groin, functioning as hands. It seems her wings are her arms, being attached at her shoulders like a bird's.\n\nOnce she gets close enough, you can see more under her cloak. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and a hot blush seems to have washed across her cheeks that almost matches her auburn hair. Soft fur nearly covers her body, parted in front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, though with the way she fumbles to fondle herself she threatens to undo the clasp at any moment. Her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather - which seems to be... tenting as her other hand works at herself beneath.\n\nJust over 7 feet in height, she bends forward as her short muzzle follows the scent right up to you, immediately nuzzling against your body. The wing at her bosom stops playing with herself to hug around you, the fingers digging into your back tenderly as she tries to hold you close.\n\n\"You... You smell sooo good~\" A long tongue reaches out to lick up your chest, the pheromone that exudes from you enrapturing her keen senses while her tail wraps around your {self.legDesc(2)}. \"I don't even think I've ever...\"\n\nHer sentence simply trails off as her hips push into you, a phallic object peaking in her loin cloth and running up your side, pre smearing along its path. You can feel a feminine attribute press against your thigh as she slowly begins to gyrate on it, her other wing also encompassing you to surround you with her vibrant feathers. She gasps again and again as she tries to speak, but her words are lost to the smothering lust. Her talons pick at your {self.clothesBottom()}, trying to burrow her way in for a more intimate connection, but her lack of mental coherence makes the effort futile.\n\nHowever, as her nuzzling brings her muzzle closer to your pack, she begins to sniff again. Her voice wavers much less as she speaks; not undone by the lust this time, \"M-Magic?\"\n\nShe firmly presses into you as her muzzle dives into your pack for an even bigger whiff. \"Y-Yes, something neat in there...\" The sudden distraction seems to have helped her mind gain focus, able to make her think more clearly despite the thing that throbs against you. She leans back to look you directly in the eyes. Fear fills her own eyes, her normally shy and meek demeanor commanding her to flee, but even deeper beyond that you can see a lonely longing inside. Her cheeks more flushed with embarrassment than arousal now, the situation already quite shameful and far out of her usual comfort zone, she takes a deep breath and ventures a chance.\n\n\"Would... Would you like to come to my home?\"")
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.outputMainText(f"Her eyes light up, her muzzle rushing in to kiss you. Lips locked for a moment, her eyes spring open as she catches her eagerness early. \"Heh, sorry... Umm... Hope you like flying?\"\n\nHer tail readjusts itself for a better grip around your {self.buttDesc()} rump. And since her winged arms will be occupied with flying, her legs wind up cradling your back as she begins to take off, positioning you much lower down her body. You get a mighty whiff of arousal as pre drools over your lips, your face mashed up against the tip of the large erection in her loin cloth... Nevertheless, she avoids humping you too much as she focuses on remaining balanced in flight, giving you a chance to twist around and watch the sand fly by below. The two of you go higher and higher, giving you a fantastic view of the desert. You spot Oviasis in the distance and can clearly see the path to your destination: a large dune about 2 hours away on foot. You wouldn't have given much attention such a dune in your usual exploration, since it looks like many many many of the others, but as you fly over to the opposite side you can make out a large jutting stone overhanging a cave.\n\nThe strange woman takes you down and lands you gently atop the sand, giving you a good view of the outside of 'her place'. A simple tunnel burrowing into the ground beneath the rock, the entrance is decorated with all sorts of crystalline chimes that softly ring out with a slight breeze. There's also some painted barriers to keep the sand out as well as a large barrel of water and towels to allow somebody to remove any sand from themselves as well. Otherwise, you can't quite tell what's in the tunnel.\n\n\"Well, umm... This is my home!\"", True)
+                        self.doNext()
+
+                        def doListen():
+                            self.doMainText("Her eagerness kicks in once again as she grabs your hand and pulls you along. Inside numerous torches line the walls and keep it well lit, though that doesn't help give you any idea where you're going. You pass through several forks in the tunnel, this underground network seemingly quite large, with few markings to help guide you through. Nevertheless, you quickly find yourself in what appears to be a bedroom. Various outfits glitter with jewels along one wall while another has a large bed of fluffy sheets and another leads to more tunnels. You don't exactly have time to look around though, as she pulls you right to the bed and gently pushes you onto the plush sheets.\n\nTaking the hint, you work at removing your clothes as she hastily begins to drop her own. Then undone clasp falls away with the rest of her cloak, her average-sized breasts standing perk with nipples standing beyond the soft smooth scales. Her frame is rather small, despite her height, her body being quite thin and lithe, with her lush fur masking the toned muscles underneath. Then her hands fiddle with her loin cloth for a bit, gasping when the air touches her nude genitals as the cloth falls away. Hefty testicles squirm with seed beneath a sheath that hugs around the large erection. Slick and smooth, the shaft runs straight to the rounded rim of a thick head which tapers to a point that drools with pre. And between her thighs more slick lubricant runs down her fur, a distinctly feminine aspect hidden behind the big balls.", True)
+                            if (self.cockTotal > 0):
+                                self.doMainText(f"\n\nShe crawls up your {self.legDesc(2)}, licking at {self.oneYour(1)} own {self.cockDesc()} phallic endowment{self.plural(1)}, making sure it's nice and stiff. Climbing up onto the bed with you, she carefully lines up over the tip of your ")
+                                if (self.moistCalc(1) < 5):
+                                    self.doMainText("slick")
+                                elif (self.moistCalc(1) < 9):
+                                    self.doMainText("drooling")
+                                else:
+                                    self.doMainText("pre-flooding")
+                                self.doMainText(" appendage and slowly squats down onto it. The tips of her wings hold her testicles up to allow for a smooth landing upon your manhood and is prompt to let them knock against you as 'slow' just isn't going to cut it. In her pheromone induced state, the arousal having been overhwelming this whole time, she falls down onto the rod, ")
+                                if (self.cockSize * self.cockSizeMod < 36):
+                                    self.doMainText("easily engulfing your whole length")
+                                elif (self.cockSize * self.cockSizeMod < 66):
+                                    self.doMainText("her pussy squeezing around your thick girth as it seems to barely manage to swallow your entire length")
+                                else:
+                                    self.doMainText("her pussy seemingly having trouble taking in your massive girth, your size much greater than her hole, yet her slit stretches more and more, her hips somehow widening to take you in, and even her belly bulges with scales easily spreading to take in all your cock-flesh")
+                                self.doMainText(f", until her smooth scrotum finally slaps against your groin. She reaches down with her wings and her hands grab onto your {self.boobDesc()} chest for balance as her legs begin to powerfully pump. Up and down she goes, wildly riding your bronco as it bucks inside of her in turn, her eyes looking distant as she pants and gasps, so lost with lust. Strands of pre fling about as her own stiff appendage swings about, swatting you again and again with wet splashes as it whacks against your front. You struggle a little to hold onto her thighs so you aren't sucked up into her by your cock from her voracious efforts and quite quickly you begin to feel that oh-so-familiar pressure beginning to build.\n\nWith a loud erotic vulpine howl, this strange woman shudders as she feels you spew within.")
+                                getCum = self.cumAmount()
+                                if (getCum < 1000):
+                                    self.doMainText(" Your hot load churns about her tunnel as you spray about, not a single drop slipping from her slit as her womb drinks it in.")
+                                elif (getCum < 5000):
+                                    self.doMainText(" Your hot load forces her belly to visibly distend as you spray within, the grand amount of spunk churning around and drowning your gushing head, yet hardly any seems to spill from her slit as her womb drinks it in, thirsty for seed.")
+                                else:
+                                    self.doMainText(" Your hot load forces her belly to expand, inflating as you spray within, the massive amount of spunk audibly churning within. However, only a fraction of the stuff spews back out through her slit, as her womb seems to gulp it down as though it were desperately thirsty for seed.")
+                                self.doMainText(" Her own eruption begins, the bobbing cock launching thick threads of white creamy cum over your body, whipping them up and down as she continues to bounce upon you. Eventually, her legs give out from the intense orgasm and she falls forward with her wings outspread to shelter you both within her embrace, forcing your cock to bend and eventually fly out from her heated cunt to let it drizzle on the floor")
+                                if (self.knot):
+                                    self.doMainText(", making her yelp in suprise as your swollen knot stretches her for a moment and pops out.")
+                                self.doMainText(". She continues to spurt a bit of cum between the two of you, the smell of sex rapidly intensifying within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones...")
+                                self.doLust(-Math.floor(self.sen / 2), 2, 1)
+                                self.silPreg = 1
+                            elif (self.vagTotal > 0 and self.vagLimit() > 28):
+                                self.doMainText(f"\n\nShe crawls up your {self.legDesc(2)}, licking at {self.oneYour(2)} own {self.vulvaDesc()} slit{self.plural(2)}, making sure it's moist and large enough to fit. Climbing up onto the bed with you, she carefully lines up the tip of her male endowment with your female honey-hole, carefully wedging the head through your supple folds. However, your warmth around her genitals is too much, the intense arousal this entire time from your pheromones getting the best of her senses. She plows into your passage, ")
+                                if (self.tallness / 2 < self.vagSize * self.vagSizeMod):
+                                    self.doMainText("pushing your belly out from within, ")
+                                self.doMainText(f"until her balls slam against your {self.buttDesc()} rear beneath. Straddling her own scrotum to grind her hidden slit against as she moves, she begins to thrust through your tender flesh, making her moan and whine from the fantastic sensations your pussy provides. Her wings curl around to embrace you and steady herself, trapping you both within a dome made by her feathers. The heat rapidly begins to build as she pounds into you vigorously, panting and moaning as she begins to drool from the overwhelming lust.\n\nIt doesn't take long before she let's out a loud erotic vulpine howl. Hot spunk floods through your womb, gushing and churning as she presses her breasts against your {self.boobDesc()} chest. Her eyes clench as you climax as well, your walls chewing upon her erection and making her twitch sporadically. The hot heavy feeling of your pussy around her cock proves to be too much, forcing her to pull out to let the cooler air kiss her wet shlong as it finishes its explosion between the two of you, spitting across her scales and fur and your {self.skinDesc()}. The smell of sex rapidly intensifies within the feather confines, her orgasm shortly diminshing as the scent overpowers your pheromones...")
+                                self.doImpregnate(self.dominant)
+                            else:
+                                if (self.vagTotal > 0):
+                                    self.doMainText("\n\nNoticing she is far too large for you and still having the sense to not hurt you,")
+                                else:
+                                    self.doMainText("\n\nNoticing a lack of any genitals to use,")
+                                self.doMainText(f" she opts to simply lay down over you, straddling one of your thighs. Her balls push to either side as her slit behind presses against your {self.skinDesc()}, her rod pushing across your belly. Her hands reach out to hug your head while her wings raise up, trapping you both within a dome made by her feathers. The heat rapidly begins to build between you two as she begins to grind vigorously, desparate to finally climax after having been so dreadfully aroused since she first caught onto your pheromones. Moaning and gasping aginst your face, she curls her back again and again to thrust her thick cock across your groin, threads of pre ")
+                                if (self.udders):
+                                    self.doMainText(" smearing all over your udder.")
+                                else:
+                                    self.doMainText(" trailing up and down your belly.")
+                                self.doMainText(f"\n\nIt doesn't take long before she lets out a low erotic vulpine howl. Hot spunk spews up between the two of you, trapped by her wings and raining down upon you. Her thighs clamp around your {self.legDesc(1)}, her clitoris pulsing upon you {self.skinDesc()} as the backside of her testicles are flooded with fem-cum. The smell of sex intensifies within the feathered confines, her orgasm quickly diminishing as the scent overpowers your pheromones...")
+                            self.displayMainText()
+                            self.doNext()
+
+                            def doListen():
+                                self.doMainText("This strange girl collapses on top of you, huffing and panting and ignoring the sticky mess. Her eyelids droop heavily, the expression on her face so ecstatic yet so exhausted from just the single orgasm, as though a much greater weight had finally been lifted from her, beyond that in her loins.\n\nIt takes her nearly an hour of laying on top of you, nuzzling and licking at you the whole while, before her mind finally returns to her. She blinks, as though finally realizing what just happened, and blushes heavily. Rolling off onto the bed beside you, she gasps. There's a bit of fear in her voice, as though her self-conscious self was regaining, and she turns away.\n\n\"I-I'm so sorry!,\" she spouts meekly. However, she turns back to look you in the eye, a sense of wonder and relief shining in her own. \"Th-Though... It was really nice to have some company for once.\" She smiles.", True)
+                                if (self.cockTotal > 0):
+                                    self.doMainText(" She then looks down at her belly and rubs it with a hand, relishing the feeling of your seed in her womb. \"That was a lot more... fulfilling than I had imagined it would be.\" A glow seems to fill her expression as she croons over it.")
+                                self.doMainText("\n\n\"Anyways, let me help clean you up, I see I've made a bit of a mess...\" Again she blushes, though this time it's more from embarrassment at how much of a mess she made between the two of you rather than her shy nature. She lifts herself from the bed, her wings trying to cover her nude front in an attempt at modesty as she heads off into the tunnels to grab some towels. Her tail, on the other hand, is so happy from the experience that it lifts high, giving you a good view of her tight rump anyways. When she soon returns, she has somehow donned a new outfit in the time away, a simple robe of silken cloth that looks more suited for sleepwear than to go out into the desert in, especially with the way it hugs her curves and bulges leaving little to the imagination. Which, of course, in turn makes her blush again, her large ears turning red, as she realizes the indecency of the outfit while you stare at her. It's not something she had worn around others before and she hadn't thought about it...\n\nEventually, she helps clean up the majority of spunk from your body, rubbing you down from head to toe and trying not to focus too much on your naughty bits.\n\nOnce you're all cleaned up, she leads you back to the entrance to her den, knowing she somewhat interrupted your exploration. You note that the tunnel system seems quite extensive for just a single inhabitant, yet there is no sign of others...\n\n\"Well, umm... Thank you for coming to my place. You're welcome back any time. I... I do hope to see you again.\" She smiles awkwardly.\n\nYou give her a hug before you leave, being wrapped up in her feathers once more. And as you turn and step out from the rock overhang, she calls out for one last thing.\n\n\"Oh yeah! Hi, my name is Silandrias! What's yours?\".")
+                                self.displayMainText()
+                                self.hrs = 5
+                                self.silRep = 1
+                                self.doEnd()
+                            self.doListen = doListen
+                        self.doListen = doListen
+                    else:
+                        self.outputMainText("Your rejection falls harshly upon her, her ears pinning back against her hood and her tail swinging in between her legs. She jumps away from you, her wings flap around you as they release and snap back to cover herself. She steps backwards, her eyes peering through a couple feathers with tears welling up as she hides behind them, and she gulps to speak, \"Oh... I-I'm so sorry for what happened then!\"\n\nHer sandles kick up the sand as she turns to run away and after a few yards her wings unfurl for a speedier retreat.\n\n\nUnsure of who this stranger was or what exactly happened, it's the last you've seen of her.", True)
+                        self.silRep = -1
+                        self.hrs = 2
+                        self.doEnd()
+                self.doListen = doListen
+            elif (self.pheromone > 0):
+                self.outputMainText(f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up an odd scent that seems to make her act a little funny. As she follows her nose towards its source, she sways back and forth a little, her hips twisting around as her thighs begin to rub together. She has to land on her sandle-protected paws as her wings fold inward, three finger-like talons at the ends of them awkwardly roaming about her breasts and down to her groin, functioning as hands. It seems her wings are her arms, being attached at her shoulders like a bird's.\n\nOnce she gets close enough, you can see more under her cloak. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and a hot blush seems to have washed across her cheek that almost matches her auburn hair. Soft fur nearly covers her body, parted in front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, though with the way she fumbles to fondle herself she threatens to undo the clasp at any moment. Her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather - which seems to be... tenting as her other hand works at herself beneath.\n\nJust over 7 feet in height, she bends forward as her short muzzle follows the scent right up to you, immediately nuzzling against your body. The wing at her bosom stops playing with herself to hug around you, the fingers digging into your back tenderly as she tries to hold you close.\n\n\"You... You smell sooo good~\" A long tongue reaches out to lick up your chest, the pheromone that exudes from you enrapturing her keen senses while her tail wraps around your {self.legDesc(2)}. \"I don't even think I've ever...\"\n\nHer sentence simply trails off as her hips push into you, a phallic object peaking in her loin cloth and running up your side, pre smearing along its path. You can feel a feminine attribute press against your thigh as she slowly begins to gyrate on it, her other wing also encompassing you to surround you with her vibrant feathers. She gasps again and again as she tries to speak, but her words are lost to the smothering lust. Her talons pick at your {self.clothesBottom()}, trying to burrow her way in for a more intimate connection, but her lack of mental coherence makes the effort futile.\n\nYou can begin to see tears well up in her eyes from her failing efforts, her hips grinding so harshly in desperation that you can feel the hard erection throb in preparation for an unrequited premature explosion. She whines and whimpers meekly as she begins to twitch.")
+                self.doNext()
+
+                def doListen():
+                    self.doMainText(f"Wads of white spunk spew through this strange woman's loin cloth. It smatters across your body and paints her thighs as much runs down the inside of the cloth. Plenty of it washes up through her cleavage, finally undoing the clasp with the slick lubrication and making her nipples shine with the moisture as they're freed. She coos and shudders for a few more moments, the cum running out as it continues to pump, her other genitals making a mess upon your {self.legDesc(1)}. Her head hangs low as she tries to regain her breathing, her mind slowly returning.\n\nThe smell of her own naughtiness fills her nose. Realizing what she had just dowe, she looks up at you with eyes wide in fear. Stricken with embarrassment, her normally shy demeanor takes charge as she jumps back from you, her wings flapping around you as they let go and snap back around herself to cover the mess she's made of herself.\n\n\"I-I'm so sorry!\" She turns away and begins to run across the sand, her tail slinking between her legs. Just a few yards away, she kicks up into the air, her wings unfurling and taking her to the air for a speedier retreat. Wads of gooey stuff spills across the desert where she takes off, with more being flung around by the flapping of her wings, leaving a short trail before she disappears into the distance.\n\n\nLeft alone and covered in a stranger's lewd fluids, you're not quite sure how to react... You wipe some of it off, but the hot air quickly takes care of the rest. A little dazed, you turn and head back to town for now.", True)
+                    self.doLust(Math.floor(self.lib / 4), 0)
+                    self.displayMainText()
+                    self.hrs = 2
+                    self.doEnd()
+                self.doListen = doListen
+            elif (self.bag.hasMagicItem()):
+                self.outputMainText(f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up a scent and slowly moving towards you as she uses her nose to follow it, not yet noticing your actual presence just yet.\n\nAs she moves closer, you can see more under her robe. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and long auburn hair. Soft fur nearly covers her body, parted down her front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. Her wings and arms are one in the same, each tipped with three finger-like talons that make up her hands. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, while her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather.\n\nAnd as she finally closes in on you, her paw-like feet touch down on the sand, little sandles protecting them from being burned. Just over 7 feet in height, she ducks down as her short muzzle continues to sniff about. She sniffs right up your {self.legDesc(2)} and at your pack, quietly speaking to herself in a feminine voice.\n\n\"Ooo, definitely some magic emanating from here. I wonder what it could be? Crafted? Naturally imbued? A weapon? Or maybe a charm? It's been a few weeks since I've found anything neat around here to add to my collection, I can't wait to see it!\" Her fingers dig into your pack and start to shuffle around for the magical goody, but slowly comes to a stop as she looks up. It wasn't until now that she realizes that it has been attached to a person this whole time - you. She hops back with a blush, her head ducking between her shoulders with embarrassment. \"Oh dear, I'm so sorry! I-I was just hunting for magical treasures!...\" Her toes burrow awkwardly in the sand as she stands there. \"Umm... Bye!\"\n\nAs quickly as she appeared, she turns and dashes off upon her wings, her shyness getting the best off her.\n\nNot quite sure what just happened, you turn and head back for now.")
+                self.hrs = 2
+                self.doEnd()
+            else:
+                self.outputMainText("\n\nNot long after you begin staring at her, she catches you out of the corner of her eye as well. She looks at you for only a moment, realizing you're gawking at her, and comes to an abrupt halt, her chest bouncing from the stop. Meekly, she slowly flits backwards and then flies up over a dune, shyly avoiding your presence as she disappears.\n\nWith no sign of her anymore, you shrug and move along.")
+                self.hrs = 1
+                self.doEnd()
+
+        elif chance == 3:
+            self.outputMainText("Through the barren desert, it's hard to see over the sandy dunes. Which is unfortunate, because as you finally manage to climb over one, you come face to face with a strange creature...\n\nA serpentine form, covered completely in forest-green scales, with a long powerful tail for legs, its upper body resembles that of human. Well, a woman, to be more exact, as a simple silken shawl dangles softly over an amply laden chest, nipples barely showing through, and a matching sash hanging from its curvy feminine hips that hides its feminine sex. But a long forked tongue hissing out of her mouth, rainbow colored wings folded upon her back, , and reaching around 13 feet in height with even more in length, this naga is neither and both human and snake. And it doesn't take well to surprises or strangers, instantly lashing out at you.", True)
             self.doNext()
 
             def doListen():
-               self.doMainText(f"Wads of white spunk spew through this strange woman's loin cloth. It smatters across your body and paints her thighs as much runs down the inside of the cloth. Plenty of it washes up through her cleavage, finally undoing the clasp with the slick lubrication and making her nipples shine with the moisture as they're freed. She coos and shudders for a few more moments, the cum running out as it continues to pump, her other genitals making a mess upon your {self.legDesc(1)}. Her head hangs low as she tries to regain her breathing, her mind slowly returning.\n\nThe smell of her own naughtiness fills her nose. Realizing what she had just dowe, she looks up at you with eyes wide in fear. Stricken with embarrassment, her normally shy demeanor takes charge as she jumps back from you, her wings flapping around you as they let go and snap back around herself to cover the mess she's made of herself.\n\n\"I-I'm so sorry!\" She turns away and begins to run across the sand, her tail slinking between her legs. Just a few yards away, she kicks up into the air, her wings unfurling and taking her to the air for a speedier retreat. Wads of gooey stuff spills across the desert where she takes off, with more being flung around by the flapping of her wings, leaving a short trail before she disappears into the distance.\n\n\nLeft alone and covered in a stranger's lewd fluids, you're not quite sure how to react... You wipe some of it off, but the hot air quickly takes care of the rest. A little dazed, you turn and head back to town for now.", True)
-               self.doLust(Math.floor(self.lib / 4), 0)
-               self.displayMainText()
-               self.hrs = 2
-               self.doEnd()
+                self.enemyID = 306
+                self.currentState = GameState.BATTLE
+                self.enemyBaseStats()
+                self.eMaxHP = self.eHP
+                self.doBattle()
             self.doListen = doListen
-         elif (self.bag.hasMagicItem()):
-            self.outputMainText(f"\n\nShortly after you begin watching her, a wind picks up from behind you and heads in her direction. She pauses and sniffs at the air a few times, picking up a scent and slowly moving towards you as she uses her nose to follow it, not yet noticing your actual presence just yet.\n\nAs she moves closer, you can see more under her robe. A fennec-like face matches the fuzzy ears above, which each seem to be larger than her head, and long auburn hair. Soft fur nearly covers her body, parted down her front by the large belly-scales that plate across her chest and stomach, from her slightly elongated neck down to the tip of her tail. Supple draconic spikes peek out several inches along her spine, all the way down to the tip of her tail where they gently bend back and forth as her tail swishes from side to side anxiously. Her wings and arms are one in the same, each tipped with three finger-like talons that make up her hands. The clasp of her cloak manages to hide her otherwise naked breasts, a nice pair that matches her lithe frame, while her lower bits are covered by a jeweled loin-cloth - a relatively scant outfit for the torrid weather.\n\nAnd as she finally closes in on you, her paw-like feet touch down on the sand, little sandles protecting them from being burned. Just over 7 feet in height, she ducks down as her short muzzle continues to sniff about. She sniffs right up your {self.legDesc(2)} and at your pack, quietly speaking to herself in a feminine voice.\n\n\"Ooo, definitely some magic emanating from here. I wonder what it could be? Crafted? Naturally imbued? A weapon? Or maybe a charm? It's been a few weeks since I've found anything neat around here to add to my collection, I can't wait to see it!\" Her fingers dig into your pack and start to shuffle around for the magical goody, but slowly comes to a stop as she looks up. It wasn't until now that she realizes that it has been attached to a person this whole time - you. She hops back with a blush, her head ducking between her shoulders with embarrassment. \"Oh dear, I'm so sorry! I-I was just hunting for magical treasures!...\" Her toes burrow awkwardly in the sand as she stands there. \"Umm... Bye!\"\n\nAs quickly as she appeared, she turns and dashes off upon her wings, her shyness getting the best off her.\n\nNot quite sure what just happened, you turn and head back for now.")
+
+        elif chance == 4:
+            self.outputMainText("Walking across the hot sand, you hear wind picking up nearby. Afraid it may be a sandstorm, you begin to rush for cover behind a dune but come to a halt as you spot a column of whirling sand coming towards you. No matter which way you run, the dust devil matches your movements, as though it had a sort of intelligence. Any plants it touches in its path are quickly sucked dry, left as shriveled shrunken husks. A desiccating dust devil, this sentient creature seeks out warm moisture to continue its life, even if it means sucking it from the living. And it seems to have you in its sights.", True)
+            self.doNext()
+
+            def doListen():
+                self.enemyID = 102
+                self.currentState = GameState.BATTLE
+                self.enemyBaseStats()
+                self.eMaxHP = self.eHP
+                self.doBattle()
+            self.doListen = doListen
+
+        elif chance == 5:
+            self.outputMainText("While roaming about the desert, a sudden sandstorm kicks up around you, greatly obscuring your view. Maybe you should turn back and head out of the desert before you get lost. Would you like to press on?", True)
+            self.buttonConfirm()
+
+            def doListen():
+                if (self.buttonChoice == 6):
+                    self.doMainText("", True)
+                    if (not self.firstExplore):
+                        self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
+                        self.firstExplore = True
+                    if self.currentZone == Zones.OVIASIS:
+                        if (Utils.percent() <= 50):
+                            self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through the desert to large fields of swaying grass, free from the storm, and signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
+                            self.regionChange(Zones.FIRMSHAFT)
+                            if (not self.foundFirmshaft):
+                                self.foundFirmshaft = True
+                        else:
+                            self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through the desert into a dense vegetation with trees surrounding you, protecting you from the storm. You begin to see various wooden structures built amongst the canopy as you continue. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
+                            self.regionChange(Zones.SIZ_CALIT)
+                            if (not self.foundSizCalit):
+                                self.foundSizCalit = True
+                    elif self.currentZone in {Zones.FIRMSHAFT, Zones.SIZ_CALIT}:
+                        self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through into an area sheltered from the wind by large rock formations. As you blink and brush the sand from your eyes, you're left in awe by the paradise before you.\n\nAn oasis somewhere within the desert, hidden within a ring of tall rock formations and mountains, you can see the water sparkle from here and the palm trees sway lazily around it. And all along the rocks, built into caves and sprawled across the beaches, reptillian people have made their home here, relaxing and enjoying their gorgeous habitat.\n\nYou have now entered the Lizan home-city of Oviasis! Though thanks to the storm you have no idea how you got here or how to get back...")
+                        self.regionChange(Zones.OVIASIS)
+                        if (not self.foundOviasis):
+                            self.foundOviasis = True
+                    self.hrs = 4
+                    self.displayMainText()
+                    self.doEnd()
+                else:
+                    self.outputMainText("You return from whence you came, avoiding any unwanted sand in your cracks.", True)
+                    self.hrs = 1
+                    self.doEnd()
+            self.doListen = doListen
+
+        elif chance == 6:
+            if (self.hour > 8 and self.hour <= 20):
+                self.doMainText("The hot sun beating down upon the arid sand is nearly stifling.", True)
+                if (self.skinType == 3):
+                    self.doMainText(" However, your scaley exterior was made to protect you from such circumstances, conserving your moisture and reflecting much of the rays to prevent you from getting too hot.")
+                elif (self.bodyOil > 0):
+                    self.doMainText(" However, the oil that covers your body reflects most of the bad rays and helps retain some of your moisture, preventing you from becoming too hot.")
+                elif (self.milkEngorgement > 400 and self.milkEngorgementLevel > 2):
+                    self.doMainText(" However, the leaking of your breasts provides you with a steady supply of excess milk to sip as you explore, preventing you from becoming dehydrated.")
+                elif (self.udderEngorgement > 400 and self.udderEngorgementLevel > 2 and self.udders):
+                    self.doMainText(" However, the leaking of your udder provides you with a steady supply of excess milk to sip as you explore, preventing you from becoming dehydrated.")
+                elif (self.moistCalc(1) > 7 and self.cockTotal > 0):
+                    self.doMainText(f" However, you cup your hands over the tip{self.plural(1)} of your slime-dripping cock{self.plural(1)} so you can gulp down some of the thick liquid, replenishing some of your water to prevent dehydration.")
+                elif (self.moistCalc(2) > 7 and self.vagTotal > 0):
+                    self.doMainText(f" However, you cup your hands over your slime-dripping {self.vulvaDesc()} vulva so you can gulp down some of the thick liquid, replenishing some of your water to prevent dehydration.")
+                else:
+                    self.doMainText(" So much so that you wind up with a touch of heat exhaustion, making you tired and aching.")
+                    self.exhaustion += 5
+                    self.stats(0, 0, -1, 0)
+                    self.doHP(-Math.floor((30 + Math.floor(self.str / 2) + self.HPMod) / 6))
+            else:
+                self.doMainText("The desert night with the dry air is bitterly cold.", True)
+                if (self.skinType == 2):
+                    self.doMainText(" However, your coat of fur helps insulate you, keeping you plenty warm.")
+                elif (self.attireTop == 6):
+                    self.doMainText(" However, the latex suit you wear helps insulate you, keeping you plenty warm.")
+                elif (self.breastSize > 25 or self.boobTotal > 2 and self.breastSize > 17):
+                    self.doMainText(" However, your masses of plentiful breast-flesh provides enough warmth to not freeze.")
+                elif (self.pregnancyTime > 200):
+                    self.doMainText(f" However, the {self.bellyDesc()} belly you wield and the life within emanates so much heat to stave off freezing.")
+                elif (self.cockSize * self.cockSizeMod > 60 and self.cockTotal > 0 or self.cockSize * self.cockSizeMod > 45 and self.cockTotal > 2):
+                    self.doMainText(f" However, you hold close your {self.cockDesc()} appendage{self.plural(1)}, providing you with enough warmth to not freeze")
+                else:
+                    self.doMainText(" So cold that you nearly freeze, causing some damage and weakening you.")
+                    self.stats(-1, 0, 0, 0)
+                    self.doHP(-Math.floor((30 + Math.floor(self.str / 2) + self.HPMod) / 3.5))
             self.hrs = 2
+            self.displayMainText()
             self.doEnd()
-         else:
-            self.outputMainText("\n\nNot long after you begin staring at her, she catches you out of the corner of her eye as well. She looks at you for only a moment, realizing you're gawking at her, and comes to an abrupt halt, her chest bouncing from the stop. Meekly, she slowly flits backwards and then flies up over a dune, shyly avoiding your presence as she disappears.\n\nWith no sign of her anymore, you shrug and move along.")
-            self.hrs = 1
-            self.doEnd()
-
-      elif chance == 3:
-         self.outputMainText("Through the barren desert, it's hard to see over the sandy dunes. Which is unfortunate, because as you finally manage to climb over one, you come face to face with a strange creature...\n\nA serpentine form, covered completely in forest-green scales, with a long powerful tail for legs, its upper body resembles that of human. Well, a woman, to be more exact, as a simple silken shawl dangles softly over an amply laden chest, nipples barely showing through, and a matching sash hanging from its curvy feminine hips that hides its feminine sex. But a long forked tongue hissing out of her mouth, rainbow colored wings folded upon her back, , and reaching around 13 feet in height with even more in length, this naga is neither and both human and snake. And it doesn't take well to surprises or strangers, instantly lashing out at you.", True)
-         self.doNext()
-
-         def doListen():
-            self.enemyID = 306
-            self.currentState = GameState.BATTLE
-            self.enemyBaseStats()
-            self.eMaxHP = self.eHP
-            self.doBattle()
-         self.doListen = doListen
-
-      elif chance == 4:
-         self.outputMainText("Walking across the hot sand, you hear wind picking up nearby. Afraid it may be a sandstorm, you begin to rush for cover behind a dune but come to a halt as you spot a column of whirling sand coming towards you. No matter which way you run, the dust devil matches your movements, as though it had a sort of intelligence. Any plants it touches in its path are quickly sucked dry, left as shriveled shrunken husks. A desiccating dust devil, this sentient creature seeks out warm moisture to continue its life, even if it means sucking it from the living. And it seems to have you in its sights.", True)
-         self.doNext()
-
-         def doListen():
-            self.enemyID = 102
-            self.currentState = GameState.BATTLE
-            self.enemyBaseStats()
-            self.eMaxHP = self.eHP
-            self.doBattle()
-         self.doListen = doListen
-
-      elif chance == 5:
-         self.outputMainText("While roaming about the desert, a sudden sandstorm kicks up around you, greatly obscuring your view. Maybe you should turn back and head out of the desert before you get lost. Would you like to press on?", True)
-         self.buttonConfirm()
-
-         def doListen():
-            if (self.buttonChoice == 6):
-               self.doMainText("", True)
-               if (not self.firstExplore):
-                  self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
-                  self.firstExplore = True
-               if self.currentZone == Zones.OVIASIS:
-                  if (Utils.percent() <= 50):
-                     self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through the desert to large fields of swaying grass, free from the storm, and signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                     self.regionChange(Zones.FIRMSHAFT)
-                     if (not self.foundFirmshaft):
-                        self.foundFirmshaft = True
-                  else:
-                     self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through the desert into a dense vegetation with trees surrounding you, protecting you from the storm. You begin to see various wooden structures built amongst the canopy as you continue. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                     self.regionChange(Zones.SIZ_CALIT)
-                     if (not self.foundSizCalit):
-                        self.foundSizCalit = True
-               elif self.currentZone in {Zones.FIRMSHAFT, Zones.SIZ_CALIT}:
-                  self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through into an area sheltered from the wind by large rock formations. As you blink and brush the sand from your eyes, you're left in awe by the paradise before you.\n\nAn oasis somewhere within the desert, hidden within a ring of tall rock formations and mountains, you can see the water sparkle from here and the palm trees sway lazily around it. And all along the rocks, built into caves and sprawled across the beaches, reptillian people have made their home here, relaxing and enjoying their gorgeous habitat.\n\nYou have now entered the Lizan home-city of Oviasis! Though thanks to the storm you have no idea how you got here or how to get back...")
-                  self.regionChange(Zones.OVIASIS)
-                  if (not self.foundOviasis):
-                     self.foundOviasis = True
-               self.hrs = 4
-               self.displayMainText()
-               self.doEnd()
-            else:
-               self.outputMainText("You return from whence you came, avoiding any unwanted sand in your cracks.", True)
-               self.hrs = 1
-               self.doEnd()
-         self.doListen = doListen
-
-      elif chance == 6:
-         if (self.hour > 8 and self.hour <= 20):
-            self.doMainText("The hot sun beating down upon the arid sand is nearly stifling.", True)
-            if (self.skinType == 3):
-               self.doMainText(" However, your scaley exterior was made to protect you from such circumstances, conserving your moisture and reflecting much of the rays to prevent you from getting too hot.")
-            elif (self.bodyOil > 0):
-               self.doMainText(" However, the oil that covers your body reflects most of the bad rays and helps retain some of your moisture, preventing you from becoming too hot.")
-            elif (self.milkEngorgement > 400 and self.milkEngorgementLevel > 2):
-               self.doMainText(" However, the leaking of your breasts provides you with a steady supply of excess milk to sip as you explore, preventing you from becoming dehydrated.")
-            elif (self.udderEngorgement > 400 and self.udderEngorgementLevel > 2 and self.udders):
-               self.doMainText(" However, the leaking of your udder provides you with a steady supply of excess milk to sip as you explore, preventing you from becoming dehydrated.")
-            elif (self.moistCalc(1) > 7 and self.cockTotal > 0):
-               self.doMainText(f" However, you cup your hands over the tip{self.plural(1)} of your slime-dripping cock{self.plural(1)} so you can gulp down some of the thick liquid, replenishing some of your water to prevent dehydration.")
-            elif (self.moistCalc(2) > 7 and self.vagTotal > 0):
-               self.doMainText(f" However, you cup your hands over your slime-dripping {self.vulvaDesc()} vulva so you can gulp down some of the thick liquid, replenishing some of your water to prevent dehydration.")
-            else:
-               self.doMainText(" So much so that you wind up with a touch of heat exhaustion, making you tired and aching.")
-               self.exhaustion += 5
-               self.stats(0, 0, -1, 0)
-               self.doHP(-Math.floor((30 + Math.floor(self.str / 2) + self.HPMod) / 6))
-         else:
-            self.doMainText("The desert night with the dry air is bitterly cold.", True)
-            if (self.skinType == 2):
-               self.doMainText(" However, your coat of fur helps insulate you, keeping you plenty warm.")
-            elif (self.attireTop == 6):
-               self.doMainText(" However, the latex suit you wear helps insulate you, keeping you plenty warm.")
-            elif (self.breastSize > 25 or self.boobTotal > 2 and self.breastSize > 17):
-               self.doMainText(" However, your masses of plentiful breast-flesh provides enough warmth to not freeze.")
-            elif (self.pregnancyTime > 200):
-               self.doMainText(f" However, the {self.bellyDesc()} belly you wield and the life within emanates so much heat to stave off freezing.")
-            elif (self.cockSize * self.cockSizeMod > 60 and self.cockTotal > 0 or self.cockSize * self.cockSizeMod > 45 and self.cockTotal > 2):
-               self.doMainText(f" However, you hold close your {self.cockDesc()} appendage{self.plural(1)}, providing you with enough warmth to not freeze")
-            else:
-               self.doMainText(" So cold that you nearly freeze, causing some damage and weakening you.")
-               self.stats(-1, 0, 0, 0)
-               self.doHP(-Math.floor((30 + Math.floor(self.str / 2) + self.HPMod) / 3.5))
-         self.hrs = 2
-         self.displayMainText()
-         self.doEnd()
 
     def doBeach(self):
         chance = self.eventSelect("Beach")
@@ -21200,6 +21199,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
 
     def doOldCave(self):
+      # HERE
       chance = self.eventSelect("Old Cave")
       if chance == 1:
          self.outputMainText("Growing on the wall of the cave, you find a small, odd looking mushroom. It has a red cap speckled with a few large white dots. You pluck it.", True)
@@ -21410,6 +21410,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
 
     def doDen(self):
+      # HERE
       chance = self.eventSelect("Den")
       if (chance == 1):
          self.outputMainText("You head to the den, but this time Silandrias isn't there to greet you at the entrance. Just checking to make sure she's not there, you head inside to see if you can find her.\n\nYou quickly discover this was a bad idea.\n\nThe maze of tunnels is so confusing that you wind up lost and wandering about. You have no idea where you are going, though you intended to meet her in a main room, and instead find yourself in some sort of storage room. It's obviously been a long time since it has really been used, there's hardly any items in it. However, you do spot a strange piece of leather. Holding it up and eyeing it, the leather strap is circular with a few large holes. Thinking more carefully, you realize this would fit perfectly around the base of Silandrias' tail, with room for the spikes, and tie tightly.\n\nWith a shrug, you take it with you as you may find some use for it eventually.", True)
@@ -22234,6 +22235,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doListen = doListen
 
     def doValley(self):
+      # HERE
       chance = self.eventSelect("Valley")
       # Fertility Statue
       if chance == 1:
