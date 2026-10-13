@@ -15324,32 +15324,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.buttonConfirm()
 
                 def doListen():
-                    # TODO: See if self.tempBool can be remove here
                     if (self.buttonChoice == 6):
                         if (Math.floor((self.shapeshiftyLevel + 1) / 3) > Math.floor(self.shapeshiftyLevel / 3)):
-                            self.tempBool = False
+                            tempBool = False
                             if (Math.floor((self.shapeshiftyLevel + 1) / 6) > Math.floor(self.shapeshiftyLevel / 6)):
-                                self.tempBool = True
+                                tempBool = True
                             self.choiceListArray.clear()
                             self.outputMainText("What feature would you like to lock, preventing it from being changed by racial blood?", True)
-                            if (not self.tempBool):
-                                if (self.shapeshiftySecond != "Face"):
-                                    self.choiceListArray.push("Face")
-                                if (self.shapeshiftySecond != "Skin"):
-                                    self.choiceListArray.push("Skin")
-                                if (self.shapeshiftySecond != "Ears"):
-                                    self.choiceListArray.push("Ears")
-                                if (self.shapeshiftySecond != "Legs"):
-                                    self.choiceListArray.push("Legs")
-                                if (self.shapeshiftySecond != "Breasts"):
-                                    self.choiceListArray.push("Breasts")
-                                if (self.shapeshiftySecond != "Nipples"):
-                                    self.choiceListArray.push("Nipples")
-                                if (self.shapeshiftySecond != "Tail"):
-                                    self.choiceListArray.push("Tail")
-                                if (self.shapeshiftySecond != "Cock"):
-                                    self.choiceListArray.push("Cock")
-                            else:
+                            if (tempBool):
                                 if (self.shapeshiftyFirst != "Face"):
                                     self.choiceListArray.push("Face")
                                 if (self.shapeshiftyFirst != "Skin"):
@@ -15366,11 +15348,28 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.choiceListArray.push("Tail")
                                 if (self.shapeshiftyFirst != "Cock"):
                                     self.choiceListArray.push("Cock")
+                            else:
+                                if (self.shapeshiftySecond != "Face"):
+                                    self.choiceListArray.push("Face")
+                                if (self.shapeshiftySecond != "Skin"):
+                                    self.choiceListArray.push("Skin")
+                                if (self.shapeshiftySecond != "Ears"):
+                                    self.choiceListArray.push("Ears")
+                                if (self.shapeshiftySecond != "Legs"):
+                                    self.choiceListArray.push("Legs")
+                                if (self.shapeshiftySecond != "Breasts"):
+                                    self.choiceListArray.push("Breasts")
+                                if (self.shapeshiftySecond != "Nipples"):
+                                    self.choiceListArray.push("Nipples")
+                                if (self.shapeshiftySecond != "Tail"):
+                                    self.choiceListArray.push("Tail")
+                                if (self.shapeshiftySecond != "Cock"):
+                                    self.choiceListArray.push("Cock")
                             self.choiceListButtons("Shapeshifty")
 
                             def doListen():
                                 self.choiceListSelect("Shapeshifty")
-                                if (self.tempBool):
+                                if (tempBool):
                                     if self.shapeshiftySecond == "Face":
                                         self.lockFace -= 1
                                     elif self.shapeshiftySecond == "Skin":
@@ -15405,49 +15404,49 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     elif self.shapeshiftyFirst == "Cock":
                                         self.lockCock -= 1
                                 if self.choiceListResult[0] == "Face":
-                                    if (self.tempBool):
+                                    if (tempBool):
                                         self.shapeshiftySecond = "Face"
                                     else:
                                         self.shapeshiftyFirst = "Face"
                                     self.lockFace += 1
                                 elif self.choiceListResult[0] == "Skin":
-                                    if (self.tempBool):
+                                    if (tempBool):
                                         self.shapeshiftySecond = "Skin"
                                     else:
                                         self.shapeshiftyFirst = "Skin"
                                     self.lockSkin += 1
                                 elif self.choiceListResult[0] == "Ears":
-                                    if (self.tempBool):
+                                    if (tempBool):
                                         self.shapeshiftySecond = "Ears"
                                     else:
                                         self.shapeshiftyFirst = "Ears"
                                     self.lockEars += 1
                                 elif self.choiceListResult[0] == "Legs":
-                                    if (self.tempBool):
+                                    if (tempBool):
                                         self.shapeshiftySecond = "Legs"
                                     else:
                                         self.shapeshiftyFirst = "Legs"
                                     self.lockLegs += 1
                                 elif self.choiceListResult[0] == "Breasts":
-                                    if (self.tempBool):
+                                    if (tempBool):
                                         self.shapeshiftySecond = "Breasts"
                                     else:
                                         self.shapeshiftyFirst = "Breasts"
                                     self.lockBreasts += 1
                                 elif self.choiceListResult[0] == "Nipples":
-                                    if (self.tempBool):
+                                    if (tempBool):
                                         self.shapeshiftySecond = "Nipples"
                                     else:
                                         self.shapeshiftyFirst = "Nipples"
                                     self.lockNipples += 1
                                 elif self.choiceListResult[0] == "Tail":
-                                    if (self.tempBool):
+                                    if (tempBool):
                                         self.shapeshiftySecond = "Tail"
                                     else:
                                         self.shapeshiftyFirst = "Tail"
                                     self.lockTail += 1
                                 elif self.choiceListResult[0] == "Cock":
-                                    if (self.tempBool):
+                                    if (tempBool):
                                         self.shapeshiftySecond = "Cock"
                                     else:
                                         self.shapeshiftyFirst = "Cock"
