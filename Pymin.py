@@ -131,7 +131,6 @@ class KeyStateStorage:
         '''
         Function activated on key press
         '''
-        # self.detailedDebug()
         keyCode = _ToolkitEvent.GetKeyboardEvent(e).keyCode
         if keyCode == Keyboard.SHIFT:
             self.shiftHeld = True
@@ -140,7 +139,7 @@ class KeyStateStorage:
         elif keyCode == Keyboard.ALTERNATE:
             self.altHeld = True
         elif keyCode == Keyboard.Q and self.ctrlHeld and self.shiftHeld and self.altHeld:
-            mainobject.close()
+            mainobject.main.close()
 
     def keyRelease(self, e):
         '''
@@ -405,6 +404,9 @@ class Utils:
                     return False
             return True
         return False
+
+    def hexColorFromThemeNumber(theme):
+        return ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[theme]
 
 
 class DirUtils:
@@ -1698,14 +1700,40 @@ class PlayerItemStorage:
 class PyminWindow:
     @property
     def enforceSize(self):
-        return self._enforceSize
+        return mainobject.enforceSize
 
     @enforceSize.setter
     def enforceSize(self, value):
-        value = bool(value)
         if self.isOpen:
-            self._set_enforceSize(value)
-        self._enforceSize = value
+            self._set_enforceSize(bool(value))
+
+    def _set_enforceSize(self, value):
+        ...
+
+    @property
+    def fontSize(self):
+        return self._fontSize
+
+    @fontSize.setter
+    def fontSize(self, value):
+        self._fontSize = value
+        if self.isOpen:
+            self._set_fontSize(value)
+
+    def _set_fontSize(self, value):
+        ...
+
+    @property
+    def fontBold(self):
+        return mainobject.fontBold
+
+    @fontBold.setter
+    def fontBold(self, value):
+        if self.isOpen:
+            self._set_fontBold(value)
+
+    def _set_fontBold(self, value):
+        ...
 
     @property
     def isOpen(self):
@@ -1723,18 +1751,37 @@ class PyminWindow:
     def window(self):
         return self._window
 
-    def _set_enforceSize(self, value):
+    @property
+    def backgroundColor(self):
+        return mainobject.backgroundColor
+
+    @backgroundColor.setter
+    def backgroundColor(self, value):
+        if self.isOpen:
+            self._set_backgroundColor(value)
+
+    def _set_backgroundColor(self, value):
+        ...
+
+    @property
+    def textColor(self):
+        return mainobject.textColor
+
+    @textColor.setter
+    def textColor(self, value):
+        if self.isOpen:
+            self._set_textColor(value)
+
+    def _set_textColor(self, value):
         ...
 
     def __init__(self):
-        self._enforceSize = False
         self._isOpen = False
         self._window = None
-        self._backgroundColor = '#FFFFFF'
-        self._textColor = '#000000'
 
     def keyPress(self, e):
         KeyState.keyPress(e)
+        mainobject.detailedDebug()
         self._key_press_handler(_ToolkitEvent.GetKeyboardEvent(e).keyCode)
 
     def _key_press_handler(self, keyCode):
@@ -1742,6 +1789,7 @@ class PyminWindow:
 
     def keyRelease(self, e):
         KeyState.keyRelease(e)
+        mainobject.detailedDebug()
         self._key_release_handler(_ToolkitEvent.GetKeyboardEvent(e).keyCode)
 
     def _key_release_handler(self, keyCode):
@@ -1759,25 +1807,11 @@ class PyminWindow:
 class AboutWindow(PyminWindow):
     TEXT = f'Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on Nimin v{NIMIN_VERSION}\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {platform.python_version()}'
 
-    @property
-    def backgroundColor(self):
-        return self._backgroundColor
+    def _set_backgroundColor(self, value):
+        self.window.configureChildren(('display', 'label'), background=value)
 
-    @backgroundColor.setter
-    def backgroundColor(self, value):
-        self._backgroundColor = value
-        if self.isOpen:
-            self.window.configureChildren(('display', 'label'), background=value)
-
-    @property
-    def textColor(self):
-        return self._textColor
-
-    @textColor.setter
-    def textColor(self, value):
-        self._textColor = value
-        if self.isOpen:
-            self.window.configureChild('label', foreground=value)
+    def _set_textColor(self, value):
+        self.window.configureChild('label', foreground=value)
 
     def open(self, *e):
         if self.isOpen:
@@ -1788,7 +1822,7 @@ class AboutWindow(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(mainobject.window)
+        self.window.transient(mainobject.main.window)
         self.window.resizable = False
 
         self.window.addnwhLabel('display', 'label', x=7, y=9, font=('TkTextFont', 9), anchor='nw', text=AboutWindow.TEXT, foreground=self.textColor, background=self.backgroundColor)
@@ -1841,38 +1875,6 @@ class PyminWiki(PyminWindow):
         'Shops': ('General Shop', 'Dye Shop', 'Apothecary', 'Salon', 'Tailor', 'Back'),
         'NPCs': ('Fidoris', 'Jamie', 'Lila', 'Malon', 'Silandrias', 'Back')
     }
-
-    @property
-    def backgroundColor(self):
-        return self._backgroundColor
-
-    @backgroundColor.setter
-    def backgroundColor(self, value):
-        self._backgroundColor = value
-        if self.isOpen:
-            self.window.configureChildren(('text', 'menu'), background=value)
-
-    @property
-    def textColor(self):
-        return self._textColor
-
-    @textColor.setter
-    def textColor(self, value):
-        self._textColor = value
-        if self.isOpen:
-            self.window.configureChildren(('text', 'menu'), foreground=value)
-
-    @property
-    def fontSize(self):
-        return self._fontSize
-
-    @fontSize.setter
-    def fontSize(self, value):
-        self._fontSize = value
-        if self.isOpen:
-            self.window._children['text']._fontSize = value - 2
-            self.displayText()
-
     @property
     def focus(self):
         return self._focus
@@ -1914,6 +1916,17 @@ class PyminWiki(PyminWindow):
             self.window.geometry('700x500')
         self.window.resizable = not value
 
+    def _set_fontSize(self, value):
+        # TODO: This broke
+        self.window._children['text']._fontSize = value - 2
+        self.displayText()
+
+    def _set_backgroundColor(self, value):
+        self.window.configureChildren(('text', 'menu'), background=value)
+
+    def _set_textColor(self, value):
+        self.window.configureChildren(('text', 'menu'), foreground=value)
+
     def __init__(self):
         super().__init__()
         self._focus = 1
@@ -1922,11 +1935,11 @@ class PyminWiki(PyminWindow):
         self.pageHistory = Array()
         self.text = ''
         from tkhtmlview import html_parser
-        if not hasattr(html_parser, 'HLinkSlot_Command'):
+        if hasattr(html_parser, 'HLinkSlot_Command'):
+            self._hasCustomHTMLParser = True
+        else:
             self._hasCustomHTMLParser = False
             trace('Warning: [PyminWiki] Custom tkhtmlview html_parser is not installed. Wiki links will not work')
-        else:
-            self._hasCustomHTMLParser = True
 
     def open(self):
         if self.isOpen:
@@ -1938,7 +1951,7 @@ class PyminWiki(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(mainobject.window)
+        self.window.transient(mainobject.main.window)
 
         if self.enforceSize:
             self.window.resizable = False
@@ -3387,26 +3400,6 @@ class PyminWiki(PyminWindow):
 class SaveConverter(PyminWindow):
     # TODO: Color message text based on ouput
     @property
-    def backgroundColor(self):
-        return self._backgroundColor
-
-    @backgroundColor.setter
-    def backgroundColor(self, value):
-        self._backgroundColor = value
-        if self.isOpen:
-            self.window.configureChildren(('display', 'title', 'message', 'inputfilebox', 'inputfilecombotext', 'outputfilebox', 'outputfilecomboboxtext', 'convertbutton'), background=value)
-
-    @property
-    def textColor(self):
-        return self._textColor
-
-    @textColor.setter
-    def textColor(self, value):
-        self._textColor = value
-        if self.isOpen:
-            self.window.configureChildren(('title', 'message', 'inputfilebox', 'inputfilecombotext', 'outputfilebox', 'outputfilecomboboxtext', 'convertbutton'), foreground=value)
-
-    @property
     def message(self):
         return self.window._children['message'].text
 
@@ -3419,32 +3412,28 @@ class SaveConverter(PyminWindow):
             self.window.geometry('500x334')
         self.window.resizable = not value
 
-    detailedDebug = _noop
+    def _set_backgroundColor(self, value):
+        self.window.configureChildren(('display', 'title', 'message', 'inputfilebox', 'inputfilecombotext', 'outputfilebox', 'outputfilecomboboxtext', 'convertbutton'), background=value)
+
+    def _set_textColor(self, value):
+        self.window.configureChildren(('title', 'message', 'inputfilebox', 'inputfilecombotext', 'outputfilebox', 'outputfilecomboboxtext', 'convertbutton'), foreground=value)
 
     def open(self):
         if self.isOpen:
             self.window.lift()
             return
 
-        startType = mainobject is self
+        startType = mainobject.main is self
 
         # Set up window
         self._window = itk.itkWindow(width=500, height=334, title='Pymin: Save Converter', main=startType)
         self.window.bind('<Destroy>', self._close)
-        self.window.resizable = False
-
-        if startType:
-            self.savelocation = GAME_DIR / 'nimin_saves'
-            self.style = ttk.Style(self.window)
-            if THEME_DIR.is_dir():
-                self.window.tk.call('source', f'{THEME_DIR}/nimin.tcl')
-            PyminMain.loadPreferences(self)
-        else:
-            self.savelocation = mainobject.savelocation
-            self.window.transient(mainobject.window)
-
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
+        self.window.resizable = False
+
+        if not startType:
+            self.window.transient(mainobject.main.window)
 
         labelFont = ('Times New Roman', 12)
 
@@ -3454,7 +3443,7 @@ class SaveConverter(PyminWindow):
 
         self.window.addLabel('display', 'message', x=250, y=100, width=350, height=25, font=labelFont, anchor='n', text='', foreground=self.textColor, background=self.backgroundColor)
 
-        self.window.addFileEntryBox('display', 'inputfilebox', x=50, y=150, width=320, height=24, font=labelFont, text='Input File', filetype='file', fileaction='open', initdir=self.savelocation, foreground=self.textColor, background=self.backgroundColor)
+        self.window.addFileEntryBox('display', 'inputfilebox', x=50, y=150, width=320, height=24, font=labelFont, text='Input File', filetype='file', fileaction='open', initdir=mainobject.saveLocation, foreground=self.textColor, background=self.backgroundColor)
         self.window.addLabel('display', 'inputfilecombotext', x=390, y=150, width=40, height=24, font=labelFont, anchor='nw', text='Type', foreground=self.textColor, background=self.backgroundColor)
 
         self.inputfilecombobox = ttk.Combobox(self.window, font=labelFont)
@@ -3462,7 +3451,7 @@ class SaveConverter(PyminWindow):
         self.inputfilecombobox.place(x=390, y=174, width=60, height=24, anchor='nw')
         self.inputfilecombobox.current(0)
 
-        self.window.addFileEntryBox('display', 'outputfilebox', x=50, y=210, width=320, height=24, font=labelFont, text='Output File', filetype='file', fileaction='save', initdir=self.savelocation, foreground=self.textColor, background=self.backgroundColor)
+        self.window.addFileEntryBox('display', 'outputfilebox', x=50, y=210, width=320, height=24, font=labelFont, text='Output File', filetype='file', fileaction='save', initdir=mainobject.saveLocation, foreground=self.textColor, background=self.backgroundColor)
         self.window.addLabel('display', 'outputfilecomboboxtext', x=390, y=210, width=40, height=24, font=labelFont, anchor='nw', text='Type', foreground=self.textColor, background=self.backgroundColor)
 
         self.outputfilecombobox = ttk.Combobox(self.window, font=labelFont)
@@ -3546,10 +3535,10 @@ class SaveEditor(PyminWindow):
             return
 
         self._window = tkinter.Toplevel()
-        self.window.title('Pymin: Save Editor')
+        self.window.title('Pymin: Save Editor (WIP)')
         self.window.geometry('500x400')
         self.window.resizable(False, False)
-        self.window.transient(mainobject.window)
+        self.window.transient(mainobject.main.window)
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
@@ -3584,7 +3573,7 @@ class SaveEditor(PyminWindow):
         self._isOpen = True
 
     def loadFile(self):
-        file = Path(filedialog.askopenfilename(initialdir=mainobject.savelocation, filetypes=(('All Files', '*'), ('TOML File', '*.toml'), ('XML Files', '*.xml'), ('Shared Objects', '*.sol'), ('Nimin Saves', '*.nim'))))
+        file = Path(filedialog.askopenfilename(initialdir=mainobject.saveLocation, filetypes=(('All Files', '*'), ('TOML File', '*.toml'), ('XML Files', '*.xml'), ('Shared Objects', '*.sol'), ('Nimin Saves', '*.nim'))))
         self.filelabel['text'] = str(file)
         ext = file.suffix.lower()
         if ext == '.sol':
@@ -3646,30 +3635,16 @@ class SaveEditor(PyminWindow):
 
 
 class DebugVariableDisplay(PyminWindow):
-    @property
-    def backgroundColor(self):
-        return self._backgroundColor
-
-    @backgroundColor.setter
-    def backgroundColor(self, value):
-        self._backgroundColor = value
-        if self.isOpen:
-            self.window.configureChild('text', background=value)
-
-    @property
-    def textColor(self):
-        return self._textColor
-
-    @textColor.setter
-    def textColor(self, value):
-        self._textColor = value
-        if self.isOpen:
-            self.window.configureChild('text', foreground=value)
-
     def _set_enforceSize(self, value):
         if value:
             self.window.geometry('400x400')
         self.window.resizable = not value
+
+    def _set_backgroundColor(self, value):
+        self.window.configureChild('text', background=value)
+
+    def _set_textColor(self, value):
+        self.window.configureChild('text', foreground=value)
 
     def open(self):
         if self.isOpen:
@@ -3680,7 +3655,7 @@ class DebugVariableDisplay(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(mainobject.window)
+        self.window.transient(mainobject.main.window)
 
         if self.enforceSize:
             self.window.resizable = False
@@ -3716,7 +3691,7 @@ class DebugAffinityChange(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(mainobject.window)
+        self.window.transient(mainobject.main.window)
 
         if self.enforceSize:
             self.window.resizable = False
@@ -3728,7 +3703,7 @@ class DebugAffinityChange(PyminWindow):
         self._isOpen = True
 
     def changeAffinity(self):
-        if mainobject.currentState == 0:
+        if mainobject.game.currentState == 0:
             self.window.configureChild('errlabel', text='Error: Game not loaded')
             raise Error('[DebugAffinityChange.changeAffinity] Game not loaded.')
         values = self.window._children['combo'].getEntries()
@@ -3762,7 +3737,7 @@ class DebugAffinityChange(PyminWindow):
         except:
             self.window._children['errlabel'].text = 'Amount must be an integer'
             raise Error('[DebugAffinityChange.changeAffinity] Amount must be an integer.')
-        mainobject.debugChangeAffinity(aff, amount)
+        mainobject.game.debugChangeAffinity(aff, amount)
 
 
 class DebugGiveItem(PyminWindow):
@@ -3782,7 +3757,7 @@ class DebugGiveItem(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(mainobject.window)
+        self.window.transient(mainobject.main.window)
 
         if self.enforceSize:
             self.window.resizable = False
@@ -3794,7 +3769,7 @@ class DebugGiveItem(PyminWindow):
         self._isOpen = True
 
     def giveItem(self):
-        if mainobject.currentState == 0:
+        if mainobject.game.currentState == 0:
             self.window._children['errlabel'].text = 'Error: Game not loaded'
             raise Error('[DebugGiveItem.giveItem] Game not loaded.')
         EN = self.window._children['combo'].getEntries()
@@ -3815,40 +3790,26 @@ class DebugGiveItem(PyminWindow):
             self.window._children['errlabel'].text = f'Invalid Quantity: {QUAN}'
             raise Error('[DebugGiveItem.giveItem] Quantity must be greater than zero.')
         for i in range(QUAN):
-            mainobject.itemGainArray.push(ID)
-        mainobject.gainItem(mainobject.itemGainArray.pop())
+            mainobject.game.itemGainArray.push(ID)
+        mainobject.game.gainItem(mainobject.game.itemGainArray.pop())
 
 
 class OptionsWindow(PyminWindow):
     # TODO: Window background does not start with the correct colour
-    @property
-    def backgroundColor(self):
-        return self._backgroundColor
-
-    @backgroundColor.setter
-    def backgroundColor(self, value):
-        self._backgroundColor = value
-        if self.isOpen:
-            self.window.configureChildren(('display', 'options', 'SOLMode', 'FixedRes', 'Theme', 'FontColor', 'SaveLocation', 'if', 'ScrolledTextBorders', 'newgameoriginalsize', 'doLevelUPStaticButtons', 'NiminTheme', 'UseExpandedSaveDialog', 'UseNewStash', 'helpToWiki', 'doShopsReturn', 'gs', 'showBalls', 'femmeboytofemboy', 'shemaletofuta', 'ngrammar', 'replacefemmiemale', 'femboyishtogirly', 'snuggleball', 'grammarMisc', 'gt', 'StatusTweaks', 'SuccubusLeavesOne', 'UseIsBottomOpen', 'LizanDontShowBalls', 'HermGetsBoth', 'IntBallsEffectBelly', 'DirectPathToSanc', 'CorrectBeastRaceFeet', 'MiscChanges'), background=value)
-            if as3state.as3DebugEnable:
-                self.window.configureChildren(('dt', 'ChooseSenario', 'NoDamage'), background=value)
-
-    @property
-    def textColor(self):
-        return self._textColor
-
-    @textColor.setter
-    def textColor(self, value):
-        self._textColor = value
-        if self.isOpen:
-            self.window.configureChildren(('SOLMode', 'FixedRes', 'Theme', 'FontColor', 'SaveLocation', 'ScrolledTextBorders', 'newgameoriginalsize', 'doLevelUPStaticButtons', 'NiminTheme', 'UseExpandedSaveDialog', 'UseNewStash', 'helpToWiki', 'doShopsReturn', 'showBalls', 'femmeboytofemboy', 'shemaletofuta', 'ngrammar', 'replacefemmiemale', 'femboyishtogirly', 'snuggleball', 'grammarMisc', 'StatusTweaks', 'SuccubusLeavesOne', 'UseIsBottomOpen', 'LizanDontShowBalls', 'HermGetsBoth', 'IntBallsEffectBelly', 'DirectPathToSanc', 'CorrectBeastRaceFeet', 'MiscChanges'), foreground=value)
-            if as3state.as3DebugEnable:
-                self.window.configureChildren(('ChooseSenario', 'NoDamage'), foreground=value)
-
     def _set_enforceSize(self, value):
         if value:
             self.window.geometry('420x207')
         self.window.resizable = not value
+
+    def _set_backgroundColor(self, value):
+        self.window.configureChildren(('display', 'options', 'SOLMode', 'FixedRes', 'Theme', 'FontColor', 'SaveLocation', 'if', 'ScrolledTextBorders', 'newgameoriginalsize', 'doLevelUPStaticButtons', 'NiminTheme', 'UseExpandedSaveDialog', 'UseNewStash', 'helpToWiki', 'doShopsReturn', 'gs', 'showBalls', 'femmeboytofemboy', 'shemaletofuta', 'ngrammar', 'replacefemmiemale', 'femboyishtogirly', 'snuggleball', 'grammarMisc', 'gt', 'StatusTweaks', 'SuccubusLeavesOne', 'UseIsBottomOpen', 'LizanDontShowBalls', 'HermGetsBoth', 'IntBallsEffectBelly', 'DirectPathToSanc', 'CorrectBeastRaceFeet', 'MiscChanges'), background=value)
+        if as3state.as3DebugEnable:
+            self.window.configureChildren(('dt', 'ChooseSenario', 'NoDamage'), background=value)
+
+    def _set_textColor(self, value):
+        self.window.configureChildren(('SOLMode', 'FixedRes', 'Theme', 'FontColor', 'SaveLocation', 'ScrolledTextBorders', 'newgameoriginalsize', 'doLevelUPStaticButtons', 'NiminTheme', 'UseExpandedSaveDialog', 'UseNewStash', 'helpToWiki', 'doShopsReturn', 'showBalls', 'femmeboytofemboy', 'shemaletofuta', 'ngrammar', 'replacefemmiemale', 'femboyishtogirly', 'snuggleball', 'grammarMisc', 'StatusTweaks', 'SuccubusLeavesOne', 'UseIsBottomOpen', 'LizanDontShowBalls', 'HermGetsBoth', 'IntBallsEffectBelly', 'DirectPathToSanc', 'CorrectBeastRaceFeet', 'MiscChanges'), foreground=value)
+        if as3state.as3DebugEnable:
+            self.window.configureChildren(('ChooseSenario', 'NoDamage'), foreground=value)
 
     def open(self):
         if self.isOpen:
@@ -3860,7 +3821,7 @@ class OptionsWindow(PyminWindow):
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-        self.window.transient(mainobject.window)
+        self.window.transient(mainobject.main.window)
 
         if self.enforceSize:
             self.window.resizable = False
@@ -3889,7 +3850,7 @@ class OptionsWindow(PyminWindow):
         self.window.addCheckboxWithEntry('options', 'FontColor', x=210, y=54, width=152, height=20, font=labelFont, text='Custom Font Color', entrytext=(40, 'Color:'), indent=38, background=self.backgroundColor, foreground=self.textColor)
 
         # -Save Location
-        self.window.addFileEntryBox('options', 'SaveLocation', x=10, y=98, width=400, height=20, font=labelFont, text='Save Location', indent=0, filetype='dir', fileaction='open', initdir=str(mainobject.savelocation.resolve()), background=self.backgroundColor, foreground=self.textColor)
+        self.window.addFileEntryBox('options', 'SaveLocation', x=10, y=98, width=400, height=20, font=labelFont, text='Save Location', indent=0, filetype='dir', fileaction='open', initdir=str(mainobject.saveLocation.resolve()), background=self.backgroundColor, foreground=self.textColor)
 
         # Interface page
         self.window.addNBFrame('nb', 'if', width=420, height=207, text='Interface', background=self.backgroundColor)
@@ -3945,7 +3906,7 @@ class OptionsWindow(PyminWindow):
         self.window.addCheckboxWithLabel('gs', 'ngrammar', x=10, y=76, width=180, height=20, font=labelFont, text='Use n-grammar', background=self.backgroundColor, foreground=self.textColor)
         ToolTip(self.window._children['ngrammar'].frame, text='There are places in the game where it uses "a" but should use "an". This really\nbugged me so I fixed it. (The use of "an" is different between all of the\nflavours of english so it might not look right for you)')
 
-        self.window.addCheckboxWithCombobox('gs', 'replacefemmiemale', x=10, y=98, width=180, height=20, font=labelFont, text='Replace "femmie male"', indent=70, values=('feminine male', mainobject.ptweaksGrammar(3)), exportselection=0, readonly=True, background=self.backgroundColor, foreground=self.textColor)
+        self.window.addCheckboxWithCombobox('gs', 'replacefemmiemale', x=10, y=98, width=180, height=20, font=labelFont, text='Replace "femmie male"', indent=70, values=('feminine male', mainobject.game.ptweaksGrammar(3)), exportselection=0, readonly=True, background=self.backgroundColor, foreground=self.textColor)
         ToolTip(self.window._children['replacefemmiemale'].frame, text='Replaces the term "femmie male" with either "feminine male" or "femboy"/"femme boy"')
 
         self.window.addCheckboxWithLabel('gs', 'femboyishtogirly', x=10, y=142, width=180, height=20, font=labelFont, text='femboyish -> girly', background=self.backgroundColor, foreground=self.textColor)
@@ -4021,14 +3982,14 @@ class OptionsWindow(PyminWindow):
 
         self.window._children['Theme'].set(mainobject.backgroundColor)
         self.window._children['FontColor'].set(mainobject.textColor)
-        self.window._children['SaveLocation'].set(str(mainobject.savelocation.resolve()))
-        if mainobject.solonlymode:
+        self.window._children['SaveLocation'].set(str(mainobject.saveLocation.resolve()))
+        if mainobject.saveCompatMode:
             self.window._children['SOLMode'].select()
         if mainobject.enforceSize:
             self.window._children['FixedRes'].select()
-        if mainobject.customfontcolor:
+        if mainobject.customFontColor:
             self.window._children['Theme'].select()
-        if mainobject.customthemecolor:
+        if mainobject.customThemeColor:
             self.window._children['FontColor'].select()
         if mainobject.statusTweaks:
             self.window._children['StatusTweaks'].select()
@@ -4052,11 +4013,11 @@ class OptionsWindow(PyminWindow):
             self.window._children['NiminTheme'].select()
         if mainobject.scrolledTextBorders:
             self.window._children['ScrolledTextBorders'].select()
-        if mainobject.oNewGameButton:
+        if mainobject.originalNewGameButtonSize:
             self.window._children['newgameoriginalsize'].select()
         if mainobject.staticdoLevelUPButtons:
             self.window._children['doLevelUPStaticButtons'].select()
-        if mainobject.useNewSaveLoadDialog:
+        if mainobject.useExpandedSaveDialog:
             self.window._children['UseExpandedSaveDialog'].select()
         if mainobject.useNewStash:
             self.window._children['UseNewStash'].select()
@@ -4091,7 +4052,7 @@ class OptionsWindow(PyminWindow):
         if not self.isOpen:
             raise Exception('[OptionsWindow.save] Method can not be used when window is not open.')
 
-        mainobject.solonlymode = self.window._children['SOLMode'].getcb()
+        mainobject.saveCompatMode = self.window._children['SOLMode'].getcb()
         mainobject.enforceSize = self.window._children['FixedRes'].getcb()
 
         # Custom Theme Colour
@@ -4102,17 +4063,17 @@ class OptionsWindow(PyminWindow):
             if not Utils.isValidHex(self.window._children['Theme'].get()):
                 self.window._children['Theme']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomThemeColor is not a valid hexadecimal color code')
-            if not mainobject.customthemecolor:
-                mainobject.obackgroundcolor = mainobject.backgroundColor
-            mainobject.customthemecolor = True
+            if not mainobject.customThemeColor:
+                mainobject.oBackgroundColor = mainobject.backgroundColor
+            mainobject.customThemeColor = True
             if self.window._children['Theme']["background"] == '#FF3333':
                 self.window._children['Theme']["background"] = '#FFFFFF'
             mainobject.backgroundColor = self.window._children['Theme'].get()
-            mainobject.window._children['themebutton'].state = 'disabled'
+            mainobject.game.window._children['themebutton'].state = 'disabled'
         else:
-            mainobject.customthemecolor = False
-            mainobject.backgroundColor = mainobject.obackgroundcolor
-            mainobject.window._children['themebutton'].state = 'normal'
+            mainobject.customThemeColor = False
+            mainobject.backgroundColor = mainobject.oBackgroundColor
+            mainobject.game.window._children['themebutton'].state = 'normal'
 
         # Custom Font Colour
         if self.window._children['FontColor'].getcb():
@@ -4122,17 +4083,17 @@ class OptionsWindow(PyminWindow):
             if not Utils.isValidHex(self.window._children['FontColor'].get()):
                 self.window._children['FontColor']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomFontColor is not a valid hexadecimal color code')
-            if not mainobject.customfontcolor:
-                mainobject.otextcolor = mainobject.textColor
-            mainobject.customfontcolor = True
+            if not mainobject.customFontColor:
+                mainobject.oTextColor = mainobject.textColor
+            mainobject.customFontColor = True
             if self.window._children['FontColor']['background'] == '#FF3333':
                 self.window._children['FontColor']['background'] = '#FFFFFF'
             mainobject.textColor = self.window._children['FontColor'].get()
-            mainobject.window._children['textcolorbutton'].state = 'disabled'
+            mainobject.game.window._children['textcolorbutton'].state = 'disabled'
         else:
-            mainobject.customfontcolor = False
-            mainobject.textColor = mainobject.otextcolor
-            mainobject.window._children['textcolorbutton'].state = 'normal'
+            mainobject.customFontColor = False
+            mainobject.textColor = mainobject.oTextColor
+            mainobject.game.window._children['textcolorbutton'].state = 'normal'
 
         # Save Location
         if self.window._children['SaveLocation'].get() == '':
@@ -4144,7 +4105,7 @@ class OptionsWindow(PyminWindow):
             raise Error('[OptionsWindow.save] SaveLocation is not a valid location on the current platform')
         if self.window._children['SaveLocation']['background'] == '#FF3333':
             self.window._children['SaveLocation']['background'] = '#FFFFFF'
-        mainobject.savelocation = Path(self.window._children['SaveLocation'].get()).resolve()
+        mainobject.saveLocation = Path(self.window._children['SaveLocation'].get()).resolve()
 
         mainobject.statusTweaks = self.window._children['StatusTweaks'].getcb()
         mainobject.succubusLeavesOne = self.window._children['SuccubusLeavesOne'].getcb()
@@ -4157,20 +4118,15 @@ class OptionsWindow(PyminWindow):
         mainobject.gameTweaksMisc = self.window._children['MiscChanges'].getcb()
 
         if THEME_DIR.is_dir():
-            if self.window._children['NiminTheme'].getcb():
-                mainobject.useNiminTheme = True
-                mainobject.style.theme_use('nimin')
-            else:
-                mainobject.useNiminTheme = False
-                mainobject.style.theme_use('default')
+            mainobject.useNiminTheme = self.window._children['NiminTheme'].getcb()
         mainobject.scrolledTextBorders = self.window._children['ScrolledTextBorders'].getcb()
-        tempng = mainobject.oNewGameButton
-        mainobject.oNewGameButton = self.window._children['newgameoriginalsize'].getcb()
-        if tempng != mainobject.oNewGameButton and mainobject.shownewgame:
-            mainobject.hideNGButton()
-            mainobject.showNGButton()
+        tempng = mainobject.originalNewGameButtonSize
+        mainobject.originalNewGameButtonSize = self.window._children['newgameoriginalsize'].getcb()
+        if tempng != mainobject.originalNewGameButtonSize and mainobject.game.shownewgame:
+            mainobject.game.hideNGButton()
+            mainobject.game.showNGButton()
         mainobject.staticdoLevelUPButtons = self.window._children['doLevelUPStaticButtons'].getcb()
-        mainobject.useNewSaveLoadDialog = self.window._children['UseExpandedSaveDialog'].getcb()
+        mainobject.useExpandedSaveDialog = self.window._children['UseExpandedSaveDialog'].getcb()
         mainobject.useNewStash = self.window._children['UseNewStash'].getcb()
         mainobject.helpToWiki = self.window._children['helpToWiki'].getcb()
         mainobject.doShopsReturn = self.window._children['doShopsReturn'].getcb()
@@ -4181,7 +4137,7 @@ class OptionsWindow(PyminWindow):
         mainobject.ngrammar = self.window._children['ngrammar'].getcb()
         if self.window._children['replacefemmiemale'].getcb():
             mainobject.femmieMaleReplacement = self.window._children['replacefemmiemale'].current() + 1
-            # TODO: Update the text based on the value of self.femmeboyToFemboy
+            # TODO: Update the text based on the value of femmeboyToFemboy
         mainobject.femboyishToGirly = self.window._children['femboyishtogirly'].getcb()
         mainobject.snuggleBallTweak = self.window._children['snuggleball'].getcb()
         mainobject.grammarFixes = self.window._children['grammarMisc'].getcb()
@@ -4247,7 +4203,12 @@ class Enemy:
     SUCCUBUS = 309
 
 
-class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
+class StartType:
+    GAME = 0
+    SAVE_CONVERTER = 1
+
+
+class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     '''
     Main class
     '''
@@ -4257,14 +4218,29 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     # viewButtonText -> doButtonChoices
     # viewButtonOutline -> showButtons
     # showPage -> showPage, hidePage
-
     @property
-    def backgroundColor(self):
-        return self._backgroundColor
+    def scrolledTextBorders(self):
+        return mainobject.scrolledTextBorders
 
-    @backgroundColor.setter
-    def backgroundColor(self, value):
-        self._backgroundColor = value
+    @scrolledTextBorders.setter
+    def scrolledTextBorders(self, value):
+        if self.isOpen:
+            self.window._children['textmain'].border = value
+            if self.sidepanelvisible:
+                self.window._children['textside'].border = value
+
+    def _set_enforceSize(self, value):
+        if value:
+            self.window.geometry('1176x662')
+        self.window.resizable = not value
+
+    def _set_fontSize(self, value):
+        self.updateText()
+
+    def _set_fontBold(self, value):
+        self.updateText()
+
+    def _set_backgroundColor(self, value):
         items = ['display', 'textmain']
         if self.statpanevisible:
             items.extend(('label1', 'strlabel', 'strcolonlabel', 'strvallabel', 'strimglabel', 'mentlabel', 'mentcolonlabel', 'mentvallabel', 'mentimglabel', 'liblabel', 'libcolonlabel', 'libvallabel', 'libimglabel', 'senlabel', 'sencolonlabel', 'senvallabel', 'senimglabel', 'label6', 'hplabel', 'hpcolonlabel', 'hpvallabel', 'hpimglabel', 'lustlabel', 'lustcolonlabel', 'lustvallabel', 'lustimglabel', 'hungerlabel', 'hungercolonlabel', 'hungervallabel'))
@@ -4279,61 +4255,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if self.newSLDialogVisible:
             items.append('savefilelabel')
         self.window.configureChildren(items, background=value)
-        self.aboutwindow.backgroundColor = value
-        self.wiki.backgroundColor = value
-        self.saveconverter.backgroundColor = value
-        self.debugvarwindow.backgroundColor = value
-        self.options.backgroundColor = value
-        self.style.configure('TFrame', background=value)
-        self.style.configure('TNotebook', background=value)
-        self.detailedDebug()
+        mainobject.style.configure('TFrame', background=value)
+        mainobject.style.configure('TNotebook', background=value)
 
-    @property
-    def enforceSize(self):  # fixedresolutionmode
-        return self._enforceSize
-
-    @enforceSize.setter
-    def enforceSize(self, value):
-        value = bool(value)
-        if value:
-            self.window.geometry('1176x662')
-        self.window.resizable = not value
-        self.options.enforceSize = value
-        self.wiki.enforceSize = value
-        self.debugvarwindow.enforceSize = value
-        self.debugaffwindow.enforceSize = value
-        self.debuggiveitemwindow.enforceSize = value
-        # self.saveconverter.enforceSize = value
-        # self.saveeditor.enforceSize = value
-        self._enforceSize = value
-
-    @property
-    def fontSize(self):
-        return self._fontSize
-
-    @fontSize.setter
-    def fontSize(self, value):
-        self._fontSize = value
-        self.wiki.fontSize = self.fontSize
-
-    @property
-    def scrolledTextBorders(self):
-        return self._scrolledTextBorders
-
-    @scrolledTextBorders.setter
-    def scrolledTextBorders(self, value):
-        self._scrolledTextBorders = value
-        self.window._children['textmain'].border = value
-        if self.sidepanelvisible:
-            self.window._children['textside'].border = value
-
-    @property
-    def textColor(self):
-        return self._textColor
-
-    @textColor.setter
-    def textColor(self, value):
-        self._textColor = value
+    def _set_textColor(self, value):
         items = ['textmain']
         if self.statpanevisible:
             items.extend(('label1', 'strlabel', 'strcolonlabel', 'strvallabel', 'strimglabel', 'mentlabel', 'mentcolonlabel', 'mentvallabel', 'mentimglabel', 'liblabel', 'libcolonlabel', 'libvallabel', 'libimglabel', 'senlabel', 'sencolonlabel', 'senvallabel', 'senimglabel', 'label6', 'hplabel', 'hpcolonlabel', 'hpvallabel', 'hpimglabel', 'lustlabel', 'lustcolonlabel', 'lustvallabel', 'lustimglabel', 'hungerlabel', 'hungercolonlabel', 'hungervallabel'))
@@ -4348,79 +4273,23 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if self.newSLDialogVisible:
             items.append('savefilelabel')
         self.window.configureChildren(items, foreground=value)
-        self.aboutwindow.textColor = value
-        self.wiki.textColor = value
-        self.saveconverter.textColor = value
-        self.debugvarwindow.textColor = value
-        self.options.textColor = value
         self.updateText()
+
+    def updateTextColorButtonState(self):
+        if self.isOpen:
+            self.window._children['textcolorbutton'].state = Utils.boolToState(not mainobject.customFontColor)
+
+    def updateThemeButtonState(self):
+        if self.isOpen:
+            self.window._children['themebutton'].state = Utils.boolToState(not mainobject.customThemeColor)
 
     def __init__(self):
         super().__init__()
 
-        # Windows
-        self.aboutwindow = AboutWindow()
-        self.options = OptionsWindow()
-        self.wiki = PyminWiki()
-        self.saveconverter = SaveConverter()
-        self.saveeditor = SaveEditor()
-        self.debugvarwindow = DebugVariableDisplay()
-        self.debugaffwindow = DebugAffinityChange()
-        self.debuggiveitemwindow = DebugGiveItem()
-
         # Misc added variables
         self.tempBagPage = 1  # Used in moveToBag, moveToStash, and doSell to decouple the page number from the real one
-        self.nsldSortOrder = 0  # The current sort order of save files in the new save/load dialog
-
-        # Options window variables
-        self.savelocation = GAME_DIR / "nimin_saves"  # Where save files are stored
-        self.solonlymode = False  # Force save files to be compatible with the original game
-        # self.fixedresolutionmode -> self.enforceSize
-        self.customfontcolor = False  # Use custom font color
-        self.otextcolor = "#000000"  # Font color from before custom font color was applied
-        self.customthemecolor = False  # Use custom theme color
-        self.obackgroundcolor = "#FFFFFF"  # Theme color from before custom theme color was applied
-
-        # -Gametweaks Tab
-        self.statusTweaks = False
-        self.succubusLeavesOne = False
-        self.useIsBottomOpen = False
-        self.lizanDontShowBalls = False
-        self.hermGetsBoth = False
-        self.internalBallsEffectBelly = False
-        self.directPathToSanctuary = False
-        self.correctBeastRaceFeet = False
-        self.gameTweaksMisc = False
-
-        # -Interface Tab
-        self.useNiminTheme = False
-        self._scrolledTextBorders = False
-        self.oNewGameButton = False
-        self.staticdoLevelUPButtons = False
-        self.useNewSaveLoadDialog = False
-        self.useNewStash = False
-        self.originalFrame1Message = False
-        self.helpToWiki = False
-        self.doShopsReturn = False
-
-        # -Grammar Tab
-        self.respectShowBalls = False
-        self.femmeboyToFemboy = False
-        self.shemaleToFuta = False
-        self.ngrammar = False
-        self.femmieMaleReplacement = 0  # 0 - None, 1 - femininemale, 2 - femboy
-        self.femboyishToGirly = False
-        self.snuggleBallTweak = False
-        self.grammarFixes = False
-
-        # -Debug Tab
-        self.debugChooseSenario = False
-        self.debugNoDamage = False
 
         # interface
-        self._fontSize = 11
-        self.fontBold = False
-        self.showSide = True
         self.buttonChoice = 0
         self.currentText = textObject()
         self.sideText = textObject()
@@ -4827,14 +4696,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Sets up the interface, then runs the "frame1" function
         '''
+        # TODO: initialise elements with the correct colours
         # window
         self._window = itk.itkWindow(width=1176, height=662, title='Nimin: Fetish Fantasy (Python port)', main=True, menu=True, defaultMenu=False)
+        self.window.configureChild('display', background=self.backgroundColor)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
-
-        self.style = ttk.Style(self.window)
-        if THEME_DIR.is_dir():
-            self.window.tk.call('source', f'{THEME_DIR}/nimin.tcl')
 
         menuFont = ('Terminal', 8)
 
@@ -4843,7 +4710,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         # File Menu
         self.window.menubar['filemenu'] = tkinter.Menu(self.window.menubar['root'], tearoff=0)
-        self.window.menubar['filemenu'].add_command(label='Options', font=menuFont, command=self.options.open)
+        self.window.menubar['filemenu'].add_command(label='Options', font=menuFont, command=mainobject.options.open)
         self.window.menubar['filemenu'].add_separator()
         self.window.menubar['filemenu'].add_command(label='Quit', font=menuFont, command=self.window.close)  # TODO: Using this crashes for some reason.
         self.window.menubar['root'].add_cascade(label='File', font=menuFont, menu=self.window.menubar['filemenu'])
@@ -4856,22 +4723,22 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         # Save Utilities Menu
         self.window.menubar['saveutils'] = tkinter.Menu(self.window.menubar['root'], tearoff=0)
-        self.window.menubar['saveutils'].add_command(label='Converter', font=menuFont, command=self.saveconverter.open)
-        self.window.menubar['saveutils'].add_command(label='Editor', font=menuFont, command=self.saveeditor.open)
+        self.window.menubar['saveutils'].add_command(label='Converter', font=menuFont, command=mainobject.saveconverter.open)
+        self.window.menubar['saveutils'].add_command(label='Editor', font=menuFont, command=mainobject.saveeditor.open)
         self.window.menubar['root'].add_cascade(label='Save Utils', font=menuFont, menu=self.window.menubar['saveutils'])
 
         # Debug Menu
         if as3state.as3DebugEnable:
             self.window.menubar['debugutils'] = tkinter.Menu(self.window.menubar['root'], tearoff=0)
-            self.window.menubar['debugutils'].add_command(label='Variable Display', font=menuFont, command=self.debugvarwindow.open)
-            self.window.menubar['debugutils'].add_command(label='Give Item', font=menuFont, command=self.debuggiveitemwindow.open)
-            self.window.menubar['debugutils'].add_command(label='Affinity', font=menuFont, command=self.debugaffwindow.open)
+            self.window.menubar['debugutils'].add_command(label='Variable Display', font=menuFont, command=mainobject.debugvarwindow.open)
+            self.window.menubar['debugutils'].add_command(label='Give Item', font=menuFont, command=mainobject.debuggiveitemwindow.open)
+            self.window.menubar['debugutils'].add_command(label='Affinity', font=menuFont, command=mainobject.debugaffwindow.open)
             self.window.menubar['root'].add_cascade(label='Debug Utils', font=menuFont, menu=self.window.menubar['debugutils'])
 
         # Help Menu
         self.window.menubar['helpmenu'] = tkinter.Menu(self.window.menubar['root'], tearoff=0)
-        self.window.menubar['helpmenu'].add_command(label='Wiki', font=menuFont, command=self.wiki.open)
-        self.window.menubar['helpmenu'].add_command(label='About Game', font=menuFont, command=self.aboutwindow.open)
+        self.window.menubar['helpmenu'].add_command(label='Wiki', font=menuFont, command=mainobject.wiki.open)
+        self.window.menubar['helpmenu'].add_command(label='About Game', font=menuFont, command=mainobject.aboutwindow.open)
         self.window.menubar['root'].add_cascade(label='Help', font=menuFont, menu=self.window.menubar['helpmenu'])
 
         self.window.addImage('up', UP_IMAGE, (14, 14))
@@ -4882,24 +4749,26 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.levelpanevisible = False
         self.timepanevisible = False
         self.showsavegame = False
-        self.window.addWidget(PyminButton, 'display', 'loadgamebutton', x=110, y=545, width=100, height=30, font=self.font, anchor='n', text='Load Game', command=self.loadG)
-        self.showloadgame = True
-        self.window.addWidget(PyminButton, 'display', 'newgamebutton', x=110, y=580, width=100, height=30, font=self.font, anchor='n', text='New Game', command=self.newGameStart)
-        self.shownewgame = True
+        self.showloadgame = False
+        self.shownewgame = False
+        self.showLGButton()
+        self.showNGButton()
         self.buttonsVisible = [None, False, False, False, False, False, False, False, False, False, False, False, False, False]
         self.amountLabelsVisible = [None, False, False, False, False, False, False, False, False, False, False, False, False]
-        self.window.addHTMLScrolledText('display', 'textmain', x=200, y=210, width=622, height=430, font=self.font, border=False, text='Test', cursor='arrow', wrap='word')
+        self.window.addHTMLScrolledText('display', 'textmain', x=200, y=210, width=622, height=430, font=self.font, border=self.scrolledTextBorders, text='Test', cursor='arrow', wrap='word', background=self.backgroundColor, foreground=self.textColor)
         self.pageShow = False
         self.moveitembuttonvisible = False
         self.moveitemamountvisible = False
         self.sidepanelvisible = False
         self.appearancebuttonvisible = False
         self.window.addWidget(PyminButton, 'display', 'themebutton', x=823, y=595, width=60, height=30, font=self.font, text='Theme', command=self.option1Event)
+        self.window._children['themebutton'].state=Utils.boolToState(not mainobject.customThemeColor)
         self.window.addWidget(PyminButton, 'display', 'textsizedownbutton', x=906, y=595, width=30, height=30, font=('Times New Roman', 10), text='A', command=self.option2Event)
         self.window.addWidget(PyminButton, 'display', 'textsizeresetbutton', x=941, y=595, width=30, height=30, font=('Times New Roman', 12), text='A', command=self.option3Event)
         self.window.addWidget(PyminButton, 'display', 'textsizeupbutton', x=976, y=595, width=30, height=30, font=('Times New Roman', 14), text='A', command=self.option4Event)
         self.window.addWidget(PyminButton, 'display', 'textboldbutton', x=1023, y=595, width=30, height=30, font=self.font, text='B', command=self.option5Event)
         self.window.addWidget(PyminButton, 'display', 'textcolorbutton', x=1067, y=595, width=30, height=30, font=self.font, text='C', command=self.option6Event)
+        self.window._children['textcolorbutton'].state=Utils.boolToState(not mainobject.customFontColor)
         self.window.addWidget(PyminButton, 'display', 'themebutton7', x=1124, y=595, width=30, height=30, font=self.font, text='O', command=self.option7Event)
         self.option7Visible = True
         self.newSLDialogVisible = False
@@ -4911,7 +4780,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
     open = MainTimeline
 
     def buttonEvent1(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(1)
         else:
@@ -4920,7 +4789,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen()
 
     def buttonEvent2(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(2)
         else:
@@ -4929,7 +4798,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen()
 
     def buttonEvent3(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(3)
         else:
@@ -4938,13 +4807,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen()
 
     def buttonEvent4(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         self.buttonChoice = 4
         self.hideUpDown()
         self.doListen()
 
     def buttonEvent5(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(5)
         else:
@@ -4953,7 +4822,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen()
 
     def buttonEvent6(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(6)
         else:
@@ -4962,7 +4831,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen()
 
     def buttonEvent7(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(7)
         else:
@@ -4971,13 +4840,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen()
 
     def buttonEvent8(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         self.buttonChoice = 8
         self.hideUpDown()
         self.doListen()
 
     def buttonEvent9(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(9)
         else:
@@ -4986,7 +4855,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen()
 
     def buttonEvent10(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(10)
         else:
@@ -4995,7 +4864,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen()
 
     def buttonEvent11(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
             self.itemMove(11)
         else:
@@ -5004,13 +4873,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen()
 
     def buttonEvent12(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         self.buttonChoice = 12
         self.hideUpDown()
         self.doListen()
 
     def buttonEventDiscard(self, *e):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         self.buttonChoice = 13
         self.hideUpDown()
         self.doListen()
@@ -5065,16 +4934,16 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.toggleTheme()
 
     def option2Event(self):
-        self.fontSizeDown()
+        mainobject.fontSizeDown()
 
     def option3Event(self):
-        self.fontSizeReset()
+        mainobject.fontSizeReset()
 
     def option4Event(self):
-        self.fontSizeUp()
+        mainobject.fontSizeUp()
 
     def option5Event(self):
-        self.toggleBold()
+        mainobject.toggleBold()
 
     def option6Event(self):
         self.toggleColor()
@@ -5086,7 +4955,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Executes hotkey behaviour from its actionscript keycode
         '''
-        self.detailedDebug()
         keyEnabled = (KeyState.hotkeysDisabled and keyCode in KeyState.disabledKeys or not KeyState.hotkeysDisabled and keyCode not in KeyState.disabledKeys) or KeyState.altHeld
 
         if (keyCode == Keyboard.Q or keyCode == Keyboard.NUMPAD_7) and keyEnabled and self.buttonsVisible[1]:
@@ -5191,26 +5059,26 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hideUpDown()
                 self.doListen()
 
-        elif (keyCode == Keyboard.LEFT) and keyEnabled and not self.customthemecolor:
+        elif (keyCode == Keyboard.LEFT) and keyEnabled and not mainobject.customThemeColor:
             self.toggleTheme()
 
         elif (keyCode == Keyboard.UP) and keyEnabled:
-            self.fontSizeUp()
+            mainobject.fontSizeUp()
 
-        elif (keyCode == Keyboard.RIGHT) and keyEnabled and not self.customfontcolor:
+        elif (keyCode == Keyboard.RIGHT) and keyEnabled and not mainobject.customFontColor:
             self.toggleColor()
 
         elif (keyCode == Keyboard.DOWN) and keyEnabled:
-            self.fontSizeDown()
+            mainobject.fontSizeDown()
 
         elif (keyCode == Keyboard.COMMA) and keyEnabled:
-            self.fontSizeReset()
+            mainobject.fontSizeReset()
 
         elif (keyCode == Keyboard.PERIOD) and keyEnabled and self.option7Visible and self.window._children['themebutton7'].state == 'normal':
             self.toggleSide()
 
         elif (keyCode == Keyboard.SLASH) and keyEnabled:
-            self.toggleBold()
+            mainobject.toggleBold()
 
         elif (keyCode == Keyboard.F1) and keyEnabled and self.showsavegame:
             self.saveGo()
@@ -5222,9 +5090,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.newGameGo()
 
         elif (keyCode == Keyboard.BACKQUOTE or keyCode == Keyboard.NUMPAD_DIVIDE) and keyEnabled:
-            self.wiki.open()
+            mainobject.wiki.open()
 
-        elif self.showSide and self.currentState != GameState.GAME_UNLOADED and keyEnabled:
+        elif mainobject.showSide and self.currentState != GameState.GAME_UNLOADED and keyEnabled:
             if (keyCode == Keyboard.U):
                 self.sideEvent(1)
 
@@ -5251,9 +5119,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     _key_press_handler = hotKeys
 
-    def _key_release_handler(self, keyCode):
-        self.detailedDebug()
-
     def appearance(self):
         if not (self.inBag or self.inStash or self.inShop):
             self.appearanceGo()
@@ -5268,266 +5133,68 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.newGameGo()
 
     def toggleTheme(self):
-        if self.backgroundColor == '#FFFFFF':
-            self.backgroundColor = '#000000'
-        elif self.backgroundColor == '#000000':
-            self.backgroundColor = '#EF7DB6'
-        elif self.backgroundColor == '#EF7DB6':
-            self.backgroundColor = '#29705C'
-        elif self.backgroundColor == '#29705C':
-            self.backgroundColor = '#4248A6'
-        elif self.backgroundColor == '#4248A6':
-            self.backgroundColor = '#721717'
-        elif self.backgroundColor == '#721717':
-            self.backgroundColor = '#FFFFFF'
+        if mainobject.backgroundColor == '#FFFFFF':
+            mainobject.backgroundColor = '#000000'
+        elif mainobject.backgroundColor == '#000000':
+            mainobject.backgroundColor = '#EF7DB6'
+        elif mainobject.backgroundColor == '#EF7DB6':
+            mainobject.backgroundColor = '#29705C'
+        elif mainobject.backgroundColor == '#29705C':
+            mainobject.backgroundColor = '#4248A6'
+        elif mainobject.backgroundColor == '#4248A6':
+            mainobject.backgroundColor = '#721717'
+        elif mainobject.backgroundColor == '#721717':
+            mainobject.backgroundColor = '#FFFFFF'
         else:
-            self.backgroundColor = '#FFFFFF'
-        self.obackgroundcolor = self.backgroundColor
-        self.savePreferences()
-
-    def fontSizeDown(self):
-        if (self.fontSize > 3):  # originally 4
-            self.fontSize -= 2
-        self.updateText()
-        self.savePreferences()
-
-    def fontSizeReset(self):
-        self.fontSize = 11  # originally 14
-        self.updateText()
-        self.savePreferences()
-
-    def fontSizeUp(self):
-        if (self.fontSize < 25):  # originally 26
-            self.fontSize += 2
-        self.updateText()
-        self.savePreferences()
-
-    def toggleBold(self):
-        self.fontBold = not self.fontBold
-        self.updateText()
-        self.savePreferences()
+            mainobject.backgroundColor = '#FFFFFF'
+        mainobject.oBackgroundColor = mainobject.backgroundColor
+        mainobject.savePreferences()
 
     def toggleColor(self):
-        if self.textColor == '#000000':
-            self.textColor = '#FFFFFF'
-        elif self.textColor == '#FFFFFF':
-            self.textColor = '#808080'
-        elif self.textColor == '#808080':
-            self.textColor = '#0000FF'
-        elif self.textColor == '#0000FF':
-            self.textColor = '#800080'
-        elif self.textColor == '#800080':
-            self.textColor = '#FF0000'
-        elif self.textColor == '#FF0000':
-            self.textColor = '#FFA500'
-        elif self.textColor == '#FFA500':
-            self.textColor = '#FFFF00'
-        elif self.textColor == '#FFFF00':
-            self.textColor = '#008000'
-        elif self.textColor == '#008000':
-            self.textColor = '#EF7DB6'
-        elif self.textColor == '#EF7DB6':
-            self.textColor = '#29705C'
-        elif self.textColor == '#29705C':
-            self.textColor = '#000000'
+        if mainobject.textColor == '#000000':
+            mainobject.textColor = '#FFFFFF'
+        elif mainobject.textColor == '#FFFFFF':
+            mainobject.textColor = '#808080'
+        elif mainobject.textColor == '#808080':
+            mainobject.textColor = '#0000FF'
+        elif mainobject.textColor == '#0000FF':
+            mainobject.textColor = '#800080'
+        elif mainobject.textColor == '#800080':
+            mainobject.textColor = '#FF0000'
+        elif mainobject.textColor == '#FF0000':
+            mainobject.textColor = '#FFA500'
+        elif mainobject.textColor == '#FFA500':
+            mainobject.textColor = '#FFFF00'
+        elif mainobject.textColor == '#FFFF00':
+            mainobject.textColor = '#008000'
+        elif mainobject.textColor == '#008000':
+            mainobject.textColor = '#EF7DB6'
+        elif mainobject.textColor == '#EF7DB6':
+            mainobject.textColor = '#29705C'
+        elif mainobject.textColor == '#29705C':
+            mainobject.textColor = '#000000'
         else:
-            self.textColor = '#000000'
-        self.otextcolor = self.textColor
-        self.updateText()
-        self.savePreferences()
+            mainobject.textColor = '#000000'
+        mainobject.oTextColor = mainobject.textColor
+        mainobject.savePreferences()
 
     def toggleSide(self):
-        if (self.showSide):
-            self.showSide = False
+        if (mainobject.showSide):
+            mainobject.showSide = False
             self.hideSidePanel()
         else:
-            self.showSide = True
+            mainobject.showSide = True
             self.showSidePanel()
             self.updateSide()
         self.swapOption7()
         if (self.option7Visible):
-            self.savePreferences()
+            mainobject.savePreferences()
 
     def updateText(self):
         self.displayMainText()
         if self.sidepanelvisible:
             self.displaySideText()
-        self.detailedDebug()
-
-    def savePreferences(self):
-        temp = {
-            'game': {'theme': self.backgroundColor, 'fontSize': self.fontSize, 'fontBold': self.fontBold, 'fontColor': self.textColor, 'showSide': self.showSide, 'nsldSortOrder': self.nsldSortOrder},
-            'options': {'saveLocation': self.savelocation, 'solMode': self.solonlymode, 'fixedResMode': self.enforceSize, 'customFontColor': self.customfontcolor, 'oFontColor': self.otextcolor, 'customThemeColor': self.customthemecolor, 'oThemeColor': self.obackgroundcolor},
-            'interface': {'useNiminTheme': self.useNiminTheme, 'scrolledTextBorders': self.scrolledTextBorders, 'originalNewGameButtonSize': self.oNewGameButton, 'staticDoLevelUPButtons': self.staticdoLevelUPButtons, 'useExpandedSaveDialog': self.useNewSaveLoadDialog, 'useNewStash': self.useNewStash, 'helpToWiki': self.helpToWiki, 'doShopsReturn': self.doShopsReturn},
-            'grammar': {'respectShowBalls': self.respectShowBalls, 'femmeboyToFemboy': self.femmeboyToFemboy, 'shemaleToFuta': self.shemaleToFuta, 'ngrammar': self.ngrammar, 'femmieMaleReplacement': self.femmieMaleReplacement, 'femboyishToGirly': self.femboyishToGirly, 'snuggleBallTweak': self.snuggleBallTweak, 'grammarFixes': self.grammarFixes},
-            'gameTweaks': {'statusTweaks': self.statusTweaks, 'succubusLeavesOne': self.succubusLeavesOne, 'useIsBottomOpen': self.useIsBottomOpen, 'lizanDontShowBalls': self.lizanDontShowBalls, 'hermGetsBoth': self.hermGetsBoth, 'intBallsEffectBelly': self.internalBallsEffectBelly, 'directPathToSanc': self.directPathToSanctuary, 'correctBeastRaceFeet': self.correctBeastRaceFeet, 'miscChanges': self.gameTweaksMisc},
-            'debugTweaks': {'chooseSenario': self.debugChooseSenario, 'noDamage': self.debugNoDamage}
-        }
-        TOML.write(GAME_DIR / 'Nimin_Prefs.toml', temp)
-
-    def loadPreferences(self):
-        sp = False
-        if (GAME_DIR / 'Nimin_Prefs.toml').is_file():
-            with (GAME_DIR / 'Nimin_Prefs.toml').open('rb') as f:
-                temp = TOML.readFile(f)
-            game = temp.get('game', {})
-            self.fontSize = int(game.get('fontSize', 11))
-            self.fontBold = bool(game.get('fontBold', False))
-            tempTheme = str(game.get('theme', '#FFFFFF'))
-            tempFontColor = str(game.get('fontColor', '#000000'))
-            if Utils.isValidHex(tempTheme) and Utils.isValidHex(tempFontColor):
-                self.backgroundColor = tempTheme
-                self.textColor = tempFontColor
-            else:
-                sp = True
-            self.showSide = bool(game.get('showSide', True))
-            self.nsldSortOrder = int(game.get('nsldSortOrder', 0))
-
-            options = temp.get('options', {})
-            tempdir = Path(options.get('saveLocation', self.savelocation)).resolve()
-            if isValidDirectory(tempdir):
-                self.savelocation = tempdir
-            else:
-                # TODO: Phrase this warning better
-                trace('Warning: [PyminMain.loadPreferences] saveLocation is not a valid path. Value will not be changed.')
-                sp = True
-            self.solonlymode = bool(options.get('solMode', False))
-            self.enforceSize = bool(options.get('fixedResMode', False))
-            self.customfontcolor = bool(options.get('customFontColor', False))
-            self.otextcolor = str(options.get('oFontColor', '#FFFFFF'))
-            self.customthemecolor = bool(options.get('customThemeColor', False))
-            if 'themebutton' in self.window._children:
-                self.window._children['textcolorbutton'].state = Utils.boolToState(not self.customfontcolor)
-                self.window._children['themebutton'].state = Utils.boolToState(not self.customthemecolor)
-            self.obackgroundcolor = str(options.get('oThemeColor', '#000000'))
-
-            interface = temp.get('interface', {})
-            self.useNiminTheme = bool(interface.get('useNiminTheme', False))
-            self.scrolledTextBorders = bool(interface.get('scrolledTextBorders', False))
-            self.oNewGameButton = bool(interface.get('originalNewGameButtonSize', False))
-            self.staticdoLevelUPButtons = bool(interface.get('staticDoLevelUPButtons', False))
-            self.useNewSaveLoadDialog = bool(interface.get('useExpandedSaveDialog', False))
-            self.useNewStash = bool(interface.get('useNewStash', False))
-            self.helpToWiki = bool(interface.get('helpToWiki', False))
-            self.doShopsReturn = bool(interface.get('doShopsReturn', False))
-
-            grammar = temp.get('grammar', {})
-            self.respectShowBalls = bool(grammar.get('respectShowBalls', False))
-            self.femmeboyToFemboy = bool(grammar.get('femmeboyToFemboy', False))
-            self.shemaleToFuta = bool(grammar.get('shemaleToFuta', False))
-            self.ngrammar = bool(grammar.get('ngrammar', False))
-            self.femmieMaleReplacement = int(grammar.get('femmieMaleReplacement', 0))
-            self.femboyishToGirly = bool(grammar.get('femboyishToGirly', False))
-            self.snuggleBallTweak = bool(grammar.get('snuggleBallTweak', False))
-            self.grammarFixes = bool(grammar.get('grammarFixes', False))
-
-            gt = temp.get('gameTweaks', {})
-            self.statusTweaks = bool(gt.get('statusTweaks', False))
-            self.succubusLeavesOne = bool(gt.get('succubusLeavesOne', False))
-            self.useIsBottomOpen = bool(gt.get('useIsBottomOpen', False))
-            self.lizanDontShowBalls = bool(gt.get('lizanDontShowBalls', False))
-            self.hermGetsBoth = bool(gt.get('hermGetsBoth', False))
-            self.internalBallsEffectBelly = bool(gt.get('intBallsEffectBelly', False))
-            self.directPathToSanctuary = bool(gt.get('directPathToSanc', False))
-            self.correctBeastRaceFeet = bool(gt.get('correctBeastRaceFeet', False))
-            self.gameTweaksMisc = bool(gt.get('miscChanges', False))
-
-            dt = temp.get('debugTweaks', {})
-            self.debugChooseSenario = bool(dt.get('chooseSenario', False))
-            self.debugNoDamage = bool(dt.get('noDamage', False))
-        elif (GAME_DIR / "Nimin_Prefs.xml").is_file():
-            def strtolistbools(a: str):
-                if a.startswith(('[', '(')):
-                    a = a[1:-1]
-                b = a.split(', ')
-                if len(b) == 1 and b[0] == '':
-                    return []
-                return [Utils.strtobool(i) for i in b]
-            prefs = xmletree.parse((GAME_DIR / 'Nimin_Prefs.xml').resolve()).getroot()
-            self.fontSize = int(prefs.find('fontSize').text)
-            self.fontBold = Utils.strtobool(prefs.find('fontBold').text)
-            temptheme = prefs.find('theme').text
-            tempfontColor = prefs.find('fontColor').text
-            if (Utils.isValidHex(temptheme) or temptheme.isdecimal() and len(temptheme) == 1 and int(temptheme) >= 0 and int(temptheme) < 6) and Utils.isValidHex(tempfontColor):
-                if (temptheme.isdecimal() and len(temptheme) == 1):
-                    self.backgroundColor = ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[int(temptheme)]
-                else:
-                    self.backgroundColor = temptheme
-                self.textColor = tempfontColor
-            else:
-                self.backgroundColor = '#FFFFFF'
-                self.textColor = '#000000'
-            self.showSide = Utils.strtobool(prefs.find('showSide').text)
-            if prefs.find('saveLocation') is not None:
-                tempdir = Path(prefs.find('saveLocation').text).resolve()
-                if isValidDirectory(tempdir):
-                    self.savelocation = tempdir
-                else:
-                    # TODO: Phrase this warning better
-                    trace('Warning: [PyminMain.loadPreferences] saveLocation is not a valid path. Value will not be changed.')
-            self.solonlymode = False if prefs.find('solMode') is None else Utils.strtobool(prefs.find('solMode').text)
-            if prefs.find('gameTweaks') is not None:
-                tempgametweaks = strtolistbools(prefs.find('gameTweaks').text)
-                if len(tempgametweaks) < 12:
-                    tempgametweaks.extend([False] * (12 - len(tempgametweaks)))
-                self.grammarFixes = tempgametweaks[0]
-                self.statusTweaks = tempgametweaks[1]
-                self.succubusLeavesOne = tempgametweaks[2]
-                self.useIsBottomOpen = tempgametweaks[3]
-                self.lizanDontShowBalls = tempgametweaks[4]
-                self.useNewSaveLoadDialog = tempgametweaks[5]
-                self.hermGetsBoth = tempgametweaks[6]
-                self.internalBallsEffectBelly = tempgametweaks[7]
-                self.directPathToSanctuary = tempgametweaks[8]
-                self.correctBeastRaceFeet = tempgametweaks[9]
-                self.useNewStash = tempgametweaks[10]
-                self.gameTweaksMisc = tempgametweaks[11]
-            self.enforceSize = False if prefs.find('fixedResMode') is None else Utils.strtobool(prefs.find('fixedResMode').text)
-            if prefs.find('customFontColor') is not None and prefs.find('oFontColor') is not None:
-                self.customfontcolor = Utils.strtobool(prefs.find('customFontColor').text)
-                self.window._children['textcolorbutton'].state = Utils.boolToState(not self.customfontcolor)
-                self.otextcolor = prefs.find('oFontColor').text
-            if prefs.find('customThemeColor') is not None and prefs.find('oThemeColor') is not None:
-                self.customthemecolor = Utils.strtobool(prefs.find('customThemeColor').text)
-                self.window._children['themebutton'].state = Utils.boolToState(not self.customthemecolor)
-                self.obackgroundcolor = prefs.find('oThemeColor').text
-            if prefs.find('debugTweaks') is not None:
-                tempdebugtweaks = strtolistbools(prefs.find('debugTweaks').text)
-                if len(tempdebugtweaks) < 2:
-                    tempdebugtweaks.extend([False] * (2 - len(tempdebugtweaks)))
-                self.debugChooseSenario = tempdebugtweaks[0]
-                self.debugNoDamage = tempdebugtweaks[1]
-            if prefs.find('nsldSortOrder') is not None:
-                self.nsldSortOrder = int(prefs.find('nsldSortOrder').text)
-            if prefs.find('themeType') is not None:
-                if int(prefs.find('themeType').text) in {0, 1}:
-                    self.useNiminTheme = bool(prefs.find('themeType').text)
-                else:
-                    self.useNiminTheme = False
-            if prefs.find('interfaceToggles') is not None:
-                tempitoggle = strtolistbools(prefs.find('interfaceToggles').text)
-                if len(tempitoggle) < 4:
-                    tempitoggle.extend([False] * (4 - len(tempitoggle)))
-                self.scrolledTextBorders = tempitoggle[1]
-                self.oNewGameButton = tempitoggle[2]
-                self.staticdoLevelUPButtons = tempitoggle[3]
-            sp = True
-        elif (GAME_DIR / 'Nimin_Prefs.sol').is_file():
-            so = sol.load(str(GAME_DIR / 'Nimin_Prefs.sol'))
-            prefLoad = so['prefs']
-            self.backgroundColor = ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[prefLoad[0]]
-            self.fontSize = prefLoad[1]
-            self.fontBold = prefLoad[2]
-            self.textColor = prefLoad[3]
-            self.showSide = prefLoad[4]
-            sp = True
-        else:
-            sp = True
-        DirUtils.makeDir(self.savelocation, True)
-        if sp:
-            self.savePreferences()
-        if self.useNiminTheme and THEME_DIR.is_dir():
-            self.style.theme_use('nimin')
+        mainobject.detailedDebug()
 
     def outputMainText(self, texts: str, reset: bool = False, *textCheck):
         self.doMainText(texts, reset, *textCheck)
@@ -5565,7 +5232,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.detailedCredits()
 
     def bsShowButtons(self, storage: PlayerItemStorage):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         if self.inShop:
             self.hideDiscard()
         else:
@@ -5600,7 +5267,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.window._children["discardbutton"].state = "disabled"
         else:
             self.window._children["discardbutton"].state = "normal"
-            if self.useNewStash and self.currentState == GameState.GENERAL:
+            if mainobject.useNewStash and self.currentState == GameState.GENERAL:
                 self.buttonWrite(12, which)
 
     def displayBag(self):
@@ -5804,23 +5471,23 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.buttonChoice = 0
 
     def buttonConfirm(self, b6: bool = True, b7: bool = True):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         self.showButtons(ButtonList(0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0))
         self.buttonWrite(6, 'Yes') if b6 else self.disableOneButton(6)
         self.buttonWrite(7, 'No') if b7 else self.disableOneButton(7)
 
     def doNext(self):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         self.showButtons(ButtonList(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0))
         self.buttonWrite(6, 'Next')
 
     def doLeave(self):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         self.showButtons(ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1))
         self.buttonWrite(12, 'Leave')
 
     def doEnd(self, leave: bool = False):
-        self.detailedDebug()
+        mainobject.detailedDebug()
         self.choicePage = 1
         self.hidePage()
         self.statDisplay()
@@ -5852,7 +5519,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         This function also disables any button that is not defined in the list but is visible on screen.
         '''
-        self.detailedDebug()
+        mainobject.detailedDebug()
         self.bc()
         dlist = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
         for k, v in buttondict.items():
@@ -5864,7 +5531,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if self.goToInDoProcess != Zones.NONE:
             self.regionChange(self.goToInDoProcess)
             self.goToInDoProcess = Zones.NONE
-        self.detailedDebug()
+        mainobject.detailedDebug()
         self.choicePage = 1
         if (not (self.inBag or self.inStash) and self.moveItemID != 0):
             self.hideAmountAll()
@@ -5902,7 +5569,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.choicePage = 1
         self.checkZero()
         self.checkDecimal()
-        if self.showSide:
+        if mainobject.showSide:
             self.updateSide()
         if not (self.inBag or self.inStash):
             self.hidePage()
@@ -5987,7 +5654,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f"\n\nThe weight of your {self.udderDesc()} udder is becoming an inconvenience. Whenever you turn from side to side, it lifts off slightly and acts like a fleshy wrecking ball that you're unable to stop.")
             elif (self.udderSize > tempNum * 1 / 2):
                 self.doMainText(f"\n\nYou are rather aware of the weight of your {self.udderDesc()} udder. You often find yourself fondling it in an attempt to make it settle more appropriately, wondering if they make bras for this sort of thing...")
-        if False and self.internalBallsEffectBelly and not self.showBalls:
+        if False and mainobject.internalBallsEffectBelly and not self.showBalls:
             ptMbmM2 = (self.pregnancyTime + self.bellyMod * 2 + self.ballSize * self.balls / 2) / 5
         else:
             ptMbmM2 = (self.pregnancyTime + self.bellyMod * 2) / 5
@@ -6010,8 +5677,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.rndArray.length < 1):
             self.rndArray.clear()
             self.outputMainText(f'\n\nAn ERROR has occured in the choice array. Please report this bug and where you saw it ({self.hour} hour), or else you\'ll get the hose.')
-            raise Error(f'[PyminMain.chooseFrom] self.rndArray is empty. hour = {self.hour}')
-        if self.gameTweaksMisc:
+            raise Error(f'[PyminGame.chooseFrom] self.rndArray is empty. hour = {self.hour}')
+        if mainobject.gameTweaksMisc:
             result = choice(self.rndArray)
         else:
             result = self.rndArray[round(Math.random() * (self.rndArray.length - 1))]
@@ -6661,13 +6328,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def sheathSize(self, div):
         temp = Utils.decGet(self.cockSize * self.cockSizeMod / div, 1)
-        if self.grammarFixes and Number(temp) == 0:
+        if mainobject.grammarFixes and Number(temp) == 0:
             return "0.1"
         return temp
 
     def sheathSize2(self, div):
         temp = Utils.decGet(self.cockSize * self.cockSizeMod / div, 1)
-        if self.grammarFixes and Number(temp) == 0:
+        if mainobject.grammarFixes and Number(temp) == 0:
             return "less than 0.1"
         return temp
 
@@ -6675,7 +6342,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Determines the correct plurality of a given cock based on "type" and "plural".
         '''
-        if self.grammarFixes:
+        if mainobject.grammarFixes:
             if plural == 1:
                 if typeCock == 1 and self.humanCocks > 1:
                     return "s"
@@ -6782,13 +6449,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.lilaWetStatus > 0 and self.attireBot in {10, 11}):
             tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
         if (self.legType >= 1000):
-            if False and self.internalBallsEffectBelly and not self.showBalls:
+            if False and mainobject.internalBallsEffectBelly and not self.showBalls:
                 tempBellySize = Utils.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5, 1)
             else:
                 tempBellySize = Utils.decGet(self.tallness * 0.75 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10, 1)
             tempStr += f" Your tauric waist measures {tempBellySize} inches around, your {self.bellyDesc()} belly swinging underneath."
         else:
-            if False and self.internalBallsEffectBelly and not self.showBalls:
+            if False and mainobject.internalBallsEffectBelly and not self.showBalls:
                 tempBellySize = Utils.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10 + self.ballSize * 0.9 / 5, 1)
             else:
                 tempBellySize = Utils.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10, 1)
@@ -6921,9 +6588,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += f"\n\nBeneath your cock{self.plural(1)} swing{self.plural(3)} a scrotum filled with {self.balls} {self.ballDesc()} testicles."
                 if self.blueBalls > 36:
                     tempStr += " They"
-            elif self.respectShowBalls and not self.showBalls and self.blueBalls > 36:
+            elif mainobject.respectShowBalls and not self.showBalls and self.blueBalls > 36:
                 tempStr += "\n\nYour internal balls"
-            if (self.respectShowBalls or self.showBalls) and self.blueBalls > 36:
+            if (mainobject.respectShowBalls or self.showBalls) and self.blueBalls > 36:
                 if (self.blueBalls <= 84):
                     tempStr += " groan and squirm, full of hot cum just waiting to blow."
                 elif (self.blueBalls > 84):
@@ -6953,7 +6620,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     tempStr += f" Lubrication makes your cunt{self.plural(2)} slick, the lips slipping past each other as you walk, while the slime continually blotches the crotch of your {self.clothesBottom()}, whether you're horny or not. Fortunately, you could take a cock slightly bigger than you are deep, thanks to the slickness."
             if (self.heat > 0 and self.heatTime < 0):
                 tempStr += " Your nether-lips are also puffier and redder than usual, heat emanating from your loins, an oven just waiting to cook something..."
-        if (self.showSide):
+        if (mainobject.showSide):
             self.outputSideText(tempStr.get(), True)
         else:
             self.outputMainText(tempStr.get(), True)
@@ -7019,7 +6686,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += f"\n{'Rape Modifier:':<32}+{self.rapeMod}"
         tempStr += f"\n{'Enticement Modifier:':<32}+{self.enticeMod}"
         tempStr += f"\n{'Run Chance:':<32}{20 + self.runMod}%"
-        if (self.showSide):
+        if (mainobject.showSide):
             self.outputSideText(tempStr.get(), True)
         else:
             self.outputMainText(tempStr.get(), True)
@@ -7106,7 +6773,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += "\nThe 'Extraordinary Enormous Pregnant Belly'"
             elif (self.pregnancyTime + self.vagBellyMod > 300):
                 tempStr += "\nA Fertility Goddess"
-        if self.grammarFixes and tempStr == "Around town, you are thought of as being:\n":
+        if mainobject.grammarFixes and tempStr == "Around town, you are thought of as being:\n":
             tempStr.clear()
         else:
             tempStr += "\n\n"
@@ -7153,7 +6820,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += "\nThe Progenitor of an Extinct Race"
         elif self.currentZone == Zones.SANCTUARY:
             ...
-        if (self.showSide):
+        if (mainobject.showSide):
             self.outputSideText(tempStr.get(), True)
         else:
             self.outputMainText(tempStr.get(), True)
@@ -7238,7 +6905,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempStr += "\nRacial-locked Nipples"
         if (self.lockCock):
             tempStr += "\nRacial-locked Cocks"
-        if (self.showSide):
+        if (mainobject.showSide):
             self.outputSideText(tempStr.get(), True)
         else:
             self.outputMainText(tempStr.get(), True)
@@ -7284,7 +6951,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.shapeshiftyLevel > 0):
             tempStr += f"\nShapeshifty\t\t{self.shapeshiftyLevel}"
         tempStr += f"\n\nFor a total of {self.level} levels."
-        if (self.showSide):
+        if (mainobject.showSide):
             self.outputSideText(tempStr.get(), True)
         else:
             self.outputMainText(tempStr.get(), True)
@@ -7322,7 +6989,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += f"\n{Items.name(self.bag.items[i])}"
                 if (self.bag.stack[i] > 1):
                     tempStr += f" x{self.bag.stack[i]}"
-        if (self.showSide):
+        if (mainobject.showSide):
             self.outputSideText(tempStr.get(), True)
         else:
             self.outputMainText(tempStr.get(), True)
@@ -7353,9 +7020,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Help button in the side bar
         '''
-        if self.helpToWiki:
-            self.wiki.open()
+        if mainobject.helpToWiki:
+            mainobject.wiki.open()
             return
+
         tempStr = textObject()
         tempStr += "<b><u>Stats</u></b>\n"
         tempStr += "\n-Strength - Adds to damage, rape chance, carry capacity, and HP. Reduces SexP gain from sex and masturbation."
@@ -7397,7 +7065,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += "\n\t~/` | /    - Open Wiki"
         tempStr += "\n\tg   | .    - Sort button (new save/load dialog)"
         tempStr += "\n\tb   | 0    - Discard button (bag/stash) and Converter button (save/load)"
-        if (self.showSide):
+        if (mainobject.showSide):
             self.outputSideText(tempStr.get(), True)
         else:
             self.outputMainText(tempStr.get(), True)
@@ -7434,7 +7102,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += "\n\nSpecial thanks to SumigakiFox (owner of Silandrias) and Arlyurl (made the Nimin image) on FA."
         tempStr += "\n\nProstitution scene editors (thanks for the work!): Torakazu, Bahamad, and omegaokami on FA."
         tempStr += "\n\nProstitution scene writers:\n\t--Buncubus, BantinNysam, TheAbyssalWatcher, mike12345, V, grottokraft, Ludoergosum, perrothetraveler, reikonova, shockblock99, Kidou, bunnybunbun, supernaut, shaesullivan, m3chawolf, Kizzneth, barkbarkboom, Torakazu"
-        if (self.showSide):
+        if (mainobject.showSide):
             self.outputSideText(tempStr.get(), True)
         else:
             self.outputMainText(tempStr.get(), True)
@@ -7465,9 +7133,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Save game stage 1 (dialog)
         '''
-        DirUtils.makeDir(self.savelocation)
+        DirUtils.makeDir(mainobject.saveLocation)
         self.hideAPButton()
-        if self.useNewSaveLoadDialog:
+        if mainobject.useExpandedSaveDialog:
             if message is None:
                 self.outputMainText("Select a save file from the list or enter the name of a new file in the entry box to save your current game to that file.\n\nThe \"Other File\" button will allow you to save to a file outside of the save file folder. Be sure to save with one of the supported file extensions (.toml,.xml,.sol,.nim) or the game will not be able to load it.\n\nOtherwise, click Return to go back to what you were doing.", True)
             else:
@@ -7481,7 +7149,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     temp = self.window._children["savefileentry"].text
                     if not temp.endswith(VALID_SAVE_FORMATS):
                         temp += VALID_SAVE_FORMATS[0]
-                    temp2 = self.savelocation / temp
+                    temp2 = mainobject.saveLocation / temp
                     if temp2.is_file():
                         temp1 = str(temp)
                         if temp1.endswith(".toml"):
@@ -7503,7 +7171,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if not temp.endswith(VALID_SAVE_FORMATS):
                             temp += VALID_SAVE_FORMATS[0]
                         if (self.buttonChoice == 6):
-                            self.doSave(0, self.savelocation / temp)
+                            self.doSave(0, mainobject.saveLocation / temp)
                         else:
                             self.saveGo()
                     self.doListen = doListen
@@ -7518,11 +7186,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
             tempDict = {4: "Save as", 12: "Return"}
             for i in RANGE9_BUTTON_MAP:
-                if ((self.savelocation / f"Nimin_Save{i}.xml").is_file() and not self.solonlymode):
-                    dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
+                if ((mainobject.saveLocation / f"Nimin_Save{i}.xml").is_file() and not mainobject.saveCompatMode):
+                    dh = SaveUtils.getdhXML(mainobject.saveLocation / f"Nimin_Save{i}.xml")
                     tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
-                elif ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
-                    dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
+                elif ((mainobject.saveLocation / f"Nimin_Save{i}.sol").is_file()):
+                    dh = SaveUtils.getdhSOL(mainobject.saveLocation / f"Nimin_Save{i}.sol")
                     tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
                 else:
                     tempDict[i] = "Empty"
@@ -7540,11 +7208,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doReturn()
                 else:
                     self.slot = self.buttonChoice
-                    if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() and not self.solonlymode):
-                        dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
+                    if ((mainobject.saveLocation / f"Nimin_Save{self.buttonChoice}.xml").is_file() and not mainobject.saveCompatMode):
+                        dh = SaveUtils.getdhXML(mainobject.saveLocation / f"Nimin_Save{self.buttonChoice}.xml")
                         self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00", True)
-                    elif ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
-                        dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
+                    elif ((mainobject.saveLocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
+                        dh = SaveUtils.getdhSOL(mainobject.saveLocation / f"Nimin_Save{self.buttonChoice}.sol")
                         self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00", True)
                     else:
                         self.doMainText("The chosen slot is empty", True)
@@ -7563,9 +7231,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Load game stage 1 (dialog)
         '''
-        DirUtils.makeDir(self.savelocation)
+        DirUtils.makeDir(mainobject.saveLocation)
         self.hideAPButton()
-        if self.useNewSaveLoadDialog:
+        if mainobject.useExpandedSaveDialog:
             if message is None:
                 self.outputMainText("Select a save file from the save folder and then click \"Load\" to load it.\n\nThe \"Other File\" button will allow you to load a Nimin save file from outside of the save file folder.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).", True)
             else:
@@ -7585,8 +7253,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                     def doListen():
                         temp = self.window._children["savefileentry"].text
-                        if (self.buttonChoice == 6 and temp in DirUtils.listFiles(self.savelocation, VALID_SAVE_FORMATS)):
-                            self.doLoad(0, self.savelocation / temp)
+                        if (self.buttonChoice == 6 and temp in DirUtils.listFiles(mainobject.saveLocation, VALID_SAVE_FORMATS)):
+                            self.doLoad(0, mainobject.saveLocation / temp)
                         else:
                             self.loadGo()
                     self.doListen = doListen
@@ -7602,18 +7270,18 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempDict = {4: "Load File"}
             if self.currentState != GameState.GAME_UNLOADED:
                 tempDict[12] = "Return"
-            if self.solonlymode:
+            if mainobject.saveCompatMode:
                 for i in RANGE9_BUTTON_MAP:
-                    if ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
-                        dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
+                    if ((mainobject.saveLocation / f"Nimin_Save{i}.sol").is_file()):
+                        dh = SaveUtils.getdhSOL(mainobject.saveLocation / f"Nimin_Save{i}.sol")
                         tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
             else:
                 for i in RANGE9_BUTTON_MAP:
-                    if ((self.savelocation / f"Nimin_Save{i}.xml").is_file()):
-                        dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{i}.xml")
+                    if ((mainobject.saveLocation / f"Nimin_Save{i}.xml").is_file()):
+                        dh = SaveUtils.getdhXML(mainobject.saveLocation / f"Nimin_Save{i}.xml")
                         tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
-                    elif ((self.savelocation / f"Nimin_Save{i}.sol").is_file()):
-                        dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{i}.sol")
+                    elif ((mainobject.saveLocation / f"Nimin_Save{i}.sol").is_file()):
+                        dh = SaveUtils.getdhSOL(mainobject.saveLocation / f"Nimin_Save{i}.sol")
                         tempDict[i] = f"D:{dh[0]} H:{dh[1]}"
             if message is None:
                 self.outputMainText("Click on a load slot to load the game that was saved to that slot.\n\nThe \"Load File\" button will allow you to load a previously saved Nimin file from your computer.\n\nOtherwise, click Return to go back to what you were doing (unless you weren't doing anything yet, in which case click New Game).", True)
@@ -7629,16 +7297,16 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doReturn()
                 else:
                     self.slot = self.buttonChoice
-                    if self.solonlymode:
-                        if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
-                            dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
+                    if mainobject.saveCompatMode:
+                        if ((mainobject.saveLocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
+                            dh = SaveUtils.getdhSOL(mainobject.saveLocation / f"Nimin_Save{self.buttonChoice}.sol")
                             self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00", True)
                     else:
-                        if ((self.savelocation / f"Nimin_Save{self.buttonChoice}.xml").is_file()):
-                            dh = SaveUtils.getdhXML(self.savelocation / f"Nimin_Save{self.buttonChoice}.xml")
+                        if ((mainobject.saveLocation / f"Nimin_Save{self.buttonChoice}.xml").is_file()):
+                            dh = SaveUtils.getdhXML(mainobject.saveLocation / f"Nimin_Save{self.buttonChoice}.xml")
                             self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00", True)
-                        elif ((self.savelocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
-                            dh = SaveUtils.getdhSOL(self.savelocation / f"Nimin_Save{self.buttonChoice}.sol")
+                        elif ((mainobject.saveLocation / f"Nimin_Save{self.buttonChoice}.sol").is_file()):
+                            dh = SaveUtils.getdhSOL(mainobject.saveLocation / f"Nimin_Save{self.buttonChoice}.sol")
                             self.doMainText(f"Day: {dh[0]}, Hour: {dh[1]}:00", True)
                     self.outputMainText(f"\n\nAre you sure you want to load slot {self.buttonChoice}?\n\nYou will lose any unsaved data from the current game.")
                     self.buttonConfirm()
@@ -7668,16 +7336,16 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Sorts the save file list in nsld
         '''
-        if self.nsldSortOrder == 0:
-            return DirUtils.listFiles_SortCustomExt(self.savelocation, VALID_SAVE_FORMATS)
-        if self.nsldSortOrder == 1:
-            return DirUtils.listFiles_SortCustomNum(self.savelocation, VALID_SAVE_FORMATS)
-        if self.nsldSortOrder == 2:
-            return DirUtils.listFiles_SortCustomExt(self.savelocation, VALID_SAVE_FORMATS, True)
-        if self.nsldSortOrder == 3:
-            return DirUtils.listFiles_SortAlpha(self.savelocation, VALID_SAVE_FORMATS)
-        if self.nsldSortOrder == 4:
-            return DirUtils.listFiles(self.savelocation, VALID_SAVE_FORMATS)
+        if mainobject.newSaveLoadDialog_SortOrder == 0:
+            return DirUtils.listFiles_SortCustomExt(mainobject.saveLocation, VALID_SAVE_FORMATS)
+        if mainobject.newSaveLoadDialog_SortOrder == 1:
+            return DirUtils.listFiles_SortCustomNum(mainobject.saveLocation, VALID_SAVE_FORMATS)
+        if mainobject.newSaveLoadDialog_SortOrder == 2:
+            return DirUtils.listFiles_SortCustomExt(mainobject.saveLocation, VALID_SAVE_FORMATS, True)
+        if mainobject.newSaveLoadDialog_SortOrder == 3:
+            return DirUtils.listFiles_SortAlpha(mainobject.saveLocation, VALID_SAVE_FORMATS)
+        if mainobject.newSaveLoadDialog_SortOrder == 4:
+            return DirUtils.listFiles(mainobject.saveLocation, VALID_SAVE_FORMATS)
 
     def nsldDisplay(self):
         '''
@@ -7687,13 +7355,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         for i in self.nsldGetSorted():
             temp = i.lower()
             if temp.endswith(".toml"):
-                dh = SaveUtils.getdhTOML(self.savelocation / i)
+                dh = SaveUtils.getdhTOML(mainobject.saveLocation / i)
             elif temp.endswith(".xml"):
-                dh = SaveUtils.getdhXML(self.savelocation / i)
+                dh = SaveUtils.getdhXML(mainobject.saveLocation / i)
             elif temp.endswith(".sol"):
-                dh = SaveUtils.getdhSOL(self.savelocation / i)
+                dh = SaveUtils.getdhSOL(mainobject.saveLocation / i)
             elif temp.endswith(".nim"):
-                dh = SaveUtils.getdhNIM(self.savelocation / i)
+                dh = SaveUtils.getdhNIM(mainobject.saveLocation / i)
             self.window._children["savefileselect"].insert("end", f"D: {dh[0]}, H: {dh[1]} | {i}")
         self.window._children["savefileselect"].activate(0)
         self.window._children["savefileselect"].select_set(0)
@@ -7705,11 +7373,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         if self.newSLDialogVisible:
             self.window._children["savefileselect"].delete(0, "end")
-            self.nsldSortOrder += 1
-            if self.nsldSortOrder >= 5:
-                self.nsldSortOrder = 0
+            mainobject.newSaveLoadDialog_SortOrder += 1
+            if mainobject.newSaveLoadDialog_SortOrder >= 5:
+                mainobject.newSaveLoadDialog_SortOrder = 0
             self.nsldDisplay()
-            self.savePreferences()
+            mainobject.savePreferences()
 
     def showNewSaveLoadDialog(self):
         '''
@@ -7794,11 +7462,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Save game stage 2 (file manipulation)
         '''
         if (slot == 4):
-            if self.solonlymode:
+            if mainobject.saveCompatMode:
                 types = TK_EXTERNAL_FILE_FILTER_COMPAT
             else:
                 types = TK_EXTERNAL_FILE_FILTER
-            tempname = filedialog.asksaveasfilename(initialdir=self.savelocation, filetypes=types)
+            tempname = filedialog.asksaveasfilename(initialdir=mainobject.saveLocation, filetypes=types)
             if (isinstance(tempname, tuple) or len(tempname) == 0):
                 self.saveGo()
                 return
@@ -7806,10 +7474,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (slot == 0):
             savefilename = file.resolve()
         else:
-            if self.solonlymode:
-                savefilename = self.savelocation / f"Nimin_Save{slot}.sol"
+            if mainobject.saveCompatMode:
+                savefilename = mainobject.saveLocation / f"Nimin_Save{slot}.sol"
             else:
-                savefilename = self.savelocation / f"Nimin_Save{slot}.xml"
+                savefilename = mainobject.saveLocation / f"Nimin_Save{slot}.xml"
         data = SaveUtils.dictSAVE({
             "track": {"currentState": self.currentState, "currentZone": self.currentZone, "day": self.day, "hour": self.hour, "currentDayCare": self.currentDayCare, "inDungeon": self.inDungeon, "currentDungeon": self.currentDungeon, "v7": 0.75, "firstExplore": self.firstExplore},
             "version": {"original": NIMIN_VERSION, "port": __version__},
@@ -7861,11 +7529,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Load game stage 2 (file manipulation)
         '''
         if (slot == 4):
-            if self.solonlymode:
+            if mainobject.saveCompatMode:
                 types = TK_EXTERNAL_FILE_FILTER_COMPAT
             else:
                 types = TK_EXTERNAL_FILE_FILTER
-            tempname = filedialog.askopenfilename(initialdir=self.savelocation, filetypes=types)
+            tempname = filedialog.askopenfilename(initialdir=mainobject.saveLocation, filetypes=types)
             if (isinstance(tempname, tuple) or len(tempname) == 0):
                 self.loadGo()
                 return
@@ -7873,10 +7541,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (slot == 0):
             loadfilename = file.resolve()
         else:
-            if (self.savelocation / f"Nimin_Save{slot}.xml").is_file():
-                loadfilename = self.savelocation / f"Nimin_Save{slot}.xml"
+            if (mainobject.saveLocation / f"Nimin_Save{slot}.xml").is_file():
+                loadfilename = mainobject.saveLocation / f"Nimin_Save{slot}.xml"
             else:
-                loadfilename = self.savelocation / f"Nimin_Save{slot}.sol"
+                loadfilename = mainobject.saveLocation / f"Nimin_Save{slot}.sol"
         lfext = loadfilename.suffix.lower()
         if lfext == ".sol":
             data = SaveUtils.loadSOL(loadfilename)
@@ -8210,7 +7878,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.setDHStats()
         self.setSCStats()
         self.showOption7()
-        if (self.showSide):
+        if (mainobject.showSide):
             self.showSidePanel()
             self.updateSide()
         self.doReturn()
@@ -8244,7 +7912,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.libido = 17
                 self.sensitivity = 15
                 self.tallness += 4
-                if self.correctBeastRaceFeet:
+                if mainobject.correctBeastRaceFeet:
                     self.legType = 2
                     self.runMod += 10
                     self.carryMod -= 10
@@ -8265,7 +7933,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.libido = 15
                 self.sensitivity = 15
                 self.tallness -= 2
-                if self.correctBeastRaceFeet:
+                if mainobject.correctBeastRaceFeet:
                     self.legType = 1
                     self.runMod += 10
                     self.carryMod -= 10
@@ -8302,7 +7970,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.libido = 17
                 self.sensitivity = 17
                 self.tallness -= 3
-                if self.correctBeastRaceFeet:
+                if mainobject.correctBeastRaceFeet:
                     self.legType = 1
                     self.runMod += 10
                     self.carryMod -= 10
@@ -8324,7 +7992,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.libido = 15
                 self.sensitivity = 16
                 self.tallness += 2
-                if self.lizanDontShowBalls:
+                if mainobject.lizanDontShowBalls:
                     self.showBalls = False
             self.doGender()
         self.doListen = doListen
@@ -8457,7 +8125,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.nippleSize = 2
                     self.tallness += 60 + Math.floor(Utils.percent() / 10)
                     self.sensitivity += 1
-                    if self.statusTweaks:
+                    if mainobject.statusTweaks:
                         self.hips += 3
                         self.butt += 4
                         self.tallness -= 4
@@ -8615,7 +8283,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.doNext()
 
                                     def doListen():
-                                        if (self.showSide):
+                                        if (mainobject.showSide):
                                             self.showSidePanel()
                                             self.updateSide()
                                         self.showOption7()
@@ -8666,7 +8334,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doJizzPants()
         else:
             self.displayMainText()
-            if (not self.showSide):
+            if (not mainobject.showSide):
                 self.showAPButton()
             self.showLGButton()
             self.showSGButton()
@@ -8766,7 +8434,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.inBag = False
                     self.doReturn(False)
                 else:
-                    if self.useNewStash and self.currentState == GameState.GENERAL:
+                    if mainobject.useNewStash and self.currentState == GameState.GENERAL:
                         if (self.canLose(self.moveItemID, 0)):
                             self.moveToStash()
                         else:
@@ -9001,7 +8669,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.showMoveItem(False)
         else:
             self.refreshMoveItem(self.moveItemID, self.moveItemStack)
-        if self.useNewStash and (self.inBag or self.inStash):
+        if mainobject.useNewStash and (self.inBag or self.inStash):
             if self.moveItemID != 0 and self.buttonsVisible[12]:
                 self.buttonWrite(12, "Stash" if (self.inBag) else "Bag")
         # self.hideAmountAll()
@@ -10734,7 +10402,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif ID == 256:
             self.doMainText("You suck on the hard candy, the nutrient-rich ingredients making you feel stronger as the sweet flavors fill your belly.", True)
             if (self.eggLaying > 0):
-                if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
+                if (not mainobject.grammarFixes or mainobject.grammarFixes and self.vagTotal > 0):
                     self.doMainText(" And your womb gets a good workout, the pro-something bacteria or whatever helping with its functions. Or something.")
                 self.eggTime -= 4
             self.stats(1, 0, 0, 0)
@@ -11135,7 +10803,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif ID == 529:
             self.doMainText("You crack open the strange egg and down its contents, feeling odd...", True)
             # TODO: Maybe make this its own gametweak
-            if self.gameTweaksMisc:
+            if mainobject.gameTweaksMisc:
                 if (Utils.percent() <= 10):
                     self.doMainText("\n\nYou grow an inch taller.")
                     self.tallness += 1
@@ -11372,7 +11040,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f" You pull {self.pullUD(2)} your {self.clothesBottom()} and watch with awe as your schlong{self.plural(1)} grow longer")
                 if (self.showBalls):
                     self.doMainText(" and the testicles beneath swell within your scrotum")
-                elif self.respectShowBalls:
+                elif mainobject.respectShowBalls:
                     self.doMainText(". You can also feel your abdomen grow tighter, as if your internal testicles were swelling")
                 self.doMainText(".\n\nIt really does work!")
                 self.cockSize += 4
@@ -11498,7 +11166,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Stash dialog
         '''
-        if self.useNewStash:
+        if mainobject.useNewStash:
             self.mtb = False
             self.inStash = True
             self.tempBagPage = 1
@@ -11841,7 +11509,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doSell()
             elif (self.buttonChoice == 12):
                 self.inShop = False
-                if (self.doShopsReturn and not KeyState.shiftHeld):
+                if (mainobject.doShopsReturn and not KeyState.shiftHeld):
                     self.doShops()
                 else:
                     self.doReturn()
@@ -12055,7 +11723,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doDyeShop()
                 self.doListen = doListen
             elif (self.buttonChoice == 12):
-                if (self.doShopsReturn and not KeyState.shiftHeld):
+                if (mainobject.doShopsReturn and not KeyState.shiftHeld):
                     self.doShops()
                 else:
                     self.doReturn()
@@ -12165,7 +11833,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doProcess()
                 self.doListen = doListen
             elif (self.buttonChoice == 12):
-                if (self.doShopsReturn and not KeyState.shiftHeld):
+                if (mainobject.doShopsReturn and not KeyState.shiftHeld):
                     self.doShops()
                 else:
                     self.doReturn()
@@ -12384,7 +12052,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doSalon()
                 self.doListen = doListen
             elif (self.buttonChoice == 12):
-                if (self.doShopsReturn and not KeyState.shiftHeld):
+                if (mainobject.doShopsReturn and not KeyState.shiftHeld):
                     self.doShops()
                 else:
                     self.doReturn()
@@ -12586,7 +12254,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doTailor()
                 self.doListen = doListen
             elif (self.buttonChoice == 12):
-                if (self.doShopsReturn and not KeyState.shiftHeld):
+                if (mainobject.doShopsReturn and not KeyState.shiftHeld):
                     self.doShops()
                 else:
                     self.doReturn()
@@ -13336,15 +13004,15 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText(" He then pulls off your shaft and begins sucking on the knot itself, allowing it to swell to full size. Then he goes back to deep-throating your cock while squeezing your knot with his hand. The sensation is too much for you and he struggles to swallow down every last drop as you spray your seed into his mouth.")
                 else:
                     self.doMainText(f"\n\nThe young man falls on his knees and admires your {self.cockDesc()} cock. He feels over your large member, surely too big for him to take it all. He slowly licks around the shaft before starting to suck on the tip. He takes in as much of your cock as he can, sucking and licking on it, eyes half-lidded in bliss and moaning softly. He starts to stroke the rest of your cock, much too large to fit in his mouth")
-                    if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                    if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                         self.doMainText(f" and with his other hand he massages your {self.ballDesc()} balls")
                     self.doMainText(". You enjoy his enthusiasm and his skill as he carefully makes sure that every last inch of your thick shaft is given the attention it deserves. It's not long before you're feeling a familiar pressure building up in your ")
-                    if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                    if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                         self.doMainText("nuts")
                     else:
                         self.doMainText("abdomen")
                     self.doMainText(". Suddenly the boy ")
-                    if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                    if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                         self.doMainText("stops playing with your balls and ")
                     self.doMainText("moves his finger over your ass. Pushing one in your asshole, he sends you over the edge and you flood his mouth with cum in return.")
                 self.doMainText("\n\n\nAs you pull your cock out of his mouth, the last spurt of cum hits his face, marking him. He blushes again, licking his lips and savoring the flavor. He looks around again, still finding no one who could have seen you. He sighs in relief and hands you some coins. He then gets up quickly, and moves away...")
@@ -13354,7 +13022,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             elif chance == 3:
                 self.doMainText(f"You don't wait long for a customer. A young blond woman enters your room and immediately strips her clothes off, revealing her large supple breasts and delicate curves. Already your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to grow hard at the sight of her bare flesh. You join her on the bed, locking lips in a sensual kiss as your hands roam over her breasts and pinch her pert nipples.\n\nYou moan as her fingers trace down your spine, her nails applying just enough pressure for it to be sensual and pleasurable. You trail kisses down her neck and chest until you reach her hips. You give her clit a tender lick and nibble before you delve your tongue deep into her folds. She moans and arches her back as she runs her fingers through your hair, pushing your tongue deep into her needy pussy.\n\nThe smell of her aroused sex fills your nostrils as your tongue laps at her delicate walls. Your {self.cockDesc()} cock{self.plural(1)} throb{self.plural(3)} with need to the point of aching as it goes unattended. You pull away from her crotch and she eagerly lays back on the bed, her wet folds glistening with saliva and feminine juices.\n\nYou rub {self.oneYour(1)} hard cock{self.plural(1)} along her nether lips, coating it in her juices before you press your hard length into her. She moans as you vigorously thrust into her, your shaft stroking her sensitive places with each pass.\n\nWith each passing moment her pussy tightens around your cock, making it harder for you to keep pace as you slam into her. You can feel the heavy warmth in your ", True)
-                if not self.respectShowBalls or self.respectShowBalls and not self.showBalls:
+                if not mainobject.respectShowBalls or mainobject.respectShowBalls and not self.showBalls:
                     self.doMainText("internal ")
                 self.doMainText("balls as they begin to clench and roil, ready to burst at any moment. You pound hard into her a few more times before she reaches her peak.\n\nHer pussy clenches and milks at your cock. You groan and push into her one last time as your seed bursts from the tip of your cock and catches deep within her greedy passage. Thick ropes of cum spill into her as you hold her down, filling her with your entire potent load.")
                 self.doMainText("\n\nWhen your orgasm settles down, you ease your member out of her slit with a thick trickle of your seed dribbling out of her hole and coating your cock.\n\nYou go into the bathroom and bathe and, when you return, you find that your client has left some coins on the table.")
@@ -13390,7 +13058,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMultiImpregnate(1, 2)
                 elif (self.cockTotal == 1 and self.vagTotal == 1):
                     self.doMainText("Despite being incredibly drunk, the two women act rather quickly. One of the sisters motions for you to bend over, and while doing so an argument erupts behind you as to who gets dibs on your pussy and who gets your cock. The two quickly reach an agreement and one of the sisters wastes no time in guiding the tip of her rigid tumescence to rest lightly on the swollen lips of your vagina. The other sister vying for your cock eases underneath you and raises her ass up to the level of your crotch. Reaching behind her she takes your now absolutely rigid member and begins to guide it to rest against her vulva. With only a moments hesitation spent arranging their body parts so as to not collide with one another, the two begin to urgently grind against you.\n\nThe sister behind you begins by sliding her rigid length into you and following her thrust you plunge deep into the sister below you. Your movement is reciprocated by the sister below you as she grinds her hips against your groin")
-                    if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                    if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                         self.doMainText(", your balls wetly slapping the inside of her thighs")
                     self.doMainText(f". The cock inside of you is one of the biggest you have taken and it soon bottoms out, rubbing the wall of your cervix pleasurably. The two move in near perfect unison, the combined sensation of being filled and filling another at the same time soon leaves you panting and drooling, barely conscious of the outside world.\n\nThe two women's thrusts come faster and faster as they surge closer and closer towards the edge. As they near orgasm, their movements get shorter and faster and you can feel the head of your cock hitting the wall of the bottom sister's cervix with your every movement. Without warning you feel the sister in your pussy tense and shudder as she begins to spasm jets of torrid jizz deep into your womb. The immense warmth filling you sends you flying over the edge and you erupt into the depths of the beauty below you as she lets loose onto the ground below her, her jism quickly forming a small pool. You all continue to ejaculate for what seems forever; if you could muster the energy you wouldn't be surprised to look and see that your belly and the belly of the sister below you have swelled from the sheer amount of liquid which has been expelled. Exhausted and still rather tipsy, the two help each other up.\n\nThe two women stagger to their feet and begin to gather their clothes, leaving you on the ground still panting and oozing cum. The two sisters throw another small bag of coins at your {self.legDesc(10)}, thanking you for the best fuck they have had in a long while. Not even bothering to get clothed the two wobble and stagger away, clearly exhausted by their ordeal. You notice they leave behind two identical trails of your combined cum, their cocks still oozing the white sticky substance onto the ground below them and the excessive amount you pumped into the womb of the sister dripping slowly out. You can't help but wonder if you will get pregnant from the deluge they just released or if they will get pregnant from the seed you just planted deep in one of the sister's bellies.")
                     self.doImpregnate(1)
@@ -13467,7 +13135,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.showBalls):
                     self.doMainText(f" and letting your {self.ballDesc()} balls hang free")
                 self.doMainText(f" followed by her tearing off her own clothes. She grabs {self.oneYour(1)} wang{self.plural(1)}, gets down onto all fours and presses the head of you penis against her quivering lips. She does not hesitate to force your {self.cockDesc()} cock inside of her sex, letting out a loud orgasmic moan as you sink deep into her folds. You don't even have time to think about being inside her hot, wet depths as the sexy mare begins bucking against the length of your {self.cockDesc()} tool inside her. Your penis and ")
-                if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                     self.doMainText("balls")
                 else:
                     self.doMainText("abdomen")
@@ -13495,10 +13163,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.vagTotal > 0):
                     self.doMainText(f"Moving his tongue deep inside of {self.oneYour(2)} cunt{self.plural(2)} the Equan tastes the thoroughly used tunnel of your female sex and nods in approval as he begins to slowly eat you out. His lips, breath, and tongue are so warm you push back into his face hard enough to make your hurting ass ache as your tender rump lets its sensitivity be known. Rolling his tongue up, down, and all around the Equan spreads you open farther than his finger ever could and pushes forward into your belly so much you think he may have touched your womb.")
                 self.doMainText("Groaning and writhing")
-                if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                     self.doMainText(" as a hand takes up your balls and massages them")
                 self.doMainText(", you try to bite out a few words of praise. Every attempt is lost as the Equan continues to use you for his own personal pleasure. Your body is like an instrument being strummed by a professional minstrel, and as the Equan keeps tuning you in just the right way you begin to feel the signs of impending orgasm about to overtake you. Against your will you clench up and cry out towards the ceiling as an orgasm tears through you when the Equan nips at your ass. Cum spews ")
-                if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                     self.doMainText("from your balls")
                 else:
                     self.doMainText("out")
@@ -13809,14 +13477,14 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             if chance == 1:
                 self.doMainText(f"You look around the desert town and smirk as several male and female Lizans eye you wantonly. Scales of various colors gleam as you walk down the middle of the street, wagging your plump ass at potential clientele. Many of the males watch you with lust clearly shining on their faces. Your eyes catch glimpses of more than a few of them talking to others around them while nodding in your direction; the generous bulge {self.legWhere(1)} your {self.legDesc(2)} puffs up some as you see two Lizan males walk up to you and ask you if you’re selling what they think you are. You nod to them and soon find yourself being pulled away from the growing crowd you have amassed.\n\nThe two males take you to a quiet spot inside of what you assume to be a recreational cave area, the scent of sex drifting strongly along the walls making your nose itch, before asking you to strip for them. You smile amorously at them both, reaching down to rub the lumps of their tenting loincloths before you do as you have been asked. Slowly you strip out of your clothes and present yourself to them.\n\nThe two males circle around you, flicking their tongues out across your body as they survey the goods they have just brought. Hands reach out together for your cock and the two males stroke you gently, ", True)
-                if self.grammarFixes:
+                if mainobject.grammarFixes:
                     self.doMainText("trying to")
                 else:
                     self.doMainText("urging")
                 self.doMainText(" get you to moan for them, one of the Lizans going even so far to stroke across your ")
-                if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                     self.doMainText("balls")
-                elif self.lizanDontShowBalls and self.lizardCocks == self.cockTotal:
+                elif mainobject.lizanDontShowBalls and self.lizardCocks == self.cockTotal:
                     self.doMainText("slit")
                 else:
                     self.doMainText("butt")
@@ -13824,7 +13492,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.vagTotal > 0):
                     self.doMainText(f"\n\nOne of them palms your breasts while the other reaches down to finger your behind before chuckling as throaty moans escape you. A slim hand reaches behind your cock only to find your female slit weeping {self.legWhere(1)} your {self.legDesc(2)}. The male who did so wiggles two fingers deep inside of you and hisses in pure Lizan passion as he watches you writhe around his fingers.")
                 self.doMainText(f"\n\nYour {self.legDesc(6)} feel like jelly as they begin quiver. A hand pushes you down onto your {self.legDesc(6)} and without having to be told, you reach up to relieve the Lizan in front of you of his loincloth. A pair of plump, tapered shafts rise up before your eyes, making you almost giddy as the scent of aroused male floods your nose. Behind you the Lizan shuffles himself out of his loincloth and presses himself up against your tailhole, and it is then you feel another pressing against your hole. The presence of four cocks split between your ends makes you groan from the heat as the pair of cocks continue hot-dogging your rump while the others dangle in front of your very eyes. There are no words needed as the two males pull back to line themselves up with your holes; your mouth eagerly opens to receive its due and then you find yourself suddenly filled from both ends with twice the number of throbbing appendages you have been hoping to receive for the last hour.\n\nThe Lizan in front of you fills your mouth quickly as he sinks himself into the warmth of your throat, the twin heads sliding against ahead other as they breach your throat. You gag from his size before catching yourself, your throat stretching to accommodate his girth. ")
-                if self.lizanDontShowBalls:
+                if mainobject.lizanDontShowBalls:
                     self.doMainText("T")
                 else:
                     self.doMainText("His balls under your chin feel like heaven as t")
@@ -13841,11 +13509,11 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             elif chance == 2:
                 self.doMainText(f"Either feeling a little short of cash, or because it's a way to have fun and make some gold, you have decided to sell your body. Donning your {self.currentClothes()}, you stand on a corner of the hot streets of Oviasis, presenting your form for all to admire. Your {self.cockDesc()} package attracts many lustful gazes, however it seems today's whoring will not pay off.\n\nAs you are about to give up for a while and go find something more interesting to do, like eating, a young ", True)
-                if self.femmieMaleReplacement == 0:
+                if mainobject.femmieMaleReplacement == 0:
                     self.doMainText("femmie male")
-                elif self.femmieMaleReplacement == 1:
+                elif mainobject.femmieMaleReplacement == 1:
                     self.doMainText("feminine male")
-                elif self.femmieMaleReplacement == 2:
+                elif mainobject.femmieMaleReplacement == 2:
                     self.doMainText(self.ptweaksGrammar(1))
                 self.doMainText(f" lizan wearing a simple pair of shorts approaches you. His scales are mostly a dark shade the color of deep night, however he also possesses an array of dazzling white tiger stripes. These markings set off his brilliant copper eyes, while his dark scales hide his blush as his eyes drift to your crotch.\n\nHe stumbles over his words as his glittering copper eyes scan you up and down, noting your attributes with apparent satisfaction. As he draws closer you notice a massive bulge in his shorts. He's obviously quite horny, and your body appears to be making him even more so. Not caring the both of your are clearly visible in public, he drops his pants to reveal two massive cocks.\n\nTo your surpise, he doesn't proceed to bend you over and pound you senseless with his two foot long dicks. Instead, he bends over and spreads his cheeks for you, looking over his shoulder in a sultry and submissive manner. He shakes his cute little tush at you, begging for a good fucking. Seeing his winking asshole makes your {self.cockDesc()} cock{self.plural(1)} stand at full stiffness.\n\nHe shakes his ass again and you place your hands on his round cheeks, then press the head of {self.oneYour(1)} {self.cockDesc()} ")
                 if (self.catCocks > 0):
@@ -13855,20 +13523,20 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.horseCocks > 0):
                     self.doMainText("flaring")
                 self.doMainText(f" cock against his cute little asshole. As you rub against him, precum begins to leak out of your {self.cockDesc()} wang{self.plural(1)}, lubricating his sweet round ass.\n\nHe nods to you and you push your {self.cockDesc()} rod into his eager ass, causing him to moan in pleasure as he takes your full length. You begin to pound into his squeezable butt, proceeding slowly at first and only giving him the head. Once you begin to develop a rhythm your pace increases, your thrusts penetrating deeper and deeper. With each grunting thrust he moans and quakes under you, his ass swallowing up your cock.\n\nYou pound all the way into his boyish ass")
-                if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                     self.doMainText(f", your {self.ballDesc()} {self.balls} balls slapping against his")
-                    if self.lizanDontShowBalls:
+                    if mainobject.lizanDontShowBalls:
                         self.doMainText("thighs.")
                     else:
                         self.doMainText("own massive nuts.")
                     self.doMainText(" A")
                 else:
-                    if self.lizanDontShowBalls:
+                    if mainobject.lizanDontShowBalls:
                         self.doMainText(", a")
                     else:
                         self.doMainText(", his massive nuts slapping against your thighs. A")
                 self.doMainText("s you do, you feel your ")
-                if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                     self.doMainText("own sack")
                 else:
                     self.doMainText("insides")
@@ -14073,7 +13741,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         #   self.rndArray.push(4)
         #if self.attireBot in {6,17} and self.lust > 80:
         #   self.rndArray.push(5)
-        if (not self.useIsBottomOpen and self.attireBot in {5, 7, 12, 13, 14, 16} or self.useIsBottomOpen and self.isBottomOpen()) and self.lust > 45:
+        if (not mainobject.useIsBottomOpen and self.attireBot in {5, 7, 12, 13, 14, 16} or mainobject.useIsBottomOpen and self.isBottomOpen()) and self.lust > 45:
             self.rndArray.push(6)
         if self.attireBot in {4, 15, 20}:
             self.rndArray.push(7)
@@ -14369,7 +14037,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" Your hands have their work cut out for them as they attempt to give all 6 of your breasts attention, running up and down, from chest to belly, caressing them restlessly as you heave to control yourself just a little longer.")
             elif (self.boobTotal == 8):
                 self.doMainText(" From chest to lower belly, your hands continue to rove to fondle all four sets of tits, fervently groping them all with great pleasure.")
-            elif (self.gameTweaksMisc and self.boobTotal == 10):  # TODO: Make sure this is under the correct toggles
+            elif (mainobject.gameTweaksMisc and self.boobTotal == 10):  # TODO: Make sure this is under the correct toggles
                 self.doMainText("")  # TODO: Add text for this
             if (self.sen <= 30):
                 self.doMainText(" Unfortunately, you can't really come as your breasts simply aren't sensitive enough. But, it does feel nice as you continue to play with your nipples.")
@@ -15019,7 +14687,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def doLevelUP(self):
         self.outputMainText(f"You have this many perks pending: {self.levelUP}\n\nClick on an option to view a description and spend a perk.\n\nSuper perks are different from normal perks in that they only apply a single major effect and cost 3 perks to take.", True)
-        if self.staticdoLevelUPButtons:
+        if mainobject.staticdoLevelUPButtons:
             self.choiceListArray = Array("Super Perk", "", "Body Build", "Hyper Happy", "", "Alchemist", "", "Shapeshifty")
             if (self.vagTotal > 0):
                 self.choiceListArray[4] = "Baby Fact"
@@ -15732,7 +15400,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                                 self.cockChange(0, -(self.cockTotal - 1))
                                             if (self.balls > 2):
                                                 self.doMainText("\n\nWithin your ")
-                                                if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                                                if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                                                     self.doMainText("scrotum")
                                                 else:
                                                     self.doMainText("abdomen")
@@ -15749,7 +15417,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                                 self.cockChange(0, -(self.cockTotal - 1))
                                             if (self.balls > 2):
                                                 self.doMainText("\n\nWithin your ")
-                                                if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+                                                if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                                                     self.doMainText("scrotum")
                                                 else:
                                                     self.doMainText("abdomen")
@@ -15804,7 +15472,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (self.foundValley):
                 buttonlist[1] = 1
                 tempDict[1] = "Valley"
-            if (self.directPathToSanctuary and self.foundSanctuary and self.usedSecretStairs):
+            if (mainobject.directPathToSanctuary and self.foundSanctuary and self.usedSecretStairs):
                 buttonlist[12] = 1
                 tempDict[12] = "Sanctuary"
             self.showButtons(buttonlist)
@@ -15897,7 +15565,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif self.currentZone == Zones.SANCTUARY:
             tempButtons = ButtonList(0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0)
             tempDict = {6: "Sanctuary", 5: "Cave Descent"}
-            if (self.directPathToSanctuary):
+            if (mainobject.directPathToSanctuary):
                 if (self.usedSecretStairs):
                     tempDict[1] = "Firmshaft"
                 else:
@@ -15941,7 +15609,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return temp
 
     def eventSelect(self, which: str):
-        if as3state.as3DebugEnable and self.debugChooseSenario:
+        if as3state.as3DebugEnable and mainobject.debugChooseSenario:
             temp = self.debugSenarioChooser({"Softlik": (1, 4), "Firmshaft": (1, 3), "Tieden": (1, 3), "Siz'Calit": (1, 4), "Oviasis": (1, 5), "Sanctuary": (3, 3), "Forest": (1, 6), "Jungle": (1, 7), "Plains": (1, 5), "Savanna": (1, 5), "Desert": (1, 5), "Beach": (1, 6), "Lake": (1, 3), "Dairy Farm": (1, 5), "Old Cave": (1, 3), "Den": (1, 2), "Valley": (1, 5)}[which])
             if temp is not None:
                 return temp
@@ -18714,7 +18382,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen = doListen
          else:
             self.doMainText(f"\n\nAs you peer over the beach of slick figures, one by your {self.legDesc(10)} squirms a little and opens an eye, only able make out your silhouette amidst the sunlight, but doesn't seem to care.\n\n\"Would you please give me a hand and oil me up? I can feel my scales starting to dry a little.\"\n\nThe deep voice of the very masculine figure is obviously directed at you. He's one of those who prefer to sunbathe in the buff, not afraid to show off his physique. His shoulders are broad and his muscles are nice and toned, even his ass shining with tightness. His tail droops over his crack, ")
-            if not self.lizanDontShowBalls:
+            if not mainobject.lizanDontShowBalls:
                self.doMainText("though you can see it's lifted a tad from laying atop his testicles and ")
             self.doMainText("his dual-cocks laying lazily on either side beneath it. You can see a bowl of oils beside him, the stuff he's already glazed with.\n\nWill you add some more?")
             self.displayMainText()
@@ -18724,7 +18392,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                if (self.buttonChoice == 6):
                   if (self.ment <= 10):
                      self.doMainText("You nod and derp, picking up the bowl of oils and splashing it across his back. Then you fall down onto him, wiggling like an idiot and using your front to splash and \"massage\" the oil into his scales. The man jerks in shock, rolling out from under you, ", True)
-                     if not self.lizanDontShowBalls:
+                     if not mainobject.lizanDontShowBalls:
                         self.doMainText("his large balls swinging beneath his dual cocks, ")
                      self.doMainText("as he whacks you for your crude treatment.\n\n\"What are you doing?!\", he shouts with an annoyed tone. \"I'll get someone else to help. You nut!\"\n\nHe stares you down and waits for you to leave before rolling back onto the sand, awkwardly trying to clean up the mess you made on his back...")
                      self.doHP(-5)
@@ -18737,7 +18405,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.hrs = 2
                   elif (self.ment <= 80):
                      self.doMainText("You nod and kneel down beside him, picking up the bowl and drizzling the oil down his spine. He shudders a little from the sensation and croons as your hands come down to press it into his scales, gently pushing it around and kneading his muscles carefully. He wiggles a little as you hit his tense areas, obviously enjoying the massage you're giving him. Even his tail whips around a bit as you coat it, exposing his ", True)
-                     if not self.lizanDontShowBalls:
+                     if not mainobject.lizanDontShowBalls:
                         self.doMainText("large testicles and ")
                      self.doMainText("dual cocks for a moment as he accidentally flashes you.\n\nSoon, he's quite coated and relaxed from your efforts. He thanks you for the unexpectedly pleasant experience and insists you take a vial of the oil with you, at least as compensation.")
                      self.doLust(6, 0)
@@ -18746,28 +18414,28 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.hrs = 3
                   else:
                      self.doMainText(f"You nod with a smile and straddle his bum as you kneel down, making sure to stay slightly aloft so as to not put any weight on him. You pick up the bowl and drizzle the oil down his spine, then press into it with your hands and spread it out across his body. Using your weight for more pressure, you deeply massage all of his muscles as you knead into his soft scales, making him groan a little from the tender treatment. You can feel his tail beging to flick beneath your {self.buttDesc()} rump as you make your way down to the small of his back, until you trap it as you shuffle back to sit over his knees.\n\nHis tight butt tenses a bit as you genetly brush the oil over it, but quickly relaxes as you grab and gently squeeze it. You softly grind into it, making his tail spasm beneath you until it eventually pulls out from under you as you begin to work at its base. You can see him wince with embarrassment as he realizes he's giving you a good view of his nethers, ", True)
-                     if not self.lizanDontShowBalls:
+                     if not mainobject.lizanDontShowBalls:
                         self.doMainText("his large balls squished between his thighs with the heads of twin cocks peeking out underneath")
                      else:
                         self.doMainText("his twin cocks slightly erect from the pleasure of the massage")
                      self.doMainText(". You can see a few sparkles from the pre that drips out onto the sand, your efforts being a little too pleasant. However, he doesn't seem to try to cover himself and after a moment of your working at his tail, massaging from the tip to the base, he spreads his legs beneath you until you have to adjust your stance to kneel between them for better access.\n\nHis dongs clearly in view, ")
-                     if not self.lizanDontShowBalls:
+                     if not mainobject.lizanDontShowBalls:
                         self.doMainText("his testicles squirming with cum, ")
                      self.doMainText("your hands move in to oil up between his thighs. You slowly work your way up his legs, teasing him until the drooling pre becomes much more prominent, large drops pushing out as you ")
-                     if not self.lizanDontShowBalls:
+                     if not mainobject.lizanDontShowBalls:
                         self.doMainText("grab the orbs")
                      else:
                         self.doMainText("rub around his slit")
                      self.doMainText(". His tail nearly slaps you in anticipation, flicking around so much, and practically urges you towards the happy ending. Taking the blatent hints, you ")
-                     if not self.lizanDontShowBalls:
+                     if not mainobject.lizanDontShowBalls:
                         self.doMainText("grope at the cum-filled things, reaching")
                      else:
                         self.doMainText("reach")
                      self.doMainText(" down to grab one cock in each hand. The fleshy things harden in your grip, growing slightly longer")
-                     if not self.lizanDontShowBalls:
+                     if not mainobject.lizanDontShowBalls:
                         self.doMainText(", but the overgrown fruits still weigh down on them, covering much of your hands")
                      self.doMainText(" as you pump the cocks one after the other. The pre smears about, plenty of lubrication, and he begins to grunt and tense over the sand while you deftly jerk him off. Soon, his tail freezes, standing high as spunk spits out across the sand and pooling around your knees")
-                     if not self.lizanDontShowBalls:
+                     if not mainobject.lizanDontShowBalls:
                         self.doMainText(", the balls working hard to keep up with the relief")
                      self.doMainText(" until you're kneeling in a puddle of the stuff.\n\nHis tail collapses onto your shoulder, resting there as you finish wiping him up and bringing him down from the orgasm, until you finally complete your task. Still breathing heavily, his body looking quite tired, he merely turns up towards you.\n\n\"Please, take some oil with you. You seem to be better at using it than me. And here,\" he reaches into his pile of clothes and pulls out a large berry, \"take this with you, I've had enough for a while, if you couldn't tell.\" He sticks out his tongue in jest, but quickly lays back down to take a nice soothing nap to reminisce the recent events, leaving you to go off on your own.")
                      self.doLust(10, 0)
@@ -18816,7 +18484,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doMainText("\n\nThen ")
                   if (self.vagTotal > 1):
                      self.doMainText(f"a lizan man seems surprised to see your exra attributes. Already hard from thinking about it, he happily kisses you and presses his two pricks against your {self.bellyDesc()} belly before each slips them {self.legWhere(1)} your {self.legDesc(2)} to dive into seperate passages. He hugs you tight as he plunges both in at the same time, quivering slightly as he can feel himself through the fleshy wall that separates the rods. In and out, pre and lubrication spitting into the cleft between the bases of the two cocks and dribbling down his")
-                     if not self.lizanDontShowBalls:
+                     if not mainobject.lizanDontShowBalls:
                         self.doMainText("scrotum")
                      else:
                         self.doMainText("thighs")
@@ -18836,7 +18504,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   if (tempInt > 0):
                      self.doMainText("\n\nHaving had a moment to gather yourself, ")
                   self.doMainText("your attention is taken by one of the few lizan girls there, who waves you over as she lays on her back with a guy on top of her. You move closer and see she's already plugged up with one of his two shlongs. Looking a tad pained, it seemed the guy tried to fit both in at the same time, to no success, leaving his other cock bouncing awkwardly upon her clit. Yet, with you there, she's able to get a bit more fun as she directs you to lay on top of her, mushing her soft breasts against your ")
-                  if self.grammarFixes and self.breastSize < 1:
+                  if mainobject.grammarFixes and self.breastSize < 1:
                      self.doMainText("flat chest")
                   else:
                      self.doMainText("own")
@@ -19024,7 +18692,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.rndArray.push(3)
                     if (self.cockTotal > 0):
                         self.rndArray.push(4)
-                    if (self.balls > 0 and (self.respectShowBalls or self.showBalls)):
+                    # TODO: Make sure this respectShowBalls check is correct
+                    if (self.balls > 0 and (mainobject.respectShowBalls or self.showBalls)):
                         self.rndArray.push(5)
                     if (self.cockTotal > 0):
                         self.rndArray.push(6)
@@ -19050,7 +18719,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText(f"your cock{self.plural(1)} expand{self.plural(3)} in your {self.clothesBottom()}, nearly exploding through the fabric.")
                         self.cockSize += Math.floor(Utils.percent() / 20 + 1)
                     elif tempInt == 5:
-                        if self.respectShowBalls and not self.showBalls:
+                        if mainobject.respectShowBalls and not self.showBalls:
                             self.doMainText("your internal testicles swell, making you hunch over for an instant.")
                         else:
                             self.doMainText("your testicles swell between your thighs, making you hunch over your crotch for an instant.")
@@ -19390,7 +19059,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.buttonConfirm()
 
             def doListen():
-                if (Utils.percent() < self.ment and not (self.gameTweaksMisc and self.snuggleBall)):
+                if (Utils.percent() < self.ment and not (mainobject.gameTweaksMisc and self.snuggleBall)):
                     self.outputMainText(f"Whether you wanted to or not, you seem to be leaning down to pick it up. Some urge to snuggle has overcome you, forcing you to attempt to pick the squishy thing up.\n\nLiquidy tendrils lash out from the ball, sticking to your face and arms, belly and {self.legDesc(2)}. You don't have time to resist as it wraps around your body, seeping past your {self.currentClothes()} and coating your {self.skinDesc()}.\n\nOver within moments, you stand there and gradually try to move. A plush and soft layer, slightly shiny and malleable just like the ball, covers all your {self.skinDesc()}. It doesn't impede your movement or actions, almost like it was an extra layer of skin, and doesn't do much but make you... snuggly.", True)
                     self.snuggleBall = True
                     self.itemAdd(244)
@@ -19559,7 +19228,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             if (self.breastSize > 4):
                                 self.doMainText(", growing much lighter")
                             self.doMainText(f". Checking, you catch your two lowest sets of nipples disappear flat into your {self.skinDesc()}, while the other two pairs swell slightly, leaving you with two sets of breasts larger than before.")
-                        elif self.gameTweaksMisc and self.boobTotal == 10:  # TODO: Make text for this more unique
+                        elif mainobject.gameTweaksMisc and self.boobTotal == 10:  # TODO: Make text for this more unique
                             self.doMainText("\n\nYour belly tickles")
                             if (self.breastSize > 4):
                                 self.doMainText(", growing much lighter")
@@ -19846,7 +19515,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.itemAdd(219)
                                 if (Utils.percent() < 35):
                                     self.doMainText("\n\nAs you begin to leave, however, you spot something move towards you. Another reptillian, this one seems quite male as two cocks hang from his groin and knock against his knees. He seems a bit sheepish at first, blush filling the scales of his face due to his rather immodest lack of an outfit, but realizes the damage is already done and waves you over.\n\n\"Umm... I suppose you helped out my wife then?\" He spots the egg in your hand and the lack of belly on his wife. \"Well, thank you for that. Sometimes I just can't get back in time. Here, take one of these at least, I think I've got plenty.\"\n\nHe hands you a berry but ")
-                                    if self.lizanDontShowBalls:
+                                    if mainobject.lizanDontShowBalls:
                                         self.doMainText("seemed to be refering to someting else.")  # TODO: Make this better
                                     else:
                                         self.doMainText("actually refers to his scrotum. It hangs past his wangs and seems stuffed with testicles, though you can't easily count how many. They're each at least the size of a small melon and can easily explain how his wife was so bloated.")
@@ -22746,7 +22415,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         elif self.currentDungeon == Dungeons.SUCCUBUS_DEFEATED_FIRST_TIME:
             self.doMainText("The succubus shakes off her defeat and congratulates you. \"Gosh, it's been a while since an outsider has made it through. I suppose you'll be fine then.\" She steps back to the door at the end of the room, grunting slightly as she uses a good deal of force to push it open.\n\nGazing through, you mouth goes agape. After all those stairs, this is faaaar more interesting.\n\nA massive cavern stretches out before you, carved and chipped down to provide room for a sizeable city. The door is high up on a wall, giving you a grand view of all the wonder, with wide steps leading down. There's buildings made from all sorts of materials - from wood to stone to mud to things you can't even identify - littering the expansive floor with some stretching up to the high ceiling. All sorts of alien-looking beings walk the streets, faces and races and bodies you never thought imagineable. They peddle their wares, peddle their bodies, play games, play with each other, they... do all sorts of things to entertain their wide variety of cultures. All of this deep, deep underground.\n\n\"Welcome to Sanctuary! This place has been down here a very long time and has become a haven for those who survived the Change. Err... you probably don't know what the 'Change' is, since you're the newest generation and haven't witnessed it... Well... nor have I... or has anybody down here.... If we had witnessed it, we wouldn't be here to tell about it.\" She gives a dry chuckle.\n\n\"Basically, every several decades, the world just... changes. The terrain... the wildlife... the people... And some of us manage to dodge it somehow, either being caught up in some magical mishap or being in the right place at the right time or whatever. We survive while the rest... disappear. And without anybody else, we venture around and many of us wind up gathering here. Sanctuary seems to be one of the places that remains unaffected by the Change. Some of the people down there have even survived multiple Changes!\"\n\n\"That's why us 'guardians' are up here. We aren't here to guard Sanctuary from 'evildoers' or whatever. We're just here to make sure unwary wanderers from the newest generations don't find their way down here and... get a bit more than they bargained for. Except for those rabbits, but they're a different story that I don't know; they supply us with semen in exchange for something, it's not a matter I pay much attention to.\"\n\n\"Anyways, since you've 'defeated' all of us, you're free to come and go as you please, since you won't be a liability. Other than that, I... can't really explain it much more. I'm just from the last generation, so I don't know everything. This job just lets me get a good amount of essence from stronger travelers, like yourself,\" the succubus snickers as she jiggles her vials, \"and they needed someone a bit more eloquent than the other guardians to explain all I've just said. Sooo... yeah. You can go down there and have fun on your own, I'm not paid to babysit. I'll be here if you ever want to go another round, though.\"\n\nThe succubus gives you a wink and gives you a nudge down the steps, allowing you to explore this hidden world on your own.", True)
-            if (self.directPathToSanctuary and not self.foundSanctuary):
+            if (mainobject.directPathToSanctuary and not self.foundSanctuary):
                 self.doMainText("\n\nYou look to your side and see an engraving on the wall. It is somewhat faded but you manage make out the phrase \"Only the worthy may use this path.\", strange. You feel an urge to touch it. Once you do, you hear a congradulatory melody, like you've just uncovered a secret. The section of wall next to where the engraving was magically disappears, revealing another set of stairs. You have a feeling that these stairs lead to the surface.")
             self.displayMainText()
             self.inDungeon = False
@@ -24044,7 +23713,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.eLust += changes
 
     def eDmg(self, eweapon):
-        if self.debugNoDamage and as3state.as3DebugEnable:
+        if mainobject.debugNoDamage and as3state.as3DebugEnable:
             return 0
         dmgRed = 0
         if (self.sen > 0):
@@ -24182,7 +23851,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (attack <= 90):
                 chance = Utils.percent()
                 if (chance < 12 and self.cockTotal > 0):
-                    if (self.gameTweaksMisc and self.cockSize < 2):
+                    if (mainobject.gameTweaksMisc and self.cockSize < 2):
                         self.doMainText(f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and softly drags across your {self.cockDesc()} masculine length{self.plural(1)}. However, your cock{self.plural(1)} {self.plural(13)} so puny that there is hardly any moisture for the sand to take, doing nothing for the devil.")
                     else:
                         self.doMainText(f"\n\nSome of the devil's sand creeps into your {self.clothesBottom()} and softly drags across your {self.cockDesc()} masculine length{self.plural(1)}, soaking up some of the moisture from within and causing {self.plural(9)} to shrink a little. The sand then returns to the devil, renewing some of windy essence.")
@@ -24247,12 +23916,12 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 chance = Utils.percent()
                 self.doMainText("\n\nA funnal of sand shoots out from the devil's form, whipping out and latching onto your ")
                 if (chance < 12 and self.cockTotal > 0):
-                    if (self.gameTweaksMisc and self.cockSize < 2):
+                    if (mainobject.gameTweaksMisc and self.cockSize < 2):
                         self.doMainText(f"cock{self.plural(1)}. However, {self.plural(7)} already so puny that the devil can't siphon any more moisture from {self.plural(9)}, proving a fruitless attack.")
                     else:
                         self.doMainText(f"{self.cockDesc()} cock{self.plural(1)}, siphoning out a lot of moisture and causing {self.plural(9)} to shrink dramatically, restoring a good deal of power to the devil's winds.")
                         self.cockSize -= 5
-                        if (self.gameTweaksMisc and self.cockSize < 1):
+                        if (mainobject.gameTweaksMisc and self.cockSize < 1):
                             self.cockSize = 1
                         self.doeHP(10)
                 elif (chance < 23 and self.balls > 0 and self.showBalls):
@@ -24410,7 +24079,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.vagTotal < 1 and self.cockTotal < 1):
                     self.doMainText(f"your empty groin. You can feel fluid seep from the cups and into your crotch, arousing you further. She twists with a focused expression, tugging again and again at your {self.skinDesc()}, trying to wrench herself free after the attack. By the time she manages to remove her tentacle with a pop, you spot several hickies from where she had her way with you.")
                     self.doLust(Math.floor(10 + Utils.percent() / 10), 1)
-            elif (attack > 80 and (self.useIsBottomOpen and self.isBottomOpen() or not self.useIsBottomOpen and self.attireBot == -1)):
+            elif (attack > 80 and (mainobject.useIsBottomOpen and self.isBottomOpen() or not mainobject.useIsBottomOpen and self.attireBot == -1)):
                 self.doMainText("\n\nShe lunges forward at you with a naughty look in her large eyes. She comes intimately close to your face, a long tongue drawing from her mouth and licking you up your cheek. Caught off guard by the sudden sign of affection, you fail to notice her tentacles move in around you.")
                 if (self.vagTotal > 0):
                     self.doMainText(f" Some creep up your {self.legDesc(2)} and sneak beneath your {self.clothesBottom()}, sliding through your {self.vulvaDesc()} nether-lips. With a jump, you find your naughty hole{self.plural(2)} being penetrated. The slick tentacle{self.plural(2)} thrust{self.plural(4)} in and out slightly, as if gauging your size.")
@@ -24513,7 +24182,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.eggceleratorDose += 1
                     if (self.eggceleratorDose > 8 + Math.ceil(Utils.percent() / 20)):
                         self.doMainText(f"A little too fast...\n\nYour {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. In the midst of battle, you squat where you stand, already in the process of laying.")
-                        if (self.useIsBottomOpen and self.isBottomOpen() or not self.useIsBottomOpen and self.attireBot in {-2, 5, 7, 12, 13, 14, 16, 25}):
+                        if (mainobject.useIsBottomOpen and self.isBottomOpen() or not mainobject.useIsBottomOpen and self.attireBot in {-2, 5, 7, 12, 13, 14, 16, 25}):
                             self.doMainText(f" Without time to remove your clothes, you're thankful for your {self.clothesBottom}'s open crotch as the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and falls to the ground where it shatters and spills its unfertilized contents. Your {self.legDesc(6)} quake to hold yourself up as another egg is already on its way, with another close behind, firing from your poor cunt in such rapid succession that when you open your mouth to scream in climax, nothing can come out.")
                         else:
                             self.doMainText(f" Without time to remove your clothes, the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and pushes at your {self.clothesBottom()}. Just one stuck in the crotch of the fabric isn't too much of an issue, but you grip your quaking {self.legDesc(6)} as there are plenty more to come. Another egg pushes against the first, expanding your {self.clothesBottom()} further, their shells cracking slightly against each other, with a third forcing its way through you right behind. After four or five eggs filling your crotch, the cloth finally gives way and tears through, a mess of yolk and shell falling below you. Without any more blockage, the rest of the eggs are free to fly out of your poor cunt and shatter upon the ground, in such rapid succession that when you open your mouth to scream in climax, nothing can come out.")
@@ -24594,19 +24263,19 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.butt * self.buttMod < 15):
                     self.doMainText(f"\n\n\"Mmm... Your backside needs some more attention, doesn't it?\" She rushes around behind you, the spade of her tail giving your {self.buttDesc()} rear a quick spank. One of her vials glows and she smiles as your rump presses against your {self.clothesBottom()}, jiggling slightly as you stand.")
                     self.butt += 1
-                elif (self.cockTotal > 0 and (not self.succubusLeavesOne or self.succubusLeavesOne and self.cockSize > 1)):
+                elif (self.cockTotal > 0 and (not mainobject.succubusLeavesOne or mainobject.succubusLeavesOne and self.cockSize > 1)):
                     self.doMainText(f"\n\n\"And this thing you've got here just totally ruins your womanly figure now. We should take care of that~\" The woman steps behind you but her tail reaches around to your {self.cockDesc()} bulge, cradling it with the spade and giving it a shake. You can feel your cock{self.plural(1)} shrink slightly within your {self.clothesBottom()} while one of her vials glow.")
-                    if (not self.succubusLeavesOne and self.cockSize > 1 or self.succubusLeavesOne and self.cockSize > 2):
+                    if (not mainobject.succubusLeavesOne and self.cockSize > 1 or mainobject.succubusLeavesOne and self.cockSize > 2):
                         self.cockChange(-1, 0)
                     else:
-                        if (self.succubusLeavesOne):
+                        if (mainobject.succubusLeavesOne):
                             if (self.dominant != 6 or self.lizardCocks < 2):
                                 self.cockChange(-(self.cockSize - 1), -(self.cockTotal - 1))
                             else:
                                 self.cockChange(-(self.cockSize - 1), -(self.cockTotal - 2))
                         else:
                             self.cockChange(-1, 0)
-                        if (not self.succubusLeavesOne or self.succubusLeavesOne and self.vagTotal == 0):
+                        if (not mainobject.succubusLeavesOne or mainobject.succubusLeavesOne and self.vagTotal == 0):
                             self.vagChange(0, 1)
                         self.doMainText("\n\n\"Now that's my girl~ Who needs all those manly features when you can be a slut~?\" She seems quite pleased with the change.")
                 else:
@@ -24634,7 +24303,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText(f" and your breasts swell within your {self.clothesTop()}, a sort of kinky sensation overcoming you as you absentmindedly bounce their greater size. The succubus steps back, a vial on her belt glowing from her success.")
                         self.boobChange(2)
                         self.doLust(15, 1)
-                elif (chance <= 60 and self.cockTotal > 0 and (not self.succubusLeavesOne and self.cockSize > 2 or self.succubusLeavesOne and self.cockSize > 3)):
+                elif (chance <= 60 and self.cockTotal > 0 and (not mainobject.succubusLeavesOne and self.cockSize > 2 or mainobject.succubusLeavesOne and self.cockSize > 3)):
                     self.doMainText(f"\n\n\"A good girl doesn't need such garish things.\" She steps up to you and blatantly grabs the {self.cockDesc()} bulge in your {self.clothesBottom()}. You feel it tingly in a rather pleasant way")
                     if (Utils.percent() < self.ment):
                         self.doMainText(", but you manage to resist and interrupt her efforts.")
@@ -26097,7 +25766,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         # Legs change
         if (not self.lockLegs):
-            if self.correctBeastRaceFeet:
+            if mainobject.correctBeastRaceFeet:
                 bipedal = Math.max(self.humanAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.birdAffinity, self.pigAffinity)
                 bipedalDigiPaw = Math.max(self.wolfAffinity, self.catAffinity, self.skunkAffinity)
                 bipedalHooves = Math.max(self.horseAffinity, self.cowAffinity)
@@ -26156,13 +25825,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             nonEgg0 = Math.max(egg1)
             nonEgg1 = Math.max(egg0)
             if (egg0 > nonEgg0 + 20 and self.eggType != 0):
-                if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
+                if (not mainobject.grammarFixes or mainobject.grammarFixes and self.vagTotal > 0):
                     self.doMainText("\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.")
                 if (self.eggType == 1):
                     self.eggMaxTime += 22
                 self.eggType = 0
             if (egg1 > nonEgg1 + 20 and self.eggType != 1):
-                if (not self.grammarFixes or self.grammarFixes and self.vagTotal > 0):
+                if (not mainobject.grammarFixes or mainobject.grammarFixes and self.vagTotal > 0):
                     self.doMainText("\n\nYou sense your womb shifting, the eggs inside feeling like their forming somehow differently than they did before.")
                 if (self.eggType == 0):
                     self.eggMaxTime -= 22
@@ -26230,10 +25899,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # Loose all cocks
         if ((self.cockSize + sizeChange <= 0 or self.cockTotal + totalChange < 1) and self.cockSize > 0 and self.cockTotal > 0):
             self.doMainText(f"\n\nYou shiver a little as your cock{self.plural(1)} ")
-            if not self.respectShowBalls or self.respectShowBalls and self.showBalls:
+            if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
                 self.doMainText("and balls ")
             self.doMainText("shrink")
-            if self.respectShowBalls and self.showBalls and self.cockTotal < 2:
+            if mainobject.respectShowBalls and self.showBalls and self.cockTotal < 2:
                 self.doMainText("s")
             self.doMainText(" into your body, disappearing")
             if (self.vagTotal > 0):
@@ -26281,10 +25950,10 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("insectile ")
                 self.bugCocks += 1
             self.doMainText("penis stands erect")
-            if not self.lizanDontShowBalls or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
+            if not mainobject.lizanDontShowBalls or mainobject.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
                 self.doMainText(" and balls to match settle within your crotch beneath")
             if (self.vagTotal > 0):
-                if not self.lizanDontShowBalls or self.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
+                if not mainobject.lizanDontShowBalls or mainobject.lizanDontShowBalls and self.lizardCocks != self.cockTotal:
                     self.doMainText(f", slipping into your {self.vulvaDesc()} lips")
                 self.doMainText(". You now are considered a cross between genders, a herm.")
                 self.gender = Gender.HERM
@@ -26344,13 +26013,13 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.cockLoss()
                 totalChange += 1
             self.stats(0, 0, 2 * totalChange, 0)
-            if self.statusTweaks and sizeChange > 0:
+            if mainobject.statusTweaks and sizeChange > 0:
                 self.cockChange(sizeChange, 0)
 
         # Size change
         elif (self.cockTotal > 0):
             self.cockSize += sizeChange
-        if self.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
+        if mainobject.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
             if self.lizardCocks == self.cockTotal and self.cockTotal != 0:
                 self.showBalls = False
             else:
@@ -26400,7 +26069,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (minCock == self.bugAffinity and self.bugCocks > 0):
             self.doMainText("\n\nYou have lost one bug cock.")
             self.bugCocks -= 1
-        if self.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
+        if mainobject.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
             if self.lizardCocks == self.cockTotal:
                 self.showBalls = False
             else:
@@ -26551,7 +26220,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.legType != 1 and which == 1):
             if (self.legType == 0):
                 self.doMainText("\n\nYour feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. ")
-                if self.grammarFixes:
+                if mainobject.grammarFixes:
                     self.doMainText("Y")
                 else:
                     self.doMainText("Eventually, y")
@@ -26560,7 +26229,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nYour hooves ache as your hooves start to separate into toes. As the toes grow larger, the bottoms of your hooves also change, growing soft pads. Your new paws are very soft and nice to walk on. Your capabilities don't seem to have been affected.")
             if (self.legType >= 1000):
                 self.doMainText("\n\nBut then, your feet ache as your ankles lengthen and your lower-leg shortens. Your knees bend out to keep you balanced and you rise up onto your toes to stand digitigrade. Your toes also change to help, growing larger and rounder, with soft pads beneath, until the ends of your feet become a paws. ")
-                if self.grammarFixes:
+                if mainobject.grammarFixes:
                     self.doMainText("Y")
                 else:
                     self.doMainText("Eventually, y")
@@ -26948,20 +26617,20 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # femme-boy/femboy
         if topic == 1:
             if capital:
-                return "Femboy" if self.femmeboyToFemboy else "Femme-boy"
-            return "femboy" if self.femmeboyToFemboy else "femme-boy"
+                return "Femboy" if mainobject.femmeboyToFemboy else "Femme-boy"
+            return "femboy" if mainobject.femmeboyToFemboy else "femme-boy"
 
         # shemale/futanari
         if topic == 2:
             if capital:
-                return "Futanari" if self.shemaleToFuta else "Shemale"
-            return "futanari" if self.shemaleToFuta else "shemale"
+                return "Futanari" if mainobject.shemaleToFuta else "Shemale"
+            return "futanari" if mainobject.shemaleToFuta else "shemale"
 
         # femme boy/femboy
         if topic == 3:
             if capital:
-                return "Femboy" if self.femmeboyToFemboy else "Femme Boy"
-            return "femboy" if self.femmeboyToFemboy else "femme boy"
+                return "Femboy" if mainobject.femmeboyToFemboy else "Femme Boy"
+            return "femboy" if mainobject.femmeboyToFemboy else "femme boy"
 
     def plural(self, topic: int):
         if (topic == 1 and self.cockTotal > 1):
@@ -27041,7 +26710,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.hips > 3 and self.breastSize > 4):
                     return self.ptweaksGrammar(2)
                 elif (self.hips > 2):
-                    return "girly" if self.femboyishToGirly else f"{self.ptweaksGrammar(1)}ish"
+                    return "girly" if mainobject.femboyishToGirly else f"{self.ptweaksGrammar(1)}ish"
                 return "boyish"
             elif self.body <= 25:
                 return "manly"
@@ -27088,7 +26757,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         chance = Utils.percent()
         if (chance <= 50):
             if self.tail == 2:
-                if ngrammar and self.ngrammar:
+                if ngrammar and mainobject.ngrammar:
                     return "\bn equine"
                 return "equine"
             if self.tail == 3:
@@ -27408,7 +27077,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (tempButt <= 5):
                 return "tight"
             if (tempButt <= 15):
-                if ngrammar and self.ngrammar:
+                if ngrammar and mainobject.ngrammar:
                     return "\bn ample"
                 return "ample"
             if (tempButt <= 30):
@@ -27737,7 +27406,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def bellyDesc(self):
         chance = Utils.percent()
-        if False and self.internalBallsEffectBelly and not self.showBalls:
+        if False and mainobject.internalBallsEffectBelly and not self.showBalls:
             tempBelly = (self.pregnancyTime / 10 + self.vagBellyMod / 3 + self.bellyMod / 5 + self.ballSize * 0.9 / 5) * 60 / self.tallness
         else:
             tempBelly = (self.pregnancyTime / 10 + self.vagBellyMod / 3 + self.bellyMod / 5) * 60 / self.tallness
@@ -27821,7 +27490,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr = ""
         if (self.skinColor > 0):
             tempStr += self.skinC()
-        if (self.snuggleBall and not appearanceGo and self.snuggleBallTweak or self.snuggleBall and not self.snuggleBallTweak):
+        if (self.snuggleBall and not appearanceGo and mainobject.snuggleBallTweak or self.snuggleBall and not mainobject.snuggleBallTweak):
             tempStr += "plush and snuggly "
         if self.skinType == 1:
             return f"{tempStr}skin"
@@ -28089,9 +27758,8 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return Math.floor(tempNum)
 
     def frame1(self):
-        self.loadPreferences()
         self.hideOption7()
-        if self.originalFrame1Message:
+        if mainobject.originalFrame1Message:
             out = f"Nimin: Fetish Fantasy\n            v{NIMIN_VERSION}\n\nClick 'New Game' to begin a new game.\n\nCreated by:    --Xadera\n     www.furaffinity.net/user/xadera/\n\nOriginal concept by:     --Fenoxo\n     fenoxo.com\n\n\nFor tutorial/guide, questions, or bug reports, visit Xadera's page at the link above."
         else:
             out = f"Nimin: Fetish Fantasy (Unofficial python port)\n            Version {__version__} (v{NIMIN_VERSION})\n\nClick 'New Game' to begin a new game.\n\nOriginal game created by <a href='https://www.furaffinity.net/user/xadera/'>Xadera</a>\n    www.furaffinity.net/user/xadera\n\nOriginal concept by <a href='https://www.fenoxo.com/'>Fenoxo</a>\n    fenoxo.com\n\nThis port was created and maintained by <a href='https://github.com/ajdelguidice'>ajdelguidice</a>\n    github.com/ajdelguidice\n\nAll bug reports should be directed <a href='https://github.com/ajdelguidice/pymin/'>here</a>\n    github.com/ajdelguidice/pymin\n\nThis version currently only supports integer scaling for text. This is a limitation of Tcl/Tk.\n\nThis port adds additional configuration options, cheats, and fixes. Most of these can be accessed by going to File->Options in the menu bar. This is also where gameplay altering tweaks (Game Tweaks), grammar fixes/tweaks, and theme stuff are located (You can make the game closer to the original by going to the \"Interface\" tab and switching the theme selecter to \"Nimin\"). I recommend at least turning on \"Use expanded save dialog\" (Interface tab), \"Respect showBalls\" (Grammar tab), and \"Grammar Fixes\" (Grammar tab).\n\nThere is now also a panic button (More info at Wiki->Basics->Hotkeys)"
@@ -28338,7 +28006,7 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def showNGButton(self):
         if (not self.shownewgame):
-            tempcalc = (610, 90) if self.oNewGameButton else (580, 100)
+            tempcalc = (610, 90) if mainobject.originalNewGameButtonSize else (580, 100)
             self.window.addWidget(PyminButton, 'display', 'newgamebutton', x=110, y=tempcalc[0], width=tempcalc[1], height=30, font=self.font, anchor='n', text='New Game', command=self.newGameStart)
             self.shownewgame = True
 
@@ -28447,9 +28115,9 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def swapOption7(self):
         if (self.option7Visible):
-            if (self.showSide):
+            if (mainobject.showSide):
                 self.window._children['themebutton7'].text = 'O'
-            elif (not self.showSide):
+            elif (not mainobject.showSide):
                 self.window._children['themebutton7'].text = '--'
 
     def showAPButton(self):
@@ -28505,14 +28173,6 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.window.destroyChild('moveitemamount')
             self.moveitemamountvisible = False
 
-    def debugVariableDisplayText(self):
-        if self.currentState == GameState.GAME_UNLOADED:
-            return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Keyboard State|\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\nshiftHeld: {KeyState.shiftHeld}\noverrideShift: {KeyState.overrideShift}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Interface State Information|\nnsldSortOrder: {self.nsldSortOrder}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nstashPage: {self.stash.page}\ntempBagPage: {self.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.currentState}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
-        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Keyboard State|\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\nshiftHeld: {KeyState.shiftHeld}\noverrideShift: {KeyState.overrideShift}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Interface State Information|\nnsldSortOrder: {self.nsldSortOrder}\n\n|Option Variables|\nsavelocation: {self.savelocation}\nsolonlymode: {self.solonlymode}\nfixedresolutionmode: {self.enforceSize}\ncustomfontcolor: {self.customfontcolor}\nofontcolor: {self.otextcolor}\ncustomthemecolor: {self.customthemecolor}\nothemecolor: {self.obackgroundcolor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noNewGameButton: {self.oNewGameButton}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseNewSaveLoadDialog: {self.useNewSaveLoadDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.buttonChoice}\nsideFocus: {self.sideFocus}\n\n|Temporary Variables|\nbuy: {self.buy}\n\n|Choicelist|\nchoicePage: {self.choicePage}\nchoiceListArray = {self.choiceListArray}\nchoiceListResult = {self.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.bag.page}\nbagArray = {self.bag.items}\nbagStackArray = {self.bag.stack}\nstashPage: {self.stash.page}\nstashArray = {self.stash.items}\nstashStackArray = {self.stash.stack}\nmoveItemID: {self.moveItemID}\nmoveItemStack: {self.moveItemStack}\nmts: {self.mts}\nmtb: {self.mtb}\ntempBagPage: {self.tempBagPage}\nitemGainArray = {self.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.currentState}\ninBag: {self.inBag}\ninStash: {self.inStash}\ninShop: {self.inShop}\ncurrentZone: {self.currentZone}\nday: {self.day}\nhour: {self.hour}\nhrs: {self.hrs}\ninDungeon: {self.inDungeon}\ncurrentDungeon: {self.currentDungeon}\nskipExhaustion: {self.skipExhaustion}\ncurrentDayCare: {self.currentDayCare}\ngoToInDoProcess: {self.goToInDoProcess}\n\n|RND|\nrndArray = {self.rndArray}\n\n|Player Stats|\nstr: {self.str}\nment: {self.ment}\nlib: {self.lib}\nsen: {self.sen}\nHP: {self.HP}\nlust: {self.lust}\ncoin: {self.coin}\nstrength: {self.strength}\nmentality: {self.mentality}\nlibido: {self.libido}\nsensitivity: {self.sensitivity}\nhunger: {self.hunger}\nSexP: {self.SexP}\nlevelUP: {self.levelUP}\nlevel: {self.level}\n\n|Player Stat Multipliers|\nstrMod: {self.strMod}\nmentMod: {self.mentMod}\nlibMod: {self.libMod}\nsenMod: {self.senMod}\nHPMod: {self.HPMod}\nSexPMod: {self.SexPMod}\ncoinMod: {self.coinMod}\n\n|Other Modifiers|\nrunMod: {self.runMod}\nrapeMod: {self.rapeMod}\ncarryMod: {self.carryMod}\npregChanceMod: {self.pregChanceMod}\nextraPregChance: {self.extraPregChance}\npregTimeMod: {self.pregTimeMod}\nenticeMod: {self.enticeMod}\nmilkHPMod: {self.milkMod}\nchangeMod: {self.changeMod}\nminLust: {self.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.humanAffinity}\nhorseAffinity: {self.horseAffinity}\nwolfAffinity: {self.wolfAffinity}\ncatAffinity: {self.catAffinity}\ncowAffinity: {self.cowAffinity}\nlizardAffinity: {self.lizardAffinity}\nrabbitAffinity: {self.rabbitAffinity}\nmouseAffinity: {self.mouseAffinity}\nbirdAffinity: {self.birdAffinity}\npigAffinity: {self.pigAffinity}\nskunkAffinity: {self.skunkAffinity}\nbugAffinity: {self.bugAffinity}\nhumanTaurAffinity: {self.humanTaurAffinity}\ncowTaurAffinity: {self.cowTaurAffinity}\ntwoBoobAffinity: {self.twoBoobAffinity}\nfourBoobAffinity: {self.fourBoobAffinity}\nsixBoobAffinity: {self.sixBoobAffinity}\neightBoobAffinity: {self.eightBoobAffinity}\ntenBoobAffinity: {self.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.human}\nhorse: {self.horse}\nwolf: {self.wolf}\ncat: {self.cat}\ncow: {self.cow}\nlizard: {self.lizard}\nrabbit: {self.rabbit}\nmouse: {self.mouse}\nbird: {self.bird}\npig: {self.pig}\nskunk: {self.skunk}\nbug: {self.bug}\n\n|Player Body Features|\ngender: {self.gender}\nrace: {self.race}\nbody: {self.body}\ndominant: {self.dominant}\nhips: {self.hips}\nbutt: {self.butt}\ntallness: {self.tallness}\nskinType: {self.skinType}\ntail: {self.tail}\nears: {self.ears}\nhair: {self.hair}\nhairLength: {self.hairLength}\nhairColor: {self.hairColor}\nlegType: {self.legType}\nwings: {self.wings}\nfaceType: {self.faceType}\nskinColor: {self.skinColor}\nnipType: {self.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.cumMod}\ncockSizeMod: {self.cockSizeMod}\nvagSizeMod: {self.vagSizeMod}\nvagElastic: {self.vagElastic}\nmilkMod: {self.milkMod}\nvagBellyMod: {self.vagBellyMod}\nmilkCap: {self.milkCap}\nhipMod: {self.hipMod}\nbuttMod: {self.buttMod}\nbellyMod: {self.bellyMod}\ncockMoistMod: {self.cockMoistMod}\nvagMoistMod: {self.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.exhaustion}\nexhaustionPenalty: {self.exhaustionPenalty}\nmilkEngorgement: {self.milkEngorgement}\nmilkEngorgementLevel: {self.milkEngorgementLevel}\nudderEngorgement: {self.udderEngorgement}\nudderEngorgementLevel: {self.udderEngorgementLevel}\nheat: {self.heat}\nheatTime: {self.heatTime}\nheatMaxTime: {self.heatMaxTime}\nlactation: {self.lactation}\nudderLactation: {self.udderLactation}\nlustPenalty: {self.lustPenalty}\nnipplePlay: {self.nipplePlay}\nudderPlay: {self.udderPlay}\nblueBalls: {self.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.cockTotal}\nhumanCocks: {self.humanCocks}\nhorseCocks: {self.horseCocks}\nwolfCocks: {self.wolfCocks}\ncatCocks: {self.catCocks}\nlizardCocks: {self.lizardCocks}\nrabbitCocks: {self.rabbitCocks}\nbugCocks: {self.bugCocks}\ncockSize: {self.cockSize}\ncockMoist: {self.cockMoist}\nballs: {self.balls}\nballSize: {self.ballSize}\nshowBalls: {self.showBalls}\nknot: {self.knot}\nneuterizerHideBalls: {self.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.breastSize}\nboobTotal: {self.boobTotal}\nnippleSize: {self.nippleSize}\nclitSize: {self.clitSize}\nvagTotal: {self.vagTotal}\nvagSize: {self.vagSize}\nvagMoist: {self.vagMoist}\nvulvaSize: {self.vulvaSize}\n\n|Player Udders|\nudders: {self.udders}\nudderSize: {self.udderSize}\nteatSize: {self.teatSize}\n\n|Player Pregnancy|\npregArray = {self.pregArray}\npregStatus: {self.pregStatus}\npregnancyTime: {self.pregnancyTime}\npregRate: {self.pregRate}\neggLaying: {self.eggLaying}\neggMaxTime: {self.eggMaxTime}\neggTime: {self.eggTime}\neggRate: {self.eggRate}\neggType: {self.eggType}\n\n|Player Equiped Items|\nattireTop: {self.attireTop}\nattireBot: {self.attireBot}\nweapon: {self.weapon}\nsnuggleBall: {self.snuggleBall}\nsuppHarness: {self.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.masoPot}\nsMasoPot: {self.sMasoPot}\nbabyFree: {self.babyFree}\ncharmTime: {self.charmTime}\npheromone: {self.pheromone}\neggceleratorTime: {self.eggceleratorTime}\neggceleratorDose: {self.eggceleratorDose}\nbodyOil: {self.bodyOil}\nfertileGel: {self.fertileGel}\nmilkSuppressant: {self.milkSuppressant}\nmilkSuppressantLact: {self.milkSuppressantLact}\nmilkSuppressantUdder: {self.milkSuppressantUdder}\nplumpQuats: {self.plumpQuats}\ncockSnakePreg: {self.cockSnakePreg}\nmilkCPoisonNip: {self.milkCPoisonNip}\nmilkCPoisonUdd: {self.milkCPoisonUdd}\ncockSnakeVenom: {self.cockSnakeVenom}\nteatPump: {self.teatPump}\nnipPump: {self.nipPump}\ncockPump: {self.cockPump}\nclitPump: {self.clitPump}\nvulvaPump: {self.vulvaPump}\nfertilityStatueCurse: {self.fertilityStatueCurse}\ndairyFarmBrand: {self.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.babyFactLevel}\nbodyBuildLevel: {self.bodyBuildLevel}\nhyperHappyLevel: {self.hyperHappyLevel}\nalchemistLevel: {self.alchemistLevel}\nmilkMaidLevel: {self.milkMaidLevel}\nshapeshiftyLevel: {self.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.lockTail}\nlockFace: {self.lockFace}\nlockSkin: {self.lockSkin}\nlockBreasts: {self.lockBreasts}\nlockEars: {self.lockEars}\nlockLegs: {self.lockLegs}\nlockNipples: {self.lockNipples}\nlockCock: {self.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.knowLustDraft}\nknowRejuvPot: {self.knowRejuvPot}\nknowExpPreg: {self.knowExpPreg}\nknowBallSwell: {self.knowBallSwell}\nknowMaleEnhance: {self.knowMaleEnhance}\nknowSLustDraft: {self.knowSLustDraft}\nknowSRejuvPot: {self.knowSRejuvPot}\nknowSExpPreg: {self.knowSExpPreg}\nknowSBallSwell: {self.knowSBallSwell}\nknowBabyFree: {self.knowBabyFree}\nknowPotPot: {self.knowPotPot}\nknowGenSwap: {self.knowGenSwap}\nknowMasoPot: {self.knowMasoPot}\nknowMilkSuppress: {self.knowMilkSuppress}\nknowSGenSwap: {self.knowSGenSwap}\nknowSMasoPot: {self.knowSMasoPot}\nknowSBabyFree: {self.knowSBabyFree}\nknowSPotPot: {self.knowSPotPot}\nknowPussJuice: {self.knowPussJuice}\nknowPheromone: {self.knowPheromone}\nknowBazoomba: {self.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.firstExplore}\nfoundSoftlik: {self.foundSoftlik}\nfoundFirmshaft: {self.foundFirmshaft}\nfoundTieden: {self.foundTieden}\nfoundSizCalit: {self.foundSizCalit}\nfoundOviasis: {self.foundOviasis}\nfoundValley: {self.foundValley}\nfoundSanctuary: {self.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.defeatedMinotaur}\ndefeatedFreakyGirl: {self.defeatedFreakyGirl}\ndefeatedSuccubus: {self.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.humanChildren}\nequanChildren: {self.equanChildren}\nlupanChildren: {self.lupanChildren}\nfelinChildren: {self.felinChildren}\ncowChildren: {self.cowChildren}\nlizanEggs: {self.lizanEggs}\nlizanChildren: {self.lizanChildren}\nbunnionChildren: {self.bunnionChildren}\nwolfPupChildren: {self.wolfPupChildren}\nmiceChildren: {self.miceChildren}\nbirdEggs: {self.birdEggs}\nbirdChildren: {self.birdChildren}\npigChildren: {self.pigChildren}\ncalfChildren: {self.calfChildren}\nbugEggs: {self.bugEggs}\nbugChildren: {self.bugChildren}\nskunkChildren: {self.skunkChildren}\nminotaurChildren: {self.minotaurChildren}\nfreakyGirlChildren: {self.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.enemyID}\neHP: {self.eHP}\neMaxHP: {self.eMaxHP}\neStr: {self.eStr}\neMenta: {self.eMenta}\neSen: {self.eSen}\neLib: {self.eLib}\neLust: {self.eLust}\neGen: {self.eGen}\nePref: {self.ePref}\neCoin: {self.eCoin}\neSexP: {self.eSexP}\neItem: {self.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.lilaRep}\nlilaVulva: {self.lilaVulva}\nlilaMilk: {self.lilaMilk}\nlilaPreg: {self.lilaPreg}\nlilaUB: {self.lilaUB}\nlilaWetness: {self.lilaWetness}\nlilaWetStatus: {self.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.malonRep}\nmalonPreg: {self.malonPreg}\nmalonChildren: {self.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.jamieRep}\njamieSize: {self.jamieSize}\njamieChildren: {self.jamieChildren}\njamieRep1: {self.jamieRep1}\njamieRep2: {self.jamieRep2}\njamieRep3: {self.jamieRep3}\njamieButt: {self.jamieButt}\njamieBreasts: {self.jamieBreasts}\njamieHair: {self.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.silRep}\nsilPreg: {self.silPreg}\nsilRate: {self.silRate}\nsilLay: {self.silLay}\nsilTied: {self.silTied}\nsilGrowthTime: {self.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.textCheckArray}\nspecialAbilityArray = {self.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.currentText.get()}\nsideText = {self.sideText.get()}'
-
-    def detailedDebug(self, *e):
-        self.debugvarwindow.updateText()
-
     def debugChangeAffinity(self, affinity, amount):
         if affinity == '1':
             self.human += amount
@@ -28555,7 +28215,712 @@ class PyminMain(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if self.currentState == GameState.GENERAL and self.showsavegame and self.showloadgame and self.shownewgame:
             # Should only happen when in doGeneral
             self.doProcess(override='aff')
+        mainobject.detailedDebug()
+
+
+class PyminMain:
+    # This class contains all game windows and config values
+    # Doing it this way allows for easier debugging
+    # TODO: Some properties don't apply to the game window on first open
+    @property
+    def backgroundColor(self):
+        return self._backgroundColor
+
+    @backgroundColor.setter
+    def backgroundColor(self, value):
+        self._backgroundColor = value
+        self.game.backgroundColor = value
+        self.aboutwindow.backgroundColor = value
+        self.options.backgroundColor = value
+        self.wiki.backgroundColor = value
+        self.saveconverter.backgroundColor = value
+        self.debugvarwindow.backgroundColor = value
         self.detailedDebug()
+
+    @property
+    def fontSize(self):
+        return self._fontSize
+
+    @fontSize.setter
+    def fontSize(self, value):
+        if (value < 3):  # originally 4
+            value = 3
+        if (value > 25):  # originally 26
+            value = 25
+        self._fontSize = value
+        self.game.fontSize = value
+        self.wiki.fontSize = value
+
+    @property
+    def fontBold(self):
+        return self._fontBold
+
+    @fontBold.setter
+    def fontBold(self, value):
+        self._fontBold = value
+        self.game.fontBold = value
+
+    @property
+    def textColor(self):
+        return self._textColor
+
+    @textColor.setter
+    def textColor(self, value):
+        self._textColor = value
+        self.game.textColor = value
+        self.aboutwindow.textColor = value
+        self.options.textColor = value
+        self.wiki.textColor = value
+        self.saveconverter.textColor = value
+        self.debugvarwindow.textColor = value
+        self.detailedDebug()
+
+    @property
+    def showSide(self):
+        return self._showSide
+
+    @showSide.setter
+    def showSide(self, value):
+        self._showSide = value
+        ...  # TODO: Handle updating
+        # TODO: Refactor some of the showSide stuff
+
+    @property
+    def newSaveLoadDialog_SortOrder(self):
+        return self._nsldSortOrder
+
+    @newSaveLoadDialog_SortOrder.setter
+    def newSaveLoadDialog_SortOrder(self, value):
+        self._nsldSortOrder = value
+        ...  # TODO: Handle updating
+
+    @property
+    def saveLocation(self):
+        return self._saveLocation
+
+    @saveLocation.setter
+    def saveLocation(self, value):
+        self._saveLocation = value
+
+    @property
+    def saveCompatMode(self):
+        return self._saveCompatMode
+
+    @saveCompatMode.setter
+    def saveCompatMode(self, value):
+        self._saveCompatMode = value
+
+    @property
+    def enforceSize(self):
+        return self._enforceSize
+
+    @enforceSize.setter
+    def enforceSize(self, value):
+        self._enforceSize = value
+        self.game.enforceSize = value
+        self.options.enforceSize = value
+        self.wiki.enforceSize = value
+        self.debugvarwindow.enforceSize = value
+        self.debugaffwindow.enforceSize = value
+        self.debuggiveitemwindow.enforceSize = value
+        # self.saveconverter.enforceSize = value
+        # self.saveeditor.enforceSize = value
+
+    @property
+    def customFontColor(self):
+        return self._customFontColor
+
+    @customFontColor.setter
+    def customFontColor(self, value):
+        self._customFontColor = value
+        self.game.updateTextColorButtonState()
+
+    @property
+    def oFontColor(self):
+        return self._oFontColor
+
+    @oFontColor.setter
+    def oFontColor(self, value):
+        self._oFontColor = value
+
+    @property
+    def customThemeColor(self):
+        return self._customThemeColor
+
+    @customThemeColor.setter
+    def customThemeColor(self, value):
+        self._customThemeColor = value
+        self.game.updateThemeButtonState()
+
+    @property
+    def oThemeColor(self):
+        return self._oThemeColor
+
+    @oThemeColor.setter
+    def oThemeColor(self, value):
+        self._oThemeColor = value
+
+    @property
+    def useNiminTheme(self):
+        return self._useNiminTheme
+
+    @useNiminTheme.setter
+    def useNiminTheme(self, value):
+        self._useNiminTheme = value
+        self.updateStyle()
+
+    @property
+    def scrolledTextBorders(self):
+        return self._scrolledTextBorders
+
+    @scrolledTextBorders.setter
+    def scrolledTextBorders(self, value):
+        self._scrolledTextBorders = value
+        self.game.scrolledTextBorders = value
+
+    @property
+    def originalNewGameButtonSize(self):
+        return self._oNewGameButton
+
+    @originalNewGameButtonSize.setter
+    def originalNewGameButtonSize(self, value):
+        self._oNewGameButton = value
+        ...  # TODO: Handle updating
+
+    @property
+    def staticdoLevelUPButtons(self):
+        return self._staticdoLevelUPButtons
+
+    @staticdoLevelUPButtons.setter
+    def staticdoLevelUPButtons(self, value):
+        self._staticdoLevelUPButtons = value
+
+    @property
+    def useExpandedSaveDialog(self):
+        return self._useNewSaveLoadDialog
+
+    @useExpandedSaveDialog.setter
+    def useExpandedSaveDialog(self, value):
+        self._useNewSaveLoadDialog = value
+
+    @property
+    def useNewStash(self):
+        return self._useNewStash
+
+    @useNewStash.setter
+    def useNewStash(self, value):
+        self._useNewStash = value
+
+    @property
+    def helpToWiki(self):
+        return self._helpToWiki
+
+    @helpToWiki.setter
+    def helpToWiki(self, value):
+        self._helpToWiki = value
+
+    @property
+    def doShopsReturn(self):
+        return self._doShopsReturn
+
+    @doShopsReturn.setter
+    def doShopsReturn(self, value):
+        self._doShopsReturn = value
+
+    @property
+    def originalFrame1Message(self):
+        # TODO: Add this to the config
+        return self._originalFrame1Message
+
+    @originalFrame1Message.setter
+    def originalFrame1Message(self, value):
+        self._originalFrame1Message = value
+
+    @property
+    def respectShowBalls(self):
+        return self._respectShowBalls
+
+    @respectShowBalls.setter
+    def respectShowBalls(self, value):
+        self._respectShowBalls = value
+
+    @property
+    def femmeboyToFemboy(self):
+        return self._femmeboyToFemboy
+
+    @femmeboyToFemboy.setter
+    def femmeboyToFemboy(self, value):
+        self._femmeboyToFemboy = value
+
+    @property
+    def shemaleToFuta(self):
+        return self._shemaleToFuta
+
+    @shemaleToFuta.setter
+    def shemaleToFuta(self, value):
+        self._shemaleToFuta = value
+
+    @property
+    def ngrammar(self):
+        return self._ngrammar
+
+    @ngrammar.setter
+    def ngrammar(self, value):
+        self._ngrammar = value
+
+    @property
+    def femmieMaleReplacement(self):
+        return self._femmieMaleReplacement
+
+    @femmieMaleReplacement.setter
+    def femmieMaleReplacement(self, value):
+        self._femmieMaleReplacement = value
+
+    @property
+    def femboyishToGirly(self):
+        return self._femboyishToGirly
+
+    @femboyishToGirly.setter
+    def femboyishToGirly(self, value):
+        self._femboyishToGirly = value
+
+    @property
+    def snuggleBallTweak(self):
+        return self._snuggleBallTweak
+
+    @snuggleBallTweak.setter
+    def snuggleBallTweak(self, value):
+        self._snuggleBallTweak = value
+
+    @property
+    def grammarFixes(self):
+        return self._grammarFixes
+
+    @grammarFixes.setter
+    def grammarFixes(self, value):
+        self._grammarFixes = value
+
+    @property
+    def statusTweaks(self):
+        return self._statusTweaks
+
+    @statusTweaks.setter
+    def statusTweaks(self, value):
+        self._statusTweaks = value
+
+    @property
+    def succubusLeavesOne(self):
+        return self._succubusLeavesOne
+
+    @succubusLeavesOne.setter
+    def succubusLeavesOne(self, value):
+        self._succubusLeavesOne = value
+
+    @property
+    def useIsBottomOpen(self):
+        return self._useIsBottomOpen
+
+    @useIsBottomOpen.setter
+    def useIsBottomOpen(self, value):
+        self._useIsBottomOpen = value
+
+    @property
+    def lizanDontShowBalls(self):
+        return self._lizanDontShowBalls
+
+    @lizanDontShowBalls.setter
+    def lizanDontShowBalls(self, value):
+        self._lizanDontShowBalls = value
+
+    @property
+    def hermGetsBoth(self):
+        return self._hermGetsBoth
+
+    @hermGetsBoth.setter
+    def hermGetsBoth(self, value):
+        # NOTE: Unused
+        self._hermGetsBoth = value
+
+    @property
+    def internalBallsEffectBelly(self):
+        return self._internalBallsEffectBelly
+
+    @internalBallsEffectBelly.setter
+    def internalBallsEffectBelly(self, value):
+        self._internalBallsEffectBelly = value
+
+    @property
+    def directPathToSanctuary(self):
+        return self._directPathToSanctuary
+
+    @directPathToSanctuary.setter
+    def directPathToSanctuary(self, value):
+        self._directPathToSanctuary = value
+
+    @property
+    def correctBeastRaceFeet(self):
+        return self._correctBeastRaceFeet
+
+    @correctBeastRaceFeet.setter
+    def correctBeastRaceFeet(self, value):
+        self._correctBeastRaceFeet = value
+
+    @property
+    def gameTweaksMisc(self):
+        return self._gameTweaksMisc
+
+    @gameTweaksMisc.setter
+    def gameTweaksMisc(self, value):
+        self._gameTweaksMisc = value
+
+    @property
+    def debugChooseSenario(self):
+        return self._debugChooseSenario
+
+    @debugChooseSenario.setter
+    def debugChooseSenario(self, value):
+        self._debugChooseSenario = value
+
+    @property
+    def debugNoDamage(self):
+        return self._debugNoDamage
+
+    @debugNoDamage.setter
+    def debugNoDamage(self, value):
+        self._debugNoDamage = value
+
+    @property
+    def main(self):
+        # TODO: Rename
+        # Main object
+        if self.startType == StartType.SAVE_CONVERTER:
+            return self.saveconverter
+        return self.game
+
+    def __init__(self, startType):
+        self.startType = startType
+        self.style = None
+        self.finshedLoading = False
+
+        self.game = PyminGame()
+        self.aboutwindow = AboutWindow()
+        self.options = OptionsWindow()
+        self.wiki = PyminWiki()
+        self.saveconverter = SaveConverter()
+        self.saveeditor = SaveEditor()
+        self.debugvarwindow = DebugVariableDisplay()
+        self.debugaffwindow = DebugAffinityChange()
+        self.debuggiveitemwindow = DebugGiveItem()
+
+        self.backgroundColor = "#FFFFFF"
+        self.fontSize = 11
+        self.fontBold = False
+        self.textColor = "#000000"
+        self.showSide = True
+        self.newSaveLoadDialog_SortOrder = 0
+
+        self.saveLocation = GAME_DIR / "nimin_saves"
+        self.saveCompatMode = False
+        self.enforceSize = False
+        self.customFontColor = False
+        self.oTextColor = "#000000"
+        self.customThemeColor = False
+        self.oBackgroundColor = "#FFFFFF"
+
+        self.useNiminTheme = False
+        self.scrolledTextBorders = False
+        self.originalNewGameButtonSize = False
+        self.staticdoLevelUPButtons = False
+        self.useExpandedSaveDialog = False
+        self.useNewStash = False
+        self.helpToWiki = False
+        self.doShopsReturn = False
+        self.originalFrame1Message = False
+
+        self.respectShowBalls = False
+        self.femmeboyToFemboy = False
+        self.shemaleToFuta = False
+        self.ngrammar = False
+        self.femmieMaleReplacement = 0
+        self.femboyishToGirly = False
+        self.snuggleBallTweak = False
+        self.grammarFixes = False
+
+        self.statusTweaks = False
+        self.succubusLeavesOne = False
+        self.useIsBottomOpen = False
+        self.lizanDontShowBalls = False
+        self.hermGetsBoth = False
+        self.internalBallsEffectBelly = False
+        self.directPathToSanctuary = False
+        self.correctBeastRaceFeet = False
+        self.gameTweaksMisc = False
+
+        self.debugChooseSenario = False
+        self.debugNoDamage = False
+
+        self.loadPreferences()
+        self.finshedLoading = True
+
+    def updateStyle(self):
+        if self.main.isOpen and THEME_DIR.is_dir():
+            if self.useNiminTheme:
+                self.style.theme_use('nimin')
+            else:
+                self.style.theme_use('default')
+
+    def open(self):
+        self.main.open()
+        self.style = ttk.Style(self.main.window)
+        if THEME_DIR.is_dir():
+            self.main.window.tk.call('source', f'{THEME_DIR}/nimin.tcl')
+        self.updateStyle()
+
+    def fontSizeDown(self):
+        self.fontSize -= 2
+        if self.finshedLoading:
+            self.savePreferences()
+
+    def fontSizeReset(self):
+        self.fontSize = 11  # originally 14
+        if self.finshedLoading:
+            self.savePreferences()
+
+    def fontSizeUp(self):
+        self.fontSize += 2
+        if self.finshedLoading:
+            self.savePreferences()
+
+    def toggleBold(self):
+        self.fontBold = not self.fontBold
+        if self.finshedLoading:
+            self.savePreferences()
+
+    def detailedDebug(self, *e):
+        self.debugvarwindow.updateText()
+
+    def debugVariableDisplayText(self):
+        if self.game.currentState == GameState.GAME_UNLOADED:
+            return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Keyboard State|\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\nshiftHeld: {KeyState.shiftHeld}\noverrideShift: {KeyState.overrideShift}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Interface State Information|\nnewSaveLoadDialog_SortOrder: {self.newSaveLoadDialog_SortOrder}\n\n|Option Variables|\nsaveLocation: {self.saveLocation}\nsaveCompatMode: {self.saveCompatMode}\nfixedresolutionmode: {self.enforceSize}\ncustomFontColor: {self.customFontColor}\noTextColor: {self.oTextColor}\ncustomThemeColor: {self.customThemeColor}\noBackgroundColor: {self.oBackgroundColor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noriginalNewGameButtonSize: {self.originalNewGameButtonSize}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseExpandedSaveDialog: {self.useExpandedSaveDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.game.buttonChoice}\nsideFocus: {self.game.sideFocus}\n\n|Temporary Variables|\nbuy: {self.game.buy}\n\n|Choicelist|\nchoicePage: {self.game.choicePage}\nchoiceListArray = {self.game.choiceListArray}\nchoiceListResult = {self.game.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.game.bag.page}\nstashPage: {self.game.stash.page}\ntempBagPage: {self.game.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.game.currentState}\n\n|RND|\nrndArray = {self.game.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.game.textCheckArray}\nspecialAbilityArray = {self.game.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.game.currentText.get()}\nsideText = {self.game.sideText.get()}'
+        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Keyboard State|\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\nshiftHeld: {KeyState.shiftHeld}\noverrideShift: {KeyState.overrideShift}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Interface State Information|\nnewSaveLoadDialog_SortOrder: {self.newSaveLoadDialog_SortOrder}\n\n|Option Variables|\nsaveLocation: {self.saveLocation}\nsaveCompatMode: {self.saveCompatMode}\nfixedresolutionmode: {self.enforceSize}\ncustomFontColor: {self.customFontColor}\noTextColor: {self.oTextColor}\ncustomThemeColor: {self.customThemeColor}\noBackgroundColor: {self.oBackgroundColor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noriginalNewGameButtonSize: {self.originalNewGameButtonSize}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseExpandedSaveDialog: {self.useExpandedSaveDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.game.buttonChoice}\nsideFocus: {self.game.sideFocus}\n\n|Temporary Variables|\nbuy: {self.game.buy}\n\n|Choicelist|\nchoicePage: {self.game.choicePage}\nchoiceListArray = {self.game.choiceListArray}\nchoiceListResult = {self.game.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.game.bag.page}\nbagArray = {self.game.bag.items}\nbagStackArray = {self.game.bag.stack}\nstashPage: {self.game.stash.page}\nstashArray = {self.game.stash.items}\nstashStackArray = {self.game.stash.stack}\nmoveItemID: {self.game.moveItemID}\nmoveItemStack: {self.game.moveItemStack}\nmts: {self.game.mts}\nmtb: {self.game.mtb}\ntempBagPage: {self.game.tempBagPage}\nitemGainArray = {self.game.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.game.currentState}\ninBag: {self.game.inBag}\ninStash: {self.game.inStash}\ninShop: {self.game.inShop}\ncurrentZone: {self.game.currentZone}\nday: {self.game.day}\nhour: {self.game.hour}\nhrs: {self.game.hrs}\ninDungeon: {self.game.inDungeon}\ncurrentDungeon: {self.game.currentDungeon}\nskipExhaustion: {self.game.skipExhaustion}\ncurrentDayCare: {self.game.currentDayCare}\ngoToInDoProcess: {self.game.goToInDoProcess}\n\n|RND|\nrndArray = {self.game.rndArray}\n\n|Player Stats|\nstr: {self.game.str}\nment: {self.game.ment}\nlib: {self.game.lib}\nsen: {self.game.sen}\nHP: {self.game.HP}\nlust: {self.game.lust}\ncoin: {self.game.coin}\nstrength: {self.game.strength}\nmentality: {self.game.mentality}\nlibido: {self.game.libido}\nsensitivity: {self.game.sensitivity}\nhunger: {self.game.hunger}\nSexP: {self.game.SexP}\nlevelUP: {self.game.levelUP}\nlevel: {self.game.level}\n\n|Player Stat Multipliers|\nstrMod: {self.game.strMod}\nmentMod: {self.game.mentMod}\nlibMod: {self.game.libMod}\nsenMod: {self.game.senMod}\nHPMod: {self.game.HPMod}\nSexPMod: {self.game.SexPMod}\ncoinMod: {self.game.coinMod}\n\n|Other Modifiers|\nrunMod: {self.game.runMod}\nrapeMod: {self.game.rapeMod}\ncarryMod: {self.game.carryMod}\npregChanceMod: {self.game.pregChanceMod}\nextraPregChance: {self.game.extraPregChance}\npregTimeMod: {self.game.pregTimeMod}\nenticeMod: {self.game.enticeMod}\nmilkHPMod: {self.game.milkMod}\nchangeMod: {self.game.changeMod}\nminLust: {self.game.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.game.humanAffinity}\nhorseAffinity: {self.game.horseAffinity}\nwolfAffinity: {self.game.wolfAffinity}\ncatAffinity: {self.game.catAffinity}\ncowAffinity: {self.game.cowAffinity}\nlizardAffinity: {self.game.lizardAffinity}\nrabbitAffinity: {self.game.rabbitAffinity}\nmouseAffinity: {self.game.mouseAffinity}\nbirdAffinity: {self.game.birdAffinity}\npigAffinity: {self.game.pigAffinity}\nskunkAffinity: {self.game.skunkAffinity}\nbugAffinity: {self.game.bugAffinity}\nhumanTaurAffinity: {self.game.humanTaurAffinity}\ncowTaurAffinity: {self.game.cowTaurAffinity}\ntwoBoobAffinity: {self.game.twoBoobAffinity}\nfourBoobAffinity: {self.game.fourBoobAffinity}\nsixBoobAffinity: {self.game.sixBoobAffinity}\neightBoobAffinity: {self.game.eightBoobAffinity}\ntenBoobAffinity: {self.game.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.game.human}\nhorse: {self.game.horse}\nwolf: {self.game.wolf}\ncat: {self.game.cat}\ncow: {self.game.cow}\nlizard: {self.game.lizard}\nrabbit: {self.game.rabbit}\nmouse: {self.game.mouse}\nbird: {self.game.bird}\npig: {self.game.pig}\nskunk: {self.game.skunk}\nbug: {self.game.bug}\n\n|Player Body Features|\ngender: {self.game.gender}\nrace: {self.game.race}\nbody: {self.game.body}\ndominant: {self.game.dominant}\nhips: {self.game.hips}\nbutt: {self.game.butt}\ntallness: {self.game.tallness}\nskinType: {self.game.skinType}\ntail: {self.game.tail}\nears: {self.game.ears}\nhair: {self.game.hair}\nhairLength: {self.game.hairLength}\nhairColor: {self.game.hairColor}\nlegType: {self.game.legType}\nwings: {self.game.wings}\nfaceType: {self.game.faceType}\nskinColor: {self.game.skinColor}\nnipType: {self.game.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.game.cumMod}\ncockSizeMod: {self.game.cockSizeMod}\nvagSizeMod: {self.game.vagSizeMod}\nvagElastic: {self.game.vagElastic}\nmilkMod: {self.game.milkMod}\nvagBellyMod: {self.game.vagBellyMod}\nmilkCap: {self.game.milkCap}\nhipMod: {self.game.hipMod}\nbuttMod: {self.game.buttMod}\nbellyMod: {self.game.bellyMod}\ncockMoistMod: {self.game.cockMoistMod}\nvagMoistMod: {self.game.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.game.exhaustion}\nexhaustionPenalty: {self.game.exhaustionPenalty}\nmilkEngorgement: {self.game.milkEngorgement}\nmilkEngorgementLevel: {self.game.milkEngorgementLevel}\nudderEngorgement: {self.game.udderEngorgement}\nudderEngorgementLevel: {self.game.udderEngorgementLevel}\nheat: {self.game.heat}\nheatTime: {self.game.heatTime}\nheatMaxTime: {self.game.heatMaxTime}\nlactation: {self.game.lactation}\nudderLactation: {self.game.udderLactation}\nlustPenalty: {self.game.lustPenalty}\nnipplePlay: {self.game.nipplePlay}\nudderPlay: {self.game.udderPlay}\nblueBalls: {self.game.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.game.cockTotal}\nhumanCocks: {self.game.humanCocks}\nhorseCocks: {self.game.horseCocks}\nwolfCocks: {self.game.wolfCocks}\ncatCocks: {self.game.catCocks}\nlizardCocks: {self.game.lizardCocks}\nrabbitCocks: {self.game.rabbitCocks}\nbugCocks: {self.game.bugCocks}\ncockSize: {self.game.cockSize}\ncockMoist: {self.game.cockMoist}\nballs: {self.game.balls}\nballSize: {self.game.ballSize}\nshowBalls: {self.game.showBalls}\nknot: {self.game.knot}\nneuterizerHideBalls: {self.game.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.game.breastSize}\nboobTotal: {self.game.boobTotal}\nnippleSize: {self.game.nippleSize}\nclitSize: {self.game.clitSize}\nvagTotal: {self.game.vagTotal}\nvagSize: {self.game.vagSize}\nvagMoist: {self.game.vagMoist}\nvulvaSize: {self.game.vulvaSize}\n\n|Player Udders|\nudders: {self.game.udders}\nudderSize: {self.game.udderSize}\nteatSize: {self.game.teatSize}\n\n|Player Pregnancy|\npregArray = {self.game.pregArray}\npregStatus: {self.game.pregStatus}\npregnancyTime: {self.game.pregnancyTime}\npregRate: {self.game.pregRate}\neggLaying: {self.game.eggLaying}\neggMaxTime: {self.game.eggMaxTime}\neggTime: {self.game.eggTime}\neggRate: {self.game.eggRate}\neggType: {self.game.eggType}\n\n|Player Equiped Items|\nattireTop: {self.game.attireTop}\nattireBot: {self.game.attireBot}\nweapon: {self.game.weapon}\nsnuggleBall: {self.game.snuggleBall}\nsuppHarness: {self.game.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.game.masoPot}\nsMasoPot: {self.game.sMasoPot}\nbabyFree: {self.game.babyFree}\ncharmTime: {self.game.charmTime}\npheromone: {self.game.pheromone}\neggceleratorTime: {self.game.eggceleratorTime}\neggceleratorDose: {self.game.eggceleratorDose}\nbodyOil: {self.game.bodyOil}\nfertileGel: {self.game.fertileGel}\nmilkSuppressant: {self.game.milkSuppressant}\nmilkSuppressantLact: {self.game.milkSuppressantLact}\nmilkSuppressantUdder: {self.game.milkSuppressantUdder}\nplumpQuats: {self.game.plumpQuats}\ncockSnakePreg: {self.game.cockSnakePreg}\nmilkCPoisonNip: {self.game.milkCPoisonNip}\nmilkCPoisonUdd: {self.game.milkCPoisonUdd}\ncockSnakeVenom: {self.game.cockSnakeVenom}\nteatPump: {self.game.teatPump}\nnipPump: {self.game.nipPump}\ncockPump: {self.game.cockPump}\nclitPump: {self.game.clitPump}\nvulvaPump: {self.game.vulvaPump}\nfertilityStatueCurse: {self.game.fertilityStatueCurse}\ndairyFarmBrand: {self.game.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.game.babyFactLevel}\nbodyBuildLevel: {self.game.bodyBuildLevel}\nhyperHappyLevel: {self.game.hyperHappyLevel}\nalchemistLevel: {self.game.alchemistLevel}\nmilkMaidLevel: {self.game.milkMaidLevel}\nshapeshiftyLevel: {self.game.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.game.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.game.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.game.lockTail}\nlockFace: {self.game.lockFace}\nlockSkin: {self.game.lockSkin}\nlockBreasts: {self.game.lockBreasts}\nlockEars: {self.game.lockEars}\nlockLegs: {self.game.lockLegs}\nlockNipples: {self.game.lockNipples}\nlockCock: {self.game.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.game.knowLustDraft}\nknowRejuvPot: {self.game.knowRejuvPot}\nknowExpPreg: {self.game.knowExpPreg}\nknowBallSwell: {self.game.knowBallSwell}\nknowMaleEnhance: {self.game.knowMaleEnhance}\nknowSLustDraft: {self.game.knowSLustDraft}\nknowSRejuvPot: {self.game.knowSRejuvPot}\nknowSExpPreg: {self.game.knowSExpPreg}\nknowSBallSwell: {self.game.knowSBallSwell}\nknowBabyFree: {self.game.knowBabyFree}\nknowPotPot: {self.game.knowPotPot}\nknowGenSwap: {self.game.knowGenSwap}\nknowMasoPot: {self.game.knowMasoPot}\nknowMilkSuppress: {self.game.knowMilkSuppress}\nknowSGenSwap: {self.game.knowSGenSwap}\nknowSMasoPot: {self.game.knowSMasoPot}\nknowSBabyFree: {self.game.knowSBabyFree}\nknowSPotPot: {self.game.knowSPotPot}\nknowPussJuice: {self.game.knowPussJuice}\nknowPheromone: {self.game.knowPheromone}\nknowBazoomba: {self.game.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.game.firstExplore}\nfoundSoftlik: {self.game.foundSoftlik}\nfoundFirmshaft: {self.game.foundFirmshaft}\nfoundTieden: {self.game.foundTieden}\nfoundSizCalit: {self.game.foundSizCalit}\nfoundOviasis: {self.game.foundOviasis}\nfoundValley: {self.game.foundValley}\nfoundSanctuary: {self.game.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.game.defeatedMinotaur}\ndefeatedFreakyGirl: {self.game.defeatedFreakyGirl}\ndefeatedSuccubus: {self.game.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.game.humanChildren}\nequanChildren: {self.game.equanChildren}\nlupanChildren: {self.game.lupanChildren}\nfelinChildren: {self.game.felinChildren}\ncowChildren: {self.game.cowChildren}\nlizanEggs: {self.game.lizanEggs}\nlizanChildren: {self.game.lizanChildren}\nbunnionChildren: {self.game.bunnionChildren}\nwolfPupChildren: {self.game.wolfPupChildren}\nmiceChildren: {self.game.miceChildren}\nbirdEggs: {self.game.birdEggs}\nbirdChildren: {self.game.birdChildren}\npigChildren: {self.game.pigChildren}\ncalfChildren: {self.game.calfChildren}\nbugEggs: {self.game.bugEggs}\nbugChildren: {self.game.bugChildren}\nskunkChildren: {self.game.skunkChildren}\nminotaurChildren: {self.game.minotaurChildren}\nfreakyGirlChildren: {self.game.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.game.enemyID}\neHP: {self.game.eHP}\neMaxHP: {self.game.eMaxHP}\neStr: {self.game.eStr}\neMenta: {self.game.eMenta}\neSen: {self.game.eSen}\neLib: {self.game.eLib}\neLust: {self.game.eLust}\neGen: {self.game.eGen}\nePref: {self.game.ePref}\neCoin: {self.game.eCoin}\neSexP: {self.game.eSexP}\neItem: {self.game.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.game.lilaRep}\nlilaVulva: {self.game.lilaVulva}\nlilaMilk: {self.game.lilaMilk}\nlilaPreg: {self.game.lilaPreg}\nlilaUB: {self.game.lilaUB}\nlilaWetness: {self.game.lilaWetness}\nlilaWetStatus: {self.game.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.game.malonRep}\nmalonPreg: {self.game.malonPreg}\nmalonChildren: {self.game.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.game.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.game.jamieRep}\njamieSize: {self.game.jamieSize}\njamieChildren: {self.game.jamieChildren}\njamieRep1: {self.game.jamieRep1}\njamieRep2: {self.game.jamieRep2}\njamieRep3: {self.game.jamieRep3}\njamieButt: {self.game.jamieButt}\njamieBreasts: {self.game.jamieBreasts}\njamieHair: {self.game.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.game.silRep}\nsilPreg: {self.game.silPreg}\nsilRate: {self.game.silRate}\nsilLay: {self.game.silLay}\nsilTied: {self.game.silTied}\nsilGrowthTime: {self.game.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.game.textCheckArray}\nspecialAbilityArray = {self.game.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.game.currentText.get()}\nsideText = {self.game.sideText.get()}'
+
+    def loadPreferences(self):
+        # TODO
+        sp = False
+        if (GAME_DIR / 'Nimin_Prefs.toml').is_file():
+            with (GAME_DIR / 'Nimin_Prefs.toml').open('rb') as f:
+                temp = TOML.readFile(f)
+            game = temp.get('game', {})
+            self.fontSize = int(game.get('fontSize', 11))
+            self.fontBold = bool(game.get('fontBold', False))
+            tempTheme = str(game.get('theme', '#FFFFFF'))
+            tempFontColor = str(game.get('fontColor', '#000000'))
+            if Utils.isValidHex(tempTheme) and Utils.isValidHex(tempFontColor):
+                self.backgroundColor = tempTheme
+                self.textColor = tempFontColor
+            else:
+                sp = True
+            self.showSide = bool(game.get('showSide', True))
+            self.newSaveLoadDialog_SortOrder = int(game.get('nsldSortOrder', 0))
+
+            options = temp.get('options', {})
+            tempdir = Path(options.get('saveLocation', self.saveLocation)).resolve()
+            if isValidDirectory(tempdir):
+                self.saveLocation = tempdir
+            else:
+                # TODO: Phrase this warning better
+                trace('Warning: [PyminGame.loadPreferences] saveLocation is not a valid path. Value will not be changed.')
+                sp = True
+            self.saveCompatMode = bool(options.get('solMode', False))
+            self.enforceSize = bool(options.get('fixedResMode', False))
+            self.customFontColor = bool(options.get('customFontColor', False))
+            self.oTextColor = str(options.get('oFontColor', '#FFFFFF'))
+            self.customThemeColor = bool(options.get('customThemeColor', False))
+            self.oBackgroundColor = str(options.get('oThemeColor', '#000000'))
+
+            interface = temp.get('interface', {})
+            self.useNiminTheme = bool(interface.get('useNiminTheme', False))
+            self.scrolledTextBorders = bool(interface.get('scrolledTextBorders', False))
+            self.originalNewGameButtonSize = bool(interface.get('originalNewGameButtonSize', False))
+            self.staticdoLevelUPButtons = bool(interface.get('staticDoLevelUPButtons', False))
+            self.useExpandedSaveDialog = bool(interface.get('useExpandedSaveDialog', False))
+            self.useNewStash = bool(interface.get('useNewStash', False))
+            self.helpToWiki = bool(interface.get('helpToWiki', False))
+            self.doShopsReturn = bool(interface.get('doShopsReturn', False))
+
+            grammar = temp.get('grammar', {})
+            self.respectShowBalls = bool(grammar.get('respectShowBalls', False))
+            self.femmeboyToFemboy = bool(grammar.get('femmeboyToFemboy', False))
+            self.shemaleToFuta = bool(grammar.get('shemaleToFuta', False))
+            self.ngrammar = bool(grammar.get('ngrammar', False))
+            self.femmieMaleReplacement = int(grammar.get('femmieMaleReplacement', 0))
+            self.femboyishToGirly = bool(grammar.get('femboyishToGirly', False))
+            self.snuggleBallTweak = bool(grammar.get('snuggleBallTweak', False))
+            self.grammarFixes = bool(grammar.get('grammarFixes', False))
+
+            gt = temp.get('gameTweaks', {})
+            self.statusTweaks = bool(gt.get('statusTweaks', False))
+            self.succubusLeavesOne = bool(gt.get('succubusLeavesOne', False))
+            self.useIsBottomOpen = bool(gt.get('useIsBottomOpen', False))
+            self.lizanDontShowBalls = bool(gt.get('lizanDontShowBalls', False))
+            self.hermGetsBoth = bool(gt.get('hermGetsBoth', False))
+            self.internalBallsEffectBelly = bool(gt.get('intBallsEffectBelly', False))
+            self.directPathToSanctuary = bool(gt.get('directPathToSanc', False))
+            self.correctBeastRaceFeet = bool(gt.get('correctBeastRaceFeet', False))
+            self.gameTweaksMisc = bool(gt.get('miscChanges', False))
+
+            dt = temp.get('debugTweaks', {})
+            self.debugChooseSenario = bool(dt.get('chooseSenario', False))
+            self.debugNoDamage = bool(dt.get('noDamage', False))
+        elif (GAME_DIR / "Nimin_Prefs.xml").is_file():
+            def strtolistbools(a: str):
+                if a.startswith(('[', '(')):
+                    a = a[1:-1]
+                b = a.split(', ')
+                if len(b) == 1 and b[0] == '':
+                    return []
+                return [Utils.strtobool(i) for i in b]
+            prefs = xmletree.parse((GAME_DIR / 'Nimin_Prefs.xml').resolve()).getroot()
+            self.fontSize = int(prefs.find('fontSize').text)
+            self.fontBold = Utils.strtobool(prefs.find('fontBold').text)
+            temptheme = prefs.find('theme').text
+            tempfontColor = prefs.find('fontColor').text
+            if (Utils.isValidHex(temptheme) or temptheme.isdecimal() and len(temptheme) == 1 and int(temptheme) >= 0 and int(temptheme) < 6) and Utils.isValidHex(tempfontColor):
+                if (temptheme.isdecimal() and len(temptheme) == 1):
+                    self.backgroundColor = Utils.hexColorFromThemeNumber(int(temptheme))
+                else:
+                    self.backgroundColor = temptheme
+                self.textColor = tempfontColor
+            else:
+                self.backgroundColor = '#FFFFFF'
+                self.textColor = '#000000'
+            self.showSide = Utils.strtobool(prefs.find('showSide').text)
+            if prefs.find('saveLocation') is not None:
+                tempdir = Path(prefs.find('saveLocation').text).resolve()
+                if isValidDirectory(tempdir):
+                    self.saveLocation = tempdir
+                else:
+                    # TODO: Phrase this warning better
+                    trace('Warning: [PyminGame.loadPreferences] saveLocation is not a valid path. Value will not be changed.')
+            self.saveCompatMode = False if prefs.find('solMode') is None else Utils.strtobool(prefs.find('solMode').text)
+            if prefs.find('gameTweaks') is not None:
+                tempgametweaks = strtolistbools(prefs.find('gameTweaks').text)
+                if len(tempgametweaks) < 12:
+                    tempgametweaks.extend([False] * (12 - len(tempgametweaks)))
+                self.grammarFixes = tempgametweaks[0]
+                self.statusTweaks = tempgametweaks[1]
+                self.succubusLeavesOne = tempgametweaks[2]
+                self.useIsBottomOpen = tempgametweaks[3]
+                self.lizanDontShowBalls = tempgametweaks[4]
+                self.useExpandedSaveDialog = tempgametweaks[5]
+                self.hermGetsBoth = tempgametweaks[6]
+                self.internalBallsEffectBelly = tempgametweaks[7]
+                self.directPathToSanctuary = tempgametweaks[8]
+                self.correctBeastRaceFeet = tempgametweaks[9]
+                self.useNewStash = tempgametweaks[10]
+                self.gameTweaksMisc = tempgametweaks[11]
+            self.enforceSize = False if prefs.find('fixedResMode') is None else Utils.strtobool(prefs.find('fixedResMode').text)
+            if prefs.find('customFontColor') is not None and prefs.find('oFontColor') is not None:
+                self.customFontColor = Utils.strtobool(prefs.find('customFontColor').text)
+                self.game.window._children['textcolorbutton'].state = Utils.boolToState(not self.customFontColor)
+                self.oTextColor = prefs.find('oFontColor').text
+            if prefs.find('customThemeColor') is not None and prefs.find('oThemeColor') is not None:
+                self.customThemeColor = Utils.strtobool(prefs.find('customThemeColor').text)
+                self.game.window._children['themebutton'].state = Utils.boolToState(not self.customThemeColor)
+                self.oBackgroundColor = prefs.find('oThemeColor').text
+            if prefs.find('debugTweaks') is not None:
+                tempdebugtweaks = strtolistbools(prefs.find('debugTweaks').text)
+                if len(tempdebugtweaks) < 2:
+                    tempdebugtweaks.extend([False] * (2 - len(tempdebugtweaks)))
+                self.debugChooseSenario = tempdebugtweaks[0]
+                self.debugNoDamage = tempdebugtweaks[1]
+            if prefs.find('nsldSortOrder') is not None:
+                self.newSaveLoadDialog_SortOrder = int(prefs.find('nsldSortOrder').text)
+            if prefs.find('themeType') is not None:
+                if int(prefs.find('themeType').text) in {0, 1}:
+                    self.useNiminTheme = bool(prefs.find('themeType').text)
+                else:
+                    self.useNiminTheme = False
+            if prefs.find('interfaceToggles') is not None:
+                tempitoggle = strtolistbools(prefs.find('interfaceToggles').text)
+                if len(tempitoggle) < 4:
+                    tempitoggle.extend([False] * (4 - len(tempitoggle)))
+                self.scrolledTextBorders = tempitoggle[1]
+                self.originalNewGameButtonSize = tempitoggle[2]
+                self.staticdoLevelUPButtons = tempitoggle[3]
+            sp = True
+        elif (GAME_DIR / 'Nimin_Prefs.sol').is_file():
+            so = sol.load(str(GAME_DIR / 'Nimin_Prefs.sol'))
+            prefLoad = so['prefs']
+            self.backgroundColor = Utils.hexColorFromThemeNumber(prefLoad[0])
+            self.fontSize = prefLoad[1]
+            self.fontBold = prefLoad[2]
+            self.textColor = prefLoad[3]
+            self.showSide = prefLoad[4]
+            sp = True
+        else:
+            sp = True
+        DirUtils.makeDir(self.saveLocation, True)
+        if sp:
+            self.savePreferences()
+
+    def savePreferences(self):
+        # TODO
+        temp = {
+            'game': {
+                'theme': self.backgroundColor,
+                'fontSize': self.fontSize,
+                'fontBold': self.fontBold,
+                'fontColor': self.textColor,
+                'showSide': self.showSide,
+                'nsldSortOrder': self.newSaveLoadDialog_SortOrder
+            },
+            'options': {
+                'saveLocation': self.saveLocation,
+                'solMode': self.saveCompatMode,
+                'fixedResMode': self.enforceSize,
+                'customFontColor': self.customFontColor,
+                'oFontColor': self.oTextColor,
+                'customThemeColor': self.customThemeColor,
+                'oThemeColor': self.oBackgroundColor
+            },
+            'interface': {
+                'useNiminTheme': self.useNiminTheme,
+                'scrolledTextBorders': self.scrolledTextBorders,
+                'originalNewGameButtonSize': self.originalNewGameButtonSize,
+                'staticDoLevelUPButtons': self.staticdoLevelUPButtons,
+                'useExpandedSaveDialog': self.useExpandedSaveDialog,
+                'useNewStash': self.useNewStash,
+                'helpToWiki': self.helpToWiki,
+                'doShopsReturn': self.doShopsReturn
+            },
+            'grammar': {
+                'respectShowBalls': self.respectShowBalls,
+                'femmeboyToFemboy': self.femmeboyToFemboy,
+                'shemaleToFuta': self.shemaleToFuta,
+                'ngrammar': self.ngrammar,
+                'femmieMaleReplacement': self.femmieMaleReplacement,
+                'femboyishToGirly': self.femboyishToGirly,
+                'snuggleBallTweak': self.snuggleBallTweak,
+                'grammarFixes': self.grammarFixes
+            },
+            'gameTweaks': {
+                'statusTweaks': self.statusTweaks,
+                'succubusLeavesOne': self.succubusLeavesOne,
+                'useIsBottomOpen': self.useIsBottomOpen,
+                'lizanDontShowBalls': self.lizanDontShowBalls,
+                'hermGetsBoth': self.hermGetsBoth,
+                'intBallsEffectBelly': self.internalBallsEffectBelly,
+                'directPathToSanc': self.directPathToSanctuary,
+                'correctBeastRaceFeet': self.correctBeastRaceFeet,
+                'miscChanges': self.gameTweaksMisc
+            },
+            'debugTweaks': {
+                'chooseSenario': self.debugChooseSenario,
+                'noDamage': self.debugNoDamage
+            }
+        }
+        TOML.write(GAME_DIR / 'Nimin_Prefs.toml', temp)
 
 
 def Pymin():
@@ -28567,9 +28932,12 @@ def Pymin():
     if '--debug' in argv or '-d' in argv or '/D' in argv:
         EnableDebug()
     if '--converter' in argv or '-C' in argv or '/C' in argv:
-        mainobject = SaveConverter()
+        start = StartType.SAVE_CONVERTER
     else:
-        mainobject = PyminMain()
+        start = StartType.GAME
+
+    mainobject = PyminMain(start)
+
     mainobject.open()
 
 
