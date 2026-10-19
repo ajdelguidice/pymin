@@ -1152,6 +1152,275 @@ class Items:
             return "Worker Egg"
         return f"ITEM NAME ERROR {ID}"
 
+    def fullName(ID: int) -> str:
+        if ID == 2:
+            return "Debug Stick"
+        if ID == 3:
+            return "Teleport Scroll: Any"
+        if ID == 101:
+            return "Claws of the Lupine Ancestors"
+        if ID == 102:
+            return "Imbued Horseshoes"
+        if ID == 103:
+            return "Magical Sands of the Dry Dunes"
+        if ID == 104:
+            return "Milking Machine"
+        if ID == 105:
+            return "'Cat's Meow' Potion"
+        if ID == 106:
+            return "Penis Pump"
+        if ID == 108:
+            return "Blood Gauge"
+        if ID == 109:
+            return "Educated Eggdicator"
+        if ID == 110:
+            return "A Reduction of Reducer Agents"
+        if ID == 111:
+            return "Skin Balm"
+        if ID == 112:
+            return "Bolstering Juice"
+        if ID == 113:
+            return "Tainted Leaf"
+        if ID == 114:
+            return "Sweet Sap"
+        if ID == 115:
+            return "Poultice"
+        if ID == 116:
+            return "Dagger"
+        if ID == 117:
+            return "Warhammer"
+        if ID == 118:
+            return "Saber"
+        if ID == 119:
+            return "Whip"
+        if ID == 120:
+            return "Neuterizer"
+        if ID == 121:
+            return "Teleport Scroll: Softlik"
+        if ID == 122:
+            return "Teleport Scroll: Firmshaft"
+        if ID == 123:
+            return "Teleport Scroll: Tieden"
+        if ID == 124:
+            return "Teleport Scroll: Siz'Calit"
+        if ID == 125:
+            return "Teleport Scroll: Oviasis"
+        if ID == 126:
+            return "Oasis Water"
+        if ID == 127:
+            return "Tail Spike"
+        if ID == 128:
+            return "Teleport Scroll: Sanctuary"
+        if ID == 200:
+            return "Lila's Gift"
+        if ID == 201:
+            return "Milk Creeper Poison"
+        if ID == 202:
+            return "Cock-Snake Venom"
+        if ID == 203:
+            return "Tuft of Wolf Fur"
+        if ID == 204:
+            return "Small Pouch"
+        if ID == 205:
+            return "Small Pouch"
+        if ID == 206:
+            return "Shiny Trinket"
+        if ID == 207:
+            return "Wooden Cock Carving"
+        if ID == 208:
+            return "Bloated Berry"
+        if ID == 209:
+            return "Handful of Grain"
+        if ID == 210:
+            return "Pussy Fruit"
+        if ID == 211:
+            return "DairE Pill"
+        if ID == 212:
+            return "Red Mushroom"
+        if ID == 213:
+            return "Wet, Slimy Cloth"
+        if ID == 214:
+            return "Malon's Milk"
+        if ID == 215:
+            return "Malon's Pendant"
+        if ID == 216:
+            return "Pink Ink"
+        if ID == 217:
+            return "Octopus Egg Jelly"
+        if ID == 218:
+            return "Bulging Berry"
+        if ID == 219:
+            return "Fresh Egg"
+        if ID == 220:
+            return "Blonde Dye"
+        if ID == 221:
+            return "Concentrated Pussy Fruit Juice"
+        if ID == 222:
+            return "Kinky Carrot"
+        if ID == 223:
+            return "Equan Snack"
+        if ID == 224:
+            return "Lila's Milk"
+        if ID == 225:
+            return "Body Wash"
+        if ID == 226:
+            return "Felin Tea Mix"
+        if ID == 227:
+            return "Felin Oral Wash"
+        if ID == 228:
+            return "Body Oil"
+        if ID == 229:
+            return "Leather Strap"
+        if ID == 230:
+            return "Eggcelerator"
+        if ID == 231:
+            return "Desiccating Sand"
+        if ID == 232:
+            return "Flying Carpet"
+        if ID == 233:
+            return "Anti-Gravity Rock"
+        if ID == 234:
+            return "Reindeer Charm"
+        if ID == 235:
+            return "Fellatio Rod"
+        if ID == 236:
+            return "Reception Bell"
+        if ID == 237:
+            return "Lila's Dewy Gift"
+        if ID == 238:
+            return "Squeaky Cheese"
+        if ID == 239:
+            return "Shiny Rock"
+        if ID == 240:
+            return "Auburn Dye"
+        if ID == 241:
+            return "Brown Dye"
+        if ID == 242:
+            return "Grey Dye"
+        if ID == 243:
+            return "White Dye"
+        if ID == 244:
+            return "Snuggle Ball"
+        if ID == 245:
+            return "Facial Mud"
+        if ID == 246:
+            return "Fertile Gel"
+        if ID == 247:
+            return "Support Harness"
+        if ID == 248:
+            return "Breeder Potion"
+        if ID == 249:
+            return "Treant's Tear"
+        if ID == 250:
+            return "Foomp Bomb"
+        if ID == 251:
+            return "Plump Quat"
+        if ID == 252:
+            return "Malon's Milky Pendant"
+        if ID == 253:
+            return "Bug Egg"
+        if ID == 254:
+            return "Lantern"
+        if ID == 255:
+            return "Fragrant Flower"
+        if ID == 256:
+            return "Nectar Candy"
+        if ID == 257:
+            return "Too Human Potion"
+        if ID == 258:
+            return "Tainted Potion"
+        if ID == 259:
+            return "Sweet & Sour Candy"
+        if ID == 260:
+            return "Succubus Draft"
+        if ID == 404:
+            return "Item Not Found"
+        if ID == 418:
+            return "Strange Teapot"
+        if ID == 500:
+            return "Bottle of Milk"
+        if ID == 501:
+            return "Jug of Milk"
+        if ID == 502:
+            return "Barrel of Milk"
+        if ID == 503:
+            return "Lust Draft"
+        if ID == 504:
+            return "Rejuvenating Potion"
+        if ID == 505:
+            return "Bad Experiment"
+        if ID == 506:
+            return "Express Pregnancy Potion"
+        if ID == 507:
+            return "Ball Sweller"
+        if ID == 508:
+            return "Superior Lust Draft"
+        if ID == 509:
+            return "Superior Rejuvenating Potion"
+        if ID == 510:
+            return "Super Bad Experiment"
+        if ID == 511:
+            return "Superior Express Pregnancy Potion"
+        if ID == 512:
+            return "Superior Ball Sweller"
+        if ID == 513:
+            return "Gender Swap Potion"
+        if ID == 514:
+            return "Masochism Potion"
+        if ID == 515:
+            return "Black Dye"
+        if ID == 516:
+            return "Baby Free Potion"
+        if ID == 517:
+            return "Potency Potion"
+        if ID == 518:
+            return "Superior Gender Swap Potion"
+        if ID == 519:
+            return "Superior Masochism Potion"
+        if ID == 520:
+            return "Red Dye"
+        if ID == 521:
+            return "Superior Baby Free Potion"
+        if ID == 522:
+            return "Superior Potency Potion"
+        if ID == 523:
+            return "Vial of Cum"
+        if ID == 524:
+            return "Bottle of Cum"
+        if ID == 525:
+            return "Jug of Cum"
+        if ID == 526:
+            return "Barrel of Cum"
+        if ID == 527:
+            return "Good Egg"
+        if ID == 528:
+            return "Bad Egg"
+        if ID == 529:
+            return "Strange Egg"
+        if ID == 530:
+            return "Charmed Egg"
+        if ID == 531:
+            return "Divine Egg"
+        if ID == 532:
+            return "Strong Pheromone"
+        if ID == 533:
+            return "Reduced Reduction"
+        if ID == 534:
+            return "Male Enhancement Drug"
+        if ID == 535:
+            return "Milk Suppressant"
+        if ID == 536:
+            return "Bazoomba!"
+        if ID == 537:
+            return "Queen Egg"
+        if ID == 538:
+            return "Soldier Egg"
+        if ID == 539:
+            return "Drone Egg"
+        if ID == 540:
+            return "Worker Egg"
+        return f"ITEM FULL NAME ERROR {ID}"
+
     def isUsable(ID: int) -> bool:
         '''
         Returns True if item ID can be used
@@ -1288,6 +1557,7 @@ class Items:
         if ID == 202:
             return "Cock-Snake Venom\n\nObtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
         if ID == 203:
+            # TODO: Remove self
             return f"Tuft of Wolf Fur\n\nObtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {self.skinDesc()}."
         if ID == 204:
             return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
@@ -1348,6 +1618,7 @@ class Items:
         if ID == 232:
             return "Flying Carpet\n\nBorrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
         if ID == 233:
+            # TODO: Remove self
             return f"Anti-Gravity Rock\n\nBorrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {self.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
         if ID == 234:
             return "Reindeer Charm\n\nBorrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
@@ -1944,6 +2215,45 @@ class ApothecaryItems:
             return 'R: SPotPot'
         if ID == 17:
             return 'R: MilkSuppress'
+        return ""
+
+    def fullName(ID: int) -> str:
+        if ID >= 200:
+            return Items.fullName(ID)
+        if ID == 1:
+            return "Recipe: Lust Draft"
+        if ID == 2:
+            return "Recipe: Rejuvenation Potion"
+        if ID == 3:
+            return "Recipe: Express Pregnancy Potion"
+        if ID == 4:
+            return "Recipe: Ball Sweller"
+        if ID == 5:
+            return "Recipe: Superior Lust Draft"
+        if ID == 6:
+            return "Recipe: Superior Rejuvenation Potion"
+        if ID == 7:
+            return "Recipe: Superior Express Pregnancy Potion"
+        if ID == 8:
+            return "Recipe: Superior Ball Sweller"
+        if ID == 9:
+            return "Recipe: Gender Swap Potion"
+        if ID == 10:
+            return "Recipe: Masochism Potion"
+        if ID == 11:
+            return "Recipe: Baby Free Potion"
+        if ID == 12:
+            return "Recipe: Potency Potion"
+        if ID == 13:
+            return "Recipe: Superior Gender Swap Potion"
+        if ID == 14:
+            return "Recipe: Superior Masochism Potion"
+        if ID == 15:
+            return "Recipe: Superior Baby Free Potion"
+        if ID == 16:
+            return "Recipe: Superior Potency Potion"
+        if ID == 17:
+            return "Recipe: Milk Suppressant"
         return ""
 
     def value(ID: int) -> int:
@@ -4179,12 +4489,41 @@ class PyminWiki(PyminWindow):
                 for j in RANGE9_BUTTON_MAP:
                     ID = Shop.ID(i, j)
                     if ID != 0:
-                        tempStr += f'\n<a href="call_args://Item&{ID}">{Items.name(ID)}</a>'
+                        tempStr += f'\n<a href="call_args://Item&{ID}">{Items.fullName(ID)}</a>'
             return tempStr
         if Num == 2:
             return "<h4><u>Dye Shop</u></h4><u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
         if Num == 3:
-            return "<h4><u>Apothecary</u></h4><u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them.\n\n<u>Softlik</u>\n<i>Tuft of Wolf Fur</i>\n<i>Handful of Grain</i>\n<i>Vial of Cum</i>\n<i>Recipe: Lust Draft</i>\n<i>Recipe: Superior Rejuvenating Potion</i>\n<i>Recipe: Masochism Potion</i>\n<i>Recipe: Baby Free Potion</i>\n\n<u>Firmshaft</u>\n<i>Handful of Grain</i>\n<i>Cock-Snake Venom</i>\n<i>Shiny Trinket</i>\n<i>Red Mushroom</i>\n<i>Bottle of Cum</i>\n<i>Recipe: Rejuvenating Potion</i>\n<i>Recipe: Superior Lust Draft</i>\n<i>Recipe: Superior Masochism Potion</i>\n\n<u>Tieden</u>\n<i>Milk Creeper Poison</i>\n<i>Cock-Snake Venom</i>\n<i>Wet, Slimy Cloth</i>\n<i>Tuft of Wolf Fur</i>\n<i>Recipe: Ball Sweller</i>\n<i>Recipe: Potency Potion</i>\n<i>Recipe: Superior Gender Swap Potion</i>\n\n<u>Siz'Calit</u>\n<i>Pussy Fruit</i>\n<i>Milk Creeper Poison</i>\n<i>Bulging Berry</i>\n<i>Recipe: Express Pregnancy Potion</i>\n<i>Recipe: Gender Swap Potion</i>\n<i>Recipe: Superior Baby Free Potion</i>\n\n<u>Oviasis</u>\n<i>Wooden Cock Carving</i>\n<i>Wet, Slimy Cloth</i>\n<i>Bloated Berry</i>\n<i>Body Oil</i>\n<i>Recipe: Superior Express Pregnancy Potion</i>\n<i>Recipe: Superior Ball Sweller</i>\n<i>Recipe: Superior Potency Potion</i>\n\n<u>Sanctuary</u>\n<i>Recipe: Milk Suppressant</i>"
+            class FakeKnowledge:
+                knowLustDraft = False
+                knowSRejuvPot = False
+                knowMasoPot = False
+                knowBabyFree = False
+                knowRejuvPot = False
+                knowSLustDraft = False
+                knowSMasoPot = False
+                knowBallSwell = False
+                knowPotPot = False
+                knowSGenSwap = False
+                knowExpPreg = False
+                knowGenSwap = False
+                knowSBabyFree = False
+                knowSExpPreg = False
+                knowSBallSwell = False
+                knowSPotPot = False
+                knowMilkSuppress = False
+            tempStr = "<h4><u>Apothecary</u></h4><u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them."
+            # TODO: Find a way to do this using the enum
+            for i in (1, 2, 3, 4, 6, 12):
+                tempStr += f'\n\n<u>{Utils.getRegionName(i)}</u>'
+                for j in RANGE9_BUTTON_MAP:
+                    ID = Apothecary.ID(i, j, FakeKnowledge)
+                    if ID != 0:
+                        if ID >= 200:
+                            tempStr += f'\n<a href="call_args://Item&{ID}">{Items.fullName(ID)}</a>'
+                        else:
+                            tempStr += f'\n{ApothecaryItems.fullName(ID)}'
+            return tempStr
         if Num == 4:
             tempStr = "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow."
             # TODO: Find a way to do this using the enum
