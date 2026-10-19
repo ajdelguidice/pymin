@@ -469,6 +469,24 @@ class Utils:
     def hexColorFromThemeNumber(theme) -> str:
         return ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[theme]
 
+    def getRegionName(region: int) -> str:
+        if region == Zones.SOFTLIK:
+            return 'Softlik'
+        if region == Zones.FIRMSHAFT:
+            return 'Firmshaft'
+        if region == Zones.TIEDEN:
+            return 'Tieden'
+        if region == Zones.SIZ_CALIT:
+            return 'Siz\'Calit'
+        if region == Zones.OVIASIS:
+            return 'Oviasis'
+        if region == Zones.SANCTUARY:
+            return 'Sanctuary'
+        if (region > 1000 and region < 1010):
+            return 'Cave Descent'
+
+        return None
+
 
 class DirUtils:
     def makeDir(path: PurePath, silent: bool = False):
@@ -4154,15 +4172,40 @@ class PyminWiki(PyminWindow):
         if Num == -10:
             return "<h4><u>Shop Name</u></h4><u>Description</u>\nDescription. The list of ____ that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
         if Num == 1:
-            return "<h4><u>General Shop</u></h4><u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow.\n\n<u>Softlik</u>\n<i>Milking Machine</i>\n<i>Skin Balm</i>\n<i>Dagger</i>\n<i>Bottle of Milk</i>\n<i>Jug of Milk</i>\n<i>Blood Gauge</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Softlik</i>\n\n<u>Firmshaft</u>\n<i>Imbued Horseshoes</i>\n<i>Bolstering Juice</i>\n<i>Warhammer</i>\n<i>Penis Pump</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Firmshaft</i>\n\n<u>Tieden</u>\n<i>Claws of the Lupine Ancestors</i>\n<i>Tainted Leaf</i>\n<i>Saber</i>\n<i>Neuterizer</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Tieden</i>\n\n<u>Siz'Calit</u>\n<i>Sweet Sap</i>\n<i>Whip</i>\n<i>Magical Sands of the Dry Dunes</i>\n<i>Cat's Meow' Potion</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Siz'Calit</i>\n\n<u>Oviasis</u>\n<i>Educated Eggdicator</i>\n<i>Oasis Water</i>\n<i>Tail Spike</i>\n<i>Magical Sands of the Dry Dunes</i>\n<i>Eggcelerator</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Oviasis</i>\n\n<u>Sanctuary</u>\n<i>Support Harness</i>\n<i>Foomp Bomb</i>\n<i>Nectar Candy</i>\n<i>Neuterizer</i>\n<i>A Reduction of Reducer Agents</i>\n<i>Poultice</i>\n<i>Teleport Scroll: Sanctuary</i>"
+            tempStr = "<h4><u>General Shop</u></h4><u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow."
+            # TODO: Find a way to do this using the enum
+            for i in (1, 2, 3, 4, 6, 12):
+                tempStr += f'\n\n<u>{Utils.getRegionName(i)}</u>'
+                for j in RANGE9_BUTTON_MAP:
+                    ID = Shop.ID(i, j)
+                    if ID != 0:
+                        tempStr += f'\n<a href="call_args://Item&{ID}">{Items.name(ID)}</a>'
+            return tempStr
         if Num == 2:
             return "<h4><u>Dye Shop</u></h4><u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
         if Num == 3:
             return "<h4><u>Apothecary</u></h4><u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them.\n\n<u>Softlik</u>\n<i>Tuft of Wolf Fur</i>\n<i>Handful of Grain</i>\n<i>Vial of Cum</i>\n<i>Recipe: Lust Draft</i>\n<i>Recipe: Superior Rejuvenating Potion</i>\n<i>Recipe: Masochism Potion</i>\n<i>Recipe: Baby Free Potion</i>\n\n<u>Firmshaft</u>\n<i>Handful of Grain</i>\n<i>Cock-Snake Venom</i>\n<i>Shiny Trinket</i>\n<i>Red Mushroom</i>\n<i>Bottle of Cum</i>\n<i>Recipe: Rejuvenating Potion</i>\n<i>Recipe: Superior Lust Draft</i>\n<i>Recipe: Superior Masochism Potion</i>\n\n<u>Tieden</u>\n<i>Milk Creeper Poison</i>\n<i>Cock-Snake Venom</i>\n<i>Wet, Slimy Cloth</i>\n<i>Tuft of Wolf Fur</i>\n<i>Recipe: Ball Sweller</i>\n<i>Recipe: Potency Potion</i>\n<i>Recipe: Superior Gender Swap Potion</i>\n\n<u>Siz'Calit</u>\n<i>Pussy Fruit</i>\n<i>Milk Creeper Poison</i>\n<i>Bulging Berry</i>\n<i>Recipe: Express Pregnancy Potion</i>\n<i>Recipe: Gender Swap Potion</i>\n<i>Recipe: Superior Baby Free Potion</i>\n\n<u>Oviasis</u>\n<i>Wooden Cock Carving</i>\n<i>Wet, Slimy Cloth</i>\n<i>Bloated Berry</i>\n<i>Body Oil</i>\n<i>Recipe: Superior Express Pregnancy Potion</i>\n<i>Recipe: Superior Ball Sweller</i>\n<i>Recipe: Superior Potency Potion</i>\n\n<u>Sanctuary</u>\n<i>Recipe: Milk Suppressant</i>"
         if Num == 4:
-            return "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
+            tempStr = "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow."
+            # TODO: Find a way to do this using the enum
+            for i in (1, 2, 3, 4, 6, 12):
+                tempStr += f'\n\n<u>{Utils.getRegionName(i)}</u>'
+                for j in RANGE9_BUTTON_MAP:
+                    ID = Salon.ID(i, j)
+                    if ID != 0:
+                        tempStr += f'\n{Hairstyles.name(ID)}'
+            return tempStr
         if Num == 5:
-            return "<h4><u>Tailor</u></h4><u>Description</u>\nThis is the Tailor where you can buy clothes. The list of clothes that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
+            tempStr = "<h4><u>Tailor</u></h4><u>Description</u>\nThis is the Tailor where you can buy clothes. The list of clothes that can be bought is bellow."
+            # "\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
+            # TODO: Find a way to do this using the enum
+            for i in (1, 2, 3, 4, 6, 12):
+                tempStr += f'\n\n<u>{Utils.getRegionName(i)}</u>'
+                for j in RANGE9_BUTTON_MAP:
+                    ID = Tailor.ID(i, j)
+                    if ID != 0:
+                        tempStr += f'\n<a href="call_args://Clothes&{ID}">{Clothes.name(ID)}</a>'
+            return tempStr
 
     def NPCDescription(self, Num: int):
         if Num == -10:
@@ -6460,22 +6503,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         if self.inDungeon:
             self.currentDungeon = changes
-            if (changes > 1000 and changes < 1010):
-                self.window._children['currentregionlabel'].text = 'Cave Descent'
         else:
             self.currentZone = changes
-            if changes == Zones.SOFTLIK:
-                self.window._children['currentregionlabel'].text = 'Softlik'
-            elif changes == Zones.FIRMSHAFT:
-                self.window._children['currentregionlabel'].text = 'Firmshaft'
-            elif changes == Zones.TIEDEN:
-                self.window._children['currentregionlabel'].text = 'Tieden'
-            elif changes == Zones.SIZ_CALIT:
-                self.window._children['currentregionlabel'].text = 'Siz\'Calit'
-            elif changes == Zones.OVIASIS:
-                self.window._children['currentregionlabel'].text = 'Oviasis'
-            elif changes == Zones.SANCTUARY:
-                self.window._children['currentregionlabel'].text = 'Sanctuary'
+        newRegion = Utils.getRegionName(changes)
+        if newRegion is not None:
+            self.window._children['currentregionlabel'].text = newRegion
 
     def dayTime(self, Time: int):
         '''
