@@ -1204,6 +1204,289 @@ class Items:
             return 150
         return 0
 
+    def description(ID: int) -> str:
+        if ID == 2:
+            return "Debug Stick\n\nDebug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
+        if ID == 3:
+            return "Teleport Scroll: Any\n\nCreated for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."
+        if ID == 101:
+            return "Claws of the Lupine Ancestors\n\nHarkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."
+        if ID == 102:
+            return "Imbued Horseshoes\n\nCrafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
+        if ID == 103:
+            return "Magical Sands of the Dry Dunes\n\nApplying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
+        if ID == 104:
+            return "Milking Machine\n\nA compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."
+        if ID == 105:
+            return "'Cat's Meow' Potion\n\nFavored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
+        if ID == 106:
+            return "Penis Pump\n\nA simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."
+        if ID == 108:
+            return "Blood Gauge\n\nDue to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
+        if ID == 109:
+            return "Educated Eggdicator\n\nWith so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."
+        if ID == 110:
+            return "A Reduction of Reducer Agents\n\nThis is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."
+        if ID == 111:
+            return "Skin Balm\n\nUsed and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
+        if ID == 112:
+            return "Bolstering Juice\n\nThis white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
+        if ID == 113:
+            return "Tainted Leaf\n\nThis paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
+        if ID == 114:
+            return "Sweet Sap\n\nUsed and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
+        if ID == 115:
+            return "Poultice\n\nA generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
+        if ID == 116:
+            return "Dagger\n\nA relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"
+        if ID == 117:
+            return "Warhammer\n\nA rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"
+        if ID == 118:
+            return "Saber\n\nA well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"
+        if ID == 119:
+            return "Whip\n\nA somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"
+        if ID == 120:
+            return "Neuterizer\n\nDeveloped by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
+        if ID == 121:
+            return "Teleport Scroll: Softlik\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 122:
+            return "Teleport Scroll: Firmshaft\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 123:
+            return "Teleport Scroll: Tieden\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 124:
+            return "Teleport Scroll: Siz'Calit\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 125:
+            return "Teleport Scroll: Oviasis\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 126:
+            return "Oasis Water\n\nA vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
+        if ID == 127:
+            return "Tail Spike\n\nThis large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
+        if ID == 128:
+            return "Teleport Scroll: Sanctuary\n\nCreated for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."
+        if ID == 200:
+            return "Lila's Gift\n\nA small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."
+        if ID == 201:
+            return "Milk Creeper Poison\n\nObtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
+        if ID == 202:
+            return "Cock-Snake Venom\n\nObtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
+        if ID == 203:
+            return f"Tuft of Wolf Fur\n\nObtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {self.skinDesc()}."
+        if ID == 204:
+            return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
+        if ID == 205:
+            return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
+        if ID == 206:
+            return "Shiny Trinket\n\nOther than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
+        if ID == 207:
+            return "Wooden Cock Carving\n\nThis thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
+        if ID == 208:
+            return "Bloated Berry\n\nA berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
+        if ID == 209:
+            return "Handful of Grain\n\nA handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
+        if ID == 210:
+            return "Pussy Fruit\n\nIt is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
+        if ID == 211:
+            return "DairE Pill\n\nProduced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
+        if ID == 212:
+            return "Red Mushroom\n\nAn odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
+        if ID == 213:
+            return "Wet, Slimy Cloth\n\nThis piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
+        if ID == 214:
+            return "Malon's Milk\n\nUnlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
+        if ID == 215:
+            return "Malon's Pendant\n\nGiven to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."
+        if ID == 216:
+            return "Pink Ink\n\nOctopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
+        if ID == 217:
+            return "Octopus Egg Jelly\n\nThe jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
+        if ID == 218:
+            return "Bulging Berry\n\nA cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."
+        if ID == 219:
+            return "Fresh Egg\n\nAn unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
+        if ID == 220:
+            return "Blonde Dye\n\nA dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
+        if ID == 221:
+            return "Concentrated Pussy Fruit Juice\n\nCreated by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
+        if ID == 222:
+            return "Kinky Carrot\n\nUsed in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
+        if ID == 223:
+            return "Equan Snack\n\nA common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
+        if ID == 224:
+            return "Lila's Milk\n\nFrom the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
+        if ID == 225:
+            return "Body Wash\n\nThis nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
+        if ID == 226:
+            return "Felin Tea Mix\n\nA common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
+        if ID == 227:
+            return "Felin Oral Wash\n\nWith bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
+        if ID == 228:
+            return "Body Oil\n\nNice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
+        if ID == 229:
+            return "Leather Strap\n\nFound somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
+        if ID == 230:
+            return "Eggcelerator\n\nMeant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."
+        if ID == 231:
+            return "Desiccating Sand\n\nObtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."
+        if ID == 232:
+            return "Flying Carpet\n\nBorrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
+        if ID == 233:
+            return f"Anti-Gravity Rock\n\nBorrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {self.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
+        if ID == 234:
+            return "Reindeer Charm\n\nBorrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
+        if ID == 235:
+            return "Fellatio Rod\n\nBorrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
+        if ID == 236:
+            return "Reception Bell\n\nBorrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
+        if ID == 237:
+            return "Lila's Dewy Gift\n\nOriginally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."
+        if ID == 238:
+            return "Squeaky Cheese\n\nSome cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
+        if ID == 239:
+            return "Shiny Rock\n\nA rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
+        if ID == 240:
+            return "Auburn Dye\n\nA dark reddish color, this dye will turn your hair auburn when used, if you have hair"
+        if ID == 241:
+            return "Brown Dye\n\nA simple brownish, this dye will turn your hair brown when used, if you have hair"
+        if ID == 242:
+            return "Grey Dye\n\nA shade, this dye will turn your hair grey when used, if you have hair"
+        if ID == 243:
+            return "White Dye\n\nLacking any color, this dye will turn your hair pure white when used, if you have hair"
+        if ID == 244:
+            if (mainobject.game.snuggleBall):
+                return "Snuggle Ball\n\nNot really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
+            return "Snuggle Ball\n\nSquishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
+        if ID == 245:
+            return "Facial Mud\n\nSome mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
+        if ID == 246:
+            return "Fertile Gel\n\nA soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
+        if ID == 247:
+            tempStr = "Support Harness\n\nThis contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
+            if (mainobject.game.suppHarness):
+                tempStr += "\n\nYou currently have a harness equipped. Using it will unequip the harness."
+            return tempStr
+        if ID == 248:
+            return "Breeder Potion\n\nThis potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
+        if ID == 249:
+            return "Treant's Tear\n\nThis small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
+        if ID == 250:
+            return "Foomp Bomb\n\nMuch like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."
+        if ID == 251:
+            return "Plump Quat\n\nThe quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
+        if ID == 252:
+            return "Malon's Milky Pendant\n\nThis is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
+        if ID == 253:
+            tempStr = "Bug Egg\n\nRelatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
+            if (mainobject.game.tail == 12):
+                tempStr += "\n\nHowever, you do notice that the egg is just about the right size for the ovipositor hanging off your backside."
+            return tempStr
+        if ID == 254:
+            return "Lantern\n\nThis is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
+        if ID == 255:
+            return "Fragrant Flower\n\nA very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
+        if ID == 256:
+            return "Nectar Candy\n\nA sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
+        if ID == 257:
+            return "Too Human Potion\n\nThis potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
+        if ID == 258:
+            return "Tainted Potion\n\nThis potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
+        if ID == 259:
+            return "Sweet & Sour Candy\n\nThis rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
+        if ID == 260:
+            return "Succubus Draft\n\nOne of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
+        if ID == 404:
+            tempStr = "Item Not Found\n\nItem Not Found"
+            if as3state.as3DebugEnable:
+                tempStr += " (This is a joke item referencing status code 404)"
+            return tempStr
+        if ID == 418:
+            tempStr = "Strange Teapot\n\nInscribed on the side are the words \"I'm a teapot\"."
+            if as3state.as3DebugEnable:
+                tempStr += " (This is a joke item referencing status code 418)"
+            return tempStr
+        if ID == 500:
+            return "Bottle of Milk\n\nA bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
+        if ID == 501:
+            return "Jug of Milk\n\nA large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
+        if ID == 502:
+            return "Barrel of Milk\n\nA barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
+        if ID == 503:
+            return "Lust Draft\n\nA potion that will increase your lust by 20 instantly when used."
+        if ID == 504:
+            return "Rejuvenating Potion\n\nA potion that will heal 30 HP and reduce your lust by 15 instantly when used."
+        if ID == 505:
+            return "Bad Experiment\n\nThis combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."
+        if ID == 506:
+            return "Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
+        if ID == 507:
+            return "Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
+        if ID == 508:
+            return "Superior Lust Draft\n\nA potion that will increase your lust by 50 instantly when used."
+        if ID == 509:
+            return "Superior Rejuvenating Potion\n\nA potion that will heal 70 HP and reduce your lust by 40 instantly when used."
+        if ID == 510:
+            return "Super Bad Experiment\n\nThis extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."
+        if ID == 511:
+            return "Superior Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
+        if ID == 512:
+            return "Superior Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
+        if ID == 513:
+            return "Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
+        if ID == 514:
+            return "Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
+        if ID == 515:
+            return "Black Dye\n\nThis will turn your hair black in color when used, if you have hair."
+        if ID == 516:
+            return "Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
+        if ID == 517:
+            return "Potency Potion\n\nKicking your balls into gear, they will permanently produce 20% more cum, despite their size."
+        if ID == 518:
+            return "Superior Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
+        if ID == 519:
+            return "Superior Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
+        if ID == 520:
+            return "Red Dye\n\nThis will turn your hair red in color when used, if you have hair."
+        if ID == 521:
+            return "Superior Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
+        if ID == 522:
+            return "Superior Potency Potion\n\nDrop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
+        if ID == 523:
+            return "Vial of Cum\n\nStill kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
+        if ID == 524:
+            return "Bottle of Cum\n\nA bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
+        if ID == 525:
+            return "Jug of Cum\n\nA jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
+        if ID == 526:
+            return "Barrel of Cum\n\nThere's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
+        if ID == 527:
+            return "Good Egg\n\nAn unfertilized fresh egg that is especially good for your health and body."
+        if ID == 528:
+            return "Bad Egg\n\nAn unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."
+        if ID == 529:
+            return "Strange Egg\n\nAn unfertilized fresh egg that can do... odd things to your body."
+        if ID == 530:
+            return "Charmed Egg\n\nAn unfertilized fresh egg that will make you quite alluring for 20 hours."
+        if ID == 531:
+            return "Divine Egg\n\nA very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
+        if ID == 532:
+            return "Strong Pheromone\n\nOriginally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
+        if ID == 533:
+            return "Reduced Reduction\n\nA weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
+        if ID == 534:
+            return "Male Enhancement Drug\n\nA simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."
+        if ID == 535:
+            return "Milk Suppressant\n\nThis drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
+        if ID == 536:
+            return "Bazoomba!\n\nThis glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."
+        if ID == 537:
+            return "Queen Egg\n\nNot the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
+        if ID == 538:
+            return "Soldier Egg\n\nNot the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
+        if ID == 539:
+            return "Drone Egg\n\nNot the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
+        if ID == 540:
+            return "Worker Egg\n\nNot the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
+        return f"ITEM DESCRIPTION ERROR {ID}"
+
     def stackMax(ID: int) -> int:
         '''
         Function which returns the maximum number of the item ID that can be in a stack
@@ -1291,17 +1574,6 @@ class Items:
             return 'Oviasis'
 
         return f'TELEPORT SCROLL ANY ERROR BUTTON {buttonChoice}'
-
-    def dyeID(goodsSlot: int) -> int:
-        if goodsSlot == 1:
-            return 240
-        if goodsSlot == 2:
-            return 241
-        if goodsSlot == 5:
-            return 242
-        if goodsSlot == 6:
-            return 243
-        return 0
 
 
 class Clothes:
@@ -1693,6 +1965,456 @@ class ApothecaryItems:
             return 65
         if ID == 17:
             return 35
+        return 0
+
+    def description(ID: int) -> str:
+        if ID >= 200:
+            return Items.description(ID)
+        if ID == 1:
+            return "Recipe: Lust Draft\n\nFor those who need a boost in the bedroom.\n\nAlchemy difficulty: Simple"
+        if ID == 2:
+            return "Recipe: Rejuvenation Potion\n\nUseful for soothing what ailes you.\n\nAlchemy difficulty: Simple"
+        if ID == 3:
+            return "Recipe: Express Pregnancy Potion\n\nHelps quicken the gestation period.\n\nAlchemy difficulty: Simple"
+        if ID == 4:
+            return "Recipe: Ball Sweller\n\nGives your nuts a jump in their production.\n\nAlchemy difficulty: Simple"
+        if ID == 5:
+            return "Recipe: Superior Lust Draft\n\nFor when you've got a long night ahead with your spouse.\n\nAlchemy difficulty: Complex"
+        if ID == 6:
+            return "Recipe: Superior Rejuvenation Potion\n\nGreatly soothes your ailments.\n\nAlchemy difficulty: Complex"
+        if ID == 7:
+            return "Recipe: Superior Express Pregnancy Potion\n\nBecause that baby just needs to get out.\n\nAlchemy difficulty: Complex"
+        if ID == 8:
+            return "Recipe: Superior Ball Sweller\n\nIf you like that swollen, achy, full of seed feeling, this is what you want.\n\nAlchemy difficulty: Complex"
+        if ID == 9:
+            return "Recipe: Gender Swap Potion\n\nDon't like your current path in life? This will help start you off from a new perspective.\n\nAlchemy difficulty: Complex"
+        if ID == 10:
+            return "Recipe: Masochism Potion\n\nMakes some the pain feel pleasurable instead.\n\nAlchemy difficulty: Complex"
+        if ID == 11:
+            return "Recipe: Baby Free Potion\n\nA good contraceptive.\n\nAlchemy difficulty: Complex"
+        if ID == 12:
+            return "Recipe: Potency Potion\n\nMakes your testicles more efficient in their duties.\n\nAlchemy difficulty: Complex"
+        if ID == 13:
+            return "Recipe: Superior Gender Swap Potion\n\nFor when you're bored and wanna try out something new.\n\nAlchemy difficulty: Advanced"
+        if ID == 14:
+            return "Recipe: Superior Masochism Potion\n\nReally helps take on the big fellas; all that soreness will be delightful instead.\n\nAlchemy difficulty: Advanced"
+        if ID == 15:
+            return "Recipe: Superior Baby Free Potion\n\nNecessary in Siz'Calit.\n\nAlchemy difficulty: Advanced"
+        if ID == 16:
+            return "Recipe: Superior Potency Potion\n\nHelps make sure you absolutely fertilize all those eggs with a good coating.\n\nAlchemy difficulty: Advanced"
+        if ID == 17:
+            return "Recipe: Milk Suppressant\n\nSometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
+        return ""
+
+
+class Shop:
+    def ID(currentZone: int, goodsSlot: int) -> int:
+        if currentZone == Zones.SOFTLIK:
+            if goodsSlot == 1:
+                return 104
+            if goodsSlot == 2:
+                return 111
+            if goodsSlot == 3:
+                return 116
+            if goodsSlot == 5:
+                return 500
+            if goodsSlot == 6:
+                return 501
+            if goodsSlot == 7:
+                return 108
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 121
+        elif currentZone == Zones.FIRMSHAFT:
+            if goodsSlot == 1:
+                return 102
+            if goodsSlot == 2:
+                return 112
+            if goodsSlot == 3:
+                return 117
+            if goodsSlot == 5:
+                return 106
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 122
+        elif currentZone == Zones.TIEDEN:
+            if goodsSlot == 1:
+                return 101
+            if goodsSlot == 2:
+                return 113
+            if goodsSlot == 3:
+                return 118
+            if goodsSlot == 5:
+                return 120
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 123
+        elif currentZone == Zones.SIZ_CALIT:
+            if goodsSlot == 2:
+                return 114
+            if goodsSlot == 3:
+                return 119
+            if goodsSlot == 5:
+                return 103
+            if goodsSlot == 6:
+                return 105
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 124
+        elif currentZone == Zones.OVIASIS:
+            if goodsSlot == 1:
+                return 109
+            if goodsSlot == 2:
+                return 126
+            if goodsSlot == 3:
+                return 127
+            if goodsSlot == 5:
+                return 103
+            if goodsSlot == 6:
+                return 230
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 125
+        elif currentZone == Zones.SANCTUARY:
+            if goodsSlot == 1:
+                return 247
+            if goodsSlot == 2:
+                return 250
+            if goodsSlot == 3:
+                return 256
+            if goodsSlot == 5:
+                return 120
+            if goodsSlot == 9:
+                return 110
+            if goodsSlot == 10:
+                return 115
+            if goodsSlot == 11:
+                return 128
+        return 0
+
+
+class DyeShop:
+    def ID(goodsSlot: int) -> int:
+        if goodsSlot == 1:
+            return 240
+        if goodsSlot == 2:
+            return 241
+        if goodsSlot == 5:
+            return 242
+        if goodsSlot == 6:
+            return 243
+        return 0
+
+
+class Apothecary:
+    def ID(currentZone: int, goodsSlot: int, knowledge: object) -> int:
+        if currentZone == Zones.SOFTLIK:
+            if goodsSlot == 1:
+                return 203
+            if goodsSlot == 2:
+                return 209
+            if goodsSlot == 3:
+                return 523
+            if goodsSlot == 7 and not knowledge.knowLustDraft:
+                return 1
+            if goodsSlot == 9 and not knowledge.knowSRejuvPot:
+                return 6
+            if goodsSlot == 10 and not knowledge.knowMasoPot:
+                return 10
+            if goodsSlot == 11 and not knowledge.knowBabyFree:
+                return 11
+        elif currentZone == Zones.FIRMSHAFT:
+            if goodsSlot == 1:
+                return 209
+            if goodsSlot == 2:
+                return 202
+            if goodsSlot == 3:
+                return 206
+            if goodsSlot == 5:
+                return 212
+            if goodsSlot == 6:
+                return 524
+            if goodsSlot == 9 and not knowledge.knowRejuvPot:
+                return 2
+            if goodsSlot == 10 and not knowledge.knowSLustDraft:
+                return 5
+            if goodsSlot == 11 and not knowledge.knowSMasoPot:
+                return 14
+        elif currentZone == Zones.TIEDEN:
+            if goodsSlot == 1:
+                return 201
+            if goodsSlot == 2:
+                return 202
+            if goodsSlot == 3:
+                return 213
+            if goodsSlot == 5:
+                return 203
+            if goodsSlot == 9 and not knowledge.knowBallSwell:
+                return 4
+            if goodsSlot == 10 and not knowledge.knowPotPot:
+                return 12
+            if goodsSlot == 11 and not knowledge.knowSGenSwap:
+                return 13
+        elif currentZone == Zones.SIZ_CALIT:
+            if goodsSlot == 1:
+                return 210
+            if goodsSlot == 2:
+                return 201
+            if goodsSlot == 3:
+                return 218
+            if goodsSlot == 9 and not knowledge.knowExpPreg:
+                return 3
+            if goodsSlot == 10 and not knowledge.knowGenSwap:
+                return 9
+            if goodsSlot == 11 and not knowledge.knowSBabyFree:
+                return 15
+        elif currentZone == Zones.OVIASIS:
+            if goodsSlot == 1:
+                return 207
+            if goodsSlot == 2:
+                return 213
+            if goodsSlot == 3:
+                return 208
+            if goodsSlot == 5:
+                return 228
+            if goodsSlot == 9 and not knowledge.knowSExpPreg:
+                return 7
+            if goodsSlot == 10 and not knowledge.knowSBallSwell:
+                return 8
+            if goodsSlot == 11 and not knowledge.knowSPotPot:
+                return 16
+        elif currentZone == Zones.SANCTUARY:
+            if goodsSlot == 9 and not knowledge.knowMilkSuppress:
+                return 17
+        return 0
+
+
+class Salon:
+    def ID(currentZone: int, choice: int) -> int:
+        if currentZone == Zones.SOFTLIK:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 4
+            if choice == 3:
+                return 8
+            if choice == 5:
+                return 2
+            if choice == 6:
+                return 3
+            if choice == 7:
+                return 12
+            if choice == 9:
+                return 14
+        elif currentZone == Zones.FIRMSHAFT:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 4
+            if choice == 3:
+                return 8
+            if choice == 5:
+                return 3
+            if choice == 6:
+                return 10
+            if choice == 7:
+                return 5
+            if choice == 9:
+                return 6
+        elif currentZone == Zones.TIEDEN:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 4
+            if choice == 3:
+                return 8
+            if choice == 5:
+                return 6
+            if choice == 6:
+                return 11
+            if choice == 7:
+                return 12
+            if choice == 9:
+                return 13
+        elif currentZone == Zones.SIZ_CALIT:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 4
+            if choice == 3:
+                return 8
+            if choice == 5:
+                return 2
+            if choice == 6:
+                return 9
+            if choice == 7:
+                return 7
+            if choice == 9:
+                return 13
+        elif currentZone == Zones.OVIASIS:
+            if choice == 1:
+                return 2
+            if choice == 2:
+                return 3
+            if choice == 3:
+                return 4
+            if choice == 5:
+                return 9
+            if choice == 6:
+                return 10
+            if choice == 7:
+                return 11
+            if choice == 9:
+                return 12
+        elif currentZone == Zones.SANCTUARY:
+            if choice == 1:
+                return 2
+            if choice == 2:
+                return 9
+            if choice == 3:
+                return 6
+            if choice == 5:
+                return 12
+            if choice == 6:
+                return 13
+            if choice == 7:
+                return 1
+            if choice == 9:
+                return 4
+        return 0
+
+
+class Tailor:
+    def ID(currentZone: int, choice: int) -> int:
+        if currentZone == Zones.SOFTLIK:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 6
+            if choice == 6:
+                return 9
+            if choice == 7:
+                return 10
+            if choice == 9:
+                return 13
+            if choice == 10:
+                return 22
+            if choice == 11:
+                return 27
+        elif currentZone == Zones.FIRMSHAFT:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 8
+            if choice == 6:
+                return 9
+            if choice == 7:
+                return 15
+            if choice == 9:
+                return 18
+            if choice == 10:
+                return 24
+            if choice == 11:
+                return 26
+        elif currentZone == Zones.TIEDEN:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 5
+            if choice == 6:
+                return 13
+            if choice == 7:
+                return 19
+            if choice == 9:
+                return 22
+            if choice == 10:
+                return 23
+            if choice == 11:
+                return 25
+        elif currentZone == Zones.SIZ_CALIT:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 3
+            if choice == 6:
+                return 4
+            if choice == 7:
+                return 11
+            if choice == 9:
+                return 12
+            if choice == 10:
+                return 20
+            if choice == 11:
+                return 28
+        elif currentZone == Zones.OVIASIS:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 7
+            if choice == 6:
+                return 14
+            if choice == 7:
+                return 16
+            if choice == 9:
+                return 17
+            if choice == 10:
+                return 19
+            if choice == 11:
+                return 21
+        elif currentZone == Zones.SANCTUARY:
+            if choice == 1:
+                return 1
+            if choice == 2:
+                return 2
+            if choice == 3:
+                return 29
+            if choice == 5:
+                return 28
+            if choice == 6:
+                return 30
+            if choice == 7:
+                return 25
+            if choice == 9:
+                return 23
+            if choice == 10:
+                return 22
+            if choice == 11:
+                return 19
         return 0
 
 
@@ -8433,7 +9155,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if Items.useHidesPage(ID):
             self.hidePage()
         self.choicePage = 1
-        self.doMainText(self.itemDescription(ID), True)
+        self.doMainText(Items.description(ID), True)
         if (Items.isUsable(ID) or Items.isConsumable(ID)):
             self.hideAmountAll()
             self.doMainText("\n\nAre you sure you want to use this item?")
@@ -8557,7 +9279,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.buttonChoice == 4 or self.buttonChoice == 8):
                 self.displayBag()
             elif (self.canLose(self.choiceListResult[0])):
-                self.doMainText(f"{self.itemDescription(self.choiceListResult[0])}\n\n{self.itemDescription(ID)}\n\nDo you want to replace {Items.name(self.choiceListResult[0])} with {Items.name(ID)}?", True)
+                self.doMainText(f"{Items.description(self.choiceListResult[0])}\n\n{Items.description(ID)}\n\nDo you want to replace {Items.name(self.choiceListResult[0])} with {Items.name(ID)}?", True)
                 if (self.bag.stack[self.choiceListResult[1]] > 1):
                     self.doMainText(f"\n\nYou will lose all {self.bag.stack[self.choiceListResult[1]]} of {Items.name(self.choiceListResult[0])} if you do.")
                 self.displayMainText()
@@ -8645,293 +9367,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         else:
             self.moveItemHide()
             self.moveItemAmountHide()
-
-    def itemDescription(self, ID: int):
-        '''
-        Function which returns the description of the item ID
-        '''
-        # TODO: Find a way to move this out of the main class
-        if ID == 2:
-            return "Debug Stick\n\nDebug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
-        if ID == 3:
-            return "Teleport Scroll: Any\n\nCreated for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."
-        if ID == 101:
-            return "Claws of the Lupine Ancestors\n\nHarkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."
-        if ID == 102:
-            return "Imbued Horseshoes\n\nCrafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
-        if ID == 103:
-            return "Magical Sands of the Dry Dunes\n\nApplying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
-        if ID == 104:
-            return "Milking Machine\n\nA compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."
-        if ID == 105:
-            return "'Cat's Meow' Potion\n\nFavored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
-        if ID == 106:
-            return "Penis Pump\n\nA simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."
-        if ID == 108:
-            return "Blood Gauge\n\nDue to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
-        if ID == 109:
-            return "Educated Eggdicator\n\nWith so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."
-        if ID == 110:
-            return "A Reduction of Reducer Agents\n\nThis is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."
-        if ID == 111:
-            return "Skin Balm\n\nUsed and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
-        if ID == 112:
-            return "Bolstering Juice\n\nThis white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
-        if ID == 113:
-            return "Tainted Leaf\n\nThis paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
-        if ID == 114:
-            return "Sweet Sap\n\nUsed and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
-        if ID == 115:
-            return "Poultice\n\nA generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
-        if ID == 116:
-            return "Dagger\n\nA relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"
-        if ID == 117:
-            return "Warhammer\n\nA rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"
-        if ID == 118:
-            return "Saber\n\nA well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"
-        if ID == 119:
-            return "Whip\n\nA somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"
-        if ID == 120:
-            return "Neuterizer\n\nDeveloped by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
-        if ID == 121:
-            return "Teleport Scroll: Softlik\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 122:
-            return "Teleport Scroll: Firmshaft\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 123:
-            return "Teleport Scroll: Tieden\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 124:
-            return "Teleport Scroll: Siz'Calit\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 125:
-            return "Teleport Scroll: Oviasis\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 126:
-            return "Oasis Water\n\nA vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
-        if ID == 127:
-            return "Tail Spike\n\nThis large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
-        if ID == 128:
-            return "Teleport Scroll: Sanctuary\n\nCreated for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 200:
-            return "Lila's Gift\n\nA small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."
-        if ID == 201:
-            return "Milk Creeper Poison\n\nObtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
-        if ID == 202:
-            return "Cock-Snake Venom\n\nObtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
-        if ID == 203:
-            return f"Tuft of Wolf Fur\n\nObtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {self.skinDesc()}."
-        if ID == 204:
-            return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
-        if ID == 205:
-            return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
-        if ID == 206:
-            return "Shiny Trinket\n\nOther than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
-        if ID == 207:
-            return "Wooden Cock Carving\n\nThis thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
-        if ID == 208:
-            return "Bloated Berry\n\nA berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
-        if ID == 209:
-            return "Handful of Grain\n\nA handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
-        if ID == 210:
-            return "Pussy Fruit\n\nIt is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
-        if ID == 211:
-            return "DairE Pill\n\nProduced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
-        if ID == 212:
-            return "Red Mushroom\n\nAn odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
-        if ID == 213:
-            return "Wet, Slimy Cloth\n\nThis piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
-        if ID == 214:
-            return "Malon's Milk\n\nUnlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
-        if ID == 215:
-            return "Malon's Pendant\n\nGiven to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."
-        if ID == 216:
-            return "Pink Ink\n\nOctopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
-        if ID == 217:
-            return "Octopus Egg Jelly\n\nThe jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
-        if ID == 218:
-            return "Bulging Berry\n\nA cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."
-        if ID == 219:
-            return "Fresh Egg\n\nAn unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
-        if ID == 220:
-            return "Blonde Dye\n\nA dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
-        if ID == 221:
-            return "Concentrated Pussy Fruit Juice\n\nCreated by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
-        if ID == 222:
-            return "Kinky Carrot\n\nUsed in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
-        if ID == 223:
-            return "Equan Snack\n\nA common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
-        if ID == 224:
-            return "Lila's Milk\n\nFrom the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
-        if ID == 225:
-            return "Body Wash\n\nThis nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
-        if ID == 226:
-            return "Felin Tea Mix\n\nA common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
-        if ID == 227:
-            return "Felin Oral Wash\n\nWith bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
-        if ID == 228:
-            return "Body Oil\n\nNice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
-        if ID == 229:
-            return "Leather Strap\n\nFound somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
-        if ID == 230:
-            return "Eggcelerator\n\nMeant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."
-        if ID == 231:
-            return "Desiccating Sand\n\nObtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."
-        if ID == 232:
-            return "Flying Carpet\n\nBorrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
-        if ID == 233:
-            return f"Anti-Gravity Rock\n\nBorrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {self.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
-        if ID == 234:
-            return "Reindeer Charm\n\nBorrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
-        if ID == 235:
-            return "Fellatio Rod\n\nBorrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
-        if ID == 236:
-            return "Reception Bell\n\nBorrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
-        if ID == 237:
-            return "Lila's Dewy Gift\n\nOriginally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."
-        if ID == 238:
-            return "Squeaky Cheese\n\nSome cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
-        if ID == 239:
-            return "Shiny Rock\n\nA rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
-        if ID == 240:
-            return "Auburn Dye\n\nA dark reddish color, this dye will turn your hair auburn when used, if you have hair"
-        if ID == 241:
-            return "Brown Dye\n\nA simple brownish, this dye will turn your hair brown when used, if you have hair"
-        if ID == 242:
-            return "Grey Dye\n\nA shade, this dye will turn your hair grey when used, if you have hair"
-        if ID == 243:
-            return "White Dye\n\nLacking any color, this dye will turn your hair pure white when used, if you have hair"
-        if ID == 244:
-            if (self.snuggleBall):
-                return "Snuggle Ball\n\nNot really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
-            return "Snuggle Ball\n\nSquishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
-        if ID == 245:
-            return "Facial Mud\n\nSome mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
-        if ID == 246:
-            return "Fertile Gel\n\nA soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
-        if ID == 247:
-            tempStr = "Support Harness\n\nThis contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
-            if (self.suppHarness):
-                tempStr += "\n\nYou currently have a harness equipped. Using it will unequip the harness."
-            return tempStr
-        if ID == 248:
-            return "Breeder Potion\n\nThis potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
-        if ID == 249:
-            return "Treant's Tear\n\nThis small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
-        if ID == 250:
-            return "Foomp Bomb\n\nMuch like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."
-        if ID == 251:
-            return "Plump Quat\n\nThe quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
-        if ID == 252:
-            return "Malon's Milky Pendant\n\nThis is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
-        if ID == 253:
-            tempStr = "Bug Egg\n\nRelatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
-            if (self.tail == 12):
-                tempStr += "\n\nHowever, you do notice that the egg is just about the right size for the ovipositor hanging off your backside."
-            return tempStr
-        if ID == 254:
-            return "Lantern\n\nThis is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
-        if ID == 255:
-            return "Fragrant Flower\n\nA very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
-        if ID == 256:
-            return "Nectar Candy\n\nA sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
-        if ID == 257:
-            return "Too Human Potion\n\nThis potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
-        if ID == 258:
-            return "Tainted Potion\n\nThis potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
-        if ID == 259:
-            return "Sweet & Sour Candy\n\nThis rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
-        if ID == 260:
-            return "Succubus Draft\n\nOne of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
-        if ID == 404:
-            tempStr = "Item Not Found\n\nItem Not Found"
-            if as3state.as3DebugEnable:
-                tempStr += " (This is a joke item referencing status code 404)"
-            return tempStr
-        if ID == 418:
-            tempStr = "Strange Teapot\n\nInscribed on the side are the words \"I'm a teapot\"."
-            if as3state.as3DebugEnable:
-                tempStr += " (This is a joke item referencing status code 418)"
-            return tempStr
-        if ID == 500:
-            return "Bottle of Milk\n\nA bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
-        if ID == 501:
-            return "Jug of Milk\n\nA large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
-        if ID == 502:
-            return "Barrel of Milk\n\nA barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
-        if ID == 503:
-            return "Lust Draft\n\nA potion that will increase your lust by 20 instantly when used."
-        if ID == 504:
-            return "Rejuvenating Potion\n\nA potion that will heal 30 HP and reduce your lust by 15 instantly when used."
-        if ID == 505:
-            return "Bad Experiment\n\nThis combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."
-        if ID == 506:
-            return "Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
-        if ID == 507:
-            return "Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
-        if ID == 508:
-            return "Superior Lust Draft\n\nA potion that will increase your lust by 50 instantly when used."
-        if ID == 509:
-            return "Superior Rejuvenating Potion\n\nA potion that will heal 70 HP and reduce your lust by 40 instantly when used."
-        if ID == 510:
-            return "Super Bad Experiment\n\nThis extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."
-        if ID == 511:
-            return "Superior Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
-        if ID == 512:
-            return "Superior Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
-        if ID == 513:
-            return "Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
-        if ID == 514:
-            return "Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
-        if ID == 515:
-            return "Black Dye\n\nThis will turn your hair black in color when used, if you have hair."
-        if ID == 516:
-            return "Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-        if ID == 517:
-            return "Potency Potion\n\nKicking your balls into gear, they will permanently produce 20% more cum, despite their size."
-        if ID == 518:
-            return "Superior Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
-        if ID == 519:
-            return "Superior Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
-        if ID == 520:
-            return "Red Dye\n\nThis will turn your hair red in color when used, if you have hair."
-        if ID == 521:
-            return "Superior Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-        if ID == 522:
-            return "Superior Potency Potion\n\nDrop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
-        if ID == 523:
-            return "Vial of Cum\n\nStill kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
-        if ID == 524:
-            return "Bottle of Cum\n\nA bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
-        if ID == 525:
-            return "Jug of Cum\n\nA jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
-        if ID == 526:
-            return "Barrel of Cum\n\nThere's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
-        if ID == 527:
-            return "Good Egg\n\nAn unfertilized fresh egg that is especially good for your health and body."
-        if ID == 528:
-            return "Bad Egg\n\nAn unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."
-        if ID == 529:
-            return "Strange Egg\n\nAn unfertilized fresh egg that can do... odd things to your body."
-        if ID == 530:
-            return "Charmed Egg\n\nAn unfertilized fresh egg that will make you quite alluring for 20 hours."
-        if ID == 531:
-            return "Divine Egg\n\nA very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
-        if ID == 532:
-            return "Strong Pheromone\n\nOriginally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
-        if ID == 533:
-            return "Reduced Reduction\n\nA weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
-        if ID == 534:
-            return "Male Enhancement Drug\n\nA simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."
-        if ID == 535:
-            return "Milk Suppressant\n\nThis drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
-        if ID == 536:
-            return "Bazoomba!\n\nThis glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."
-        if ID == 537:
-            return "Queen Egg\n\nNot the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
-        if ID == 538:
-            return "Soldier Egg\n\nNot the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
-        if ID == 539:
-            return "Drone Egg\n\nNot the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
-        if ID == 540:
-            return "Worker Egg\n\nNot the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
-        return f"ITEM DESCRIPTION ERROR {ID}"
 
     def canLose(self, ID: int, check: int = 1):
         '''
@@ -11386,31 +11821,31 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempDict = {4: "Buy", 8: "Sell", 12: "Return"}
         dlist = []
         for i in RANGE9_BUTTON_MAP:
-            tempDict[i] = Items.name(self.goodsID(i))
-            if (Items.name(self.goodsID(i)) == " "):
+            tempDict[i] = Items.name(Shop.ID(self.currentZone, i))
+            if (Items.name(Shop.ID(self.currentZone, i)) == " "):
                 dlist.append(i)
         self.outputMainText("Click on an item to view a description of the item. If you would like to purchase it, click the Buy button.\n\nIf you would like to sell an item from your bag, click Sell.", True)
         self.doButtonChoices(tempDict)
         self.disableSelectedButtons(dlist)
 
         def doListen():
-            if (self.buttonChoice not in {4, 8, 12} and self.goodsID(self.buttonChoice) != 0):
-                self.outputMainText(f"{self.itemDescription(self.goodsID(self.buttonChoice))}\n\nCost: {3 * Items.value(self.goodsID(self.buttonChoice))} coins.", True)
+            if (self.buttonChoice not in {4, 8, 12} and Shop.ID(self.currentZone, self.buttonChoice) != 0):
+                self.outputMainText(f"{Items.description(Shop.ID(self.currentZone, self.buttonChoice))}\n\nCost: {3 * Items.value(Shop.ID(self.currentZone, self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {Items.name(self.goodsID(self.buy))}?")
-                if (Items.stackMax(self.goodsID(self.buy)) > 1):
+                self.outputMainText(f"\n\nAre you sure you would like to buy {Items.name(Shop.ID(self.currentZone, self.buy))}?")
+                if (Items.stackMax(Shop.ID(self.currentZone, self.buy)) > 1):
                     buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                     tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
-                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * Items.value(self.goodsID(self.buy))} coins, 2 for {6 * Items.value(self.goodsID(self.buy))} coins, 5 for {15 * Items.value(self.goodsID(self.buy))} coins")
-                    if (Items.stackMax(self.goodsID(self.buy)) >= 10):
+                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * Items.value(Shop.ID(self.currentZone, self.buy))} coins, 2 for {6 * Items.value(Shop.ID(self.currentZone, self.buy))} coins, 5 for {15 * Items.value(Shop.ID(self.currentZone, self.buy))} coins")
+                    if (Items.stackMax(Shop.ID(self.currentZone, self.buy)) >= 10):
                         buttonlist[9] = 1
                         tempDict[9] = "Buy 10"
-                        self.doMainText(f", 10 for {30 * Items.value(self.goodsID(self.buy))} coins")
-                    if (Items.stackMax(self.goodsID(self.buy)) >= 15):
+                        self.doMainText(f", 10 for {30 * Items.value(Shop.ID(self.currentZone, self.buy))} coins")
+                    if (Items.stackMax(Shop.ID(self.currentZone, self.buy)) >= 15):
                         buttonlist[10] = 1
                         tempDict[10] = "Buy 15"
-                        self.doMainText(f", 15 for {45 * Items.value(self.goodsID(self.buy))} coins")
+                        self.doMainText(f", 15 for {45 * Items.value(Shop.ID(self.currentZone, self.buy))} coins")
                     self.outputMainText(".")
                     self.showButtons(buttonlist)
                     self.doButtonChoices(tempDict)
@@ -11434,28 +11869,28 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             tempInt = 10
                         elif (self.buttonChoice == 10):
                             tempInt = 15
-                        if (self.coin < 3 * tempInt * Items.value(self.goodsID(self.buy))):
-                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * Items.value(self.goodsID(self.buy)) - self.coin} more coins to purchase ", True)
+                        if (self.coin < 3 * tempInt * Items.value(Shop.ID(self.currentZone, self.buy))):
+                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * Items.value(Shop.ID(self.currentZone, self.buy)) - self.coin} more coins to purchase ", True)
                             if (tempInt > 1):
-                                self.doMainText(f"{tempInt}x {Items.name(self.goodsID(self.buy))}.")
+                                self.doMainText(f"{tempInt}x {Items.name(Shop.ID(self.currentZone, self.buy))}.")
                             else:
-                                self.doMainText(f"{Items.name(self.goodsID(self.buy))}.")
+                                self.doMainText(f"{Items.name(Shop.ID(self.currentZone, self.buy))}.")
                             self.displayMainText()
                             self.doNext()
 
                             def doListen():
                                 self.doShop()
                             self.doListen = doListen
-                        elif (self.bag.hasItem(self.goodsID(self.buy)) and not Items.isConsumable(self.goodsID(self.buy))):
-                            self.outputMainText(f"Sorry, but you cannot buy {Items.name(self.goodsID(self.buy))} if you already have one. Please choose something else.", True)
+                        elif (self.bag.hasItem(Shop.ID(self.currentZone, self.buy)) and not Items.isConsumable(Shop.ID(self.currentZone, self.buy))):
+                            self.outputMainText(f"Sorry, but you cannot buy {Items.name(Shop.ID(self.currentZone, self.buy))} if you already have one. Please choose something else.", True)
                             self.doNext()
 
                             def doListen():
                                 self.doShop()
                             self.doListen = doListen
                         else:
-                            self.addManyItem(self.goodsID(self.buy), tempInt)
-                            self.doCoin(-3 * tempInt * Items.value(self.goodsID(self.buy)))
+                            self.addManyItem(Shop.ID(self.currentZone, self.buy), tempInt)
+                            self.doCoin(-3 * tempInt * Items.value(Shop.ID(self.currentZone, self.buy)))
                             self.doProcess()
                 self.doListen = doListen
             elif (self.buttonChoice == 8):
@@ -11539,138 +11974,39 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doListen = doListen
         self.doListen = doListen
 
-    def goodsID(self, goodsSlot: int):
-        if self.currentZone == Zones.SOFTLIK:
-            if goodsSlot == 1:
-                return 104
-            if goodsSlot == 2:
-                return 111
-            if goodsSlot == 3:
-                return 116
-            if goodsSlot == 5:
-                return 500
-            if goodsSlot == 6:
-                return 501
-            if goodsSlot == 7:
-                return 108
-            if goodsSlot == 9:
-                return 110
-            if goodsSlot == 10:
-                return 115
-            if goodsSlot == 11:
-                return 121
-        elif self.currentZone == Zones.FIRMSHAFT:
-            if goodsSlot == 1:
-                return 102
-            if goodsSlot == 2:
-                return 112
-            if goodsSlot == 3:
-                return 117
-            if goodsSlot == 5:
-                return 106
-            if goodsSlot == 9:
-                return 110
-            if goodsSlot == 10:
-                return 115
-            if goodsSlot == 11:
-                return 122
-        elif self.currentZone == Zones.TIEDEN:
-            if goodsSlot == 1:
-                return 101
-            if goodsSlot == 2:
-                return 113
-            if goodsSlot == 3:
-                return 118
-            if goodsSlot == 5:
-                return 120
-            if goodsSlot == 9:
-                return 110
-            if goodsSlot == 10:
-                return 115
-            if goodsSlot == 11:
-                return 123
-        elif self.currentZone == Zones.SIZ_CALIT:
-            if goodsSlot == 2:
-                return 114
-            if goodsSlot == 3:
-                return 119
-            if goodsSlot == 5:
-                return 103
-            if goodsSlot == 6:
-                return 105
-            if goodsSlot == 9:
-                return 110
-            if goodsSlot == 10:
-                return 115
-            if goodsSlot == 11:
-                return 124
-        elif self.currentZone == Zones.OVIASIS:
-            if goodsSlot == 1:
-                return 109
-            if goodsSlot == 2:
-                return 126
-            if goodsSlot == 3:
-                return 127
-            if goodsSlot == 5:
-                return 103
-            if goodsSlot == 6:
-                return 230
-            if goodsSlot == 9:
-                return 110
-            if goodsSlot == 10:
-                return 115
-            if goodsSlot == 11:
-                return 125
-        elif self.currentZone == Zones.SANCTUARY:
-            if goodsSlot == 1:
-                return 247
-            if goodsSlot == 2:
-                return 250
-            if goodsSlot == 3:
-                return 256
-            if goodsSlot == 5:
-                return 120
-            if goodsSlot == 9:
-                return 110
-            if goodsSlot == 10:
-                return 115
-            if goodsSlot == 11:
-                return 128
-        return 0
-
     def doDyeShop(self):
         self.buy = 0
         self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
         tempDict = {4: "Buy", 12: "Return"}
         dlist = []
         for i in RANGE9_BUTTON_MAP:
-            tempDict[i] = Items.name(Items.dyeID(i))
-            if (Items.name(Items.dyeID(i)) == " "):
+            tempDict[i] = Items.name(DyeShop.ID(i))
+            if (Items.name(DyeShop.ID(i)) == " "):
                 dlist.append(i)
         self.outputMainText("Click on a dye to view a description of the color. If you would like to purchase it, click the Buy button..", True)
         self.doButtonChoices(tempDict)
         self.disableSelectedButtons(dlist)
 
         def doListen():
-            if (self.buttonChoice not in {4, 8, 12} and Items.dyeID(self.buttonChoice) != 0):
-                self.outputMainText(f"{self.itemDescription(Items.dyeID(self.buttonChoice))}\n\nCost: {3 * Items.value(Items.dyeID(self.buttonChoice))} coins.", True)
+            if (self.buttonChoice not in {4, 8, 12} and DyeShop.ID(self.buttonChoice) != 0):
+                self.outputMainText(f"{Items.description(DyeShop.ID(self.buttonChoice))}\n\nCost: {3 * Items.value(DyeShop.ID(self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {Items.name(Items.dyeID(self.buy))}?")
+                self.outputMainText(f"\n\nAre you sure you would like to buy {Items.name(DyeShop.ID(self.buy))}?")
                 self.buttonConfirm()
 
                 def doListen():
                     if (self.buttonChoice == 6):
-                        if (self.coin < 3 * Items.value(Items.dyeID(self.buy))):
-                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * Items.value(Items.dyeID(self.buy)) - self.coin} more coins to purchase{Items.name(Items.dyeID(self.buy))}.", True)
+                        if (self.coin < 3 * Items.value(DyeShop.ID(self.buy))):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * Items.value(DyeShop.ID(self.buy)) - self.coin} more coins to purchase{Items.name(DyeShop.ID(self.buy))}.", True)
                             self.doNext()
 
                             def doListen():
                                 self.doDyeShop()
                             self.doListen = doListen
                         else:
-                            self.itemAdd(Items.dyeID(self.buy))
-                            self.doCoin(-3 * Items.value(Items.dyeID(self.buy)))
+                            self.itemAdd(DyeShop.ID(self.buy))
+                            self.doCoin(-3 * Items.value(DyeShop.ID(self.buy)))
                             self.doProcess()
                     else:
                         self.doDyeShop()
@@ -11710,31 +12046,31 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         dlist = []
         tempDict = {4: "Buy", 12: "Return"}
         for i in RANGE9_BUTTON_MAP:
-            tempDict[i] = ApothecaryItems.name(self.apothID(i))
-            if (ApothecaryItems.name(self.apothID(i)) == ""):
+            tempDict[i] = ApothecaryItems.name(Apothecary.ID(self.currentZone, i, self))
+            if (ApothecaryItems.name(Apothecary.ID(self.currentZone, i, self)) == ""):
                 dlist.append(i)
         self.outputMainText("Click on an item to view its description. If you would like to purchase it, click the Buy button.\n\nRecipes for Alchemy only need to be bought once. After you have learned the recipe, you don't need to learn it again.", True)
         self.doButtonChoices(tempDict)
         self.disableSelectedButtons(dlist)
 
         def doListen():
-            if (self.buttonChoice not in {4, 8, 12} and self.apothID(self.buttonChoice) != 0):
-                self.outputMainText(f"{self.apothDescription(self.apothID(self.buttonChoice))}\n\nCost: {3 * ApothecaryItems.value(self.apothID(self.buttonChoice))} coins.", True)
+            if (self.buttonChoice not in {4, 8, 12} and Apothecary.ID(self.currentZone, self.buttonChoice, self) != 0):
+                self.outputMainText(f"{ApothecaryItems.description(Apothecary.ID(self.currentZone, self.buttonChoice, self))}\n\nCost: {3 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buttonChoice, self))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {ApothecaryItems.name(self.apothID(self.buy))}?")
-                if (self.apothID(self.buy) > 200 and Items.stackMax(self.apothID(self.buy)) > 1):
+                self.outputMainText(f"\n\nAre you sure you would like to buy {ApothecaryItems.name(Apothecary.ID(self.currentZone, self.buy, self))}?")
+                if (Apothecary.ID(self.currentZone, self.buy, self) > 200 and Items.stackMax(Apothecary.ID(self.currentZone, self.buy, self)) > 1):
                     buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                     tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
-                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * ApothecaryItems.value(self.apothID(self.buy))} coins, 2 for {6 * ApothecaryItems.value(self.apothID(self.buy))} coins, 5 for {15 * ApothecaryItems.value(self.apothID(self.buy))} coins")
-                    if (Items.stackMax(self.apothID(self.buy)) >= 10):
+                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))} coins, 2 for {6 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))} coins, 5 for {15 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))} coins")
+                    if (Items.stackMax(Apothecary.ID(self.currentZone, self.buy, self)) >= 10):
                         tempDict[9] = "Buy 10"
                         buttonlist[9] = 1
-                        self.doMainText(f", 10 for {30 * ApothecaryItems.value(self.apothID(self.buy))} coins")
-                    if (Items.stackMax(self.apothID(self.buy)) >= 15):
+                        self.doMainText(f", 10 for {30 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))} coins")
+                    if (Items.stackMax(Apothecary.ID(self.currentZone, self.buy, self)) >= 15):
                         tempDict[10] = "Buy 15"
                         buttonlist[10] = 1
-                        self.doMainText(f", 15 for {45 * ApothecaryItems.value(self.apothID(self.buy))} coins")
+                        self.doMainText(f", 15 for {45 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))} coins")
                     self.outputMainText(".")
                     self.showButtons(buttonlist)
                     self.doButtonChoices(tempDict)
@@ -11758,31 +12094,31 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             tempInt = 10
                         elif self.buttonChoice == 10:
                             tempInt = 15
-                        if (self.coin < 3 * tempInt * ApothecaryItems.value(self.apothID(self.buy))):
-                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * ApothecaryItems.value(self.apothID(self.buy)) - self.coin} more coins to purchase ", True)
+                        if (self.coin < 3 * tempInt * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))):
+                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self)) - self.coin} more coins to purchase ", True)
                             if (tempInt > 1):
-                                self.doMainText(f"{tempInt}x {ApothecaryItems.name(self.apothID(self.buy))}.")
+                                self.doMainText(f"{tempInt}x {ApothecaryItems.name(Apothecary.ID(self.currentZone, self.buy, self))}.")
                             else:
-                                self.doMainText(f"{ApothecaryItems.name(self.apothID(self.buy))}.")
+                                self.doMainText(f"{ApothecaryItems.name(Apothecary.ID(self.currentZone, self.buy, self))}.")
                             self.displayMainText()
                             self.doNext()
 
                             def doListen():
                                 self.doApothecary()
                             self.doListen = doListen
-                        elif (self.bag.hasItem(self.apothID(self.buy)) and not Items.isConsumable(self.apothID(self.buy))):
-                            self.outputMainText(f"Sorry, but you cannot buy {ApothecaryItems.name(self.apothID(self.buy))} if you already have one. Please choose something else.", True)
+                        elif (self.bag.hasItem(Apothecary.ID(self.currentZone, self.buy, self)) and not Items.isConsumable(Apothecary.ID(self.currentZone, self.buy, self))):
+                            self.outputMainText(f"Sorry, but you cannot buy {ApothecaryItems.name(Apothecary.ID(self.currentZone, self.buy, self))} if you already have one. Please choose something else.", True)
                             self.doNext()
 
                             def doListen():
                                 self.doApothecary()
                             self.doListen = doListen
                         else:
-                            self.doCoin(-3 * tempInt * ApothecaryItems.value(self.apothID(self.buy)))
-                            if (self.apothID(self.buy) > 200):
-                                self.addManyItem(self.apothID(self.buy), tempInt)
+                            self.doCoin(-3 * tempInt * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self)))
+                            if (Apothecary.ID(self.currentZone, self.buy, self) > 200):
+                                self.addManyItem(Apothecary.ID(self.currentZone, self.buy, self), tempInt)
                             else:
-                                self.apothLearn(self.apothID(self.buy))
+                                self.apothLearn(Apothecary.ID(self.currentZone, self.buy, self))
                             self.doProcess()
                 self.doListen = doListen
             elif (self.buttonChoice == 12):
@@ -11791,87 +12127,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     self.doReturn()
         self.doListen = doListen
-
-    def apothID(self, goodsSlot: int):
-        if self.currentZone == Zones.SOFTLIK:
-            if goodsSlot == 1:
-                return 203
-            if goodsSlot == 2:
-                return 209
-            if goodsSlot == 3:
-                return 523
-            if goodsSlot == 7 and not self.knowLustDraft:
-                return 1
-            if goodsSlot == 9 and not self.knowSRejuvPot:
-                return 6
-            if goodsSlot == 10 and not self.knowMasoPot:
-                return 10
-            if goodsSlot == 11 and not self.knowBabyFree:
-                return 11
-        elif self.currentZone == Zones.FIRMSHAFT:
-            if goodsSlot == 1:
-                return 209
-            if goodsSlot == 2:
-                return 202
-            if goodsSlot == 3:
-                return 206
-            if goodsSlot == 5:
-                return 212
-            if goodsSlot == 6:
-                return 524
-            if goodsSlot == 9 and not self.knowRejuvPot:
-                return 2
-            if goodsSlot == 10 and not self.knowSLustDraft:
-                return 5
-            if goodsSlot == 11 and not self.knowSMasoPot:
-                return 14
-        elif self.currentZone == Zones.TIEDEN:
-            if goodsSlot == 1:
-                return 201
-            if goodsSlot == 2:
-                return 202
-            if goodsSlot == 3:
-                return 213
-            if goodsSlot == 5:
-                return 203
-            if goodsSlot == 9 and not self.knowBallSwell:
-                return 4
-            if goodsSlot == 10 and not self.knowPotPot:
-                return 12
-            if goodsSlot == 11 and not self.knowSGenSwap:
-                return 13
-        elif self.currentZone == Zones.SIZ_CALIT:
-            if goodsSlot == 1:
-                return 210
-            if goodsSlot == 2:
-                return 201
-            if goodsSlot == 3:
-                return 218
-            if goodsSlot == 9 and not self.knowExpPreg:
-                return 3
-            if goodsSlot == 10 and not self.knowGenSwap:
-                return 9
-            if goodsSlot == 11 and not self.knowSBabyFree:
-                return 15
-        elif self.currentZone == Zones.OVIASIS:
-            if goodsSlot == 1:
-                return 207
-            if goodsSlot == 2:
-                return 213
-            if goodsSlot == 3:
-                return 208
-            if goodsSlot == 5:
-                return 228
-            if goodsSlot == 9 and not self.knowSExpPreg:
-                return 7
-            if goodsSlot == 10 and not self.knowSBallSwell:
-                return 8
-            if goodsSlot == 11 and not self.knowSPotPot:
-                return 16
-        elif self.currentZone == Zones.SANCTUARY:
-            if goodsSlot == 9 and not self.knowMilkSuppress:
-                return 17
-        return 0
 
     def apothLearn(self, ID: int):
         if ID == 1:
@@ -11909,46 +12164,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if ID == 17:
             self.knowMilkSuppress = True
 
-    def apothDescription(self, ID: int):
-        # TODO: Move to
-        if ID >= 200:
-            return self.itemDescription(ID)
-        if ID == 1:
-            return "Recipe: Lust Draft\n\nFor those who need a boost in the bedroom.\n\nAlchemy difficulty: Simple"
-        if ID == 2:
-            return "Recipe: Rejuvenation Potion\n\nUseful for soothing what ailes you.\n\nAlchemy difficulty: Simple"
-        if ID == 3:
-            return "Recipe: Express Pregnancy Potion\n\nHelps quicken the gestation period.\n\nAlchemy difficulty: Simple"
-        if ID == 4:
-            return "Recipe: Ball Sweller\n\nGives your nuts a jump in their production.\n\nAlchemy difficulty: Simple"
-        if ID == 5:
-            return "Recipe: Superior Lust Draft\n\nFor when you've got a long night ahead with your spouse.\n\nAlchemy difficulty: Complex"
-        if ID == 6:
-            return "Recipe: Superior Rejuvenation Potion\n\nGreatly soothes your ailments.\n\nAlchemy difficulty: Complex"
-        if ID == 7:
-            return "Recipe: Superior Express Pregnancy Potion\n\nBecause that baby just needs to get out.\n\nAlchemy difficulty: Complex"
-        if ID == 8:
-            return "Recipe: Superior Ball Sweller\n\nIf you like that swollen, achy, full of seed feeling, this is what you want.\n\nAlchemy difficulty: Complex"
-        if ID == 9:
-            return "Recipe: Gender Swap Potion\n\nDon't like your current path in life? This will help start you off from a new perspective.\n\nAlchemy difficulty: Complex"
-        if ID == 10:
-            return "Recipe: Masochism Potion\n\nMakes some the pain feel pleasurable instead.\n\nAlchemy difficulty: Complex"
-        if ID == 11:
-            return "Recipe: Baby Free Potion\n\nA good contraceptive.\n\nAlchemy difficulty: Complex"
-        if ID == 12:
-            return "Recipe: Potency Potion\n\nMakes your testicles more efficient in their duties.\n\nAlchemy difficulty: Complex"
-        if ID == 13:
-            return "Recipe: Superior Gender Swap Potion\n\nFor when you're bored and wanna try out something new.\n\nAlchemy difficulty: Advanced"
-        if ID == 14:
-            return "Recipe: Superior Masochism Potion\n\nReally helps take on the big fellas; all that soreness will be delightful instead.\n\nAlchemy difficulty: Advanced"
-        if ID == 15:
-            return "Recipe: Superior Baby Free Potion\n\nNecessary in Siz'Calit.\n\nAlchemy difficulty: Advanced"
-        if ID == 16:
-            return "Recipe: Superior Potency Potion\n\nHelps make sure you absolutely fertilize all those eggs with a good coating.\n\nAlchemy difficulty: Advanced"
-        if ID == 17:
-            return "Recipe: Milk Suppressant\n\nSometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
-        return ""
-
     def doSalon(self):
         self.buy = 0
         self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
@@ -11956,32 +12171,32 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempDict = {4: "Buy", 12: "Return"}
         for i in RANGE9_BUTTON_MAP:
             if i != 10:
-                tempDict[i] = Hairstyles.name(self.hairstyleID(i))
+                tempDict[i] = Hairstyles.name(Salon.ID(self.currentZone, i))
         self.outputMainText("Click on a hairstyle to view a description of the hairstyle. If you would like to purchase it, click the Buy button.\n\nNote: Buying hairstyles automatically replaces your current hairstyle. You cannot sell hairstyles.", True)
         self.doButtonChoices(tempDict)
         self.disableSelectedButtons(dlist)
 
         def doListen():
-            if (self.buttonChoice not in {4, 8, 12} and self.clothesID(self.buttonChoice) != 0):
-                self.outputMainText(f"{Hairstyles.description(self.hairstyleID(self.buttonChoice))}\n\nCost: {Hairstyles.value(self.hairstyleID(self.buttonChoice))} coins.", True)
+            if (self.buttonChoice not in {4, 8, 12} and Tailor.ID(self.currentZone, self.buttonChoice) != 0):  # TODO: This should use Salon.ID
+                self.outputMainText(f"{Hairstyles.description(Salon.ID(self.currentZone, self.buttonChoice))}\n\nCost: {Hairstyles.value(Salon.ID(self.currentZone, self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {Hairstyles.name(self.hairstyleID(self.buy))}?")
+                self.outputMainText(f"\n\nAre you sure you would like to buy {Hairstyles.name(Salon.ID(self.currentZone, self.buy))}?")
                 self.buttonConfirm()
 
                 def doListen():
                     if (self.buttonChoice == 6):
-                        if (self.coin < Hairstyles.value(self.hairstyleID(self.buy))):
-                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {Hairstyles.value(self.hairstyleID(self.buy)) - self.coin} more coins to purchase {Hairstyles.name(self.hairstyleID(self.buy))}.", True)
+                        if (self.coin < Hairstyles.value(Salon.ID(self.currentZone, self.buy))):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {Hairstyles.value(Salon.ID(self.currentZone, self.buy)) - self.coin} more coins to purchase {Hairstyles.name(Salon.ID(self.currentZone, self.buy))}.", True)
                             self.doNext()
 
                             def doListen():
                                 self.doSalon()
                             self.doListen = doListen
                         else:
-                            self.hair = self.hairstyleID(self.buy)
-                            self.doCoin(-Hairstyles.value(self.hairstyleID(self.buy)))
-                            if (Hairstyles.hasLengthOptions(self.hairstyleID(self.buy))):
+                            self.hair = Salon.ID(self.currentZone, self.buy)
+                            self.doCoin(-Hairstyles.value(Salon.ID(self.currentZone, self.buy)))
+                            if (Hairstyles.hasLengthOptions(Salon.ID(self.currentZone, self.buy))):
                                 self.showButtons(ButtonList(1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0))
                                 self.outputMainText("What length would you like your hair to be? This does not affect its cost.\n\nShort - Doesn't hang past head.\n\nMedium - Reaches shoulders.\n\nLong - Reaches past shoulderblades.\n\nX-Long - Hangs past your butt.\n\nXX-Long - Reaches the ground.")
                                 self.doButtonChoices({1: "Short", 2: "Medium", 5: "Long", 6: "X-Long", 7: "XX-Long"})
@@ -12078,130 +12293,37 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             return "that reaches down to the ground"
         return f"HAIR LENGTH ERROR {self.hairLength}"
 
-    def hairstyleID(self, choice: int):
-        if self.currentZone == Zones.SOFTLIK:
-            if choice == 1:
-                return 1
-            if choice == 2:
-                return 4
-            if choice == 3:
-                return 8
-            if choice == 5:
-                return 2
-            if choice == 6:
-                return 3
-            if choice == 7:
-                return 12
-            if choice == 9:
-                return 14
-        elif self.currentZone == Zones.FIRMSHAFT:
-            if choice == 1:
-                return 1
-            if choice == 2:
-                return 4
-            if choice == 3:
-                return 8
-            if choice == 5:
-                return 3
-            if choice == 6:
-                return 10
-            if choice == 7:
-                return 5
-            if choice == 9:
-                return 6
-        elif self.currentZone == Zones.TIEDEN:
-            if choice == 1:
-                return 1
-            if choice == 2:
-                return 4
-            if choice == 3:
-                return 8
-            if choice == 5:
-                return 6
-            if choice == 6:
-                return 11
-            if choice == 7:
-                return 12
-            if choice == 9:
-                return 13
-        elif self.currentZone == Zones.SIZ_CALIT:
-            if choice == 1:
-                return 1
-            if choice == 2:
-                return 4
-            if choice == 3:
-                return 8
-            if choice == 5:
-                return 2
-            if choice == 6:
-                return 9
-            if choice == 7:
-                return 7
-            if choice == 9:
-                return 13
-        elif self.currentZone == Zones.OVIASIS:
-            if choice == 1:
-                return 2
-            if choice == 2:
-                return 3
-            if choice == 3:
-                return 4
-            if choice == 5:
-                return 9
-            if choice == 6:
-                return 10
-            if choice == 7:
-                return 11
-            if choice == 9:
-                return 12
-        elif self.currentZone == Zones.SANCTUARY:
-            if choice == 1:
-                return 2
-            if choice == 2:
-                return 9
-            if choice == 3:
-                return 6
-            if choice == 5:
-                return 12
-            if choice == 6:
-                return 13
-            if choice == 7:
-                return 1
-            if choice == 9:
-                return 4
-        return 0
-
     def doTailor(self):
         self.buy = 0
         self.showButtons(ButtonList(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1))
         tempDict = {4: "Buy", 12: "Return"}
         for i in RANGE9_BUTTON_MAP:
-            tempDict[i] = Clothes.name(self.clothesID(i))
+            tempDict[i] = Clothes.name(Tailor.ID(self.currentZone, i))
         self.outputMainText("Click on a piece of clothing to view a description for the piece. If you would like to purchase it, click the Buy button.\n\nNote: Buying clothes automatically replaces what you're already wearing. You cannot sell outfits.", True)
         self.doButtonChoices(tempDict)
 
         def doListen():
-            if (self.buttonChoice not in {4, 8, 12} and self.clothesID(self.buttonChoice) != 0):
-                self.outputMainText(f"{Clothes.description(self.clothesID(self.buttonChoice))}\n\nCost: {Clothes.value(self.clothesID(self.buttonChoice))} coins.", True)
+            if (self.buttonChoice not in {4, 8, 12} and Tailor.ID(self.currentZone, self.buttonChoice) != 0):
+                self.outputMainText(f"{Clothes.description(Tailor.ID(self.currentZone, self.buttonChoice))}\n\nCost: {Clothes.value(Tailor.ID(self.currentZone, self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {Clothes.name(self.clothesID(self.buy))}?")
+                self.outputMainText(f"\n\nAre you sure you would like to buy {Clothes.name(Tailor.ID(self.currentZone, self.buy))}?")
                 if (self.attireTop == self.attireBot):
                     self.outputMainText(f"\n\nBe wary, replacing your {self.clothesTop()} with something that only takes a single clothes slot, your other clothes slot will default to the basic shirt/pants.")
                 self.buttonConfirm()
 
                 def doListen():
                     if (self.buttonChoice == 6):
-                        if (self.coin < Clothes.value(self.clothesID(self.buy))):
-                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {Clothes.value(self.clothesID(self.buy)) - self.coin} more coins to purchase {Clothes.name(self.clothesID(self.buy))}.", True)
+                        if (self.coin < Clothes.value(Tailor.ID(self.currentZone, self.buy))):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {Clothes.value(Tailor.ID(self.currentZone, self.buy)) - self.coin} more coins to purchase {Clothes.name(Tailor.ID(self.currentZone, self.buy))}.", True)
                             self.doNext()
 
                             def doListen():
                                 self.doTailor()
                             self.doListen = doListen
                         else:
-                            self.clothesChange(self.clothesID(self.buy))
-                            self.doCoin(-Clothes.value(self.clothesID(self.buy)))
+                            self.clothesChange(Tailor.ID(self.currentZone, self.buy))
+                            self.doCoin(-Clothes.value(Tailor.ID(self.currentZone, self.buy)))
                             self.doTailor()
                     else:
                         self.doTailor()
@@ -12212,123 +12334,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     self.doReturn()
         self.doListen = doListen
-
-    def clothesID(self, choice: int):
-        if self.currentZone == Zones.SOFTLIK:
-            if choice == 1:
-                return 1
-            if choice == 2:
-                return 2
-            if choice == 3:
-                return 29
-            if choice == 5:
-                return 6
-            if choice == 6:
-                return 9
-            if choice == 7:
-                return 10
-            if choice == 9:
-                return 13
-            if choice == 10:
-                return 22
-            if choice == 11:
-                return 27
-        elif self.currentZone == Zones.FIRMSHAFT:
-            if choice == 1:
-                return 1
-            if choice == 2:
-                return 2
-            if choice == 3:
-                return 29
-            if choice == 5:
-                return 8
-            if choice == 6:
-                return 9
-            if choice == 7:
-                return 15
-            if choice == 9:
-                return 18
-            if choice == 10:
-                return 24
-            if choice == 11:
-                return 26
-        elif self.currentZone == Zones.TIEDEN:
-            if choice == 1:
-                return 1
-            if choice == 2:
-                return 2
-            if choice == 3:
-                return 29
-            if choice == 5:
-                return 5
-            if choice == 6:
-                return 13
-            if choice == 7:
-                return 19
-            if choice == 9:
-                return 22
-            if choice == 10:
-                return 23
-            if choice == 11:
-                return 25
-        elif self.currentZone == Zones.SIZ_CALIT:
-            if choice == 1:
-                return 1
-            if choice == 2:
-                return 2
-            if choice == 3:
-                return 29
-            if choice == 5:
-                return 3
-            if choice == 6:
-                return 4
-            if choice == 7:
-                return 11
-            if choice == 9:
-                return 12
-            if choice == 10:
-                return 20
-            if choice == 11:
-                return 28
-        elif self.currentZone == Zones.OVIASIS:
-            if choice == 1:
-                return 1
-            if choice == 2:
-                return 2
-            if choice == 3:
-                return 29
-            if choice == 5:
-                return 7
-            if choice == 6:
-                return 14
-            if choice == 7:
-                return 16
-            if choice == 9:
-                return 17
-            if choice == 10:
-                return 19
-            if choice == 11:
-                return 21
-        elif self.currentZone == Zones.SANCTUARY:
-            if choice == 1:
-                return 1
-            if choice == 2:
-                return 2
-            if choice == 3:
-                return 29
-            if choice == 5:
-                return 28
-            if choice == 6:
-                return 30
-            if choice == 7:
-                return 25
-            if choice == 9:
-                return 23
-            if choice == 10:
-                return 22
-            if choice == 11:
-                return 19
-        return 0
 
     def clothesTop(self):
         if self.attireTop == -1:
