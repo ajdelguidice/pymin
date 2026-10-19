@@ -130,54 +130,54 @@ class StartType:
 
 class KeyStateStorage:
     @property
-    def hotkeysDisabled(self):
+    def hotkeysDisabled(self) -> bool:
         # Used to disable hotkeys when in a text input field
         return self._hotkeysDisabled
 
     @hotkeysDisabled.setter
-    def hotkeysDisabled(self, value):
+    def hotkeysDisabled(self, value: bool):
         self._hotkeysDisabled = value
 
     @property
-    def disabledKeys(self):
+    def disabledKeys(self) -> set:
         # Set of disabled hotkeys by keycode. If self.hotkeysDisabled is True, this will be used as a whitelist instead.
         return self._disabledKeys
 
     @disabledKeys.setter
-    def disabledKeys(self, value):
+    def disabledKeys(self, value: set):
         self._disabledKeys = value
 
     @property
-    def altHeld(self):
+    def altHeld(self) -> bool:
         return self._altHeld
 
     @altHeld.setter
-    def altHeld(self, value):
+    def altHeld(self, value: bool):
         self._altHeld = value
 
     @property
-    def ctrlHeld(self):
+    def ctrlHeld(self) -> bool:
         return self._ctrlHeld
 
     @ctrlHeld.setter
-    def ctrlHeld(self, value):
+    def ctrlHeld(self, value: bool):
         self._ctrlHeld = value
 
     @property
-    def shiftHeld(self):
+    def shiftHeld(self) -> bool:
         return self._shiftHeld and not self.overrideShift
 
     @shiftHeld.setter
-    def shiftHeld(self, value):
+    def shiftHeld(self, value: bool):
         self._shiftHeld = value
 
     @property
-    def overrideShift(self):
+    def overrideShift(self) -> bool:
         # Forces shift to be off. Used for the button panel
         return self._overrideShift
 
     @overrideShift.setter
-    def overrideShift(self, value):
+    def overrideShift(self, value: bool):
         self._overrideShift = value
 
     def __init__(self):
@@ -374,13 +374,13 @@ class ToolTip(object):
 
 
 class Utils:
-    def boolToState(boolean: bool):
+    def boolToState(boolean: bool) -> str:
         '''
         Converts a boolean to a tkinter state. True -> normal. False -> disabled
         '''
         return 'normal' if boolean else 'disabled'
 
-    def percent():
+    def percent() -> float:
         '''
         Returns a random number between 1 and 100.
         '''
@@ -400,7 +400,7 @@ class Utils:
             return number
         return int(number) if number.is_integer() else number
 
-    def strtobool(a: str):
+    def strtobool(a: str) -> bool:
         '''
         Converts a string to a boolean
         '''
@@ -410,13 +410,13 @@ class Utils:
         if low == 'false':
             return False
 
-    def applyBackspace(string):
+    def applyBackspace(string: str) -> str:
         # From https://stackoverflow.com/questions/34362966/python-how-to-apply-backspaces-to-a-string/34364147#34364147
         while '\x08' in string:
             string = sub('[^\x08]\x08', '', string)
         return string
 
-    def decGet(number: Number, places: int):
+    def decGet(number: Number, places: int) -> str:
         '''
         Function to return a number as a string with the selectected number of decimal places intact.
         Does not add more if the amount of places is greater than it already has.
@@ -430,7 +430,7 @@ class Utils:
         return tempStr
 
     # not used
-    def Gibberish():
+    def Gibberish() -> str:
         chance = Utils.percent()
         if (chance <= 33):
             return "¤çÑ-| ÇôG+¦æ| EÆáÜaß pOƒ§· +îdvwqe 5dfÑ¯» º¤äÜ¦) ¼ÿæ¤h ·ƒ."
@@ -441,7 +441,7 @@ class Utils:
         return "GIBBERISH ERROR"
 
     # not used
-    def GibButt():
+    def GibButt() -> str:
         chance = Utils.percent()
         if (chance <= 20):
             return "Pk¿ºs"
@@ -455,7 +455,7 @@ class Utils:
             return "Pancakes"
         return "GIB BUTTON ERROR"
 
-    def isValidHex(hexstr: str):
+    def isValidHex(hexstr: str) -> bool:
         '''
         Checks if a given string is a valid (6 digit) hexadecimal colour code
         '''
@@ -466,12 +466,12 @@ class Utils:
             return True
         return False
 
-    def hexColorFromThemeNumber(theme):
+    def hexColorFromThemeNumber(theme) -> str:
         return ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[theme]
 
 
 class DirUtils:
-    def makeDir(path, silent=False):
+    def makeDir(path: PurePath, silent: bool = False):
         '''
         Checks if a directory exists, creates it if not
         '''
@@ -483,7 +483,7 @@ class DirUtils:
             return -1
         path.mkdir(parents=True)
 
-    def listFiles(directory: PurePath, ext: tuple = None, sort=None):
+    def listFiles(directory: PurePath, ext: tuple = None, sort=None) -> list:
         '''
         Lists all files with extension "ext" in directory "directory" with the sorting of "sort"
         If ext is None, all files are shown
@@ -532,14 +532,14 @@ class DirUtils:
 
 
 class SaveUtils:
-    def getdhXML(file):
+    def getdhXML(file) -> tuple:
         '''
         Gets day and hour from a XML save file
         '''
         track = xmletree.parse(file).getroot().find('track')
         return (track.find('day').text, track.find('hour').text)
 
-    def getdhTOML(file):
+    def getdhTOML(file) -> tuple:
         '''
         Gets day and hour from a TOML save file
         '''
@@ -547,20 +547,20 @@ class SaveUtils:
             temp = TOML.readFile(f)['track']
             return temp['day'], temp['hour']
 
-    def getdhSOL(file):
+    def getdhSOL(file) -> tuple:
         '''
         Gets day and hour from an SOL save file
         '''
         return sol.load(str(file))['track'][2:4]
 
-    def getdhNIM(file):
+    def getdhNIM(file) -> tuple:
         '''
         Gets day and hour from a NIM save file
         '''
         with open(file, 'rb') as f:
             return ByteArray(f).readObject()['data']['track'][2:4]
 
-    def dictSAVE(dictionary):
+    def dictSAVE(dictionary: dict) -> dict:
         d = {
             'mod': ('cumMod', 'cockSizeMod', 'vagSizeMod', 'vagElastic', 'changeMod', 'SexPMod'),
             'status': ('pregRate',),
@@ -573,7 +573,7 @@ class SaveUtils:
                 dictionary[k][i] = Utils.repintorfloat(dictionary[k][i])
         return dictionary
 
-    def solGetFileName(path: str | PurePath):
+    def solGetFileName(path: str | PurePath) -> str:
         if path is None:
             return ''
         if isinstance(path, str):
@@ -585,7 +585,7 @@ class SaveUtils:
         # Split shouldn't return an empty list so this is fine
         return filename[0]
 
-    def returnSOL(dictionary: dict, outputfile):
+    def returnSOL(dictionary: dict, outputfile) -> dict:
         data = sol.SOL(SaveUtils.solGetFileName(outputfile))
         data['track'] = list(dictionary['track'].values())
         data['versionNumber'] = dictionary['version']['original']
@@ -670,11 +670,11 @@ class SaveUtils:
         xmletree.indent(xml, space='\t')
         xml.write(outputfile, encoding='UTF-8', xml_declaration=True)
 
-    def loadTOML(filename):
+    def loadTOML(filename) -> dict:
         with open(filename, 'rb') as f:
             return TOML.readFile(f)
 
-    def _loadSharedObject(so):
+    def _loadSharedObject(so) -> dict:
         strack = so['track']
         sstats = so['stats']
         slevel = so['level']
@@ -756,14 +756,14 @@ class SaveUtils:
             'preg': so['pregSave']
         }
 
-    def loadNIM(filename):
+    def loadNIM(filename) -> dict:
         with open(filename, 'rb') as file:
             return SaveUtils._loadSharedObject(ByteArray(file).readObject()['data'])
 
-    def loadSOL(filename):
+    def loadSOL(filename) -> dict:
         return SaveUtils._loadSharedObject(sol.load(str(filename)))
 
-    def loadXML(filename):
+    def loadXML(filename) -> dict:
         data = xmletree.parse(filename).getroot()
         if data is None:
             return
@@ -858,7 +858,7 @@ class Calc:
 
 
 class Items:
-    def name(ID: int):
+    def name(ID: int) -> str:
         '''
         Function which returns the name of the item ID
         '''
@@ -1134,19 +1134,19 @@ class Items:
             return "Worker Egg"
         return f"ITEM NAME ERROR {ID}"
 
-    def isUsable(ID: int):
+    def isUsable(ID: int) -> bool:
         '''
         Returns True if item ID can be used
         '''
         return ID in {2, 3, 104, 106, 108, 109, 116, 117, 118, 119, 127, 232, 235, 244, 247, 418}
 
-    def isConsumable(ID: int):
+    def isConsumable(ID: int) -> bool:
         '''
         Returns True if item ID is consumable
         '''
         return ID in {103, 105, 110, 111, 112, 113, 114, 115, 120, 121, 122, 123, 124, 125, 126, 128, 201, 202, 203, 204, 205, 207, 208, 209, 210, 211, 212, 213, 214, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 230, 231, 238, 239, 240, 241, 242, 243, 245, 246, 248, 249, 250, 251, 253, 255, 256, 257, 258, 259, 260, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540}
 
-    def value(ID: int):
+    def value(ID: int) -> int:
         '''
         Function which returns the value of the item ID
         '''
@@ -1204,7 +1204,7 @@ class Items:
             return 150
         return 0
 
-    def stackMax(ID: int):
+    def stackMax(ID: int) -> int:
         '''
         Function which returns the maximum number of the item ID that can be in a stack
         '''
@@ -1218,7 +1218,7 @@ class Items:
             return 15
         return 0
 
-    def foodValue(ID: int):
+    def foodValue(ID: int) -> int:
         '''
         Function which returns the food value of the item ID
         '''
@@ -1253,13 +1253,13 @@ class Items:
             tempNum = 70
         return tempNum * 2
 
-    def useHidesPage(ID: int):
+    def useHidesPage(ID: int) -> bool:
         '''
         Whether the page label should be hidden when using an item
         '''
         return ID not in {101, 102, 200, 206, 215, 229, 233, 234, 236, 237, 252, 254, 404}
 
-    def TeleportScrollAny_GetButtonOrder(currentZone):
+    def TeleportScrollAny_GetButtonOrder(currentZone) -> dict:
         if currentZone == 1:
             return {1: "Tieden", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
         if currentZone == 2:
@@ -1276,7 +1276,7 @@ class Items:
         # Fallback
         return {1: "Tieden", 3: "Softlik", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
 
-    def TeleportScrollAny_GetZoneForButton(buttonChoice):
+    def TeleportScrollAny_GetZoneForButton(buttonChoice) -> str:
         if buttonChoice == 1:
             return 'Tieden'
         if buttonChoice == 3:
@@ -1292,7 +1292,7 @@ class Items:
 
         return f'TELEPORT SCROLL ANY ERROR BUTTON {buttonChoice}'
 
-    def dyeID(goodsSlot: int):
+    def dyeID(goodsSlot: int) -> int:
         if goodsSlot == 1:
             return 240
         if goodsSlot == 2:
@@ -1305,7 +1305,7 @@ class Items:
 
 
 class Clothes:
-    def name(ID: int):
+    def name(ID: int) -> str:
         if ID == -1:
             return "Tattered Shreds"
         if ID == 0:
@@ -1372,7 +1372,7 @@ class Clothes:
             return "Bouncy Bra"
         return "CLOTHES NAME ERROR"
 
-    def value(ID: int):
+    def value(ID: int) -> int:
         if ID == 1:
             return 5
         if ID == 2:
@@ -1435,7 +1435,7 @@ class Clothes:
             return 45
         return 0
 
-    def description(ID: int):
+    def description(ID: int) -> str:
         if ID == 1:
             return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
         if ID == 2:
@@ -1500,7 +1500,7 @@ class Clothes:
 
 
 class Hairstyles:
-    def name(ID: int):
+    def name(ID: int) -> str:
         if ID == 0:
             return 'None'
         if ID == 1:
@@ -1533,7 +1533,7 @@ class Hairstyles:
             return 'Afro'
         return f"HAIRSTYLE NAME ERROR {ID}"
 
-    def value(ID: int):
+    def value(ID: int) -> int:
         if ID == 1:
             return 5
         if ID == 2:
@@ -1564,7 +1564,7 @@ class Hairstyles:
             return 20
         return 0
 
-    def description(ID: int):
+    def description(ID: int) -> str:
         if ID == 0:
             return "No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."
         if ID == 1:
@@ -1597,7 +1597,7 @@ class Hairstyles:
             return "An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head."
         return f"HAIR DESC_LONG ERROR {ID}"
 
-    def hasLengthOptions(ID: int):
+    def hasLengthOptions(ID: int) -> bool:
         '''
         Returns whether a specific hairstyle has length options
         '''
@@ -1605,19 +1605,19 @@ class Hairstyles:
 
 
 class SpecialAbilities:
-    def name(ID: int):
+    def name(ID: int) -> str:
         if ID == 1:
             return "Skunk Spray"
         return f"SPECIAL ABILITY NAME ERROR {ID}"
 
-    def description(ID: int):
+    def description(ID: int) -> str:
         if ID == 1:
             return "\n\nSkunk Spray - Using your scent glands in your rump, you can unleash this terrible stench upon your enemy, causing damage and potentially making them miss their next turn."
         return f"SPECIAL ABILITY DESC ERROR {ID}"
 
 
 class ApothecaryItems:
-    def name(ID: int):
+    def name(ID: int) -> str:
         if ID >= 200:
             return Items.name(ID)
         if ID == 1:
@@ -1656,7 +1656,7 @@ class ApothecaryItems:
             return 'R: MilkSuppress'
         return ""
 
-    def value(ID: int):
+    def value(ID: int) -> int:
         if (ID >= 200):
             return Items.value(ID)
         if ID == 1:
@@ -1698,19 +1698,19 @@ class ApothecaryItems:
 
 class PlayerItemContainer:
     @property
-    def items(self):
+    def items(self) -> Vector[int]:
         return self._items
 
     @property
-    def stack(self):
+    def stack(self) -> Vector[int]:
         return self._stack
 
     @property
-    def page(self):
+    def page(self) -> int:
         return self._page
 
     @page.setter
-    def page(self, value):
+    def page(self, value: int):
         # TODO: Implement page wrapping behaviour here so choiceListSelect doesn't have to handle it
         self._page = value
 
@@ -1731,23 +1731,23 @@ class PlayerItemContainer:
         self._stack = Vector[int]([0] * 27, True)
         self._page = 1
 
-    def hasItem(self, ID: int):  # checkItem
+    def hasItem(self, ID: int) -> bool:  # checkItem
         return ID in self.items
 
-    def hasMagicItem(self):  # checkMagicItem
+    def hasMagicItem(self) -> bool:  # checkMagicItem
         for i in {101, 102, 200, 215, 232, 233, 234, 235, 236, 237, 252}:
             if self.hasItem(i):
                 return True
         return False
 
-    def getCount(self, ID: int):  # countItem
+    def getCount(self, ID: int) -> int:  # countItem
         tempInt = 0
         for i in range(27):
             if (self.items[i] == ID):
                 tempInt += self.stack[i]
         return tempInt
 
-    def getEmptySlot(self, ID: int):  # checkOpenSlot
+    def getEmptySlot(self, ID: int) -> int:  # checkOpenSlot
         for i in range(27):
             if (self.stack[i] < Items.stackMax(ID) and self.items[i] == ID):
                 return i
