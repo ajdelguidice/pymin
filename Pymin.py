@@ -1153,6 +1153,8 @@ class Items:
         return f"ITEM NAME ERROR {ID}"
 
     def fullName(ID: int) -> str:
+        if ID == 1:
+            return "Test Item"
         if ID == 2:
             return "Debug Stick"
         if ID == 3:
@@ -1491,290 +1493,293 @@ class Items:
             return 150
         return 0
 
-    def description(ID: int) -> str:
+    def description(ID: int, context: object) -> str:
+        if ID == 1:
+            return "Does nothing."
         if ID == 2:
-            return "Debug Stick\n\nDebug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
+            return "Debug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
         if ID == 3:
-            return "Teleport Scroll: Any\n\nCreated for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."
+            return "Created for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."
         if ID == 101:
-            return "Claws of the Lupine Ancestors\n\nHarkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."
+            return "Harkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."
         if ID == 102:
-            return "Imbued Horseshoes\n\nCrafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
+            return "Crafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
         if ID == 103:
-            return "Magical Sands of the Dry Dunes\n\nApplying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
+            return "Applying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
         if ID == 104:
-            return "Milking Machine\n\nA compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."
+            return "A compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."
         if ID == 105:
-            return "'Cat's Meow' Potion\n\nFavored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
+            return "Favored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
         if ID == 106:
-            return "Penis Pump\n\nA simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."
+            return "A simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."
         if ID == 108:
-            return "Blood Gauge\n\nDue to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
+            return "Due to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
         if ID == 109:
-            return "Educated Eggdicator\n\nWith so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."
+            return "With so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."
         if ID == 110:
-            return "A Reduction of Reducer Agents\n\nThis is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."
+            return "This is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."
         if ID == 111:
-            return "Skin Balm\n\nUsed and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
+            return "Used and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
         if ID == 112:
-            return "Bolstering Juice\n\nThis white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
+            return "This white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
         if ID == 113:
-            return "Tainted Leaf\n\nThis paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
+            return "This paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
         if ID == 114:
-            return "Sweet Sap\n\nUsed and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
+            return "Used and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
         if ID == 115:
-            return "Poultice\n\nA generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
+            return "A generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
         if ID == 116:
-            return "Dagger\n\nA relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"
+            return "A relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"
         if ID == 117:
-            return "Warhammer\n\nA rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"
+            return "A rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"
         if ID == 118:
-            return "Saber\n\nA well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"
+            return "A well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"
         if ID == 119:
-            return "Whip\n\nA somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"
+            return "A somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"
         if ID == 120:
-            return "Neuterizer\n\nDeveloped by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
+            return "Developed by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
         if ID == 121:
-            return "Teleport Scroll: Softlik\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."
+            return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."
         if ID == 122:
-            return "Teleport Scroll: Firmshaft\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."
+            return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."
         if ID == 123:
-            return "Teleport Scroll: Tieden\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."
+            return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."
         if ID == 124:
-            return "Teleport Scroll: Siz'Calit\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."
+            return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."
         if ID == 125:
-            return "Teleport Scroll: Oviasis\n\nCreated to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."
+            return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."
         if ID == 126:
-            return "Oasis Water\n\nA vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
+            return "A vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
         if ID == 127:
-            return "Tail Spike\n\nThis large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
+            return "This large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
         if ID == 128:
-            return "Teleport Scroll: Sanctuary\n\nCreated for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."
+            return "Created for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."
         if ID == 200:
-            return "Lila's Gift\n\nA small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."
+            return "A small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."
         if ID == 201:
-            return "Milk Creeper Poison\n\nObtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
+            return "Obtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
         if ID == 202:
-            return "Cock-Snake Venom\n\nObtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
+            return "Obtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
         if ID == 203:
-            # TODO: Remove self
-            return f"Tuft of Wolf Fur\n\nObtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {self.skinDesc()}."
+            return f"Obtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {context.skinDesc()}."
         if ID == 204:
-            return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
+            return "This is a small pouch you have obtained somewhere. Use it to see what it contains!"
         if ID == 205:
-            return "Small Pouch\n\nThis is a small pouch you have obtained somewhere. Use it to see what it contains!"
+            return "This is a small pouch you have obtained somewhere. Use it to see what it contains!"
         if ID == 206:
-            return "Shiny Trinket\n\nOther than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
+            return "Other than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
         if ID == 207:
-            return "Wooden Cock Carving\n\nThis thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
+            return "This thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
         if ID == 208:
-            return "Bloated Berry\n\nA berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
+            return "A berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
         if ID == 209:
-            return "Handful of Grain\n\nA handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
+            return "A handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
         if ID == 210:
-            return "Pussy Fruit\n\nIt is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
+            return "It is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
         if ID == 211:
-            return "DairE Pill\n\nProduced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
+            return "Produced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
         if ID == 212:
-            return "Red Mushroom\n\nAn odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
+            return "An odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
         if ID == 213:
-            return "Wet, Slimy Cloth\n\nThis piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
+            return "This piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
         if ID == 214:
-            return "Malon's Milk\n\nUnlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
+            return "Unlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
         if ID == 215:
-            return "Malon's Pendant\n\nGiven to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."
+            return "Given to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."
         if ID == 216:
-            return "Pink Ink\n\nOctopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
+            return "Octopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
         if ID == 217:
-            return "Octopus Egg Jelly\n\nThe jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
+            return "The jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
         if ID == 218:
-            return "Bulging Berry\n\nA cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."
+            return "A cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."
         if ID == 219:
-            return "Fresh Egg\n\nAn unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
+            return "An unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
         if ID == 220:
-            return "Blonde Dye\n\nA dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
+            return "A dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
         if ID == 221:
-            return "Concentrated Pussy Fruit Juice\n\nCreated by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
+            return "Created by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
         if ID == 222:
-            return "Kinky Carrot\n\nUsed in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
+            return "Used in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
         if ID == 223:
-            return "Equan Snack\n\nA common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
+            return "A common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
         if ID == 224:
-            return "Lila's Milk\n\nFrom the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
+            return "From the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
         if ID == 225:
-            return "Body Wash\n\nThis nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
+            return "This nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
         if ID == 226:
-            return "Felin Tea Mix\n\nA common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
+            return "A common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
         if ID == 227:
-            return "Felin Oral Wash\n\nWith bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
+            return "With bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
         if ID == 228:
-            return "Body Oil\n\nNice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
+            return "Nice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
         if ID == 229:
-            return "Leather Strap\n\nFound somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
+            return "Found somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
         if ID == 230:
-            return "Eggcelerator\n\nMeant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."
+            return "Meant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."
         if ID == 231:
-            return "Desiccating Sand\n\nObtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."
+            return "Obtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."
         if ID == 232:
-            return "Flying Carpet\n\nBorrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
+            return "Borrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
         if ID == 233:
-            # TODO: Remove self
-            return f"Anti-Gravity Rock\n\nBorrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {self.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
+            return f"Borrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {context.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
         if ID == 234:
-            return "Reindeer Charm\n\nBorrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
+            return "Borrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
         if ID == 235:
-            return "Fellatio Rod\n\nBorrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
+            return "Borrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
         if ID == 236:
-            return "Reception Bell\n\nBorrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
+            return "Borrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
         if ID == 237:
-            return "Lila's Dewy Gift\n\nOriginally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."
+            return "Originally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."
         if ID == 238:
-            return "Squeaky Cheese\n\nSome cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
+            return "Some cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
         if ID == 239:
-            return "Shiny Rock\n\nA rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
+            return "A rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
         if ID == 240:
-            return "Auburn Dye\n\nA dark reddish color, this dye will turn your hair auburn when used, if you have hair"
+            return "A dark reddish color, this dye will turn your hair auburn when used, if you have hair"
         if ID == 241:
-            return "Brown Dye\n\nA simple brownish, this dye will turn your hair brown when used, if you have hair"
+            return "A simple brownish, this dye will turn your hair brown when used, if you have hair"
         if ID == 242:
-            return "Grey Dye\n\nA shade, this dye will turn your hair grey when used, if you have hair"
+            return "A shade, this dye will turn your hair grey when used, if you have hair"
         if ID == 243:
-            return "White Dye\n\nLacking any color, this dye will turn your hair pure white when used, if you have hair"
+            return "Lacking any color, this dye will turn your hair pure white when used, if you have hair"
         if ID == 244:
-            if (mainobject.game.snuggleBall):
-                return "Snuggle Ball\n\nNot really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
-            return "Snuggle Ball\n\nSquishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
+            if (context.snuggleBall):
+                return "Not really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
+            return "Squishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
         if ID == 245:
-            return "Facial Mud\n\nSome mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
+            return "Some mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
         if ID == 246:
-            return "Fertile Gel\n\nA soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
+            return "A soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
         if ID == 247:
-            tempStr = "Support Harness\n\nThis contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
-            if (mainobject.game.suppHarness):
+            tempStr = "This contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
+            if (context.suppHarness):
                 tempStr += "\n\nYou currently have a harness equipped. Using it will unequip the harness."
             return tempStr
         if ID == 248:
-            return "Breeder Potion\n\nThis potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
+            return "This potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
         if ID == 249:
-            return "Treant's Tear\n\nThis small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
+            return "This small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
         if ID == 250:
-            return "Foomp Bomb\n\nMuch like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."
+            return "Much like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."
         if ID == 251:
-            return "Plump Quat\n\nThe quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
+            return "The quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
         if ID == 252:
-            return "Malon's Milky Pendant\n\nThis is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
+            return "This is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
         if ID == 253:
-            tempStr = "Bug Egg\n\nRelatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
-            if (mainobject.game.tail == 12):
+            tempStr = "Relatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
+            if (context.tail == 12):
                 tempStr += "\n\nHowever, you do notice that the egg is just about the right size for the ovipositor hanging off your backside."
             return tempStr
         if ID == 254:
-            return "Lantern\n\nThis is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
+            return "This is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
         if ID == 255:
-            return "Fragrant Flower\n\nA very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
+            return "A very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
         if ID == 256:
-            return "Nectar Candy\n\nA sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
+            return "A sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
         if ID == 257:
-            return "Too Human Potion\n\nThis potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
+            return "This potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
         if ID == 258:
-            return "Tainted Potion\n\nThis potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
+            return "This potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
         if ID == 259:
-            return "Sweet & Sour Candy\n\nThis rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
+            return "This rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
         if ID == 260:
-            return "Succubus Draft\n\nOne of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
+            return "One of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
         if ID == 404:
-            tempStr = "Item Not Found\n\nItem Not Found"
+            tempStr = "Item Not Found"
             if as3state.as3DebugEnable:
                 tempStr += " (This is a joke item referencing status code 404)"
             return tempStr
         if ID == 418:
-            tempStr = "Strange Teapot\n\nInscribed on the side are the words \"I'm a teapot\"."
+            tempStr = "Inscribed on the side are the words \"I'm a teapot\"."
             if as3state.as3DebugEnable:
                 tempStr += " (This is a joke item referencing status code 418)"
             return tempStr
         if ID == 500:
-            return "Bottle of Milk\n\nA bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
+            return "A bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
         if ID == 501:
-            return "Jug of Milk\n\nA large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
+            return "A large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
         if ID == 502:
-            return "Barrel of Milk\n\nA barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
+            return "A barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
         if ID == 503:
-            return "Lust Draft\n\nA potion that will increase your lust by 20 instantly when used."
+            return "A potion that will increase your lust by 20 instantly when used."
         if ID == 504:
-            return "Rejuvenating Potion\n\nA potion that will heal 30 HP and reduce your lust by 15 instantly when used."
+            return "A potion that will heal 30 HP and reduce your lust by 15 instantly when used."
         if ID == 505:
-            return "Bad Experiment\n\nThis combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."
+            return "This combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."
         if ID == 506:
-            return "Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
+            return "When that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
         if ID == 507:
-            return "Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
+            return "Imbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
         if ID == 508:
-            return "Superior Lust Draft\n\nA potion that will increase your lust by 50 instantly when used."
+            return "A potion that will increase your lust by 50 instantly when used."
         if ID == 509:
-            return "Superior Rejuvenating Potion\n\nA potion that will heal 70 HP and reduce your lust by 40 instantly when used."
+            return "A potion that will heal 70 HP and reduce your lust by 40 instantly when used."
         if ID == 510:
-            return "Super Bad Experiment\n\nThis extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."
+            return "This extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."
         if ID == 511:
-            return "Superior Express Pregnancy Potion\n\nWhen that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
+            return "When that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
         if ID == 512:
-            return "Superior Ball Sweller\n\nImbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
+            return "Imbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
         if ID == 513:
-            return "Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
+            return "If you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
         if ID == 514:
-            return "Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
+            return "After this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
         if ID == 515:
-            return "Black Dye\n\nThis will turn your hair black in color when used, if you have hair."
+            return "This will turn your hair black in color when used, if you have hair."
         if ID == 516:
-            return "Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
+            return "Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
         if ID == 517:
-            return "Potency Potion\n\nKicking your balls into gear, they will permanently produce 20% more cum, despite their size."
+            return "Kicking your balls into gear, they will permanently produce 20% more cum, despite their size."
         if ID == 518:
-            return "Superior Gender Swap Potion\n\nIf you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
+            return "If you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
         if ID == 519:
-            return "Superior Masochism Potion\n\nAfter this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
+            return "After this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
         if ID == 520:
-            return "Red Dye\n\nThis will turn your hair red in color when used, if you have hair."
+            return "This will turn your hair red in color when used, if you have hair."
         if ID == 521:
-            return "Superior Baby Free Potion\n\nSipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
+            return "Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
         if ID == 522:
-            return "Superior Potency Potion\n\nDrop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
+            return "Drop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
         if ID == 523:
-            return "Vial of Cum\n\nStill kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
+            return "Still kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
         if ID == 524:
-            return "Bottle of Cum\n\nA bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
+            return "A bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
         if ID == 525:
-            return "Jug of Cum\n\nA jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
+            return "A jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
         if ID == 526:
-            return "Barrel of Cum\n\nThere's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
+            return "There's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
         if ID == 527:
-            return "Good Egg\n\nAn unfertilized fresh egg that is especially good for your health and body."
+            return "An unfertilized fresh egg that is especially good for your health and body."
         if ID == 528:
-            return "Bad Egg\n\nAn unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."
+            return "An unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."
         if ID == 529:
-            return "Strange Egg\n\nAn unfertilized fresh egg that can do... odd things to your body."
+            return "An unfertilized fresh egg that can do... odd things to your body."
         if ID == 530:
-            return "Charmed Egg\n\nAn unfertilized fresh egg that will make you quite alluring for 20 hours."
+            return "An unfertilized fresh egg that will make you quite alluring for 20 hours."
         if ID == 531:
-            return "Divine Egg\n\nA very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
+            return "A very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
         if ID == 532:
-            return "Strong Pheromone\n\nOriginally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
+            return "Originally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
         if ID == 533:
-            return "Reduced Reduction\n\nA weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
+            return "A weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
         if ID == 534:
-            return "Male Enhancement Drug\n\nA simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."
+            return "A simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."
         if ID == 535:
-            return "Milk Suppressant\n\nThis drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
+            return "This drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
         if ID == 536:
-            return "Bazoomba!\n\nThis glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."
+            return "This glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."
         if ID == 537:
-            return "Queen Egg\n\nNot the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
+            return "Not the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
         if ID == 538:
-            return "Soldier Egg\n\nNot the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
+            return "Not the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
         if ID == 539:
-            return "Drone Egg\n\nNot the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
+            return "Not the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
         if ID == 540:
-            return "Worker Egg\n\nNot the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
+            return "Not the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
         return f"ITEM DESCRIPTION ERROR {ID}"
+
+    def fullDescription(ID: int) -> str:
+        return Items.fullName(ID) + '\n\n' + Items.description(ID, mainobject.game)
 
     def stackMax(ID: int) -> int:
         '''
@@ -2297,7 +2302,7 @@ class ApothecaryItems:
 
     def description(ID: int) -> str:
         if ID >= 200:
-            return Items.description(ID)
+            return Items.fullDescription(ID)
         if ID == 1:
             return "Recipe: Lust Draft\n\nFor those who need a boost in the bedroom.\n\nAlchemy difficulty: Simple"
         if ID == 2:
@@ -4035,274 +4040,287 @@ class PyminWiki(PyminWindow):
     def itemDescription(self, ID: int):
         if ID == -10:
             return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        contents = f"<h4><u>{Items.fullName(ID)} ({Items.name(ID)})</u></h4>(Item ID {ID})"
+
+        # TODO: Handle dynamic descriptions
+
+        class FakeContext:
+            snuggleBall = False
+            suppHarness = False
+            tail = 0
+
+            def skinDesc(*args):
+                return "[Skin Description]"
+
+        description = f"\n\n<u>Description</u>\n{Items.description(ID, FakeContext)}"
         if ID == 1:
-            return "<h4><u>Test Item</u></h4>(Item ID 1)\n\n<u>Description</u>\nThis item is a test item that has no purpose to the player.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
+            return contents + description + "\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
         if ID == 2:
-            return "<h4><u>Debug Stick</u></h4>(Item ID 2)\n\n<u>Description</u>\nThis item is a debug weapon that kills enemies instantly.\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+            return contents + description + "\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
         if ID == 3:
-            return "<h4><u>Teleport Scroll: Any (TS Any)</u></h4>(Item ID 3)\n\n<u>Description</u>\nThis item is a debug item that takes you to any region that you want from anywhere.\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+            return contents + description + "\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
         if ID == 404:
-            return "<h4><u>Item Not Found</u></h4>(Item ID 404)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 404.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+            return contents + description + "\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
         if ID == 418:
-            return "<h4><u>Teapot</u></h4>(Item ID 418)\n\n<u>Description</u>\nThis item is a joke item and serves no purpose. It is a reference to the web status code 418 that was made as a joke on april fools day.\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+            return contents + description + "\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
         if ID == 101:
-            return "<h4><u>Claws of the Lupine Ancestors (Anc Claws)</u></h4>(Item ID 101)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nTurns player's hands into paws.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrapeMod +10\n\n<u>How to obtain</u>\nCan be bought from the shop in Tieden."
+            return contents + description + "\n\n<u>Effects and Stats</u>\nTurns player's hands into paws.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrapeMod +10\n\n<u>How to obtain</u>\nCan be bought from the shop in Tieden."
         if ID == 102:
-            return "<h4><u>Imbued Horseshoes (Imb Shoes)</u></h4>(Item ID 102)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nTurns the player's feet into hooves.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrunMod +20\n\n<u>How to obtain</u>\nCan be bought from the shop in Firmshaft."
+            return contents + description + "\n\n<u>Effects and Stats</u>\nTurns the player's feet into hooves.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrunMod +20\n\n<u>How to obtain</u>\nCan be bought from the shop in Firmshaft."
         if ID == 103:
-            return "<h4><u>Magical Sands of the Dry Dunes (Dry Sand)</u></h4>(Item ID 103)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects and Stats</u>\nMakes the part that the player applies it to less moist.\n<b>ItemType:</b> Consumable\n<b>StackMax:</b> 15\n<b>Value:</b> 20 coins\ncockMoist -4 (cock)\nvagMoist -4 (vagina)\nlactation -75 (boobs)\nudderLactation -75 (udders)\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects and Stats</u>\nMakes the part that the player applies it to less moist.\n<b>ItemType:</b> Consumable\n<b>StackMax:</b> 15\n<b>Value:</b> 20 coins\ncockMoist -4 (cock)\nvagMoist -4 (vagina)\nlactation -75 (boobs)\nudderLactation -75 (udders)\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 104:
-            return "<h4><u>Milking Machine (Milker)</u></h4>(Item ID 104)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 105:
-            return "<h4><u>'Cat's Meow' Potion (Cat's Meow)</u></h4>(Item ID 105)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 106:
-            return "<h4><u>Penis Pump</u></h4>(Item ID 106)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 108:
-            return "<h4><u>Blood Gauge (Blood Gge)</u></h4>(Item ID 108)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 109:
-            return "<h4><u>Educated Eddicator (Edu Egg)</u></h4>(Item ID 109)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 110:
-            return "<h4><u>A Reduction of Reducer Agents (Reduction)</u></h4>(Item ID 110)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 111:
-            return "<h4><u>Skin Balm</u></h4>(Item ID 111)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 112:
-            return "<h4><u>Bolstering Juice (Bol Juice)</u></h4>(Item ID 112)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 113:
-            return "<h4><u>Tainted Leaf (Taint Leaf)</u></h4>(Item ID 113)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 114:
-            return "<h4><u>Sweet Sap</u></h4>(Item ID 114)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 115:
-            return "<h4><u>Poultice</u></h4>(Item ID 115)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 116:
-            return "<h4><u>Dagger</u></h4>(Item ID 116)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 117:
-            return "<h4><u>Warhammer (Hammer)</u></h4>(Item ID 117)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 118:
-            return "<h4><u>Saber</u></h4>(Item ID 118)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 119:
-            return "<h4><u>Whip</u></h4>(Item ID 119)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 120:
-            return "<h4><u>Neuterizer (Neuter)</u></h4>(Item ID 120)\n\n<u>Description</u>\nDescription.\n\nThe game says that using the neuterizer to make the player have less than 2 balls is 'too dangerous' but the real reason is because most things were coded to expect at the player to have at least two balls when they have a cock.\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\nThe game says that using the neuterizer to make the player have less than 2 balls is 'too dangerous' but the real reason is because most things were coded to expect at the player to have at least two balls when they have a cock.\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 121:
-            return "<h4><u>Teleport Scroll: Softlik (TS Soft)</u></h4>(Item ID 121)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 122:
-            return "<h4><u>Teleport Scroll: Firmshaft (TS Firm)</u></h4>(Item ID 122)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 123:
-            return "<h4><u>Teleport Scroll: Tieden (TS Tied)</u></h4>(Item ID 123)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 124:
-            return "<h4><u>Teleport Scroll: Siz'Calit (TS Siz)</u></h4>(Item ID 124)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 125:
-            return "<h4><u>Teleport Scroll: Oviasis (TS Ovi)</u></h4>(Item ID 125)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 126:
-            return "<h4><u>Oasis Water (Oas Water)</u></h4>(Item ID 126)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 127:
-            return "<h4><u>Tail Spike</u></h4>(Item ID 127)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 128:
-            return "<h4><u>Teleport Scroll: Sanctuary (TS Sanct)</u></h4>(Item ID 128)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 200:
-            return "<h4><u>Lila's Gift</u></h4>(Item ID 200)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 201:
-            return "<h4><u>Milk Creeper Poison (Milk C Pois)</u></h4>(Item ID 201)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 202:
-            return "<h4><u>Cock-Snake Venom (Co-Snak Ven)</u></h4>(Item ID 202)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 203:
-            return "<h4><u>Tuft of Wolf Fur (Wolf Fur)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 204:
-            return "<h4><u>Small Pouch (Sm Pouch)</u></h4>(Item ID 204)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 205:
-            return "<h4><u>Small Pouch (Sm Pouch)</u></h4>(Item ID 205)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 206:
-            return "<h4><u>Shiny Trinket (Trinket)</u></h4>(Item ID 206)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 207:
-            return "<h4><u>Wooden Cock Carving (Cock Carv)</u></h4>(Item ID 207)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 208:
-            return "<h4><u>Bloated Berry (Blo Berry)</u></h4>(Item ID 208)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 209:
-            return "<h4><u>Handful of Grain (Grain)</u></h4>(Item ID 209)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 210:
-            return "<h4><u>Pussy Fruit (Puss Fruit)</u></h4>(Item ID 210)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 211:
-            return "<h4><u>DairE Pill</u></h4>(Item ID 211)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 212:
-            return "<h4><u>Red Mushroom (Red Mush)</u></h4>(Item ID 212)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 213:
-            return "<h4><u>Wet, Slimy Cloth (Wet Cloth)</u></h4>(Item ID 213)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 214:
-            return "<h4><u>Malon's Milk (Lon Milk)</u></h4>(Item ID 214)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 215:
-            return "<h4><u>Malon's Pendant (Lon Pendant)</u></h4>(Item ID 215)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 216:
-            return "<h4><u>Pink Ink</u></h4>(Item ID 216)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 217:
-            return "<h4><u>Octopus Egg Jelly (Egg Jelly)</u></h4>(Item ID 217)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 218:
-            return "<h4><u>Bulging Berry (Bul Berry)</u></h4>(Item ID 218)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 219:
-            return "<h4><u>Fresh Egg</u></h4>(Item ID 219)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 220:
-            return "<h4><u>Blonde Dye (Blondie)</u></h4>(Item ID 220)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 221:
-            return "<h4><u>Concentrated Pussy Fruit Juice (Puss Juice)</u></h4>(Item ID 221)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 222:
-            return "<h4><u>Kinky Carrot (Kinky Carr)</u></h4>(Item ID 222)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 223:
-            return "<h4><u>Equan Snack (Eq Snack)</u></h4>(Item ID 223)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 224:
-            return "<h4><u>Lila's Milk</u></h4>(Item ID 224)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 225:
-            return "<h4><u>Body Wash</u></h4>(Item ID 225)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 226:
-            return "<h4><u>Felin Tea Mix (Felin Tea)</u></h4>(Item ID 226)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 227:
-            return "<h4><u>Felin Oral Wash (Oral Wash)</u></h4>(Item ID 227)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 228:
-            return "<h4><u>Body Oil</u></h4>(Item ID 228)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 229:
-            return "<h4><u>Leather Strap (Leath Strap)</u></h4>(Item ID 229)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 230:
-            return "<h4><u>Eggcelerator</u></h4>(Item ID 230)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 231:
-            return "<h4><u>Desiccating Sand (Desi Sand)</u></h4>(Item ID 231)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 232:
-            return "<h4><u>Flying Carpet (Flying Carp)</u></h4>(Item ID 232)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 233:
-            return "<h4><u>Anti-Gravity Rock (A-Grav Rock)</u></h4>(Item ID 233)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 234:
-            return "<h4><u>Reindeer Charm (Rein Charm)</u></h4>(Item ID 234)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 235:
-            return "<h4><u>Fellatio Rod (Fell Rod)</u></h4>(Item ID 235)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 236:
-            return "<h4><u>Reception Bell (Recept Bell)</u></h4>(Item ID 236)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 237:
-            return "<h4><u>Lila's Dewy Gift (Dewy Gift)</u></h4>(Item ID 237)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 238:
-            return "<h4><u>Squeaky Cheese (Squ Cheese)</u></h4>(Item ID 238)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 239:
-            return "<h4><u>Shiny Rock</u></h4>(Item ID 239)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 240:
-            return "<h4><u>Auburn Dye</u></h4>(Item ID 240)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 241:
-            return "<h4><u>Brown Dye</u></h4>(Item ID 241)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 242:
-            return "<h4><u>Grey Dye</u></h4>(Item ID 242)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 243:
-            return "<h4><u>White Dye</u></h4>(Item ID 243)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 244:
-            return "<h4><u>Snuggle Ball</u></h4>(Item ID 244)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 245:
-            return "<h4><u>Facial Mud</u></h4>(Item ID 245)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 246:
-            return "<h4><u>Fertile Gel</u></h4>(Item ID 246)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 247:
-            return "<h4><u>Support Harness (Supp Harness)</u></h4>(Item ID 247)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 248:
-            return "<h4><u>Breeder Potion (Breeder Pot)</u></h4>(Item ID 248)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 249:
-            return "<h4><u>Treant's Tear</u></h4>(Item ID 249)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 250:
-            return "<h4><u>Foomp Bomb</u></h4>(Item ID 250)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 251:
-            return "<h4><u>Plump Quat</u></h4>(Item ID 251)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 252:
-            return "<h4><u>Malon's Milky Pendant (Milky Pend)</u></h4>(Item ID 252)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 253:
-            return "<h4><u>Bug Egg</u></h4>(Item ID 253)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 254:
-            return "<h4><u>Lantern</u></h4>(Item ID 254)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 255:
-            return "<h4><u>Fragrant Flower (Frag Flower)</u></h4>(Item ID 255)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 256:
-            return "<h4><u>Nectar Candy</u></h4>(Item ID 256)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 257:
-            return "<h4><u>Too Human Potion (Too Human)</u></h4>(Item ID 257)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 258:
-            return "<h4><u>Tainted Potion (Tainted Pot)</u></h4>(Item ID 258)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 259:
-            return "<h4><u>Sweet & Sour Candy (Sweet&Sour)</u></h4>(Item ID 259)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 260:
-            return "<h4><u>Succubus Draft (Succ Draft)</u></h4>(Item ID 260)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 500:
-            return "<h4><u>Bottle of Milk (Milk Bottle)</u></h4>(Item ID 500)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 501:
-            return "<h4><u>Jug of Milk (Milk Jug)</u></h4>(Item ID 501)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 502:
-            return "<h4><u>Barrel of Milk (Milk Barrel)</u></h4>(Item ID 502)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 503:
-            return "<h4><u>Lust Draft</u></h4>(Item ID 503)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 504:
-            return "<h4><u>Rejuvenating Potion (Rejuv Pot)</u></h4>(Item ID 504)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 505:
-            return "<h4><u>Bad Experiment (Bad Exper)</u></h4>(Item ID 505)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 506:
-            return "<h4><u>Express Pregnancy Potion (Exp Preg)</u></h4>(Item ID 506)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 507:
-            return "<h4><u>Ball Sweller</u></h4>(Item ID 507)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 508:
-            return "<h4><u>Superior Lust Draft (S Lust Draft)</u></h4>(Item ID 508)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 509:
-            return "<h4><u>Superior Rejuvenating Potion (S Rejuv Pot)</u></h4>(Item ID 509)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 510:
-            return "<h4><u>Superior Bad Experiment (S Bad Exper)</u></h4>(Item ID 510)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 511:
-            return "<h4><u>Superior Express Pregnancy Potion (S Exp Preg)</u></h4>(Item ID 511)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 512:
-            return "<h4><u>Superior Ball Sweller (S Ball Sweller)</u></h4>(Item ID 512)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 513:
-            return "<h4><u>Gender Swap Potion (Gen Swap)</u></h4>(Item ID 513)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 514:
-            return "<h4><u>Masochism Potion (Maso Pot)</u></h4>(Item ID 514)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 515:
-            return "<h4><u>Black Dye</u></h4>(Item ID 515)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 516:
-            return "<h4><u>Baby Free Potion (Baby Free)</u></h4>(Item ID 516)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 517:
-            return "<h4><u>Potency Potion (Pot Pot)</u></h4>(Item ID 517)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 518:
-            return "<h4><u>Superior Gender Swap Potion (S Gen Swap)</u></h4>(Item ID 518)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 519:
-            return "<h4><u>Superior Masochism Potion (S Maso Pot)</u></h4>(Item ID 519)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 520:
-            return "<h4><u>Red Dye</u></h4>(Item ID 520)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 521:
-            return "<h4><u>Superior Baby Free Potion (S Baby Free)</u></h4>(Item ID 521)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 522:
-            return "<h4><u>Superior Potency Potion (S Pot Pot)</u></h4>(Item ID 522)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 523:
-            return "<h4><u>Vial of Cum (Cum Vial)</u></h4>(Item ID 523)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 524:
-            return "<h4><u>Bottle of Cum (Cum Bottle)</u></h4>(Item ID 524)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 525:
-            return "<h4><u>Jug of Cum (Cum Jug)</u></h4>(Item ID 525)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 526:
-            return "<h4><u>Barrel of Cum (Cum Barrel)</u></h4>(Item ID 526)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 527:
-            return "<h4><u>Good Egg</u></h4>(Item ID 527)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 528:
-            return "<h4><u>Bad Egg</u></h4>(Item ID 528)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 529:
-            return "<h4><u>Strange Egg</u></h4>(Item ID 529)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 530:
-            return "<h4><u>Charmed Egg</u></h4>(Item ID 530)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 531:
-            return "<h4><u>Divine Egg</u></h4>(Item ID 531)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 532:
-            return "<h4><u>Strong Pheromone (Pheromone)</u></h4>(Item ID 532)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 533:
-            return "<h4><u>Reduced Reduction (Reduc Reduc)</u></h4>(Item ID 533)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 534:
-            return "<h4><u>Male Enhancement Drug (Male Enhance)</u></h4>(Item ID 534)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 535:
-            return "<h4><u>Milk Suppressant (Milk Suppress)</u></h4>(Item ID 535)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 536:
-            return "<h4><u>Bazoomba!</u></h4>(Item ID 536)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 537:
-            return "<h4><u>Queen Egg</u></h4>(Item ID 537)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 538:
-            return "<h4><u>Soldier Egg</u></h4>(Item ID 538)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 539:
-            return "<h4><u>Drone Egg</u></h4>(Item ID 539)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 540:
-            return "<h4><u>Worker Egg</u></h4>(Item ID 540)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
     def clothesDescription(self, ID: int):
         if ID == -10:
@@ -9526,7 +9544,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if Items.useHidesPage(ID):
             self.hidePage()
         self.choicePage = 1
-        self.doMainText(Items.description(ID), True)
+        self.doMainText(Items.fullDescription(ID), True)
         if (Items.isUsable(ID) or Items.isConsumable(ID)):
             self.hideAmountAll()
             self.doMainText("\n\nAre you sure you want to use this item?")
@@ -9650,7 +9668,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.buttonChoice == 4 or self.buttonChoice == 8):
                 self.displayBag()
             elif (self.canLose(self.choiceListResult[0])):
-                self.doMainText(f"{Items.description(self.choiceListResult[0])}\n\n{Items.description(ID)}\n\nDo you want to replace {Items.name(self.choiceListResult[0])} with {Items.name(ID)}?", True)
+                self.doMainText(f"{Items.fullDescription(self.choiceListResult[0])}\n\n{Items.fullDescription(ID)}\n\nDo you want to replace {Items.name(self.choiceListResult[0])} with {Items.name(ID)}?", True)
                 if (self.bag.stack[self.choiceListResult[1]] > 1):
                     self.doMainText(f"\n\nYou will lose all {self.bag.stack[self.choiceListResult[1]]} of {Items.name(self.choiceListResult[0])} if you do.")
                 self.displayMainText()
@@ -12201,7 +12219,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             if (self.buttonChoice not in {4, 8, 12} and Shop.ID(self.currentZone, self.buttonChoice) != 0):
-                self.outputMainText(f"{Items.description(Shop.ID(self.currentZone, self.buttonChoice))}\n\nCost: {3 * Items.value(Shop.ID(self.currentZone, self.buttonChoice))} coins.", True)
+                self.outputMainText(f"{Items.fullDescription(Shop.ID(self.currentZone, self.buttonChoice))}\n\nCost: {3 * Items.value(Shop.ID(self.currentZone, self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
                 self.outputMainText(f"\n\nAre you sure you would like to buy {Items.name(Shop.ID(self.currentZone, self.buy))}?")
@@ -12360,7 +12378,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             if (self.buttonChoice not in {4, 8, 12} and DyeShop.ID(self.buttonChoice) != 0):
-                self.outputMainText(f"{Items.description(DyeShop.ID(self.buttonChoice))}\n\nCost: {3 * Items.value(DyeShop.ID(self.buttonChoice))} coins.", True)
+                self.outputMainText(f"{Items.fullDescription(DyeShop.ID(self.buttonChoice))}\n\nCost: {3 * Items.value(DyeShop.ID(self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
                 self.outputMainText(f"\n\nAre you sure you would like to buy {Items.name(DyeShop.ID(self.buy))}?")
