@@ -2227,6 +2227,23 @@ class ApothecaryItems:
             return 'R: SPotPot'
         if ID == 17:
             return 'R: MilkSuppress'
+        # NOTE: These were added for the wiki
+        if ID == 50:
+            return "R: BlondeDye"
+        if ID == 51:
+            return "R: PussJuice"
+        if ID == 52:
+            return "R: BlackDye"
+        if ID == 53:
+            return "R: RedDye"
+        if ID == 54:
+            return "R: Pheromone"
+        if ID == 55:
+            return "R: ReducReduc"
+        if ID == 56:
+            return "R: MaleEnhance"
+        if ID == 57:
+            return "R: Bazoomba"
         return ""
 
     def fullName(ID: int) -> str:
@@ -2266,6 +2283,23 @@ class ApothecaryItems:
             return "Recipe: Superior Potency Potion"
         if ID == 17:
             return "Recipe: Milk Suppressant"
+        # NOTE: These were added for the wiki
+        if ID == 50:
+            return "Recipe: Blonde Dye"
+        if ID == 51:
+            return "Recipe: Pussy Juice"
+        if ID == 52:
+            return "Recipe: Black Dye"
+        if ID == 53:
+            return "Recipe: Red Dye"
+        if ID == 54:
+            return "Recipe: Pheromone"
+        if ID == 55:
+            return "Recipe: Reduced Reduction"
+        if ID == 56:
+            return "Recipe: Male Enhancement Drug"
+        if ID == 57:
+            return "Recipe: Bazoomba!"
         return ""
 
     def value(ID: int) -> int:
@@ -2974,12 +3008,9 @@ class WikiPages:
     # TODO: Figure out a way to make links like 'call://Pymin.mainobject.wiki.toPage&Town&1'
     '''
 
-    # TODO: Create pages for the alchemy recipes. These should also contain links to their end products
-
     @classmethod
     def __class_getitem__(cls, page: WikiPageObject):
         return getattr(cls, page.topic, lambda p: None)(page.num)
-
 
     def Basic(Num: int):
         if Num == 0:
@@ -3026,6 +3057,7 @@ class WikiPages:
             return "<h4><u>Help</u></h4>This menu contains things that you might want to know about the game.\n\n\n<b><u>Wiki</u></b>\nOpens the wiki.\n\n<b><u>About Game</u></b>\nOpens a popup window with the version information of the game in it. This window is in the style of the Adobe Flash Player Projector about window.\n"
 
     def Item(ID: int):
+        # TODO: Add links to recipes for things that can be created with alchemy
         if ID == -10:
             return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         contents = f"<h4><u>{Items.fullName(ID)} ({Items.name(ID)})</u></h4>(Item ID {ID})"
@@ -3323,6 +3355,72 @@ class WikiPages:
         if ID == 540:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
+    def Recipe_CreatesTag(ID: int):
+        return f'\n\n<b>Creates: </b><a href="call_args://Item&{ID}">{Items.fullName(ID)}</a>'
+
+    def Recipe(ID: int):
+        # TODO: Link to items created by a recipe
+        # TODO: Add ingredients
+        contents = f"<h4><u>{ApothecaryItems.fullName(ID)} ({ApothecaryItems.name(ID)})</u><h4>"
+
+        # Non-buyable recipes
+        if ID == 50:
+            return contents + WikiPages.Recipe_CreatesTag(220)
+        if ID == 51:
+            return contents + WikiPages.Recipe_CreatesTag(221)
+        if ID == 52:
+            return contents + WikiPages.Recipe_CreatesTag(515)
+        if ID == 53:
+            return contents + WikiPages.Recipe_CreatesTag(520)
+        if ID == 54:
+            return contents + WikiPages.Recipe_CreatesTag(532)
+        if ID == 55:
+            return contents + WikiPages.Recipe_CreatesTag(533)
+        if ID == 56:
+            return contents + WikiPages.Recipe_CreatesTag(534)
+        if ID == 57:
+            return contents + WikiPages.Recipe_CreatesTag(536)
+
+        # Buyable recipes
+        class FakeContext:...
+
+        contents += f"<u>Description</u>\n{ApothecaryItems.description(ID, FakeContext)}"
+        if ID == 1:
+            return contents + WikiPages.Recipe_CreatesTag(503)
+        if ID == 2:
+            return contents + WikiPages.Recipe_CreatesTag(504)
+        if ID == 3:
+            return contents + WikiPages.Recipe_CreatesTag(506)
+        if ID == 4:
+            return contents + WikiPages.Recipe_CreatesTag(507)
+        if ID == 5:
+            return contents + WikiPages.Recipe_CreatesTag(508)
+        if ID == 6:
+            return contents + WikiPages.Recipe_CreatesTag(509)
+        if ID == 7:
+            return contents + WikiPages.Recipe_CreatesTag(511)
+        if ID == 8:
+            return contents + WikiPages.Recipe_CreatesTag(512)
+        if ID == 9:
+            return contents + WikiPages.Recipe_CreatesTag(513)
+        if ID == 10:
+            return contents + WikiPages.Recipe_CreatesTag(514)
+        if ID == 11:
+            return contents + WikiPages.Recipe_CreatesTag(516)
+        if ID == 12:
+            return contents + WikiPages.Recipe_CreatesTag(517)
+        if ID == 13:
+            return contents + WikiPages.Recipe_CreatesTag(518)
+        if ID == 14:
+            return contents + WikiPages.Recipe_CreatesTag(519)
+        if ID == 15:
+            return contents + WikiPages.Recipe_CreatesTag(521)
+        if ID == 16:
+            return contents + WikiPages.Recipe_CreatesTag(522)
+        if ID == 17:
+            return contents + WikiPages.Recipe_CreatesTag(535)
+        return ""
+
     def Clothes(ID: int):
         if ID == -10:
             return "<h4><u>Clothes Name</u></h4>(Clothes ID #)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
@@ -3513,6 +3611,8 @@ class WikiPages:
         if Num == 2:
             return "<h4><u>Dye Shop</u></h4><u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
         if Num == 3:
+            tempStr = "<h4><u>Apothecary</u></h4><u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them."
+
             class FakeKnowledge:
                 knowLustDraft = False
                 knowSRejuvPot = False
@@ -3531,7 +3631,7 @@ class WikiPages:
                 knowSBallSwell = False
                 knowSPotPot = False
                 knowMilkSuppress = False
-            tempStr = "<h4><u>Apothecary</u></h4><u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them."
+
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
                 tempStr += f'\n\n<u>{Utils.getRegionName(i)}</u>'
@@ -3541,7 +3641,7 @@ class WikiPages:
                         if ID >= 200:
                             tempStr += f'\n<a href="call_args://Item&{ID}">{Items.fullName(ID)}</a>'
                         else:
-                            tempStr += f'\n{ApothecaryItems.fullName(ID)}'
+                            tempStr += f'\n<a href="call_args://Recipe&{ID}">{ApothecaryItems.fullName(ID)}</a>'
             return tempStr
         if Num == 4:
             tempStr = "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow."
@@ -3582,8 +3682,9 @@ class WikiPages:
 
 class PyminWiki(PyminWindow):
     # TODO: Add indication for submenus
+    # TODO: Find a way to better create menus (maybe use a dictionary like {'Items': {'All': {'Test': ('Items', 1)}}})
     MENUS = {
-        '': ('Basics', 'Items', 'Clothes', 'Enemies', 'Races', 'Locations', 'Shops', 'Named Characters', 'Close'),
+        '': ('Basics', 'Items', 'Recipes', 'Clothes', 'Enemies', 'Races', 'Locations', 'Shops', 'Named Characters', 'Close'),
         'Basics': ('Welcome Screen', 'Wiki Key', 'Stats', 'Actions', 'Tips', 'Hotkeys', 'Changes', 'Menu Bar', 'Back'),
         'Basics.MenuBar': ('File', 'View', 'Save Utils', 'Debug Utils', 'Help', 'Back'),
         'Basics.MenuBar.File': ('Options', 'Quit', 'Back'),
@@ -3603,6 +3704,7 @@ class PyminWiki(PyminWindow):
         'Items.Consumables.Other': ('Dry Sand', 'Cat\'s Meow', 'Reduction', 'Poultice', 'Neuter', 'Milk C Pois', 'Co-Snak Ven', 'Wolf Fur', 'Sm Pouch (ItemID 204)', 'Sm Pouch (ItemID 205)', 'Cock Carv', 'Blo Berry', 'Grain', 'Puss Fruit', 'Red Mush', 'Wet Cloth', 'Egg Jelly', 'Bul Berry', 'Eq Snack', 'Lila\'s Milk', 'Body Wash', 'Felin Tea', 'Oral Wash', 'Body Oil', 'Eggcelerator', 'Desi Sand', 'Fertile Gel', 'Breeder Pot', 'Treant\'s Tear', 'Foomp Bomb', 'Plump Quat', 'Sweet&Sour', 'Succ Draft', 'Milk Bottle', 'Milk Jug', 'Milk Barrel', 'Bad Exper', 'S Bad Exper', 'Cum Vial', 'Cum Bottle', 'Cum Jug', 'Cum Barrel', 'Back'),
         'Items.Silandrias': ('Leath Strap', 'Flying Carp', 'A-Grav Rock', 'Rein Charm', 'Fell Rod', 'Recept Bell', 'Back'),
         'Items.Special': ('Milker', 'Penis Pump', 'Blood Gge', 'Edu Egg', 'Trinket', 'Lantern', 'Back'),
+        'Recipes': ('R: LustDraft', 'R: RejuvPot', 'R: ExpPreg', 'R: BallSwell', 'R: SLustDraft', 'R: SRejuvPot', 'R: SExpPreg', 'R: SBallSwell', 'R: GenSwap', 'R: MasoPot', 'R: BabyFree', 'R: PotPot', 'R: SGenSwap', 'R: SMasoPot', 'R: SBabyFree', 'R: SPotPot', 'R: MilkSuppress', 'R: BlondeDye', 'R: PussJuice', 'R: BlackDye', 'R: RedDye', 'R: Pheromone', 'R: ReducReduc', 'R: MaleEnhance', 'R: Bazoomba', 'Back'),
         'Clothes': ('Tattered Shreds', 'Invisible Underwear', 'Shirt', 'Pants', 'Bikini Top', 'Bikini Bottom', 'Elegant Dress', 'Latex Suit', 'Skirt', 'Shorts', 'Blouse', 'Diaper', 'Poofy Diaper', 'Sundress', 'Skimpy Dress', 'Short Skirt', 'Short Shorts', 'Loin Cloth', 'Bathing Suit', 'Muscle Shirt', 'Corset', 'Silk Panties', 'Slingkini', 'Thong', 'Bloomers', 'Tights', 'Gothic Dress', 'Tube Top', 'Nipple Pasties', 'Camisole', 'Training Suit', 'Bouncy Bra', 'Back'),
         'Enemies': ('Test Enemy', 'Cock-snake', 'Desiccating Dust Devil', 'Lone Male Wolf', 'Gay Wolf', 'Felin in Heat', 'Drunken Equan', 'Octopus Girl', 'Little Big Bunny-man', 'Little Big Bunny-girl', 'Fierce Naga', 'Minotaur', 'Freaky Little Girl', 'Succubus', 'Back'),
         'Races': ('Human', 'Equan', 'Lupan', 'Felin', 'Cow', 'Lizan', 'Bunny', 'Mouse', 'Bird', 'Pig', 'Skunk', 'Bug', 'Back'),
@@ -3765,6 +3867,8 @@ class PyminWiki(PyminWindow):
                 self.menu = 'Basics'
             elif sel == 'Items':
                 self.menu = 'Items'
+            elif sel == 'Recipes':
+                self.menu = 'Recipes'
             elif sel == 'Clothes':
                 self.menu = 'Clothes'
             elif sel == 'Enemies':
@@ -4384,6 +4488,57 @@ class PyminWiki(PyminWindow):
                 self.toPage('Item', 206)
             elif sel == 'Lantern':
                 self.toPage('Item', 254)
+        elif self.menu == 'Recipes':
+            if sel == 'R: LustDraft':
+                self.toPage('Recipe', 1)
+            elif sel == 'R: RejuvPot':
+                self.toPage('Recipe', 2)
+            elif sel == 'R: ExpPreg':
+                self.toPage('Recipe', 3)
+            elif sel == 'R: BallSwell':
+                self.toPage('Recipe', 4)
+            elif sel == 'R: SLustDraft':
+                self.toPage('Recipe', 5)
+            elif sel == 'R: SRejuvPot':
+                self.toPage('Recipe', 6)
+            elif sel == 'R: SExpPreg':
+                self.toPage('Recipe', 7)
+            elif sel == 'R: SBallSwell':
+                self.toPage('Recipe', 8)
+            elif sel == 'R: GenSwap':
+                self.toPage('Recipe', 9)
+            elif sel == 'R: MasoPot':
+                self.toPage('Recipe', 10)
+            elif sel == 'R: BabyFree':
+                self.toPage('Recipe', 11)
+            elif sel == 'R: PotPot':
+                self.toPage('Recipe', 12)
+            elif sel == 'R: SGenSwap':
+                self.toPage('Recipe', 13)
+            elif sel == 'R: SMasoPot':
+                self.toPage('Recipe', 14)
+            elif sel == 'R: SBabyFree':
+                self.toPage('Recipe', 15)
+            elif sel == 'R: SPotPot':
+                self.toPage('Recipe', 16)
+            elif sel == 'R: MilkSuppress':
+                self.toPage('Recipe', 17)
+            elif sel == 'R: BlondeDye':
+                self.toPage('Recipe', 50)
+            elif sel == 'R: PussJuice':
+                self.toPage('Recipe', 51)
+            elif sel == 'R: BlackDye':
+                self.toPage('Recipe', 52)
+            elif sel == 'R: RedDye':
+                self.toPage('Recipe', 53)
+            elif sel == 'R: Pheromone':
+                self.toPage('Recipe', 54)
+            elif sel == 'R: ReducReduc':
+                self.toPage('Recipe', 55)
+            elif sel == 'R: MaleEnhance':
+                self.toPage('Recipe', 56)
+            elif sel == 'R: Bazoomba':
+                self.toPage('Recipe', 57)
         elif self.menu == 'Clothes':
             if sel == 'Tattered Shreds':
                 self.toPage('Clothes', -1)
