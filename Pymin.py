@@ -1693,12 +1693,12 @@ class Items:
             return "One of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
         if ID == 404:
             tempStr = "Item Not Found"
-            if as3state.as3DebugEnable:
+            if mainobject.isDebugger:
                 tempStr += " (This is a joke item referencing status code 404)"
             return tempStr
         if ID == 418:
             tempStr = "Inscribed on the side are the words \"I'm a teapot\"."
-            if as3state.as3DebugEnable:
+            if mainobject.isDebugger:
                 tempStr += " (This is a joke item referencing status code 418)"
             return tempStr
         if ID == 500:
@@ -3030,8 +3030,6 @@ class WikiPages:
             return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         contents = f"<h4><u>{Items.fullName(ID)} ({Items.name(ID)})</u></h4>(Item ID {ID})"
 
-        # TODO: Handle dynamic descriptions
-
         class FakeContext:
             snuggleBall = False
             suppHarness = False
@@ -3040,275 +3038,290 @@ class WikiPages:
             def skinDesc(*args):
                 return "[Skin Description]"
 
-        description = f"\n\n<u>Description</u>\n{Items.description(ID, FakeContext)}"
-        if ID == 1:
-            return contents + description + "\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
-        if ID == 2:
-            return contents + description + "\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-        if ID == 3:
-            return contents + description + "\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-        if ID == 404:
-            return contents + description + "\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-        if ID == 418:
-            return contents + description + "\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-        if ID == 101:
-            return contents + description + "\n\n<u>Effects and Stats</u>\nTurns player's hands into paws.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrapeMod +10\n\n<u>How to obtain</u>\nCan be bought from the shop in Tieden."
-        if ID == 102:
-            return contents + description + "\n\n<u>Effects and Stats</u>\nTurns the player's feet into hooves.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrunMod +20\n\n<u>How to obtain</u>\nCan be bought from the shop in Firmshaft."
-        if ID == 103:
-            return contents + description + "\n\n<u>Effects and Stats</u>\nMakes the part that the player applies it to less moist.\n<b>ItemType:</b> Consumable\n<b>StackMax:</b> 15\n<b>Value:</b> 20 coins\ncockMoist -4 (cock)\nvagMoist -4 (vagina)\nlactation -75 (boobs)\nudderLactation -75 (udders)\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 104:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 105:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 106:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 108:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 109:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 110:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 111:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 112:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 113:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 114:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 115:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 116:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 117:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 118:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 119:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 120:
-            return contents + description + "\n\nThe game says that using the neuterizer to make the player have less than 2 balls is 'too dangerous' but the real reason is because most things were coded to expect at the player to have at least two balls when they have a cock.\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 121:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 122:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 123:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 124:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 125:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 126:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 127:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 128:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 200:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 201:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 202:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 203:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 204:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 205:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 206:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 207:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 208:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 209:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 210:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 211:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 212:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 213:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 214:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 215:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 216:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 217:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 218:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 219:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 220:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 221:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 222:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 223:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 224:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 225:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 226:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 227:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 228:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 229:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 230:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 231:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 232:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 233:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 234:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 235:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 236:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 237:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 238:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 239:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 240:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 241:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 242:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 243:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            def legDesc(*args):
+                return "[Leg Description]"
+
+        # Dynamic Descriptions
         if ID == 244:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 245:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 246:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            contents += f"\n\n<u>Description</u>\n<b>When Not Equipped:</b>\n{Items.description(ID, FakeContext)}"
+            FakeContext.snuggleBall = True
+            contents += f"\n\n<b>When Equipped:</b>\n{Items.description(ID, FakeContext)}"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 247:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 248:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 249:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 250:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 251:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 252:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            contents += f"\n\n<u>Description</u>\n<b>When Not Equipped:</b>\n{Items.description(ID, FakeContext)}"
+            FakeContext.suppHarness = True
+            contents += f"\n\n<b>When Equipped:</b>\n{Items.description(ID, FakeContext)}"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 253:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            contents += f"\n\n<u>Description</u>\n<b>When tail != 12:</b>\n{Items.description(ID, FakeContext)}"
+            FakeContext.tail = 12
+            contents += f"\n\n<b>When tail == 12:</b>\n{Items.description(ID, FakeContext)}"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+
+        # Static Descriptions
+        contents += f"\n\n<u>Description</u>\n{Items.description(ID, FakeContext)}"
+        if ID == 1:
+            return contents + "\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
+        if ID == 2:
+            return contents + "\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+        if ID == 3:
+            return contents + "\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+        if ID == 404:
+            return contents + "\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+        if ID == 418:
+            return contents + "\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
+        if ID == 101:
+            return contents + "\n\n<u>Effects and Stats</u>\nTurns player's hands into paws.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrapeMod +10\n\n<u>How to obtain</u>\nCan be bought from the shop in Tieden."
+        if ID == 102:
+            return contents + "\n\n<u>Effects and Stats</u>\nTurns the player's feet into hooves.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrunMod +20\n\n<u>How to obtain</u>\nCan be bought from the shop in Firmshaft."
+        if ID == 103:
+            return contents + "\n\n<u>Effects and Stats</u>\nMakes the part that the player applies it to less moist.\n<b>ItemType:</b> Consumable\n<b>StackMax:</b> 15\n<b>Value:</b> 20 coins\ncockMoist -4 (cock)\nvagMoist -4 (vagina)\nlactation -75 (boobs)\nudderLactation -75 (udders)\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 104:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 105:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 106:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 108:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 109:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 110:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 111:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 112:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 113:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 114:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 115:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 116:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 117:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 118:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 119:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 120:
+            return contents + "\n\nThe game says that using the neuterizer to make the player have less than 2 balls is 'too dangerous' but the real reason is because most things were coded to expect at the player to have at least two balls when they have a cock.\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 121:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 122:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 123:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 124:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 125:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 126:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 127:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 128:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 200:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 201:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 202:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 203:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 204:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 205:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 206:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 207:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 208:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 209:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 210:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 211:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 212:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 213:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 214:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 215:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 216:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 217:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 218:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 219:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 220:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 221:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 222:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 223:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 224:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 225:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 226:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 227:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 228:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 229:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 230:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 231:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 232:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 233:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 234:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 235:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 236:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 237:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 238:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 239:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 240:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 241:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 242:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 243:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 245:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 246:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 248:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 249:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 250:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 251:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+        if ID == 252:
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 254:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 255:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 256:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 257:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 258:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 259:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 260:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 500:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 501:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 502:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 503:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 504:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 505:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 506:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 507:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 508:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 509:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 510:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 511:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 512:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 513:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 514:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 515:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 516:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 517:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 518:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 519:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 520:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 521:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 522:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 523:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 524:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 525:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 526:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 527:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 528:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 529:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 530:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 531:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 532:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 533:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 534:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 535:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 536:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 537:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 538:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 539:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == 540:
-            return contents + description + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
     def Clothes(ID: int):
         if ID == -10:
@@ -3743,6 +3756,7 @@ class PyminWiki(PyminWindow):
         self.doPage(curPage)
 
     def selectOption(self, e=None):
+        # TODO: Simplify this
         sel = self.window._children['menu'].get(self.window._children['menu'].curselection())
         if sel == 'Back':
             self.menu = 'Back'
@@ -4971,12 +4985,12 @@ class OptionsWindow(PyminWindow):
 
     def _set_backgroundColor(self, value):
         self.window.configureChildren(('display', 'options', 'SOLMode', 'FixedRes', 'Theme', 'FontColor', 'SaveLocation', 'if', 'ScrolledTextBorders', 'newgameoriginalsize', 'doLevelUPStaticButtons', 'NiminTheme', 'UseExpandedSaveDialog', 'UseNewStash', 'helpToWiki', 'doShopsReturn', 'gs', 'showBalls', 'femmeboytofemboy', 'shemaletofuta', 'ngrammar', 'replacefemmiemale', 'femboyishtogirly', 'snuggleball', 'grammarMisc', 'gt', 'StatusTweaks', 'SuccubusLeavesOne', 'UseIsBottomOpen', 'LizanDontShowBalls', 'HermGetsBoth', 'IntBallsEffectBelly', 'DirectPathToSanc', 'CorrectBeastRaceFeet', 'MiscChanges'), background=value)
-        if as3state.as3DebugEnable:
+        if mainobject.isDebugger:
             self.window.configureChildren(('dt', 'ChooseSenario', 'NoDamage'), background=value)
 
     def _set_textColor(self, value):
         self.window.configureChildren(('SOLMode', 'FixedRes', 'Theme', 'FontColor', 'SaveLocation', 'ScrolledTextBorders', 'newgameoriginalsize', 'doLevelUPStaticButtons', 'NiminTheme', 'UseExpandedSaveDialog', 'UseNewStash', 'helpToWiki', 'doShopsReturn', 'showBalls', 'femmeboytofemboy', 'shemaletofuta', 'ngrammar', 'replacefemmiemale', 'femboyishtogirly', 'snuggleball', 'grammarMisc', 'StatusTweaks', 'SuccubusLeavesOne', 'UseIsBottomOpen', 'LizanDontShowBalls', 'HermGetsBoth', 'IntBallsEffectBelly', 'DirectPathToSanc', 'CorrectBeastRaceFeet', 'MiscChanges'), foreground=value)
-        if as3state.as3DebugEnable:
+        if mainobject.isDebugger:
             self.window.configureChildren(('ChooseSenario', 'NoDamage'), foreground=value)
 
     def open(self):
@@ -5126,7 +5140,7 @@ class OptionsWindow(PyminWindow):
         ToolTip(self.window._children['MiscChanges'].frame, text='Toggles some of the miscelanious changes that I made. Does not get all of them\nbecause this was added after I made most changes.')
 
         # Debug Options page
-        if as3state.as3DebugEnable:
+        if mainobject.isDebugger:
             self.window.addNBFrame('nb', 'dt', width=420, height=207, text='Debug Options', background=self.backgroundColor)
 
             # -Always Choose Senario
@@ -5210,7 +5224,7 @@ class OptionsWindow(PyminWindow):
             self.window._children['snuggleball'].select()
         if mainobject.grammarFixes:
             self.window._children['grammarMisc'].select()
-        if as3state.as3DebugEnable:
+        if mainobject.isDebugger:
             if mainobject.debugChooseSenario:
                 self.window._children['ChooseSenario'].select()
             if mainobject.debugNoDamage:
@@ -5309,7 +5323,7 @@ class OptionsWindow(PyminWindow):
         mainobject.femboyishToGirly = self.window._children['femboyishtogirly'].getcb()
         mainobject.snuggleBallTweak = self.window._children['snuggleball'].getcb()
         mainobject.grammarFixes = self.window._children['grammarMisc'].getcb()
-        if as3state.as3DebugEnable:
+        if mainobject.isDebugger:
             mainobject.debugChooseSenario = self.window._children['ChooseSenario'].getcb()
             mainobject.debugNoDamage = self.window._children['NoDamage'].getcb()
         mainobject.savePreferences()
@@ -5835,7 +5849,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.window.menubar['root'].add_cascade(label='Save Utils', font=menuFont, menu=self.window.menubar['saveutils'])
 
         # Debug Menu
-        if as3state.as3DebugEnable:
+        if mainobject.isDebugger:
             self.window.menubar['debugutils'] = tkinter.Menu(self.window.menubar['root'], tearoff=0)
             self.window.menubar['debugutils'].add_command(label='Variable Display', font=menuFont, command=mainobject.debugvarwindow.open)
             self.window.menubar['debugutils'].add_command(label='Give Item', font=menuFont, command=mainobject.debuggiveitemwindow.open)
@@ -15942,7 +15956,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return temp
 
     def eventSelect(self, which: str):
-        if as3state.as3DebugEnable and mainobject.debugChooseSenario:
+        if mainobject.isDebugger and mainobject.debugChooseSenario:
             temp = self.debugSenarioChooser({"Softlik": (1, 4), "Firmshaft": (1, 3), "Tieden": (1, 3), "Siz'Calit": (1, 4), "Oviasis": (1, 5), "Sanctuary": (3, 3), "Forest": (1, 6), "Jungle": (1, 7), "Plains": (1, 5), "Savanna": (1, 5), "Desert": (1, 5), "Beach": (1, 6), "Lake": (1, 3), "Dairy Farm": (1, 5), "Old Cave": (1, 3), "Den": (1, 2), "Valley": (1, 5)}[which])
             if temp is not None:
                 return temp
@@ -24046,7 +24060,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.eLust += changes
 
     def eDmg(self, eweapon):
-        if mainobject.debugNoDamage and as3state.as3DebugEnable:
+        if mainobject.debugNoDamage and mainobject.isDebugger:
             return 0
         dmgRed = 0
         if (self.sen > 0):
@@ -28555,6 +28569,10 @@ class PyminMain:
     # This class contains all game windows and config values
     # Doing it this way allows for easier debugging
     # TODO: Some properties don't apply to the game window on first open
+    @property
+    def isDebugger(self):
+        return as3state.as3DebugEnable
+
     @property
     def backgroundColor(self):
         return self._backgroundColor
