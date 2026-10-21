@@ -3680,7 +3680,6 @@ class WikiPages:
 
 
 class PyminWiki(PyminWindow):
-    # TODO: Add indication for submenus (Possibly use >)
     # TODO: Fix horizontal scroll sometimes not being all the way to the left
     MENUS = {
         'Basics': {
@@ -3980,7 +3979,7 @@ class PyminWiki(PyminWindow):
                     'Cum Barrel': ('Item', 526)
                 }
             },
-            'Silandrias\' Magic Items': {
+            'Silandrias\' Items': {
                 'Leath Strap': ('Item', 229),
                 'Flying Carp': ('Item', 232),
                 'A-Grav Rock': ('Item', 233),
@@ -4159,7 +4158,8 @@ class PyminWiki(PyminWindow):
 
     def _set_fontSize(self, value):
         # TODO: This broke
-        self.window._children['text'].fontSize = value - 2
+        self.window._children['text']._fontSize = value - 2
+        self.window._children['text'].updateText()
 
     def _set_backgroundColor(self, value):
         self.window.configureChildren(('text', 'menu'), background=value)
@@ -4246,12 +4246,23 @@ class PyminWiki(PyminWindow):
             self.focus = 0
 
     def displayMenu(self):
-        self.window._children['menu'].delete(0, 'end')
+        # Add indication for submenus
+        temp = []
+        for k, v in self.currentMenu.items():
+            if isinstance(v, dict):
+                temp.append(k + ' >')
+            else:
+                temp.append(k)
+
+        # Add back entry
         if len(self.menuHistory):
             back = 'Back'
         else:
             back = 'Close'
-        self.window._children['menu'].insert('end', *self.currentMenu.keys(), back)
+
+        # Display menu
+        self.window._children['menu'].delete(0, 'end')
+        self.window._children['menu'].insert('end', *temp, back)
         self.window._children['menu'].select_set(0)
         self.window._children['menu'].activate(0)
 
