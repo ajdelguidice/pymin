@@ -2872,11 +2872,10 @@ class PyminWindow:
 
     @property
     def fontSize(self):
-        return self._fontSize
+        return mainobject.fontSize
 
     @fontSize.setter
     def fontSize(self, value):
-        self._fontSize = value
         if self.isOpen:
             self._set_fontSize(value)
 
@@ -3681,39 +3680,455 @@ class WikiPages:
 
 
 class PyminWiki(PyminWindow):
-    # TODO: Add indication for submenus
-    # TODO: Find a way to better create menus (maybe use a dictionary like {'Items': {'All': {'Test': ('Items', 1)}}})
+    # TODO: Add indication for submenus (Possibly use >)
+    # TODO: Fix horizontal scroll sometimes not being all the way to the left
     MENUS = {
-        '': ('Basics', 'Items', 'Recipes', 'Clothes', 'Enemies', 'Races', 'Locations', 'Shops', 'Named Characters', 'Close'),
-        'Basics': ('Welcome Screen', 'Wiki Key', 'Stats', 'Actions', 'Tips', 'Hotkeys', 'Changes', 'Menu Bar', 'Back'),
-        'Basics.MenuBar': ('File', 'View', 'Save Utils', 'Debug Utils', 'Help', 'Back'),
-        'Basics.MenuBar.File': ('Options', 'Quit', 'Back'),
-        'Items': ('All Items', 'Debug Items', 'Equipable Items', 'Passive Items', 'Consumables', 'Silandrias\' Magic Items', 'Special Items', 'Back'),
-        'Items.All': ('Test', 'Anc Claws', 'Imb Shoes', 'Dry Sand', 'Milker', 'Cat\'s Meow', 'Penis Pump', 'Blood Gge', 'Edu Egg', 'Reduction', 'Skin Balm', 'Bol Juice', 'Taint Leaf', 'Sweet Sap', 'Poultice', 'Dagger', 'Hammer', 'Saber', 'Whip', 'Neuter', 'TS Soft', 'TS Firm', 'TS Tied', 'TS Siz', 'TS Ovi', 'Oas Water', 'Tail Spike', 'TS Sanct', 'Lila\'s Gift', 'Milk C Pois', 'Co-Snak Ven', 'Wolf Fur', 'Sm Pouch (ItemID 204)', 'Sm Pouch (ItemID 205)', 'Trinket', 'Cock Carv', 'Blo Berry', 'Grain', 'Puss Fruit', 'DairE Pill', 'Red Mush', 'Wet Cloth', 'Lon Milk', 'Lon Pendant', 'Pink Ink', 'Egg Jelly', 'Bul Berry', 'Fresh Egg', 'Blondie', 'Puss Juice', 'Kinky Carr', 'Eq Snack', 'Lila\'s Milk', 'Body Wash', 'Felin Tea', 'Oral Wash', 'Body Oil', 'Leath Strap', 'Eggcelerator', 'Desi Sand', 'Flying Carp', 'A-Grav Rock', 'Rein Charm', 'Fell Rod', 'Recept Bell', 'Dewy Gift', 'Squ Cheese', 'Shiny Rock', 'Auburn Dye', 'Brown Dye', 'Grey Dye', 'White Dye', 'Snuggle Ball', 'Facial Mud', 'Fertile Gel', 'Supp Harness', 'Breeder Pot', 'Treant\'s Tear', 'Foomp Bomb', 'Plump Quat', 'Milky Pend', 'Bug Egg', 'Lantern', 'Frag Flower', 'Nectar Candy', 'Too Human', 'Tainted Pot', 'Sweet&Sour', 'Succ Draft', 'Milk Bottle', 'Milk Jug', 'Milk Barrel', 'Lust Draft', 'Rejuv Pot', 'Bad Exper', 'Exp Preg', 'Ball Sweller', 'S Lust Draft', 'S Rejuv Pot', 'S Bad Exper', 'S Exp Preg', 'S Ball Sweller', 'Gen Swap', 'Maso Pot', 'Black Dye', 'Baby Free', 'Pot Pot', 'S Gen Swap', 'S Maso Pot', 'Red Dye', 'S Baby Free', 'S Pot Pot', 'Cum Vial', 'Cum Bottle', 'Cum Jug', 'Cum Barrel', 'Good Egg', 'Bad Egg', 'Strange Egg', 'Charmed Egg', 'Divine Egg', 'Pheromone', 'Reduc Reduc', 'Male Enhance', 'Milk Suppress', 'Bazoomba!', 'Queen Egg', 'Soldier Egg', 'Drone Egg', 'Worker Egg', 'Back'),
-        'Items.Debug': ('Debug Stick', 'Item Not Found', 'Teapot', 'Test', 'Back'),
-        'Items.Equipable': ('Weapons', 'Other Equipables', 'Back'),
-        'Items.Equipable.Weapons': ('Dagger', 'Hammer', 'Saber', 'Whip', 'Tail Spike', 'Back'),
-        'Items.Equipable.Other': ('Snuggle Ball', 'Supp Harness', 'Back'),
-        'Items.Passive': ('Anc Claws', 'Imb Shoes', 'Lila\'s Gift', 'Lon Pendant', 'Dewy Gift', 'Milky Pend', 'Back'),
-        'Items.Consumables': ('Affinity Items', 'Alchemy Items', 'Dyes', 'Teleport Scrolls', 'Eggs', 'Other Consumables', 'Back'),
-        'Items.Consumables.Affinity': ('Skin Balm', 'Bol Juice', 'Taint Leaf', 'Sweet Sap', 'Oas Water', 'DairE Pill', 'Lon Milk', 'Kinky Carr', 'Squ Cheese', 'Shiny Rock', 'Facial Mud', 'Frag Flower', 'Nectar Candy', 'Too Human', 'Tainted Pot', 'Back'),
-        'Items.Consumables.Alchemy': ('Blondie', 'Puss Juice', 'Lust Draft', 'Rejuv Pot', 'Exp Preg', 'Ball Sweller', 'S Lust Draft', 'S Rejuv Pot', 'S Exp Preg', 'S Ball Sweller', 'Gen Swap', 'Maso Pot', 'Baby Free', 'Pot Pot', 'S Gen Swap', 'S Maso Pot', 'S Baby Free', 'S Pot Pot', 'Pheromone', 'Reduc Reduc', 'Male Enhance', 'Milk Suppress', 'Bazoomba!', 'Back'),
-        'Items.Consumables.Dyes': ('Pink Ink', 'Auburn Dye', 'Brown Dye', 'Grey Dye', 'White Dye', 'Black Dye', 'Red Dye', 'Back'),
-        'Items.Consumables.TScrolls': ('TS Soft', 'TS Firm', 'TS Tied', 'TS Siz', 'TS Ovi', 'TS Sanct', 'Back'),
-        'Items.Consumables.Eggs': ('Fresh Egg', 'Bug Egg', 'Good Egg', 'Bad Egg', 'Strange Egg', 'Charmed Egg', 'Divine Egg', 'Queen Egg', 'Soldier Egg', 'Drone Egg', 'Worker Egg', 'Back'),
-        'Items.Consumables.Other': ('Dry Sand', 'Cat\'s Meow', 'Reduction', 'Poultice', 'Neuter', 'Milk C Pois', 'Co-Snak Ven', 'Wolf Fur', 'Sm Pouch (ItemID 204)', 'Sm Pouch (ItemID 205)', 'Cock Carv', 'Blo Berry', 'Grain', 'Puss Fruit', 'Red Mush', 'Wet Cloth', 'Egg Jelly', 'Bul Berry', 'Eq Snack', 'Lila\'s Milk', 'Body Wash', 'Felin Tea', 'Oral Wash', 'Body Oil', 'Eggcelerator', 'Desi Sand', 'Fertile Gel', 'Breeder Pot', 'Treant\'s Tear', 'Foomp Bomb', 'Plump Quat', 'Sweet&Sour', 'Succ Draft', 'Milk Bottle', 'Milk Jug', 'Milk Barrel', 'Bad Exper', 'S Bad Exper', 'Cum Vial', 'Cum Bottle', 'Cum Jug', 'Cum Barrel', 'Back'),
-        'Items.Silandrias': ('Leath Strap', 'Flying Carp', 'A-Grav Rock', 'Rein Charm', 'Fell Rod', 'Recept Bell', 'Back'),
-        'Items.Special': ('Milker', 'Penis Pump', 'Blood Gge', 'Edu Egg', 'Trinket', 'Lantern', 'Back'),
-        'Recipes': ('R: LustDraft', 'R: RejuvPot', 'R: ExpPreg', 'R: BallSwell', 'R: SLustDraft', 'R: SRejuvPot', 'R: SExpPreg', 'R: SBallSwell', 'R: GenSwap', 'R: MasoPot', 'R: BabyFree', 'R: PotPot', 'R: SGenSwap', 'R: SMasoPot', 'R: SBabyFree', 'R: SPotPot', 'R: MilkSuppress', 'R: BlondeDye', 'R: PussJuice', 'R: BlackDye', 'R: RedDye', 'R: Pheromone', 'R: ReducReduc', 'R: MaleEnhance', 'R: Bazoomba', 'Back'),
-        'Clothes': ('Tattered Shreds', 'Invisible Underwear', 'Shirt', 'Pants', 'Bikini Top', 'Bikini Bottom', 'Elegant Dress', 'Latex Suit', 'Skirt', 'Shorts', 'Blouse', 'Diaper', 'Poofy Diaper', 'Sundress', 'Skimpy Dress', 'Short Skirt', 'Short Shorts', 'Loin Cloth', 'Bathing Suit', 'Muscle Shirt', 'Corset', 'Silk Panties', 'Slingkini', 'Thong', 'Bloomers', 'Tights', 'Gothic Dress', 'Tube Top', 'Nipple Pasties', 'Camisole', 'Training Suit', 'Bouncy Bra', 'Back'),
-        'Enemies': ('Test Enemy', 'Cock-snake', 'Desiccating Dust Devil', 'Lone Male Wolf', 'Gay Wolf', 'Felin in Heat', 'Drunken Equan', 'Octopus Girl', 'Little Big Bunny-man', 'Little Big Bunny-girl', 'Fierce Naga', 'Minotaur', 'Freaky Little Girl', 'Succubus', 'Back'),
-        'Races': ('Human', 'Equan', 'Lupan', 'Felin', 'Cow', 'Lizan', 'Bunny', 'Mouse', 'Bird', 'Pig', 'Skunk', 'Bug', 'Back'),
-        'Locations': ('Towns', 'Other Locations', 'Back'),
-        'Locations.Towns': ('Softlik', 'Firmshaft', 'Tieden', 'Siz\'Calit', 'Oviasis', 'Sanctuary', 'Back'),
-        'Locations.Other': ('Forest', 'Jungle', 'Plains', 'Savanna', 'Desert', 'Beach', 'Lake', 'Dairy Farm', 'Old Cave', 'Old Cave Descent', 'Den', 'Valley', 'Knothole', 'Back'),
-        'Shops': ('General Shop', 'Dye Shop', 'Apothecary', 'Salon', 'Tailor', 'Back'),
-        'NPCs': ('Fidoris', 'Jamie', 'Lila', 'Malon', 'Silandrias', 'Back')
+        'Basics': {
+            'Welcome Screen': ('Basic', 0),
+            'Wiki Key': ('Basic', 5),
+            'Stats': ('Basic', 1),
+            'Actions': ('Basic', 2),
+            'Tips': ('Basic', 3),
+            'Hotkeys': ('Basic', 4),
+            'Changes': ('Basic', 6),
+            'Menu Bar': {
+                'File': {
+                    'Options': ('MenuBar', 1),
+                    'Quit': ('MenuBar', 2)
+                },
+                'View': ('MenuBar', 3),
+                'Save Utils': ('MenuBar', 4),
+                'Debug Utils': ('MenuBar', 5),
+                'Help': ('MenuBar', 6)
+            }
+        },
+        'Items': {
+            'All Items': {
+                'Test': ('Item', 1),
+                'Anc Claws': ('Item', 101),
+                'Imb Shoes': ('Item', 102),
+                'Dry Sand': ('Item', 103),
+                'Milker': ('Item', 104),
+                'Cat\'s Meow': ('Item', 105),
+                'Penis Pump': ('Item', 106),
+                'Blood Gge': ('Item', 108),
+                'Edu Egg': ('Item', 109),
+                'Reduction': ('Item', 110),
+                'Skin Balm': ('Item', 111),
+                'Bol Juice': ('Item', 112),
+                'Taint Leaf': ('Item', 113),
+                'Sweet Sap': ('Item', 114),
+                'Poultice': ('Item', 115),
+                'Dagger': ('Item', 116),
+                'Hammer': ('Item', 117),
+                'Saber': ('Item', 118),
+                'Whip': ('Item', 119),
+                'Neuter': ('Item', 120),
+                'TS Soft': ('Item', 121),
+                'TS Firm': ('Item', 122),
+                'TS Tied': ('Item', 123),
+                'TS Siz': ('Item', 124),
+                'TS Ovi': ('Item', 125),
+                'Oas Water': ('Item', 126),
+                'Tail Spike': ('Item', 127),
+                'TS Sanct': ('Item', 128),
+                'Lila\'s Gift': ('Item', 200),
+                'Milk C Pois': ('Item', 201),
+                'Co-Snak Ven': ('Item', 202),
+                'Wolf Fur': ('Item', 203),
+                'Sm Pouch (ItemID 204)': ('Item', 204),
+                'Sm Pouch (ItemID 205)': ('Item', 205),
+                'Trinket': ('Item', 206),
+                'Cock Carv': ('Item', 207),
+                'Blo Berry': ('Item', 208),
+                'Grain': ('Item', 209),
+                'Puss Fruit': ('Item', 210),
+                'DairE Pill': ('Item', 211),
+                'Red Mush': ('Item', 212),
+                'Wet Cloth': ('Item', 213),
+                'Lon Milk': ('Item', 214),
+                'Lon Pendant': ('Item', 215),
+                'Pink Ink': ('Item', 216),
+                'Egg Jelly': ('Item', 217),
+                'Bul Berry': ('Item', 218),
+                'Fresh Egg': ('Item', 219),
+                'Blondie': ('Item', 220),
+                'Puss Juice': ('Item', 221),
+                'Kinky Carr': ('Item', 222),
+                'Eq Snack': ('Item', 223),
+                'Lila\'s Milk': ('Item', 224),
+                'Body Wash': ('Item', 225),
+                'Felin Tea': ('Item', 226),
+                'Oral Wash': ('Item', 227),
+                'Body Oil': ('Item', 228),
+                'Leath Strap': ('Item', 229),
+                'Eggcelerator': ('Item', 230),
+                'Desi Sand': ('Item', 231),
+                'Flying Carp': ('Item', 232),
+                'A-Grav Rock': ('Item', 233),
+                'Rein Charm': ('Item', 234),
+                'Fell Rod': ('Item', 235),
+                'Recept Bell': ('Item', 236),
+                'Dewy Gift': ('Item', 237),
+                'Squ Cheese': ('Item', 238),
+                'Shiny Rock': ('Item', 239),
+                'Auburn Dye': ('Item', 240),
+                'Brown Dye': ('Item', 241),
+                'Grey Dye': ('Item', 242),
+                'White Dye': ('Item', 243),
+                'Snuggle Ball': ('Item', 244),
+                'Facial Mud': ('Item', 245),
+                'Fertile Gel': ('Item', 246),
+                'Supp Harness': ('Item', 247),
+                'Breeder Pot': ('Item', 248),
+                'Treant\'s Tear': ('Item', 249),
+                'Foomp Bomb': ('Item', 250),
+                'Plump Quat': ('Item', 251),
+                'Milky Pend': ('Item', 252),
+                'Bug Egg': ('Item', 253),
+                'Lantern': ('Item', 254),
+                'Frag Flower': ('Item', 255),
+                'Nectar Candy': ('Item', 256),
+                'Too Human': ('Item', 257),
+                'Tainted Pot': ('Item', 258),
+                'Sweet&Sour': ('Item', 259),
+                'Succ Draft': ('Item', 260),
+                'Milk Bottle': ('Item', 500),
+                'Milk Jug': ('Item', 501),
+                'Milk Barrel': ('Item', 502),
+                'Lust Draft': ('Item', 503),
+                'Rejuv Pot': ('Item', 504),
+                'Bad Exper': ('Item', 505),
+                'Exp Preg': ('Item', 506),
+                'Ball Sweller': ('Item', 507),
+                'S Lust Draft': ('Item', 508),
+                'S Rejuv Pot': ('Item', 509),
+                'S Bad Exper': ('Item', 510),
+                'S Exp Preg': ('Item', 511),
+                'S Ball Sweller': ('Item', 512),
+                'Gen Swap': ('Item', 513),
+                'Maso Pot': ('Item', 514),
+                'Black Dye': ('Item', 515),
+                'Baby Free': ('Item', 516),
+                'Pot Pot': ('Item', 517),
+                'S Gen Swap': ('Item', 518),
+                'S Maso Pot': ('Item', 519),
+                'Red Dye': ('Item', 520),
+                'S Baby Free': ('Item', 521),
+                'S Pot Pot': ('Item', 522),
+                'Cum Vial': ('Item', 523),
+                'Cum Bottle': ('Item', 524),
+                'Cum Jug': ('Item', 525),
+                'Cum Barrel': ('Item', 526),
+                'Good Egg': ('Item', 527),
+                'Bad Egg': ('Item', 528),
+                'Strange Egg': ('Item', 529),
+                'Charmed Egg': ('Item', 530),
+                'Divine Egg': ('Item', 531),
+                'Pheromone': ('Item', 532),
+                'Reduc Reduc': ('Item', 533),
+                'Male Enhance': ('Item', 534),
+                'Milk Suppress': ('Item', 535),
+                'Bazoomba!': ('Item', 536),
+                'Queen Egg': ('Item', 537),
+                'Soldier Egg': ('Item', 538),
+                'Drone Egg': ('Item', 539),
+                'Worker Egg': ('Item', 540)
+            },
+            'Debug Items': {
+                'Debug Stick': ('Item', 2),
+                'Item Not Found': ('Item', 404),
+                'Teapot': ('Item', 418),
+                'Test': ('Item', 1)
+            },
+            'Equipable Items': {
+                'Weapons': {
+                    'Dagger': ('Item', 116),
+                    'Hammer': ('Item', 117),
+                    'Saber': ('Item', 118),
+                    'Whip': ('Item', 119),
+                    'Tail Spike': ('Item', 127)
+                },
+                'Other Equipables': {
+                    'Snuggle Ball': ('Item', 244),
+                    'Supp Harness': ('Item', 247)
+                }
+            },
+            'Passive Items': {
+                'Anc Claws': ('Item', 101),
+                'Imb Shoes': ('Item', 102),
+                'Lila\'s Gift': ('Item', 200),
+                'Lon Pendant': ('Item', 215),
+                'Dewy Gift': ('Item', 237),
+                'Milky Pend': ('Item', 252)
+            },
+            'Consumables': {
+                'Affinity Items': {
+                    'Skin Balm': ('Item', 111),
+                    'Bol Juice': ('Item', 112),
+                    'Taint Leaf': ('Item', 113),
+                    'Sweet Sap': ('Item', 114),
+                    'Oas Water': ('Item', 126),
+                    'DairE Pill': ('Item', 211),
+                    'Lon Milk': ('Item', 214),
+                    'Kinky Carr': ('Item', 222),
+                    'Squ Cheese': ('Item', 238),
+                    'Shiny Rock': ('Item', 239),
+                    'Facial Mud': ('Item', 245),
+                    'Frag Flower': ('Item', 255),
+                    'Nectar Candy': ('Item', 256),
+                    'Too Human': ('Item', 257),
+                    'Tainted Pot': ('Item', 258)
+                },
+                'Alchemy Items': {
+                    'Blondie': ('Item', 220),  # TODO: Is this also considered a dye?
+                    'Puss Juice': ('Item', 221),
+                    'Lust Draft': ('Item', 503),
+                    'Rejuv Pot': ('Item', 504),
+                    'Exp Preg': ('Item', 506),
+                    'Ball Sweller': ('Item', 507),
+                    'S Lust Draft': ('Item', 508),
+                    'S Rejuv Pot': ('Item', 509),
+                    'S Exp Preg': ('Item', 511),
+                    'S Ball Sweller': ('Item', 512),
+                    'Gen Swap': ('Item', 513),
+                    'Maso Pot': ('Item', 514),
+                    'Baby Free': ('Item', 516),
+                    'Pot Pot': ('Item', 517),
+                    'S Gen Swap': ('Item', 518),
+                    'S Maso Pot': ('Item', 519),
+                    'S Baby Free': ('Item', 521),
+                    'S Pot Pot': ('Item', 522),
+                    'Pheromone': ('Item', 532),
+                    'Reduc Reduc': ('Item', 533),
+                    'Male Enhance': ('Item', 534),
+                    'Milk Suppress': ('Item', 535),
+                    'Bazoomba!': ('Item', 536)
+                },
+                'Dyes': {
+                    'Pink Ink': ('Item', 216),
+                    'Auburn Dye': ('Item', 240),
+                    'Brown Dye': ('Item', 241),
+                    'Grey Dye': ('Item', 242),
+                    'White Dye': ('Item', 243),
+                    'Black Dye': ('Item', 515),
+                    'Red Dye': ('Item', 520)
+                },
+                'Teleport Scrolls': {
+                    'TS Soft': ('Item', 121),
+                    'TS Firm': ('Item', 122),
+                    'TS Tied': ('Item', 123),
+                    'TS Siz': ('Item', 124),
+                    'TS Ovi': ('Item', 125),
+                    'TS Sanct': ('Item', 128)
+                },
+                'Eggs': {
+                    'Fresh Egg': ('Item', 219),
+                    'Bug Egg': ('Item', 253),
+                    'Good Egg': ('Item', 527),
+                    'Bad Egg': ('Item', 528),
+                    'Strange Egg': ('Item', 529),
+                    'Charmed Egg': ('Item', 530),
+                    'Divine Egg': ('Item', 531),
+                    'Queen Egg': ('Item', 537),
+                    'Soldier Egg': ('Item', 538),
+                    'Drone Egg': ('Item', 539),
+                    'Worker Egg': ('Item', 540)
+                },
+                'Other Consumables': {
+                    'Dry Sand': ('Item', 103),
+                    'Cat\'s Meow': ('Item', 105),
+                    'Reduction': ('Item', 110),
+                    'Poultice': ('Item', 115),
+                    'Neuter': ('Item', 120),
+                    'Milk C Pois': ('Item', 201),
+                    'Co-Snak Ven': ('Item', 202),
+                    'Wolf Fur': ('Item', 203),
+                    'Sm Pouch (ItemID 204)': ('Item', 204),
+                    'Sm Pouch (ItemID 205)': ('Item', 205),
+                    'Cock Carv': ('Item', 207),
+                    'Blo Berry': ('Item', 208),
+                    'Grain': ('Item', 209),
+                    'Puss Fruit': ('Item', 210),
+                    'Red Mush': ('Item', 212),
+                    'Wet Cloth': ('Item', 213),
+                    'Egg Jelly': ('Item', 217),
+                    'Bul Berry': ('Item', 218),
+                    'Eq Snack': ('Item', 223),
+                    'Lila\'s Milk': ('Item', 224),
+                    'Body Wash': ('Item', 225),
+                    'Felin Tea': ('Item', 226),
+                    'Oral Wash': ('Item', 227),
+                    'Body Oil': ('Item', 228),
+                    'Eggcelerator': ('Item', 230),
+                    'Desi Sand': ('Item', 231),
+                    'Fertile Gel': ('Item', 246),
+                    'Breeder Pot': ('Item', 248),
+                    'Treant\'s Tear': ('Item', 249),
+                    'Foomp Bomb': ('Item', 250),
+                    'Plump Quat': ('Item', 251),
+                    'Sweet&Sour': ('Item', 259),
+                    'Succ Draft': ('Item', 260),
+                    'Milk Bottle': ('Item', 500),
+                    'Milk Jug': ('Item', 501),
+                    'Milk Barrel': ('Item', 502),
+                    'Bad Exper': ('Item', 505),
+                    'S Bad Exper': ('Item', 510),
+                    'Cum Vial': ('Item', 523),
+                    'Cum Bottle': ('Item', 524),
+                    'Cum Jug': ('Item', 525),
+                    'Cum Barrel': ('Item', 526)
+                }
+            },
+            'Silandrias\' Magic Items': {
+                'Leath Strap': ('Item', 229),
+                'Flying Carp': ('Item', 232),
+                'A-Grav Rock': ('Item', 233),
+                'Rein Charm': ('Item', 234),
+                'Fell Rod': ('Item', 235),
+                'Recept Bell': ('Item', 236)
+            },
+            'Special Items': {
+                'Milker': ('Item', 104),
+                'Penis Pump': ('Item', 106),
+                'Blood Gge': ('Item', 108),
+                'Edu Egg': ('Item', 109),
+                'Trinket': ('Item', 206),
+                'Lantern': ('Item', 254)
+            }
+        },
+        'Recipes': {
+            'R: LustDraft': ('Recipe', 1),
+            'R: RejuvPot': ('Recipe', 2),
+            'R: ExpPreg': ('Recipe', 3),
+            'R: BallSwell': ('Recipe', 4),
+            'R: SLustDraft': ('Recipe', 5),
+            'R: SRejuvPot': ('Recipe', 6),
+            'R: SExpPreg': ('Recipe', 7),
+            'R: SBallSwell': ('Recipe', 8),
+            'R: GenSwap': ('Recipe', 9),
+            'R: MasoPot': ('Recipe', 10),
+            'R: BabyFree': ('Recipe', 11),
+            'R: PotPot': ('Recipe', 12),
+            'R: SGenSwap': ('Recipe', 13),
+            'R: SMasoPot': ('Recipe', 14),
+            'R: SBabyFree': ('Recipe', 15),
+            'R: SPotPot': ('Recipe', 16),
+            'R: MilkSuppress': ('Recipe', 17),
+            'R: BlondeDye': ('Recipe', 50),
+            'R: PussJuice': ('Recipe', 51),
+            'R: BlackDye': ('Recipe', 52),
+            'R: RedDye': ('Recipe', 53),
+            'R: Pheromone': ('Recipe', 54),
+            'R: ReducReduc': ('Recipe', 55),
+            'R: MaleEnhance': ('Recipe', 56),
+            'R: Bazoomba': ('Recipe', 57)
+        },
+        'Clothes': {
+            'Tattered Shreds': ('Clothes', -1),
+            'Invisible Underwear': ('Clothes', 0),
+            'Shirt': ('Clothes', 1),
+            'Pants': ('Clothes', 2),
+            'Bikini Top': ('Clothes', 3),
+            'Bikini Bottom': ('Clothes', 4),
+            'Elegant Dress': ('Clothes', 5),
+            'Latex Suit': ('Clothes', 6),
+            'Skirt': ('Clothes', 7),
+            'Shorts': ('Clothes', 8),
+            'Blouse': ('Clothes', 9),
+            'Diaper': ('Clothes', 10),
+            'Poofy Diaper': ('Clothes', 11),
+            'Sundress': ('Clothes', 12),
+            'Skimpy Dress': ('Clothes', 13),
+            'Short Skirt': ('Clothes', 14),
+            'Short Shorts': ('Clothes', 15),
+            'Loin Cloth': ('Clothes', 16),
+            'Bathing Suit': ('Clothes', 17),
+            'Muscle Shirt': ('Clothes', 18),
+            'Corset': ('Clothes', 19),
+            'Silk Panties': ('Clothes', 20),
+            'Slingkini': ('Clothes', 21),
+            'Thong': ('Clothes', 22),
+            'Bloomers': ('Clothes', 23),
+            'Tights': ('Clothes', 24),
+            'Gothic Dress': ('Clothes', 25),
+            'Tube Top': ('Clothes', 26),
+            'Nipple Pasties': ('Clothes', 27),
+            'Camisole': ('Clothes', 28),
+            'Training Suit': ('Clothes', 29),
+            'Bouncy Bra': ('Clothes', 30)
+        },
+        'Enemies': {
+            'Test Enemy': ('Enemy', 1),
+            'Cock-snake': ('Enemy', 101),
+            'Desiccating Dust Devil': ('Enemy', 102),
+            'Lone Male Wolf': ('Enemy', 201),
+            'Gay Wolf': ('Enemy', 202),
+            'Felin in Heat': ('Enemy', 301),
+            'Drunken Equan': ('Enemy', 302),
+            'Octopus Girl': ('Enemy', 303),
+            'Little Big Bunny-man': ('Enemy', 304),
+            'Little Big Bunny-girl': ('Enemy', 305),
+            'Fierce Naga': ('Enemy', 306),
+            'Minotaur': ('Enemy', 307),
+            'Freaky Little Girl': ('Enemy', 308),
+            'Succubus': ('Enemy', 309)
+        },
+        'Races': {
+            'Human': ('Race', 1),
+            'Equan': ('Race', 2),
+            'Lupan': ('Race', 3),
+            'Felin': ('Race', 4),
+            'Cow': ('Race', 5),
+            'Lizan': ('Race', 6),
+            'Bunny': ('Race', 7),
+            'Mouse': ('Race', 8),
+            'Bird': ('Race', 9),
+            'Pig': ('Race', 10),
+            'Skunk': ('Race', 11),
+            'Bug': ('Race', 12)
+        },
+        'Locations': {
+            'Towns': {
+                'Softlik': ('Town', 1),
+                'Firmshaft': ('Town', 2),
+                'Tieden': ('Town', 3),
+                'Siz\'Calit': ('Town', 4),
+                'Oviasis': ('Town', 6),
+                'Sanctuary': ('Town', 12)
+            },
+            'Other Locations': {
+                'Forest': ('Location', 1),
+                'Jungle': ('Location', 2),
+                'Plains': ('Location', 3),
+                'Savanna': ('Location', 4),
+                'Desert': ('Location', 5),
+                'Beach': ('Location', 6),
+                'Lake': ('Location', 7),
+                'Dairy Farm': ('Location', 8),
+                'Old Cave': ('Location', 9),
+                'Old Cave Descent': ('Location', 10),
+                'Den': ('Location', 11),
+                'Valley': ('Location', 12),
+                'Knothole': ('Location', 13)
+            }
+        },
+        'Shops': {
+            'General Shop': ('Shop', 1),
+            'Dye Shop': ('Shop', 2),
+            'Apothecary': ('Shop', 3),
+            'Salon': ('Shop', 4),
+            'Tailor': ('Shop', 5)
+        },
+        'Named Characters': {
+            'Fidoris': ('NPC', 1),
+            'Jamie': ('NPC', 2),
+            'Lila': ('NPC', 3),
+            'Malon': ('NPC', 4),
+            'Silandrias': ('NPC', 5)
+        }
     }
+
     @property
     def focus(self):
         return self._focus
@@ -3730,21 +4145,12 @@ class PyminWiki(PyminWindow):
         self._focus = value
 
     @property
-    def menu(self):
-        return self._currentMenu
+    def text(self):
+        return self.window._children['text'].text
 
-    @menu.setter
-    def menu(self, value):
-        value = str(value)
-        if value == 'Back':
-            if self.menu != '':
-                self._currentMenu = '.'.join(self.menu.split('.')[:-1])
-        else:
-            self._currentMenu = value
-        self.window._children['menu'].delete(0, 'end')
-        self.window._children['menu'].insert('end', *PyminWiki.MENUS[self._currentMenu])
-        self.window._children['menu'].select_set(0)
-        self.window._children['menu'].activate(0)
+    @text.setter
+    def text(self, value):
+        self.window._children['text'].text = value
 
     def _set_enforceSize(self, value):
         if value:
@@ -3753,8 +4159,7 @@ class PyminWiki(PyminWindow):
 
     def _set_fontSize(self, value):
         # TODO: This broke
-        self.window._children['text']._fontSize = value - 2
-        self.displayText()
+        self.window._children['text'].fontSize = value - 2
 
     def _set_backgroundColor(self, value):
         self.window.configureChildren(('text', 'menu'), background=value)
@@ -3765,10 +4170,6 @@ class PyminWiki(PyminWindow):
     def __init__(self):
         super().__init__()
         self._focus = 1
-        self._currentMenu = None
-        self._fontSize = 12
-        self.pageHistory = Array()
-        self.text = ''
 
     def open(self):
         if self.isOpen:
@@ -3790,20 +4191,19 @@ class PyminWiki(PyminWindow):
         self.window.addHTMLScrolledText('display', 'text', x=153, y=0, width=547, height=500, font=('TkTextFont', self.fontSize - 2), sbwidth=12, background=self.backgroundColor, foreground=self.textColor)
         if HAS_CUSTOM_HTML_PARSER:
             self.window._children['text'].html_parser.callobject = self.toPage
-        self.window.bindChild('menu', '<Double-1>', self.selectOption)
+        self.window.bindChild('menu', '<Double-1>', self.selectOption_bind)
 
         # Initialise menu and page
-        self.menu = ''
+        self.pageHistory = Array()
+        self.menuHistory = []
+        self.currentMenu = PyminWiki.MENUS
+        self.displayMenu()
         self.toPage('Basic', 0)
         self.focus = 0
         self._isOpen = True
 
     def _close(self, *e):
-        self._currentMenu = None
         self._isOpen = False
-
-    def displayText(self):
-        self.window._children['text'].text = self.text
 
     def hotKeys(self, keyCode):
         if keyCode in {Keyboard.Q, Keyboard.BACKSPACE, Keyboard.NUMPAD_7} and self.isOpen:
@@ -3815,11 +4215,11 @@ class PyminWiki(PyminWindow):
         elif keyCode in {Keyboard.R, Keyboard.SLASH, Keyboard.NUMPAD_SUBTRACT}:
             self.switchFocus()
         elif keyCode in {Keyboard.A, Keyboard.LEFT, Keyboard.NUMPAD_4}:
-            self.menu = 'Back'
+            self.selectOption('Back')
         elif keyCode in {Keyboard.S, 'midKeyS', Keyboard.NUMPAD_5}:
             self.selectionDown()
         elif keyCode in {Keyboard.D, Keyboard.RIGHT, Keyboard.NUMPAD_6, Keyboard.ENTER}:
-            self.selectOption()
+            self.selectOption_bind()
 
     _key_press_handler = hotKeys
 
@@ -3845,6 +4245,46 @@ class PyminWiki(PyminWindow):
         elif self.focus == 1:
             self.focus = 0
 
+    def displayMenu(self):
+        self.window._children['menu'].delete(0, 'end')
+        if len(self.menuHistory):
+            back = 'Back'
+        else:
+            back = 'Close'
+        self.window._children['menu'].insert('end', *self.currentMenu.keys(), back)
+        self.window._children['menu'].select_set(0)
+        self.window._children['menu'].activate(0)
+
+    def retrieveMenu(self):
+        tempMenu = PyminWiki.MENUS
+        if len(self.menuHistory):
+            for i in self.menuHistory:
+                tempMenu = tempMenu[i]
+        return tempMenu
+
+    def selectOption_bind(self, *e):
+        selection = self.window._children['menu'].get(self.window._children['menu'].curselection()).rstrip(' >')
+        item = self.currentMenu.get(selection)
+        self._selectOption(selection, item)
+
+    def selectOption(self, selection):
+        self._selectOption(selection, self.currentMenu.get(selection))
+
+    def _selectOption(self, selection, item):
+        if selection == 'Back':
+            if len(self.menuHistory):
+                self.menuHistory.pop()
+                self.currentMenu = self.retrieveMenu()
+                self.displayMenu()
+        elif selection == 'Close':
+            self.close()
+        elif isinstance(item, dict):
+            self.menuHistory.append(selection)
+            self.currentMenu = item
+            self.displayMenu()
+        elif isinstance(item, tuple):
+            self.toPage(item[0], item[1])
+
     def toPreviousPage(self):
         if self.pageHistory.length > 1:
             self.pageHistory.pop()
@@ -3857,881 +4297,11 @@ class PyminWiki(PyminWindow):
             self.pageHistory.append(curPage)
         self.doPage(curPage)
 
-    def selectOption(self, e=None):
-        # TODO: Simplify this
-        sel = self.window._children['menu'].get(self.window._children['menu'].curselection())
-        if sel == 'Back':
-            self.menu = 'Back'
-        elif self.menu == '':
-            if sel == 'Basics':
-                self.menu = 'Basics'
-            elif sel == 'Items':
-                self.menu = 'Items'
-            elif sel == 'Recipes':
-                self.menu = 'Recipes'
-            elif sel == 'Clothes':
-                self.menu = 'Clothes'
-            elif sel == 'Enemies':
-                self.menu = 'Enemies'
-            elif sel == 'Races':
-                self.menu = 'Races'
-            elif sel == 'Locations':
-                self.menu = 'Locations'
-            elif sel == 'Shops':
-                self.menu = 'Shops'
-            elif sel == 'Named Characters':
-                self.menu = 'NPCs'
-            elif sel == 'Close':
-                self.close()
-        elif self.menu == 'Basics':
-            if sel == 'Welcome Screen':
-                self.toPage('Basic', 0)
-            elif sel == 'Wiki Key':
-                self.toPage('Basic', 5)
-            elif sel == 'Stats':
-                self.toPage('Basic', 1)
-            elif sel == 'Actions':
-                self.toPage('Basic', 2)
-            elif sel == 'Tips':
-                self.toPage('Basic', 3)
-            elif sel == 'Hotkeys':
-                self.toPage('Basic', 4)
-            elif sel == 'Changes':
-                self.toPage('Basic', 6)
-            elif sel == 'Menu Bar':
-                self.menu = 'Basics.MenuBar'
-        elif self.menu == 'Basics.MenuBar':
-            if sel == 'File':
-                self.menu = 'Basics.MenuBar.File'
-            elif sel == 'View':
-                self.toPage('MenuBar', 3)
-            elif sel == 'Save Utils':
-                self.toPage('MenuBar', 4)
-            elif sel == 'Debug Utils':
-                self.toPage('MenuBar', 5)
-            elif sel == 'Help':
-                self.toPage('MenuBar', 6)
-        elif self.menu == 'Basics.MenuBar.File':
-            if sel == 'Options':
-                self.toPage('MenuBar', 1)
-            elif sel == 'Quit':
-                self.toPage('MenuBar', 2)
-        elif self.menu == 'Items':
-            if sel == 'All Items':
-                self.menu = 'Items.All'
-            elif sel == 'Debug Items':
-                self.menu = 'Items.Debug'
-            elif sel == 'Equipable Items':
-                self.menu = 'Items.Equipable'
-            elif sel == 'Passive Items':
-                self.menu = 'Items.Passive'
-            elif sel == 'Consumables':
-                self.menu = 'Items.Consumables'
-            elif sel == 'Silandrias\' Magic Items':
-                self.menu = 'Items.Silandrias'
-            elif sel == 'Special Items':
-                self.menu = 'Items.Special'
-        elif self.menu == 'Items.All':
-            if sel == 'Test':
-                self.toPage('Item', 1)
-            elif sel == 'Anc Claws':
-                self.toPage('Item', 101)
-            elif sel == 'Imb Shoes':
-                self.toPage('Item', 102)
-            elif sel == 'Dry Sand':
-                self.toPage('Item', 103)
-            elif sel == 'Milker':
-                self.toPage('Item', 104)
-            elif sel == 'Cat\'s Meow':
-                self.toPage('Item', 105)
-            elif sel == 'Penis Pump':
-                self.toPage('Item', 106)
-            elif sel == 'Blood Gge':
-                self.toPage('Item', 108)
-            elif sel == 'Edu Egg':
-                self.toPage('Item', 109)
-            elif sel == 'Reduction':
-                self.toPage('Item', 110)
-            elif sel == 'Skin Balm':
-                self.toPage('Item', 111)
-            elif sel == 'Bol Juice':
-                self.toPage('Item', 112)
-            elif sel == 'Taint Leaf':
-                self.toPage('Item', 113)
-            elif sel == 'Sweet Sap':
-                self.toPage('Item', 114)
-            elif sel == 'Poultice':
-                self.toPage('Item', 115)
-            elif sel == 'Dagger':
-                self.toPage('Item', 116)
-            elif sel == 'Hammer':
-                self.toPage('Item', 117)
-            elif sel == 'Saber':
-                self.toPage('Item', 118)
-            elif sel == 'Whip':
-                self.toPage('Item', 119)
-            elif sel == 'Neuter':
-                self.toPage('Item', 120)
-            elif sel == 'TS Soft':
-                self.toPage('Item', 121)
-            elif sel == 'TS Firm':
-                self.toPage('Item', 122)
-            elif sel == 'TS Tied':
-                self.toPage('Item', 123)
-            elif sel == 'TS Siz':
-                self.toPage('Item', 124)
-            elif sel == 'TS Ovi':
-                self.toPage('Item', 125)
-            elif sel == 'Oas Water':
-                self.toPage('Item', 126)
-            elif sel == 'Tail Spike':
-                self.toPage('Item', 127)
-            elif sel == 'TS Sanct':
-                self.toPage('Item', 128)
-            elif sel == 'Lila\'s Gift':
-                self.toPage('Item', 200)
-            elif sel == 'Milk C Pois':
-                self.toPage('Item', 201)
-            elif sel == 'Co-Snak Ven':
-                self.toPage('Item', 202)
-            elif sel == 'Wolf Fur':
-                self.toPage('Item', 203)
-            elif sel == 'Sm Pouch (ItemID 204)':
-                self.toPage('Item', 204)
-            elif sel == 'Sm Pouch (ItemID 205)':
-                self.toPage('Item', 205)
-            elif sel == 'Trinket':
-                self.toPage('Item', 206)
-            elif sel == 'Cock Carv':
-                self.toPage('Item', 207)
-            elif sel == 'Blo Berry':
-                self.toPage('Item', 208)
-            elif sel == 'Grain':
-                self.toPage('Item', 209)
-            elif sel == 'Puss Fruit':
-                self.toPage('Item', 210)
-            elif sel == 'DairE Pill':
-                self.toPage('Item', 211)
-            elif sel == 'Red Mush':
-                self.toPage('Item', 212)
-            elif sel == 'Wet Cloth':
-                self.toPage('Item', 213)
-            elif sel == 'Lon Milk':
-                self.toPage('Item', 214)
-            elif sel == 'Lon Pendant':
-                self.toPage('Item', 215)
-            elif sel == 'Pink Ink':
-                self.toPage('Item', 216)
-            elif sel == 'Egg Jelly':
-                self.toPage('Item', 217)
-            elif sel == 'Bul Berry':
-                self.toPage('Item', 218)
-            elif sel == 'Fresh Egg':
-                self.toPage('Item', 219)
-            elif sel == 'Blondie':
-                self.toPage('Item', 220)
-            elif sel == 'Puss Juice':
-                self.toPage('Item', 221)
-            elif sel == 'Kinky Carr':
-                self.toPage('Item', 222)
-            elif sel == 'Eq Snack':
-                self.toPage('Item', 223)
-            elif sel == 'Lila\'s Milk':
-                self.toPage('Item', 224)
-            elif sel == 'Body Wash':
-                self.toPage('Item', 225)
-            elif sel == 'Felin Tea':
-                self.toPage('Item', 226)
-            elif sel == 'Oral Wash':
-                self.toPage('Item', 227)
-            elif sel == 'Body Oil':
-                self.toPage('Item', 228)
-            elif sel == 'Leath Strap':
-                self.toPage('Item', 229)
-            elif sel == 'Eggcelerator':
-                self.toPage('Item', 230)
-            elif sel == 'Desi Sand':
-                self.toPage('Item', 231)
-            elif sel == 'Flying Carp':
-                self.toPage('Item', 232)
-            elif sel == 'A-Grav Rock':
-                self.toPage('Item', 233)
-            elif sel == 'Rein Charm':
-                self.toPage('Item', 234)
-            elif sel == 'Fell Rod':
-                self.toPage('Item', 235)
-            elif sel == 'Recept Bell':
-                self.toPage('Item', 236)
-            elif sel == 'Dewy Gift':
-                self.toPage('Item', 237)
-            elif sel == 'Squ Cheese':
-                self.toPage('Item', 238)
-            elif sel == 'Shiny Rock':
-                self.toPage('Item', 239)
-            elif sel == 'Auburn Dye':
-                self.toPage('Item', 240)
-            elif sel == 'Brown Dye':
-                self.toPage('Item', 241)
-            elif sel == 'Grey Dye':
-                self.toPage('Item', 242)
-            elif sel == 'White Dye':
-                self.toPage('Item', 243)
-            elif sel == 'Snuggle Ball':
-                self.toPage('Item', 244)
-            elif sel == 'Facial Mud':
-                self.toPage('Item', 245)
-            elif sel == 'Fertile Gel':
-                self.toPage('Item', 246)
-            elif sel == 'Supp Harness':
-                self.toPage('Item', 247)
-            elif sel == 'Breeder Pot':
-                self.toPage('Item', 248)
-            elif sel == 'Treant\'s Tear':
-                self.toPage('Item', 249)
-            elif sel == 'Foomp Bomb':
-                self.toPage('Item', 250)
-            elif sel == 'Plump Quat':
-                self.toPage('Item', 251)
-            elif sel == 'Milky Pend':
-                self.toPage('Item', 252)
-            elif sel == 'Bug Egg':
-                self.toPage('Item', 253)
-            elif sel == 'Lantern':
-                self.toPage('Item', 254)
-            elif sel == 'Frag Flower':
-                self.toPage('Item', 255)
-            elif sel == 'Nectar Candy':
-                self.toPage('Item', 256)
-            elif sel == 'Too Human':
-                self.toPage('Item', 257)
-            elif sel == 'Tainted Pot':
-                self.toPage('Item', 258)
-            elif sel == 'Sweet&Sour':
-                self.toPage('Item', 259)
-            elif sel == 'Succ Draft':
-                self.toPage('Item', 260)
-            elif sel == 'Milk Bottle':
-                self.toPage('Item', 500)
-            elif sel == 'Milk Jug':
-                self.toPage('Item', 501)
-            elif sel == 'Milk Barrel':
-                self.toPage('Item', 502)
-            elif sel == 'Lust Draft':
-                self.toPage('Item', 503)
-            elif sel == 'Rejuv Pot':
-                self.toPage('Item', 504)
-            elif sel == 'Bad Exper':
-                self.toPage('Item', 505)
-            elif sel == 'Exp Preg':
-                self.toPage('Item', 506)
-            elif sel == 'Ball Sweller':
-                self.toPage('Item', 507)
-            elif sel == 'S Lust Draft':
-                self.toPage('Item', 508)
-            elif sel == 'S Rejuv Pot':
-                self.toPage('Item', 509)
-            elif sel == 'S Bad Exper':
-                self.toPage('Item', 510)
-            elif sel == 'S Exp Preg':
-                self.toPage('Item', 511)
-            elif sel == 'S Ball Sweller':
-                self.toPage('Item', 512)
-            elif sel == 'Gen Swap':
-                self.toPage('Item', 513)
-            elif sel == 'Maso Pot':
-                self.toPage('Item', 514)
-            elif sel == 'Black Dye':
-                self.toPage('Item', 515)
-            elif sel == 'Baby Free':
-                self.toPage('Item', 516)
-            elif sel == 'Pot Pot':
-                self.toPage('Item', 517)
-            elif sel == 'S Gen Swap':
-                self.toPage('Item', 518)
-            elif sel == 'S Maso Pot':
-                self.toPage('Item', 519)
-            elif sel == 'Red Dye':
-                self.toPage('Item', 520)
-            elif sel == 'S Baby Free':
-                self.toPage('Item', 521)
-            elif sel == 'S Pot Pot':
-                self.toPage('Item', 522)
-            elif sel == 'Cum Vial':
-                self.toPage('Item', 523)
-            elif sel == 'Cum Bottle':
-                self.toPage('Item', 524)
-            elif sel == 'Cum Jug':
-                self.toPage('Item', 525)
-            elif sel == 'Cum Barrel':
-                self.toPage('Item', 526)
-            elif sel == 'Good Egg':
-                self.toPage('Item', 527)
-            elif sel == 'Bad Egg':
-                self.toPage('Item', 528)
-            elif sel == 'Strange Egg':
-                self.toPage('Item', 529)
-            elif sel == 'Charmed Egg':
-                self.toPage('Item', 530)
-            elif sel == 'Divine Egg':
-                self.toPage('Item', 531)
-            elif sel == 'Pheromone':
-                self.toPage('Item', 532)
-            elif sel == 'Reduc Reduc':
-                self.toPage('Item', 533)
-            elif sel == 'Male Enhance':
-                self.toPage('Item', 534)
-            elif sel == 'Milk Suppress':
-                self.toPage('Item', 535)
-            elif sel == 'Bazoomba!':
-                self.toPage('Item', 536)
-            elif sel == 'Queen Egg':
-                self.toPage('Item', 537)
-            elif sel == 'Soldier Egg':
-                self.toPage('Item', 538)
-            elif sel == 'Drone Egg':
-                self.toPage('Item', 539)
-            elif sel == 'Worker Egg':
-                self.toPage('Item', 540)
-        elif self.menu == 'Items.Debug':
-            if sel == 'Debug Stick':
-                self.toPage('Item', 2)
-            elif sel == 'Item Not Found':
-                self.toPage('Item', 404)
-            elif sel == 'Teapot':
-                self.toPage('Item', 418)
-            elif sel == 'Test':
-                self.toPage('Item', 1)
-        elif self.menu == 'Items.Equipable':
-            if sel == 'Weapons':
-                self.menu = 'Items.Equipable.Weapons'
-            elif sel == 'Other Equipables':
-                self.menu = 'Items.Equipable.Other'
-        elif self.menu == 'Items.Equipable.Weapons':
-            if sel == 'Dagger':
-                self.toPage('Item', 116)
-            elif sel == 'Hammer':
-                self.toPage('Item', 117)
-            elif sel == 'Saber':
-                self.toPage('Item', 118)
-            elif sel == 'Whip':
-                self.toPage('Item', 119)
-            elif sel == 'Tail Spike':
-                self.toPage('Item', 127)
-        elif self.menu == 'Items.Equipable.Other':
-            if sel == 'Snuggle Ball':
-                self.toPage('Item', 244)
-            elif sel == 'Supp Harness':
-                self.toPage('Item', 247)
-        elif self.menu == 'Items.Passive':
-            if sel == 'Anc Claws':
-                self.toPage('Item', 101)
-            elif sel == 'Imb Shoes':
-                self.toPage('Item', 102)
-            elif sel == 'Lila\'s Gift':
-                self.toPage('Item', 200)
-            elif sel == 'Lon Pendant':
-                self.toPage('Item', 215)
-            elif sel == 'Dewy Gift':
-                self.toPage('Item', 237)
-            elif sel == 'Milky Pend':
-                self.toPage('Item', 252)
-        elif self.menu == 'Items.Consumables':
-            if sel == 'Affinity Items':
-                self.menu = 'Items.Consumables.Affinity'
-            elif sel == 'Alchemy Items':
-                self.menu = 'Items.Consumables.Alchemy'
-            elif sel == 'Dyes':
-                self.menu = 'Items.Consumables.Dyes'
-            elif sel == 'Teleport Scrolls':
-                self.menu = 'Items.Consumables.TScrolls'
-            elif sel == 'Eggs':
-                self.menu = 'Items.Consumables.Eggs'
-            elif sel == 'Other Consumables':
-                self.menu = 'Items.Consumables.Other'
-        elif self.menu == 'Items.Consumables.Affinity':
-            if sel == 'Skin Balm':
-                self.toPage('Item', 111)
-            elif sel == 'Bol Juice':
-                self.toPage('Item', 112)
-            elif sel == 'Taint Leaf':
-                self.toPage('Item', 113)
-            elif sel == 'Sweet Sap':
-                self.toPage('Item', 114)
-            elif sel == 'Oas Water':
-                self.toPage('Item', 126)
-            elif sel == 'DairE Pill':
-                self.toPage('Item', 211)
-            elif sel == 'Lon Milk':
-                self.toPage('Item', 214)
-            elif sel == 'Kinky Carr':
-                self.toPage('Item', 222)
-            elif sel == 'Squ Cheese':
-                self.toPage('Item', 238)
-            elif sel == 'Shiny Rock':
-                self.toPage('Item', 239)
-            elif sel == 'Facial Mud':
-                self.toPage('Item', 245)
-            elif sel == 'Frag Flower':
-                self.toPage('Item', 255)
-            elif sel == 'Nectar Candy':
-                self.toPage('Item', 256)
-            elif sel == 'Too Human':
-                self.toPage('Item', 257)
-            elif sel == 'Tainted Pot':
-                self.toPage('Item', 258)
-        elif self.menu == 'Items.Consumables.Alchemy':
-            if sel == 'Blondie':
-                self.toPage('Item', 220)
-            elif sel == 'Puss Juice':
-                self.toPage('Item', 221)
-            elif sel == 'Lust Draft':
-                self.toPage('Item', 503)
-            elif sel == 'Rejuv Pot':
-                self.toPage('Item', 504)
-            elif sel == 'Exp Preg':
-                self.toPage('Item', 506)
-            elif sel == 'Ball Sweller':
-                self.toPage('Item', 507)
-            elif sel == 'S Lust Draft':
-                self.toPage('Item', 508)
-            elif sel == 'S Rejuv Pot':
-                self.toPage('Item', 509)
-            elif sel == 'S Exp Preg':
-                self.toPage('Item', 511)
-            elif sel == 'S Ball Sweller':
-                self.toPage('Item', 512)
-            elif sel == 'Gen Swap':
-                self.toPage('Item', 513)
-            elif sel == 'Maso Pot':
-                self.toPage('Item', 514)
-            elif sel == 'Baby Free':
-                self.toPage('Item', 516)
-            elif sel == 'Pot Pot':
-                self.toPage('Item', 517)
-            elif sel == 'S Gen Swap':
-                self.toPage('Item', 518)
-            elif sel == 'S Maso Pot':
-                self.toPage('Item', 519)
-            elif sel == 'S Baby Free':
-                self.toPage('Item', 521)
-            elif sel == 'S Pot Pot':
-                self.toPage('Item', 522)
-            elif sel == 'Pheromone':
-                self.toPage('Item', 532)
-            elif sel == 'Reduc Reduc':
-                self.toPage('Item', 533)
-            elif sel == 'Male Enhance':
-                self.toPage('Item', 534)
-            elif sel == 'Milk Suppress':
-                self.toPage('Item', 535)
-            elif sel == 'Bazoomba!':
-                self.toPage('Item', 536)
-        elif self.menu == 'Items.Consumables.Dyes':
-            if sel == 'Pink Ink':
-                self.toPage('Item', 216)
-            elif sel == 'Auburn Dye':
-                self.toPage('Item', 240)
-            elif sel == 'Brown Dye':
-                self.toPage('Item', 241)
-            elif sel == 'Grey Dye':
-                self.toPage('Item', 242)
-            elif sel == 'White Dye':
-                self.toPage('Item', 243)
-            elif sel == 'Black Dye':
-                self.toPage('Item', 515)
-            elif sel == 'Red Dye':
-                self.toPage('Item', 520)
-        elif self.menu == 'Items.Consumables.TScrolls':
-            if sel == 'TS Soft':
-                self.toPage('Item', 121)
-            elif sel == 'TS Firm':
-                self.toPage('Item', 122)
-            elif sel == 'TS Tied':
-                self.toPage('Item', 123)
-            elif sel == 'TS Siz':
-                self.toPage('Item', 124)
-            elif sel == 'TS Ovi':
-                self.toPage('Item', 125)
-            elif sel == 'TS Sanct':
-                self.toPage('Item', 128)
-        elif self.menu == 'Items.Consumables.Eggs':
-            if sel == 'Fresh Egg':
-                self.toPage('Item', 219)
-            elif sel == 'Bug Egg':
-                self.toPage('Item', 253)
-            elif sel == 'Good Egg':
-                self.toPage('Item', 527)
-            elif sel == 'Bag Egg':
-                self.toPage('Item', 528)
-            elif sel == 'Strange Egg':
-                self.toPage('Item', 529)
-            elif sel == 'Charmed Egg':
-                self.toPage('Item', 530)
-            elif sel == 'Divine Egg':
-                self.toPage('Item', 531)
-            elif sel == 'Queen Egg':
-                self.toPage('Item', 537)
-            elif sel == 'Soldier Egg':
-                self.toPage('Item', 538)
-            elif sel == 'Drone Egg':
-                self.toPage('Item', 539)
-            elif sel == 'Worker Egg':
-                self.toPage('Item', 540)
-        elif self.menu == 'Items.Consumables.Other':
-            if sel == 'Dry Sand':
-                self.toPage('Item', 103)
-            elif sel == 'Cat\'s Meow':
-                self.toPage('Item', 105)
-            elif sel == 'Reduction':
-                self.toPage('Item', 110)
-            elif sel == 'Poultice':
-                self.toPage('Item', 115)
-            elif sel == 'Neuter':
-                self.toPage('Item', 120)
-            elif sel == 'Milk C Pois':
-                self.toPage('Item', 201)
-            elif sel == 'Co-Snak Ven':
-                self.toPage('Item', 202)
-            elif sel == 'Wolf Fur':
-                self.toPage('Item', 203)
-            elif sel == 'Sm Pouch (ItemID 204)':
-                self.toPage('Item', 204)
-            elif sel == 'Sm Pouch (ItemID 205)':
-                self.toPage('Item', 205)
-            elif sel == 'Cock Carv':
-                self.toPage('Item', 207)
-            elif sel == 'Blo Berry':
-                self.toPage('Item', 208)
-            elif sel == 'Grain':
-                self.toPage('Item', 209)
-            elif sel == 'Puss Fruit':
-                self.toPage('Item', 210)
-            elif sel == 'Red Mush':
-                self.toPage('Item', 212)
-            elif sel == 'Wet Cloth':
-                self.toPage('Item', 213)
-            elif sel == 'Egg Jelly':
-                self.toPage('Item', 217)
-            elif sel == 'Bul Berry':
-                self.toPage('Item', 218)
-            elif sel == 'Eq Snack':
-                self.toPage('Item', 223)
-            elif sel == 'Lila\'s Milk':
-                self.toPage('Item', 224)
-            elif sel == 'Body Wash':
-                self.toPage('Item', 225)
-            elif sel == 'Felin Tea':
-                self.toPage('Item', 226)
-            elif sel == 'Oral Wash':
-                self.toPage('Item', 227)
-            elif sel == 'Body Oil':
-                self.toPage('Item', 228)
-            elif sel == 'Eggcelerator':
-                self.toPage('Item', 230)
-            elif sel == 'Desi Sand':
-                self.toPage('Item', 231)
-            elif sel == 'Fertile Gel':
-                self.toPage('Item', 246)
-            elif sel == 'Breeder Pot':
-                self.toPage('Item', 248)
-            elif sel == 'Treant\'s Tear':
-                self.toPage('Item', 249)
-            elif sel == 'Foomp Bomb':
-                self.toPage('Item', 250)
-            elif sel == 'Plump Quat':
-                self.toPage('Item', 251)
-            elif sel == 'Sweet&Sour':
-                self.toPage('Item', 259)
-            elif sel == 'Succ Draft':
-                self.toPage('Item', 260)
-            elif sel == 'Milk Bottle':
-                self.toPage('Item', 500)
-            elif sel == 'Milk Jug':
-                self.toPage('Item', 501)
-            elif sel == 'Milk Barrel':
-                self.toPage('Item', 502)
-            elif sel == 'Bad Exper':
-                self.toPage('Item', 505)
-            elif sel == 'S Bad Exper':
-                self.toPage('Item', 510)
-            elif sel == 'Cum Vial':
-                self.toPage('Item', 523)
-            elif sel == 'Cum Bottle':
-                self.toPage('Item', 524)
-            elif sel == 'Cum Jug':
-                self.toPage('Item', 525)
-            elif sel == 'Cum Barrel':
-                self.toPage('Item', 526)
-        elif self.menu == 'Items.Silandrias':
-            if sel == 'Leath Strap':
-                self.toPage('Item', 229)
-            elif sel == 'Flying Carp':
-                self.toPage('Item', 232)
-            elif sel == 'A-Grav Rock':
-                self.toPage('Item', 233)
-            elif sel == 'Rein Charm':
-                self.toPage('Item', 234)
-            elif sel == 'Fell Rod':
-                self.toPage('Item', 235)
-            elif sel == 'Recept Bell':
-                self.toPage('Item', 236)
-        elif self.menu == 'Items.Special':
-            if sel == 'Milker':
-                self.toPage('Item', 104)
-            elif sel == 'Penis Pump':
-                self.toPage('Item', 106)
-            elif sel == 'Blood Gge':
-                self.toPage('Item', 108)
-            elif sel == 'Edu Egg':
-                self.toPage('Item', 109)
-            elif sel == 'Trinket':
-                self.toPage('Item', 206)
-            elif sel == 'Lantern':
-                self.toPage('Item', 254)
-        elif self.menu == 'Recipes':
-            if sel == 'R: LustDraft':
-                self.toPage('Recipe', 1)
-            elif sel == 'R: RejuvPot':
-                self.toPage('Recipe', 2)
-            elif sel == 'R: ExpPreg':
-                self.toPage('Recipe', 3)
-            elif sel == 'R: BallSwell':
-                self.toPage('Recipe', 4)
-            elif sel == 'R: SLustDraft':
-                self.toPage('Recipe', 5)
-            elif sel == 'R: SRejuvPot':
-                self.toPage('Recipe', 6)
-            elif sel == 'R: SExpPreg':
-                self.toPage('Recipe', 7)
-            elif sel == 'R: SBallSwell':
-                self.toPage('Recipe', 8)
-            elif sel == 'R: GenSwap':
-                self.toPage('Recipe', 9)
-            elif sel == 'R: MasoPot':
-                self.toPage('Recipe', 10)
-            elif sel == 'R: BabyFree':
-                self.toPage('Recipe', 11)
-            elif sel == 'R: PotPot':
-                self.toPage('Recipe', 12)
-            elif sel == 'R: SGenSwap':
-                self.toPage('Recipe', 13)
-            elif sel == 'R: SMasoPot':
-                self.toPage('Recipe', 14)
-            elif sel == 'R: SBabyFree':
-                self.toPage('Recipe', 15)
-            elif sel == 'R: SPotPot':
-                self.toPage('Recipe', 16)
-            elif sel == 'R: MilkSuppress':
-                self.toPage('Recipe', 17)
-            elif sel == 'R: BlondeDye':
-                self.toPage('Recipe', 50)
-            elif sel == 'R: PussJuice':
-                self.toPage('Recipe', 51)
-            elif sel == 'R: BlackDye':
-                self.toPage('Recipe', 52)
-            elif sel == 'R: RedDye':
-                self.toPage('Recipe', 53)
-            elif sel == 'R: Pheromone':
-                self.toPage('Recipe', 54)
-            elif sel == 'R: ReducReduc':
-                self.toPage('Recipe', 55)
-            elif sel == 'R: MaleEnhance':
-                self.toPage('Recipe', 56)
-            elif sel == 'R: Bazoomba':
-                self.toPage('Recipe', 57)
-        elif self.menu == 'Clothes':
-            if sel == 'Tattered Shreds':
-                self.toPage('Clothes', -1)
-            elif sel == 'Invisible Underwear':
-                self.toPage('Clothes', 0)
-            elif sel == 'Shirt':
-                self.toPage('Clothes', 1)
-            elif sel == 'Pants':
-                self.toPage('Clothes', 2)
-            elif sel == 'Bikini Top':
-                self.toPage('Clothes', 3)
-            elif sel == 'Bikini Bottom':
-                self.toPage('Clothes', 4)
-            elif sel == 'Elegant Dress':
-                self.toPage('Clothes', 5)
-            elif sel == 'Latex Suit':
-                self.toPage('Clothes', 6)
-            elif sel == 'Skirt':
-                self.toPage('Clothes', 7)
-            elif sel == 'Shorts':
-                self.toPage('Clothes', 8)
-            elif sel == 'Blouse':
-                self.toPage('Clothes', 9)
-            elif sel == 'Diaper':
-                self.toPage('Clothes', 10)
-            elif sel == 'Poofy Diaper':
-                self.toPage('Clothes', 11)
-            elif sel == 'Sundress':
-                self.toPage('Clothes', 12)
-            elif sel == 'Skimpy Dress':
-                self.toPage('Clothes', 13)
-            elif sel == 'Short Skirt':
-                self.toPage('Clothes', 14)
-            elif sel == 'Short Shorts':
-                self.toPage('Clothes', 15)
-            elif sel == 'Loin Cloth':
-                self.toPage('Clothes', 16)
-            elif sel == 'Bathing Suit':
-                self.toPage('Clothes', 17)
-            elif sel == 'Muscle Shirt':
-                self.toPage('Clothes', 18)
-            elif sel == 'Corset':
-                self.toPage('Clothes', 19)
-            elif sel == 'Silk Panties':
-                self.toPage('Clothes', 20)
-            elif sel == 'Slingkini':
-                self.toPage('Clothes', 21)
-            elif sel == 'Thong':
-                self.toPage('Clothes', 22)
-            elif sel == 'Bloomers':
-                self.toPage('Clothes', 23)
-            elif sel == 'Tights':
-                self.toPage('Clothes', 24)
-            elif sel == 'Gothic Dress':
-                self.toPage('Clothes', 25)
-            elif sel == 'Tube Top':
-                self.toPage('Clothes', 26)
-            elif sel == 'Nipple Pasties':
-                self.toPage('Clothes', 27)
-            elif sel == 'Camisole':
-                self.toPage('Clothes', 28)
-            elif sel == 'Training Suit':
-                self.toPage('Clothes', 29)
-            elif sel == 'Bouncy Bra':
-                self.toPage('Clothes', 30)
-        elif self.menu == 'Enemies':
-            if sel == 'Test Enemy':
-                self.toPage('Enemy', 1)
-            elif sel == 'Cock-snake':
-                self.toPage('Enemy', 101)
-            elif sel == 'Desiccating Dust Devil':
-                self.toPage('Enemy', 102)
-            elif sel == 'Lone Male Wolf':
-                self.toPage('Enemy', 201)
-            elif sel == 'Gay Wolf':
-                self.toPage('Enemy', 202)
-            elif sel == 'Felin in Heat':
-                self.toPage('Enemy', 301)
-            elif sel == 'Drunken Equan':
-                self.toPage('Enemy', 302)
-            elif sel == 'Octopus Girl':
-                self.toPage('Enemy', 303)
-            elif sel == 'Little Big Bunny-man':
-                self.toPage('Enemy', 304)
-            elif sel == 'Little Big Bunny-girl':
-                self.toPage('Enemy', 305)
-            elif sel == 'Fierce Naga':
-                self.toPage('Enemy', 306)
-            elif sel == 'Minotaur':
-                self.toPage('Enemy', 307)
-            elif sel == 'Freaky Little Girl':
-                self.toPage('Enemy', 308)
-            elif sel == 'Succubus':
-                self.toPage('Enemy', 309)
-        elif self.menu == 'Races':
-            if sel == 'Human':
-                self.toPage('Race', 1)
-            elif sel == 'Equan':
-                self.toPage('Race', 2)
-            elif sel == 'Lupan':
-                self.toPage('Race', 3)
-            elif sel == 'Felin':
-                self.toPage('Race', 4)
-            elif sel == 'Cow':
-                self.toPage('Race', 5)
-            elif sel == 'Lizan':
-                self.toPage('Race', 6)
-            elif sel == 'Bunny':
-                self.toPage('Race', 7)
-            elif sel == 'Mouse':
-                self.toPage('Race', 8)
-            elif sel == 'Bird':
-                self.toPage('Race', 9)
-            elif sel == 'Pig':
-                self.toPage('Race', 10)
-            elif sel == 'Skunk':
-                self.toPage('Race', 11)
-            elif sel == 'Bug':
-                self.toPage('Race', 12)
-        elif self.menu == 'Locations':
-            if sel == 'Towns':
-                self.menu = 'Locations.Towns'
-            elif sel == 'Other Locations':
-                self.menu = 'Locations.Other'
-        elif self.menu == 'Locations.Towns':
-            if sel == 'Softlik':
-                self.toPage('Town', 1)
-            elif sel == 'Firmshaft':
-                self.toPage('Town', 2)
-            elif sel == 'Tieden':
-                self.toPage('Town', 3)
-            elif sel == 'Siz\'Calit':
-                self.toPage('Town', 4)
-            elif sel == 'Oviasis':
-                self.toPage('Town', 6)
-            elif sel == 'Sanctuary':
-                self.toPage('Town', 12)
-        elif self.menu == 'Locations.Other':
-            if sel == 'Forest':
-                self.toPage('Location', 1)
-            elif sel == 'Jungle':
-                self.toPage('Location', 2)
-            elif sel == 'Plains':
-                self.toPage('Location', 3)
-            elif sel == 'Savanna':
-                self.toPage('Location', 4)
-            elif sel == 'Desert':
-                self.toPage('Location', 5)
-            elif sel == 'Beach':
-                self.toPage('Location', 6)
-            elif sel == 'Lake':
-                self.toPage('Location', 7)
-            elif sel == 'Dairy Farm':
-                self.toPage('Location', 8)
-            elif sel == 'Old Cave':
-                self.toPage('Location', 9)
-            elif sel == 'Old Cave Descent':
-                self.toPage('Location', 10)
-            elif sel == 'Den':
-                self.toPage('Location', 11)
-            elif sel == 'Valley':
-                self.toPage('Location', 12)
-            elif sel == 'Knothole':
-                self.toPage('Location', 13)
-        elif self.menu == 'Shops':
-            if sel == 'General Shop':
-                self.toPage('Shop', 1)
-            elif sel == 'Dye Shop':
-                self.toPage('Shop', 2)
-            elif sel == 'Apothecary':
-                self.toPage('Shop', 3)
-            elif sel == 'Salon':
-                self.toPage('Shop', 4)
-            elif sel == 'Tailor':
-                self.toPage('Shop', 5)
-        elif self.menu == 'NPCs':
-            if sel == 'Fidoris':
-                self.toPage('NPC', 1)
-            elif sel == 'Jamie':
-                self.toPage('NPC', 2)
-            elif sel == 'Lila':
-                self.toPage('NPC', 3)
-            elif sel == 'Malon':
-                self.toPage('NPC', 4)
-            elif sel == 'Silandrias':
-                self.toPage('NPC', 5)
-
     def doPage(self, page: WikiPageObject):
         text = WikiPages[page]
         if text is None:
             raise Error(f'[PyminWiki.doPage] Page ({page.topic}, {page.num}) does not exist.')
         self.text = text
-        self.displayText()
 
 
 class SaveConverter(PyminWindow):
