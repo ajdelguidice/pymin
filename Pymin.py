@@ -3680,7 +3680,6 @@ class WikiPages:
 
 
 class PyminWiki(PyminWindow):
-    # TODO: Fix horizontal scroll sometimes not being all the way to the left
     MENUS = {
         'Basics': {
             'Welcome Screen': ('Basic', 0),
@@ -4265,6 +4264,9 @@ class PyminWiki(PyminWindow):
         self.window._children['menu'].insert('end', *temp, back)
         self.window._children['menu'].select_set(0)
         self.window._children['menu'].activate(0)
+
+        # Fix for horizontal scroll sometimes not being all the way to the left
+        self.window._children['menu'].xview_moveto(0)
 
     def retrieveMenu(self):
         tempMenu = PyminWiki.MENUS
