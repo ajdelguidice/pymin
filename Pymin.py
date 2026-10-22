@@ -4448,7 +4448,163 @@ class SaveConverter(PyminWindow):
         self.window.lift()
 
 
+class SE_File:
+    def _SOL_ProcessData(self):
+        return sol.encode(SaveUtils.solGetFileName(self.file), SaveUtils.returnSOL(self.data, None), encoding=3).getvalue()
+
+    def _NIM_ProcessData(self):
+        # TODO: ByteArray doesn't work like that
+        with ByteArray() as data:
+            data.writeObject({'data': SaveUtils.returnSOL(self.data, None)})
+            return data.getvalue()
+
+    def _XML_ProcessData(self):
+        with BytesIO() as data:
+            SaveUtils.saveXML(self.data, data)
+            return data.getvalue()
+
+    def _TOML_ProcessData(self):
+        return TOML.Return(self.data).encode('utf-8')
+
+    def __init__(self, file):
+        self.file = os.path.realpath(file)
+        self.ext = os.path.splitext(file)[1]
+        self.data = None
+        if self.ext == '.sol':
+            self._LoadFunction = SaveUtils.loadSOL
+            self._SaveFunction = SaveUtils.saveSOL
+            self._ProcessFunction = self._SOL_ProcessData
+        elif self.ext == '.nim':
+            self._LoadFunction = SaveUtils.loadNIM
+            self._SaveFunction = SaveUtils.saveNIM
+            self._ProcessFunction = self._NIM_ProcessData
+        elif self.ext == '.xml':
+            self._LoadFunction = SaveUtils.loadXML
+            self._SaveFunction = SaveUtils.saveXML
+            self._ProcessFunction = self._XML_ProcessData
+        elif self.ext == '.toml':
+            self._LoadFunction = SaveUtils.loadTOML
+            self._SaveFunction = SaveUtils.saveTOML
+            self._ProcessFunction = self._TOML_ProcessData
+        else:
+            raise Error(f'[SE_File] Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got {self.ext}.')
+
+    def load(self):
+        self.data = self._LoadFunction(self.file)
+
+    def save(self):
+        self._SaveFunction(self.data, self.file)
+
+    def processData(self):
+        return self._ProcessFunction()
+
+
+class SE_Label(tkinter.Label):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs, highlightthickness=1, highlightbackground='#000000', background='#FFFFFF', foreground='#000000', anchor='w')
+
+
+class SE_WidgetContainer(tkinter.Frame):
+    @property
+    def currentIndent(self):
+        return SaveEditor._CurrentIndent
+
+    @currentIndent.setter
+    def currentIndent(self, value):
+        SaveEditor._CurrentIndent = value
+
+    @property
+    def currentRow(self):
+        return SaveEditor._CurrentRow
+
+    @currentRow.setter
+    def currentRow(self, value):
+        SaveEditor._CurrentRow = value
+
+    def __init__(self, *args, values=None, **kwargs):
+        super().__init__(*args, **kwargs, bg='#FFFFFF')
+        if values is not None:
+            self._doValues(values)
+
+    def __getitem__(self, item):
+        return getattr(self, f'WIDGET_{item}')
+
+    def __setitem__(self, item, value):
+        setattr(self, f'WIDGET_{item}', value)
+
+    def _doValues(self, values):
+        for name, value in values.items():
+            if isinstance(value, dict):
+                #self[name] = SE_SectionWidget(self, name, value)
+                ...
+            elif isinstance(value, list):
+                self[name] = SE_ArrayWidget(self, name, value)
+            else:
+                self[name] = SE_ValueWidget(self, name, value)
+
+    def getWidgets(self):
+        return {i: getattr(self, i) for i in dir(self) if i.startswith('WIDGET_')}
+
+
+class SE_SectionWidget(SE_WidgetContainer):
+    # TODO: widget positioning is incorrect
+    def __init__(self, parent, name, values, *args, **kwargs):
+        super().__init__(parent, *args, **kwargs)
+        r = self.currentRow
+        self.title = SE_Label(self, text=(' ' * self.currentIndent * 4) + f'[{name}]')
+        self.title.place(x=0, y=SaveEditor.ENTRY_LABEL_HEIGHT*self.currentRow, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT, anchor='nw')
+        self.currentRow += 1
+        self.currentIndent += 1
+        self._doValues(values)
+        self.currentIndent -= 1
+        self.place(x=0, y=SaveEditor.ENTRY_LABEL_HEIGHT*r, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT*(self.currentRow-r), anchor='nw')
+
+
+
+class SE_ValueWidget(SE_WidgetContainer):
+    def __init__(self, parent, name, value, *args, **kwargs):
+        super().__init__(parent, *args, **kwargs)
+        self.label = SE_Label(self, text=(' ' * self.currentIndent * 4) + str(name))
+        self.label.place(x=0, y=0, width=SaveEditor.ENTRY_LABEL_WIDTH, anchor='nw')
+        if isinstance(value, bool):
+            varType = tkinter.BooleanVar
+        elif isinstance(value, int):
+            varType = tkinter.IntVar
+        elif isinstance(value, str):
+            varType = tkinter.StringVar
+        elif isinstance(value, float):
+            varType = tkinter.DoubleVar
+        self.var = varType()
+        self.var.set(value)
+        # TODO: Booleans show up as ints
+        self.entry = tkinter.Entry(self, textvariable=self.var)
+        self.entry.place(x=SaveEditor.ENTRY_LABEL_WIDTH, y=0, width=470-SaveEditor.ENTRY_LABEL_WIDTH, anchor='nw')
+        self.place(x=0, y=SaveEditor.ENTRY_LABEL_HEIGHT*self.currentRow, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT, anchor='nw')
+        self.currentRow += 1
+
+
+class SE_ArrayWidget(SE_WidgetContainer):
+    def __init__(self, parent, name, value, *args, **kwargs):
+        super().__init__(parent, *args, **kwargs)
+        r = self.currentRow
+        self.title = SE_Label(self, text=(' ' * self.currentIndent * 4) + f'[{name}]')
+        self.title.place(x=0, y=SaveEditor.ENTRY_LABEL_HEIGHT*self.currentRow, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT, anchor='nw')
+        self.currentRow += 1
+        self.currentIndent += 1
+        for index, item in enumerate(value):
+            self[index] = SE_ValueWidget(self, index, item)
+        self.currentIndent -= 1
+        self.place(x=0, y=SaveEditor.ENTRY_LABEL_HEIGHT*r, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT*(len(value) + 1), anchor='nw')
+
+
 class SaveEditor(PyminWindow):
+    # TODO: Fix canvas scrolling
+    # TODO: See if grid or pack can be used instead of place
+    _CurrentIndent = 0
+    _CurrentRow = 0
+    ENTRY_LABEL_HEIGHT = 20
+    ENTRY_LABEL_WIDTH = 140
+
     def open(self):
         if self.isOpen:
             self.window.lift()
@@ -4473,12 +4629,23 @@ class SaveEditor(PyminWindow):
         self.filelabel = tkinter.Label(self.filelabelframe, font=('TkTextFont', 9))
         self.filelabel.place(x=385, y=0, anchor='ne')
 
-        self.container = tkinter.Frame(self.window)  # TODO: Make scrollable
+        self.container = tkinter.Frame(self.window, highlightthickness=1, highlightbackground='#000000')  # TODO: Make scrollable
         self.container.place(x=5, y=25, width=490, height=370, anchor='nw')
 
+        self.editorCanvas = tkinter.Canvas(self.container, width=470, height=370)
+        self.editorCanvas.pack(side=tkinter.LEFT, fill=tkinter.BOTH, expand=True)
+
+        self.scrollbar = tkinter.Scrollbar(self.container, command=self.editorCanvas.yview)
+        self.scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
+
+        self.editorCanvas.configure(yscrollcommand=self.scrollbar.set)
+
         self.fileChanged = False
-        self.loadedFile = None
-        self.loadedData = None
+        self.activeFile = None
+        self.editorBox = None
+        # TODO: Add these to a dictionary to make saving easier
+        self.labels = []
+        self.entries = []
         ''' Design
         | Load (Button) | | Save (Button, greyed out until file loaded) | | File Location (Label) |
         ```
@@ -4493,33 +4660,21 @@ class SaveEditor(PyminWindow):
         self._isOpen = True
 
     def loadFile(self):
-        file = Path(filedialog.askopenfilename(initialdir=mainobject.saveLocation, filetypes=(('All Files', '*'), ('TOML File', '*.toml'), ('XML Files', '*.xml'), ('Shared Objects', '*.sol'), ('Nimin Saves', '*.nim'))))
-        self.filelabel['text'] = str(file)
-        ext = file.suffix.lower()
-        if ext == '.sol':
-            data = SaveUtils.loadSOL(file)
-        elif ext == '.nim':
-            data = SaveUtils.loadNIM(file)
-        elif ext == '.xml':
-            data = SaveUtils.loadXML(file)
-        elif ext == '.toml':
-            data = SaveUtils.loadTOML(file)
-        else:
-            raise Error(f'[SaveEditor.loadFile] Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got .{ext}.')
-        self.loadedFile = file
-        self.loadedData = data
+        if self.editorBox is not None:
+            self.editorBox.destroy()
+            self.labels.clear()
+
+        SaveEditor._CurrentIndent = 0
+        SaveEditor._CurrentRow = 0
+
+        self.activeFile = SE_File(filedialog.askopenfilename(initialdir=mainobject.saveLocation, filetypes=(('All Files', '*'), ('TOML File', '*.toml'), ('XML Files', '*.xml'), ('Shared Objects', '*.sol'), ('Nimin Saves', '*.nim'))))
+        self.filelabel['text'] = self.activeFile.file
+
+        self.activeFile.load()
+
         with BytesIO() as lfile:
-            if ext == '.sol':
-                lfile.write(sol.encode(SaveUtils.solGetFileName(file), SaveUtils.returnSOL(data, None), encoding=3).getvalue())
-            elif ext == '.nim':
-                byteData = ByteArray()
-                byteData.writeObject({'data': SaveUtils.returnSOL(data, None)})
-                lfile.write(byteData.getvalue())
-            elif ext == '.xml':
-                SaveUtils.saveXML(data, lfile)
-            elif ext == '.toml':
-                lfile.write(TOML.Return(data).encode('utf-8'))
-            with file.open('rb') as f:
+            lfile.write(self.activeFile.processData())
+            with open(self.activeFile.file, 'rb') as f:
                 if f.read() != lfile.getvalue():
                     changenotify = tkinter.Toplevel()
                     changenotify.title('Warning')
@@ -4532,26 +4687,26 @@ class SaveEditor(PyminWindow):
                     cnok = tkinter.Button(changenotify, text='Ok', font=('TkTextFont', 9), command=changenotify.destroy)
                     cnok.place(x=345, y=115, width=30, height=30, anchor='se')
                     self.fileChanged = True
-        # TODO: Create entries
+
+        self.editorBox = SE_WidgetContainer(self.editorCanvas, values=self.activeFile.data)
+        self.editorCanvas.create_window(0, 0, window=self.editorBox, anchor='nw')
+
+        self.editorBox.place(x=0, y=0, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT*SaveEditor._CurrentRow, anchor='nw')
+
+        # TODO: Canvas doesn't actually scroll
+        self.editorBox.bind('<Configure>', lambda e: self.editorCanvas.configure(scrollregion=(0, 0, 470, SaveEditor.ENTRY_LABEL_HEIGHT*SaveEditor._CurrentRow)))
+
         self.savebutton['state'] = 'normal'
 
     def saveFile(self):
-        if self.loadedFile is None:  # No file loaded
+        if self.activeFile is None:  # No file loaded
             return
         return  # Prevent execution because partial implementation
         # TODO: Retrieve data from interface
         if not self.fileChanged:  # or (self.seLoadedData == <RetrievedData>): # Check if anything has changed
             ...  # TODO: Add a prompt to ask user if they want to save anyway. If no, return.
-        self.loadedData['version']['port'] = __version__
-        ext = self.loadedFile.suffix.lower()
-        if ext == '.sol':
-            SaveUtils.saveSOL(self.loadedData, self.loadedFile)
-        elif ext == '.nim':
-            SaveUtils.saveNIM(self.loadedData, self.loadedFile)
-        elif ext == '.xml':
-            SaveUtils.saveXML(self.loadedData, self.loadedFile)
-        elif ext == '.toml':
-            SaveUtils.saveTOML(self.loadedData, self.loadedFile)
+        self.activeFile.data['version']['port'] = __version__
+        self.activeFile.save()
 
 
 class DebugVariableDisplay(PyminWindow):
