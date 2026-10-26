@@ -4448,6 +4448,19 @@ class SaveConverter(PyminWindow):
         self.window.lift()
 
 
+class SE_ChangedOnLoadWarning(tkinter.Toplevel):
+    def __init__(self):
+        super().__init__()
+        self.title('Warning')
+        self.geometry('350x120')
+        self.resizable(False, False)
+        self.transient(mainobject.saveeditor.window)
+        self.label = tkinter.Label(self, font=('TkTextFont', 9), text='Warning:\nThe data loaded and file contents are different. This\nusually happens because of differences between game\nversions but could indicate a problem with the file.')
+        self.label.place(x=175, y=5, anchor='n')
+        self.button = tkinter.Button(self, text='Ok', font=('TkTextFont', 9), command=self.destroy)
+        self.button.place(x=345, y=115, width=30, height=30, anchor='se')
+
+
 class SE_File:
     @property
     def changed(self):
@@ -4523,6 +4536,14 @@ class SE_File:
 SE_Label = partial(tkinter.Label, highlightthickness=1, highlightbackground='#000000', background='#FFFFFF', foreground='#000000', anchor='w')
 
 
+def SE_BindWidgetScroll(widget):
+    # Windows
+    widget.bind('<MouseWheel>', mainobject.saveeditor.mouseScrollHandler)
+    # Linux
+    widget.bind('<Button-4>', mainobject.saveeditor.mouseScrollHandler)
+    widget.bind('<Button-5>', mainobject.saveeditor.mouseScrollHandler)
+
+
 class SE_WidgetContainer(tkinter.Frame):
     @property
     def currentIndent(self):
@@ -4534,6 +4555,7 @@ class SE_WidgetContainer(tkinter.Frame):
 
     def __init__(self, *args, values=None, **kwargs):
         super().__init__(*args, **kwargs, bg='#FFFFFF')
+        SE_BindWidgetScroll(self)
         if values is not None:
             self._doValues(values)
 
@@ -4551,6 +4573,7 @@ class SE_WidgetContainer(tkinter.Frame):
                 self[name] = SE_ArrayWidget(self, name, value)
             else:
                 self[name] = SE_ValueWidget(self, name, value)
+            self[name].pack(side=tkinter.TOP, fill=tkinter.X)
 
     def getWidgets(self):
         return {i: getattr(self, i) for i in dir(self) if i.startswith('WIDGET_')}
@@ -4565,17 +4588,18 @@ class SE_SectionWidget(SE_WidgetContainer):
         super().__init__(parent, *args, **kwargs)
         self.title = SE_Label(self, text=(' ' * self.currentIndent * 4) + f'[{name}]')
         self.title.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=True)
+        SE_BindWidgetScroll(self.title)
         self.currentIndent += 1
         self._doValues(values)
         self.currentIndent -= 1
-        self.pack(side=tkinter.TOP, fill=tkinter.X)
 
 
 class SE_ValueWidget(SE_WidgetContainer):
     def __init__(self, parent, name, value, *args, **kwargs):
         super().__init__(parent, *args, height=SaveEditor.ENTRY_LABEL_HEIGHT, **kwargs)
-        self.label = SE_Label(self, text=(' ' * self.currentIndent * 4) + str(name), width=SaveEditor.ENTRY_LABEL_HEIGHT)
+        self.label = SE_Label(self, text=(' ' * self.currentIndent * 4) + str(name), width=SaveEditor.ENTRY_LABEL_WIDTH)
         self.label.pack(side=tkinter.LEFT, fill=tkinter.Y)
+        SE_BindWidgetScroll(self.label)
         if isinstance(value, bool):
             varType = tkinter.BooleanVar
         elif isinstance(value, int):
@@ -4589,10 +4613,13 @@ class SE_ValueWidget(SE_WidgetContainer):
         # TODO: Booleans show up as ints
         self.entry = tkinter.Entry(self, textvariable=self.var)
         self.entry.pack(side=tkinter.LEFT, fill=tkinter.BOTH, expand=True)
-        self.pack(side=tkinter.TOP, fill=tkinter.X)
+        SE_BindWidgetScroll(self.entry)
 
     def getValue(self):
-        return self.var.get()
+        value = self.var.get()
+        if isinstance(self.var, tkinter.BooleanVar):
+            return bool(value)
+        return value
 
 
 class SE_ArrayWidget(SE_SectionWidget):
@@ -4602,16 +4629,16 @@ class SE_ArrayWidget(SE_SectionWidget):
     def _doValues(self, values):
         for index, item in enumerate(values):
             self[index] = SE_ValueWidget(self, index, item)
+            self[index].pack(side=tkinter.TOP, fill=tkinter.X)
 
     def getValue(self):
         return [getattr(self, i).getValue() for i in dir(self) if i.startswith('WIDGET_')]
 
 
 class SaveEditor(PyminWindow):
-    # TODO: Scroll wheel scrolling
     _CurrentIndent = 0
     ENTRY_LABEL_HEIGHT = 20
-    ENTRY_LABEL_WIDTH = 140
+    ENTRY_LABEL_WIDTH = 22
 
     def open(self):
         if self.isOpen:
@@ -4647,11 +4674,21 @@ class SaveEditor(PyminWindow):
         self.scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.Y)
 
         self.editorCanvas.configure(yscrollcommand=self.scrollbar.set)
+        SE_BindWidgetScroll(self.editorCanvas)
 
         self.activeFile = None
         self.editorBox = None
 
         self._isOpen = True
+
+    @staticmethod
+    def _getMouseDelta(event):
+        if event.num == 5 or event.delta < 0:
+            return 1
+        return -1
+
+    def mouseScrollHandler(self, event):
+        self.editorCanvas.yview_scroll(self._getMouseDelta(event), "units")
 
     def loadFile(self):
         if self.editorBox is not None:
@@ -4667,16 +4704,7 @@ class SaveEditor(PyminWindow):
         originalData = self.activeFile.getEncoded()
         with open(self.activeFile.file, 'rb') as f:
             if f.read() != originalData:
-                changenotify = tkinter.Toplevel()
-                changenotify.title('Warning')
-                changenotify.geometry('350x120')
-                changenotify.resizable(False, False)
-                changenotify.transient(self.window)
-                cnlabel = tkinter.Label(changenotify, font=('TkTextFont', 9))
-                cnlabel.place(x=175, y=5, anchor='n')
-                cnlabel['text'] = 'Warning:\nThe data loaded and file contents are different. This\nusually happens because of differences between game\nversions but could indicate a problem with the file.'
-                cnok = tkinter.Button(changenotify, text='Ok', font=('TkTextFont', 9), command=changenotify.destroy)
-                cnok.place(x=345, y=115, width=30, height=30, anchor='se')
+                SE_ChangedOnLoadWarning()
                 self.activeFile.changed = True
 
         # TODO: Doesn't expand to take up the entire width
