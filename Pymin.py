@@ -4453,10 +4453,11 @@ class SE_File:
         return sol.encode(SaveUtils.solGetFileName(self.file), SaveUtils.returnSOL(self.data, None), encoding=3).getvalue()
 
     def _NIM_ProcessData(self):
-        # TODO: ByteArray doesn't work like that
-        with ByteArray() as data:
-            data.writeObject({'data': SaveUtils.returnSOL(self.data, None)})
-            return data.getvalue()
+        data = ByteArray()
+        data.writeObject({'data': SaveUtils.returnSOL(self.data, None)})
+        temp = data.getvalue()
+        data.close()
+        return temp
 
     def _XML_ProcessData(self):
         with BytesIO() as data:
@@ -4513,14 +4514,6 @@ class SE_WidgetContainer(tkinter.Frame):
     def currentIndent(self, value):
         SaveEditor._CurrentIndent = value
 
-    @property
-    def currentRow(self):
-        return SaveEditor._CurrentRow
-
-    @currentRow.setter
-    def currentRow(self, value):
-        SaveEditor._CurrentRow = value
-
     def __init__(self, *args, values=None, **kwargs):
         super().__init__(*args, **kwargs, bg='#FFFFFF')
         if values is not None:
@@ -4535,8 +4528,7 @@ class SE_WidgetContainer(tkinter.Frame):
     def _doValues(self, values):
         for name, value in values.items():
             if isinstance(value, dict):
-                #self[name] = SE_SectionWidget(self, name, value)
-                ...
+                self[name] = SE_SectionWidget(self, name, value)
             elif isinstance(value, list):
                 self[name] = SE_ArrayWidget(self, name, value)
             else:
@@ -4547,25 +4539,21 @@ class SE_WidgetContainer(tkinter.Frame):
 
 
 class SE_SectionWidget(SE_WidgetContainer):
-    # TODO: widget positioning is incorrect
     def __init__(self, parent, name, values, *args, **kwargs):
         super().__init__(parent, *args, **kwargs)
-        r = self.currentRow
         self.title = SE_Label(self, text=(' ' * self.currentIndent * 4) + f'[{name}]')
-        self.title.place(x=0, y=SaveEditor.ENTRY_LABEL_HEIGHT*self.currentRow, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT, anchor='nw')
-        self.currentRow += 1
+        self.title.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=True)
         self.currentIndent += 1
         self._doValues(values)
         self.currentIndent -= 1
-        self.place(x=0, y=SaveEditor.ENTRY_LABEL_HEIGHT*r, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT*(self.currentRow-r), anchor='nw')
-
+        self.pack(side=tkinter.TOP, fill=tkinter.X)
 
 
 class SE_ValueWidget(SE_WidgetContainer):
     def __init__(self, parent, name, value, *args, **kwargs):
-        super().__init__(parent, *args, **kwargs)
-        self.label = SE_Label(self, text=(' ' * self.currentIndent * 4) + str(name))
-        self.label.place(x=0, y=0, width=SaveEditor.ENTRY_LABEL_WIDTH, anchor='nw')
+        super().__init__(parent, *args, height=SaveEditor.ENTRY_LABEL_HEIGHT, **kwargs)
+        self.label = SE_Label(self, text=(' ' * self.currentIndent * 4) + str(name), width=SaveEditor.ENTRY_LABEL_HEIGHT)
+        self.label.pack(side=tkinter.LEFT, fill=tkinter.Y)
         if isinstance(value, bool):
             varType = tkinter.BooleanVar
         elif isinstance(value, int):
@@ -4578,30 +4566,23 @@ class SE_ValueWidget(SE_WidgetContainer):
         self.var.set(value)
         # TODO: Booleans show up as ints
         self.entry = tkinter.Entry(self, textvariable=self.var)
-        self.entry.place(x=SaveEditor.ENTRY_LABEL_WIDTH, y=0, width=470-SaveEditor.ENTRY_LABEL_WIDTH, anchor='nw')
-        self.place(x=0, y=SaveEditor.ENTRY_LABEL_HEIGHT*self.currentRow, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT, anchor='nw')
-        self.currentRow += 1
+        self.entry.pack(side=tkinter.LEFT, fill=tkinter.BOTH, expand=True)
+        self.pack(side=tkinter.TOP, fill=tkinter.X)
 
 
-class SE_ArrayWidget(SE_WidgetContainer):
-    def __init__(self, parent, name, value, *args, **kwargs):
-        super().__init__(parent, *args, **kwargs)
-        r = self.currentRow
-        self.title = SE_Label(self, text=(' ' * self.currentIndent * 4) + f'[{name}]')
-        self.title.place(x=0, y=SaveEditor.ENTRY_LABEL_HEIGHT*self.currentRow, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT, anchor='nw')
-        self.currentRow += 1
-        self.currentIndent += 1
-        for index, item in enumerate(value):
+class SE_ArrayWidget(SE_SectionWidget):
+    def __init__(self, parent, name, values, *args, **kwargs):
+        super().__init__(parent, name, values, *args, height=SaveEditor.ENTRY_LABEL_HEIGHT, **kwargs)
+
+    def _doValues(self, values):
+        for index, item in enumerate(values):
             self[index] = SE_ValueWidget(self, index, item)
-        self.currentIndent -= 1
-        self.place(x=0, y=SaveEditor.ENTRY_LABEL_HEIGHT*r, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT*(len(value) + 1), anchor='nw')
 
 
 class SaveEditor(PyminWindow):
     # TODO: Fix canvas scrolling
     # TODO: See if grid or pack can be used instead of place
     _CurrentIndent = 0
-    _CurrentRow = 0
     ENTRY_LABEL_HEIGHT = 20
     ENTRY_LABEL_WIDTH = 140
 
@@ -4643,9 +4624,6 @@ class SaveEditor(PyminWindow):
         self.fileChanged = False
         self.activeFile = None
         self.editorBox = None
-        # TODO: Add these to a dictionary to make saving easier
-        self.labels = []
-        self.entries = []
         ''' Design
         | Load (Button) | | Save (Button, greyed out until file loaded) | | File Location (Label) |
         ```
@@ -4662,10 +4640,8 @@ class SaveEditor(PyminWindow):
     def loadFile(self):
         if self.editorBox is not None:
             self.editorBox.destroy()
-            self.labels.clear()
 
         SaveEditor._CurrentIndent = 0
-        SaveEditor._CurrentRow = 0
 
         self.activeFile = SE_File(filedialog.askopenfilename(initialdir=mainobject.saveLocation, filetypes=(('All Files', '*'), ('TOML File', '*.toml'), ('XML Files', '*.xml'), ('Shared Objects', '*.sol'), ('Nimin Saves', '*.nim'))))
         self.filelabel['text'] = self.activeFile.file
@@ -4688,13 +4664,11 @@ class SaveEditor(PyminWindow):
                     cnok.place(x=345, y=115, width=30, height=30, anchor='se')
                     self.fileChanged = True
 
+        # TODO: Doesn't expand to take up the entire width
         self.editorBox = SE_WidgetContainer(self.editorCanvas, values=self.activeFile.data)
         self.editorCanvas.create_window(0, 0, window=self.editorBox, anchor='nw')
 
-        self.editorBox.place(x=0, y=0, width=470, height=SaveEditor.ENTRY_LABEL_HEIGHT*SaveEditor._CurrentRow, anchor='nw')
-
-        # TODO: Canvas doesn't actually scroll
-        self.editorBox.bind('<Configure>', lambda e: self.editorCanvas.configure(scrollregion=(0, 0, 470, SaveEditor.ENTRY_LABEL_HEIGHT*SaveEditor._CurrentRow)))
+        self.editorBox.bind('<Configure>', lambda e: self.editorCanvas.configure(scrollregion=self.editorCanvas.bbox('all')))
 
         self.savebutton['state'] = 'normal'
 
