@@ -4461,76 +4461,244 @@ class SE_ChangedOnLoadWarning(tkinter.Toplevel):
         self.button.place(x=345, y=115, width=30, height=30, anchor='se')
 
 
+class SE_RawLoaders:
+    def TOML(filename) -> dict:
+        return SaveUtils.loadTOML(filename)
+
+    def _loadSharedObject(so) -> dict:
+        strack = so['track']
+        sstats = so['stats']
+        slevel = so['level']
+        smod = so['mod']
+        squality = so['quality']
+        scock = so['cock']
+        sgirl = so['girl']
+        sgear = so['gear']
+        sstatus = so['status']
+        saffinity = so['affinity']
+        srep = so['rep']
+        sknowledge = so['knowledge']
+        sboss = so.get('boss', [])
+        sknowSimpleAlchemy = so.get('knowSimpleAlchemy', [])
+        sknowAdvancedAlchemy = so.get('knowAdvancedAlchemy', [])
+        sknowComplexAlchemy = so.get('knowComplexAlchemy', [])
+        smajorFetish = so['majorFetish']
+        smoderateFetish = so['moderateFetish']
+        sminorFetish = so['minorFetish']
+        skid = so['kid']
+        data = {
+            'track': {'currentState': strack[0], 'currentZone': strack[1], 'day': strack[2], 'hour': strack[3], 'currentDayCare': strack[4], 'inDungeon': strack[5], 'currentDungeon': strack[6], 'v7': strack[7]},
+            'version': {'original': so['versionNumber']},
+            'stats': {'strength': sstats[0], 'mentality': sstats[1], 'libido': sstats[2], 'sensitivity': sstats[3], 'HP': sstats[4], 'lust': sstats[5], 'coin': sstats[6], 'strMod': sstats[7], 'mentMod': sstats[8], 'libMod': sstats[9], 'senMod': sstats[10], 'hunger': sstats[11]},
+            'level': {'SexP': slevel[0], 'levelUP': slevel[1], 'level': slevel[2], 'babyFactLevel': slevel[3], 'bodyBuildLevel': slevel[4], 'hyperHappyLevel': slevel[5], 'alchemistLevel': slevel[6], 'fetishMasterLevel': slevel[7], 'milkMaidLevel': slevel[8], 'shapeshiftyLevel': slevel[9], 'shapeshiftyFirst': slevel[10], 'shapeshiftySecond': slevel[11]},
+            'mod': {'runMod': smod[0], 'rapeMod': smod[1], 'cumMod': smod[2], 'cockSizeMod': smod[3], 'milkMod': smod[4], 'carryMod': smod[5], 'vagBellyMod': smod[6], 'pregChanceMod': smod[7], 'extraPregChance': smod[8], 'pregTimeMod': smod[9], 'enticeMod': smod[10], 'milkHPMod': smod[11], 'vagSizeMod': smod[12], 'vagElastic': smod[13], 'changeMod': smod[14], 'HPMod': smod[15], 'SexPMod': smod[16], 'minLust': smod[17], 'milkCap': smod[18], 'coinMod': smod[19], 'hipMod': smod[20], 'buttMod': smod[21], 'bellyMod': smod[22], 'cockMoistMod': smod[23], 'vagMoistMod': smod[24], 'lockTail': smod[25], 'lockFace': smod[26], 'lockSkin': smod[27], 'lockBreasts': smod[28], 'lockEars': smod[29], 'lockLegs': smod[30], 'lockNipples': smod[31], 'lockCock': smod[32]},
+            'quality': {'gender': squality[0], 'race': squality[1], 'body': squality[2], 'dominant': squality[3], 'hips': squality[4], 'butt': squality[5], 'tallness': squality[6], 'skinType': squality[7], 'tail': squality[8], 'ears': squality[9], 'hair': squality[10], 'hairColor': squality[11], 'hairLength': squality[12], 'legType': squality[13], 'wings': squality[14], 'faceType': squality[15], 'skinColor': squality[16]},
+            'cock': {'cockTotal': scock[0], 'humanCocks': scock[1], 'horseCocks': scock[2], 'wolfCocks': scock[3], 'catCocks': scock[4], 'rabbitCocks': scock[5], 'lizardCocks': scock[6], 'cockSize': scock[7], 'cockMoist': scock[8], 'balls': scock[9], 'ballSize': scock[10], 'showBalls': scock[11], 'knot': scock[12], 'bugCocks': scock[13]},
+            'girl': {'breastSize': sgirl[0], 'boobTotal': sgirl[1], 'nippleSize': sgirl[2], 'udders': sgirl[3], 'udderSize': sgirl[4], 'teatSize': sgirl[5], 'clitSize': sgirl[6], 'vagTotal': sgirl[7], 'vagSize': sgirl[8], 'vagMoist': sgirl[9], 'vulvaSize': sgirl[10], 'nipType': sgirl[11]},
+            'gear': {'attireTop': sgear[0], 'attireBot': sgear[1], 'weapon': sgear[2]},
+            'status': {'pregRate': sstatus[0], 'pregnancyTime': sstatus[1], 'pregStatus': sstatus[2], 'eggLaying': sstatus[3], 'eggMaxTime': sstatus[4], 'eggTime': sstatus[5], 'eggRate': sstatus[6], 'exhaustion': sstatus[7], 'exhaustionPenalty': sstatus[8], 'milkEngorgement': sstatus[9], 'milkEngorgementLevel': sstatus[10], 'udderEngorgement': sstatus[11], 'udderEngorgementLevel': sstatus[12], 'heat': sstatus[13], 'heatTime': sstatus[14], 'heatMaxTime': sstatus[15], 'lactation': sstatus[16], 'udderLactation': sstatus[17], 'nipplePlay': sstatus[18], 'udderPlay': sstatus[19], 'blueBalls': sstatus[20], 'teatPump': sstatus[21], 'nipPump': sstatus[22], 'cockPump': sstatus[23], 'clitPump': sstatus[24], 'vulvaPump': sstatus[25], 'masoPot': sstatus[26], 'sMasoPot': sstatus[27], 'babyFree': sstatus[28], 'charmTime': sstatus[29], 'pheromone': sstatus[30], 'eggceleratorTime': sstatus[31], 'eggceleratorDose': sstatus[32], 'bodyOil': sstatus[33], 'lustPenalty': sstatus[34], 'fertileGel': sstatus[35], 'snuggleBall': sstatus[36], 'eggType': sstatus[37], 'milkSuppressant': sstatus[38], 'milkSuppressantLact': sstatus[39], 'milkSuppressantUdder': sstatus[40], 'suppHarness': sstatus[41], 'fertilityStatueCurse': sstatus[42], 'plumpQuats': sstatus[43], 'lilaWetStatus': sstatus[44], 'cockSnakePreg': sstatus[45], 'milkCPoisonNip': sstatus[46], 'milkCPoisonUdd': sstatus[47], 'cockSnakeVenom': sstatus[48]},
+            'affinity': {'humanAffinity': saffinity[0], 'horseAffinity': saffinity[1], 'wolfAffinity': saffinity[2], 'catAffinity': saffinity[3], 'cowAffinity': saffinity[4], 'lizardAffinity': saffinity[5], 'rabbitAffinity': saffinity[6], 'fourBoobAffinity': saffinity[7], 'mouseAffinity': saffinity[8], 'birdAffinity': saffinity[9], 'pigAffinity': saffinity[10], 'twoBoobAffinity': saffinity[11], 'sixBoobAffinity': saffinity[12], 'eightBoobAffinity': saffinity[13], 'tenBoobAffinity': saffinity[14], 'cowTaurAffinity': saffinity[15], 'humanTaurAffinity': saffinity[16], 'skunkAffinity': saffinity[17], 'bugAffinity': saffinity[18]},
+            'rep': {'lilaRep': srep[0], 'lilaVulva': srep[1], 'lilaMilk': srep[2], 'lilaPreg': srep[3], 'malonRep': srep[4], 'malonPreg': srep[5], 'malonChildren': srep[6], 'mistressRep': srep[7], 'jamieRep': srep[8], 'jamieSize': srep[9], 'jamieChildren': srep[10], 'silRep': srep[11], 'silPreg': srep[12], 'silRate': srep[13], 'silLay': srep[14], 'silGrowthTime': srep[15], 'silTied': srep[16], 'lilaUB': srep[17], 'dairyFarmBrand': srep[18], 'lilaWetness': srep[19], 'jamieButt': srep[20], 'jamieBreasts': srep[21], 'jamieHair': srep[22]},
+            'knowledge': {'foundSoftlik': sknowledge[0], 'foundFirmshaft': sknowledge[1], 'foundTieden': sknowledge[2], 'foundSizCalit': sknowledge[3], 'foundOviasis': sknowledge[4], 'foundValley': sknowledge[5], 'foundSanctuary': sknowledge[6]},
+            'boss': {},
+            'knowSimpleAlchemy': {},
+            'knowAdvancedAlchemy': {},
+            'knowComplexAlchemy': {},
+            'majorFetish': {'maleFetish': smajorFetish[0], 'femaleFetish': smajorFetish[1], 'hermFetish': smajorFetish[2], 'narcissistFetish': smajorFetish[3], 'dependentFetish': smajorFetish[4]},
+            'moderateFetish': {'dominantFetish': smoderateFetish[0], 'submissiveFetish': smoderateFetish[1], 'lboobFetish': smoderateFetish[2], 'sboobFetish': smoderateFetish[3], 'furryFetish': smoderateFetish[4], 'scalyFetish': smoderateFetish[5], 'smoothyFetish': smoderateFetish[6]},
+            'minorFetish': {'pregnancyFetish': sminorFetish[0], 'bestialityFetish': sminorFetish[1], 'milkFetish': sminorFetish[2], 'sizeFetish': sminorFetish[3], 'unbirthingFetish': sminorFetish[4], 'ovipositionFetish': sminorFetish[5], 'toyFetish': sminorFetish[6], 'hyperFetish': sminorFetish[7]},
+            'kid': {'humanChildren': skid[0], 'equanChildren': skid[1], 'lupanChildren': skid[2], 'felinChildren': skid[3], 'cowChildren': skid[4], 'lizanChildren': skid[5], 'lizanEggs': skid[6], 'bunnionChildren': skid[7], 'wolfPupChildren': skid[8], 'miceChildren': skid[9], 'birdEggs': skid[10], 'birdChildren': skid[11], 'pigChildren': skid[12], 'calfChildren': skid[13], 'bugEggs': skid[14], 'bugChildren': skid[15], 'skunkChildren': skid[16], 'minotaurChildren': skid[17], 'freakyGirlChildren': skid[18]},
+            'trav': so['trav'],
+            'preg': so['pregSave']
+        }
+        version = so.get('versionNumberPymin')
+        if version is not None:
+            data['version']['port'] = version
+        if len(strack) > 8:
+            data['track']['firstExplore'] = strack[8]
+        if len(scock) == 15:
+            data['cock']['neuterizerHideBalls'] = scock[14]
+        if len(sknowledge) == 8:
+            data['knowledge']['usedSecretStairs'] = sknowledge[7]
+        if len(sboss):
+            data['boss']['defeatedMinotaur'] = sboss[0]
+            data['boss']['defeatedFreakyGirl'] = sboss[1]
+            data['boss']['defeatedSuccubus'] = sboss[2]
+        if len(sknowSimpleAlchemy):
+            data['knowSimpleAlchemy']['knowLustDraft'] = sknowSimpleAlchemy[0]
+            data['knowSimpleAlchemy']['knowRejuvPot'] = sknowSimpleAlchemy[1]
+            data['knowSimpleAlchemy']['knowExpPreg'] = sknowSimpleAlchemy[2]
+            data['knowSimpleAlchemy']['knowBallSwell'] = sknowSimpleAlchemy[3]
+            data['knowSimpleAlchemy']['knowMaleEnhance'] = sknowSimpleAlchemy[4]
+        if len(sknowAdvancedAlchemy):
+            data['knowAdvancedAlchemy']['knowSLustDraft'] = sknowAdvancedAlchemy[0]
+            data['knowAdvancedAlchemy']['knowSRejuvPot'] = sknowAdvancedAlchemy[1]
+            data['knowAdvancedAlchemy']['knowSExpPreg'] = sknowAdvancedAlchemy[2]
+            data['knowAdvancedAlchemy']['knowSBallSwell'] = sknowAdvancedAlchemy[3]
+            data['knowAdvancedAlchemy']['knowGenSwap'] = sknowAdvancedAlchemy[4]
+            data['knowAdvancedAlchemy']['knowMasoPot'] = sknowAdvancedAlchemy[5]
+            data['knowAdvancedAlchemy']['knowBabyFree'] = sknowAdvancedAlchemy[6]
+            data['knowAdvancedAlchemy']['knowPotPot'] = sknowAdvancedAlchemy[7]
+            data['knowAdvancedAlchemy']['knowMilkSuppress'] = sknowAdvancedAlchemy[8]
+        if len(sknowComplexAlchemy):
+            data['knowComplexAlchemy']['knowSGenSwap'] = sknowComplexAlchemy[0]
+            data['knowComplexAlchemy']['knowSMasoPot'] = sknowComplexAlchemy[1]
+            data['knowComplexAlchemy']['knowSBabyFree'] = sknowComplexAlchemy[2]
+            data['knowComplexAlchemy']['knowSPotPot'] = sknowComplexAlchemy[3]
+            data['knowComplexAlchemy']['knowPussJuice'] = sknowComplexAlchemy[4]
+            data['knowComplexAlchemy']['knowPheromone'] = sknowComplexAlchemy[5]
+            data['knowComplexAlchemy']['knowBazoomba'] = sknowComplexAlchemy[6]
+        sbag = so.get('bagSave')
+        sbagStack = so.get('bagStackSave')
+        sstash = so.get('stashSave')
+        sstashStack = so.get('stashStackSave')
+        if (sbag is None):
+            data['itemSave'] = so['itemSave']
+            data['stashSave'] = so['stashSave']
+            data['stackSave'] = so['stackSave']
+            data['stashStackSave'] = so['stashStackSave']
+        else:
+            data['bag'] = sbag
+            data['bagStack'] = sbagStack
+            data['stash'] = sstash
+            data['stashStack'] = sstashStack
+        return data
+
+    def NIM(filename) -> dict:
+        with open(filename, 'rb') as file:
+            return SE_RawLoaders._loadSharedObject(ByteArray(file).readObject()['data'])
+
+    def SOL(filename) -> dict:
+        return SE_RawLoaders._loadSharedObject(sol.load(str(filename)))
+
+    def XML(filename) -> dict:
+        data = xmletree.parse(filename).getroot()
+        strack = data.find('track')
+        sstats = data.find('stats')
+        slevel = data.find('level')
+        smod = data.find('mod')
+        squality = data.find('quality')
+        scock = data.find('cock')
+        sgirl = data.find('girl')
+        sgear = data.find('gear')
+        sstatus = data.find('status')
+        saffinity = data.find('affinity')
+        srep = data.find('rep')
+        sknowledge = data.find('knowledge')
+        sboss = data.find('boss')
+        sknowSimpleAlchemy = data.find('knowSimpleAlchemy')
+        sknowAdvancedAlchemy = data.find('knowAdvancedAlchemy')
+        sknowComplexAlchemy = data.find('knowComplexAlchemy')
+        smajorFetish = data.find('majorFetish')
+        smoderateFetish = data.find('moderateFetish')
+        sminorFetish = data.find('minorFetish')
+        skid = data.find('kid')
+        bag = data.find('bag')
+        bagStack = data.find('bagStack')
+        stash = data.find('stash')
+        stashStack = data.find('stashStack')
+        preg = data.find('preg')
+        _bagArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        _bagStackArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        _stashArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        _stashStackArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        _preg = []
+        for i in range(27):
+            tempstr = f'slot{i}'
+            _bagArray[i] = int(bag.find(tempstr).text)
+            _bagStackArray[i] = int(bagStack.find(tempstr).text)
+            _stashArray[i] = int(stash.find(tempstr).text)
+            _stashStackArray[i] = int(stashStack.find(tempstr).text)
+        for i in range(0, len(preg), 5):
+            _preg.extend((Utils.strtobool(preg.find(f'i{i}').text), int(preg.find(f'i{i+1}').text), int(preg.find(f'i{i+2}').text), int(preg.find(f'i{i+3}').text), int(preg.find(f'i{i+4}').text)))
+        odata = {
+            'track': {'currentState': int(strack.find('currentState').text), 'currentZone': int(strack.find('currentZone').text), 'day': int(strack.find('day').text), 'hour': int(strack.find('hour').text), 'currentDayCare': int(strack.find('currentDayCare').text), 'inDungeon': Utils.strtobool(strack.find('inDungeon').text), 'currentDungeon': int(strack.find('currentDungeon').text), 'v7': str(strack.find('v7').text)},
+            'version': {},
+            'stats': {'strength': int(sstats.find('strength').text), 'mentality': int(sstats.find('mentality').text), 'libido': int(sstats.find('libido').text), 'sensitivity': int(sstats.find('sensitivity').text), 'HP': int(sstats.find('HP').text), 'lust': int(sstats.find('lust').text), 'coin': int(sstats.find('coin').text), 'strMod': int(sstats.find('strMod').text), 'mentMod': int(sstats.find('mentMod').text), 'libMod': int(sstats.find('libMod').text), 'senMod': int(sstats.find('senMod').text), 'hunger': int(sstats.find('hunger').text)},
+            'level': {'SexP': int(slevel.find('SexP').text), 'levelUP': int(slevel.find('levelUP').text), 'level': int(slevel.find('level').text), 'babyFactLevel': int(slevel.find('babyFactLevel').text), 'bodyBuildLevel': int(slevel.find('bodyBuildLevel').text), 'hyperHappyLevel': int(slevel.find('hyperHappyLevel').text), 'alchemistLevel': int(slevel.find('alchemistLevel').text), 'fetishMasterLevel': int(slevel.find('fetishMasterLevel').text), 'milkMaidLevel': int(slevel.find('milkMaidLevel').text), 'shapeshiftyLevel': int(slevel.find('shapeshiftyLevel').text)},
+            'mod': {'runMod': int(smod.find('runMod').text), 'rapeMod': int(smod.find('rapeMod').text), 'cumMod': float(smod.find('cumMod').text), 'cockSizeMod': float(smod.find('cockSizeMod').text), 'milkMod': int(smod.find('milkMod').text), 'carryMod': int(smod.find('carryMod').text), 'vagBellyMod': int(smod.find('vagBellyMod').text), 'pregChanceMod': int(smod.find('pregChanceMod').text), 'extraPregChance': int(smod.find('extraPregChance').text), 'pregTimeMod': int(smod.find('pregTimeMod').text), 'enticeMod': int(smod.find('enticeMod').text), 'milkHPMod': int(smod.find('milkHPMod').text), 'vagSizeMod': float(smod.find('vagSizeMod').text), 'vagElastic': float(smod.find('vagElastic').text), 'changeMod': float(smod.find('changeMod').text), 'HPMod': int(smod.find('HPMod').text), 'SexPMod': float(smod.find('SexPMod').text), 'minLust': int(smod.find('minLust').text), 'milkCap': int(smod.find('milkCap').text), 'coinMod': int(smod.find('coinMod').text), 'hipMod': float(smod.find('hipMod').text), 'buttMod': float(smod.find('buttMod').text), 'bellyMod': int(smod.find('bellyMod').text), 'cockMoistMod': int(smod.find('cockMoistMod').text), 'vagMoistMod': int(smod.find('vagMoistMod').text), 'lockTail': int(smod.find('lockTail').text), 'lockFace': int(smod.find('lockFace').text), 'lockSkin': int(smod.find('lockSkin').text), 'lockBreasts': int(smod.find('lockBreasts').text), 'lockEars': int(smod.find('lockEars').text), 'lockLegs': int(smod.find('lockLegs').text), 'lockNipples': int(smod.find('lockNipples').text), 'lockCock': int(smod.find('lockCock').text)},
+            'quality': {'gender': int(squality.find('gender').text), 'race': int(squality.find('race').text), 'body': int(squality.find('body').text), 'dominant': int(squality.find('dominant').text), 'hips': int(squality.find('hips').text), 'butt': int(squality.find('butt').text), 'tallness': int(squality.find('tallness').text), 'skinType': int(squality.find('skinType').text), 'tail': int(squality.find('tail').text), 'ears': int(squality.find('ears').text), 'hair': int(squality.find('hair').text), 'hairColor': int(squality.find('hairColor').text), 'hairLength': int(squality.find('hairLength').text), 'legType': int(squality.find('legType').text), 'wings': int(squality.find('wings').text), 'faceType': int(squality.find('faceType').text), 'skinColor': int(squality.find('skinColor').text)},
+            'cock': {'cockTotal': int(scock.find('cockTotal').text), 'humanCocks': int(scock.find('humanCocks').text), 'horseCocks': int(scock.find('horseCocks').text), 'wolfCocks': int(scock.find('wolfCocks').text), 'catCocks': int(scock.find('catCocks').text), 'rabbitCocks': int(scock.find('rabbitCocks').text), 'lizardCocks': int(scock.find('lizardCocks').text), 'cockSize': int(scock.find('cockSize').text), 'cockMoist': int(scock.find('cockMoist').text), 'balls': int(scock.find('balls').text), 'ballSize': int(scock.find('ballSize').text), 'showBalls': Utils.strtobool(scock.find('showBalls').text), 'knot': Utils.strtobool(scock.find('knot').text), 'bugCocks': int(scock.find('bugCocks').text),},
+            'girl': {'breastSize': int(sgirl.find('breastSize').text), 'boobTotal': int(sgirl.find('boobTotal').text), 'nippleSize': int(sgirl.find('nippleSize').text), 'udders': Utils.strtobool(sgirl.find('udders').text), 'udderSize': int(sgirl.find('udderSize').text), 'teatSize': int(sgirl.find('teatSize').text), 'clitSize': int(sgirl.find('clitSize').text), 'vagTotal': int(sgirl.find('vagTotal').text), 'vagSize': int(sgirl.find('vagSize').text), 'vagMoist': int(sgirl.find('vagMoist').text), 'vulvaSize': int(sgirl.find('vulvaSize').text), 'nipType': int(sgirl.find('nipType').text)},
+            'gear': {'attireTop': int(sgear.find('attireTop').text), 'attireBot': int(sgear.find('attireBot').text), 'weapon': int(sgear.find('weapon').text)},
+            'status': {'pregRate': float(sstatus.find('pregRate').text), 'pregnancyTime': int(sstatus.find('pregnancyTime').text), 'pregStatus': int(sstatus.find('pregStatus').text), 'eggLaying': int(sstatus.find('eggLaying').text), 'eggMaxTime': int(sstatus.find('eggMaxTime').text), 'eggTime': int(sstatus.find('eggTime').text), 'eggRate': int(sstatus.find('eggRate').text), 'exhaustion': int(sstatus.find('exhaustion').text), 'exhaustionPenalty': int(sstatus.find('exhaustionPenalty').text), 'milkEngorgement': int(sstatus.find('milkEngorgement').text), 'milkEngorgementLevel': int(sstatus.find('milkEngorgementLevel').text), 'udderEngorgement': int(sstatus.find('udderEngorgement').text), 'udderEngorgementLevel': int(sstatus.find('udderEngorgementLevel').text), 'heat': int(sstatus.find('heat').text), 'heatTime': int(sstatus.find('heatTime').text), 'heatMaxTime': int(sstatus.find('heatMaxTime').text), 'lactation': int(sstatus.find('lactation').text), 'udderLactation': int(sstatus.find('udderLactation').text), 'nipplePlay': float(sstatus.find('nipplePlay').text), 'udderPlay': float(sstatus.find('udderPlay').text), 'blueBalls': int(sstatus.find('blueBalls').text), 'teatPump': int(sstatus.find('teatPump').text), 'nipPump': int(sstatus.find('nipPump').text), 'cockPump': int(sstatus.find('cockPump').text), 'clitPump': int(sstatus.find('clitPump').text), 'vulvaPump': int(sstatus.find('vulvaPump').text), 'masoPot': int(sstatus.find('masoPot').text), 'sMasoPot': int(sstatus.find('sMasoPot').text), 'babyFree': int(sstatus.find('babyFree').text), 'charmTime': int(sstatus.find('charmTime').text), 'pheromone': int(sstatus.find('pheromone').text), 'eggceleratorTime': int(sstatus.find('eggceleratorTime').text), 'eggceleratorDose': int(sstatus.find('eggceleratorDose').text), 'bodyOil': int(sstatus.find('bodyOil').text), 'lustPenalty': int(sstatus.find('lustPenalty').text), 'fertileGel': int(sstatus.find('fertileGel').text), 'snuggleBall': Utils.strtobool(sstatus.find('snuggleBall').text), 'eggType': int(sstatus.find('eggType').text), 'milkSuppressant': int(sstatus.find('milkSuppressant').text), 'milkSuppressantLact': int(sstatus.find('milkSuppressantLact').text), 'milkSuppressantUdder': int(sstatus.find('milkSuppressantUdder').text), 'suppHarness': Utils.strtobool(sstatus.find('suppHarness').text), 'fertilityStatueCurse': int(sstatus.find('fertilityStatueCurse').text), 'plumpQuats': int(sstatus.find('plumpQuats').text), 'lilaWetStatus': int(sstatus.find('lilaWetStatus').text), 'cockSnakePreg': int(sstatus.find('cockSnakePreg').text), 'milkCPoisonNip': int(sstatus.find('milkCPoisonNip').text), 'milkCPoisonUdd': int(sstatus.find('milkCPoisonUdd').text), 'cockSnakeVenom': int(sstatus.find('cockSnakeVenom').text)},
+            'affinity': {'humanAffinity': int(saffinity.find('humanAffinity').text), 'horseAffinity': int(saffinity.find('horseAffinity').text), 'wolfAffinity': int(saffinity.find('wolfAffinity').text), 'catAffinity': int(saffinity.find('catAffinity').text), 'cowAffinity': int(saffinity.find('cowAffinity').text), 'lizardAffinity': int(saffinity.find('lizardAffinity').text), 'rabbitAffinity': int(saffinity.find('rabbitAffinity').text), 'fourBoobAffinity': int(saffinity.find('fourBoobAffinity').text), 'mouseAffinity': int(saffinity.find('mouseAffinity').text), 'birdAffinity': int(saffinity.find('birdAffinity').text), 'pigAffinity': int(saffinity.find('pigAffinity').text), 'twoBoobAffinity': int(saffinity.find('twoBoobAffinity').text), 'sixBoobAffinity': int(saffinity.find('sixBoobAffinity').text), 'eightBoobAffinity': int(saffinity.find('eightBoobAffinity').text), 'tenBoobAffinity': int(saffinity.find('tenBoobAffinity').text), 'cowTaurAffinity': int(saffinity.find('cowTaurAffinity').text), 'humanTaurAffinity': int(saffinity.find('humanTaurAffinity').text), 'skunkAffinity': int(saffinity.find('skunkAffinity').text), 'bugAffinity': int(saffinity.find('bugAffinity').text)},
+            'rep': {'lilaRep': int(srep.find('lilaRep').text), 'lilaVulva': int(srep.find('lilaVulva').text), 'lilaMilk': int(srep.find('lilaMilk').text), 'lilaPreg': int(srep.find('lilaPreg').text), 'malonRep': int(srep.find('malonRep').text), 'malonPreg': int(srep.find('malonPreg').text), 'malonChildren': int(srep.find('malonChildren').text), 'mistressRep': int(srep.find('mistressRep').text), 'jamieRep': int(srep.find('jamieRep').text), 'jamieSize': int(srep.find('jamieSize').text), 'jamieChildren': int(srep.find('jamieChildren').text), 'silRep': int(srep.find('silRep').text), 'silPreg': int(srep.find('silPreg').text), 'silRate': int(srep.find('silRate').text), 'silLay': int(srep.find('silLay').text), 'silGrowthTime': int(srep.find('silGrowthTime').text), 'silTied': Utils.strtobool(srep.find('silTied').text), 'lilaUB': Utils.strtobool(srep.find('lilaUB').text), 'dairyFarmBrand': Utils.strtobool(srep.find('dairyFarmBrand').text), 'lilaWetness': int(srep.find('lilaWetness').text), 'jamieButt': Utils.strtobool(srep.find('jamieButt').text), 'jamieBreasts': Utils.strtobool(srep.find('jamieBreasts').text), 'jamieHair': Utils.strtobool(srep.find('jamieHair').text)},
+            'knowledge': {'foundSoftlik': Utils.strtobool(sknowledge.find('foundSoftlik').text), 'foundFirmshaft': Utils.strtobool(sknowledge.find('foundFirmshaft').text), 'foundTieden': Utils.strtobool(sknowledge.find('foundTieden').text), 'foundSizCalit': Utils.strtobool(sknowledge.find('foundSizCalit').text), 'foundOviasis': Utils.strtobool(sknowledge.find('foundOviasis').text), 'foundValley': Utils.strtobool(sknowledge.find('foundValley').text), 'foundSanctuary': Utils.strtobool(sknowledge.find('foundSanctuary').text)},
+            'boss': {'defeatedMinotaur': Utils.strtobool(sboss.find('defeatedMinotaur').text), 'defeatedFreakyGirl': Utils.strtobool(sboss.find('defeatedFreakyGirl').text), 'defeatedSuccubus': Utils.strtobool(sboss.find('defeatedSuccubus').text)},
+            'knowSimpleAlchemy': {'knowLustDraft': Utils.strtobool(sknowSimpleAlchemy.find('knowLustDraft').text), 'knowRejuvPot': Utils.strtobool(sknowSimpleAlchemy.find('knowRejuvPot').text), 'knowExpPreg': Utils.strtobool(sknowSimpleAlchemy.find('knowExpPreg').text), 'knowBallSwell': Utils.strtobool(sknowSimpleAlchemy.find('knowBallSwell').text), 'knowMaleEnhance': Utils.strtobool(sknowSimpleAlchemy.find('knowMaleEnhance').text)},
+            'knowAdvancedAlchemy': {'knowSLustDraft': Utils.strtobool(sknowAdvancedAlchemy.find('knowSLustDraft').text), 'knowSRejuvPot': Utils.strtobool(sknowAdvancedAlchemy.find('knowSRejuvPot').text), 'knowSExpPreg': Utils.strtobool(sknowAdvancedAlchemy.find('knowSExpPreg').text), 'knowSBallSwell': Utils.strtobool(sknowAdvancedAlchemy.find('knowSBallSwell').text), 'knowGenSwap': Utils.strtobool(sknowAdvancedAlchemy.find('knowGenSwap').text), 'knowMasoPot': Utils.strtobool(sknowAdvancedAlchemy.find('knowMasoPot').text), 'knowBabyFree': Utils.strtobool(sknowAdvancedAlchemy.find('knowBabyFree').text), 'knowPotPot': Utils.strtobool(sknowAdvancedAlchemy.find('knowPotPot').text), 'knowMilkSuppress': Utils.strtobool(sknowAdvancedAlchemy.find('knowMilkSuppress').text)},
+            'knowComplexAlchemy': {'knowSGenSwap': Utils.strtobool(sknowComplexAlchemy.find('knowSGenSwap').text), 'knowSMasoPot': Utils.strtobool(sknowComplexAlchemy.find('knowSMasoPot').text), 'knowSBabyFree': Utils.strtobool(sknowComplexAlchemy.find('knowSBabyFree').text), 'knowSPotPot': Utils.strtobool(sknowComplexAlchemy.find('knowSPotPot').text), 'knowPussJuice': Utils.strtobool(sknowComplexAlchemy.find('knowPussJuice').text), 'knowPheromone': Utils.strtobool(sknowComplexAlchemy.find('knowPheromone').text), 'knowBazoomba': Utils.strtobool(sknowComplexAlchemy.find('knowBazoomba').text)},
+            'majorFetish': {'maleFetish': float(smajorFetish.find('maleFetish').text), 'femaleFetish': float(smajorFetish.find('femaleFetish').text), 'hermFetish': float(smajorFetish.find('hermFetish').text), 'narcissistFetish': float(smajorFetish.find('narcissistFetish').text), 'dependentFetish': float(smajorFetish.find('dependentFetish').text)},
+            'moderateFetish': {'dominantFetish': float(smoderateFetish.find('dominantFetish').text), 'submissiveFetish': float(smoderateFetish.find('submissiveFetish').text), 'lboobFetish': float(smoderateFetish.find('lboobFetish').text), 'sboobFetish': float(smoderateFetish.find('sboobFetish').text), 'furryFetish': float(smoderateFetish.find('furryFetish').text), 'scalyFetish': float(smoderateFetish.find('scalyFetish').text), 'smoothyFetish': float(smoderateFetish.find('smoothyFetish').text)},
+            'minorFetish': {'pregnancyFetish': float(sminorFetish.find('pregnancyFetish').text), 'bestialityFetish': float(sminorFetish.find('bestialityFetish').text), 'milkFetish': float(sminorFetish.find('milkFetish').text), 'sizeFetish': float(sminorFetish.find('sizeFetish').text), 'unbirthingFetish': float(sminorFetish.find('unbirthingFetish').text), 'ovipositionFetish': float(sminorFetish.find('ovipositionFetish').text), 'toyFetish': float(sminorFetish.find('toyFetish').text), 'hyperFetish': float(sminorFetish.find('hyperFetish').text)},
+            'kid': {'humanChildren': int(skid.find('humanChildren').text), 'equanChildren': int(skid.find('equanChildren').text), 'lupanChildren': int(skid.find('lupanChildren').text), 'felinChildren': int(skid.find('felinChildren').text), 'cowChildren': int(skid.find('cowChildren').text), 'lizanChildren': int(skid.find('lizanChildren').text), 'lizanEggs': int(skid.find('lizanEggs').text), 'bunnionChildren': int(skid.find('bunnionChildren').text), 'wolfPupChildren': int(skid.find('wolfPupChildren').text), 'miceChildren': int(skid.find('miceChildren').text), 'birdEggs': int(skid.find('birdEggs').text), 'birdChildren': int(skid.find('birdChildren').text), 'pigChildren': int(skid.find('pigChildren').text), 'calfChildren': int(skid.find('calfChildren').text), 'bugEggs': int(skid.find('bugEggs').text), 'bugChildren': int(skid.find('bugChildren').text), 'skunkChildren': int(skid.find('skunkChildren').text), 'minotaurChildren': int(skid.find('minotaurChildren').text), 'freakyGirlChildren': int(skid.find('freakyGirlChildren').text)},
+            'trav': [],
+            'bag': _bagArray,
+            'bagStack': _bagStackArray,
+            'stash': _stashArray,
+            'stashStack': _stashStackArray,
+            'preg': _preg
+        }
+        if strack.find('firstExplore') is not None:
+            odata['track']['firstExplore'] = Utils.strtobool(strack.find('firstExplore').text)
+        sver = data.find('version')
+        if sver is not None:
+            odata['version']['original'] = sver.find('original').text
+            odata['version']['port'] = sver.find('port').text
+        if slevel.find('shapeshiftyFirst').text is not None:
+            odata['shapeshiftyFirst'] = str(slevel.find('shapeshiftyFirst').text)
+        if slevel.find('shapeshiftySecond').text is not None:
+            odata['shapeshiftySecond'] = str(slevel.find('shapeshiftySecond').text)
+        if scock.find('nueterizerHideBalls') is not None:
+            odata['cock']['neuterizerHideBalls'] = Utils.strtobool(scock.find('neuterizerHideBalls').text)
+        if sknowledge.find('usedSecretStairs') is not None:
+            odata['usedSecretStairs'] = Utils.strtobool(sknowledge.find('usedSecretStairs').text)
+        return odata
+
+
 class SE_File:
-    @property
-    def changed(self):
-        return self._changed
-
-    @changed.setter
-    def changed(self, value):
-        self._changed = value
-
-    def _SOL_GetEncoded(self, data):
-        return sol.encode(SaveUtils.solGetFileName(self.file), SaveUtils.returnSOL(data, None), encoding=3).getvalue()
-
-    def _NIM_GetEncoded(self, data):
-        file = ByteArray()
-        file.writeObject({'data': SaveUtils.returnSOL(data, None)})
-        return file.getvalue()
-
-    def _XML_GetEncoded(self, data):
-        with BytesIO() as file:
-            SaveUtils.saveXML(data, file)
-            return file.getvalue()
-
-    def _TOML_GetEncoded(self, data):
-        return TOML.Return(data).encode('utf-8')
-
     def __init__(self, file):
         self.file = os.path.realpath(file)
         self.ext = os.path.splitext(file)[1]
-        self.data = None
+        self.rawData = None
         self.changed = False
         if self.ext == '.sol':
             self._LoadFunction = SaveUtils.loadSOL
             self._SaveFunction = SaveUtils.saveSOL
-            self._EncodeFunction = self._SOL_GetEncoded
+            self._RawLoader = SE_RawLoaders.SOL
         elif self.ext == '.nim':
             self._LoadFunction = SaveUtils.loadNIM
             self._SaveFunction = SaveUtils.saveNIM
-            self._EncodeFunction = self._NIM_GetEncoded
+            self._RawLoader = SE_RawLoaders.NIM
         elif self.ext == '.xml':
             self._LoadFunction = SaveUtils.loadXML
             self._SaveFunction = SaveUtils.saveXML
-            self._EncodeFunction = self._XML_GetEncoded
+            self._RawLoader = SE_RawLoaders.XML
         elif self.ext == '.toml':
             self._LoadFunction = SaveUtils.loadTOML
             self._SaveFunction = SaveUtils.saveTOML
-            self._EncodeFunction = self._TOML_GetEncoded
+            self._RawLoader = SE_RawLoaders.TOML
         else:
             raise Error(f'[SE_File] Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got {self.ext}.')
 
-    def getRawData(self):
-        with open(self.file, 'rb') as file:
-            return file.read()
-
     def load(self):
-        self.data = self._LoadFunction(self.file)
-
-    def getEncoded(self):
-        return self._EncodeFunction(self.data)
+        data = self._LoadFunction(self.file)
+        self.rawData = self._RawLoader(self.file)
+        if self.rawData != data:
+            SE_ChangedOnLoadWarning()
+        return data
 
     def trySaveNewData(self, newData):
         # Check if anything has changed
-        # TODO: Find a way to do this without using the binary data
-        if not self.changed or self.getRawData() != self._EncodeFunction(newData):
+        if self.rawData != newData:
             # TODO: Add a prompt to ask user if they want to save anyway. If no, return.
             ...
             raise NotImplementedError('Data Changed.')
         return
-        self.data = saveData
-        self.data['version']['port'] = __version__
-        self._SaveFunction(self.data, self.file)
+        data = newData
+        data['version']['port'] = __version__
+        self._SaveFunction(data, self.file)
 
 
 SE_Label = partial(tkinter.Label, highlightthickness=1, highlightbackground='#000000', background='#FFFFFF', foreground='#000000', anchor='w')
@@ -4699,16 +4867,10 @@ class SaveEditor(PyminWindow):
         self.activeFile = SE_File(filedialog.askopenfilename(initialdir=mainobject.saveLocation, filetypes=(('All Files', '*'), ('TOML File', '*.toml'), ('XML Files', '*.xml'), ('Shared Objects', '*.sol'), ('Nimin Saves', '*.nim'))))
         self.filelabel['text'] = self.activeFile.file
 
-        self.activeFile.load()
-
-        originalData = self.activeFile.getEncoded()
-        with open(self.activeFile.file, 'rb') as f:
-            if f.read() != originalData:
-                SE_ChangedOnLoadWarning()
-                self.activeFile.changed = True
+        data = self.activeFile.load()
 
         # TODO: Doesn't expand to take up the entire width
-        self.editorBox = SE_WidgetContainer(self.editorCanvas, values=self.activeFile.data)
+        self.editorBox = SE_WidgetContainer(self.editorCanvas, values=data)
         self.editorCanvas.create_window(0, 0, window=self.editorBox, anchor='nw')
 
         self.editorBox.bind('<Configure>', lambda e: self.editorCanvas.configure(scrollregion=self.editorCanvas.bbox('all')))
