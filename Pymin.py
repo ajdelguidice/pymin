@@ -4461,11 +4461,9 @@ class SE_File:
         return sol.encode(SaveUtils.solGetFileName(self.file), SaveUtils.returnSOL(data, None), encoding=3).getvalue()
 
     def _NIM_GetEncoded(self, data):
-        data = ByteArray()
-        data.writeObject({'data': SaveUtils.returnSOL(data, None)})
-        temp = data.getvalue()
-        data.close()
-        return temp
+        file = ByteArray()
+        file.writeObject({'data': SaveUtils.returnSOL(data, None)})
+        return file.getvalue()
 
     def _XML_GetEncoded(self, data):
         with BytesIO() as file:
