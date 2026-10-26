@@ -4449,60 +4449,80 @@ class SaveConverter(PyminWindow):
 
 
 class SE_File:
-    def _SOL_ProcessData(self):
-        return sol.encode(SaveUtils.solGetFileName(self.file), SaveUtils.returnSOL(self.data, None), encoding=3).getvalue()
+    @property
+    def changed(self):
+        return self._changed
 
-    def _NIM_ProcessData(self):
+    @changed.setter
+    def changed(self, value):
+        self._changed = value
+
+    def _SOL_GetEncoded(self, data):
+        return sol.encode(SaveUtils.solGetFileName(self.file), SaveUtils.returnSOL(data, None), encoding=3).getvalue()
+
+    def _NIM_GetEncoded(self, data):
         data = ByteArray()
-        data.writeObject({'data': SaveUtils.returnSOL(self.data, None)})
+        data.writeObject({'data': SaveUtils.returnSOL(data, None)})
         temp = data.getvalue()
         data.close()
         return temp
 
-    def _XML_ProcessData(self):
-        with BytesIO() as data:
-            SaveUtils.saveXML(self.data, data)
-            return data.getvalue()
+    def _XML_GetEncoded(self, data):
+        with BytesIO() as file:
+            SaveUtils.saveXML(data, file)
+            return file.getvalue()
 
-    def _TOML_ProcessData(self):
-        return TOML.Return(self.data).encode('utf-8')
+    def _TOML_GetEncoded(self, data):
+        return TOML.Return(data).encode('utf-8')
 
     def __init__(self, file):
         self.file = os.path.realpath(file)
         self.ext = os.path.splitext(file)[1]
         self.data = None
+        self.changed = False
         if self.ext == '.sol':
             self._LoadFunction = SaveUtils.loadSOL
             self._SaveFunction = SaveUtils.saveSOL
-            self._ProcessFunction = self._SOL_ProcessData
+            self._EncodeFunction = self._SOL_GetEncoded
         elif self.ext == '.nim':
             self._LoadFunction = SaveUtils.loadNIM
             self._SaveFunction = SaveUtils.saveNIM
-            self._ProcessFunction = self._NIM_ProcessData
+            self._EncodeFunction = self._NIM_GetEncoded
         elif self.ext == '.xml':
             self._LoadFunction = SaveUtils.loadXML
             self._SaveFunction = SaveUtils.saveXML
-            self._ProcessFunction = self._XML_ProcessData
+            self._EncodeFunction = self._XML_GetEncoded
         elif self.ext == '.toml':
             self._LoadFunction = SaveUtils.loadTOML
             self._SaveFunction = SaveUtils.saveTOML
-            self._ProcessFunction = self._TOML_ProcessData
+            self._EncodeFunction = self._TOML_GetEncoded
         else:
             raise Error(f'[SE_File] Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got {self.ext}.')
+
+    def getRawData(self):
+        with open(self.file, 'rb') as file:
+            return file.read()
 
     def load(self):
         self.data = self._LoadFunction(self.file)
 
-    def save(self):
+    def getEncoded(self):
+        return self._EncodeFunction(self.data)
+
+    def trySaveNewData(self, newData):
+        # Check if anything has changed
+        # TODO: Find a way to do this without using the binary data
+        if not self.changed or self.getRawData() != self._EncodeFunction(newData):
+            # TODO: Add a prompt to ask user if they want to save anyway. If no, return.
+            ...
+            raise NotImplementedError('Data Changed.')
+        return
+        self.data = saveData
+        self.data['version']['port'] = __version__
         self._SaveFunction(self.data, self.file)
 
-    def processData(self):
-        return self._ProcessFunction()
 
-
-class SE_Label(tkinter.Label):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs, highlightthickness=1, highlightbackground='#000000', background='#FFFFFF', foreground='#000000', anchor='w')
+SE_Label = partial(tkinter.Label, highlightthickness=1, highlightbackground='#000000', background='#FFFFFF', foreground='#000000', anchor='w')
 
 
 class SE_WidgetContainer(tkinter.Frame):
@@ -4537,6 +4557,10 @@ class SE_WidgetContainer(tkinter.Frame):
     def getWidgets(self):
         return {i: getattr(self, i) for i in dir(self) if i.startswith('WIDGET_')}
 
+    def getValue(self):
+        # TODO: Should recursively return all values as a dict
+        return {i.lstrip('WIDGET_'): getattr(self, i).getValue() for i in dir(self) if i.startswith('WIDGET_')}
+
 
 class SE_SectionWidget(SE_WidgetContainer):
     def __init__(self, parent, name, values, *args, **kwargs):
@@ -4569,6 +4593,9 @@ class SE_ValueWidget(SE_WidgetContainer):
         self.entry.pack(side=tkinter.LEFT, fill=tkinter.BOTH, expand=True)
         self.pack(side=tkinter.TOP, fill=tkinter.X)
 
+    def getValue(self):
+        return self.var.get()
+
 
 class SE_ArrayWidget(SE_SectionWidget):
     def __init__(self, parent, name, values, *args, **kwargs):
@@ -4578,10 +4605,12 @@ class SE_ArrayWidget(SE_SectionWidget):
         for index, item in enumerate(values):
             self[index] = SE_ValueWidget(self, index, item)
 
+    def getValue(self):
+        return [getattr(self, i).getValue() for i in dir(self) if i.startswith('WIDGET_')]
+
 
 class SaveEditor(PyminWindow):
-    # TODO: Fix canvas scrolling
-    # TODO: See if grid or pack can be used instead of place
+    # TODO: Scroll wheel scrolling
     _CurrentIndent = 0
     ENTRY_LABEL_HEIGHT = 20
     ENTRY_LABEL_WIDTH = 140
@@ -4621,20 +4650,9 @@ class SaveEditor(PyminWindow):
 
         self.editorCanvas.configure(yscrollcommand=self.scrollbar.set)
 
-        self.fileChanged = False
         self.activeFile = None
         self.editorBox = None
-        ''' Design
-        | Load (Button) | | Save (Button, greyed out until file loaded) | | File Location (Label) |
-        ```
 
-
-        Scrollable Area with entry boxes for each item in the save file.
-
-
-
-        ```
-        '''
         self._isOpen = True
 
     def loadFile(self):
@@ -4648,21 +4666,20 @@ class SaveEditor(PyminWindow):
 
         self.activeFile.load()
 
-        with BytesIO() as lfile:
-            lfile.write(self.activeFile.processData())
-            with open(self.activeFile.file, 'rb') as f:
-                if f.read() != lfile.getvalue():
-                    changenotify = tkinter.Toplevel()
-                    changenotify.title('Warning')
-                    changenotify.geometry('350x120')
-                    changenotify.resizable(False, False)
-                    changenotify.transient(self.window)
-                    cnlabel = tkinter.Label(changenotify, font=('TkTextFont', 9))
-                    cnlabel.place(x=175, y=5, anchor='n')
-                    cnlabel['text'] = 'Warning:\nThe data loaded and file contents are different. This\nusually happens because of differences between game\nversions but could indicate a problem with the file.'
-                    cnok = tkinter.Button(changenotify, text='Ok', font=('TkTextFont', 9), command=changenotify.destroy)
-                    cnok.place(x=345, y=115, width=30, height=30, anchor='se')
-                    self.fileChanged = True
+        originalData = self.activeFile.getEncoded()
+        with open(self.activeFile.file, 'rb') as f:
+            if f.read() != originalData:
+                changenotify = tkinter.Toplevel()
+                changenotify.title('Warning')
+                changenotify.geometry('350x120')
+                changenotify.resizable(False, False)
+                changenotify.transient(self.window)
+                cnlabel = tkinter.Label(changenotify, font=('TkTextFont', 9))
+                cnlabel.place(x=175, y=5, anchor='n')
+                cnlabel['text'] = 'Warning:\nThe data loaded and file contents are different. This\nusually happens because of differences between game\nversions but could indicate a problem with the file.'
+                cnok = tkinter.Button(changenotify, text='Ok', font=('TkTextFont', 9), command=changenotify.destroy)
+                cnok.place(x=345, y=115, width=30, height=30, anchor='se')
+                self.activeFile.changed = True
 
         # TODO: Doesn't expand to take up the entire width
         self.editorBox = SE_WidgetContainer(self.editorCanvas, values=self.activeFile.data)
@@ -4673,14 +4690,10 @@ class SaveEditor(PyminWindow):
         self.savebutton['state'] = 'normal'
 
     def saveFile(self):
-        if self.activeFile is None:  # No file loaded
+        # Check if a file is loaded
+        if self.activeFile is None:
             return
-        return  # Prevent execution because partial implementation
-        # TODO: Retrieve data from interface
-        if not self.fileChanged:  # or (self.seLoadedData == <RetrievedData>): # Check if anything has changed
-            ...  # TODO: Add a prompt to ask user if they want to save anyway. If no, return.
-        self.activeFile.data['version']['port'] = __version__
-        self.activeFile.save()
+        self.activeFile.trySaveNewData(self.editorBox.getValue())
 
 
 class DebugVariableDisplay(PyminWindow):
