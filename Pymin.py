@@ -21250,215 +21250,214 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doEnd()
 
     def doOldCave(self):
-      # HERE
-      chance = self.eventSelect("Old Cave")
-      if chance == 1:
-         self.outputMainText("Growing on the wall of the cave, you find a small, odd looking mushroom. It has a red cap speckled with a few large white dots. You pluck it.", True)
-         self.itemAdd(212)
-         self.hrs = 2
-         self.doEnd()
-
-      elif chance == 2:
-         if (Utils.percent() <= 50):
-            self.outputMainText("Strangely, there's a small ornate coffee table sitting before the entrance to the cave. Looking around, you don't see a single soul, there seems to be no logical reason for it to be there. Moving closer, you notice a slice of cake sitting upon it. The label reads \"EAT ME\".\n\nWill you eat it?", True)
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.tallness += 2
-                  self.doMainText("You pick up the cake and lift it to your lips. Barely a nibble and it's already gone, hardly enough for even a full swallow. It was somewhat sweet, like a cross between chocolate and the number 3, which is rather ludicrous when you think about it. Wondering why it should have been eaten at all, you attempt to check the table for any sort of shenanigans. You begin to bend down to reach it, only to find yourself bending lower and lower with the table seemingly further and further away. It seems to be shrinking beside you, but then again so is everything else at an increasingly rapid rate...\n\nVery quickly, you realize that you're the one who's growing.", True)
-                  if (self.ment < 30):
-                     self.doMainText(f" Your {self.currentClothes()} rapidly grows tighter and tighter, squeezing your body until you can hardly breathe. Tearing can be heard along the stitching, flesh from your {self.boobDesc()} chest squeezing through the newly torn holes and a painful wedgie of ripped cloth slips into your {self.buttDesc()} rump, your cheeks slapped by a light breeze. Your {self.hipDesc()} hips soon relieve your ass of the torment as they stretch the waist of your {self.clothesBottom()} to the point to where it barely hangs around your body by thin strands, the rest of the garment flapping in the wind and no longer concealing your genitals. Your {self.boobDesc()} chest follows suit, growing so tight until you can hardly breath until your {self.clothesTop()} bursts into shreds around you, your {self.nipDesc()}nipples perking freely in the cooler air through what's left of your outfit.")
-                     self.changeTop(-1)
-                     self.changeBot(-1)
-                  else:
-                     self.doMainText(f" Your {self.currentClothes()} rapidly grows tighter and tighter, squeezing your body until you can hardly breath. With your quick wit, however, you think fast enough to remove your outfit to prevent yourself from being crushed. You're just in time to slip {self.pullUD(1)} your {self.clothesTop()} before your {self.boobDesc()} chest plows through it and step out of your {self.clothesBottom()} before your {self.buttDesc()} tush shone through the backside. Growing to fast to lay them neatly on the ground, however, you simply let them fall idly, leaving you with a naked bosom and your genitals being frisked by a slight breeze.")
-                  if (self.tallness <= 18):
-                     self.doMainText(" By the time you finish growing, you're... just about the size of a particularly tall, but not terribly giant, person. You take a few minutes enjoying the feeling of being big, able to actually see over the grass and spot a few trees in the distance, but it doesn't take long before you find yourself dwindling back to your normal diminutive stature, though with an added couple of inches.")
-                     if (self.ment >= 30):
-                        self.doMainText(" You grab your clothes, finding them to be a little small for you, but they're otherwise fine.")
-                     self.outputMainText(" Then you head back to Firmshaft, slightly confused by the whole experience...")
-                     self.hrs = 2
-                     self.doEnd()
-                  else:
-                     self.doMainText(" By the time you finish growing, you tower over the hill that the cave resides in. You can see far into the distance and you can feel a great draft in your loins.")
-                     if (self.gender == Gender.MALE or self.gender == Gender.HERM and Utils.percent() <= 50):
-                        getCum = self.cumAmount()
-                        if (self.cockSize * self.cockSizeMod > 400):
-                           self.outputMainText(f" The wind across your {self.cockDesc()} cock{self.plural(1)} feel{self.plural(3)} rather... nice, to say the least. And considering {self.plural(5)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Quite soon you find yourself barely able to see the {self.plural(5)} tip{self.plural(1)} as {self.plural(11)} grow{self.plural(3)} off into the distance. Quickly, you find yourself falling over your relatively {self.cockDesc()} girth{self.plural(1)}, the ground rumbling around you as you connect, while you feel {self.plural(9)} drag across the open fields, plowing through forests, and who knows what else you manage to destroy.")
-                           self.doNext()
-
-                           def doListen():
-                              self.doMainText(f"The exhilirating sensation of your massive size compared to everything around you excites you even further. Your {self.legDesc(10)} dig into the ground, carving out holes, and thrust your erection{self.plural(1)} forward. You can hear the sounds of wood cracking beneath your massive stiffness in the distance and the air fills with birds flying away to avoid your cock-head{self.plural(1)}. All the little bushes and trees provide a rather unique sensation, their leaves wrapping about your underside{self.plural(1)} en masse. Your voice echoes into the horizon as you let out a loud howl, rapidly coming to climax.", True)
-                              if (getCum > 10000):
-                                 self.doMainText(" More crashing can be heard, along with a roar, as spunk erupts from the other end, flooding the far-off land and rushing into its own river!")
-                              else:
-                                 self.doMainText(" You cum gushes from the other end, raining down around the far-off terrain like some sort of lewd weather.")
-                              self.doMainText(f"\n\nYour heavy breathing blows about grass about beneath you as you come to your senses. You can feel your cock{self.plural(1)} begin to drag across the grass once more, though not by your own power. Looking up, you can see {self.plural(11)} shrinking back towards you. However, it is the devastation that lies beyond that truly catches your eye. Despite all the damage you did, you can see nature shifting around, like the planet itself were healing, sucking in your cum and returning the land to a more healthy state. Though, before you can get a good look, you find yourself finally shrink back to your normal size, plus a couple inches. Too far to travel into the wilderness, it seems you'll have to leave the mystery for later.")
-                              self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
-                              if (self.ment >= 30):
-                                 self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
-                              self.doLust(-Math.floor(self.sen / 2), 2, 1)
-                              self.displayMainText()
-                              self.hrs = 3
-                              self.doEnd()
-                           self.doListen = doListen
-                        else:
-                           self.outputMainText(f" The wind across your {self.cockDesc()} cock{self.plural(1)} feel{self.plural(3)} rather... nice, to say the least. And considering {self.plural(5)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. You soon find yourself rather stiff, and as you look down at {self.plural(11)}, your eyes spot the cave below. From this new perspective, you begin to think the hole in the ground is a bit... lewd?")
-                           self.doNext()
-
-                           def doListen():
-                              self.doMainText(f"The thought doesn't make it a second time through your mind before you find yourself crashing to your {self.legDesc(6)}, the ground rumbling as you touch down. You collapse over the hill, thrusting {self.oneYour(1)} cock{self.plural(1)} into the natural glory hole. And much to your surprise, the internal walls of the cave seem to be coated with a slick substance, lubricating you through its dark interior. With your giant size, the rocks feel like mere bumps, more pleasurable than you could have imagined, and the ground soon shakes again and again as you hump into the hill.\n\nRather quickly, you let out a loud shout that echoes across the fields.", True)
-                              if (getCum > 10000):
-                                 self.doMainText(" You can feel your spunk churn and gush around you. Though some of it spits back out across your thighs, painting the mouth of the cave, most of it amazingly guzzles deeper into the ground. So much so that you could swear you hear a small \"EEK!\" cry out from within, though your brain is too foggy to be sure.")
-                              else:
-                                 self.doMainText(" You can hear your spunk splatter about within and seems to run away from your cock-tip, somewhere deeper into the ground. With you brain fuzzy from orgasm, you're not sure if the tiny \"Eehehe!\" you hear is real or just your ears ringing from the slight breeze.")
-                              self.doMainText(" Either way, you find yourself slipping back down the hill, shrinking and falling back before the cave, almost returning to your original height. It's still far too dark to explore inside the cave to see where it all went, you can definitely smell the erotic odor that blows back out, some of your spunk still dripping in thick strands and webs from the mouth.")
-                              self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
-                              if (self.ment >= 30):
-                                 self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
-                              self.doLust(-Math.floor(self.sen / 2), 2, 1)
-                              self.displayMainText()
-                              self.hrs = 3
-                              self.doEnd()
-                           self.doListen = doListen
-                     elif (self.gender == Gender.FEMALE or self.gender == Gender.HERM):
-                        self.outputMainText(f" The wind through your {self.vulvaDesc()} slit{self.plural(2)} feel{self.plural(4)} a bit... nice, to say the least. And considering {self.plural(6)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Looking down at your swelling attributes your eyes focus on the cave below. From this new perspective, the hill looks rather like a rather... lewdly shaped saddle.")
-                        self.doNext()
-
-                        def doListen():
-                           self.doMainText(f"The thought doesn't make it a second time through your mind before you find yourself turning around and crashing your {self.buttDesc()} rump down onto the hill with a rumble. Your {self.legDesc(2)} {self.legVerb(5)} it on either side, your {self.clitDesc()} clit{self.plural(2)} grinding against a protruding grassy mound that slides perfectly into your relatively {self.vulvaDesc()} lips. You can hear rocks crash to the floor of the cave within as your {self.hipDesc()} hips rock back and forth, making the ground quake beneath you. Your sensual fluids flood about the grass, making it perfectly slick for your needs.\n\nRather quickly, with all the extra sensitive area of your genitals humping an entire hill, you find yourself letting out a shout that echoes across the fields, your body trembling with orgasm.", True)
-                           if (self.cockTotal > 1):
-                              self.doMainText(f" Your proportionately {self.cockDesc()} cock{self.plural(1)} bounce{self.plural(3)} up and down as spunk gushes from the tip, flinging about the landscape and forming large puddles.")
-                              self.cumAmount()
-                           self.doMainText(" Yet, you don't have much time to enjoy your quivering state before you find yourself beginning to shrink, sliding down one side of the hill as you're caught off balance. You become slick with your own lubrication as you roll through the messy grass and splash down in your own puddle. Picking yourself up, the slime sticking to your body in webs and strands, you take a moment to flick off some of the goop before heading back to the cave.")
-                           if (self.pregCheck(1) and Utils.percent() <= 60 and self.vagSize * self.vagSizeMod > 56):
-                              self.doMainText(" And you're quite surprised to find you're sporting a much larger belly. You have no idea how it could have possibly happened, but your mind was rather far-off while you were up there. Placing your hand on it, you can feel a body writhe about, squirming inside of you, and in no rush to come out it seems. It seems like you got pregnant quite rapidly?")
-                              for i in range(0, self.pregArray.length, 5):
-                                 if (not self.pregArray[i]):
-                                    self.pregArray[i] = True
-                                    if (Utils.percent() <= 50):
-                                       self.pregArray[i + 1] = 201
-                                    else:
-                                       self.pregArray[i + 1] = 202
-                                    self.pregArray[i + 2] = 230
-                                    self.pregArray[i + 3] = 220
-                                    break
-                              self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
-                           else:
-                              self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
-                           self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
-                           if (self.ment >= 30):
-                              self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
-                           self.displayMainText()
-                           self.hrs = 3
-                           self.doEnd()
-                        self.doListen = doListen
-                     else:
-                        self.outputMainText(" Though, with nothing in your loins to speak of, it simply makes you giggle a little as it tickles you. You stand there for a moment, in awe of the world around you, your mind running through all the possibilities of things you could do with such a massive size!")
-                        self.doNext()
-
-                        def doListen():
-                           self.doMainText("However, you feel a sudden warmth flush through you and with a slight sparking sound and you find yourself shrinking instead. Soon you're nearly as tall as you were before and slightly more aroused as well. What the heck just happened?...", True)
-                           self.doLust(15, 0)
-                           self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
-                           if (self.ment >= 30):
-                              self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
-                           self.displayMainText()
-                           self.hrs = 3
-                           self.doEnd()
-                        self.doListen = doListen
-               else:
-                  self.outputMainText("Wary of free cake that desires to be eaten, you ignore it and quickly make your way back to Firmshaft.", True)
-                  self.hrs = 1
-                  self.doEnd()
-            self.doListen = doListen
-         else:
-            self.outputMainText("Strangely, there's a small ornate coffee table sitting before the entrance to the cave. Looking around, you don't see a single soul, there seems to be no logical reason for it to be there. Moving closer, you notice a lone bottle sitting upon it. The label reads \"DRINK ME\".\n\nWill you drink it?", True)
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.doMainText("You pick up the bottle and lift it to your lips. Only a few sips and it's already empty, barely enough for even a full gulp. It hardly had any taste to it, the closest flavor you can relate it to is 'purple', which hardly makes any sense at all when you think about it. Wondering why it should have been drunk at all, you place the empty bottle back on the table. Which proves to be more difficult than you would have imagined as the table seems start growing beside you. As well as everything else around you at an increasingly rapid rate...\n\nVery quickly, you realize that you're the one who's shrinking.", True)
-                  if (self.attireTop == self.attireBot):
-                     self.doMainText(f" Your {self.clothesTop()} plummets down your {self.boobDesc()} chest. You catch it with your hands, but soon the material bundles over your arms that you can no longer maintain your hold. When you let go, the {self.clothesTop()} simply sits there, piled around you.")
-                  else:
-                     self.doMainText(f" Your {self.clothesTop()} begins to plummet down your {self.boobDesc()} chest, while your {self.clothesBottom()} slips from your {self.hipDesc()} hips. One hand flails to catch your {self.clothesTop()} while the other heads for the {self.clothesBottom()}, but neither is successful. For a moment your {self.boobDesc()} chest and your nether region are both exposed to the fresh air as your outfit falls around you, but you quickly find yourself falling back into the fabric, a pile around you.")
-                  self.doMainText(f"\n\nYou climb out from your overgrown clothes, completely nude. Though you doubt anybody could see you if they passed by, considering you're now a fraction of the height you were before, maybe a whole {Math.floor(self.tallness / 12)} inches tall.")
-                  self.displayMainText()
-                  self.tallness -= 2
-                  self.doNext()
-
-                  def doListen():
-                     chance = Utils.percent()
-                     if (chance <= 40):
-                        self.doMainText("Unsure what to do in your miniscule state, you don't venture far from your forgone attire. However, it doesn't seem like you need to go anywhere to run into trouble, as you hear something thump its way towards you.\n\nLong ears bob upon a humanoid head and white fur covers much of its body. Long feet bounce upon the ground as it hops towards you. With a poofy tail and a button nose that twitches, it seems to be a rabbit-like person that is as naked as you are. The fuzzy swinging testicles makes it quite obvious what gender he is...\n\nHe spots you quickly, as though he had known you were there. With a grin, his nose and long whiskers twitch, and a rather mishievous twinkle lights in his eyes. Probably two feet high ", True)
-                        if (self.tallness <= 216):
-                           self.doMainText(" he towers over you, pleased with the result.")
-                        else:
-                           self.doMainText(" you seem to still be on par with him, though he seems pleased you're much more manageable than before.")
-                        self.displayMainText()
-                        self.doNext()
-
-                        def doListen():
-                           self.enemyID = Enemy.LITTLE_BIG_BUNNY_MAN
-                           self.currentState = GameState.BATTLE
-                           self.enemyBaseStats()
-                           self.eMaxHP = self.eHP
-                           self.doBattle()
-                        self.doListen = doListen
-                     elif (chance <= 80):
-                        self.doMainText("Unsure what to do in your miniscule state, you don't venture far from your forgone attire. However, it doesn't seem like you need to go anywhere to run into trouble, as you hear something thump its way towards you.\n\nLong ears bob upon a humanoid head and white fur covers much of its body. Long feet bounce upon the ground as it hops towards you. With a poofy tail and a button nose that twitches, it seems to be a rabbit-like person that is as naked as you are. The wobbling tits and thick labia makes it quite obvious what gender she is...\n\nShe spots you quickly, as though she had known you were there. With a grin, her nose and long whiskers twitch, and a rather mishievous twinkle lights in her eyes. Probably two feet high ", True)
-                        if (self.tallness <= 216):
-                           self.doMainText(" she towers over you, pleased with the result.")
-                        else:
-                           self.doMainText(" you seem to still be on par with her, though she seems pleased you're much more manageable than before.")
-                        self.displayMainText()
-                        self.doNext()
-
-                        def doListen():
-                           self.enemyID = Enemy.LITTLE_BIG_BUNNY_GIRL
-                           self.currentState = GameState.BATTLE
-                           self.enemyBaseStats()
-                           self.eMaxHP = self.eHP
-                           self.doBattle()
-                        self.doListen = doListen
-                     elif (chance > 80):
-                        self.outputMainText("With the extra-tall grass barring your path behind you, you decide to look around a bit. So small, you're not terribly worried about people spotting your indecency. However, you are careful of the ants and other 'large' creatures that skitter by.\n\nFortunately, none pay you any heed and you manage to make your way to the mouth of the cave. It's still as dark and dank as before, so you don't think to venture inside. Yet, from your shortened vantage point, you notice a small door in the wall at the mouth of the cave. You head towards it, curious as to its existence. How could you have not noticed it when it was bigger?\n\nThe thought doesn't seem to matter, though. When you attempt to open the door, it turns out to be locked. And judging by the keyhole beneath the knob, it would require a rather small key, which you don't have. Nor does this world, yet.\n\nWith a shrug, you turn back towards your pile of clothes. Along the way, your surroundings seem to grow smaller and smaller as you grow taller and taller. By the time you reach the pile, you seem to be back to your normal size, the bottle's effects having worn off.\n\nRedonning your clothing before heading back to Firmshaft, you notice they seem a bit baggier than before... It seems you're still missing a couple inches in height.", True)
-                        self.hrs = 2
-                        self.doEnd()
-                  self.doListen = doListen
-               else:
-                  self.outputMainText("Wary of strange liquids that desire to be drunk, you ignore it and quickly make your way back to Firmshaft.", True)
-                  self.hrs = 1
-                  self.doEnd()
-            self.doListen = doListen
-
-      elif chance == 3:
-         if (self.bag.hasItem(254)):
-            self.outputMainText("Normally this cave is too dark to go inside. However, you have a lantern that can provide enough light to venture within. Would you like to go inside?", True)
-            self.buttonConfirm()
-
-            def doListen():
-               if (self.buttonChoice == 6):
-                  self.inDungeon = True
-                  self.regionChange(Dungeon.MINOTAUR_ENTER)
-                  self.doOldCaveDescent()
-               else:
-                  self.doMainText("Deciding not to go inside, you merely wander around the entrance of the cave. However, an odd scent fills your nostrils and makes you feel a bit randy...", True)
-                  self.stats(0, -1, 2, 0)
-                  self.doLust(5, 0)
-                  self.displayMainText()
-                  self.hrs = 1
-                  self.doEnd()
-            self.doListen = doListen
-         else:
-            self.doMainText("Too dark to go inside, you merely wander around the entrance of the cave. However, an odd scent fills your nostrils and makes you feel a bit randy...", True)
-            self.stats(0, -1, 2, 0)
-            self.doLust(5, 0)
-            self.displayMainText()
-            self.hrs = 1
+        chance = self.eventSelect("Old Cave")
+        if chance == 1:
+            self.outputMainText("Growing on the wall of the cave, you find a small, odd looking mushroom. It has a red cap speckled with a few large white dots. You pluck it.", True)
+            self.itemAdd(212)
+            self.hrs = 2
             self.doEnd()
+
+        elif chance == 2:
+            if (Utils.percent() <= 50):
+                self.outputMainText("Strangely, there's a small ornate coffee table sitting before the entrance to the cave. Looking around, you don't see a single soul, there seems to be no logical reason for it to be there. Moving closer, you notice a slice of cake sitting upon it. The label reads \"EAT ME\".\n\nWill you eat it?", True)
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.tallness += 2
+                        self.doMainText("You pick up the cake and lift it to your lips. Barely a nibble and it's already gone, hardly enough for even a full swallow. It was somewhat sweet, like a cross between chocolate and the number 3, which is rather ludicrous when you think about it. Wondering why it should have been eaten at all, you attempt to check the table for any sort of shenanigans. You begin to bend down to reach it, only to find yourself bending lower and lower with the table seemingly further and further away. It seems to be shrinking beside you, but then again so is everything else at an increasingly rapid rate...\n\nVery quickly, you realize that you're the one who's growing.", True)
+                        if (self.ment < 30):
+                            self.doMainText(f" Your {self.currentClothes()} rapidly grows tighter and tighter, squeezing your body until you can hardly breathe. Tearing can be heard along the stitching, flesh from your {self.boobDesc()} chest squeezing through the newly torn holes and a painful wedgie of ripped cloth slips into your {self.buttDesc()} rump, your cheeks slapped by a light breeze. Your {self.hipDesc()} hips soon relieve your ass of the torment as they stretch the waist of your {self.clothesBottom()} to the point to where it barely hangs around your body by thin strands, the rest of the garment flapping in the wind and no longer concealing your genitals. Your {self.boobDesc()} chest follows suit, growing so tight until you can hardly breath until your {self.clothesTop()} bursts into shreds around you, your {self.nipDesc()}nipples perking freely in the cooler air through what's left of your outfit.")
+                            self.changeTop(-1)
+                            self.changeBot(-1)
+                        else:
+                            self.doMainText(f" Your {self.currentClothes()} rapidly grows tighter and tighter, squeezing your body until you can hardly breath. With your quick wit, however, you think fast enough to remove your outfit to prevent yourself from being crushed. You're just in time to slip {self.pullUD(1)} your {self.clothesTop()} before your {self.boobDesc()} chest plows through it and step out of your {self.clothesBottom()} before your {self.buttDesc()} tush shone through the backside. Growing to fast to lay them neatly on the ground, however, you simply let them fall idly, leaving you with a naked bosom and your genitals being frisked by a slight breeze.")
+                        if (self.tallness <= 18):
+                            self.doMainText(" By the time you finish growing, you're... just about the size of a particularly tall, but not terribly giant, person. You take a few minutes enjoying the feeling of being big, able to actually see over the grass and spot a few trees in the distance, but it doesn't take long before you find yourself dwindling back to your normal diminutive stature, though with an added couple of inches.")
+                            if (self.ment >= 30):
+                                self.doMainText(" You grab your clothes, finding them to be a little small for you, but they're otherwise fine.")
+                            self.outputMainText(" Then you head back to Firmshaft, slightly confused by the whole experience...")
+                            self.hrs = 2
+                            self.doEnd()
+                        else:
+                            self.doMainText(" By the time you finish growing, you tower over the hill that the cave resides in. You can see far into the distance and you can feel a great draft in your loins.")
+                            if (self.gender == Gender.MALE or self.gender == Gender.HERM and Utils.percent() <= 50):
+                                getCum = self.cumAmount()
+                                if (self.cockSize * self.cockSizeMod > 400):
+                                    self.outputMainText(f" The wind across your {self.cockDesc()} cock{self.plural(1)} feel{self.plural(3)} rather... nice, to say the least. And considering {self.plural(5)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Quite soon you find yourself barely able to see the {self.plural(5)} tip{self.plural(1)} as {self.plural(11)} grow{self.plural(3)} off into the distance. Quickly, you find yourself falling over your relatively {self.cockDesc()} girth{self.plural(1)}, the ground rumbling around you as you connect, while you feel {self.plural(9)} drag across the open fields, plowing through forests, and who knows what else you manage to destroy.")
+                                    self.doNext()
+
+                                    def doListen():
+                                        self.doMainText(f"The exhilirating sensation of your massive size compared to everything around you excites you even further. Your {self.legDesc(10)} dig into the ground, carving out holes, and thrust your erection{self.plural(1)} forward. You can hear the sounds of wood cracking beneath your massive stiffness in the distance and the air fills with birds flying away to avoid your cock-head{self.plural(1)}. All the little bushes and trees provide a rather unique sensation, their leaves wrapping about your underside{self.plural(1)} en masse. Your voice echoes into the horizon as you let out a loud howl, rapidly coming to climax.", True)
+                                        if (getCum > 10000):
+                                            self.doMainText(" More crashing can be heard, along with a roar, as spunk erupts from the other end, flooding the far-off land and rushing into its own river!")
+                                        else:
+                                            self.doMainText(" You cum gushes from the other end, raining down around the far-off terrain like some sort of lewd weather.")
+                                        self.doMainText(f"\n\nYour heavy breathing blows about grass about beneath you as you come to your senses. You can feel your cock{self.plural(1)} begin to drag across the grass once more, though not by your own power. Looking up, you can see {self.plural(11)} shrinking back towards you. However, it is the devastation that lies beyond that truly catches your eye. Despite all the damage you did, you can see nature shifting around, like the planet itself were healing, sucking in your cum and returning the land to a more healthy state. Though, before you can get a good look, you find yourself finally shrink back to your normal size, plus a couple inches. Too far to travel into the wilderness, it seems you'll have to leave the mystery for later.")
+                                        self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
+                                        if (self.ment >= 30):
+                                            self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
+                                        self.doLust(-Math.floor(self.sen / 2), 2, 1)
+                                        self.displayMainText()
+                                        self.hrs = 3
+                                        self.doEnd()
+                                    self.doListen = doListen
+                                else:
+                                    self.outputMainText(f" The wind across your {self.cockDesc()} cock{self.plural(1)} feel{self.plural(3)} rather... nice, to say the least. And considering {self.plural(5)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. You soon find yourself rather stiff, and as you look down at {self.plural(11)}, your eyes spot the cave below. From this new perspective, you begin to think the hole in the ground is a bit... lewd?")
+                                    self.doNext()
+
+                                    def doListen():
+                                        self.doMainText(f"The thought doesn't make it a second time through your mind before you find yourself crashing to your {self.legDesc(6)}, the ground rumbling as you touch down. You collapse over the hill, thrusting {self.oneYour(1)} cock{self.plural(1)} into the natural glory hole. And much to your surprise, the internal walls of the cave seem to be coated with a slick substance, lubricating you through its dark interior. With your giant size, the rocks feel like mere bumps, more pleasurable than you could have imagined, and the ground soon shakes again and again as you hump into the hill.\n\nRather quickly, you let out a loud shout that echoes across the fields.", True)
+                                        if (getCum > 10000):
+                                            self.doMainText(" You can feel your spunk churn and gush around you. Though some of it spits back out across your thighs, painting the mouth of the cave, most of it amazingly guzzles deeper into the ground. So much so that you could swear you hear a small \"EEK!\" cry out from within, though your brain is too foggy to be sure.")
+                                        else:
+                                            self.doMainText(" You can hear your spunk splatter about within and seems to run away from your cock-tip, somewhere deeper into the ground. With you brain fuzzy from orgasm, you're not sure if the tiny \"Eehehe!\" you hear is real or just your ears ringing from the slight breeze.")
+                                        self.doMainText(" Either way, you find yourself slipping back down the hill, shrinking and falling back before the cave, almost returning to your original height. It's still far too dark to explore inside the cave to see where it all went, you can definitely smell the erotic odor that blows back out, some of your spunk still dripping in thick strands and webs from the mouth.")
+                                        self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
+                                        if (self.ment >= 30):
+                                            self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
+                                        self.doLust(-Math.floor(self.sen / 2), 2, 1)
+                                        self.displayMainText()
+                                        self.hrs = 3
+                                        self.doEnd()
+                                    self.doListen = doListen
+                            elif (self.gender == Gender.FEMALE or self.gender == Gender.HERM):
+                                self.outputMainText(f" The wind through your {self.vulvaDesc()} slit{self.plural(2)} feel{self.plural(4)} a bit... nice, to say the least. And considering {self.plural(6)} rather large increase in size, that feeling escalates exponentially. A strange heat mixes with the extra-sensual experience, clouding your mind with the need for release. Looking down at your swelling attributes your eyes focus on the cave below. From this new perspective, the hill looks rather like a rather... lewdly shaped saddle.")
+                                self.doNext()
+
+                                def doListen():
+                                    self.doMainText(f"The thought doesn't make it a second time through your mind before you find yourself turning around and crashing your {self.buttDesc()} rump down onto the hill with a rumble. Your {self.legDesc(2)} {self.legVerb(5)} it on either side, your {self.clitDesc()} clit{self.plural(2)} grinding against a protruding grassy mound that slides perfectly into your relatively {self.vulvaDesc()} lips. You can hear rocks crash to the floor of the cave within as your {self.hipDesc()} hips rock back and forth, making the ground quake beneath you. Your sensual fluids flood about the grass, making it perfectly slick for your needs.\n\nRather quickly, with all the extra sensitive area of your genitals humping an entire hill, you find yourself letting out a shout that echoes across the fields, your body trembling with orgasm.", True)
+                                    if (self.cockTotal > 1):
+                                        self.doMainText(f" Your proportionately {self.cockDesc()} cock{self.plural(1)} bounce{self.plural(3)} up and down as spunk gushes from the tip, flinging about the landscape and forming large puddles.")
+                                        self.cumAmount()
+                                    self.doMainText(" Yet, you don't have much time to enjoy your quivering state before you find yourself beginning to shrink, sliding down one side of the hill as you're caught off balance. You become slick with your own lubrication as you roll through the messy grass and splash down in your own puddle. Picking yourself up, the slime sticking to your body in webs and strands, you take a moment to flick off some of the goop before heading back to the cave.")
+                                    if (self.pregCheck(1) and Utils.percent() <= 60 and self.vagSize * self.vagSizeMod > 56):
+                                        self.doMainText(" And you're quite surprised to find you're sporting a much larger belly. You have no idea how it could have possibly happened, but your mind was rather far-off while you were up there. Placing your hand on it, you can feel a body writhe about, squirming inside of you, and in no rush to come out it seems. It seems like you got pregnant quite rapidly?")
+                                        for i in range(0, self.pregArray.length, 5):
+                                            if (not self.pregArray[i]):
+                                                self.pregArray[i] = True
+                                                if (Utils.percent() <= 50):
+                                                    self.pregArray[i + 1] = 201
+                                                else:
+                                                    self.pregArray[i + 1] = 202
+                                                self.pregArray[i + 2] = 230
+                                                self.pregArray[i + 3] = 220
+                                                break
+                                        self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
+                                    else:
+                                        self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
+                                    self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
+                                    if (self.ment >= 30):
+                                        self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
+                                    self.displayMainText()
+                                    self.hrs = 3
+                                    self.doEnd()
+                                self.doListen = doListen
+                            else:
+                                self.outputMainText(" Though, with nothing in your loins to speak of, it simply makes you giggle a little as it tickles you. You stand there for a moment, in awe of the world around you, your mind running through all the possibilities of things you could do with such a massive size!")
+                                self.doNext()
+
+                                def doListen():
+                                    self.doMainText("However, you feel a sudden warmth flush through you and with a slight sparking sound and you find yourself shrinking instead. Soon you're nearly as tall as you were before and slightly more aroused as well. What the heck just happened?...", True)
+                                    self.doLust(15, 0)
+                                    self.doMainText("\n\nRather eager to get away, you run off to Firmshaft, getting a slight bit of vertigo along the way from the extra inches you'll have to get used to.")
+                                    if (self.ment >= 30):
+                                        self.doMainText(" Especially as you re-don your now too-small clothes, feeling the outfit hug your body tightly and definitely needing some readjusting when you get back to town...")
+                                    self.displayMainText()
+                                    self.hrs = 3
+                                    self.doEnd()
+                                self.doListen = doListen
+                    else:
+                        self.outputMainText("Wary of free cake that desires to be eaten, you ignore it and quickly make your way back to Firmshaft.", True)
+                        self.hrs = 1
+                        self.doEnd()
+                self.doListen = doListen
+            else:
+                self.outputMainText("Strangely, there's a small ornate coffee table sitting before the entrance to the cave. Looking around, you don't see a single soul, there seems to be no logical reason for it to be there. Moving closer, you notice a lone bottle sitting upon it. The label reads \"DRINK ME\".\n\nWill you drink it?", True)
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.doMainText("You pick up the bottle and lift it to your lips. Only a few sips and it's already empty, barely enough for even a full gulp. It hardly had any taste to it, the closest flavor you can relate it to is 'purple', which hardly makes any sense at all when you think about it. Wondering why it should have been drunk at all, you place the empty bottle back on the table. Which proves to be more difficult than you would have imagined as the table seems start growing beside you. As well as everything else around you at an increasingly rapid rate...\n\nVery quickly, you realize that you're the one who's shrinking.", True)
+                        if (self.attireTop == self.attireBot):
+                            self.doMainText(f" Your {self.clothesTop()} plummets down your {self.boobDesc()} chest. You catch it with your hands, but soon the material bundles over your arms that you can no longer maintain your hold. When you let go, the {self.clothesTop()} simply sits there, piled around you.")
+                        else:
+                            self.doMainText(f" Your {self.clothesTop()} begins to plummet down your {self.boobDesc()} chest, while your {self.clothesBottom()} slips from your {self.hipDesc()} hips. One hand flails to catch your {self.clothesTop()} while the other heads for the {self.clothesBottom()}, but neither is successful. For a moment your {self.boobDesc()} chest and your nether region are both exposed to the fresh air as your outfit falls around you, but you quickly find yourself falling back into the fabric, a pile around you.")
+                        self.doMainText(f"\n\nYou climb out from your overgrown clothes, completely nude. Though you doubt anybody could see you if they passed by, considering you're now a fraction of the height you were before, maybe a whole {Math.floor(self.tallness / 12)} inches tall.")
+                        self.displayMainText()
+                        self.tallness -= 2
+                        self.doNext()
+
+                        def doListen():
+                            chance = Utils.percent()
+                            if (chance <= 40):
+                                self.doMainText("Unsure what to do in your miniscule state, you don't venture far from your forgone attire. However, it doesn't seem like you need to go anywhere to run into trouble, as you hear something thump its way towards you.\n\nLong ears bob upon a humanoid head and white fur covers much of its body. Long feet bounce upon the ground as it hops towards you. With a poofy tail and a button nose that twitches, it seems to be a rabbit-like person that is as naked as you are. The fuzzy swinging testicles makes it quite obvious what gender he is...\n\nHe spots you quickly, as though he had known you were there. With a grin, his nose and long whiskers twitch, and a rather mishievous twinkle lights in his eyes. Probably two feet high ", True)
+                                if (self.tallness <= 216):
+                                    self.doMainText(" he towers over you, pleased with the result.")
+                                else:
+                                    self.doMainText(" you seem to still be on par with him, though he seems pleased you're much more manageable than before.")
+                                self.displayMainText()
+                                self.doNext()
+
+                                def doListen():
+                                    self.enemyID = Enemy.LITTLE_BIG_BUNNY_MAN
+                                    self.currentState = GameState.BATTLE
+                                    self.enemyBaseStats()
+                                    self.eMaxHP = self.eHP
+                                    self.doBattle()
+                                self.doListen = doListen
+                            elif (chance <= 80):
+                                self.doMainText("Unsure what to do in your miniscule state, you don't venture far from your forgone attire. However, it doesn't seem like you need to go anywhere to run into trouble, as you hear something thump its way towards you.\n\nLong ears bob upon a humanoid head and white fur covers much of its body. Long feet bounce upon the ground as it hops towards you. With a poofy tail and a button nose that twitches, it seems to be a rabbit-like person that is as naked as you are. The wobbling tits and thick labia makes it quite obvious what gender she is...\n\nShe spots you quickly, as though she had known you were there. With a grin, her nose and long whiskers twitch, and a rather mishievous twinkle lights in her eyes. Probably two feet high ", True)
+                                if (self.tallness <= 216):
+                                    self.doMainText(" she towers over you, pleased with the result.")
+                                else:
+                                    self.doMainText(" you seem to still be on par with her, though she seems pleased you're much more manageable than before.")
+                                self.displayMainText()
+                                self.doNext()
+
+                                def doListen():
+                                    self.enemyID = Enemy.LITTLE_BIG_BUNNY_GIRL
+                                    self.currentState = GameState.BATTLE
+                                    self.enemyBaseStats()
+                                    self.eMaxHP = self.eHP
+                                    self.doBattle()
+                                self.doListen = doListen
+                            elif (chance > 80):
+                                self.outputMainText("With the extra-tall grass barring your path behind you, you decide to look around a bit. So small, you're not terribly worried about people spotting your indecency. However, you are careful of the ants and other 'large' creatures that skitter by.\n\nFortunately, none pay you any heed and you manage to make your way to the mouth of the cave. It's still as dark and dank as before, so you don't think to venture inside. Yet, from your shortened vantage point, you notice a small door in the wall at the mouth of the cave. You head towards it, curious as to its existence. How could you have not noticed it when it was bigger?\n\nThe thought doesn't seem to matter, though. When you attempt to open the door, it turns out to be locked. And judging by the keyhole beneath the knob, it would require a rather small key, which you don't have. Nor does this world, yet.\n\nWith a shrug, you turn back towards your pile of clothes. Along the way, your surroundings seem to grow smaller and smaller as you grow taller and taller. By the time you reach the pile, you seem to be back to your normal size, the bottle's effects having worn off.\n\nRedonning your clothing before heading back to Firmshaft, you notice they seem a bit baggier than before... It seems you're still missing a couple inches in height.", True)
+                                self.hrs = 2
+                                self.doEnd()
+                        self.doListen = doListen
+                    else:
+                        self.outputMainText("Wary of strange liquids that desire to be drunk, you ignore it and quickly make your way back to Firmshaft.", True)
+                        self.hrs = 1
+                        self.doEnd()
+                self.doListen = doListen
+
+        elif chance == 3:
+            if (self.bag.hasItem(254)):
+                self.outputMainText("Normally this cave is too dark to go inside. However, you have a lantern that can provide enough light to venture within. Would you like to go inside?", True)
+                self.buttonConfirm()
+
+                def doListen():
+                    if (self.buttonChoice == 6):
+                        self.inDungeon = True
+                        self.regionChange(Dungeon.MINOTAUR_ENTER)
+                        self.doOldCaveDescent()
+                    else:
+                        self.doMainText("Deciding not to go inside, you merely wander around the entrance of the cave. However, an odd scent fills your nostrils and makes you feel a bit randy...", True)
+                        self.stats(0, -1, 2, 0)
+                        self.doLust(5, 0)
+                        self.displayMainText()
+                        self.hrs = 1
+                        self.doEnd()
+                self.doListen = doListen
+            else:
+                self.doMainText("Too dark to go inside, you merely wander around the entrance of the cave. However, an odd scent fills your nostrils and makes you feel a bit randy...", True)
+                self.stats(0, -1, 2, 0)
+                self.doLust(5, 0)
+                self.displayMainText()
+                self.hrs = 1
+                self.doEnd()
 
     def doDen(self):
       # HERE
@@ -22286,317 +22285,317 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
          self.doListen = doListen
 
     def doValley(self):
-      # HERE
-      chance = self.eventSelect("Valley")
-      # Fertility Statue
-      if chance == 1:
-         self.showButtons(ButtonList(1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1))
-         self.outputMainText("Amidst the lush overgrowth in the middle of the valley, something particularly unique catches your eye. A statue nearly hidden by the large leaves of vines around it, it stands out as being the only thing not of natural origin. It is relatively large, about eight feet in height, and is of a woman presenting herself to the observer. Her arms out, her legs spread slightly, and her face pleasantly aroused. Plus she's completely nude, showing off her four ample breasts upon her chest and three slits between her legs.\n\nInspecting more closely, you can see that her middle vagina is gaping, with a hole that reaches inside. Her mouth is likewise, open lustfully, and there's even holes in her ears. Searching the base of the statue, you notice some intricate lettering that you couldn't possibly understand and, most oddly, there seems to be some mechanical components that have been exposed over the years...\n\nYou think this statue might be more than just a statue. Will you try to do anything with it?", True)
-         self.doButtonChoices({1: "Mouth", 3: "Ear", 6: "Breasts", 10: "Pussy", 12: "Leave"})
+        chance = self.eventSelect("Valley")
 
-         def doListen():
-            if self.buttonChoice == 1:
-               self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
-               tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-               if (self.bag.hasItem(207)):
-                  tempDict[9] = "Cock Carv"
-               if (self.bag.hasItem(500) or self.bag.hasItem(501)):
-                  tempDict[11] = "Milk Bottle"
-               self.outputMainText("What would you like to do with the statue's open mouth?", True)
-               self.doButtonChoices(tempDict)
+        # Fertility Statue
+        if chance == 1:
+            self.showButtons(ButtonList(1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 1))
+            self.outputMainText("Amidst the lush overgrowth in the middle of the valley, something particularly unique catches your eye. A statue nearly hidden by the large leaves of vines around it, it stands out as being the only thing not of natural origin. It is relatively large, about eight feet in height, and is of a woman presenting herself to the observer. Her arms out, her legs spread slightly, and her face pleasantly aroused. Plus she's completely nude, showing off her four ample breasts upon her chest and three slits between her legs.\n\nInspecting more closely, you can see that her middle vagina is gaping, with a hole that reaches inside. Her mouth is likewise, open lustfully, and there's even holes in her ears. Searching the base of the statue, you notice some intricate lettering that you couldn't possibly understand and, most oddly, there seems to be some mechanical components that have been exposed over the years...\n\nYou think this statue might be more than just a statue. Will you try to do anything with it?", True)
+            self.doButtonChoices({1: "Mouth", 3: "Ear", 6: "Breasts", 10: "Pussy", 12: "Leave"})
 
-               def doListen():
-                  if self.buttonChoice == 1:
-                     self.doMainText(f"You attempt to lick the statue's mouth. It's quite awkward, considering you chose to lick it rather than actually kiss it, and the statue doesn't seem to pleased either.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
-                     if (self.boobTotal == 2):
-                        self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
-                        if (self.breastSize > 4):
-                           self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-                        self.boobTotal = 4
-                        self.fourBoobAffinity = 100
-                     self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
-                     if (self.ment > 60):
-                        self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
-                     self.fertilityStatueCurse = 48
-                     self.minLust += 10
-                     self.doLust(0, 0)
-                     self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                     self.displayMainText()
-                     self.hrs = 2
-                     self.doEnd()
-                  elif self.buttonChoice == 3:
-                     self.doMainText(f"You attempt to poke the statue's mouth. That's soooo erotic. Poke. Poke. Poke. Poke. You're an idiot...\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
-                     if (self.boobTotal == 2):
-                        self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
-                        if (self.breastSize > 4):
-                           self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-                        self.boobTotal = 4
-                        self.fourBoobAffinity = 100
-                     self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
-                     if (self.ment > 60):
-                        self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
-                     self.fertilityStatueCurse = 48
-                     self.minLust += 10
-                     self.doLust(0, 0)
-                     self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                     self.displayMainText()
-                     self.hrs = 2
-                     self.doEnd()
-                  elif self.buttonChoice == 8:
-                     self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
-                     self.hrs = 1
-                     self.doEnd()
-                  elif self.buttonChoice == 9:
-                     self.outputMainText("You stick the cock carving into the statue's open mouth. It seems to be a perfect fit and a rather lewd activity. Not exactly pleasurable for the statue, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
-                     self.doSexP(15)
-                     self.loseManyItem(207, 1)
-                     self.hrs = 2
-                     self.doEnd()
-                  elif self.buttonChoice == 11:
-                     self.doMainText("You pour the milk into the statue's open mouth. The sweet fluids flow down inside of her and she seems pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
-                     if (self.bag.hasItem(254) or self.stash.hasItem(254)):
-                        self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
-                     else:
-                        self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and you're left having to head back to town.")
-                        self.itemAdd(254)
-                     if (self.bag.hasItem(500)):
-                        self.loseManyItem(500, 1)
-                     else:
-                        self.loseManyItem(501, 1)
-                     self.displayMainText()
-                     self.hrs = 3
-                     self.doEnd()
-               self.doListen = doListen
-            elif self.buttonChoice == 3:
-               self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
-               tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-               if (self.bag.hasItem(207)):
-                  tempDict[9] = "Cock Carv"
-               if (self.bag.hasItem(500) or self.bag.hasItem(501)):
-                  tempDict[11] = "Milk Bottle"
-               self.outputMainText("What would you like to do with the statue's ear?", True)
-               self.doButtonChoices(tempDict)
+            def doListen():
+                if self.buttonChoice == 1:
+                    self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
+                    tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
+                    if (self.bag.hasItem(207)):
+                        tempDict[9] = "Cock Carv"
+                    if (self.bag.hasItem(500) or self.bag.hasItem(501)):
+                        tempDict[11] = "Milk Bottle"
+                    self.outputMainText("What would you like to do with the statue's open mouth?", True)
+                    self.doButtonChoices(tempDict)
 
-               def doListen():
-                  if self.buttonChoice == 1:
-                     self.doMainText("You lick the statue's ear. The subtle and sensual act nearly makes the statue shiver in delight and she seems rather pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
-                     if (self.bag.hasItem(254) or self.stash.hasItem(254)):
-                        self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
-                     else:
-                        self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.")
-                        self.itemAdd(254)
-                     self.displayMainText()
-                     self.hrs = 3
-                     self.doEnd()
-                  elif self.buttonChoice == 3:
-                     self.doMainText(f"You attempt to poke the statue's ear. Why would you do such a thing? Would you like someone poking your ear? The statue sure doesn't seem to like it.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
-                     if (self.boobTotal == 2):
-                        self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
-                        if (self.breastSize > 4):
-                           self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-                        self.boobTotal = 4
-                        self.fourBoobAffinity = 100
-                     self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
-                     if (self.ment > 60):
-                        self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
-                     self.fertilityStatueCurse = 48
-                     self.minLust += 10
-                     self.doLust(0, 0)
-                     self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                     self.displayMainText()
-                     self.hrs = 2
-                     self.doEnd()
-                  elif self.buttonChoice == 8:
-                     self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
-                     self.hrs = 1
-                     self.doEnd()
-                  elif self.buttonChoice == 9:
-                     self.doMainText(f"You attempt to stick a cock carving into the statue's ear. You attempt to stick a penis-like object into someone's ear. What the hell is wrong with you?!\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
-                     if (self.boobTotal == 2):
-                        self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
-                        if (self.breastSize > 4):
-                           self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-                        self.boobTotal = 4
-                        self.fourBoobAffinity = 100
-                     self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
-                     if (self.ment > 60):
-                        self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
-                     self.fertilityStatueCurse = 48
-                     self.loseManyItem(207, 1)
-                     self.minLust += 10
-                     self.doLust(0, 0)
-                     self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                     self.displayMainText()
-                     self.hrs = 2
-                     self.doEnd()
-                  elif self.buttonChoice == 11:
-                     self.doMainText(f"You attempt pour the milk into the statue's ear. Why? Maybe if there was a buildup of ear-wax that might be a good idea, but even then that's not exactly smart.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
-                     if (self.boobTotal == 2):
-                        self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
-                        if (self.breastSize > 4):
-                           self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-                        self.boobTotal = 4
-                        self.fourBoobAffinity = 100
-                     self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
-                     if (self.ment > 60):
-                        self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
-                     self.fertilityStatueCurse = 48
-                     if (self.bag.hasItem(500)):
-                        self.loseManyItem(500, 1)
-                     else:
-                        self.loseManyItem(501, 1)
-                     self.minLust += 10
-                     self.doLust(0, 0)
-                     self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                     self.displayMainText()
-                     self.hrs = 2
-                     self.doEnd()
-               self.doListen = doListen
-            elif self.buttonChoice == 6:
-               self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
-               tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-               if (self.bag.hasItem(207)):
-                  tempDict[9] = "Cock Carv"
-               if (self.bag.hasItem(500) or self.bag.hasItem(501)):
-                  tempDict[11] = "Milk Bottle"
-               self.outputMainText("What would you like to do with the statue's four breasts?", True)
-               self.doButtonChoices(tempDict)
+                    def doListen():
+                        if self.buttonChoice == 1:
+                            self.doMainText(f"You attempt to lick the statue's mouth. It's quite awkward, considering you chose to lick it rather than actually kiss it, and the statue doesn't seem to pleased either.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
+                            if (self.boobTotal == 2):
+                                self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
+                                if (self.breastSize > 4):
+                                    self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                                self.boobTotal = 4
+                                self.fourBoobAffinity = 100
+                            self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
+                            if (self.ment > 60):
+                                self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
+                            self.fertilityStatueCurse = 48
+                            self.minLust += 10
+                            self.doLust(0, 0)
+                            self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
+                            self.displayMainText()
+                            self.hrs = 2
+                            self.doEnd()
+                        elif self.buttonChoice == 3:
+                            self.doMainText(f"You attempt to poke the statue's mouth. That's soooo erotic. Poke. Poke. Poke. Poke. You're an idiot...\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
+                            if (self.boobTotal == 2):
+                                self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
+                                if (self.breastSize > 4):
+                                    self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                                self.boobTotal = 4
+                                self.fourBoobAffinity = 100
+                            self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
+                            if (self.ment > 60):
+                                self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
+                            self.fertilityStatueCurse = 48
+                            self.minLust += 10
+                            self.doLust(0, 0)
+                            self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
+                            self.displayMainText()
+                            self.hrs = 2
+                            self.doEnd()
+                        elif self.buttonChoice == 8:
+                            self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
+                            self.hrs = 1
+                            self.doEnd()
+                        elif self.buttonChoice == 9:
+                            self.outputMainText("You stick the cock carving into the statue's open mouth. It seems to be a perfect fit and a rather lewd activity. Not exactly pleasurable for the statue, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
+                            self.doSexP(15)
+                            self.loseManyItem(207, 1)
+                            self.hrs = 2
+                            self.doEnd()
+                        elif self.buttonChoice == 11:
+                            self.doMainText("You pour the milk into the statue's open mouth. The sweet fluids flow down inside of her and she seems pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
+                            if (self.bag.hasItem(254) or self.stash.hasItem(254)):
+                                self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
+                            else:
+                                self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and you're left having to head back to town.")
+                                self.itemAdd(254)
+                            if (self.bag.hasItem(500)):
+                                self.loseManyItem(500, 1)
+                            else:
+                                self.loseManyItem(501, 1)
+                            self.displayMainText()
+                            self.hrs = 3
+                            self.doEnd()
+                    self.doListen = doListen
+                elif self.buttonChoice == 3:
+                    self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
+                    tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
+                    if (self.bag.hasItem(207)):
+                        tempDict[9] = "Cock Carv"
+                    if (self.bag.hasItem(500) or self.bag.hasItem(501)):
+                        tempDict[11] = "Milk Bottle"
+                    self.outputMainText("What would you like to do with the statue's ear?", True)
+                    self.doButtonChoices(tempDict)
 
-               def doListen():
-                  if self.buttonChoice == 1:
-                     self.outputMainText("You lick the statue's breasts, pleasuring the nipples that stick out. It's not exactly something that can lead to climax alone, maybe with some actual suckling, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
-                     self.doSexP(10)
-                     self.hrs = 2
-                     self.doEnd()
-                  elif self.buttonChoice == 3:
-                     self.doMainText(f"You attempt to poke the statue's boobs. The boobs definitely don't bite back, but it seems like a rather annoying way to react to boobs.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
-                     if (self.boobTotal == 2):
-                        self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
-                        if (self.breastSize > 4):
-                           self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
-                        self.boobTotal = 4
-                        self.fourBoobAffinity = 100
-                     self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
-                     if (self.ment > 60):
-                        self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
-                     self.fertilityStatueCurse = 48
-                     self.minLust += 10
-                     self.doLust(0, 0)
-                     self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                     self.displayMainText()
-                     self.hrs = 2
-                     self.doEnd()
-                  elif self.buttonChoice == 8:
-                     self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
-                     self.hrs = 1
-                     self.doEnd()
-                  elif self.buttonChoice == 9:
-                     self.outputMainText("You wedge a cock carving in between the statue's two sets of breast. It fits relatively well and seems like a rather lewd act. Not exactly pleasurable for the statue, but quite kinky nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
-                     self.doSexP(15)
-                     self.loseManyItem(207, 1)
-                     self.hrs = 2
-                     self.doEnd()
-                  elif self.buttonChoice == 11:
-                     self.doMainText("You pour the milk out over the breasts until they're completely covered in the silky white fluid and the nipples drip with the stuff as though they are lactating. The statue seems very pleased with this idea and you hear gears turning within.\n\nAt the base of the statue, a hidden compartment pops out.", True)
-                     if (not self.knowBazoomba):
-                        self.doMainText(" A scroll rolls out, allowing you to take it. You open it up and read through the various pictographs. It seems to be an alchemical recipe! You can make out the actual ingredients for the concoction, but you can't seem to tell what it is exactly, only able to determine that it creates \"more of the best things in life\"?\n\nYou have learned the recipe for Bazoomba!")
-                        self.knowBazoomba = True
-                     else:
-                        self.doMainText(" However, it's completely empty. You already took the recipe that was in here before, so there's nothing left within.")
-                     self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                     self.hrs = 2
-                     if (self.bag.hasItem(500)):
-                        self.loseManyItem(500, 1)
-                     else:
-                        self.loseManyItem(501, 1)
-                     self.displayMainText()
-                     self.doEnd()
-               self.doListen = doListen
-            elif self.buttonChoice == 10:
-               self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
-               tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-               if (self.bag.hasItem(207)):
-                  tempDict[9] = "Cock Carv"
-               if (self.bag.hasItem(500) or self.bag.hasItem(501)):
-                  tempDict[11] = "Milk Bottle"
-               self.outputMainText("What would you like to do with the statue's gaping pussy?", True)
-               self.doButtonChoices(tempDict)
+                    def doListen():
+                        if self.buttonChoice == 1:
+                            self.doMainText("You lick the statue's ear. The subtle and sensual act nearly makes the statue shiver in delight and she seems rather pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
+                            if (self.bag.hasItem(254) or self.stash.hasItem(254)):
+                                self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
+                            else:
+                                self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.")
+                                self.itemAdd(254)
+                            self.displayMainText()
+                            self.hrs = 3
+                            self.doEnd()
+                        elif self.buttonChoice == 3:
+                            self.doMainText(f"You attempt to poke the statue's ear. Why would you do such a thing? Would you like someone poking your ear? The statue sure doesn't seem to like it.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
+                            if (self.boobTotal == 2):
+                                self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
+                                if (self.breastSize > 4):
+                                    self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                                self.boobTotal = 4
+                                self.fourBoobAffinity = 100
+                            self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
+                            if (self.ment > 60):
+                                self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
+                            self.fertilityStatueCurse = 48
+                            self.minLust += 10
+                            self.doLust(0, 0)
+                            self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
+                            self.displayMainText()
+                            self.hrs = 2
+                            self.doEnd()
+                        elif self.buttonChoice == 8:
+                            self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
+                            self.hrs = 1
+                            self.doEnd()
+                        elif self.buttonChoice == 9:
+                            self.doMainText(f"You attempt to stick a cock carving into the statue's ear. You attempt to stick a penis-like object into someone's ear. What the hell is wrong with you?!\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
+                            if (self.boobTotal == 2):
+                                self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
+                                if (self.breastSize > 4):
+                                    self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                                self.boobTotal = 4
+                                self.fourBoobAffinity = 100
+                            self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
+                            if (self.ment > 60):
+                                self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
+                            self.fertilityStatueCurse = 48
+                            self.loseManyItem(207, 1)
+                            self.minLust += 10
+                            self.doLust(0, 0)
+                            self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
+                            self.displayMainText()
+                            self.hrs = 2
+                            self.doEnd()
+                        elif self.buttonChoice == 11:
+                            self.doMainText(f"You attempt pour the milk into the statue's ear. Why? Maybe if there was a buildup of ear-wax that might be a good idea, but even then that's not exactly smart.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
+                            if (self.boobTotal == 2):
+                                self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
+                                if (self.breastSize > 4):
+                                    self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                                self.boobTotal = 4
+                                self.fourBoobAffinity = 100
+                            self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
+                            if (self.ment > 60):
+                                self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
+                            self.fertilityStatueCurse = 48
+                            if (self.bag.hasItem(500)):
+                                self.loseManyItem(500, 1)
+                            else:
+                                self.loseManyItem(501, 1)
+                            self.minLust += 10
+                            self.doLust(0, 0)
+                            self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
+                            self.displayMainText()
+                            self.hrs = 2
+                            self.doEnd()
+                    self.doListen = doListen
+                elif self.buttonChoice == 6:
+                    self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
+                    tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
+                    if (self.bag.hasItem(207)):
+                        tempDict[9] = "Cock Carv"
+                    if (self.bag.hasItem(500) or self.bag.hasItem(501)):
+                        tempDict[11] = "Milk Bottle"
+                    self.outputMainText("What would you like to do with the statue's four breasts?", True)
+                    self.doButtonChoices(tempDict)
 
-               def doListen():
-                  if self.buttonChoice == 1:
-                     self.outputMainText("You lick the statue's pussy, pleasuring it with your mouth. A great form of foreplay, it could make the statue come from that alone. However, it still wants a little more. Yet, you feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
-                     self.doSexP(20)
-                     self.hrs = 2
-                     self.doEnd()
-                  elif self.buttonChoice == 3:
-                     self.outputMainText("You poke the statue's gaping pussy. Your finger slides up inside and diddles within, pleasuring the statue a bit. It's not quite like the real thing, but a fun thing to do nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
-                     self.doSexP(8)
-                     self.hrs = 2
-                     self.doEnd()
-                  elif self.buttonChoice == 8:
-                     self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
-                     self.hrs = 1
-                     self.doEnd()
-                  elif self.buttonChoice == 9:
-                     self.doMainText("You slide a cock carving up into the statue's open pussy. The penis-like object seems to be a perfect fit and you hear a click as the thing unlocks something within. The statue seems rather pleased with the pleasurable gesture...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
-                     if (self.bag.hasItem(254) or self.stash.hasItem(254)):
-                        self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
-                     else:
-                        self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.")
-                        self.itemAdd(254)
-                     self.loseManyItem(207, 1)
-                     self.displayMainText()
-                     self.hrs = 3
-                     self.doEnd()
-                  elif self.buttonChoice == 11:
-                     self.outputMainText("You push the bottle of milk up against the statue's pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you're looking rather pregnant!\n\nThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...", True)
-                     self.pregArray.push(True, 504, 208, 200, 0)
-                     if (self.bag.hasItem(500)):
-                        self.loseManyItem(500, 1)
-                     else:
-                        self.loseManyItem(501, 1)
-                     self.hrs = 2
-                     self.doEnd()
-               self.doListen = doListen
-            elif self.buttonChoice == 12:
-               self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
-               self.hrs = 1
-               self.doEnd()
-         self.doListen = doListen
+                    def doListen():
+                        if self.buttonChoice == 1:
+                            self.outputMainText("You lick the statue's breasts, pleasuring the nipples that stick out. It's not exactly something that can lead to climax alone, maybe with some actual suckling, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
+                            self.doSexP(10)
+                            self.hrs = 2
+                            self.doEnd()
+                        elif self.buttonChoice == 3:
+                            self.doMainText(f"You attempt to poke the statue's boobs. The boobs definitely don't bite back, but it seems like a rather annoying way to react to boobs.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
+                            if (self.boobTotal == 2):
+                                self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
+                                if (self.breastSize > 4):
+                                    self.doMainText(f" The new nipples protrude as fleshy mounds form from beneath them. The new boobs wobble as they grow to the same size of your original pair, lifting the originals slightly with their girth. When you head back to town, you'll be covering your extra indecency with your arms the best you can while you head for the tailor to update your {self.clothesTop()} accordingly.")
+                                self.boobTotal = 4
+                                self.fourBoobAffinity = 100
+                            self.doMainText("\n\nAs the mist disappears, you also have this deep feeling of lust building inside... It doesn't seem to dissipate either, constantly nagging.")
+                            if (self.ment > 60):
+                                self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
+                            self.fertilityStatueCurse = 48
+                            self.minLust += 10
+                            self.doLust(0, 0)
+                            self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
+                            self.displayMainText()
+                            self.hrs = 2
+                            self.doEnd()
+                        elif self.buttonChoice == 8:
+                            self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
+                            self.hrs = 1
+                            self.doEnd()
+                        elif self.buttonChoice == 9:
+                            self.outputMainText("You wedge a cock carving in between the statue's two sets of breast. It fits relatively well and seems like a rather lewd act. Not exactly pleasurable for the statue, but quite kinky nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
+                            self.doSexP(15)
+                            self.loseManyItem(207, 1)
+                            self.hrs = 2
+                            self.doEnd()
+                        elif self.buttonChoice == 11:
+                            self.doMainText("You pour the milk out over the breasts until they're completely covered in the silky white fluid and the nipples drip with the stuff as though they are lactating. The statue seems very pleased with this idea and you hear gears turning within.\n\nAt the base of the statue, a hidden compartment pops out.", True)
+                            if (not self.knowBazoomba):
+                                self.doMainText(" A scroll rolls out, allowing you to take it. You open it up and read through the various pictographs. It seems to be an alchemical recipe! You can make out the actual ingredients for the concoction, but you can't seem to tell what it is exactly, only able to determine that it creates \"more of the best things in life\"?\n\nYou have learned the recipe for Bazoomba!")
+                                self.knowBazoomba = True
+                            else:
+                                self.doMainText(" However, it's completely empty. You already took the recipe that was in here before, so there's nothing left within.")
+                            self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
+                            self.hrs = 2
+                            if (self.bag.hasItem(500)):
+                                self.loseManyItem(500, 1)
+                            else:
+                                self.loseManyItem(501, 1)
+                            self.displayMainText()
+                            self.doEnd()
+                    self.doListen = doListen
+                elif self.buttonChoice == 10:
+                    self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
+                    tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
+                    if (self.bag.hasItem(207)):
+                        tempDict[9] = "Cock Carv"
+                    if (self.bag.hasItem(500) or self.bag.hasItem(501)):
+                        tempDict[11] = "Milk Bottle"
+                    self.outputMainText("What would you like to do with the statue's gaping pussy?", True)
+                    self.doButtonChoices(tempDict)
 
-      elif chance == 2:
-         self.outputMainText("With all the flowers in this vibrant valley, one in particular seems to lure you in. The scent caught your nose from quite the distance, so delightfully fragrant, and yet its petals are merely black with white stripes, not nearly as colorful as the rest.\n\nHowever, the smell alone is worth holding on to, so you pick the flower and slip it into your bag.", True)
-         self.itemAdd(255)
-         self.hrs = 2
-         self.doEnd()
+                    def doListen():
+                        if self.buttonChoice == 1:
+                            self.outputMainText("You lick the statue's pussy, pleasuring it with your mouth. A great form of foreplay, it could make the statue come from that alone. However, it still wants a little more. Yet, you feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
+                            self.doSexP(20)
+                            self.hrs = 2
+                            self.doEnd()
+                        elif self.buttonChoice == 3:
+                            self.outputMainText("You poke the statue's gaping pussy. Your finger slides up inside and diddles within, pleasuring the statue a bit. It's not quite like the real thing, but a fun thing to do nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
+                            self.doSexP(8)
+                            self.hrs = 2
+                            self.doEnd()
+                        elif self.buttonChoice == 8:
+                            self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
+                            self.hrs = 1
+                            self.doEnd()
+                        elif self.buttonChoice == 9:
+                            self.doMainText("You slide a cock carving up into the statue's open pussy. The penis-like object seems to be a perfect fit and you hear a click as the thing unlocks something within. The statue seems rather pleased with the pleasurable gesture...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
+                            if (self.bag.hasItem(254) or self.stash.hasItem(254)):
+                                self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
+                            else:
+                                self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.")
+                                self.itemAdd(254)
+                            self.loseManyItem(207, 1)
+                            self.displayMainText()
+                            self.hrs = 3
+                            self.doEnd()
+                        elif self.buttonChoice == 11:
+                            self.outputMainText("You push the bottle of milk up against the statue's pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you're looking rather pregnant!\n\nThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...", True)
+                            self.pregArray.push(True, 504, 208, 200, 0)
+                            if (self.bag.hasItem(500)):
+                                self.loseManyItem(500, 1)
+                            else:
+                                self.loseManyItem(501, 1)
+                            self.hrs = 2
+                            self.doEnd()
+                    self.doListen = doListen
+                elif self.buttonChoice == 12:
+                    self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
+                    self.hrs = 1
+                    self.doEnd()
+            self.doListen = doListen
 
-      elif chance == 3:
-         self.outputMainText("Strolling through the pleasant valley, a bush catches your eye. Its fruit are large and round, looking quite delicious. You find a ripe one and pluck it, storing it for later when you're hungry.", True)
-         self.itemAdd(251)
-         self.hrs = 2
-         self.doEnd()
-
-      elif chance == 4:
-         self.outputMainText(f"While exploring the valley, you step on something rather hard. Quickly lifting your {self.legDesc(9)}, you find a small item sticking up out of the ground. With a tear-drop shape, it seems to be completely made of wood and rather old. Its surface is engraved with depictions of tree-like people losing their limbs and growing up towards the sun at the tip of the tear-drop.\n\nThis might be of some use, so you pocket it.", True)
-         self.itemAdd(249)
-         self.hrs = 2
-         self.doEnd()
-
-      elif chance == 5:
-         self.outputMainText("The valley is just so bright and lively that... you feel like you could just rest here forever... In fact... you lie down in a bed of flowers and drift off to sleep...", True)
-         self.doNext()
-
-         def doListen():
-            self.doMainText("You wake up some time later. You have no idea how long you were out at first, but the fact that some of the flowers have grown around you and a few bugs have taken up home is a bit disconcerting. You feel completely refreshed, though a little drowsy in some respects. You quickly jump up and head out of the valley before any more time passes and head back into town.\n\nApparently you had been gone for a couple days...", True)
-            self.hrs += 48
-            self.exhaustion = 0
-            self.skipExhaustion = True
-            self.doLust(-10, 0)
-            self.stats(0, 0, -1, 0)
-            self.doHP(1000000)
-            self.displayMainText()
+        elif chance == 2:
+            self.outputMainText("With all the flowers in this vibrant valley, one in particular seems to lure you in. The scent caught your nose from quite the distance, so delightfully fragrant, and yet its petals are merely black with white stripes, not nearly as colorful as the rest.\n\nHowever, the smell alone is worth holding on to, so you pick the flower and slip it into your bag.", True)
+            self.itemAdd(255)
+            self.hrs = 2
             self.doEnd()
-         self.doListen = doListen
+
+        elif chance == 3:
+            self.outputMainText("Strolling through the pleasant valley, a bush catches your eye. Its fruit are large and round, looking quite delicious. You find a ripe one and pluck it, storing it for later when you're hungry.", True)
+            self.itemAdd(251)
+            self.hrs = 2
+            self.doEnd()
+
+        elif chance == 4:
+            self.outputMainText(f"While exploring the valley, you step on something rather hard. Quickly lifting your {self.legDesc(9)}, you find a small item sticking up out of the ground. With a tear-drop shape, it seems to be completely made of wood and rather old. Its surface is engraved with depictions of tree-like people losing their limbs and growing up towards the sun at the tip of the tear-drop.\n\nThis might be of some use, so you pocket it.", True)
+            self.itemAdd(249)
+            self.hrs = 2
+            self.doEnd()
+
+        elif chance == 5:
+            self.outputMainText("The valley is just so bright and lively that... you feel like you could just rest here forever... In fact... you lie down in a bed of flowers and drift off to sleep...", True)
+            self.doNext()
+
+            def doListen():
+                self.doMainText("You wake up some time later. You have no idea how long you were out at first, but the fact that some of the flowers have grown around you and a few bugs have taken up home is a bit disconcerting. You feel completely refreshed, though a little drowsy in some respects. You quickly jump up and head out of the valley before any more time passes and head back into town.\n\nApparently you had been gone for a couple days...", True)
+                self.hrs += 48
+                self.exhaustion = 0
+                self.skipExhaustion = True
+                self.doLust(-10, 0)
+                self.stats(0, 0, -1, 0)
+                self.doHP(1000000)
+                self.displayMainText()
+                self.doEnd()
+            self.doListen = doListen
 
     def doDungeon(self):
         # Cave Descent
