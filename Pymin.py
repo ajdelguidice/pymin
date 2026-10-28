@@ -17677,7 +17677,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
          elif (self.lilaRep == 4):
             # Lila Bath
-            if (Utils.percent() <= 50):
+            chance = Utils.percent()
+            if (chance <= 50):
                self.outputMainText("You spot Lila walking along at a rather rapid pace, though she doesn't seem to be terribly aroused like she normally does. You flag her down just to check up and make sure.\n\n\"Oh, hewwo!\" She seems a bit surprised. \"I was going home for bath-time. Would you like a bath too?\"", True)
                self.buttonConfirm()
 
@@ -17756,61 +17757,65 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                self.doListen = doListen
 
             # Lila Sleepover (Cut Content)
-            elif False and (Utils.percent() <= 50 and self.hour > 8 and self.hour < 20):
-               '''
-               self.outputMainText("\"Hewwo~!\" The familiar voice of little Lila floats over to you as she closes the distance. Still with a kink in her step for obvious reasons, her demeanor seems to be rather giddy about something else. \"I'm having a sleepovew tonight with some of my giwl fwiends, would you like to join us?\"",True)
+            elif False and (chance <= 50 and self.hour > 8 and self.hour < 20):
+               self.outputMainText("\"Hewwo~!\" The familiar voice of little Lila floats over to you as she closes the distance. Still with a kink in her step for obvious reasons, her demeanor seems to be rather giddy about something else. \"I'm having a sleepovew tonight with some of my giwl fwiends, would you like to join us?\"", True)
                self.buttonConfirm()
+
+               def sleepOverEnd(buttonChoice:int):
+                   ...
+
                def doListen():
                   if (self.buttonChoice == 6):
-                     self.outputMainText("Deciding you wouldn't mind spending the rest of the day and upcoming night with Lila and her friends, you accept her invitation with a nod.\r\r\"Gweat! Come with me and we'll go get my fwiends!,\" she shouts happily with a great big grin on her face.\r\rThe two of you make a trip across the bridges of Siz'Calit to knock on the doors of a few huts and are even redirected to more huts as you hunt down the current locations of Lila's friends. Only one girl was actually at her home while the other two had bounced around from home to home and eventually wound up doing some shopping before the slumber party was to begin. It was obvious one of the girls needed some special preparations to sleep over, but all three of Lila's female friends seem quite different.\r\rThe first girl you find, at her home, is about an inch taller than Lila. However, by the way the others treat her, she is apparently much younger than them all, though no particular age is specified. All that is clear is that she's the only one who hasn't had her first heat yet (whatever that means in terms of felin physiology) and is rather naive as to what such a thing could be, occassionally asking Lila if she needs to use the bathroom or something. The other girls giggle at her ignorance over such matters when they come up, though Lila herself tends to change the subject since she herself is still rather... 'innocent' in the same way.\r\rThe second girl accompanied the third with the shopping. Having had a rather significant growth spurt amongst felins, she is the tallest of the group. Yet, the most noticeable growth seems to have occurred along her front side. Several orbs wobble whenever she moves, nipples forming bumps through her bras, and all seem to put her off balance. Her steps aren't as sensual as most felins, her tail flitting about to keep up, making her walking look somewhat awkward. With her 'advanced' figure, the girl has attempted to compensate by having a rather large knowledge of lewd subjects. She's the one who usually pokes fun at the youngest girl's naivete, but her demeanor also suggests she doesn't know much of such things first hand herself, likely only experimenting in solo 'ventures'.\r\rThe third girl was the one who really needed the shopping. Having a large pregnant belly well along in its term has some extra requirements. You don't catch any mention of who the father is, but the other girls are quick to rub the mound and giggle at the bodies moving inside. The girls don't seem to pay much mind to the fact that she is pregnant, either because this isn't her first litter or such a thing isn't uncommon in felin society (or both), but everyone seems to enjoy the big belly for what it is, especially the girl wielding it. Relatively casual and content, she cherishes her belly enjoys the presence of her friends.\r\r\rFinally together and familiarized with each other, Lila happily takes the lead. \"Let's all go to my house now!\"",True)
+                     self.outputMainText("Deciding you wouldn't mind spending the rest of the day and upcoming night with Lila and her friends, you accept her invitation with a nod.\n\n\"Gweat! Come with me and we'll go get my fwiends!,\" she shouts happily with a great big grin on her face.\n\nThe two of you make a trip across the bridges of Siz'Calit to knock on the doors of a few huts and are even redirected to more huts as you hunt down the current locations of Lila's friends. Only one girl was actually at her home while the other two had bounced around from home to home and eventually wound up doing some shopping before the slumber party was to begin. It was obvious one of the girls needed some special preparations to sleep over, but all three of Lila's female friends seem quite different.\n\nThe first girl you find, at her home, is about an inch taller than Lila. However, by the way the others treat her, she is apparently much younger than them all, though no particular age is specified. All that is clear is that she's the only one who hasn't had her first heat yet (whatever that means in terms of felin physiology) and is rather naive as to what such a thing could be, occassionally asking Lila if she needs to use the bathroom or something. The other girls giggle at her ignorance over such matters when they come up, though Lila herself tends to change the subject since she herself is still rather... 'innocent' in the same way.\n\nThe second girl accompanied the third with the shopping. Having had a rather significant growth spurt amongst felins, she is the tallest of the group. Yet, the most noticeable growth seems to have occurred along her front side. Several orbs wobble whenever she moves, nipples forming bumps through her bras, and all seem to put her off balance. Her steps aren't as sensual as most felins, her tail flitting about to keep up, making her walking look somewhat awkward. With her 'advanced' figure, the girl has attempted to compensate by having a rather large knowledge of lewd subjects. She's the one who usually pokes fun at the youngest girl's naivete, but her demeanor also suggests she doesn't know much of such things first hand herself, likely only experimenting in solo 'ventures'.\n\nThe third girl was the one who really needed the shopping. Having a large pregnant belly well along in its term has some extra requirements. You don't catch any mention of who the father is, but the other girls are quick to rub the mound and giggle at the bodies moving inside. The girls don't seem to pay much mind to the fact that she is pregnant, either because this isn't her first litter or such a thing isn't uncommon in felin society (or both), but everyone seems to enjoy the big belly for what it is, especially the girl wielding it. Relatively casual and content, she cherishes her belly enjoys the presence of her friends.\n\n\nFinally together and familiarized with each other, Lila happily takes the lead. \"Let's all go to my house now!\"",True)
                      self.doNext()
+
                      def doListen():
-                        self.outputMainText("Back at Lila's home, her mother greets you all with a warm meal. \"Now, I know you girls want to have fun together, so after dinner I'll leave you in peace.\"\r\rYou and the girls echo thanks in return and the table is quickly cleared, leaving you all to head to Lila's room well-fed. Fluffy mats have already been laid out upon the floor, complete with spare blankets and pillows, all in preparation for the guests. It doesn't take long for Lila's friends to settle in, well accustomed to such sleepovers, and they turn their backs to each other for the few moments it takes to strip and hop into more comfortable sleepwear. Whether you attempt to intentionally or not, you do get quite a view of naked backsides from all the girls as you wait, since you were caught off guard with these plans and didn't bring your own sleepwear (if you even have any).\r\rLila dons an over-sized t-shirt that reaches down to her knees, not much different from her usual sundresses besides the length, especially not in the 'hiding her wetness' department.\r\rThe 'young' girl is the only one who puts on what could obviously be called 'pajamas', a thin silken soft pair of pants and shirt that forms to her lack of curves easily, with exaggeratedly cute designs of mice all around.\r\rThe 'tall' girl has a t-shirt as well, with a big puppy face being stretched across the blatent nipple peaks of her upper breasts, the fabric greatly outlining the ample jiggly shapes thanks to the lack of a bra. The nipples of her second pair also brush against the fabric underneath, the sides of the orbs occassionally bouncing into the cloth. Apparently bought before the growth spurt, the shirt often lifts past and exposes the third pair, much to her embarrassment, though there's not much she can do. It also doesn't cover her nethers, which she, in turn, compensated for with lacy and erotic pair of soft panties...\r\rThe 'pregnant' girl opts for a flowing sleeveless nightgown that hangs from her shoulders. Easily and comfortably draping over her belly, it ripples slightly with even the slightest breeze. It also happens to be semi-translucent, allowing you to see her nipples beneath if you catch it at the right angle, and you didn't see her put on any form of panties either.\r\r\rAll dressed up and ready for some fun, once more Lila takes the lead. \"What would you all wike to do?\"\r\rAfter some discussion, the actual decision comes down to you, as you're the newest member of the group.",True)
-                        self.showButtons(ButtonList(1,0,1,0,0,0,0,0,1,0,1,0))
-                        self.doButtonChoices({1:"Pillow Fight", 3:"House", 9:"Board Games", 11:"?"})
+                        self.outputMainText("Back at Lila's home, her mother greets you all with a warm meal. \"Now, I know you girls want to have fun together, so after dinner I'll leave you in peace.\"\n\nYou and the girls echo thanks in return and the table is quickly cleared, leaving you all to head to Lila's room well-fed. Fluffy mats have already been laid out upon the floor, complete with spare blankets and pillows, all in preparation for the guests. It doesn't take long for Lila's friends to settle in, well accustomed to such sleepovers, and they turn their backs to each other for the few moments it takes to strip and hop into more comfortable sleepwear. Whether you attempt to intentionally or not, you do get quite a view of naked backsides from all the girls as you wait, since you were caught off guard with these plans and didn't bring your own sleepwear (if you even have any).\n\nLila dons an over-sized t-shirt that reaches down to her knees, not much different from her usual sundresses besides the length, especially not in the 'hiding her wetness' department.\n\nThe 'young' girl is the only one who puts on what could obviously be called 'pajamas', a thin silken soft pair of pants and shirt that forms to her lack of curves easily, with exaggeratedly cute designs of mice all around.\n\nThe 'tall' girl has a t-shirt as well, with a big puppy face being stretched across the blatent nipple peaks of her upper breasts, the fabric greatly outlining the ample jiggly shapes thanks to the lack of a bra. The nipples of her second pair also brush against the fabric underneath, the sides of the orbs occassionally bouncing into the cloth. Apparently bought before the growth spurt, the shirt often lifts past and exposes the third pair, much to her embarrassment, though there's not much she can do. It also doesn't cover her nethers, which she, in turn, compensated for with lacy and erotic pair of soft panties...\n\nThe 'pregnant' girl opts for a flowing sleeveless nightgown that hangs from her shoulders. Easily and comfortably draping over her belly, it ripples slightly with even the slightest breeze. It also happens to be semi-translucent, allowing you to see her nipples beneath if you catch it at the right angle, and you didn't see her put on any form of panties either.\n\n\nAll dressed up and ready for some fun, once more Lila takes the lead. \"What would you all wike to do?\"\n\nAfter some discussion, the actual decision comes down to you, as you're the newest member of the group.", True)
+                        self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0))
+                        self.doButtonChoices({1: "Pillow Fight", 3: "House", 9: "Board Games", 11: "?"})
+
                         def doListen():
                            if (self.buttonChoice == 3):
                               if (self.breastSize >= 6 and self.lactation > 1 and self.milkEngorgementLevel > 0):
-                                 //FINISH//self.outputMainText("\"Okay, let's play house! Who should be the mommy?\"\r\rGlances dart about the room for who would fit the role. Most of the glances, however, seem to be feigned as they all unanimously center in upon your "+clothesTop()+" and the moist blotches thereupon.",True)
-                              }
-                              else {
-                                 textL("\"Okay, let's play house! Who should be the mommy?\"\r\r\"Umm...\" The pregnant girl looks down at her girth, as if suggesting the choice should be obvious.\r\r\"No, that's not fair, you ARE a mommy. What's the fun in that?\" The tall one objects.\r\r\"Umm...\" The young one attempts to make another suggestion. \"H-How about you?\"\r\rEveryone follows her line of sight to determine who she's referring to and the tall girl immediately begins to blush as the focus is clearly upon her breasts. \"Err, uhh, I g-guess it would make sense.\" The tall girl crosses her arms in a feeble attempt to cover up her unrestrained 'mom-like' assests out of embarrassment. But, nobody objects and everybody gets to playing pretend.");
-                              }
-                              doNext();
-                              doListen = function():void{
-                                 if (breastSize >= 6 && lactation > 1 && milkEngorgementLevel > 0) {
-                                 }
-                                 else {
-                                    textL("The tall girl recruits you as one of her 'older children' and the pregnant one as the father to help take care of the 'younger children'. Lila is treated like some kid, allowed to goof around as she pleases, but the young girl is treated... much much younger.\r\r\"Do I really have to?...\"\r\r\"Yes. I'm the mommy and you're the baby, so you need to wear one.\" The tall girl towers over the young one in dominance with a devious grin on her face. \"Now, time for changies~!\"\r\r\"Eek!\" The young one tries to jump back to no avail as the tall one's thumbs slip into the waistband of her pajama bottoms and yank them down. The the tall one pushes her down onto one of the pillowy mats, pulling along one of the blankets. The young girl squirms and attempts to hide her nethers with her hands, but the taller girl eventually wrestles her down and spreads her legs. With her cheeks burning deep red, the young one averts her eyes and pretends she doesn't care anymore while the tall girl folds the blanket around her hips and ties the make-do diaper snuggly.\r\r\"There, all done!\" The tall girl claps her hands at her masterpiece.\r\rThe young one grumbles as she stands, her tail awkwardly shifting behind her as she shuffles about in her new 'padding'. The blush never leaves her face, standing there in her pajama shirt with a fluffy bottom now far too large to fit her pants back on, her legs left bare. Then, her voice quivers meekly as she tries to turn the tide.\r\r\"F-Fine... If I have to wear a d-d-diaper, then you have to be the mommy and feed me...\"\r\rThe insecurity almost hides the sincerity in the statement and very much catches the tall girl off guard. Another weak shriek echoes around the room as she is tackled back onto another mat, the young one aiming for her lap. Before she can resist, her ill-fitting shirt easily flips up, letting the large wobbly extra-developed melons fall out. The vengeful attack strikes an equal amount of embarrassment into the tall girl, her cheeks flushing scarlet as a mouth latches onto one of her upper nipples. The young girl forces the rest of herself into the tall one's lap, preventing the 'mommy' from escaping, forcing them both to live through the humiliating scenario.\r\rLila and the pregnant one giggle at the antics of their friends, proceeding to play out their own roles as father and daughter. As Lila sits and leans back into the pregnant girl's belly, you can't help but stare back at the first two. For supposedly feigning a counter-attack, she seems oddly comfortable at the tall girl's breast, curling her legs around her diaper and holding onto the other girl like a true mother, suckling away contentedly. Meanwhile, the tall girl continually squirms, the blush only growing brighter, noticeably distressed about the sensations she's enduring. Judging by how far her other nipples are reaching as they become more and more erect, it's not too difficult to tell what those sensations might be.");
-                                    doNext();
-                                    doListen = function():void{
-                                       textL("After about ten minutes of the girls 'roleplaying' while you sit and watch, the squirming of the tall one seems to have reached its peak. She has begun to rock the smaller body in her lap in tune with her wiggling with a rather desparate expression growing upon her face. Her eyes begin to dart about and quickly focus upon you; her escape route.\r\r\"H-Hey! Now that the baby is f-fed, I think you should change her again!\"\r\rAfter the young one had become so subdued in the suckling, it doesn't take much to catch her off guard and roll her out of the lap. A startled gasp is all she can muster as the breast is yanked from her mouth and proceeds to find herself on the floor, with a nicely padded rump softly taking most of the small impact.\r\rThe tall girl quickly jumps to her feet, using the bounce of her breasts to swiftly catch them within her shirt once more. A little too quickly, as a moist blotch darkens the area around the saliva-coated nipple and the others lewdly poke against the cloth, so blatently aroused. To make matters worse, her sexy adult panties do little to hide another large blotch, lightly beading and sticking to the surrounding thigh-fur. Nevertheless, she hastily tosses you another blanket. \"Y-You change her, I'm gonna go to the bathroom!\"\r\rWithout another word, the tall one dashes away to take care of some 'business', leaving you with the young girl lying before you. Still a little dazed herself, the young girl makes sure to avoid any eye-contact, not only bracing herself for what is about to happen but also to hide her emotions of what previously occurred. She spreads her legs in hopes of speeding up the process, doing the best to pretend there is nothing wrong. Yet, as you undo her original 'diaper', it's hard to miss her own awkwardness over the situation.\r\rWhether she has had her first heat before or not, nor have much in terms of curves, it seems she has developed in other ways. Sticking up from her dainty lips stands a stiff button. About as thick as her thumb and protruding nearly as long from her sex, the large clitoris exposes her hidden feelings and defies her otherwise youthful innocence.\r\rConsidering how much of an effort she's taking to pretend like nothing is wrong, you follow suit and slip out the older blanket to replace it with the newer one. Gingerly reaching around her tush to place the folds and then wrap it around, you inevitably pinch the erection a little making her gasp and her hips buck from the floor. She instantly recovers with a loud yawn to mask her gasp, allowing you to finish tying without issue.\r\r\"Th-Thanks,\" she mutters as she sits up. Then, with a devious grin of her own, she silently swaps out the blanket of the tall-girl's sleeping mat with that she had been wearing only moments ago, bringing her finger to her lips. \"Shhh.\"\r\rYou just shake your head in amusement, letting the games continue.");
-                                       doNext();
-                                       doListen = function():void{
-                                          textL("Eventually the tall girl returns, with a rather 'relieved' look on her face and a content limp in her tail. She seems happy to bury the hatchet for now, joining the other girls and yourself with more 'mundane' roleplaying, with the game dying down as she and the pregnant girl tuck you all into bed. Of course, she neglects to return the young girl to an un-padded state, but everybody seems too tired to fix it, preferring to simply fall asleep.");
-                                          doNext();
-                                          doListen = function():void{
-                                             sleepOverEnd(buttonChoice);
-                                          }
-                                       }
-                                    }
-                                 }
-                              }
-                           }
+                                 # FINISH
+                                 self.outputMainText(f"\"Okay, let's play house! Who should be the mommy?\"\n\nGlances dart about the room for who would fit the role. Most of the glances, however, seem to be feigned as they all unanimously center in upon your {self.clothesTop()} and the moist blotches thereupon.", True)
+                              else:
+                                 self.outputMainText("\"Okay, let's play house! Who should be the mommy?\"\n\n\"Umm...\" The pregnant girl looks down at her girth, as if suggesting the choice should be obvious.\n\n\"No, that's not fair, you ARE a mommy. What's the fun in that?\" The tall one objects.\n\n\"Umm...\" The young one attempts to make another suggestion. \"H-How about you?\"\n\nEveryone follows her line of sight to determine who she's referring to and the tall girl immediately begins to blush as the focus is clearly upon her breasts. \"Err, uhh, I g-guess it would make sense.\" The tall girl crosses her arms in a feeble attempt to cover up her unrestrained 'mom-like' assests out of embarrassment. But, nobody objects and everybody gets to playing pretend.", True)
+                              self.doNext()
+
+                              def doListen():
+                                 if (self.breastSize >= 6 and self.lactation > 1 and self.milkEngorgementLevel > 0):
+                                     ...
+                                 else:
+                                    self.outputMainText("The tall girl recruits you as one of her 'older children' and the pregnant one as the father to help take care of the 'younger children'. Lila is treated like some kid, allowed to goof around as she pleases, but the young girl is treated... much much younger.\n\n\"Do I really have to?...\"\n\n\"Yes. I'm the mommy and you're the baby, so you need to wear one.\" The tall girl towers over the young one in dominance with a devious grin on her face. \"Now, time for changies~!\"\n\n\"Eek!\" The young one tries to jump back to no avail as the tall one's thumbs slip into the waistband of her pajama bottoms and yank them down. The the tall one pushes her down onto one of the pillowy mats, pulling along one of the blankets. The young girl squirms and attempts to hide her nethers with her hands, but the taller girl eventually wrestles her down and spreads her legs. With her cheeks burning deep red, the young one averts her eyes and pretends she doesn't care anymore while the tall girl folds the blanket around her hips and ties the make-do diaper snuggly.\n\n\"There, all done!\" The tall girl claps her hands at her masterpiece.\n\nThe young one grumbles as she stands, her tail awkwardly shifting behind her as she shuffles about in her new 'padding'. The blush never leaves her face, standing there in her pajama shirt with a fluffy bottom now far too large to fit her pants back on, her legs left bare. Then, her voice quivers meekly as she tries to turn the tide.\n\n\"F-Fine... If I have to wear a d-d-diaper, then you have to be the mommy and feed me...\"\n\nThe insecurity almost hides the sincerity in the statement and very much catches the tall girl off guard. Another weak shriek echoes around the room as she is tackled back onto another mat, the young one aiming for her lap. Before she can resist, her ill-fitting shirt easily flips up, letting the large wobbly extra-developed melons fall out. The vengeful attack strikes an equal amount of embarrassment into the tall girl, her cheeks flushing scarlet as a mouth latches onto one of her upper nipples. The young girl forces the rest of herself into the tall one's lap, preventing the 'mommy' from escaping, forcing them both to live through the humiliating scenario.\n\nLila and the pregnant one giggle at the antics of their friends, proceeding to play out their own roles as father and daughter. As Lila sits and leans back into the pregnant girl's belly, you can't help but stare back at the first two. For supposedly feigning a counter-attack, she seems oddly comfortable at the tall girl's breast, curling her legs around her diaper and holding onto the other girl like a true mother, suckling away contentedly. Meanwhile, the tall girl continually squirms, the blush only growing brighter, noticeably distressed about the sensations she's enduring. Judging by how far her other nipples are reaching as they become more and more erect, it's not too difficult to tell what those sensations might be.", True)
+                                    self.doNext()
+
+                                    def doListen():
+                                       self.outputMainText("After about ten minutes of the girls 'roleplaying' while you sit and watch, the squirming of the tall one seems to have reached its peak. She has begun to rock the smaller body in her lap in tune with her wiggling with a rather desparate expression growing upon her face. Her eyes begin to dart about and quickly focus upon you; her escape route.\n\n\"H-Hey! Now that the baby is f-fed, I think you should change her again!\"\n\nAfter the young one had become so subdued in the suckling, it doesn't take much to catch her off guard and roll her out of the lap. A startled gasp is all she can muster as the breast is yanked from her mouth and proceeds to find herself on the floor, with a nicely padded rump softly taking most of the small impact.\n\nThe tall girl quickly jumps to her feet, using the bounce of her breasts to swiftly catch them within her shirt once more. A little too quickly, as a moist blotch darkens the area around the saliva-coated nipple and the others lewdly poke against the cloth, so blatently aroused. To make matters worse, her sexy adult panties do little to hide another large blotch, lightly beading and sticking to the surrounding thigh-fur. Nevertheless, she hastily tosses you another blanket. \"Y-You change her, I'm gonna go to the bathroom!\"\n\nWithout another word, the tall one dashes away to take care of some 'business', leaving you with the young girl lying before you. Still a little dazed herself, the young girl makes sure to avoid any eye-contact, not only bracing herself for what is about to happen but also to hide her emotions of what previously occurred. She spreads her legs in hopes of speeding up the process, doing the best to pretend there is nothing wrong. Yet, as you undo her original 'diaper', it's hard to miss her own awkwardness over the situation.\n\nWhether she has had her first heat before or not, nor have much in terms of curves, it seems she has developed in other ways. Sticking up from her dainty lips stands a stiff button. About as thick as her thumb and protruding nearly as long from her sex, the large clitoris exposes her hidden feelings and defies her otherwise youthful innocence.\n\nConsidering how much of an effort she's taking to pretend like nothing is wrong, you follow suit and slip out the older blanket to replace it with the newer one. Gingerly reaching around her tush to place the folds and then wrap it around, you inevitably pinch the erection a little making her gasp and her hips buck from the floor. She instantly recovers with a loud yawn to mask her gasp, allowing you to finish tying without issue.\n\n\"Th-Thanks,\" she mutters as she sits up. Then, with a devious grin of her own, she silently swaps out the blanket of the tall-girl's sleeping mat with that she had been wearing only moments ago, bringing her finger to her lips. \"Shhh.\"\n\nYou just shake your head in amusement, letting the games continue.", True)
+                                       self.doNext()
+
+                                       def doListen():
+                                          self.outputMainText("Eventually the tall girl returns, with a rather 'relieved' look on her face and a content limp in her tail. She seems happy to bury the hatchet for now, joining the other girls and yourself with more 'mundane' roleplaying, with the game dying down as she and the pregnant girl tuck you all into bed. Of course, she neglects to return the young girl to an un-padded state, but everybody seems too tired to fix it, preferring to simply fall asleep.", True);
+                                          self.doNext()
+
+                                          def doListen():
+                                             sleepOverEnd(self.buttonChoice)
+                                          self.doListen = doListen
+                                       self.doListen = doListen
+                                    self.doListen = doListen
+                              self.doListen = doListen
                            elif (self.buttonChoice == 9):
-                              textL("\"Ooo, a board game would be fun.\" They all seem to agree. Lila crouches down to her hands and knees. Her rump in the air, her tail nearly lifting her shirt up to expose the tight cheeks, she searches under her bed until she emerges with a decorated box. She then opens it up and lays out the board in the middle of you all, distributing the pieces and fake money. After the fighting over who gets to be the milk-cart ends, you wind up with the shoe and the game gets under way.");
-                              if (tallness > 57 && str > 20) {
-                                 outputMainText("\r\rAs everybody settles in for a few hours of economic fun, the pregnant girl scooches over to you.\"Umm... Would you mind supporting me? I've kinda gotten a bit... big,\" she looks down and roves a hand over her belly, \"and sitting while playing like this is already starting to make my back ache. You seem like you would be big enough and strong enough to help hold me up...\" There's a tinge of blush beneath her fur with the lack of discretion over her fertile nature.\r\r")
+                              self.outputMainText("\"Ooo, a board game would be fun.\" They all seem to agree. Lila crouches down to her hands and knees. Her rump in the air, her tail nearly lifting her shirt up to expose the tight cheeks, she searches under her bed until she emerges with a decorated box. She then opens it up and lays out the board in the middle of you all, distributing the pieces and fake money. After the fighting over who gets to be the milk-cart ends, you wind up with the shoe and the game gets under way.", True);
+                              if (self.tallness > 57 and self.str > 20):
+                                 self.outputMainText("\n\nAs everybody settles in for a few hours of economic fun, the pregnant girl scooches over to you.\"Umm... Would you mind supporting me? I've kinda gotten a bit... big,\" she looks down and roves a hand over her belly, \"and sitting while playing like this is already starting to make my back ache. You seem like you would be big enough and strong enough to help hold me up...\" There's a tinge of blush beneath her fur with the lack of discretion over her fertile nature.\n\n", False)
                               # pregnant one leans against you if tall enough and strong enough, your hand masturbating her; otherwise she leans against bed opposite of you and has to spread her legs.
                         self.doListen = doListen
                      self.doListen = doListen
                   else:
-                     self.outputMainText("Deciding the rest of your day and night is probably better spent elsewhere, you thank Lila for the invitation but decline.\r\rThe girl doesn't mind much at all and says her goodbye with cheery smile. \"Okays, maybe next time then!\" And then she's off on her way to get her friends.",True)
+                     self.outputMainText("Deciding the rest of your day and night is probably better spent elsewhere, you thank Lila for the invitation but decline.\n\nThe girl doesn't mind much at all and says her goodbye with cheery smile. \"Okays, maybe next time then!\" And then she's off on her way to get her friends.",True)
                      self.hrs = 1
                      self.doEnd()
                self.doListen = doListen
-               function sleepOverEnd(buttonChoice:int):void{}
-               '''
 
             # Lila Tail
             else:
@@ -21487,71 +21492,73 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.stash.hasItem(232) or self.stash.hasItem(233) or self.stash.hasItem(234) or self.stash.hasItem(235) or self.stash.hasItem(236)):
                     self.outputMainText("While you may potentially want another one of Silandrias' magical goodies, you recall you left the current one you are borrowing back in your stash. You wouldn't want to take advantage of a waiting mother (you wouldn't, RIGHT?!), so you decline and thank her kindly before heading out.", True)
                     self.doEnd()
-                else:
-                    self.showButtons(ButtonList(0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1))
-                    tempDict = {12: "No Thanks"}
-                    self.doMainText("\"Anything you might be interested in?\"", True)
-                    if (not self.bag.hasItem(232)):
-                        tempDict[2] = "Flying Carp"
-                        self.doMainText("\n\nFlying Carpet - A flying carpet just like Naeru and Daeru used to help Silandrias, it can help you get from town to town.")
-                    if (not self.bag.hasItem(233)):
-                        tempDict[5] = "A-Grav Rock"
-                        self.doMainText("\n\nAnti-Gravity Rock - A small rock that floats in the air and can make you feel a little floaty as well if you hold it.")
-                    if (not self.bag.hasItem(234)):
-                        tempDict[6] = "Rein Charm"
-                        self.doMainText("\n\nReindeer Charm - A large sapphire gem carved in the shape of a reindeers head with large antlers, it can fill you with the essence of the reindeer mother.")
-                    if (not self.bag.hasItem(235)):
-                        tempDict[7] = "Fell Rod"
-                        self.doMainText("\n\nFellatio Rod - A lewd-looking rod, it is not a sexual toy but rather a weapon that can drain the life-force from an opponent.")
-                    if (not self.bag.hasItem(236)):
-                        tempDict[10] = "Recept Bell"
-                        self.doMainText("\n\nReception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences.")
-                    self.displayMainText()
-                    self.doButtonChoices(tempDict)
+                    return
 
-                    def doListen():
-                        if (self.buttonChoice == 12):
-                            self.outputMainText("Happy with what you have now, you decline the offer but thank her and the pups with a hug before leaving.", True)
-                            self.doEnd()
-                        else:
-                            self.doMainText("You are, in fact, interested in something. ", True)
-                            if (self.bag.hasItem(232) or self.bag.hasItem(233) or self.bag.hasItem(234) or self.bag.hasItem(235) or self.bag.hasItem(236)):
-                                self.doMainText("Handing back the ", True)
-                                if (self.bag.hasItem(232)):
-                                    self.doMainText("Flying Carpet")
-                                    self.loseManyItem(232, 1)
-                                if (self.bag.hasItem(233)):
-                                    self.doMainText("Anti-Gravity Rock")
-                                    self.loseManyItem(233, 1)
-                                if (self.bag.hasItem(234)):
-                                    self.doMainText("Reindeer Charm")
-                                    self.loseManyItem(234, 1)
-                                if (self.bag.hasItem(235)):
-                                    self.doMainText("Fellatio Rod")
-                                    self.loseManyItem(235, 1)
-                                if (self.bag.hasItem(236)):
-                                    self.doMainText("Reception Bell")
-                                    self.loseManyItem(236, 1)
-                                self.doMainText(" you borrowed before, you thank her graciously again for letting you try it out. ")
-                            self.doMainText("Deciding you would like to test the ")
-                            if self.buttonChoice == 2:
-                                self.doMainText("Flying Carpet")
-                                self.itemAdd(232)
-                            elif self.buttonChoice == 5:
-                                self.doMainText("Anti-Gravity Rock")
-                                self.itemAdd(233)
-                            elif self.buttonChoice == 6:
-                                self.doMainText("Reindeer Charm")
-                                self.itemAdd(234)
-                            elif self.buttonChoice == 7:
-                                self.doMainText("Fellatio Rod")
-                                self.itemAdd(235)
-                            elif self.buttonChoice == 10:
-                                self.doMainText("Reception Bell")
-                                self.itemAdd(236)
-                            self.outputMainText(", Silandrias hands it to you with a smile.\n\n\"Hope you enjoy it~\" She gives you a hug as you thank her for giving access to her magical treasures that she has been hoarding. \"It's quite alright dear, I want to share everything with you~\"\n\nYou soon finish saying your goodbyes to both her and the pups and make your way out.")
-                            self.doEnd()
-                    self.doListen = doListen
+                self.showButtons(ButtonList(0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1))
+                tempDict = {12: "No Thanks"}
+                self.doMainText("\"Anything you might be interested in?\"", True)
+                if (not self.bag.hasItem(232)):
+                    tempDict[2] = "Flying Carp"
+                    self.doMainText("\n\nFlying Carpet - A flying carpet just like Naeru and Daeru used to help Silandrias, it can help you get from town to town.")
+                if (not self.bag.hasItem(233)):
+                    tempDict[5] = "A-Grav Rock"
+                    self.doMainText("\n\nAnti-Gravity Rock - A small rock that floats in the air and can make you feel a little floaty as well if you hold it.")
+                if (not self.bag.hasItem(234)):
+                    tempDict[6] = "Rein Charm"
+                    self.doMainText("\n\nReindeer Charm - A large sapphire gem carved in the shape of a reindeers head with large antlers, it can fill you with the essence of the reindeer mother.")
+                if (not self.bag.hasItem(235)):
+                    tempDict[7] = "Fell Rod"
+                    self.doMainText("\n\nFellatio Rod - A lewd-looking rod, it is not a sexual toy but rather a weapon that can drain the life-force from an opponent.")
+                if (not self.bag.hasItem(236)):
+                    tempDict[10] = "Recept Bell"
+                    self.doMainText("\n\nReception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences.")
+                self.displayMainText()
+                self.doButtonChoices(tempDict)
+
+                def doListen():
+                    if (self.buttonChoice == 12):
+                        self.outputMainText("Happy with what you have now, you decline the offer but thank her and the pups with a hug before leaving.", True)
+                        self.doEnd()
+                        return
+
+                    self.doMainText("You are, in fact, interested in something. ", True)
+                    if (self.bag.hasItem(232) or self.bag.hasItem(233) or self.bag.hasItem(234) or self.bag.hasItem(235) or self.bag.hasItem(236)):
+                        self.doMainText("Handing back the ", True)
+                        if (self.bag.hasItem(232)):
+                            self.doMainText("Flying Carpet")
+                            self.loseManyItem(232, 1)
+                        if (self.bag.hasItem(233)):
+                            self.doMainText("Anti-Gravity Rock")
+                            self.loseManyItem(233, 1)
+                        if (self.bag.hasItem(234)):
+                            self.doMainText("Reindeer Charm")
+                            self.loseManyItem(234, 1)
+                        if (self.bag.hasItem(235)):
+                            self.doMainText("Fellatio Rod")
+                            self.loseManyItem(235, 1)
+                        if (self.bag.hasItem(236)):
+                            self.doMainText("Reception Bell")
+                            self.loseManyItem(236, 1)
+                        self.doMainText(" you borrowed before, you thank her graciously again for letting you try it out. ")
+                    self.doMainText("Deciding you would like to test the ")
+                    if self.buttonChoice == 2:
+                        self.doMainText("Flying Carpet")
+                        self.itemAdd(232)
+                    elif self.buttonChoice == 5:
+                        self.doMainText("Anti-Gravity Rock")
+                        self.itemAdd(233)
+                    elif self.buttonChoice == 6:
+                        self.doMainText("Reindeer Charm")
+                        self.itemAdd(234)
+                    elif self.buttonChoice == 7:
+                        self.doMainText("Fellatio Rod")
+                        self.itemAdd(235)
+                    elif self.buttonChoice == 10:
+                        self.doMainText("Reception Bell")
+                        self.itemAdd(236)
+                    self.outputMainText(", Silandrias hands it to you with a smile.\n\n\"Hope you enjoy it~\" She gives you a hug as you thank her for giving access to her magical treasures that she has been hoarding. \"It's quite alright dear, I want to share everything with you~\"\n\nYou soon finish saying your goodbyes to both her and the pups and make your way out.")
+                    self.doEnd()
+                self.doListen = doListen
             self.doListen = doListen
 
         elif (self.silRep == 5 and (self.silGrowthTime > 360 or self.silPreg >= 10000)):
@@ -22039,13 +22046,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" you can tell that you definitely wouldn't be able to fit her maleness, so that is pretty much out of the question.")
             self.doMainText("\n\n\"Hello~\" Silandrias greets you with joy, happy to have your company again. \"Come on in, please.\" She turns to lead you into the network of tunnels. \"Would you care to do something, hun?\"")
             if (self.silPreg > 40):
-                if (not self.silTied):
-                    if (self.silRep == 1):
-                        self.doMainText("\n\nOnly a few steps in, however, she pauses for a moment and lets out a gasp as the base of her tail expands. A round object passes through, stretching her tail as it moves, before her tail reflexively flicks to the side of the tunnel. As the round object approaches the narrow tip, she shivers a little as the tip opens to let the hard-shelled egg through. Laid gently against the wall, lubrication stretches and snaps off from her secondary vaginal passage that is hidden within her tail, leaving the egg still moist.\n\nShe looks down at what she had done before you and blushes. \"Oh dear... I-I've been a little embarrassed since I've begun laying them all over, and even moreso now that I've done it in front of you... D-Don't worry about it though. I just kinda... 'know' that they aren't real, they won't grow or hatch at all, there's nothing in them except normal egg-stuff. Don't really know why though... But it just kinda happens every now and then since we've, umm, had our fun.\" She glances to the side. \"We can leave it for now, I'll pick it up later, with the rest of them...\" Her stride picks up in eagerness to spend some time with you.")
-                    else:
-                        self.doMainText("\n\nA few steps in, she pauses and gasps as another egg begins its way down her tail. Just like the lizan people, she lays the infertile things whenever they're ready, though down a different passage. Quite used to it by now, she naturally flicks her tail to the side to desposit it against the wall of the tunnel for retrieval later and continues on.")
-                else:
+                if (self.silTied):
                     self.doMainText("\n\nFrom behind, you can see her tail is a bit swollen at its base, just behind the leather strap you bound. The eggs press around her tail, wanting to get out, but simply accumulate instead as they're blocked. It makes her walk a little more awkwardly, but doesn't seem to bother her much otherwise.")
+                elif (self.silRep == 1):
+                    self.doMainText("\n\nOnly a few steps in, however, she pauses for a moment and lets out a gasp as the base of her tail expands. A round object passes through, stretching her tail as it moves, before her tail reflexively flicks to the side of the tunnel. As the round object approaches the narrow tip, she shivers a little as the tip opens to let the hard-shelled egg through. Laid gently against the wall, lubrication stretches and snaps off from her secondary vaginal passage that is hidden within her tail, leaving the egg still moist.\n\nShe looks down at what she had done before you and blushes. \"Oh dear... I-I've been a little embarrassed since I've begun laying them all over, and even moreso now that I've done it in front of you... D-Don't worry about it though. I just kinda... 'know' that they aren't real, they won't grow or hatch at all, there's nothing in them except normal egg-stuff. Don't really know why though... But it just kinda happens every now and then since we've, umm, had our fun.\" She glances to the side. \"We can leave it for now, I'll pick it up later, with the rest of them...\" Her stride picks up in eagerness to spend some time with you.")
+                else:
+                    self.doMainText("\n\nA few steps in, she pauses and gasps as another egg begins its way down her tail. Just like the lizan people, she lays the infertile things whenever they're ready, though down a different passage. Quite used to it by now, she naturally flicks her tail to the side to desposit it against the wall of the tunnel for retrieval later and continues on.")
             self.displayMainText()
             self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0))
             tempDict = {9: "Cuddle"}
@@ -22245,12 +22251,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     elif (self.silPreg <= 600):
                         self.doMainText(" It then takes quite a bit of effort to both hold aloft the engorged penis and testicles, a bit of pre drooling over your arm from her pregnant arousal, and do your best to feel under her huge belly until you can find her soft slit beneath all the swollen bits.")
                     self.doMainText(" From there, slipping the small suppository inside is simple, as it sucks itself in thanks to its torpedo-like shape.\n\nWithin moments you can feel her shiver as the stuff dissolves and makes her giggle a little.")
-                    if (self.silRate > 5 and not self.silTied):
-                        self.doMainText(" However, she soon holds her breath and her eyes go wide as she pushes, several bulges travelling down her tail in an instant in response to the sudden spur in production. Once they all plop out around the bed, she huffs as her system stabalizes with her belly visibly growing at first, the production rate surpassing her laying rate some more.")
-                    elif (not self.silTied):
-                        self.doMainText(" She soon gasps as she suddenly feels an unexpected egg already at the entrance to her tail-passage, making her grunt a little as she pushes it out and plops it onto the bed. From there, her belly seems to grow slightly as it stabilizes with the increased rate of production over laying, until she's breathing normally again.")
-                    else:
+                    if (self.silTied):
                         self.doMainText(" She soon gasps a little as she feels her belly churn, visibly growing slightly as it stabilizes with the increased rate of production over laying, eventually tapering off when it settles.")
+                    elif (self.silRate > 5):
+                        self.doMainText(" However, she soon holds her breath and her eyes go wide as she pushes, several bulges travelling down her tail in an instant in response to the sudden spur in production. Once they all plop out around the bed, she huffs as her system stabalizes with her belly visibly growing at first, the production rate surpassing her laying rate some more.")
+                    else:
+                        self.doMainText(" She soon gasps as she suddenly feels an unexpected egg already at the entrance to her tail-passage, making her grunt a little as she pushes it out and plops it onto the bed. From there, her belly seems to grow slightly as it stabilizes with the increased rate of production over laying, until she's breathing normally again.")
                     self.doMainText("\n\nThough the chemical may work differently on her, it seems to do its duty. She smiles at you, feeling her fertility blossoming more rapidly. \"I'm sure this will make the process move along faster...\"\n\nYou stay with her another couple of hours to make sure she's alright and to spend some time together, then you head back out to continue on.")
                     self.silRate += 1
                     self.doLust(Math.floor(self.lib / 5), 0)
@@ -23398,7 +23404,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.defeatedMinotaur = True
             self.currentDungeon = Dungeon.MINOTAUR_RAPED
         elif self.enemyID == Enemy.FREAKY_LITTLE_GIRL:
-            self.doMainText("\r\rA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"")
+            self.doMainText("\n\nA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"")
             if (not self.defeatedFreakyGirl):
                 self.defeatedFreakyGirl = True
             self.currentDungeon = Dungeon.FREAKY_GIRL_RAPED
