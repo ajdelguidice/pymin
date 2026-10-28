@@ -28,7 +28,8 @@ if hasattr(html_parser, 'HLinkSlot_Command'):
     HAS_CUSTOM_HTML_PARSER = True
 else:
     HAS_CUSTOM_HTML_PARSER = False
-    trace('Warning: [PyminWiki] Custom tkhtmlview html_parser is not installed. Wiki links will not work')
+    # NOTE: Can't use trace here because it doesn't currently work properly.
+    print('Warning: [PyminWiki] Custom tkhtmlview html_parser is not installed. Wiki links will not work')
 
 '''
 These variables will need to be checked once as3lib.Array works properly.
@@ -82,7 +83,7 @@ class GameState:
     MASTURBATE = 3
 
 
-class Zones:
+class Zone:
     NONE = 0
     SOFTLIK = 1
     FIRMSHAFT = 2
@@ -91,8 +92,41 @@ class Zones:
     OVIASIS = 6
     SANCTUARY = 12
 
+    def name(region: int):
+        if region == Zone.SOFTLIK:
+            return 'Softlik'
+        if region == Zone.FIRMSHAFT:
+            return 'Firmshaft'
+        if region == Zone.TIEDEN:
+            return 'Tieden'
+        if region == Zone.SIZ_CALIT:
+            return 'Siz\'Calit'
+        if region == Zone.OVIASIS:
+            return 'Oviasis'
+        if region == Zone.SANCTUARY:
+            return 'Sanctuary'
+        return f'REGION ERROR {region}'
 
-class Dungeons:
+    def regionName(region: int) -> str:
+        if region == Zone.SOFTLIK:
+            return 'Softlik'
+        if region == Zone.FIRMSHAFT:
+            return 'Firmshaft'
+        if region == Zone.TIEDEN:
+            return 'Tieden'
+        if region == Zone.SIZ_CALIT:
+            return 'Siz\'Calit'
+        if region == Zone.OVIASIS:
+            return 'Oviasis'
+        if region == Zone.SANCTUARY:
+            return 'Sanctuary'
+        if (region > 1000 and region < 1010):
+            return 'Cave Descent'
+
+        return None
+
+
+class Dungeon:
     MINOTAUR_ENTER = 1001
     MINOTAUR_DEFEATED = 1002
     MINOTAUR_RAPED = 1003
@@ -110,6 +144,62 @@ class Gender:
     MALE = 1
     FEMALE = 2
     HERM = 3
+
+
+class Race:
+    NONE = 0
+    HUMAN = 1
+    HORSE = 2
+    WOLF = 3
+    CAT = 4
+    COW = 5
+    LIZARD = 6
+    RABBIT = 7
+    MOUSE = 8
+    BIRD = 9
+    PIG = 10
+    SKUNK = 11
+    BUG = 12
+
+    def name(ID: int) -> str:
+        if ID == Race.HUMAN:
+            return "human"
+        if ID == Race.HORSE:
+            return "horse"
+        if ID == Race.WOLF:
+            return "wolf"
+        if ID == Race.CAT:
+            return "cat"
+        if ID == Race.COW:
+            return "cow"
+        if ID == Race.LIZARD:
+            return "lizard"
+        if ID == Race.RABBIT:
+            return "bunny"
+        if ID == Race.MOUSE:
+            return "mouse"
+        if ID == Race.BIRD:
+            return "bird"
+        if ID == Race.PIG:
+            return "pig"
+        if ID == Race.SKUNK:
+            return "skunk"
+        if ID == Race.BUG:
+            return "bug"
+        return f"RACE NAME ERROR {ID}"
+
+    def prettyName(ID: int) -> str:
+        if ID == 1:
+            return "Human"
+        if ID == 2:
+            return "Equan"
+        if ID == 3:
+            return "Lupan"
+        if ID == 4:
+            return "Felin"
+        if ID == 6:
+            return "Lizan"
+        return f"RACE PRETTY NAME ERROR {ID}"
 
 
 class Enemy:
@@ -475,24 +565,6 @@ class Utils:
 
     def hexColorFromThemeNumber(theme) -> str:
         return ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[theme]
-
-    def getRegionName(region: int) -> str:
-        if region == Zones.SOFTLIK:
-            return 'Softlik'
-        if region == Zones.FIRMSHAFT:
-            return 'Firmshaft'
-        if region == Zones.TIEDEN:
-            return 'Tieden'
-        if region == Zones.SIZ_CALIT:
-            return 'Siz\'Calit'
-        if region == Zones.OVIASIS:
-            return 'Oviasis'
-        if region == Zones.SANCTUARY:
-            return 'Sanctuary'
-        if (region > 1000 and region < 1010):
-            return 'Cave Descent'
-
-        return None
 
 
 class DirUtils:
@@ -2476,7 +2548,7 @@ class ApothecaryItems:
 
 class Shop:
     def ID(currentZone: int, goodsSlot: int) -> int:
-        if currentZone == Zones.SOFTLIK:
+        if currentZone == Zone.SOFTLIK:
             if goodsSlot == 1:
                 return 104
             if goodsSlot == 2:
@@ -2495,7 +2567,7 @@ class Shop:
                 return 115
             if goodsSlot == 11:
                 return 121
-        elif currentZone == Zones.FIRMSHAFT:
+        elif currentZone == Zone.FIRMSHAFT:
             if goodsSlot == 1:
                 return 102
             if goodsSlot == 2:
@@ -2510,7 +2582,7 @@ class Shop:
                 return 115
             if goodsSlot == 11:
                 return 122
-        elif currentZone == Zones.TIEDEN:
+        elif currentZone == Zone.TIEDEN:
             if goodsSlot == 1:
                 return 101
             if goodsSlot == 2:
@@ -2525,7 +2597,7 @@ class Shop:
                 return 115
             if goodsSlot == 11:
                 return 123
-        elif currentZone == Zones.SIZ_CALIT:
+        elif currentZone == Zone.SIZ_CALIT:
             if goodsSlot == 2:
                 return 114
             if goodsSlot == 3:
@@ -2540,7 +2612,7 @@ class Shop:
                 return 115
             if goodsSlot == 11:
                 return 124
-        elif currentZone == Zones.OVIASIS:
+        elif currentZone == Zone.OVIASIS:
             if goodsSlot == 1:
                 return 109
             if goodsSlot == 2:
@@ -2557,7 +2629,7 @@ class Shop:
                 return 115
             if goodsSlot == 11:
                 return 125
-        elif currentZone == Zones.SANCTUARY:
+        elif currentZone == Zone.SANCTUARY:
             if goodsSlot == 1:
                 return 247
             if goodsSlot == 2:
@@ -2590,7 +2662,7 @@ class DyeShop:
 
 class Apothecary:
     def ID(currentZone: int, goodsSlot: int, knowledge: object) -> int:
-        if currentZone == Zones.SOFTLIK:
+        if currentZone == Zone.SOFTLIK:
             if goodsSlot == 1:
                 return 203
             if goodsSlot == 2:
@@ -2605,7 +2677,7 @@ class Apothecary:
                 return 10
             if goodsSlot == 11 and not knowledge.knowBabyFree:
                 return 11
-        elif currentZone == Zones.FIRMSHAFT:
+        elif currentZone == Zone.FIRMSHAFT:
             if goodsSlot == 1:
                 return 209
             if goodsSlot == 2:
@@ -2622,7 +2694,7 @@ class Apothecary:
                 return 5
             if goodsSlot == 11 and not knowledge.knowSMasoPot:
                 return 14
-        elif currentZone == Zones.TIEDEN:
+        elif currentZone == Zone.TIEDEN:
             if goodsSlot == 1:
                 return 201
             if goodsSlot == 2:
@@ -2637,7 +2709,7 @@ class Apothecary:
                 return 12
             if goodsSlot == 11 and not knowledge.knowSGenSwap:
                 return 13
-        elif currentZone == Zones.SIZ_CALIT:
+        elif currentZone == Zone.SIZ_CALIT:
             if goodsSlot == 1:
                 return 210
             if goodsSlot == 2:
@@ -2650,7 +2722,7 @@ class Apothecary:
                 return 9
             if goodsSlot == 11 and not knowledge.knowSBabyFree:
                 return 15
-        elif currentZone == Zones.OVIASIS:
+        elif currentZone == Zone.OVIASIS:
             if goodsSlot == 1:
                 return 207
             if goodsSlot == 2:
@@ -2665,7 +2737,7 @@ class Apothecary:
                 return 8
             if goodsSlot == 11 and not knowledge.knowSPotPot:
                 return 16
-        elif currentZone == Zones.SANCTUARY:
+        elif currentZone == Zone.SANCTUARY:
             if goodsSlot == 9 and not knowledge.knowMilkSuppress:
                 return 17
         return 0
@@ -2673,7 +2745,7 @@ class Apothecary:
 
 class Salon:
     def ID(currentZone: int, choice: int) -> int:
-        if currentZone == Zones.SOFTLIK:
+        if currentZone == Zone.SOFTLIK:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -2688,7 +2760,7 @@ class Salon:
                 return 12
             if choice == 9:
                 return 14
-        elif currentZone == Zones.FIRMSHAFT:
+        elif currentZone == Zone.FIRMSHAFT:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -2703,7 +2775,7 @@ class Salon:
                 return 5
             if choice == 9:
                 return 6
-        elif currentZone == Zones.TIEDEN:
+        elif currentZone == Zone.TIEDEN:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -2718,7 +2790,7 @@ class Salon:
                 return 12
             if choice == 9:
                 return 13
-        elif currentZone == Zones.SIZ_CALIT:
+        elif currentZone == Zone.SIZ_CALIT:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -2733,7 +2805,7 @@ class Salon:
                 return 7
             if choice == 9:
                 return 13
-        elif currentZone == Zones.OVIASIS:
+        elif currentZone == Zone.OVIASIS:
             if choice == 1:
                 return 2
             if choice == 2:
@@ -2748,7 +2820,7 @@ class Salon:
                 return 11
             if choice == 9:
                 return 12
-        elif currentZone == Zones.SANCTUARY:
+        elif currentZone == Zone.SANCTUARY:
             if choice == 1:
                 return 2
             if choice == 2:
@@ -2768,7 +2840,7 @@ class Salon:
 
 class Tailor:
     def ID(currentZone: int, choice: int) -> int:
-        if currentZone == Zones.SOFTLIK:
+        if currentZone == Zone.SOFTLIK:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -2787,7 +2859,7 @@ class Tailor:
                 return 22
             if choice == 11:
                 return 27
-        elif currentZone == Zones.FIRMSHAFT:
+        elif currentZone == Zone.FIRMSHAFT:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -2806,7 +2878,7 @@ class Tailor:
                 return 24
             if choice == 11:
                 return 26
-        elif currentZone == Zones.TIEDEN:
+        elif currentZone == Zone.TIEDEN:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -2825,7 +2897,7 @@ class Tailor:
                 return 23
             if choice == 11:
                 return 25
-        elif currentZone == Zones.SIZ_CALIT:
+        elif currentZone == Zone.SIZ_CALIT:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -2844,7 +2916,7 @@ class Tailor:
                 return 20
             if choice == 11:
                 return 28
-        elif currentZone == Zones.OVIASIS:
+        elif currentZone == Zone.OVIASIS:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -2863,7 +2935,7 @@ class Tailor:
                 return 19
             if choice == 11:
                 return 21
-        elif currentZone == Zones.SANCTUARY:
+        elif currentZone == Zone.SANCTUARY:
             if choice == 1:
                 return 1
             if choice == 2:
@@ -3691,7 +3763,7 @@ class WikiPages:
             tempStr = "<h4><u>General Shop</u></h4><u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow."
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
-                tempStr += f'\n\n<u>{Utils.getRegionName(i)}</u>'
+                tempStr += f'\n\n<u>{Zone.regionName(i)}</u>'
                 for j in RANGE9_BUTTON_MAP:
                     ID = Shop.ID(i, j)
                     if ID != 0:
@@ -3723,7 +3795,7 @@ class WikiPages:
 
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
-                tempStr += f'\n\n<u>{Utils.getRegionName(i)}</u>'
+                tempStr += f'\n\n<u>{Zone.regionName(i)}</u>'
                 for j in RANGE9_BUTTON_MAP:
                     ID = Apothecary.ID(i, j, FakeKnowledge)
                     if ID != 0:
@@ -3736,7 +3808,7 @@ class WikiPages:
             tempStr = "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow."
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
-                tempStr += f'\n\n<u>{Utils.getRegionName(i)}</u>'
+                tempStr += f'\n\n<u>{Zone.regionName(i)}</u>'
                 for j in RANGE9_BUTTON_MAP:
                     ID = Salon.ID(i, j)
                     if ID != 0:
@@ -3747,7 +3819,7 @@ class WikiPages:
             # "\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
-                tempStr += f'\n\n<u>{Utils.getRegionName(i)}</u>'
+                tempStr += f'\n\n<u>{Zone.regionName(i)}</u>'
                 for j in RANGE9_BUTTON_MAP:
                     ID = Tailor.ID(i, j)
                     if ID != 0:
@@ -4593,6 +4665,7 @@ class SE_File:
         data = newData
         data['version']['port'] = __version__
         self._SaveFunction(data, self.file)
+        # TODO: Update rawData
 
 
 SE_Label = partial(tkinter.Label, highlightthickness=1, highlightbackground='#000000', background='#FFFFFF', foreground='#000000', anchor='w')
@@ -5405,14 +5478,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.inBag = False
         self.inStash = False  # Like inBag but for stash
         self.inShop = False
-        # self.currentZone = Zones.NONE
+        # self.currentZone = Zone.NONE
         # self.day = 0
         # self.hour = 8
         # self.inDungeon = False
         # self.currentDungeon = 0
         self.skipExhaustion = False
         # self.currentDayCare = 0
-        self.goToInDoProcess = Zones.NONE  # Go to this location in doProcess. This is used instead of setting it manually which can lead to the game looking weird
+        self.goToInDoProcess = Zone.NONE  # Go to this location in doProcess. This is used instead of setting it manually which can lead to the game looking weird
 
         # RND
         self.rndArray = Array()
@@ -5518,9 +5591,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         # Body features
         # self.gender = Gender.ANDRO
-        # self.race = 0
+        # self.race = Race.NONE
         # self.body = 0
-        # self.dominant = 0
+        # self.dominant = Race.NONE
         # self.hips = 0
         # self.butt = 0
         # self.tallness = 0
@@ -6565,9 +6638,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.disableSelectedButtons(dlist)
 
     def doProcess(self, override: str = None):
-        if self.goToInDoProcess != Zones.NONE:
+        if self.goToInDoProcess != Zone.NONE:
             self.regionChange(self.goToInDoProcess)
-            self.goToInDoProcess = Zones.NONE
+            self.goToInDoProcess = Zone.NONE
         mainobject.detailedDebug()
         self.choicePage = 1
         if (not (self.inBag or self.inStash) and self.moveItemID != 0):
@@ -6824,7 +6897,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.currentDungeon = changes
         else:
             self.currentZone = changes
-        newRegion = Utils.getRegionName(changes)
+        newRegion = Zone.regionName(changes)
         if newRegion is not None:
             self.window._children['currentregionlabel'].text = newRegion
 
@@ -7065,7 +7138,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hideOption7()
                 self.hideUpDown()
                 self.currentState = GameState.GAME_UNLOADED
-                self.currentZone = Zones.NONE
+                self.currentZone = Zone.NONE
                 self.inBag = False
                 self.inStash = False
                 self.inShop = False
@@ -7122,9 +7195,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.lockNipples = 0
                 self.lockCock = 0
                 self.gender = Gender.ANDRO
-                self.race = 0
+                self.race = Race.NONE
                 self.body = 0
-                self.dominant = 0
+                self.dominant = Race.NONE
                 self.hips = 0
                 self.butt = 0
                 self.tallness = 0
@@ -7443,7 +7516,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempStr += " Large, multi-pointed, slightly fuzzy antlers grow out from atop your head, feeling slightly heavy but perfectly melded to your skull so you can easily lift them."
         if (self.bag.hasItem(101)):
             tempStr += " Soft padding protects the palms of your hands, making them look much like paws, your nails being sharp claws."
-        elif (self.dominant == 9):
+        elif (self.dominant == Race.BIRD):
             tempStr += " Pointy talons grow from the tips of your fingers, more menacing than normal nails but not useful enough to be a threat."
         if (self.legType >= 1000):
             tempStr += f" From your waist down extends an almost second body, complete with a second belly and set of legs, standing on four {self.legDesc(10)}. 'Taur' tends to be the term for such a being, with your crotch and rump far back at the end of the continued body."
@@ -7486,7 +7559,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 tempBellySize = Utils.decGet(self.tallness / 2 + self.pregnancyTime / 10 + self.vagBellyMod / 8 + self.bellyMod / 10, 1)
             tempStr += f" Your waist measures {tempBellySize} inches around, sporting a {self.bellyDesc()} belly beneath your {self.clothesTop()}."
-        if (self.dominant == 10):
+        if (self.dominant == Race.PIG):
             tempStr += " There's also a bit of extra pudge around your waist, some chubbiness to add to your pig-like nature."
         if (self.wings > 0):
             tempStr += " Holes over your shoulders help your "
@@ -7506,7 +7579,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += f"\n\nUpon your chest and down to your lower belly heaves {self.boobTotal} {self.boobDesc()} breasts; four pairs all the same size and practically stacked on top of each other. Your bust measures {Utils.decGet(self.breastSize * 0.38, 1)} inches in circumference beyond that of your chest, the lower pairs just as large; each with {self.nipDesc()}"
             elif self.boobTotal == 10:
                 tempStr += f"\n\nUpon your chest and down to just above your crotch heaves {self.boobTotal} {self.boobDesc()} breasts; five pairs all the same size and practically stacked on top of each other. Your bust measures {Utils.decGet(self.breastSize * 0.4, 1)} inches in circumference beyond that of your chest, the lower pairs just as large; each with {self.nipDesc()}"
-            if (self.dominant == 5):
+            if (self.dominant == Race.COW):
                 tempStr += "teats"
             else:
                 tempStr += "nipples"
@@ -7803,12 +7876,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempStr.clear()
         else:
             tempStr += "\n\n"
-        tempStr += f"Within {self.regionName(self.currentZone)} specifically, you are considered to be:\n"
+        tempStr += f"Within {Zone.name(self.currentZone)} specifically, you are considered to be:\n"
         if (self.dominant == self.currentZone):
             tempStr += "\nA Fellow Native"
         else:
             tempStr += "\nA Strange Outsider"
-        if self.currentZone == Zones.SOFTLIK:
+        if self.currentZone == Zone.SOFTLIK:
             if (self.cowAffinity > 50):
                 tempStr += "\nFrom the Dairy Farm"
             if (self.malonRep == 2):
@@ -7819,11 +7892,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += "\nMalon's Loving Partner"
             if (self.malonChildren > 4):
                 tempStr += "\nThe Progenitor of a New Race"
-        elif self.currentZone == Zones.FIRMSHAFT:
+        elif self.currentZone == Zone.FIRMSHAFT:
             ...
-        elif self.currentZone == Zones.TIEDEN:
+        elif self.currentZone == Zone.TIEDEN:
             ...
-        elif self.currentZone == Zones.SIZ_CALIT:
+        elif self.currentZone == Zone.SIZ_CALIT:
             # TODO: Add condition for rep 20
             if (self.lilaRep == 2):
                 tempStr += "\nLila's Friend"
@@ -7833,7 +7906,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += "\nLila's Close Friend"
             elif (self.lilaRep == 5):
                 tempStr += "\nLila's Kinky Mate"
-        elif self.currentZone == Zones.OVIASIS:
+        elif self.currentZone == Zone.OVIASIS:
             if (self.silRep == 1):
                 tempStr += "\nA Friend of the Strange Woman"
             elif (self.silRep > 1 and self.silRep < 4):
@@ -7844,7 +7917,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempStr += "\nSilandrias' Trusted Lover and Mate"
             elif (self.silRep == 6 and self.silPreg > 5000):
                 tempStr += "\nThe Progenitor of an Extinct Race"
-        elif self.currentZone == Zones.SANCTUARY:
+        elif self.currentZone == Zone.SANCTUARY:
             ...
         if (mainobject.showSide):
             self.outputSideText(tempStr.get(), True)
@@ -8922,13 +8995,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         def doListen():
             self.boobTotal = 2
             if self.buttonChoice == 1:
-                self.race = 2
+                self.race = Race.HORSE
                 self.foundFirmshaft = True
-                self.currentZone = Zones.FIRMSHAFT
+                self.currentZone = Zone.FIRMSHAFT
                 self.horseAffinity = 50
                 self.cockSizeMod += 1
                 self.vagSizeMod += 1
-                self.dominant = 2
+                self.dominant = Race.HORSE
                 self.tail = 2
                 self.ears = 2
                 self.skinType = 2
@@ -8943,13 +9016,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.runMod += 10
                     self.carryMod -= 10
             elif self.buttonChoice == 3:
-                self.race = 3
+                self.race = Race.WOLF
                 self.foundTieden = True
-                self.currentZone = Zones.TIEDEN
+                self.currentZone = Zone.TIEDEN
                 self.wolfAffinity = 50
                 self.knot = True
                 self.boobTotal = 6
-                self.dominant = 3
+                self.dominant = Race.WOLF
                 self.tail = 3
                 self.ears = 3
                 self.skinType = 2
@@ -8964,12 +9037,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.runMod += 10
                     self.carryMod -= 10
             elif self.buttonChoice == 6:
-                self.race = 1
+                self.race = Race.HUMAN
                 self.foundSoftlik = True
                 self.changeMod += 0.5
-                self.currentZone = Zones.SOFTLIK
+                self.currentZone = Zone.SOFTLIK
                 self.humanAffinity = 50
-                self.dominant = 1
+                self.dominant = Race.HUMAN
                 self.ears = 1
                 self.skinType = 1
                 self.faceType = 10
@@ -8978,11 +9051,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.libido = 15
                 self.sensitivity = 17
             elif self.buttonChoice == 9:
-                self.race = 4
+                self.race = Race.CAT
                 self.foundSizCalit = True
-                self.currentZone = Zones.SIZ_CALIT
+                self.currentZone = Zone.SIZ_CALIT
                 self.catAffinity = 50
-                self.dominant = 4
+                self.dominant = Race.CAT
                 self.heat += 1
                 self.heatMaxTime = 96
                 self.heatTime = 96
@@ -9001,11 +9074,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.runMod += 10
                     self.carryMod -= 10
             elif self.buttonChoice == 11:
-                self.race = 6
+                self.race = Race.LIZARD
                 self.foundOviasis = True
-                self.currentZone = Zones.OVIASIS
+                self.currentZone = Zone.OVIASIS
                 self.lizardAffinity = 50
-                self.dominant = 6
+                self.dominant = Race.LIZARD
                 self.eggLaying = 1
                 self.eggTime = 36
                 self.eggMaxTime = 36
@@ -9042,15 +9115,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.cockTotal = 1
                 self.cockMoist = 1
                 self.strength += 1
-                if self.dominant == 1:
+                if self.dominant == Race.HUMAN:
                     self.humanCocks = 1
-                elif self.dominant == 2:
+                elif self.dominant == Race.HORSE:
                     self.horseCocks = 1
-                elif self.dominant == 3:
+                elif self.dominant == Race.WOLF:
                     self.wolfCocks = 1
-                elif self.dominant == 4:
+                elif self.dominant == Race.CAT:
                     self.catCocks = 1
-                elif self.dominant == 6:
+                elif self.dominant == Race.LIZARD:
                     self.lizardCocks = 2
                     self.cockTotal += 1
             elif self.buttonChoice == 6:
@@ -9074,15 +9147,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.vagMoist = 1
                 self.vagSize = 8
                 self.vulvaSize = 3
-                if self.dominant == 1:
+                if self.dominant == Race.HUMAN:
                     self.humanCocks = 1
-                elif self.dominant == 2:
+                elif self.dominant == Race.HORSE:
                     self.horseCocks = 1
-                elif self.dominant == 3:
+                elif self.dominant == Race.WOLF:
                     self.wolfCocks = 1
-                elif self.dominant == 4:
+                elif self.dominant == Race.CAT:
                     self.catCocks = 1
-                elif self.dominant == 6:
+                elif self.dominant == Race.LIZARD:
                     self.lizardCocks = 2
                     self.cockTotal += 1
                 self.libido += 1
@@ -9287,15 +9360,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                             self.doMainText("Ugh... You awaken from that dream for the fifth time this month. That soft, gentle voice echoes around your mind. A numbing dream with nothing to keep your attention. Something about a tower... Not a dream about flying or fleeing, nor school nor sex. Just this bland dream that you can remember better than all the rest. And yet you can never recall those last words...\n\nIt's been a few months since you started having that dream and it's been growing in frequency. Just so... annoying. Makes you feel anxious and antsy, like there is something missing in your life.\n\nLife isn't bad in ", True)
-                            if self.race == 1:
+                            if self.race == Race.HUMAN:
                                 self.doMainText("Softlik, though. The houses of wood and stone are comfortable, safe, and stable. The rolling hills around the city are quite beautiful. Lots of people in town are coming up with new potions or inventions, and with humans being so prone to being changed by the outside world of Nimin, there's rarely a dull moment.")
-                            elif self.race == 2:
+                            elif self.race == Race.HORSE:
                                 self.doMainText("Firmshaft, though. The large canvas tents provide plenty of room for harems filled with the large genitals equans are most notable for, with plenty of airflow to keep things from getting too hot. The broad plains allow for lots of trotting and races. Between the warmth and the plentiful activity, there's always great sex and comfort around here, with little need to venture into the outside world of Nimin.")
-                            elif self.race == 3:
+                            elif self.race == Race.WOLF:
                                 self.doMainText("Tieden, though. The wooden buildings and surrounding walls provide plenty of security from the outside world of Nimin, all the forest and jungle around filled with dangers. Not that there's any reason to be afraid; with the training and constant vigil, lupans are great at handling their foes. Especially when it comes to \"handling\" them. Plus letting off steam around here tends to be rather enjoyable.")
-                            elif self.race == 4:
+                            elif self.race == Race.CAT:
                                 self.doMainText("Siz'Calit, though. The tree-borne huts and bridges admist the canopy of the jungle allows for plenty of breezes and pleasant napping spots in the hot and humid area. And with so many felin females going into heat and craving sex, it's difficult to tell if the humidity is from the jungle itself or the kinky activity within. It's hard to imagine a sex-crazed felin surviving long in the outside world on Nimin.")
-                            elif self.race == 6:
+                            elif self.race == Race.LIZARD:
                                 self.doMainText("Oviasis, though. The rock-hewn homes built into the sides of the surrounding cliffs provide plenty of insulation against the warm days and cool nights of the desert. This small oasis of paradise in the middle of nowhere provides plenty of ways to lounge, allowing the lizan people to soak in the sun and the women to casually lay their eggs. This near-resort is usually much more pleasant than the outside world of Nimin.")
                             self.outputMainText("\n\nBut that dream...")
                             self.doNext()
@@ -9330,7 +9403,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.bc()
         self.currentState = GameState.GENERAL
         buttonlist = ButtonList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1)
-        self.doMainText(f"You are currently in {self.regionName(self.currentZone)}. What would you like to do?", True)
+        self.doMainText(f"You are currently in {Zone.name(self.currentZone)}. What would you like to do?", True)
         tempDict = {1: "Bag", 2: "Stash", 3: "Shops", 4: "Day-Care", 5: "Masturbate", 6: "Sleep", 7: "Alchemy", 8: "Level Up", 9: "Wait", 10: "Prostitute", 12: "Explore"}
         if (self.doWeight()):
             tempDict.pop(12)
@@ -9407,29 +9480,29 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doMainText(f"\n\nYour {self.ballDesc()} balls feel so absolutely swollen and sensitive, that you can't stop thinking about it. They just feel like they've gotta... gotta... gotta...", True)
         self.hrs += 1
         if (getCum <= 300):
-            self.doMainText(f"\n\nYou let out a gasp as you feel your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to twitch within your {self.clothesBottom()} while standing in the middle of {self.regionName(self.currentZone)}. You feel wads of cum seep out, climaxing without anything to assist it.\n\nYet, it's so little that you quickly regain your composure without hardly any blotching on your {self.clothesBottom()}. A bit flushed with embarassment, you feel lucky that nobody else noticed. You quickly head back to your place to clean up and try to pretend like nothing happened...")
+            self.doMainText(f"\n\nYou let out a gasp as you feel your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to twitch within your {self.clothesBottom()} while standing in the middle of {Zone.name(self.currentZone)}. You feel wads of cum seep out, climaxing without anything to assist it.\n\nYet, it's so little that you quickly regain your composure without hardly any blotching on your {self.clothesBottom()}. A bit flushed with embarassment, you feel lucky that nobody else noticed. You quickly head back to your place to clean up and try to pretend like nothing happened...")
         elif (getCum <= 800):
-            self.doMainText(f"\n\nYou gasp and begin to pant as you feel your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to jerk within your {self.clothesBottom()} while standing in the middle of {self.regionName(self.currentZone)}. Spurts of cum launch from your cock, orgasming out of sheer need for release, pooling slightly within your {self.clothesBottom()}.\n\nIt takes several moments for you to regain your composure, only to notice the moist blotch spreading across your {self.clothesBottom()} as the spunk seeps through. You blush as you catch someone glancing at what you've done, but you're quick to escape before you get anymore attention. You head back home and strip down so you can clean yourself and your {self.clothesBottom()} off before heading back out...")
+            self.doMainText(f"\n\nYou gasp and begin to pant as you feel your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to jerk within your {self.clothesBottom()} while standing in the middle of {Zone.name(self.currentZone)}. Spurts of cum launch from your cock, orgasming out of sheer need for release, pooling slightly within your {self.clothesBottom()}.\n\nIt takes several moments for you to regain your composure, only to notice the moist blotch spreading across your {self.clothesBottom()} as the spunk seeps through. You blush as you catch someone glancing at what you've done, but you're quick to escape before you get anymore attention. You head back home and strip down so you can clean yourself and your {self.clothesBottom()} off before heading back out...")
             self.hrs += 1
         elif (getCum <= 1000):
-            self.doMainText(f"\n\nYou clench your mouth shut as you instinctively begin to moan. Your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to buck within your {self.clothesBottom()} as you stand in the middle of {self.regionName(self.currentZone)}, spurts of cum launching down through your {self.clothesBottom()}. Streams of the white slimy stuff dribble down your {self.legDesc(2)}, severely blotching your {self.clothesBottom()}, and making a few bystanders turn to wonder what you are doing. Without a good view, they are more likely to guess you have just pissed yourself with the amount of fluids running down.\n\nThey are almost about to inquire to your aid, but you quickly back off, stumbling to your home while more stuff oozes out and down to the ground. It takes you a while to clean up the mess you've made and another hour of building up the courage to head back out after that 'incident'...")
+            self.doMainText(f"\n\nYou clench your mouth shut as you instinctively begin to moan. Your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to buck within your {self.clothesBottom()} as you stand in the middle of {Zone.name(self.currentZone)}, spurts of cum launching down through your {self.clothesBottom()}. Streams of the white slimy stuff dribble down your {self.legDesc(2)}, severely blotching your {self.clothesBottom()}, and making a few bystanders turn to wonder what you are doing. Without a good view, they are more likely to guess you have just pissed yourself with the amount of fluids running down.\n\nThey are almost about to inquire to your aid, but you quickly back off, stumbling to your home while more stuff oozes out and down to the ground. It takes you a while to clean up the mess you've made and another hour of building up the courage to head back out after that 'incident'...")
             self.hrs += 3
             self.stats(0, -1, 0, 0)
         elif (getCum <= 3000):
-            self.doMainText(f"\n\nYou let out a moan that catches the attention of several bystanders in the middle of {self.regionName(self.currentZone)}. A thick stream of hot spunk pours down through your {self.clothesBottom()} to the ground below, making a light splattering sound as it begins to form a puddle below. Your {self.cockDesc()} cock{self.plural(1)} bounce{self.plural(3)} within your {self.clothesBottom()} until your hands instinctively press down on {self.plural(9)}, grabbing and rubbing {self.plural(9)} through the fabric. The puddle grows larger and larger until it envelops your {self.legDesc(10)}, at which point you begin to realize what you are doing.\n\nStrangers around you stare and wonder what the heck just happened, frozen in place and too afraid to actually inquire. Cum still dribbling down your {self.legDesc(2)}, you step away and rush back home. You have to strip and completely wash your {self.clothesBottom()} to take care of it all, and you take a couple hours to gather your wits and courage to go back outside after such a display...")
+            self.doMainText(f"\n\nYou let out a moan that catches the attention of several bystanders in the middle of {Zone.name(self.currentZone)}. A thick stream of hot spunk pours down through your {self.clothesBottom()} to the ground below, making a light splattering sound as it begins to form a puddle below. Your {self.cockDesc()} cock{self.plural(1)} bounce{self.plural(3)} within your {self.clothesBottom()} until your hands instinctively press down on {self.plural(9)}, grabbing and rubbing {self.plural(9)} through the fabric. The puddle grows larger and larger until it envelops your {self.legDesc(10)}, at which point you begin to realize what you are doing.\n\nStrangers around you stare and wonder what the heck just happened, frozen in place and too afraid to actually inquire. Cum still dribbling down your {self.legDesc(2)}, you step away and rush back home. You have to strip and completely wash your {self.clothesBottom()} to take care of it all, and you take a couple hours to gather your wits and courage to go back outside after such a display...")
             self.hrs += 4
             self.stats(0, -3, 0, 0)
         elif (getCum <= 8000):
-            self.doMainText(f"\n\nYour hands leap to your {self.cockDesc()} cock{self.plural(1)} and grab {self.plural(9)} through your {self.clothesBottom()} just as thick spurts of hot spunk spew within, pouring out over your hands and down your {self.legDesc(2)} as you moan again and again. All in the middle of {self.regionName(self.currentZone)}, catching the attention of many strangers. They stare with mouths agape, watching as you pleasure yourself in public, a waterfall of spunk pouring down from you with each jump of your thrusting cock{self.plural(1)}.\n\nThe puddle below you grows much to large to be considered an actual puddle... Some of the strangers have to step back to escape the encroaching flow. The distraught reaction from those around you bring you to your senses, blushing furiously at your lack of self-control and sudden major premature ejaculation. As best as you can while the spooge continues to ooze out in large gobs, you splash your way out of the center of attention and rush back home. It'll take hours to clean up both yourself and your clothes, and a bit longer still to face the public once more...")
+            self.doMainText(f"\n\nYour hands leap to your {self.cockDesc()} cock{self.plural(1)} and grab {self.plural(9)} through your {self.clothesBottom()} just as thick spurts of hot spunk spew within, pouring out over your hands and down your {self.legDesc(2)} as you moan again and again. All in the middle of {Zone.name(self.currentZone)}, catching the attention of many strangers. They stare with mouths agape, watching as you pleasure yourself in public, a waterfall of spunk pouring down from you with each jump of your thrusting cock{self.plural(1)}.\n\nThe puddle below you grows much to large to be considered an actual puddle... Some of the strangers have to step back to escape the encroaching flow. The distraught reaction from those around you bring you to your senses, blushing furiously at your lack of self-control and sudden major premature ejaculation. As best as you can while the spooge continues to ooze out in large gobs, you splash your way out of the center of attention and rush back home. It'll take hours to clean up both yourself and your clothes, and a bit longer still to face the public once more...")
             self.hrs += 7
             self.stats(0, -5, 0, 0)
         elif (getCum <= 25000):
-            self.doMainText(f"\n\nYour hands leap to your {self.cockDesc()} cock{self.plural(1)} and grab {self.plural(9)} through your {self.clothesBottom()} just as small waves of hot thick spunk gurgle out of your crotch in the middle of {self.regionName(self.currentZone)}. Your orgasmic moaning grabs the attention of the surrounding bystanders and your thrashing erection{self.plural(1)} spewing more spunk out through your {self.clothesBottom()} attracts even more strangers to the spectacle. You collapse over yourself and crumble to the ground, your hands rubbing and pressing down into your crotch, trying to both hold it back and yet pleasure it at the same time. The spunk around you flows over the ground, splashing up against feet as the people cannot step back far enough. You just come so hard and so long...\n\nThe gasping and commotion from the onlookers eventually bring you back. Your {self.currentClothes()} completely soaked and all the mess around you, there's not much you can do except slump off in embarassment, dripping with your own spooge, and hoping nobody makes anymore fuss about it...\n\nIt takes hours to clean up and afterwards you're just so tired that you might as well sleep...")
+            self.doMainText(f"\n\nYour hands leap to your {self.cockDesc()} cock{self.plural(1)} and grab {self.plural(9)} through your {self.clothesBottom()} just as small waves of hot thick spunk gurgle out of your crotch in the middle of {Zone.name(self.currentZone)}. Your orgasmic moaning grabs the attention of the surrounding bystanders and your thrashing erection{self.plural(1)} spewing more spunk out through your {self.clothesBottom()} attracts even more strangers to the spectacle. You collapse over yourself and crumble to the ground, your hands rubbing and pressing down into your crotch, trying to both hold it back and yet pleasure it at the same time. The spunk around you flows over the ground, splashing up against feet as the people cannot step back far enough. You just come so hard and so long...\n\nThe gasping and commotion from the onlookers eventually bring you back. Your {self.currentClothes()} completely soaked and all the mess around you, there's not much you can do except slump off in embarassment, dripping with your own spooge, and hoping nobody makes anymore fuss about it...\n\nIt takes hours to clean up and afterwards you're just so tired that you might as well sleep...")
             self.hrs += 9
             self.stats(0, -5, 0, 0)
             self.exhaustion += 15
         else:
-            self.doMainText(f"\n\nThe sound of your {self.clothesBottom()} being shredded fills the air in {self.regionName(self.currentZone)} as a massive amount of hot thick slimy sticky cum erupts from your {self.cockDesc()} cock{self.plural(1)} and tears a path through your {self.clothesBottom()}. You fall onto your back from the force, your fingers scratching at the ground below you to anchor your writhing as your body is completely wracked by the sudden orgasm. Your {self.hipDesc()} hips thrash about as the {self.cockDesc()} erection{self.plural(1)} swing{self.plural(3)} around from the force of the gushing seed. Thick ropes of the white stuff tosses about, painting houses and drenching innocent bystanders. Some run for cover while others brace themselves against the onslaught. Some stay and begin to masturbate themselves while they get showered in your cum. You completely lose track of the time as your mind goes numb and you're completely bathed in your own spunk.\n\nSome minutes later, your severe pre-mature ejaculation calms down, your senses returning. You blink and look around, seeing strangers cower in fear or masturbate furiously. The thought that 'now might be a good time to leave' pops into your head and you can only agree. You don't want to witness the fallout after this.\n\nYour {self.legDesc(2)} weak, you begin to crawl yourself through the shallow lake of semen you've created, making your way back to your home where you can hide and clean yourself up... It'll take several hours to clean and your mind just wants to shut down. You should really learn to masturbate more often.")
+            self.doMainText(f"\n\nThe sound of your {self.clothesBottom()} being shredded fills the air in {Zone.name(self.currentZone)} as a massive amount of hot thick slimy sticky cum erupts from your {self.cockDesc()} cock{self.plural(1)} and tears a path through your {self.clothesBottom()}. You fall onto your back from the force, your fingers scratching at the ground below you to anchor your writhing as your body is completely wracked by the sudden orgasm. Your {self.hipDesc()} hips thrash about as the {self.cockDesc()} erection{self.plural(1)} swing{self.plural(3)} around from the force of the gushing seed. Thick ropes of the white stuff tosses about, painting houses and drenching innocent bystanders. Some run for cover while others brace themselves against the onslaught. Some stay and begin to masturbate themselves while they get showered in your cum. You completely lose track of the time as your mind goes numb and you're completely bathed in your own spunk.\n\nSome minutes later, your severe pre-mature ejaculation calms down, your senses returning. You blink and look around, seeing strangers cower in fear or masturbate furiously. The thought that 'now might be a good time to leave' pops into your head and you can only agree. You don't want to witness the fallout after this.\n\nYour {self.legDesc(2)} weak, you begin to crawl yourself through the shallow lake of semen you've created, making your way back to your home where you can hide and clean yourself up... It'll take several hours to clean and your mind just wants to shut down. You should really learn to masturbate more often.")
             self.changeBot(-1)
             self.hrs += 10
             self.stats(0, -5, 2, 0)
@@ -9839,22 +9912,22 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText('You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can\'t see beyond them.\n\n', True)
                             if tempNum == 1:
                                 self.doMainText("With a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!")
-                                regNum = Zones.TIEDEN
+                                regNum = Zone.TIEDEN
                             elif tempNum == 3:
                                 self.doMainText("With a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!")
-                                regNum = Zones.SOFTLIK
+                                regNum = Zone.SOFTLIK
                             elif tempNum == 5:
                                 self.doMainText("With a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!")
-                                regNum = Zones.SIZ_CALIT
+                                regNum = Zone.SIZ_CALIT
                             elif tempNum == 7:
                                 self.doMainText("With a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!")
-                                regNum = Zones.FIRMSHAFT
+                                regNum = Zone.FIRMSHAFT
                             elif tempNum == 8:
                                 self.doMainText("With a thump, they quickly disappear and you find yourself back in the city of Sanctuary!")
-                                regNum = Zones.SANCTUARY
+                                regNum = Zone.SANCTUARY
                             elif tempNum == 10:
                                 self.doMainText("With a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!")
-                                regNum = Zones.OVIASIS
+                                regNum = Zone.OVIASIS
                             self.displayMainText()
                             self.currentState = GameState.GENERAL
                             self.inBag = False
@@ -10407,35 +10480,35 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(Zones.SOFTLIK)
+            self.regionChange(Zone.SOFTLIK)
             self.doEnd()
         elif ID == 122:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(Zones.FIRMSHAFT)
+            self.regionChange(Zone.FIRMSHAFT)
             self.doEnd()
         elif ID == 123:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(Zones.TIEDEN)
+            self.regionChange(Zone.TIEDEN)
             self.doEnd()
         elif ID == 124:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(Zones.SIZ_CALIT)
+            self.regionChange(Zone.SIZ_CALIT)
             self.doEnd()
         elif ID == 125:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(Zones.OVIASIS)
+            self.regionChange(Zone.OVIASIS)
             self.doEnd()
         elif ID == 126:
             self.outputMainText("Sipping the refreshing water, you notice a slight aftertaste of something funny, like people have been bathing and doing... things in the water. It's kinda kinky when you think about it, but also feels nice inside of you.", True)
@@ -10457,7 +10530,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
-            self.regionChange(Zones.SANCTUARY)
+            self.regionChange(Zone.SANCTUARY)
             self.doEnd()
         elif ID == 201:
             self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1))
@@ -10874,14 +10947,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempDict = {6: "Stay Here"}
                 self.outputMainText("Where would you like to go?", True)
                 buttonlist = ButtonList(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0)
-                if self.currentZone == Zones.SOFTLIK:
+                if self.currentZone == Zone.SOFTLIK:
                     if (self.foundTieden):
                         tempDict[1] = "Tieden"
                         buttonlist[1] = 1
                     if (self.foundFirmshaft):
                         tempDict[10] = "Firmshaft"
                         buttonlist[10] = 1
-                elif self.currentZone == Zones.FIRMSHAFT:
+                elif self.currentZone == Zone.FIRMSHAFT:
                     if (self.foundSoftlik):
                         tempDict[3] = "Softlik"
                         buttonlist[3] = 1
@@ -10894,14 +10967,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.foundSanctuary):
                         tempDict[11] = "Sanctuary"
                         buttonlist[11] = 1
-                elif self.currentZone == Zones.TIEDEN:
+                elif self.currentZone == Zone.TIEDEN:
                     if (self.foundSoftlik):
                         tempDict[7] = "Softlik"
                         buttonlist[7] = 1
                     if (self.foundSizCalit):
                         tempDict[9] = "Siz'Calit"
                         buttonlist[9] = 1
-                elif self.currentZone == Zones.SIZ_CALIT:
+                elif self.currentZone == Zone.SIZ_CALIT:
                     if (self.foundTieden):
                         tempDict[2] = "Tieden"
                         buttonlist[2] = 1
@@ -10911,14 +10984,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.foundOviasis):
                         tempDict[11] = "Oviasis"
                         buttonlist[11] = 1
-                elif self.currentZone == Zones.OVIASIS:
+                elif self.currentZone == Zone.OVIASIS:
                     if (self.foundSizCalit):
                         tempDict[1] = "Siz'Calit"
                         buttonlist[1] = 1
                     if (self.foundFirmshaft):
                         tempDict[2] = "Firmshaft"
                         buttonlist[2] = 1
-                elif self.currentZone == Zones.SANCTUARY:
+                elif self.currentZone == Zone.SANCTUARY:
                     if (self.foundFirmshaft):
                         tempDict[5] = "Firmshaft"
                         buttonlist[5] = 1
@@ -10927,44 +11000,44 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                 def doListen():
                     self.inDungeon = False
-                    if self.currentZone == Zones.SOFTLIK:
+                    if self.currentZone == Zone.SOFTLIK:
                         if self.buttonChoice == 1:
-                            self.regionChange(Zones.TIEDEN)
+                            self.regionChange(Zone.TIEDEN)
                         elif self.buttonChoice == 10:
-                            self.regionChange(Zones.FIRMSHAFT)
-                    elif self.currentZone == Zones.FIRMSHAFT:
+                            self.regionChange(Zone.FIRMSHAFT)
+                    elif self.currentZone == Zone.FIRMSHAFT:
                         if self.buttonChoice == 3:
-                            self.regionChange(Zones.SOFTLIK)
+                            self.regionChange(Zone.SOFTLIK)
                         elif self.buttonChoice == 5:
-                            self.regionChange(Zones.SIZ_CALIT)
+                            self.regionChange(Zone.SIZ_CALIT)
                         elif self.buttonChoice == 10:
-                            self.regionChange(Zones.OVIASIS)
+                            self.regionChange(Zone.OVIASIS)
                         elif self.buttonChoice == 11:
-                            self.regionChange(Zones.SANCTUARY)
-                    elif self.currentZone == Zones.TIEDEN:
+                            self.regionChange(Zone.SANCTUARY)
+                    elif self.currentZone == Zone.TIEDEN:
                         if self.buttonChoice == 7:
-                            self.regionChange(Zones.SOFTLIK)
+                            self.regionChange(Zone.SOFTLIK)
                         elif self.buttonChoice == 9:
-                            self.regionChange(Zones.SIZ_CALIT)
-                    elif self.currentZone == Zones.SIZ_CALIT:
+                            self.regionChange(Zone.SIZ_CALIT)
+                    elif self.currentZone == Zone.SIZ_CALIT:
                         if self.buttonChoice == 2:
-                            self.regionChange(Zones.TIEDEN)
+                            self.regionChange(Zone.TIEDEN)
                         elif self.buttonChoice == 7:
-                            self.regionChange(Zones.FIRMSHAFT)
+                            self.regionChange(Zone.FIRMSHAFT)
                         elif self.buttonChoice == 11:
-                            self.regionChange(Zones.OVIASIS)
-                    elif self.currentZone == Zones.OVIASIS:
+                            self.regionChange(Zone.OVIASIS)
+                    elif self.currentZone == Zone.OVIASIS:
                         if self.buttonChoice == 1:
-                            self.regionChange(Zones.TIEDEN)
+                            self.regionChange(Zone.TIEDEN)
                         elif self.buttonChoice == 2:
-                            self.regionChange(Zones.FIRMSHAFT)
-                    elif self.currentZone == Zones.SANCTUARY:
+                            self.regionChange(Zone.FIRMSHAFT)
+                    elif self.currentZone == Zone.SANCTUARY:
                         if self.buttonChoice == 5:
-                            self.regionChange(Zones.FIRMSHAFT)
+                            self.regionChange(Zone.FIRMSHAFT)
                     if self.buttonChoice == 6:
                         self.doProcess()
                     else:
-                        self.outputMainText(f"You step onto the carpet and with a gentle woosh, it lifts into the air and darts off in the direction of your desired location. Within just a couple of hours, you land in {self.regionName(self.currentZone)}, just like you wanted.", True)
+                        self.outputMainText(f"You step onto the carpet and with a gentle woosh, it lifts into the air and darts off in the direction of your desired location. Within just a couple of hours, you land in {Zone.name(self.currentZone)}, just like you wanted.", True)
                         self.hrs = 2
                         self.doEnd()
                 self.doListen = doListen
@@ -12146,7 +12219,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def doShops(self):
         self.showButtons(ButtonList(1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1))
-        self.outputMainText(f"General Store - Come here to see what kinds of goods {self.regionName(self.currentZone)} has for sale. You can also sell your own goods here as well.\n\nDye Shop - If you want to feel unique and look special, stop by for some new colors.\n\nApothecary - Need some ingredients for your alchemy brewing? Or maybe need to learn a new recipe or two? Come check out what's available in {self.regionName(self.currentZone)} to see what you might like.\n\nSalon - Want a different haircut? Stop by here to see what styles are popular in {self.regionName(self.currentZone)}.\n\nTailor - If you're looking to get a new outfit, the {self.regionName(self.currentZone)} tailor might be able to custom-fit something for you from their available designs.", True)
+        self.outputMainText(f"General Store - Come here to see what kinds of goods {Zone.name(self.currentZone)} has for sale. You can also sell your own goods here as well.\n\nDye Shop - If you want to feel unique and look special, stop by for some new colors.\n\nApothecary - Need some ingredients for your alchemy brewing? Or maybe need to learn a new recipe or two? Come check out what's available in {Zone.name(self.currentZone)} to see what you might like.\n\nSalon - Want a different haircut? Stop by here to see what styles are popular in {Zone.name(self.currentZone)}.\n\nTailor - If you're looking to get a new outfit, the {Zone.name(self.currentZone)} tailor might be able to custom-fit something for you from their available designs.", True)
         self.doButtonChoices({1: "General", 2: "Dyes", 3: "Apothecary", 6: "Salon", 7: "Tailor", 12: "Return"})
 
         def doListen():
@@ -13242,7 +13315,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd(leave=True)
         else:
-            self.doMainText(f"\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in {self.regionName(self.currentDayCare)}.\n\nIf you would like to send a party of well-experienced travelers to {self.regionName(self.currentDayCare)} to safely bring your children here, it will cost 500 coins.")
+            self.doMainText(f"\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in {Zone.name(self.currentDayCare)}.\n\nIf you would like to send a party of well-experienced travelers to {Zone.name(self.currentDayCare)} to safely bring your children here, it will cost 500 coins.")
             tempDict = {12: "Leave"}
             if (self.coin < 500):
                 self.doMainText(" Which you don't have enough of anyways.")
@@ -13266,7 +13339,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def doProstitute(self):
         # TODO: Spellcheck
         if (Utils.percent() < 33 - self.enticeMod):
-            self.outputMainText(f"You wait around {self.regionName(self.currentZone)}, shaking your assets and hoping to catch the eye of someone looking for a bit of sensual company. Unfortunately, despite some lustful gazes, nobody steps forward to take you up on your offer. Either you just weren't attractive enough or they just weren't in the mood at the moment.", True)
+            self.outputMainText(f"You wait around {Zone.name(self.currentZone)}, shaking your assets and hoping to catch the eye of someone looking for a bit of sensual company. Unfortunately, despite some lustful gazes, nobody steps forward to take you up on your offer. Either you just weren't attractive enough or they just weren't in the mood at the moment.", True)
             self.hrs = 2
             self.doEnd()
             return
@@ -13275,7 +13348,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doMainText("", True)
         # Softlik Whoring
 
-        if self.currentZone == Zones.SOFTLIK:
+        if self.currentZone == Zone.SOFTLIK:
             self.rndArray = Array(1, 4, 5)
             if self.cockTotal > 0:
                 self.rndArray.push(2, 3)
@@ -13384,7 +13457,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
 
         # Firmshaft Whoring
-        elif self.currentZone == Zones.FIRMSHAFT:
+        elif self.currentZone == Zone.FIRMSHAFT:
             self.rndArray = Array()
             self.rndArray.push(1)
             if self.gender == Gender.FEMALE:
@@ -13488,7 +13561,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hrs = 2
 
         # Tieden Whoring
-        elif self.currentZone == Zones.TIEDEN:
+        elif self.currentZone == Zone.TIEDEN:
             self.rndArray = Array(2, 4, 6)
             if self.cockTotal > 0:
                 self.rndArray.push(1)
@@ -13605,7 +13678,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hrs = 1
 
         # Siz'Calit Whoring
-        elif self.currentZone == Zones.SIZ_CALIT:
+        elif self.currentZone == Zone.SIZ_CALIT:
             self.rndArray = Array()
             self.rndArray.push(1)
             if self.cockTotal > 0:
@@ -13626,12 +13699,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             if chance == 1:
                 self.doMainText("Hanging out at your usual spot, a male Felin saunters up to you. He gives you a silent, appraising look, lingering on your larger curves. \"Not the normal playmate here, are you? Well, you're good enough.\" You give a list of the services you offer but are quickly cut off. \"Whoa! I don't know where you've been or what you've done. I just want you to give me a simple handjob. If you do well, I might pay even pay extra.\" Accepting the offer, he leads you to an open-air lounge located on a sturdy tree. A quick look down says you're about 35 feet up with a nice view. He makes sure the entrance is blocked before approaching you again.\n\nThe Felin man whips out a larger-than-average dick, the tip covered with soft barbs. \"Let's play,\" he commands. Your hands tease at his small thorns which start swelling with arousal. Your fingers play up and down his shaft and a moan escapes both of your mouths. Lust begins to permeate the atmosphere as copious streams of his precum soak into your hands. You pump faster and faster, hands flying on his pulsing member. His thrusts jerk through your palms, sometimes coming close to your face or chest. After a minute of grasping at his large wang, you feel confident enough to take a hand from his cock to massage his churning balls.", True)
-                if self.dominant in {2, 5}:
+                if self.dominant in {Race.HORSE, Race.COW}:
                     # NOTE: psuedo-hooves
                     self.doMainText(" Your psuedo-hooves grope at the soft spheres. Somehow with his lust-riddled mind, he gasps, \"Wow, is this standard with you? You must be very popular!\"")
-                elif self.dominant == 3:
+                elif self.dominant == Race.WOLF:
                     self.doMainText(" Fondling his sack with precise movements, he shudders. Bits of drool run down his chin as he groans with intense pleasure. \"Really good at this! Have you done this before?\"")
-                elif self.dominant == 4:
+                elif self.dominant == Race.CAT:
                     self.doMainText(" The fur of your paw tickles his sensitive scrotum. In between tugs of his penis, he clenches his whole body. \"Damn! Do- do that again!\"")
                 else:
                     self.doMainText(" You use your discerning fingers to hit all the sweet spots. He is having difficulty focusing his eyes; your handjob must be messing with his head. \"Oh man, this is the good stuff. UNF!\"")
@@ -13774,7 +13847,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hrs = 2
 
         # Oviasis Whoring
-        elif self.currentZone == Zones.OVIASIS:
+        elif self.currentZone == Zone.OVIASIS:
             self.rndArray = Array()
             if self.cockTotal == 1:
                 self.rndArray.push(1)
@@ -13875,7 +13948,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hrs = 3
 
         # Sanctuary Whoring
-        elif self.currentZone == Zones.SANCTUARY:
+        elif self.currentZone == Zone.SANCTUARY:
             self.doMainText("You walk around, hoping to catch someone's eye. A nondescript figure eventually approaches you, takes you out as an escort, and spends a few hours with you, resulting in nothing worth mentioning save your payment.", True)
             self.hrs = 3
 
@@ -14050,7 +14123,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         #   self.rndArray.push(4)
         #if self.attireBot in {6,17} and self.lust > 80:
         #   self.rndArray.push(5)
-        if (not mainobject.useIsBottomOpen and self.attireBot in {5, 7, 12, 13, 14, 16} or mainobject.useIsBottomOpen and self.isBottomOpen()) and self.lust > 45:
+        if (not mainobject.useIsBottomOpen and self.attireBot in {5, 7, 12, 13, 14, 16} or mainobject.useIsBottomOpen and self.isBottomOpen(self.attireBot)) and self.lust > 45:
             self.rndArray.push(6)
         if self.attireBot in {4, 15, 20}:
             self.rndArray.push(7)
@@ -14060,13 +14133,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if (chance == 1):
             if (self.ment >= self.lib - 10):
-                self.doMainText(f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, your {self.cockDesc()} erection{self.plural(1)} bobbing out.\n\nYou wrap your ", True)
+                self.doMainText(f"You sneak off to the private place where you sleep in {Zone.name(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, your {self.cockDesc()} erection{self.plural(1)} bobbing out.\n\nYou wrap your ", True)
             elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see your {self.cockDesc()} bulge growing in your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, your cock{self.plural(1)} flopping out.\n\nYou're not too sure if anybody saw it before you disappeared into solitude, but that doesn't matter as you wrap your ", True)
+                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Zone.name(self.currentZone)} can easily see your {self.cockDesc()} bulge growing in your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, your cock{self.plural(1)} flopping out.\n\nYou're not too sure if anybody saw it before you disappeared into solitude, but that doesn't matter as you wrap your ", True)
             elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                self.doMainText(f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without blowing your load, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} cock{self.plural(1)} spring out. You hear somebody pass nearby, but you don't care as you wrap your ", True)
+                self.doMainText(f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without blowing your load, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {Zone.name(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} cock{self.plural(1)} spring out. You hear somebody pass nearby, but you don't care as you wrap your ", True)
             elif (self.ment < self.lib - 50):
-                self.doMainText(f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()} and whip out your {self.cockDesc()} wang{self.plural(1)}.\n\nPeople gasp and stare as you wrap your ", True)
+                self.doMainText(f"Without a second thought, right in the middle of {Zone.name(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()} and whip out your {self.cockDesc()} wang{self.plural(1)}.\n\nPeople gasp and stare as you wrap your ", True)
             if (self.cockSize * self.cockSizeMod <= self.tallness / 3.75):
                 self.doMainText(f"hand around your {whichCock} and slowly pump it, building stronger and stronger.")
             elif (self.cockSize * self.cockSizeMod > self.tallness / 3.75 and self.cockSize * self.cockSizeMod <= self.tallness * 1.2):
@@ -14212,13 +14285,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if chance == 1:
             if (self.ment >= self.lib - 10):
-                self.doMainText(f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, and gently squeeze your {self.vulvaDesc()} nether-lips.\n\nYou lay down on your back and slide your fingers through the front of the cleft{self.plural(2)} at your crotch, you tease your {self.clitDesc()} button{self.plural(2)}. Stiff and erect, you rub ", True)
+                self.doMainText(f"You sneak off to the private place where you sleep in {Zone.name(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, and gently squeeze your {self.vulvaDesc()} nether-lips.\n\nYou lay down on your back and slide your fingers through the front of the cleft{self.plural(2)} at your crotch, you tease your {self.clitDesc()} button{self.plural(2)}. Stiff and erect, you rub ", True)
             elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.vulvaDesc()} groin through your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, accidentally flashing someone your {self.buttDesc()} bum.\n\nNevertheless, you squeeze your nether-lips, rubbing your hands down through your {self.vulvaDesc()} crotch, grinding your {self.clitDesc()} button{self.plural(2)} and kneading ", True)
+                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Zone.name(self.currentZone)} can easily see you rub your {self.vulvaDesc()} groin through your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, accidentally flashing someone your {self.buttDesc()} bum.\n\nNevertheless, you squeeze your nether-lips, rubbing your hands down through your {self.vulvaDesc()} crotch, grinding your {self.clitDesc()} button{self.plural(2)} and kneading ", True)
             elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                self.doMainText(f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without crouching and {self.legVerb(2)} your {self.legDesc(2)} erotically, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()}, squeezing your {self.vulvaDesc()} nether-lips with anticipation and tug at your {self.clitDesc()} clit{self.plural(2)} grinding ", True)
+                self.doMainText(f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without crouching and {self.legVerb(2)} your {self.legDesc(2)} erotically, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {Zone.name(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()}, squeezing your {self.vulvaDesc()} nether-lips with anticipation and tug at your {self.clitDesc()} clit{self.plural(2)} grinding ", True)
             elif (self.ment < self.lib - 50):
-                self.doMainText(f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()}, rubbing a hand across your {self.vulvaDesc()} cunt and pinching your {self.clitDesc()} clit{self.plural(2)}.\n\nPeople gasp as you continue to grind ", True)
+                self.doMainText(f"Without a second thought, right in the middle of {Zone.name(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()}, rubbing a hand across your {self.vulvaDesc()} cunt and pinching your {self.clitDesc()} clit{self.plural(2)}.\n\nPeople gasp as you continue to grind ", True)
             self.doMainText(f"{self.plural(10)} vigorously, making {self.plural(10)} stiff. Faster and faster you go, until your {self.vulvaDesc()} vulva swells with blood.")
             if (self.moistCalc(2) > 11):
                 self.doMainText(f" Fem-cum floods your crotch, loudly slurping as your hands, all the way up to your elbows, become slick with the stuff. Your {self.buttDesc()} ass is practically sopping with it and more flings across your {self.legDesc(2)} and down below you as you go.")
@@ -14271,7 +14344,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             ...
 
         elif chance == 6:
-            self.doMainText(f"With the cooler air easily breezing underneath your {self.clothesBottom()} and over your moistened nethers, the thought of masturbating just makes your {self.legDesc(2)} weak and buckle. Even if your place was only ten feet away, it would be an eternity to get there in this state. You don't think you could ever make it... So you manage to convince yourself you have no other choice.\n\nYou manuever your bag to your front, feigning an attempt to look through it for something. Adjusting it slightly, it very easily manages to cover the high edge of your {self.clothesBottom()}. While one hand holds up the bag, the other slinks behind, sneaking underneath your scant outfit. Right out in the middle of {self.regionName(self.currentZone)}, with people walking by just a few feet away, your fingers touch your intimate region.\n\n", True)
+            self.doMainText(f"With the cooler air easily breezing underneath your {self.clothesBottom()} and over your moistened nethers, the thought of masturbating just makes your {self.legDesc(2)} weak and buckle. Even if your place was only ten feet away, it would be an eternity to get there in this state. You don't think you could ever make it... So you manage to convince yourself you have no other choice.\n\nYou manuever your bag to your front, feigning an attempt to look through it for something. Adjusting it slightly, it very easily manages to cover the high edge of your {self.clothesBottom()}. While one hand holds up the bag, the other slinks behind, sneaking underneath your scant outfit. Right out in the middle of {Zone.name(self.currentZone)}, with people walking by just a few feet away, your fingers touch your intimate region.\n\n", True)
             if (self.vulvaSize < 30):
                 self.doMainText(f"Swiftly slipping through your fingers through the tender folds, your {self.hipDesc()} hips start to rock gently as you stand there. Soft slurps slip out from your thighs as you cautiously masturbate in public, with the rustling of the bag in front of you thankfully drowning it out.")
             else:
@@ -14324,13 +14397,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if (chance == 1):
             if (self.ment >= self.lib - 10):
-                self.doMainText(f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)}. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.boobDesc()} breasts.\n\nHunching over at the side of the bed, you massage your {self.nipDesc()}nipples, tugging and squeezing them each with", True)
+                self.doMainText(f"You sneak off to the private place where you sleep in {Zone.name(self.currentZone)}. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.boobDesc()} breasts.\n\nHunching over at the side of the bed, you massage your {self.nipDesc()}nipples, tugging and squeezing them each with", True)
             elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.boobDesc()} chest through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching under your {self.clothesTop()} to play with your {self.nipDesc()}nipples, giving someone a good view of your under-boob.\n\nBy the time you're hidden inside, both hands are fondling your chest, kneading and massaging your nipples with", True)
+                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Zone.name(self.currentZone)} can easily see you rub your {self.boobDesc()} chest through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching under your {self.clothesTop()} to play with your {self.nipDesc()}nipples, giving someone a good view of your under-boob.\n\nBy the time you're hidden inside, both hands are fondling your chest, kneading and massaging your nipples with", True)
             elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                self.doMainText(f"Your {self.boobDesc()} breasts heave with your heavy breathing as you think about playing with them. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging them roughly.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your chest through the fabric before reaching underneath, kneading and massaging your {self.nipDesc()}nipples with", True)
+                self.doMainText(f"Your {self.boobDesc()} breasts heave with your heavy breathing as you think about playing with them. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging them roughly.\n\nInstead, you duck into one of the more hidden corners of {Zone.name(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your chest through the fabric before reaching underneath, kneading and massaging your {self.nipDesc()}nipples with", True)
             elif (self.ment < self.lib - 50):
-                self.doMainText(f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.boobDesc()} breasts and making them jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.nipDesc()}nipples with", True)
+                self.doMainText(f"Without a second thought, right in the middle of {Zone.name(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.boobDesc()} breasts and making them jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.nipDesc()}nipples with", True)
             if (self.nippleSize <= 25):
                 self.doMainText(" your fingers")
             elif (self.nippleSize <= 60):
@@ -14399,7 +14472,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (getMilk > 19000):
                     self.doMainText("small floods")
                 self.doMainText(f", relieving your {self.boobDesc()} breasts of their supply")
-                if (self.dominant == 5):
+                if (self.dominant == Race.COW):
                     self.doMainText(" as you let out a contented 'mooo~'")
                 self.doMainText(".")
             if (self.ment >= self.lib - 10):
@@ -14468,13 +14541,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if (chance == 1):
             if (self.ment >= self.lib - 10):
-                self.doMainText(f"You sneak off to the private place where you sleep in {self.regionName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.udderDesc()} udder.\n\nHunching over at the side of the bed, you massage your {self.teatDesc()} teats, tugging and squeezing them each with", True)
+                self.doMainText(f"You sneak off to the private place where you sleep in {Zone.name(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.udderDesc()} udder.\n\nHunching over at the side of the bed, you massage your {self.teatDesc()} teats, tugging and squeezing them each with", True)
             elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {self.regionName(self.currentZone)} can easily see you rub your {self.udderDesc()} bulge through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching {self.pullUD(1)} under your {self.clothesTop()} to play with your {self.teatDesc()} teats, giving someone a good view of your fleshy bag.\n\nBy the time you're hidden inside, both hands are fondling your udder, kneading and massaging your teats with", True)
+                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Zone.name(self.currentZone)} can easily see you rub your {self.udderDesc()} bulge through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching {self.pullUD(1)} under your {self.clothesTop()} to play with your {self.teatDesc()} teats, giving someone a good view of your fleshy bag.\n\nBy the time you're hidden inside, both hands are fondling your udder, kneading and massaging your teats with", True)
             elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                self.doMainText(f"Your {self.udderDesc()} udder heaves with your heavy breathing as you think about playing with it. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging it roughly.\n\nInstead, you duck into one of the more hidden corners of {self.regionName(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your udder through the fabric before your reaching underneath, kneading and massaging your {self.teatDesc()} teats with", True)
+                self.doMainText(f"Your {self.udderDesc()} udder heaves with your heavy breathing as you think about playing with it. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging it roughly.\n\nInstead, you duck into one of the more hidden corners of {Zone.name(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your udder through the fabric before your reaching underneath, kneading and massaging your {self.teatDesc()} teats with", True)
             elif (self.ment < self.lib - 50):
-                self.doMainText(f"Without a second thought, right in the middle of {self.regionName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.udderDesc()} udder and making it jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.teatDesc()} teats with", True)
+                self.doMainText(f"Without a second thought, right in the middle of {Zone.name(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.udderDesc()} udder and making it jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.teatDesc()} teats with", True)
             if (self.teatSize <= 25):
                 self.doMainText(" your fingers")
             elif (self.teatSize <= 60):
@@ -14535,7 +14608,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (getMilk > 19000):
                     self.doMainText("small floods")
                 self.doMainText(f", relieving your {self.udderDesc()} udder of its supply")
-                if (self.dominant == 5):
+                if (self.dominant == Race.COW):
                     self.doMainText(" as you let out a contented 'mooo~'")
                 self.doMainText(".")
             if (self.ment >= self.lib - 10):
@@ -15566,29 +15639,29 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             def doListen():
                                 if (self.buttonChoice == 6):
                                     self.choiceListArray.clear()
-                                    if (self.humanAffinity > 50 or self.dominant == 1):
+                                    if (self.humanAffinity > 50 or self.dominant == Race.HUMAN):
                                         self.choiceListArray.push("Human")
-                                    if (self.horseAffinity > 50 or self.dominant == 2):
+                                    if (self.horseAffinity > 50 or self.dominant == Race.HORSE):
                                         self.choiceListArray.push("Equan")
-                                    if (self.wolfAffinity > 50 or self.dominant == 3):
+                                    if (self.wolfAffinity > 50 or self.dominant == Race.WOLF):
                                         self.choiceListArray.push("Lupan")
-                                    if (self.catAffinity > 50 or self.dominant == 4):
+                                    if (self.catAffinity > 50 or self.dominant == Race.CAT):
                                         self.choiceListArray.push("Felin")
-                                    if (self.cowAffinity > 50 or self.dominant == 5):
+                                    if (self.cowAffinity > 50 or self.dominant == Race.COW):
                                         self.choiceListArray.push("Cow")
-                                    if (self.lizardAffinity > 50 or self.dominant == 6):
+                                    if (self.lizardAffinity > 50 or self.dominant == Race.LIZARD):
                                         self.choiceListArray.push("Lizan")
-                                    if (self.rabbitAffinity > 50 or self.dominant == 7):
+                                    if (self.rabbitAffinity > 50 or self.dominant == Race.RABBIT):
                                         self.choiceListArray.push("Rabbit")
-                                    if (self.mouseAffinity > 50 or self.dominant == 8):
+                                    if (self.mouseAffinity > 50 or self.dominant == Race.MOUSE):
                                         self.choiceListArray.push("Mouse")
-                                    if (self.birdAffinity > 50 or self.dominant == 9):
+                                    if (self.birdAffinity > 50 or self.dominant == Race.BIRD):
                                         self.choiceListArray.push("Bird")
-                                    if (self.pigAffinity > 50 or self.dominant == 10):
+                                    if (self.pigAffinity > 50 or self.dominant == Race.PIG):
                                         self.choiceListArray.push("Pig")
-                                    if (self.skunkAffinity > 50 or self.dominant == 11):
+                                    if (self.skunkAffinity > 50 or self.dominant == Race.SKUNK):
                                         self.choiceListArray.push("Skunk")
-                                    if (self.bugAffinity > 50 or self.dominant == 12):
+                                    if (self.bugAffinity > 50 or self.dominant == Race.BUG):
                                         self.choiceListArray.push("Bug")
                                     self.choiceListButtons("Pure Blood")
                                     self.outputMainText("Select the racial blood type you would like to purify. Only those that are significant in your body are noticeable enough to select.", True)
@@ -15753,7 +15826,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def doExplore(self):
         self.bc()
-        if self.currentZone == Zones.SOFTLIK:
+        if self.currentZone == Zone.SOFTLIK:
             buttonlist = ButtonList(1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0)
             tempDict = {6: "Softlik", 1: "Forest", 7: "Dairy Farm", 10: "Plains"}
             if (self.foundValley):
@@ -15775,7 +15848,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doPlains()
             self.doListen = doListen
 
-        elif self.currentZone == Zones.FIRMSHAFT:
+        elif self.currentZone == Zone.FIRMSHAFT:
             buttonlist = ButtonList(0, 0, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0)
             tempDict = {6: "Firmshaft", 3: "Plains", 5: "Savanna", 9: "Desert", 11: "Old Cave"}
             if (self.foundValley):
@@ -15803,11 +15876,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif self.buttonChoice == 12:
                     self.outputMainText("You take the stairs that opened up when you defeated the succubus. You now find yourself in sanctuary.", True)
                     self.hrs = 1
-                    self.goToInDoProcess = Zones.SANCTUARY
+                    self.goToInDoProcess = Zone.SANCTUARY
                     self.doEnd()
             self.doListen = doListen
 
-        elif self.currentZone == Zones.TIEDEN:
+        elif self.currentZone == Zone.TIEDEN:
             buttonlist = ButtonList(0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0)
             tempDict = {6: "Tieden", 5: "Lake", 7: "Forest", 10: "Jungle"}
             if (self.foundValley):
@@ -15829,7 +15902,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doValley()
             self.doListen = doListen
 
-        elif self.currentZone == Zones.SIZ_CALIT:
+        elif self.currentZone == Zone.SIZ_CALIT:
             buttonlist = ButtonList(0, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0)
             tempDict = {6: "Siz'Calit", 2: "Jungle", 7: "Savanna", 9: "Beach", 11: "Desert"}
             if (self.foundValley):
@@ -15853,7 +15926,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doDesert()
             self.doListen = doListen
 
-        elif self.currentZone == Zones.OVIASIS:
+        elif self.currentZone == Zone.OVIASIS:
             buttonlist = ButtonList(0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0)
             tempDict = {6: "Oviasis", 2: "Desert"}
             if (self.silRep > 0):
@@ -15871,7 +15944,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doOviasis()
             self.doListen = doListen
 
-        elif self.currentZone == Zones.SANCTUARY:
+        elif self.currentZone == Zone.SANCTUARY:
             tempButtons = ButtonList(0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0)
             tempDict = {6: "Sanctuary", 5: "Cave Descent"}
             if (mainobject.directPathToSanctuary):
@@ -15891,11 +15964,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.outputMainText("You walk up to the opening that you discovered when defeated the succubus and went inside. It is supprisingly well lit despite not having any torches and the stairs are in much better shape than the ones you went down before. Once you start climbing, it doesn't take long to reach the top. Weird, you thought it would take longer considering you were going down the stairs to get here long enough for you to feel like they would never end. Anyways, you find yourself in the open next to the enterance to the Old Cave, ready to head back to Firmshaft.", True)
                         self.usedSecretStairs = True
                     self.hrs = 1
-                    self.goToInDoProcess = Zones.FIRMSHAFT
+                    self.goToInDoProcess = Zone.FIRMSHAFT
                     self.doEnd()
                 elif self.buttonChoice == 5:
                     self.inDungeon = True
-                    self.regionChange(Dungeons.SUCCUBUS_ENTER)
+                    self.regionChange(Dungeon.SUCCUBUS_ENTER)
                     self.doOldCaveDescent()
                 elif self.buttonChoice == 6:
                     self.doSanctuary()
@@ -16130,7 +16203,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.rndArray.push(1)
             # Silanrias
             tempArray = (0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-            if (tempArray[self.hour] and self.currentZone == Zones.OVIASIS and self.silRep == 0):
+            if (tempArray[self.hour] and self.currentZone == Zone.OVIASIS and self.silRep == 0):
                 self.rndArray.push(2)
             # Dust Devil
             tempArray = (0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0)
@@ -19148,14 +19221,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (not self.firstExplore):
                         self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a sense of exhilaration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                         self.firstExplore = True
-                    if self.currentZone == Zones.SOFTLIK:
+                    if self.currentZone == Zone.SOFTLIK:
                         self.doMainText("Following the path, the trees grow slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                        self.regionChange(Zones.TIEDEN)
+                        self.regionChange(Zone.TIEDEN)
                         if (not self.foundTieden):
                             self.foundTieden = True
-                    elif self.currentZone == Zones.TIEDEN:
+                    elif self.currentZone == Zone.TIEDEN:
                         self.doMainText("Following the path, the trees grow much sparser opening up to rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun.\n\nYou have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                        self.regionChange(Zones.SOFTLIK)
+                        self.regionChange(Zone.SOFTLIK)
                         if (not self.foundSoftlik):
                             self.foundSoftlik = True
                     self.hrs = 4
@@ -19342,14 +19415,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (not self.firstExplore):
                         self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                         self.firstExplore = True
-                    if self.currentZone == Zones.TIEDEN:
+                    if self.currentZone == Zone.TIEDEN:
                         self.doMainText("Following the path, you begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                        self.regionChange(Zones.SIZ_CALIT)
+                        self.regionChange(Zone.SIZ_CALIT)
                         if (not self.foundSizCalit):
                             self.foundSizCalit = True
-                    elif self.currentZone == Zones.SIZ_CALIT:
+                    elif self.currentZone == Zone.SIZ_CALIT:
                         self.doMainText("Following the path, the vegetation grows slightly sparser as you come upon a large clearing. Most of the clearing has been walled off by tree-trunks lashed together with rope. You hear some vicious growls, but also plenty of coherent speech, echoing from behind the wall. A whole bustling city. The path you followed brings you right to the front gates, where furry wolf-like guards kindly greet you and allow you to pass.\n\nYou have now entered the Lupan home-city of Tieden! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                        self.regionChange(Zones.TIEDEN)
+                        self.regionChange(Zone.TIEDEN)
                         if (not self.foundTieden):
                             self.foundTieden = True
                     self.hrs = 4
@@ -19423,14 +19496,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (not self.firstExplore):
                         self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                         self.firstExplore = True
-                    if self.currentZone == Zones.SOFTLIK:
+                    if self.currentZone == Zone.SOFTLIK:
                         self.doMainText("Following the road, signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the road you just took. Getting back might be a bit difficult...")
-                        self.regionChange(Zones.FIRMSHAFT)
+                        self.regionChange(Zone.FIRMSHAFT)
                         if (not self.foundFirmshaft):
                             self.foundFirmshaft = True
-                    elif self.currentZone == Zones.FIRMSHAFT:
+                    elif self.currentZone == Zone.FIRMSHAFT:
                         self.doMainText("Following the road, the level land breaks up into rolling hills. Not far, you see tall buildings of wood and stone, with open streets of dirt and pebbles, nestled between the hills. Fur-less people move all about, busy doing odd jobs or having fun.\n\nYou have found the Human home-city of Softlik! Although, looking behind you, there seems to be no sign of the road you just took. Getting back might be a bit difficult...")
-                        self.regionChange(Zones.SOFTLIK)
+                        self.regionChange(Zone.SOFTLIK)
                         if (not self.foundSoftlik):
                             self.foundSoftlik = True
                     self.hrs = 4
@@ -19491,14 +19564,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (not self.firstExplore):
                         self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                         self.firstExplore = True
-                    if (self.currentZone == Zones.FIRMSHAFT):
+                    if (self.currentZone == Zone.FIRMSHAFT):
                         self.doMainText("Following the path, the vegetation becomes denser and denser until trees surround you. You begin to see various wooden structures built amongst the canopy. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                        self.regionChange(Zones.SIZ_CALIT)
+                        self.regionChange(Zone.SIZ_CALIT)
                         if (not self.foundSizCalit):
                             self.foundSizCalit = True
-                    elif (self.currentZone == Zones.SIZ_CALIT):
+                    elif (self.currentZone == Zone.SIZ_CALIT):
                         self.doMainText("Following the path, signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                        self.regionChange(Zones.FIRMSHAFT)
+                        self.regionChange(Zone.FIRMSHAFT)
                         if (not self.foundFirmshaft):
                             self.foundFirmshaft = True
                     self.hrs = 4
@@ -19710,20 +19783,20 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (not self.firstExplore):
                         self.doMainText("You take a deep breath. You're finally doing it, you're actually going beyond your home. There's a sense of nervousness from the unknown, but at the same time a since of exhiliration, like you're actually going to do something important. And for the first time since you've started having those dreams, you don't feel anxious about your life. You step forward with a sense of relief.\n\n")
                         self.firstExplore = True
-                    if self.currentZone == Zones.OVIASIS:
+                    if self.currentZone == Zone.OVIASIS:
                         if (Utils.percent() <= 50):
                             self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through the desert to large fields of swaying grass, free from the storm, and signs of civilization come into view. Large tents flutter in the breeze, made from canvas held up by rocks and logs, with a few smaller brick buildings here and there. You can hear the soft clapping of hard feet everywhere, as you spot several large horse-like people walk and dash about.\n\nYou have now entered the Equan home-city of Firmshaft! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                            self.regionChange(Zones.FIRMSHAFT)
+                            self.regionChange(Zone.FIRMSHAFT)
                             if (not self.foundFirmshaft):
                                 self.foundFirmshaft = True
                         else:
                             self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through the desert into a dense vegetation with trees surrounding you, protecting you from the storm. You begin to see various wooden structures built amongst the canopy as you continue. Rope-bridges and circular huts everywhere, with lithe cat-like people walking about or jumping from branch to branch. The path leads you right to one of the few spiraling ramps that encircles the trees, bringing you up to the tree-born city.\n\nYou have now entered the Felin home-city of Siz'Calit! Although, looking behind you, there seems to be no sign of the path you just took. Getting back might be a bit difficult...")
-                            self.regionChange(Zones.SIZ_CALIT)
+                            self.regionChange(Zone.SIZ_CALIT)
                             if (not self.foundSizCalit):
                                 self.foundSizCalit = True
-                    elif self.currentZone in {Zones.FIRMSHAFT, Zones.SIZ_CALIT}:
+                    elif self.currentZone in {Zone.FIRMSHAFT, Zone.SIZ_CALIT}:
                         self.doMainText("You put your shoulder to the wind and press on, having no idea where you're going as your path is completely hidden by the blowing sand. Eventually, however, you break through into an area sheltered from the wind by large rock formations. As you blink and brush the sand from your eyes, you're left in awe by the paradise before you.\n\nAn oasis somewhere within the desert, hidden within a ring of tall rock formations and mountains, you can see the water sparkle from here and the palm trees sway lazily around it. And all along the rocks, built into caves and sprawled across the beaches, reptillian people have made their home here, relaxing and enjoying their gorgeous habitat.\n\nYou have now entered the Lizan home-city of Oviasis! Though thanks to the storm you have no idea how you got here or how to get back...")
-                        self.regionChange(Zones.OVIASIS)
+                        self.regionChange(Zone.OVIASIS)
                         if (not self.foundOviasis):
                             self.foundOviasis = True
                     self.hrs = 4
@@ -21369,7 +21442,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             def doListen():
                if (self.buttonChoice == 6):
                   self.inDungeon = True
-                  self.regionChange(Dungeons.MINOTAUR_ENTER)
+                  self.regionChange(Dungeon.MINOTAUR_ENTER)
                   self.doOldCaveDescent()
                else:
                   self.doMainText("Deciding not to go inside, you merely wander around the entrance of the cave. However, an odd scent fills your nostrils and makes you feel a bit randy...", True)
@@ -22531,7 +22604,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doOldCaveDescent()
 
     def doOldCaveDescent(self):
-        if self.currentDungeon in {Dungeons.MINOTAUR_ENTER, Dungeons.MINOTAUR_DEFEATED, Dungeons.MINOTAUR_RAPED}:
+        if self.currentDungeon in {Dungeon.MINOTAUR_ENTER, Dungeon.MINOTAUR_DEFEATED, Dungeon.MINOTAUR_RAPED}:
             if (not self.defeatedMinotaur):
                 self.outputMainText("With the lantern allowing you to actually see where you're going, you're able to venture much deeper into the old cave. It is surpisingly long for a cave that doesn't open up into a large cavern and there's not terribly much of note either, nothing you could have accidentally bumped into. The only thing particularly interesting are holes that line the bottom of the walls that angle downward, as a sort of natural drainage system for fluids. Otherwise, things are just rather... humid and slimy. It's not something you think too much about, however, as your light eventually begins to glisten off of the back wall of the cave, finally having reached the end. Or so you think it's the end.\n\nAs you reach the back wall, you notice another cave branching off. Yet, it's not exactly another cave. From the way the stone is hewn and the entrance is elevated from the normal floor of the original cave, this appears to have been carved out. You step up inside and immediately notice... There's stairs going down. Since ventured this far in, you continue on, walking down the spiraling staircase.\n\nThis passage appears to be ancient, with many of the steps rather worn from all the footsteps. The walls are slightly warped and scratched, but otherwise in good condition for their age. And they just keep going down and down and down... You quickly lose count of how many steps you've descended and it just becomes a relentless trek downward until... you find a room!\n\nAlthough, it's not much of a room... Rectangular, somewhat large, lighted by a couple torches and relatively boring, with another stairwell against the opposite wall. This is just a sort of waypoint along the stairwell... But it's not empty either.", True)
                 self.doNext()
@@ -22545,15 +22618,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doBattle()
                 self.doListen = doListen
             else:
-                if self.currentDungeon == Dungeons.MINOTAUR_ENTER:
+                if self.currentDungeon == Dungeon.MINOTAUR_ENTER:
                     self.outputMainText("You make your way back to the first 'checkpoint' along the large staircase in the old cave. The Minotaur you had bested is currently facing the wall, grunting and sweating, but quickly jerks to attention as he hears you enter. He quickly spins around to face you, acting like he had been busy guarding attentively the whole time. However, his big fat cock still throbs beneath his lazily drooped loin cloth, the aroused head poking out the side with a gob of pre drooling down. He pretends not to notice so he can tend to his duties, but exhales with a grunt as he sees you.\n\n\"Oh, just you. You can go, I know you now. Unless you want to try Minotaur again?\"", True)
-                elif self.currentDungeon == Dungeons.MINOTAUR_DEFEATED:
+                elif self.currentDungeon == Dungeon.MINOTAUR_DEFEATED:
                     self.outputMainText("With the Minotaur sitting in a corner sulking over his loss, you're free to either go up to the surface or venture further down the stairs.", True)
-                elif self.currentDungeon == Dungeons.MINOTAUR_RAPED:
+                elif self.currentDungeon == Dungeon.MINOTAUR_RAPED:
                     self.outputMainText("With the Minotaur laying on the ground, continuing to pleasure himself, you're free to either go up to the surface or venture further down the stairs.", True)
                 self.showButtons(ButtonList(1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0))
                 tempDict = {2: "Down", 4: "Firmshaft"}
-                if (self.currentDungeon == Dungeons.MINOTAUR_ENTER):
+                if (self.currentDungeon == Dungeon.MINOTAUR_ENTER):
                     tempDict[1] = "Fight"
                 self.doButtonChoices(tempDict)
 
@@ -22570,27 +22643,27 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doBattle()
                         self.doListen = doListen
                     elif self.buttonChoice == 2:
-                        if (self.currentDungeon == Dungeons.MINOTAUR_ENTER):
+                        if (self.currentDungeon == Dungeon.MINOTAUR_ENTER):
                             self.outputMainText("The beast-man gives you a grunt. \"Fine.\"\n\nBefore you're even gone, he's already turning back to the wall and slipping a hand under his loin cloth... You head down the next set of stairs.", True)
                         else:
                             self.outputMainText("You leave the beast-man to himself and head towards the stairs.", True)
                         self.doNext()
 
                         def doListen():
-                            self.currentDungeon = Dungeons.FREAKY_GIRL_ENTER
+                            self.currentDungeon = Dungeon.FREAKY_GIRL_ENTER
                             self.doOldCaveDescent()
                         self.doListen = doListen
                     elif self.buttonChoice == 4:
-                        if (self.currentDungeon == Dungeons.MINOTAUR_ENTER):
+                        if (self.currentDungeon == Dungeon.MINOTAUR_ENTER):
                             self.outputMainText("The beast-man gives you a grunt. \"Fine.\"\n\nBefore you're even gone, he's already turning back to the wall and slipping a hand under his loin cloth... You head back out to Firmshaft.", True)
                         else:
                             self.outputMainText("You leave the beast-man to himself and head towards the stairs.", True)
                         self.inDungeon = False
-                        self.goToInDoProcess = Zones.FIRMSHAFT
+                        self.goToInDoProcess = Zone.FIRMSHAFT
                         self.doEnd()
                 self.doListen = doListen
 
-        elif self.currentDungeon in {Dungeons.FREAKY_GIRL_ENTER, Dungeons.FREAKY_GIRL_DEFEATED, Dungeons.FREAKY_GIRL_RAPED}:
+        elif self.currentDungeon in {Dungeon.FREAKY_GIRL_ENTER, Dungeon.FREAKY_GIRL_DEFEATED, Dungeon.FREAKY_GIRL_RAPED}:
             if (not self.defeatedFreakyGirl):
                 self.outputMainText("Even more stairs than before, you keep going and going, deeper below the surface. You don't know how long it takes, but you do know it's a while before you find the end and step into another room. Just like before, it's nothing too grandoise, just a rectangular room hewn in the ancient stone. And at the far and, you see even more stairs descending down... However, something far more interesting grabs your attention.\n\n\"Ooo, look Mr. Snuggles, someone to pway with!\" The cute little girly voice cuts through the boredom of stairs like a sweet delicate knife.\n\nOnly as the girl gets up from sitting cross-legged do you notice a flash of her white panties. With the short frilly skirt that curls outward and shows off much of her supple legs, she must have been exposing her undergarments to you much longer as she sat on the floor. Although, you quickly try to dash that thought as you realize how young she seems to be. Barely over four feet tall, she hardly has any curves to speak of; a rather flat chest that hardly pushes out her soft shirt just by the slightly puffy nipples beneath and her hips more emphasized by the short bouncy skirt then their own girth. Her hair is bound on either side by big ribbons, pulled into two pigtails the dangle down past her shoulders, brushing across the puffed short sleeves of the otherwise tight-fitting shirt and exposing her large long ears that look almost goofy on her small form.\n\nAnd as she stands, her immaturity is further amplified by the large plushy doll she lifts with her. Nearly as large as herself, it looks like the minotaur you defeated in the previous room, except small and adorable. The thing seems to have seen a fair deal of use, however, as it's completely covered in patches of leather. You can't really tell how old it is, considering much of the leather looks brand new whereas other places look quite worn and faded, with quite a few gashes from some kind of scratches that should probably be patched up as well soon. Nevertheless, the girl hugs it close as she begins to skip around in a circle, her skirt bouncing with small glimpses of her undies as she frolics. \"We're gonna pla-ay~ We're gonna pla-ay~ We're gonna pla-ay~\"\n\nShe seems just so adorable that you almost feel obligated to play. That is... until she stops dead in her tracks and turns to you with a ferocious stare, her eyes looking far darker and her pigtails looking almost like wings as the hair curls outward sinisterly. Her nails dig into the leather of Mr. Snuggles, scratching it like all the other gashes you noticed, and she speaks in a much louder, much more snarling voice. \"IT'S BEEN YEARS SINCE I'VE HAD A GOOD TOY~\"\n\nUh oh...", True)
                 self.doNext()
@@ -22603,34 +22676,34 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doBattle()
                 self.doListen = doListen
             else:
-                if self.currentDungeon == Dungeons.FREAKY_GIRL_ENTER:
+                if self.currentDungeon == Dungeon.FREAKY_GIRL_ENTER:
                     self.outputMainText("Returning to the second floor of the cave descent, the strange little girl sits on the floor playing with Mr. Snuggles in her lap. As she spots you, she lifts the plushy leather minotaur up to her eyes and turns it toward you, using it as a puppet as she speaks in a fake menacing voice. \"Grr, did you come back to play some more~?\"", True)
-                elif self.currentDungeon == Dungeons.FREAKY_GIRL_DEFEATED:
+                elif self.currentDungeon == Dungeon.FREAKY_GIRL_DEFEATED:
                     self.outputMainText("The girl hides behind Mr. Snuggles, grumbling about how you're a \"Big fat meanie face\" and how she's \"GOING TO FEAST ON YOUR BONES\" for having defeated her, but she allows you to go as you please.", True)
-                elif self.currentDungeon == Dungeons.FREAKY_GIRL_RAPED:
+                elif self.currentDungeon == Dungeon.FREAKY_GIRL_RAPED:
                     self.outputMainText("The girl cuddles up with Mr. Snuggles, her hips still twitching and thrusting her enlarged clit into the doll, allowing you to go as you please.", True)
                 self.showButtons(ButtonList(0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0))
                 self.doButtonChoices({2: "Up", 4: "Firmshaft", 6: "'Play'", 7: "Down"})
 
                 def doListen():
                     if self.buttonChoice == 2:
-                        if (self.currentDungeon == Dungeons.FREAKY_GIRL_ENTER):
+                        if (self.currentDungeon == Dungeon.FREAKY_GIRL_ENTER):
                             self.outputMainText("\"Maww, fine. Looks like it's just you and me again, Mr. Snuggles.\" The girl returns to her playing, orienting the big minotaur back into her lap with her hand slipping beneath her skirt as you head up to the above floor.", True)
                         else:
                             self.outputMainText("She continues on with her doll and you take to the stairs.", True)
                         self.doNext()
 
                         def doListen():
-                            self.currentDungeon = Dungeons.MINOTAUR_ENTER
+                            self.currentDungeon = Dungeon.MINOTAUR_ENTER
                             self.doOldCaveDescent()
                         self.doListen = doListen
                     elif self.buttonChoice == 4:
-                        if (self.currentDungeon == Dungeons.FREAKY_GIRL_ENTER):
+                        if (self.currentDungeon == Dungeon.FREAKY_GIRL_ENTER):
                             self.outputMainText("\"Maww, fine. Looks like it's just you and me again, Mr. Snuggles.\" The girl returns to her playing, orienting the big minotaur back into her lap with her hand slipping beneath her skirt as you head up the stairs and out of the cave to Firmshaft.", True)
                         else:
                             self.outputMainText("She continues on with her doll and you take to the stairs.", True)
                         self.inDungeon = False
-                        self.goToInDoProcess = Zones.FIRMSHAFT
+                        self.goToInDoProcess = Zone.FIRMSHAFT
                         self.doEnd()
                     elif self.buttonChoice == 6:
                         self.outputMainText("\"Ooo, really?! Yay~!\" The girl hops up to her feet, her skirt flipping up a little to flash you her panties. With Mr. Snuggles in hand, the excitement gets the best of her and she bellows out with her fiercer side. \"I'LL TRY NOT TO TEAR YOU TO SHREDS~\"", True)
@@ -22644,19 +22717,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doBattle()
                         self.doListen = doListen
                     elif self.buttonChoice == 7:
-                        if (self.currentDungeon == Dungeons.FREAKY_GIRL_ENTER):
+                        if (self.currentDungeon == Dungeon.FREAKY_GIRL_ENTER):
                             self.outputMainText("\"Maww, fine. Looks like it's just you and me again, Mr. Snuggles.\" The girl returns to her playing, orienting the big minotaur back into her lap with her hand slipping beneath her skirt as you venture down the next set of stairs.", True)
                         else:
                             self.outputMainText("She continues on with her doll and you take to the stairs.", True)
                         self.doNext()
 
                         def doListen():
-                            self.currentDungeon = Dungeons.SUCCUBUS_ENTER
+                            self.currentDungeon = Dungeon.SUCCUBUS_ENTER
                             self.doOldCaveDescent()
                         self.doListen = doListen
                 self.doListen = doListen
 
-        elif self.currentDungeon in {Dungeons.SUCCUBUS_ENTER, Dungeons.SUCCUBUS_DEFEATED, Dungeons.SUCCUBUS_RAPED}:
+        elif self.currentDungeon in {Dungeon.SUCCUBUS_ENTER, Dungeon.SUCCUBUS_DEFEATED, Dungeon.SUCCUBUS_RAPED}:
             if (not self.defeatedSuccubus):
                 self.outputMainText("The spiraling stairs just keep going down further and further... You don't know how far down below the surface you've traveled, there's no signs of being any deeper. The rock walls look the same, the steps look the same, even the air isn't as stale as you would expect such a deep cavern to be. Even as you muse over these thoughts, the fact that you have reach yet another room almost eludes you until your feet attempt to continue down non-existant steps and slam into the floor abruptly. You've reached another room, just like the others, except your eyes widen in hope as you see a door on the far wall, no more stairs! Yet, your attention is turned as a sweet feminine voice tantalizes your ears and blocks your exit.\n\n\"Well, well. Looks like I've finally got a visitor. So you managed to get past the other two guardians? That's quite the feat. To be honest, that little girl creeps the hell out of me.\"\n\nThe figure steps into your view of the door as she shudders at the thought. Her chest wobbles with two grandoise mounds, the things barely held back by an overburdened red leather bikini top. They look even larger when compared to her surprisingly thin waist that widens back out to some very ample hips, the cheeks of her rump jiggling erotically in the matching red leather panties and her long thin tail tipped with a fleshy spade waves behind her to accentuate the movement further. Garters descend down to help hold up her thigh-high high-heeled boots from a belt that lazily hangs around her waist, adorned with glowing vials and a long beatiful whip. To top the whole image off, her milky white skin, long black hair, short little horns, short bat-like wings, and eyes as red as her outfit, all amount to a single idea. A succubus. A creature popular in legends passed down from earlier generations. A creature that, according to the myths, is known for being extremely attractive and for sucking out the essence of men.\n\nSure you've encountered a lot of strange things, but this is something you already knew about and is something that supposedly did NOT exist. However, you don't have time to contemplate such things further as she proceeds to take her whip in hand and lash it against the floor.\n\n\"On the other hand, if you were able to beat those two, then you must be quite a treat for me. Don't worry, I won't hurt you... much. I doubt you'll be able to pass, but if you do it would be worth it. I'd probably like to try my hand at you again sometime.\" She gives you a wink before lunging in to fight.", True)
                 self.doNext()
@@ -22669,11 +22742,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doBattle()
                 self.doListen = doListen
             else:
-                if self.currentDungeon == Dungeons.SUCCUBUS_ENTER:
+                if self.currentDungeon == Dungeon.SUCCUBUS_ENTER:
                     self.outputMainText("On the last floor before Sanctuary, the succubus toys around with her vials filled with the masculinity of various victims. She perks up at your presence, something to cut into the boredom. \"Hello again~ Don't worry. Now that you've defeated all of us, you're free to come and go as you please since you've shown you can handle yourself and won't be dead weight, so I won't fight you. Unless you want to go another round~\" She gives you a wink.", True)
-                elif self.currentDungeon == Dungeons.SUCCUBUS_DEFEATED:
+                elif self.currentDungeon == Dungeon.SUCCUBUS_DEFEATED:
                     self.outputMainText("The succubus smiles at you as she leans up against the wall, trying to pretend like you didn't actually hurt her at all and waiting for you to leave so she can rub the achy bits.", True)
-                elif self.currentDungeon == Dungeons.SUCCUBUS_RAPED:
+                elif self.currentDungeon == Dungeon.SUCCUBUS_RAPED:
                     self.outputMainText("The succubus smiles at you as she leans up against the wall, trying to pretend like you didn't actually best her in the art of sex and waiting for you to leave so she can rub her tingly bits.", True)
                 self.showButtons(ButtonList(0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1))
                 tempDict = {4: "Firmshaft", 7: "Up", 12: "Sanctuary"}
@@ -22683,22 +22756,22 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                 def doListen():
                     if self.buttonChoice == 4:
-                        if (self.currentDungeon == Dungeons.SUCCUBUS_ENTER):
+                        if (self.currentDungeon == Dungeon.SUCCUBUS_ENTER):
                             self.outputMainText("\"Alright, enjoy yourself~\" She returns her focus to her vials while you head up out to Firmshaft.", True)
                         else:
                             self.outputMainText("\"Take care~\" She seems relieved as you leave.", True)
                         self.inDungeon = False
-                        self.goToInDoProcess = Zones.FIRMSHAFT
+                        self.goToInDoProcess = Zone.FIRMSHAFT
                         self.doEnd()
                     elif self.buttonChoice == 7:
-                        if (self.currentDungeon == Dungeons.SUCCUBUS_ENTER):
+                        if (self.currentDungeon == Dungeon.SUCCUBUS_ENTER):
                             self.outputMainText("\"Alright, enjoy yourself~\" She returns her focus to her vials.", True)
                         else:
                             self.outputMainText("\"Take care~\" She seems relieved as you leave.", True)
                         self.doNext()
 
                         def doListen():
-                            self.currentDungeon = Dungeons.FREAKY_GIRL_ENTER
+                            self.currentDungeon = Dungeon.FREAKY_GIRL_ENTER
                             self.doOldCaveDescent()
                         self.doListen = doListen
                     elif self.buttonChoice == 11:
@@ -22713,22 +22786,22 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doBattle()
                         self.doListen = doListen
                     elif self.buttonChoice == 12:
-                        if (self.currentDungeon == Dungeons.SUCCUBUS_ENTER):
+                        if (self.currentDungeon == Dungeon.SUCCUBUS_ENTER):
                             self.outputMainText("\"Alright, try not to do anything I'd want to do~\" She returns her focus to her vials.", True)
                         else:
                             self.outputMainText("\"Take care~\" She seems relieved as you leave.", True)
                         self.inDungeon = False
-                        self.goToInDoProcess = Zones.SANCTUARY
+                        self.goToInDoProcess = Zone.SANCTUARY
                         self.doEnd()
                 self.doListen = doListen
 
-        elif self.currentDungeon == Dungeons.SUCCUBUS_DEFEATED_FIRST_TIME:
+        elif self.currentDungeon == Dungeon.SUCCUBUS_DEFEATED_FIRST_TIME:
             self.doMainText("The succubus shakes off her defeat and congratulates you. \"Gosh, it's been a while since an outsider has made it through. I suppose you'll be fine then.\" She steps back to the door at the end of the room, grunting slightly as she uses a good deal of force to push it open.\n\nGazing through, you mouth goes agape. After all those stairs, this is faaaar more interesting.\n\nA massive cavern stretches out before you, carved and chipped down to provide room for a sizeable city. The door is high up on a wall, giving you a grand view of all the wonder, with wide steps leading down. There's buildings made from all sorts of materials - from wood to stone to mud to things you can't even identify - littering the expansive floor with some stretching up to the high ceiling. All sorts of alien-looking beings walk the streets, faces and races and bodies you never thought imagineable. They peddle their wares, peddle their bodies, play games, play with each other, they... do all sorts of things to entertain their wide variety of cultures. All of this deep, deep underground.\n\n\"Welcome to Sanctuary! This place has been down here a very long time and has become a haven for those who survived the Change. Err... you probably don't know what the 'Change' is, since you're the newest generation and haven't witnessed it... Well... nor have I... or has anybody down here.... If we had witnessed it, we wouldn't be here to tell about it.\" She gives a dry chuckle.\n\n\"Basically, every several decades, the world just... changes. The terrain... the wildlife... the people... And some of us manage to dodge it somehow, either being caught up in some magical mishap or being in the right place at the right time or whatever. We survive while the rest... disappear. And without anybody else, we venture around and many of us wind up gathering here. Sanctuary seems to be one of the places that remains unaffected by the Change. Some of the people down there have even survived multiple Changes!\"\n\n\"That's why us 'guardians' are up here. We aren't here to guard Sanctuary from 'evildoers' or whatever. We're just here to make sure unwary wanderers from the newest generations don't find their way down here and... get a bit more than they bargained for. Except for those rabbits, but they're a different story that I don't know; they supply us with semen in exchange for something, it's not a matter I pay much attention to.\"\n\n\"Anyways, since you've 'defeated' all of us, you're free to come and go as you please, since you won't be a liability. Other than that, I... can't really explain it much more. I'm just from the last generation, so I don't know everything. This job just lets me get a good amount of essence from stronger travelers, like yourself,\" the succubus snickers as she jiggles her vials, \"and they needed someone a bit more eloquent than the other guardians to explain all I've just said. Sooo... yeah. You can go down there and have fun on your own, I'm not paid to babysit. I'll be here if you ever want to go another round, though.\"\n\nThe succubus gives you a wink and gives you a nudge down the steps, allowing you to explore this hidden world on your own.", True)
             if (mainobject.directPathToSanctuary and not self.foundSanctuary):
                 self.doMainText("\n\nYou look to your side and see an engraving on the wall. It is somewhat faded but you manage make out the phrase \"Only the worthy may use this path.\", strange. You feel an urge to touch it. Once you do, you hear a congradulatory melody, like you've just uncovered a secret. The section of wall next to where the engraving was magically disappears, revealing another set of stairs. You have a feeling that these stairs lead to the surface.")
             self.displayMainText()
             self.inDungeon = False
-            self.regionChange(Zones.SANCTUARY)
+            self.regionChange(Zone.SANCTUARY)
             if (not self.foundSanctuary):
                 self.foundSanctuary = True
 
@@ -22901,7 +22974,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.inDungeon):
                         self.regionChange(self.currentZone)
                         self.inDungeon = False
-                        self.doMainText(f"\n\nTo escape, you run all the way back to {self.regionName(self.currentZone)}.")
+                        self.doMainText(f"\n\nTo escape, you run all the way back to {Zone.name(self.currentZone)}.")
                     self.displayMainText()
                     self.currentState = GameState.GENERAL
                     self.hrs = 1
@@ -23321,19 +23394,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText("\n\nHe succombs to the pleasant sensations and doesn't seem to want to stop. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then ignores you.")
             if (not self.defeatedMinotaur):
                 self.defeatedMinotaur = True
-            self.currentDungeon = Dungeons.MINOTAUR_RAPED
+            self.currentDungeon = Dungeon.MINOTAUR_RAPED
         elif self.enemyID == 308:
             self.doMainText("\r\rA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"")
             if (not self.defeatedFreakyGirl):
                 self.defeatedFreakyGirl = True
-            self.currentDungeon = Dungeons.FREAKY_GIRL_RAPED
+            self.currentDungeon = Dungeon.FREAKY_GIRL_RAPED
         elif self.enemyID == 309:
             self.doMainText("\n\nHowever, her hips can stop twitching and she has difficulty zipping back up, nearly coming again just from trying. \"O-Okay... You win. I... I can't take any more than that... Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
             if (not self.defeatedSuccubus):
                 self.defeatedSuccubus = True
-                self.currentDungeon = Dungeons.SUCCUBUS_DEFEATED_FIRST_TIME
+                self.currentDungeon = Dungeon.SUCCUBUS_DEFEATED_FIRST_TIME
             else:
-                self.currentDungeon = Dungeons.SUCCUBUS_RAPED
+                self.currentDungeon = Dungeon.SUCCUBUS_RAPED
         else:
             self.doMainText(f"\n\nThe {self.enemyName()} collapses to the ground, quivering body wracked by orgasms. Having broken its mental state into a puddle of sex, it no longer wishes to battle.")
         self.displayMainText()
@@ -23351,19 +23424,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText("\n\n\"No, stop! No more! It hurts!\" He slinks away from you, sullen. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then starts grumbling to himself in a corner.")
             if (not self.defeatedMinotaur):
                 self.defeatedMinotaur = True
-            self.currentDungeon = Dungeons.MINOTAUR_DEFEATED
+            self.currentDungeon = Dungeon.MINOTAUR_DEFEATED
         elif self.enemyID == 308:
             self.doMainText("\n\nShe growls and curses obsceneties while nursing her pain. \"GAH, NO MORE! TAKE YOUR DAMNED WINNINGS AND GO!\"\n\nShe proceeds to rip off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she throws at you.")
             if (not self.defeatedFreakyGirl):
                 self.defeatedFreakyGirl = True
-            self.currentDungeon = Dungeons.FREAKY_GIRL_DEFEATED
+            self.currentDungeon = Dungeon.FREAKY_GIRL_DEFEATED
         elif self.enemyID == 309:
             self.doMainText("\n\n\"Ow, ow, ow, ow. Okay, okay, you win! Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
             if (not self.defeatedSuccubus):
                 self.defeatedSuccubus = True
-                self.currentDungeon = Dungeons.SUCCUBUS_DEFEATED_FIRST_TIME
+                self.currentDungeon = Dungeon.SUCCUBUS_DEFEATED_FIRST_TIME
             else:
-                self.currentDungeon = Dungeons.SUCCUBUS_DEFEATED
+                self.currentDungeon = Dungeon.SUCCUBUS_DEFEATED
         else:
             self.doMainText(f"\n\nYou have made the {self.enemyName()} pass out from all the pain.")
         self.displayMainText()
@@ -24388,7 +24461,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.vagTotal < 1 and self.cockTotal < 1):
                     self.doMainText(f"your empty groin. You can feel fluid seep from the cups and into your crotch, arousing you further. She twists with a focused expression, tugging again and again at your {self.skinDesc()}, trying to wrench herself free after the attack. By the time she manages to remove her tentacle with a pop, you spot several hickies from where she had her way with you.")
                     self.doLust(Math.floor(10 + Utils.percent() / 10), 1)
-            elif (attack > 80 and (mainobject.useIsBottomOpen and self.isBottomOpen() or not mainobject.useIsBottomOpen and self.attireBot == -1)):
+            elif (attack > 80 and (mainobject.useIsBottomOpen and self.isBottomOpen(self.attireBot) or not mainobject.useIsBottomOpen and self.attireBot == -1)):
                 self.doMainText("\n\nShe lunges forward at you with a naughty look in her large eyes. She comes intimately close to your face, a long tongue drawing from her mouth and licking you up your cheek. Caught off guard by the sudden sign of affection, you fail to notice her tentacles move in around you.")
                 if (self.vagTotal > 0):
                     self.doMainText(f" Some creep up your {self.legDesc(2)} and sneak beneath your {self.clothesBottom()}, sliding through your {self.vulvaDesc()} nether-lips. With a jump, you find your naughty hole{self.plural(2)} being penetrated. The slick tentacle{self.plural(2)} thrust{self.plural(4)} in and out slightly, as if gauging your size.")
@@ -24491,7 +24564,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.eggceleratorDose += 1
                     if (self.eggceleratorDose > 8 + Math.ceil(Utils.percent() / 20)):
                         self.doMainText(f"A little too fast...\n\nYour {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. In the midst of battle, you squat where you stand, already in the process of laying.")
-                        if (mainobject.useIsBottomOpen and self.isBottomOpen() or not mainobject.useIsBottomOpen and self.attireBot in {-2, 5, 7, 12, 13, 14, 16, 25}):
+                        if (mainobject.useIsBottomOpen and self.isBottomOpen(self.attireBot) or not mainobject.useIsBottomOpen and self.attireBot in {-2, 5, 7, 12, 13, 14, 16, 25}):
                             self.doMainText(f" Without time to remove your clothes, you're thankful for your {self.clothesBottom}'s open crotch as the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and falls to the ground where it shatters and spills its unfertilized contents. Your {self.legDesc(6)} quake to hold yourself up as another egg is already on its way, with another close behind, firing from your poor cunt in such rapid succession that when you open your mouth to scream in climax, nothing can come out.")
                         else:
                             self.doMainText(f" Without time to remove your clothes, the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and pushes at your {self.clothesBottom()}. Just one stuck in the crotch of the fabric isn't too much of an issue, but you grip your quaking {self.legDesc(6)} as there are plenty more to come. Another egg pushes against the first, expanding your {self.clothesBottom()} further, their shells cracking slightly against each other, with a third forcing its way through you right behind. After four or five eggs filling your crotch, the cloth finally gives way and tears through, a mess of yolk and shell falling below you. Without any more blockage, the rest of the eggs are free to fly out of your poor cunt and shatter upon the ground, in such rapid succession that when you open your mouth to scream in climax, nothing can come out.")
@@ -24578,7 +24651,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.cockChange(-1, 0)
                     else:
                         if (mainobject.succubusLeavesOne):
-                            if (self.dominant != 6 or self.lizardCocks < 2):
+                            if (self.dominant != Race.LIZARD or self.lizardCocks < 2):
                                 self.cockChange(-(self.cockSize - 1), -(self.cockTotal - 1))
                             else:
                                 self.cockChange(-(self.cockSize - 1), -(self.cockTotal - 2))
@@ -25281,29 +25354,29 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         domCheck = affinityCheckArray[-1]
         second = affinityCheckArray[-2]
         if (domCheck == self.humanAffinity + self.human and self.human >= 0):
-            self.dominant = 1
+            self.dominant = Race.HUMAN
         elif (domCheck == self.horseAffinity + self.horse and self.horse >= 0):
-            self.dominant = 2
+            self.dominant = Race.HORSE
         elif (domCheck == self.wolfAffinity + self.wolf and self.wolf >= 0):
-            self.dominant = 3
+            self.dominant = Race.WOLF
         elif (domCheck == self.catAffinity + self.cat and self.cat >= 0):
-            self.dominant = 4
+            self.dominant = Race.CAT
         elif (domCheck == self.cowAffinity + self.cow and self.cow >= 0):
-            self.dominant = 5
+            self.dominant = Race.COW
         elif (domCheck == self.lizardAffinity + self.lizard and self.lizard >= 0):
-            self.dominant = 6
+            self.dominant = Race.LIZARD
         elif (domCheck == self.rabbitAffinity + self.rabbit and self.rabbit >= 0):
-            self.dominant = 7
+            self.dominant = Race.RABBIT
         elif (domCheck == self.mouseAffinity + self.mouse and self.mouse >= 0):
-            self.dominant = 8
+            self.dominant = Race.MOUSE
         elif (domCheck == self.birdAffinity + self.bird and self.bird >= 0):
-            self.dominant = 9
+            self.dominant = Race.BIRD
         elif (domCheck == self.pigAffinity + self.pig and self.pig >= 0):
-            self.dominant = 10
+            self.dominant = Race.PIG
         elif (domCheck == self.skunkAffinity + self.skunk and self.skunk >= 0):
-            self.dominant = 11
+            self.dominant = Race.SKUNK
         elif (domCheck == self.bugAffinity + self.bug and self.bug >= 0):
-            self.dominant = 12
+            self.dominant = Race.BUG
 
         # General change
         if (self.humanAffinity + self.human >= 40 and self.humanAffinity < 40):
@@ -25687,14 +25760,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (not self.lockFace):
             if (self.faceType == 21 or self.faceType == 31 or self.faceType == 61):
                 self.hasMuzzle = True
-            if (self.dominant == 1 and self.faceType != 10):
+            if (self.dominant == Race.HUMAN and self.faceType != 10):
                 self.doMainText("\n\n")
                 if (self.hasMuzzle):
                     self.doMainText("The muzzle that stretches from your face begins to shrink back, your jaw returning to the rest of your skull. ")
                 self.doMainText("Your face rounds out and your nose resizes so it nestles neatly between your eyes, reaching from your brow down to just above your mouth and looks much like a human's.")
                 self.faceType = 10
                 self.hasMuzzle = False
-            if (self.dominant == 2 and (self.faceType != 20 or self.faceType != 21)):
+            if (self.dominant == Race.HORSE and (self.faceType != 20 or self.faceType != 21)):
                 if (self.faceType != 20 and self.faceType != 21):
                     if (self.hasMuzzle):
                         self.doMainText("\n\nYour facial demeanor softens and becomes more focused as your eyes grow wide and round, giving you a more considerate yet strong appearance.")
@@ -25708,7 +25781,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its width and strength of character, you look much more like a horse.")
                     self.faceType = 21
                     self.hasMuzzle = True
-            if (self.dominant == 3 and (self.faceType != 30 or self.faceType != 31)):
+            if (self.dominant == Race.WOLF and (self.faceType != 30 or self.faceType != 31)):
                 if (self.faceType != 30 and self.faceType != 31):
                     if (self.hasMuzzle):
                         self.doMainText("\n\nYour facial demeanor becomes more fierce as your eyes narrow slightly and your teeth become sharper, giving you a more carnivorous appearance.")
@@ -25722,7 +25795,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and nose with it. The bridge of your nose flattens as it stretches from your brow, molding around your upper teeth and forming a distinct muzzle. The whole muzzle narrow and filled with sharp teeth, you look much more like a wolf.")
                     self.faceType = 31
                     self.hasMuzzle = True
-            if (self.dominant == 4 and (self.faceType != 40 or self.faceType != 41)):
+            if (self.dominant == Race.CAT and (self.faceType != 40 or self.faceType != 41)):
                 if (self.faceType != 40 and self.faceType != 41):
                     self.doMainText("\n\n")
                     if (self.hasMuzzle):
@@ -25733,7 +25806,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.faceType != 41 and self.catAffinity > 60):
                     self.doMainText("\n\nYour upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. They're a bit sensitive when you touch them and give you a rather cat-like appearance.")
                     self.faceType = 41
-            if (self.dominant == 5 and (self.faceType != 50 or self.faceType != 51)):
+            if (self.dominant == Race.COW and (self.faceType != 50 or self.faceType != 51)):
                 if (self.faceType != 50 and self.faceType != 51):
                     if (self.hasMuzzle):
                         self.doMainText("\n\nYour facial demeanor softens and becomes more focused as your eyes grow round and slightly droopy, giving you a domesticated appearance.")
@@ -25747,7 +25820,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and the end of your nose with it. The bridge of your nose flattens as it reaches away from your face, molding around your upper teeth and forming a distinct muzzle. With its broadness and rather sedate appearance, you look much more like a cow.")
                     self.faceType = 51
                     self.hasMuzzle = True
-            if (self.dominant == 6 and (self.faceType != 60 or self.faceType != 61)):
+            if (self.dominant == Race.LIZARD and (self.faceType != 60 or self.faceType != 61)):
                 if (self.faceType != 60 and self.faceType != 61):
                     if (self.hasMuzzle):
                         self.doMainText("\n\nYour nostrils flatten into slits against your muzzle, giving you a more reptillian appearance.")
@@ -25761,7 +25834,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText("\n\nYour jaw juts outward, growing forward, taking your mouth and nostrils with it, forming a sort of muzzle. It narrows almost to a point as it stretches, making you look like some kind of lizard.")
                     self.faceType = 61
                     self.hasMuzzle = True
-            if (self.dominant == 7 and (self.faceType != 70 or self.faceType != 71)):
+            if (self.dominant == Race.RABBIT and (self.faceType != 70 or self.faceType != 71)):
                 if (self.faceType != 70 and self.faceType != 71):
                     self.doMainText("\n\n")
                     if (self.hasMuzzle):
@@ -25772,7 +25845,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.faceType != 71 and self.rabbitAffinity > 60):
                     self.doMainText("\n\nYour upper lip curls up at the center and long stiff thin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a bunny.")
                     self.faceType = 71
-            if (self.dominant == 8 and (self.faceType != 80 or self.faceType != 81)):
+            if (self.dominant == Race.MOUSE and (self.faceType != 80 or self.faceType != 81)):
                 if (self.faceType != 80 and self.faceType != 81):
                     self.doMainText("\n\n")
                     if (self.hasMuzzle):
@@ -25783,7 +25856,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.faceType != 81 and self.mouseAffinity > 60):
                     self.doMainText("\n\nThin whiskers sprout from the front of your cheeks. Your two front teeth stick out from the rest, almost protruding from your lips, making you look much like a mouse.")
                     self.faceType = 81
-            if (self.dominant == 9 and (self.faceType != 90 or self.faceType != 91)):
+            if (self.dominant == Race.BIRD and (self.faceType != 90 or self.faceType != 91)):
                 if (self.faceType != 90 and self.faceType != 91):
                     self.doMainText("\n\n")
                     if (self.hasMuzzle):
@@ -25794,7 +25867,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.faceType != 91 and self.birdAffinity > 70):
                     self.doMainText("\n\nYour upper lip molds up against your large nose, becoming stiff and hard while the bottom lip protrudes and matches the hooked shape. Your nose and mouth morph into a sturdy powerful beak, making you look much like a bird.")
                     self.faceType = 91
-            if (self.dominant == 10 and (self.faceType != 100 or self.faceType != 101 or self.faceType != 102)):
+            if (self.dominant == Race.PIG and (self.faceType != 100 or self.faceType != 101 or self.faceType != 102)):
                 if (self.faceType != 100 and self.faceType != 101 and self.faceType != 102):
                     self.doMainText("\n\n")
                     if (self.hasMuzzle):
@@ -25808,7 +25881,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.faceType != 102 and self.pigAffinity > 85):
                     self.doMainText("\n\nTwo of your lower teeth suddenly begin to surge outward, growing rapidly into two large tusks that stick out from your lips and curl upward.")
                     self.faceType = 102
-            if (self.dominant == 11 and (self.faceType != 110 or self.faceType != 111)):
+            if (self.dominant == Race.SKUNK and (self.faceType != 110 or self.faceType != 111)):
                 if (self.faceType != 110 and self.faceType != 111):
                     self.doMainText("\n\n")
                     if (self.hasMuzzle):
@@ -25819,7 +25892,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.faceType != 111 and self.skunkAffinity > 60):
                     self.doMainText("\n\nLong stiff thin whiskers sprout from the front of your cheeks. They're a bit sensitive when you touch them and give you a rather skunk-like appearance.")
                     self.faceType = 111
-            if (self.dominant == 12 and (self.faceType != 120 or self.faceType != 121)):
+            if (self.dominant == Race.BUG and (self.faceType != 120 or self.faceType != 121)):
                 if (self.faceType != 120 and self.faceType != 121):
                     self.doMainText("\n\n")
                     if (self.hasMuzzle):
@@ -25839,67 +25912,67 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             secondTail = tempTailArray[-2]
             maxNonTail = self.humanAffinity
             if (self.tail < 1):
-                if (self.dominant == 2 and self.horseAffinity > maxNonTail + 15):
+                if (self.dominant == Race.HORSE and self.horseAffinity > maxNonTail + 15):
                     self.tail = 2
-                if (self.dominant == 3 and self.wolfAffinity > maxNonTail + 15):
+                if (self.dominant == Race.WOLF and self.wolfAffinity > maxNonTail + 15):
                     self.tail = 3
-                if (self.dominant == 4 and self.catAffinity > maxNonTail + 15):
+                if (self.dominant == Race.CAT and self.catAffinity > maxNonTail + 15):
                     self.tail = 4
-                if (self.dominant == 5 and self.cowAffinity > maxNonTail + 15):
+                if (self.dominant == Race.COW and self.cowAffinity > maxNonTail + 15):
                     self.tail = 5
-                if (self.dominant == 6 and self.lizardAffinity > maxNonTail + 15):
+                if (self.dominant == Race.LIZARD and self.lizardAffinity > maxNonTail + 15):
                     self.tail = 6
-                if (self.dominant == 7 and self.rabbitAffinity > maxNonTail + 15):
+                if (self.dominant == Race.RABBIT and self.rabbitAffinity > maxNonTail + 15):
                     self.tail = 7
-                if (self.dominant == 8 and self.mouseAffinity > maxNonTail + 15):
+                if (self.dominant == Race.MOUSE and self.mouseAffinity > maxNonTail + 15):
                     self.tail = 8
-                if (self.dominant == 9 and self.birdAffinity > maxNonTail + 15):
+                if (self.dominant == Race.BIRD and self.birdAffinity > maxNonTail + 15):
                     self.tail = 9
-                if (self.dominant == 10 and self.pigAffinity > maxNonTail + 15):
+                if (self.dominant == Race.PIG and self.pigAffinity > maxNonTail + 15):
                     self.tail = 10
-                if (self.dominant == 11 and self.skunkAffinity > maxNonTail + 15):
+                if (self.dominant == Race.SKUNK and self.skunkAffinity > maxNonTail + 15):
                     self.tail = 11
-                if (self.dominant == 12 and self.bugAffinity > maxNonTail + 15):
+                if (self.dominant == Race.BUG and self.bugAffinity > maxNonTail + 15):
                     self.tail = 12
                 if (self.tail > 1):
                     self.doMainText(f"\n\nYou feel a tickle upon your backside as your {self.clothesBottom()} feels tight. With a groan, the pressure builds behind you, until a tearing sound fills the air and the pain is gone. Checking your backside, you see a new {self.tailDesc()} tail bobbing above your {self.buttDesc()} bum. Next time you go to town, you'll be visiting a tailor to fix your clothes to account for your new appendage...")
-            if (self.dominant == 1 and self.humanAffinity > maxTail + 10 and self.tail > 1):
+            if (self.dominant == Race.HUMAN and self.humanAffinity > maxTail + 10 and self.tail > 1):
                 self.tail = 0
                 self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, disappearing altogether. You no longer have a tail.")
-            if (self.dominant == 2 and self.horseAffinity > secondTail + 10 and self.tail > 1 and self.tail != 2):
+            if (self.dominant == Race.HORSE and self.horseAffinity > secondTail + 10 and self.tail > 1 and self.tail != 2):
                 self.tail = 2
                 self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it bursts into hundreds of long hairs. Any control you had over it before is gone, save for the muscles at the base that allow you to swish it with your mood and swat against your thighs. Just like a horse's.")
-            if (self.dominant == 3 and self.wolfAffinity > secondTail + 10 and self.tail > 1 and self.tail != 3):
+            if (self.dominant == Race.WOLF and self.wolfAffinity > secondTail + 10 and self.tail > 1 and self.tail != 3):
                 self.tail = 3
                 self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it widens with long hairs around a skeletal base. It wags with your mood and reflexes, though you don't really have control over it otherwise, and it's oh so fluffy. Just like a wolf's.")
-            if (self.dominant == 4 and self.catAffinity > secondTail + 10 and self.tail > 1 and self.tail != 4):
+            if (self.dominant == Race.CAT and self.catAffinity > secondTail + 10 and self.tail > 1 and self.tail != 4):
                 self.tail = 4
                 self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base. It wags with your mood and reflexes and likes to curl around your touch with limited control, and it's oh so soft. Just like a cat's.")
-            if (self.dominant == 5 and self.cowAffinity > secondTail + 10 and self.tail > 1 and self.tail != 5):
+            if (self.dominant == Race.COW and self.cowAffinity > secondTail + 10 and self.tail > 1 and self.tail != 5):
                 self.tail = 5
                 self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with short hairs around a skeletal base and a tuft of long hair bursts at the tip. It sways lazily across your {self.buttDesc()} backside and you can swat yourself with the tip like a soft whip. Just like a cow's.")
-            if (self.dominant == 6 and self.lizardAffinity > secondTail + 10 and self.tail > 1 and self.tail != 6):
+            if (self.dominant == Race.LIZARD and self.lizardAffinity > secondTail + 10 and self.tail > 1 and self.tail != 6):
                 self.tail = 6
                 self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it thickens at the base and narrows gradually to a point. It's quite agile, able to move at your whim, the tip even being slightly prehensile. Much like a lizard's.")
-            if (self.dominant == 7 and self.rabbitAffinity > secondTail + 10 and self.tail > 1 and self.tail != 7):
+            if (self.dominant == Race.RABBIT and self.rabbitAffinity > secondTail + 10 and self.tail > 1 and self.tail != 7):
                 self.tail = 7
                 self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as shrinks into your back, exploding into a tuft of soft puffy hair before it disappears. It wiggles above your {self.buttDesc()} bum cutely and quite fluffy. Much like a rabbit's.")
-            if (self.dominant == 8 and self.mouseAffinity > secondTail + 10 and self.tail > 1 and self.tail != 8):
+            if (self.dominant == Race.MOUSE and self.mouseAffinity > secondTail + 10 and self.tail > 1 and self.tail != 8):
                 self.tail = 8
                 self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it narrows with fine hairs around a skeletal base. Thin and lithe, the fur doesn't really hide the pink skin underneath. It whips above your {self.buttDesc()} bum and you can curl it around with limited control. Just like a mouse's.")
-            if (self.dominant == 9 and self.birdAffinity > secondTail + 10 and self.tail > 1 and self.tail != 9):
+            if (self.dominant == Race.BIRD and self.birdAffinity > secondTail + 10 and self.tail > 1 and self.tail != 9):
                 self.tail = 9
                 self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks to your back and burst into a plume of feathers. Long and somewhat controllable, you can adjust their direction for aerodynamic turning. Just like a bird's.")
-            if (self.dominant == 10 and self.pigAffinity > secondTail + 10 and self.tail > 1 and self.tail != 10):
+            if (self.dominant == Race.PIG and self.pigAffinity > secondTail + 10 and self.tail > 1 and self.tail != 10):
                 self.tail = 10
                 self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it shrinks into your back, shriveling in girth and coiling around. It twitches a bit when you try to wiggle it and you can try to straighten it out but it pops right back into its curly state. Just like a pig's.")
-            if (self.dominant == 11 and self.skunkAffinity > secondTail + 10 and self.tail > 1 and self.tail != 11):
+            if (self.dominant == Race.SKUNK and self.skunkAffinity > secondTail + 10 and self.tail > 1 and self.tail != 11):
                 self.tail = 11
                 self.doMainText("\n\nYour tail begins to tingle. As you turn around, you watch as it poofs into a large, long, wide fluffy tail that curls up behind your back with the pointed tip gently sagging away from you. Two parrallel stripes run closely together from the tip of your tail, widening with the tail, and down to the base")
                 if (self.skinType == 2 and self.skunkAffinity >= 40):
                     self.doMainText(" where it meets up with the stripes of your fur")
                 self.doMainText(". Just like a skunk's.")
-            if (self.dominant == 12 and self.bugAffinity > secondTail + 10 and self.tail > 1 and self.tail != 12):
+            if (self.dominant == Race.BUG and self.bugAffinity > secondTail + 10 and self.tail > 1 and self.tail != 12):
                 self.tail = 12
                 self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it bloats up, growing nearly as thick as your waist and nearly as stout. It's so big and weighty with flesh that you can hardly move it, merely resting against your {self.buttDesc()} butt. And at the tip where it's rather blunt, you can feel another hole. It's not terribly large, but it looks large enough to fit a small-ish egg, your finger able to easily poke up inside to feel the warm moist interior. If you were to venture a guess, it seems more like an ovipositor than an actual tail, though such a large change to your anatomy would be impossible, so what could it be for?")
             if (self.weapon == 127 and self.tail != 4 and self.tail != 5 and self.tail != 6 and self.tail != 8):
@@ -25909,7 +25982,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         maxNonWings = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.cowAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.pigAffinity)
         maxWings = Math.max(self.birdAffinity)
         if (self.wings < 1 and maxWings > maxNonWings + 60):
-            if (self.dominant == 9 and self.birdAffinity > maxNonWings + 60):
+            if (self.dominant == Race.BIRD and self.birdAffinity > maxNonWings + 60):
                 self.doMainText(f"\n\nA sharp pain engulfs your back, centered around your shoulder blades. You keel forward, falling to your hands and {self.legDesc(6)} as you try to brace yourself against the sharp ache. Then, you cry out as feathers tear through your {self.clothesTop()}, stretching out across new appendages. As soon as they grow, the pain stops and you gather yourself.\n\nStanding, you flap your new feathery wings. While not strong enough to carry you long distances, they'll definitely help you flee from unwanted threats.")
                 self.wings = 9
             self.runMod += 20
@@ -25922,40 +25995,40 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         # Ears change
         if (not self.lockEars):
-            if (self.dominant == 1 and self.humanAffinity > second + 15 and self.ears != 1):
+            if (self.dominant == Race.HUMAN and self.humanAffinity > second + 15 and self.ears != 1):
                 self.ears = 1
                 self.doMainText("\n\nYour ears twitch as they become rounded and hug the sides of you head, looking more like a human's.")
-            if (self.dominant == 2 and self.horseAffinity > second + 15 and self.ears != 2):
+            if (self.dominant == Race.HORSE and self.horseAffinity > second + 15 and self.ears != 2):
                 self.ears = 2
                 self.doMainText("\n\nYour ears twitch as they become rounded and pointed at the tip, flicking atop your head, looking more like a horse's.")
-            if (self.dominant == 3 and self.wolfAffinity > second + 15 and self.ears != 3):
+            if (self.dominant == Race.WOLF and self.wolfAffinity > second + 15 and self.ears != 3):
                 self.ears = 3
                 self.doMainText("\n\nYour ears twitch as they become triangular, standing pert atop your head, looking more like a wolf's.")
-            if (self.dominant == 4 and self.catAffinity > second + 15 and self.ears != 4):
+            if (self.dominant == Race.CAT and self.catAffinity > second + 15 and self.ears != 4):
                 self.ears = 4
                 self.doMainText("\n\nYour ears twitch as they become triangular, standing pert atop your head, looking more like a cat's.")
-            if (self.dominant == 5 and self.cowAffinity > second + 15 and self.ears != 5):
+            if (self.dominant == Race.COW and self.cowAffinity > second + 15 and self.ears != 5):
                 self.ears = 5
                 self.doMainText("\n\nYour ears twitch as they become rounded and large, standing several inches out from the sides of your head, looking more like a cow's.")
-            if (self.dominant == 6 and self.lizardAffinity > second + 15 and self.ears != 6):
+            if (self.dominant == Race.LIZARD and self.lizardAffinity > second + 15 and self.ears != 6):
                 self.ears = 6
                 self.doMainText("\n\nYour ears feel quite strange, shrinking into the sides of your head before they disappear, becoming sleek holes.")
-            if (self.dominant == 7 and self.rabbitAffinity > second + 15 and self.ears != 7):
+            if (self.dominant == Race.RABBIT and self.rabbitAffinity > second + 15 and self.ears != 7):
                 self.ears = 7
                 self.doMainText("\n\nYour ears twitch as they become quite long, standing several inches high atop your head, looking more like a rabbit's.")
-            if (self.dominant == 8 and self.mouseAffinity > second + 15 and self.ears != 8):
+            if (self.dominant == Race.MOUSE and self.mouseAffinity > second + 15 and self.ears != 8):
                 self.ears = 8
                 self.doMainText("\n\nYour ears twitch as they grow larger and larger, rounding out into thin discs standing out from the sides of your head, looking more like a mouse's.")
-            if (self.dominant == 9 and self.birdAffinity > second + 15 and self.ears != 9):
+            if (self.dominant == Race.BIRD and self.birdAffinity > second + 15 and self.ears != 9):
                 self.ears = 9
                 self.doMainText("\n\nYour ears feel quite strange, shrinking into the sides of your head before disappearing behind a small patch of feathers, looking more like a bird's.")
-            if (self.dominant == 10 and self.pigAffinity > second + 15 and self.ears != 10):
+            if (self.dominant == Race.PIG and self.pigAffinity > second + 15 and self.ears != 10):
                 self.ears = 10
                 self.doMainText("\n\nYour ears feel quite strange, growing long and triangular out the sides of your head, folding over and dropping as they get too long, looking more like a pig's.")
-            if (self.dominant == 11 and self.skunkAffinity > second + 15 and self.ears != 11):
+            if (self.dominant == Race.SKUNK and self.skunkAffinity > second + 15 and self.ears != 11):
                 self.ears = 11
                 self.doMainText("\n\nYour ears twitch as they become rounded and small, standing pert atop your head, looking more like a skunk's.")
-            if (self.dominant == 12 and self.bugAffinity > second + 15 and self.ears != 12):
+            if (self.dominant == Race.BUG and self.bugAffinity > second + 15 and self.ears != 12):
                 self.ears = 12
                 self.doMainText("\n\nYour ears twitch as they grow long and narrow to a point on the sides of your head, becoming a vibrant color while the lobes become wavy with a delicate design, looking almost like butterfly wings.")
 
@@ -26148,31 +26221,31 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         # Cock change
         if (not self.lockCock):
-            if (self.dominant == 1 and self.humanAffinity > second + 25 and self.human > 0 and self.cockTotal > 0 and self.humanCocks < self.cockTotal):
+            if (self.dominant == Race.HUMAN and self.humanAffinity > second + 25 and self.human > 0 and self.cockTotal > 0 and self.humanCocks < self.cockTotal):
                 self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to see {self.oneYour(1)} cock{self.plural(1)} hanging out from your body, limp and flaccid. It's smooth and fleshy, easily teased into erection. Its skin is slightly less sensitive, but the thick mushroom-like head twitches in your grip. It looks very much like a human's.")
                 self.humanCocks += 1
                 self.cockLoss()
-            if (self.dominant == 2 and self.horseAffinity > second + 25 and self.horse > 0 and self.cockTotal > 0 and self.horseCocks < self.cockTotal):
+            if (self.dominant == Race.HORSE and self.horseAffinity > second + 25 and self.horse > 0 and self.cockTotal > 0 and self.horseCocks < self.cockTotal):
                 self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thick sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Relaxing your muscles, the cock slowly droops out over your {self.clothesBottom()}. It's long and smooth, with the prepuce only reaching halfway down its length making an obvious ring. The head is flat and as you knead it in your hand, it flares wide. It looks very much like a horse's.")
                 self.horseCocks += 1
                 self.cockLoss()
-            if (self.dominant == 3 and self.wolfAffinity > second + 25 and self.wolf > 0 and self.cockTotal > 0 and self.wolfCocks < self.cockTotal):
+            if (self.dominant == Race.WOLF and self.wolfAffinity > second + 25 and self.wolf > 0 and self.cockTotal > 0 and self.wolfCocks < self.cockTotal):
                 self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, red and hard, no matter how aroused you are. It's veiny and smooth, already a bit moist from being within the sheath. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a wolf's.")
                 self.wolfCocks += 1
                 self.cockLoss()
-            if (self.dominant == 4 and self.catAffinity > second + 25 and self.cat > 0 and self.cockTotal > 0 and self.catCocks < self.cockTotal):
+            if (self.dominant == Race.CAT and self.catAffinity > second + 25 and self.cat > 0 and self.cockTotal > 0 and self.catCocks < self.cockTotal):
                 self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, pink and soft. It's smooth and already a bit moist from being within the sheath, covered in tiny barbs that feel rough as your hand strokes against them. The head narrows off to a pointy tip where you can feel the urethra resides. It looks very much like a cat's.")
                 self.catCocks += 1
                 self.cockLoss()
-            if (self.dominant == 6 and self.lizardAffinity > second + 25 and self.lizard > 0 and self.cockTotal > 0 and self.lizardCocks < self.cockTotal):
+            if (self.dominant == Race.LIZARD and self.lizardAffinity > second + 25 and self.lizard > 0 and self.cockTotal > 0 and self.lizardCocks < self.cockTotal):
                 self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as your cock{self.plural(1)} sink{self.plural(3)} into your body, leaving behind a small slit at the front. Flexing your muscles, the slit pushes open and {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, looking quite purple. It's bumpy, with ribs along its upper side and a head that looks bulbous before rapidly narrowing into a pointy tip where you can feel the urethra resides. You think it looks like a lizard's?")
                 self.lizardCocks += 1
                 self.cockLoss()
-            if (self.dominant == 7 and self.rabbitAffinity > second + 25 and self.rabbit > 0 and self.cockTotal > 0 and self.rabbitCocks < self.cockTotal):
+            if (self.dominant == Race.RABBIT and self.rabbitAffinity > second + 25 and self.rabbit > 0 and self.cockTotal > 0 and self.rabbitCocks < self.cockTotal):
                 self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to watch as a thin sheath envelopes {self.oneYour(1)} cock{self.plural(1)}. Flexing your muscles, {self.oneYour(1)} cock{self.plural(1)} slowly pushes out, red and pointy. It's smooth and already a bit moist from being within the sheath, its whole length gradually narrowing to the pointy tip, reminiscent of a carrot. It looks very much like a rabbit's.")
                 self.rabbitCocks += 1
                 self.cockLoss()
-            if (self.dominant == 12 and self.bugAffinity > second + 25 and self.bug > 0 and self.cockTotal > 0 and self.bugCocks < self.cockTotal):
+            if (self.dominant == Race.BUG and self.bugAffinity > second + 25 and self.bug > 0 and self.cockTotal > 0 and self.bugCocks < self.cockTotal):
                 self.doMainText(f"\n\nYour {self.hipDesc()} hips twitch as {self.oneYour(1)} cock{self.plural(1)} begins to feel strange. You open your {self.clothesBottom()} to see what is happening, only to see {self.oneYour(1)} cock{self.plural(1)} hanging out from your body, with four fleshy spikes pointing back towards you from the rim of the glans, not hard enough to hurt but enough to definitely get a grip inside tender walls. The underside is also adorned with extra grip, a ridge following down the middle with many bumps along its length. You're not really sure what it is, but some bugs do have rather... 'wild' penises that could come close.")
                 self.bugCocks += 1
                 self.cockLoss()
@@ -26202,7 +26275,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def cockChange(self, sizeChange: int, totalChange: int):
         nonCock = False  # Variable storing whether current race doesn't have its own cock type
         maxCock = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.lizardAffinity, self.rabbitAffinity, self.bugAffinity)
-        if (self.dominant in {5, 8, 9, 10, 11}):
+        if (self.dominant in {Race.COW, Race.MOUSE, Race.BIRD, Race.PIG, Race.SKUNK}):
             nonCock = True
 
         # Loose all cocks
@@ -26237,25 +26310,25 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # Gain cock when no cock
         elif (self.cockTotal + totalChange > 0 and self.cockTotal < 1):
             self.doMainText(f"\n\nA strange sensation of arousal engulfs your groin. Your {self.clothesBottom()} grows tight as you feel something swell within. You don't have much time to pull {self.pullUD(2)} your {self.clothesBottom()} as flesh bulges over the fitted garment. Throbbing and dripping with pre, a fresh, new ")
-            if (self.dominant == 1 or nonCock and maxCock == self.humanAffinity):
+            if (self.dominant == Race.HUMAN or nonCock and maxCock == self.humanAffinity):
                 self.doMainText("human ")
                 self.humanCocks += 1
-            elif (self.dominant == 2 or nonCock and maxCock == self.horseAffinity):
+            elif (self.dominant == Race.HORSE or nonCock and maxCock == self.horseAffinity):
                 self.doMainText("equine ")
                 self.horseCocks += 1
-            elif (self.dominant == 3 or nonCock and maxCock == self.wolfAffinity):
+            elif (self.dominant == Race.WOLF or nonCock and maxCock == self.wolfAffinity):
                 self.doMainText("canine ")
                 self.wolfCocks += 1
-            elif (self.dominant == 4 or nonCock and maxCock == self.catAffinity):
+            elif (self.dominant == Race.CAT or nonCock and maxCock == self.catAffinity):
                 self.doMainText("feline ")
                 self.catCocks += 1
-            elif (self.dominant == 6 or nonCock and maxCock == self.lizardAffinity):
+            elif (self.dominant == Race.LIZARD or nonCock and maxCock == self.lizardAffinity):
                 self.doMainText("reptillian ")
                 self.lizardCocks += 1
-            elif (self.dominant == 7 or nonCock and maxCock == self.rabbitAffinity):
+            elif (self.dominant == Race.RABBIT or nonCock and maxCock == self.rabbitAffinity):
                 self.doMainText("lapin ")
                 self.rabbitCocks += 1
-            elif (self.dominant == 12 or nonCock and maxCock == self.bugAffinity):
+            elif (self.dominant == Race.BUG or nonCock and maxCock == self.bugAffinity):
                 self.doMainText("insectile ")
                 self.bugCocks += 1
             self.doMainText("penis stands erect")
@@ -26285,25 +26358,25 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText(f"\n\nA strange sensation of arousal engulfs your groin. Your {self.clothesBottom()} grows tight as you feel something swell within. You don't have much time to open your {self.clothesBottom()} as flesh bulges over the fitted garment. Throbbing and dripping with pre, fresh and new,")
             if (totalChange > 1):
                 self.doMainText(f" {totalChange}")
-            if (self.dominant == 1 or nonCock and maxCock == self.humanAffinity):
+            if (self.dominant == Race.HUMAN or nonCock and maxCock == self.humanAffinity):
                 self.doMainText(" human ")
                 self.humanCocks += totalChange
-            elif (self.dominant == 2 or nonCock and maxCock == self.horseAffinity):
+            elif (self.dominant == Race.HORSE or nonCock and maxCock == self.horseAffinity):
                 self.doMainText(" equine ")
                 self.horseCocks += totalChange
-            elif (self.dominant == 3 or nonCock and maxCock == self.wolfAffinity):
+            elif (self.dominant == Race.WOLF or nonCock and maxCock == self.wolfAffinity):
                 self.doMainText(" canine ")
                 self.wolfCocks += totalChange
-            elif (self.dominant == 4 or nonCock and maxCock == self.catAffinity):
+            elif (self.dominant == Race.CAT or nonCock and maxCock == self.catAffinity):
                 self.doMainText(" feline ")
                 self.catCocks += totalChange
-            elif (self.dominant == 6 or nonCock and maxCock == self.lizardAffinity):
+            elif (self.dominant == Race.LIZARD or nonCock and maxCock == self.lizardAffinity):
                 self.doMainText(" reptillian ")
                 self.lizardCocks += totalChange
-            elif (self.dominant == 7 or nonCock and maxCock == self.rabbitAffinity):
+            elif (self.dominant == Race.RABBIT or nonCock and maxCock == self.rabbitAffinity):
                 self.doMainText(" lapin ")
                 self.rabbitCocks += totalChange
-            elif (self.dominant == 12 or nonCock and maxCock == self.bugAffinity):
+            elif (self.dominant == Race.BUG or nonCock and maxCock == self.bugAffinity):
                 self.doMainText(" insectile ")
                 self.bugCocks += totalChange
             self.doMainText("penis")
@@ -27896,65 +27969,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             return "are"
         return f"LEG PLURAL ERROR TYPE {self.legType}"
 
-    @staticmethod
-    def regionName(region: int):
-        if region == 1:
-            return "Softlik"
-        if region == 2:
-            return "Firmshaft"
-        if region == 3:
-            return "Tieden"
-        if region == 4:
-            return "Siz'Calit"
-        if region == 6:
-            return "Oviasis"
-        if region == 12:
-            return "Sanctuary"
-        return f"REGION ERROR {region}"
-
     def raceName(self):
-        if self.race == 1:
-            return "Human"
-        if self.race == 2:
-            return "Equan"
-        if self.race == 3:
-            return "Lupan"
-        if self.race == 4:
-            return "Felin"
-        if self.race == 6:
-            return "Lizan"
-        return f"RACE ERROR {self.race}"
+        return Race.prettyName(self.race)
 
     def domName(self):
-        if self.dominant == 1:
-            return "human"
-        if self.dominant == 2:
-            return "horse"
-        if self.dominant == 3:
-            return "wolf"
-        if self.dominant == 4:
-            return "cat"
-        if self.dominant == 5:
-            return "cow"
-        if self.dominant == 6:
-            return "lizard"
-        if self.dominant == 7:
-            return "bunny"
-        if self.dominant == 8:
-            return "mouse"
-        if self.dominant == 9:
-            return "bird"
-        if self.dominant == 10:
-            return "pig"
-        if self.dominant == 11:
-            return "skunk"
-        if self.dominant == 12:
-            return "bug"
-        return f"DOMINANT ERROR {self.dominant}"
+        return Race.name(self.dominant)
 
-    def isBottomOpen(self, ID: int = None):
-        if ID is None:
-            ID = self.attireBot
+    def isBottomOpen(self, ID: int):
         # Tattered Shreds, Elegant Dress, Skirt, Sundress, Skimpy Dress, Short Skirt, Loin Cloth, Gothic Dress
         return ID in {-1, 5, 7, 12, 13, 14, 16, 25}
 
@@ -28530,7 +28551,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 class PyminMain:
     # This class contains all game windows and config values
     # Doing it this way allows for easier debugging
-    # TODO: Some properties don't apply to the game window on first open
     @property
     def isDebugger(self):
         return as3state.as3DebugEnable
