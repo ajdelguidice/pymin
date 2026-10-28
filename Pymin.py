@@ -9,7 +9,6 @@ from as3lib.flash.ui import Keyboard
 import as3lib.interface_tk as itk
 from dataclasses import dataclass
 from functools import partial, cache
-from io import BytesIO
 from miniamf import sol
 from miniamf.amf3 import ByteArray
 from pathlib import Path, PurePath
@@ -822,7 +821,7 @@ class SaveUtils:
             for i in range(1, len(stashLoadFix)):
                 if (stashLoadFix[i] > 10):
                     sstash[i - 1] = stashLoadFix[i]
-                    sstashStack[i - 1] = tashStackLoadFix[i]
+                    sstashStack[i - 1] = stashStackLoadFix[i]
             data.update({'bag': sbag, 'bagStack': sbagStack, 'stash': sstash, 'stashStack': sstashStack})
             del data['itemSave'], data['stashSave'], data['stackSave'], data['stashStackSave']
 
@@ -3543,7 +3542,8 @@ class WikiPages:
             return contents + WikiPages.Recipe_CreatesTag(536)
 
         # Buyable recipes
-        class FakeContext:...
+        class FakeContext:
+            ...
 
         contents += f"<u>Description</u>\n{ApothecaryItems.description(ID, FakeContext)}"
         if ID == 1:
@@ -24106,7 +24106,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             return "Minotaur"
         if self.enemyID == Enemy.FREAKY_LITTLE_GIRL:
             return "freaky little girl"
-        if self.enemyID == SUCCUBUS:
+        if self.enemyID == Enemy.SUCCUBUS:
             return "succubus"
         return "ENEMY NAME ERROR"
 
