@@ -146,9 +146,7 @@ class Gender:
 
 
 class Preference:
-    # TODO: Use this
-    # TODO: Check if names are accurate
-    NONE = 0
+    ANDRO = 0
     MALE = 1
     FEMALE = 2
     HERM = 3
@@ -3078,19 +3076,19 @@ class EnemyStatsContainer(dict):
 
 
 ENEMY_STATS = {
-    Enemy.COCK_SNAKE: EnemyStatsContainer({'HP': 30, 'str': 16, 'ment': 4, 'sen': 8, 'lib': 0, 'lust': 0, 'gender': Gender.ANDRO, 'pref': 4, 'coin': 0, 'SexP': 15, 'item': 202}),
-    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsContainer({'HP': 25, 'str': 0, 'ment': 20, 'sen': 0, 'lib': 50, 'lust': 0, 'gender': Gender.ANDRO, 'pref': 0, 'coin': 0, 'SexP': 10, 'item': 231}),
-    Enemy.LONE_WOLF: EnemyStatsContainer({'HP': 45, 'str': 22, 'ment': 16, 'sen': 13, 'lib': 11, 'lust': 30, 'gender': Gender.MALE, 'pref': 2, 'coin': 0, 'SexP': 20, 'item': 203}),
-    Enemy.GAY_WOLF: EnemyStatsContainer({'HP': 45, 'str': 26, 'ment': 16, 'sen': 20, 'lib': 11, 'lust': 40, 'gender': Gender.MALE, 'pref': 1, 'coin': 0, 'SexP': 20, 'item': 203}),
-    Enemy.HORNY_FELIN: EnemyStatsContainer({'HP': 50, 'str': 12, 'ment': 10, 'sen': 24, 'lib': 30, 'lust': 40, 'gender': Gender.FEMALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 25, 'item': 204}),
-    Enemy.DRUNKEN_EQUAN: EnemyStatsContainer({'HP': 60, 'str': 28, 'ment': 9, 'sen': 18, 'lib': 14, 'lust': 30, 'gender': Gender.MALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 25, 'item': 205}),
-    Enemy.OCTOPUS_GIRL: EnemyStatsContainer({'HP': 150, 'str': 45, 'ment': 30, 'sen': 25, 'lib': 35, 'lust': 20, 'gender': Gender.FEMALE, 'pref': 4, 'coin': 0, 'SexP': 50, 'item': 216}),
-    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsContainer({'HP': 55, 'str': 35, 'ment': 30, 'sen': 35, 'lib': 45, 'lust': 10, 'gender': Gender.MALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 30, 'item': 222}),
-    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsContainer({'HP': 50, 'str': 35, 'ment': 30, 'sen': 45, 'lib': 35, 'lust': 10, 'gender': Gender.FEMALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 30, 'item': 222}),
-    Enemy.FIERCE_NAGA: EnemyStatsContainer({'HP': 100, 'str': 50, 'ment': 20, 'sen': 40, 'lib': 2, 'lust': 40, 'gender': Gender.FEMALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 5), 'SexP': 55, 'item': 230}),
-    Enemy.MINOTAUR: EnemyStatsContainer({'HP': 250, 'str': 70, 'ment': 20, 'sen': 50, 'lib': 20, 'lust': 10, 'gender': Gender.MALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 50, 'item': 525}),
-    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsContainer({'HP': 175, 'str': 80, 'ment': 40, 'sen': 70, 'lib': 60, 'lust': 10, 'gender': Gender.FEMALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 55, 'item': 259}),
-    Enemy.SUCCUBUS: EnemyStatsContainer({'HP': 150, 'str': 35, 'ment': 80, 'sen': 40, 'lib': 40, 'lust': 0, 'gender': Gender.FEMALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 60, 'item': 260})
+    Enemy.COCK_SNAKE: EnemyStatsContainer({'HP': 30, 'str': 16, 'ment': 4, 'sen': 8, 'lib': 0, 'lust': 0, 'gender': Gender.ANDRO, 'pref': Preference.ANY, 'coin': 0, 'SexP': 15, 'item': 202}),
+    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsContainer({'HP': 25, 'str': 0, 'ment': 20, 'sen': 0, 'lib': 50, 'lust': 0, 'gender': Gender.ANDRO, 'pref': Preference.ANDRO, 'coin': 0, 'SexP': 10, 'item': 231}),
+    Enemy.LONE_WOLF: EnemyStatsContainer({'HP': 45, 'str': 22, 'ment': 16, 'sen': 13, 'lib': 11, 'lust': 30, 'gender': Gender.MALE, 'pref': Preference.FEMALE, 'coin': 0, 'SexP': 20, 'item': 203}),
+    Enemy.GAY_WOLF: EnemyStatsContainer({'HP': 45, 'str': 26, 'ment': 16, 'sen': 20, 'lib': 11, 'lust': 40, 'gender': Gender.MALE, 'pref': Preference.MALE, 'coin': 0, 'SexP': 20, 'item': 203}),
+    Enemy.HORNY_FELIN: EnemyStatsContainer({'HP': 50, 'str': 12, 'ment': 10, 'sen': 24, 'lib': 30, 'lust': 40, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 25, 'item': 204}),
+    Enemy.DRUNKEN_EQUAN: EnemyStatsContainer({'HP': 60, 'str': 28, 'ment': 9, 'sen': 18, 'lib': 14, 'lust': 30, 'gender': Gender.MALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 25, 'item': 205}),
+    Enemy.OCTOPUS_GIRL: EnemyStatsContainer({'HP': 150, 'str': 45, 'ment': 30, 'sen': 25, 'lib': 35, 'lust': 20, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': 0, 'SexP': 50, 'item': 216}),
+    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsContainer({'HP': 55, 'str': 35, 'ment': 30, 'sen': 35, 'lib': 45, 'lust': 10, 'gender': Gender.MALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 30, 'item': 222}),
+    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsContainer({'HP': 50, 'str': 35, 'ment': 30, 'sen': 45, 'lib': 35, 'lust': 10, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 30, 'item': 222}),
+    Enemy.FIERCE_NAGA: EnemyStatsContainer({'HP': 100, 'str': 50, 'ment': 20, 'sen': 40, 'lib': 2, 'lust': 40, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 5), 'SexP': 55, 'item': 230}),
+    Enemy.MINOTAUR: EnemyStatsContainer({'HP': 250, 'str': 70, 'ment': 20, 'sen': 50, 'lib': 20, 'lust': 10, 'gender': Gender.MALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 50, 'item': 525}),
+    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsContainer({'HP': 175, 'str': 80, 'ment': 40, 'sen': 70, 'lib': 60, 'lust': 10, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 55, 'item': 259}),
+    Enemy.SUCCUBUS: EnemyStatsContainer({'HP': 150, 'str': 35, 'ment': 80, 'sen': 40, 'lib': 40, 'lust': 0, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 60, 'item': 260})
 }
 
 
@@ -7274,7 +7272,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                if (self.enemy.preference == 0 or self.enemy.preference == 1 and self.gender == Gender.FEMALE or self.enemy.preference == 2 and self.gender == Gender.MALE or self.gender == Gender.ANDRO):
+                if (self.enemy.preference == Preference.ANDRO or self.enemy.preference == Preference.MALE and self.gender == Gender.FEMALE or self.enemy.preference == Preference.FEMALE and self.gender == Gender.MALE or self.gender == Gender.ANDRO):
                     self.doMainText(f"Unfortunately, the {self.enemy.name} has no interest in taking advantage of your state and lands a heavy blow, knocking you out.", True)
                     self.doHP(-100000)
                     self.displayMainText()
@@ -23097,7 +23095,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.outputMainText(f"\n\nHowever, the {self.enemy.name} overpowers you and tosses you off!")
                         if (self.currentState == GameState.BATTLE):
                             self.enemyAttack()
-                    elif (self.enemy.preference != self.gender and self.enemy.preference != 4 and self.gender != Gender.HERM or self.enemy.preference == 0):
+                    elif (self.enemy.preference != self.gender and self.enemy.preference != Preference.ANY and self.gender != Gender.HERM or self.enemy.preference == Preference.ANDRO):
                         dmg = Math.floor(Utils.percent() / 10 + self.lust / 10)
                         self.doMainText(f"\n\nHowever, the {self.enemy.name} is sorely turned off by your rough pounding on its sensitive area, merely hurting its genitals and its pride.\n\nBut you do deal {dmg} damage and satisfy yourself a bit.")
                         self.doeHP(-dmg)
@@ -23135,7 +23133,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             # Submit
             elif self.buttonChoice == 12:
                 self.doMainText(f"No longer wishing to fight, you attempt to submit yourself to the {self.enemy.name}'s whims in hopes of leaving the battle with a little fun.", True)
-                if (self.enemy.preference == 0 or self.enemy.preference == 1 and self.gender == Gender.FEMALE or self.enemy.preference == 2 and self.gender == Gender.MALE or self.gender == Gender.ANDRO):
+                if (self.enemy.preference == Preference.ANDRO or self.enemy.preference == Preference.MALE and self.gender == Gender.FEMALE or self.enemy.preference == Preference.FEMALE and self.gender == Gender.MALE or self.gender == Gender.ANDRO):
                     self.outputMainText("\n\nHowever, it is quickly apparent that the enemy has no interest in you, in that fashion.")
                     if (self.currentState == GameState.BATTLE):
                         self.enemyAttack()
@@ -23301,7 +23299,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def doEntice(self):
         # TODO: optimize if/else
         chance = Utils.percent()
-        if (self.enemy.gender == Gender.MALE and self.gender == Gender.MALE and self.enemy.preference != 2 and self.enemy.preference != 0):
+        if (self.enemy.gender == Gender.MALE and self.gender == Gender.MALE and self.enemy.preference != Preference.FEMALE and self.enemy.preference != Preference.ANDRO):
             if (chance <= 50):
                 self.doMainText(f"You turn around and bend over before the {self.enemy.name} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
                 if (self.tail != 0):
@@ -23309,12 +23307,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" tantalizingly.")
             else:
                 self.doMainText(f"You flex your muscles, trying to show off your masculinity, while you thrust your {self.hipDesc()} hips in an attempt to show off your {self.cockDesc()} bulge.", True)
-            if self.enemy.preference in {1, 4}:
+            if self.enemy.preference in {Preference.MALE, Preference.ANY}:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5 + self.enticeMod / 2))
-            elif self.enemy.preference == 3:
+            elif self.enemy.preference == Preference.HERM:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10 + self.enticeMod / 2))
 
-        elif (self.enemy.gender == Gender.MALE and self.gender == Gender.FEMALE and self.enemy.preference != 1 and self.enemy.preference != 0):
+        elif (self.enemy.gender == Gender.MALE and self.gender == Gender.FEMALE and self.enemy.preference != Preference.MALE and self.enemy.preference != Preference.ANDRO):
             if (chance <= 50):
                 self.doMainText(f"You turn around and bend over before the {self.enemy.name}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}", True)
                 if (self.lust > 20 and self.moistCalc(2) > 3):
@@ -23325,12 +23323,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(".")
             else:
                 self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a {self.nipDesc()}nipple through your {self.clothesTop()} with your other hand.", True)
-            if self.enemy.preference in {2, 4}:
+            if self.enemy.preference in {Preference.FEMALE, Preference.ANY}:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5 + self.enticeMod / 2))
-            elif self.enemy.preference == 3:
+            elif self.enemy.preference == Preference.HERM:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10 + self.enticeMod / 2))
 
-        elif (self.enemy.gender == Gender.FEMALE and self.gender == Gender.MALE and self.enemy.preference != 2 and self.enemy.preference != 0):
+        elif (self.enemy.gender == Gender.FEMALE and self.gender == Gender.MALE and self.enemy.preference != Preference.FEMALE and self.enemy.preference != Preference.ANDRO):
             if (chance <= 50):
                 self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your cock-flesh", True)
                 if (self.lust > 20):
@@ -23341,12 +23339,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(".")
             else:
                 self.doMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.", True)
-            if self.enemy.preference in {1, 4}:
+            if self.enemy.preference in {Preference.MALE, Preference.ANY}:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5 + self.enticeMod / 2))
-            elif self.enemy.preference == 3:
+            elif self.enemy.preference == Preference.HERM:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10 + self.enticeMod / 2))
 
-        elif (self.enemy.gender == Gender.FEMALE and self.gender == Gender.FEMALE and self.enemy.preference != 1 and self.enemy.preference != 0):
+        elif (self.enemy.gender == Gender.FEMALE and self.gender == Gender.FEMALE and self.enemy.preference != Preference.MALE and self.enemy.preference != Preference.ANDRO):
             if (chance <= 50):
                 self.doMainText(f"You spread your {self.legDesc(6)}, crouching down as both hands grind into your {self.vulvaDesc()} pussy", True)
                 if (self.lust > 20 and self.moistCalc(2) > 3):
@@ -23359,12 +23357,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.lust > 20 and self.nippleSize > 1 or self.nippleSize > 6):
                     self.doMainText(f", your {self.nipDesc()}nipples clearly visible through your {self.clothesTop()}")
                 self.doMainText(".")
-            if self.enemy.preference in {2, 4}:
+            if self.enemy.preference in {Preference.FEMALE, Preference.ANY}:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5 + self.enticeMod / 2))
-            elif self.enemy.preference == 3:
+            elif self.enemy.preference == Preference.HERM:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10 + self.enticeMod / 2))
 
-        elif (self.enemy.gender == Gender.HERM and self.gender == Gender.MALE and self.enemy.preference != 2 and self.enemy.preference != 0):
+        elif (self.enemy.gender == Gender.HERM and self.gender == Gender.MALE and self.enemy.preference != Preference.FEMALE and self.enemy.preference != Preference.ANDRO):
             if (chance <= 25):
                 self.doMainText(f"You turn around and bend over before the {self.enemy.name} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
                 if (self.tail != 0):
@@ -23382,12 +23380,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(".")
             elif (self.chance > 75):
                 self.doMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.", True)
-            if self.enemy.preference in {1, 4}:
+            if self.enemy.preference in {Preference.MALE, Preference.ANY}:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5 + self.enticeMod / 2))
-            elif self.enemy.preference == 3:
+            elif self.enemy.preference == Preference.HERM:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10 + self.enticeMod / 2))
 
-        elif (self.enemy.gender == Gender.HERM and self.gender == Gender.FEMALE and self.enemy.preference != 1 and self.enemy.preference != 0):
+        elif (self.enemy.gender == Gender.HERM and self.gender == Gender.FEMALE and self.enemy.preference != Preference.MALE and self.enemy.preference != Preference.ANDRO):
             if (chance <= 25):
                 self.doMainText(f"You spread your {self.legDesc(6)}, crouching down as both hands grinding into your {self.vulvaDesc()} pussy", True)
                 if (self.lust > 20 and self.moistCalc(2) > 3):
@@ -23410,12 +23408,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(".")
             elif (chance > 75):
                 self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a {self.nipDesc()}nipple through your {self.clothesTop()} with your other hand.", True)
-            if self.enemy.preference in {2, 4}:
+            if self.enemy.preference in {Preference.FEMALE, Preference.ANY}:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5))
-            elif self.enemy.preference == 3:
+            elif self.enemy.preference == Preference.HERM:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10))
 
-        elif (self.gender == Gender.HERM and self.enemy.preference != 0 and self.enemy.gender != Gender.ANDRO):
+        elif (self.gender == Gender.HERM and self.enemy.preference != Preference.ANDRO and self.enemy.gender != Gender.ANDRO):
             if (chance <= 25):
                 self.doMainText(f"You turn around and bend over before the {self.enemy.name}, patting your {self.buttDesc()} ass and {self.vulvaDesc()} pussy. You waggle your {self.hipDesc()} hips, the {self.cockDesc()} bulge in your {self.clothesBottom()} swaying", True)
                 if (self.tail != 0):
@@ -23432,12 +23430,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(f"Your {self.tailDesc()} tail swishes across the ground in anticipation.")
             elif (chance > 75):
                 self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub the {self.cockDesc()} phallic outline in your {self.clothesBottom()} with your other hand.", True)
-            if self.enemy.preference in {3, 4}:
+            if self.enemy.preference in {Preference.HERM, Preference.ANY}:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5))
-            elif self.enemy.preference in {1, 2}:
+            elif self.enemy.preference in {Preference.MALE, Preference.FEMALE}:
                 self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10))
 
-        elif (self.gender == Gender.ANDRO and self.enemy.preference != 0 and self.enemy.gender != Gender.ANDRO):
+        elif (self.gender == Gender.ANDRO and self.enemy.preference != Preference.ANDRO and self.enemy.gender != Gender.ANDRO):
             self.doMainText(f"Your {self.hipDesc()} hips dance provocatively while you lick and suckle your fingers, trying to show off what you can do with what you've still got.", True)
             self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10))
 
