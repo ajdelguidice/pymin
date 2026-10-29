@@ -145,6 +145,16 @@ class Gender:
     HERM = 3
 
 
+class Preference:
+    # TODO: Use this
+    # TODO: Check if names are accurate
+    NONE = 0
+    MALE = 1
+    FEMALE = 2
+    HERM = 3
+    ANY = 4
+
+
 class Race:
     NONE = 0
     HUMAN = 1
@@ -217,6 +227,48 @@ class Enemy:
     MINOTAUR = 307
     FREAKY_LITTLE_GIRL = 308
     SUCCUBUS = 309
+
+    def name(ID: int) -> str:  # enemyName
+        if ID == Enemy.COCK_SNAKE:
+            return "cock-snake"
+        if ID == Enemy.DESICCATING_DUST_DEVIL:
+            return "desiccating dust devil"
+        if ID == Enemy.LONE_WOLF:
+            return "lone male wolf"
+        if ID == Enemy.GAY_WOLF:
+            return "gay wolf"
+        if ID == Enemy.HORNY_FELIN:
+            return "felin in heat"
+        if ID == Enemy.DRUNKEN_EQUAN:
+            return "drunken equan"
+        if ID == Enemy.OCTOPUS_GIRL:
+            return "octopus girl"
+        if ID == Enemy.LITTLE_BIG_BUNNY_MAN:
+            return "little big bunny-man"
+        if ID == Enemy.LITTLE_BIG_BUNNY_GIRL:
+            return "little big bunny-girl"
+        if ID == Enemy.FIERCE_NAGA:
+            return "fierce naga"
+        if ID == Enemy.MINOTAUR:
+            return "Minotaur"
+        if ID == Enemy.FREAKY_LITTLE_GIRL:
+            return "freaky little girl"
+        if ID == Enemy.SUCCUBUS:
+            return "succubus"
+        return "ENEMY NAME ERROR"
+
+    def baby(ID: int) -> int:  # enemyBaby
+        if ID == Enemy.LONE_WOLF:
+            return 100
+        if ID == Enemy.DRUNKEN_EQUAN:
+            return 2
+        if ID == Enemy.LITTLE_BIG_BUNNY_MAN:
+            return 7
+        if ID == Enemy.MINOTAUR:
+            return 307
+        if ID == Enemy.FREAKY_LITTLE_GIRL:
+            return 308
+        return 0
 
 
 class StartType:
@@ -3017,6 +3069,131 @@ class PlayerItemContainer:
         return -1
 
 
+class EnemyStatsContainer(dict):
+    def __getattr__(self, item):
+        attr = dict.__getitem__(self, item)
+        if callable(attr):
+            attr = attr()
+        return attr
+
+
+ENEMY_STATS = {
+    Enemy.COCK_SNAKE: EnemyStatsContainer({'HP': 30, 'str': 16, 'ment': 4, 'sen': 8, 'lib': 0, 'lust': 0, 'gender': Gender.ANDRO, 'pref': 4, 'coin': 0, 'SexP': 15, 'item': 202}),
+    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsContainer({'HP': 25, 'str': 0, 'ment': 20, 'sen': 0, 'lib': 50, 'lust': 0, 'gender': Gender.ANDRO, 'pref': 0, 'coin': 0, 'SexP': 10, 'item': 231}),
+    Enemy.LONE_WOLF: EnemyStatsContainer({'HP': 45, 'str': 22, 'ment': 16, 'sen': 13, 'lib': 11, 'lust': 30, 'gender': Gender.MALE, 'pref': 2, 'coin': 0, 'SexP': 20, 'item': 203}),
+    Enemy.GAY_WOLF: EnemyStatsContainer({'HP': 45, 'str': 26, 'ment': 16, 'sen': 20, 'lib': 11, 'lust': 40, 'gender': Gender.MALE, 'pref': 1, 'coin': 0, 'SexP': 20, 'item': 203}),
+    Enemy.HORNY_FELIN: EnemyStatsContainer({'HP': 50, 'str': 12, 'ment': 10, 'sen': 24, 'lib': 30, 'lust': 40, 'gender': Gender.FEMALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 25, 'item': 204}),
+    Enemy.DRUNKEN_EQUAN: EnemyStatsContainer({'HP': 60, 'str': 28, 'ment': 9, 'sen': 18, 'lib': 14, 'lust': 30, 'gender': Gender.MALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 25, 'item': 205}),
+    Enemy.OCTOPUS_GIRL: EnemyStatsContainer({'HP': 150, 'str': 45, 'ment': 30, 'sen': 25, 'lib': 35, 'lust': 20, 'gender': Gender.FEMALE, 'pref': 4, 'coin': 0, 'SexP': 50, 'item': 216}),
+    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsContainer({'HP': 55, 'str': 35, 'ment': 30, 'sen': 35, 'lib': 45, 'lust': 10, 'gender': Gender.MALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 30, 'item': 222}),
+    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsContainer({'HP': 50, 'str': 35, 'ment': 30, 'sen': 45, 'lib': 35, 'lust': 10, 'gender': Gender.FEMALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 30, 'item': 222}),
+    Enemy.FIERCE_NAGA: EnemyStatsContainer({'HP': 100, 'str': 50, 'ment': 20, 'sen': 40, 'lib': 2, 'lust': 40, 'gender': Gender.FEMALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 5), 'SexP': 55, 'item': 230}),
+    Enemy.MINOTAUR: EnemyStatsContainer({'HP': 250, 'str': 70, 'ment': 20, 'sen': 50, 'lib': 20, 'lust': 10, 'gender': Gender.MALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 50, 'item': 525}),
+    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsContainer({'HP': 175, 'str': 80, 'ment': 40, 'sen': 70, 'lib': 60, 'lust': 10, 'gender': Gender.FEMALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 55, 'item': 259}),
+    Enemy.SUCCUBUS: EnemyStatsContainer({'HP': 150, 'str': 35, 'ment': 80, 'sen': 40, 'lib': 40, 'lust': 0, 'gender': Gender.FEMALE, 'pref': 4, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 60, 'item': 260})
+}
+
+
+class EnemyContainer:
+    @property
+    def ID(self):
+        return self._ID
+
+    @ID.setter
+    def ID(self, value):
+        if value not in ENEMY_STATS:
+            raise
+        self._ID = value
+        stats = ENEMY_STATS[value]
+        self._HP = stats.HP
+        self._maxHP = stats.HP
+        self._str = stats.str
+        self._ment = stats.ment
+        self._sen = stats.sen
+        self._lib = stats.lib
+        self._lust = stats.lust
+        self._gender = stats.gender
+        self._pref = stats.pref
+        self._coin = stats.coin
+        self._SexP = stats.SexP
+        self._item = stats.item
+
+    @property
+    def HP(self):
+        return self._HP
+
+    @HP.setter
+    def HP(self, value):
+        self._HP = value
+
+    @property
+    def maxHP(self):
+        return self._maxHP
+
+    @property
+    def strength(self):
+        return self._str
+
+    @property
+    def mentality(self):
+        return self._ment
+
+    @property
+    def sensitivity(self):
+        return self._sen
+
+    @property
+    def libido(self):
+        return self._lib
+
+    @property
+    def lust(self):
+        return self._lust
+
+    @property
+    def gender(self):
+        return self._gender
+
+    @property
+    def preference(self):
+        return self._pref
+
+    @property
+    def coin(self):
+        return self._coin
+
+    @property
+    def SexP(self):
+        return self._SexP
+
+    @property
+    def item(self):
+        return self._item
+
+    @property
+    def name(self):  # enemyName
+        return Enemy.name(self.ID)
+
+    @property
+    def baby(self):  # enemyBaby
+        return Enemy.baby(self.ID)
+
+    def __init__(self):
+        self._ID = Enemy.NONE
+        self._HP = 0
+        self._maxHP = 0
+        self._str = 0
+        self._ment = 0
+        self._sen = 0
+        self._lib = 0
+        self._lust = 0
+        self._gender = Gender.ANDRO
+        self._pref = 0
+        self._coin = 0
+        self._SexP = 0
+        self._item = 0
+
+
 # Windows
 class PyminWindow:
     @property
@@ -5575,19 +5752,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # self.lockCock = 0
 
         # Enemy stats
-        self.enemyID = Enemy.NONE
-        self.eHP = 0
-        self.eMaxHP = 0
-        self.eStr = 0
-        self.eMenta = 0
-        self.eSen = 0
-        self.eLib = 0
-        self.eLust = 0
-        self.eGen = Gender.ANDRO
-        self.ePref = 0
-        self.eCoin = 0
-        self.eSexP = 0
-        self.eItem = 0
+        self.enemy = EnemyContainer()
 
         # Body features
         # self.gender = Gender.ANDRO
@@ -7109,8 +7274,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                if (self.ePref == 0 or self.ePref == 1 and self.gender == Gender.FEMALE or self.ePref == 2 and self.gender == Gender.MALE or self.gender == Gender.ANDRO):
-                    self.doMainText(f"Unfortunately, the {self.enemyName()} has no interest in taking advantage of your state and lands a heavy blow, knocking you out.", True)
+                if (self.enemy.preference == 0 or self.enemy.preference == 1 and self.gender == Gender.FEMALE or self.enemy.preference == 2 and self.gender == Gender.MALE or self.gender == Gender.ANDRO):
+                    self.doMainText(f"Unfortunately, the {self.enemy.name} has no interest in taking advantage of your state and lands a heavy blow, knocking you out.", True)
                     self.doHP(-100000)
                     self.displayMainText()
                 else:
@@ -10900,7 +11065,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doEnd()
             else:
                 dmg = Math.floor(Math.random() * 21) + 20
-                self.doMainText(f"You throw the pile of sand at the {self.enemyName()}. It cringes and winces as the sand sucks the moisture from its body, dealing {dmg} damage!", True)
+                self.doMainText(f"You throw the pile of sand at the {self.enemy.name}. It cringes and winces as the sand sucks the moisture from its body, dealing {dmg} damage!", True)
                 self.doeHP(-dmg)
                 if (Utils.percent() <= 25):
                     self.doMainText("\n\nHowever, the wind catches some of the sand and it blow back at you! ")
@@ -11151,14 +11316,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.itemAdd(250)
                 self.doEnd()
             else:
-                self.doMainText(f"Needing a quick escape, you throw the foomp bomb at the enemy. It explodes on contact with a cloud of magical dust and, just as its name implies, there's a sort of \"foomp!\" sound. As the dust clears, you can't help but giggle at the results. The {self.enemyName()}'s whole body has ballooned to amusing proportions; inflated by the bomb.", True)
-                if (self.eGen == Gender.MALE or self.eGen == Gender.HERM):
-                    self.doMainText(f" The {self.enemyName()}'s cock propels forward with the growth, flopping down onto the ground many times larger than it was, anchoring itself do the ground and preventing its owner from moving.")
-                if (self.eGen == Gender.FEMALE or self.eGen == Gender.HERM):
-                    self.doMainText(f" The {self.enemyName()}'s breasts swell to obscene sizes, making her fall forward and be cushioned by the pillowy masses, unable to stand.")
-                if (self.eGen == Gender.ANDRO):  # This was originally 4 for some reason. Gender 4 does not exist and this seems to be refering to Gender.ANDRO anyways.
-                    self.doMainText(f" The {self.enemyName()}'s midsection grows so large and round that it is unable to move at all.")
-                self.outputMainText(f"\n\nHowever, the bomb's effects are already beginning to wear off as you stare at its results. Taking advantage of this short opportunity, you turn and dash away before the {self.enemyName()} can shrink back down to a manageable size and continue the fight.")
+                self.doMainText(f"Needing a quick escape, you throw the foomp bomb at the enemy. It explodes on contact with a cloud of magical dust and, just as its name implies, there's a sort of \"foomp!\" sound. As the dust clears, you can't help but giggle at the results. The {self.enemy.name}'s whole body has ballooned to amusing proportions; inflated by the bomb.", True)
+                if (self.enemy.gender == Gender.MALE or self.enemy.gender == Gender.HERM):
+                    self.doMainText(f" The {self.enemy.name}'s cock propels forward with the growth, flopping down onto the ground many times larger than it was, anchoring itself do the ground and preventing its owner from moving.")
+                if (self.enemy.gender == Gender.FEMALE or self.enemy.gender == Gender.HERM):
+                    self.doMainText(f" The {self.enemy.name}'s breasts swell to obscene sizes, making her fall forward and be cushioned by the pillowy masses, unable to stand.")
+                if (self.enemy.gender == Gender.ANDRO):  # This was originally 4 for some reason. Gender 4 does not exist and this seems to be refering to Gender.ANDRO anyways.
+                    self.doMainText(f" The {self.enemy.name}'s midsection grows so large and round that it is unable to move at all.")
+                self.outputMainText(f"\n\nHowever, the bomb's effects are already beginning to wear off as you stare at its results. Taking advantage of this short opportunity, you turn and dash away before the {self.enemy.name} can shrink back down to a manageable size and continue the fight.")
                 self.currentState = GameState.GENERAL
                 self.hrs += 1
                 self.doEnd()
@@ -11301,7 +11466,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doEnd()
             else:
                 dmg = Math.floor(Math.random() * 11) + 10
-                self.outputMainText(f"You pull the bad experiment from your bag and toss it at the {self.enemyName()}. The crude stuff explodes, far enough away to not harm you, dealing {dmg} damage!", True)
+                self.outputMainText(f"You pull the bad experiment from your bag and toss it at the {self.enemy.name}. The crude stuff explodes, far enough away to not harm you, dealing {dmg} damage!", True)
                 self.doeHP(-dmg)
                 self.doBattle()
         elif ID == 506:
@@ -11346,7 +11511,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doEnd()
             else:
                 dmg = Math.floor(Math.random() * 21) + 20
-                self.outputMainText(f"You pull the super bad experiment from your bag and toss it at the {self.enemyName()}. The super crude stuff explodes superbly, far enough away to not harm you, dealing a super {dmg} damage!", True)
+                self.outputMainText(f"You pull the super bad experiment from your bag and toss it at the {self.enemy.name}. The super crude stuff explodes superbly, far enough away to not harm you, dealing a super {dmg} damage!", True)
                 self.doeHP(-dmg)
                 self.doBattle()
         elif ID == 511:
@@ -11608,7 +11773,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doEnd()
             else:
                 dmg = Math.floor(Math.random() * 11) + 10
-                self.outputMainText(f"You pull the bad egg from your bag and toss it at the {self.enemyName()}. It explodes in a burst of fire, somehow, dealing {dmg} damage!", True)
+                self.outputMainText(f"You pull the bad egg from your bag and toss it at the {self.enemy.name}. It explodes in a burst of fire, somehow, dealing {dmg} damage!", True)
                 self.doeHP(-dmg)
                 if (self.currentState == GameState.BATTLE):
                     self.doEnd()
@@ -19020,10 +19185,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.LONE_WOLF
+                self.enemy.ID = Enemy.LONE_WOLF
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19032,10 +19195,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.GAY_WOLF
+                self.enemy.ID = Enemy.GAY_WOLF
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19044,10 +19205,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.COCK_SNAKE
+                self.enemy.ID = Enemy.COCK_SNAKE
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19362,10 +19521,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.LONE_WOLF
+                self.enemy.ID = Enemy.LONE_WOLF
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19374,10 +19531,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.GAY_WOLF
+                self.enemy.ID = Enemy.GAY_WOLF
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19448,10 +19603,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.COCK_SNAKE
+                self.enemy.ID = Enemy.COCK_SNAKE
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19460,10 +19613,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.DRUNKEN_EQUAN
+                self.enemy.ID = Enemy.DRUNKEN_EQUAN
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19508,10 +19659,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.HORNY_FELIN
+                self.enemy.ID = Enemy.HORNY_FELIN
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19520,10 +19669,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.DRUNKEN_EQUAN
+                self.enemy.ID = Enemy.DRUNKEN_EQUAN
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19738,10 +19885,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.FIERCE_NAGA
+                self.enemy.ID = Enemy.FIERCE_NAGA
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19750,10 +19895,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                self.enemyID = Enemy.DESICCATING_DUST_DEVIL
+                self.enemy.ID = Enemy.DESICCATING_DUST_DEVIL
                 self.currentState = GameState.BATTLE
-                self.enemyBaseStats()
-                self.eMaxHP = self.eHP
                 self.doBattle()
             self.doListen = doListen
 
@@ -19847,10 +19990,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doNext()
 
                         def doListen():
-                            self.enemyID = Enemy.OCTOPUS_GIRL
+                            self.enemy.ID = Enemy.OCTOPUS_GIRL
                             self.currentState = GameState.BATTLE
-                            self.enemyBaseStats()
-                            self.eMaxHP = self.eHP
                             self.doBattle()
                         self.doListen = doListen
                     self.doListen = doListen
@@ -21377,10 +21518,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doNext()
 
                                 def doListen():
-                                    self.enemyID = Enemy.LITTLE_BIG_BUNNY_MAN
+                                    self.enemy.ID = Enemy.LITTLE_BIG_BUNNY_MAN
                                     self.currentState = GameState.BATTLE
-                                    self.enemyBaseStats()
-                                    self.eMaxHP = self.eHP
                                     self.doBattle()
                                 self.doListen = doListen
                             elif (chance <= 80):
@@ -21393,10 +21532,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doNext()
 
                                 def doListen():
-                                    self.enemyID = Enemy.LITTLE_BIG_BUNNY_GIRL
+                                    self.enemy.ID = Enemy.LITTLE_BIG_BUNNY_GIRL
                                     self.currentState = GameState.BATTLE
-                                    self.enemyBaseStats()
-                                    self.eMaxHP = self.eHP
                                     self.doBattle()
                                 self.doListen = doListen
                             elif (chance > 80):
@@ -22566,10 +22703,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                 def doListen():
                     self.outputMainText("\"Who go there?!\" A loud grunting voice bellows in your direction.\n\nYou blink at first, the hot and smelly breath catching you off guard, but you quickly grow aware of the large figure towering before you. Large horns nearly scraping the ceiling, the bulky muscular man before you stands in your way. The head of a bull, the body of a human, and the crotch... bulging massively beneath a simple loin cloth, this monster does not look pleased.\n\n\"I am Minotaur!,\" You're not entirely sure if he's stating his name or his ancestry... \"I no know you! I guardian! You no pass!\"\n\nYou don't exactly have time for a diplomatic solution as the creature charges towards you, his massive hands balling up into hard-looking fists as he makes his intentions clear.", True)
-                    self.enemyID = Enemy.MINOTAUR
+                    self.enemy.ID = Enemy.MINOTAUR
                     self.currentState = GameState.BATTLE
-                    self.enemyBaseStats()
-                    self.eMaxHP = self.eHP
                     self.doBattle()
                 self.doListen = doListen
             else:
@@ -22591,10 +22726,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doNext()
 
                         def doListen():
-                            self.enemyID = Enemy.MINOTAUR
+                            self.enemy.ID = Enemy.MINOTAUR
                             self.currentState = GameState.BATTLE
-                            self.enemyBaseStats()
-                            self.eMaxHP = self.eHP
                             self.doBattle()
                         self.doListen = doListen
                     elif self.buttonChoice == 2:
@@ -22624,10 +22757,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doNext()
 
                 def doListen():
-                    self.enemyID = Enemy.FREAKY_LITTLE_GIRL
+                    self.enemy.ID = Enemy.FREAKY_LITTLE_GIRL
                     self.currentState = GameState.BATTLE
-                    self.enemyBaseStats()
-                    self.eMaxHP = self.eHP
                     self.doBattle()
                 self.doListen = doListen
             else:
@@ -22665,10 +22796,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doNext()
 
                         def doListen():
-                            self.enemyID = Enemy.FREAKY_LITTLE_GIRL
+                            self.enemy.ID = Enemy.FREAKY_LITTLE_GIRL
                             self.currentState = GameState.BATTLE
-                            self.enemyBaseStats()
-                            self.eMaxHP = self.eHP
                             self.doBattle()
                         self.doListen = doListen
                     elif self.buttonChoice == 7:
@@ -22690,10 +22819,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doNext()
 
                 def doListen():
-                    self.enemyID = Enemy.SUCCUBUS
+                    self.enemy.ID = Enemy.SUCCUBUS
                     self.currentState = GameState.BATTLE
-                    self.enemyBaseStats()
-                    self.eMaxHP = self.eHP
                     self.doBattle()
                 self.doListen = doListen
             else:
@@ -22734,10 +22861,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doNext()
 
                         def doListen():
-                            self.enemyID = Enemy.SUCCUBUS
+                            self.enemy.ID = Enemy.SUCCUBUS
                             self.currentState = GameState.BATTLE
-                            self.enemyBaseStats()
-                            self.eMaxHP = self.eHP
                             self.doBattle()
                         self.doListen = doListen
                     elif self.buttonChoice == 12:
@@ -22958,32 +23083,32 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             # Rape
             elif self.buttonChoice == 9:
-                if (self.gender == Gender.ANDRO or self.eGen == Gender.ANDRO):
+                if (self.gender == Gender.ANDRO or self.enemy.gender == Gender.ANDRO):
                     self.outputMainText("What are you going to rape it with? Good intentions?\n\nChoose another option.", True)
                     if (self.currentState == GameState.BATTLE):
                         self.doBattle()
                 else:
-                    self.doMainText(f"You attempt to toss the {self.enemyName()} to the ground and fuck it wildly!", True)
+                    self.doMainText(f"You attempt to toss the {self.enemy.name} to the ground and fuck it wildly!", True)
                     if (self.lust < 15):
                         self.outputMainText("\n\nHowever, you aren't nearly aroused enough to even think about penetration, leaving your efforts futile.")
                         if (self.currentState == GameState.BATTLE):
                             self.enemyAttack()
-                    elif (Utils.percent() / 5 + self.str + self.rapeMod <= Utils.percent() / 5 + self.eStr - self.eLust / 2):
-                        self.outputMainText(f"\n\nHowever, the {self.enemyName()} overpowers you and tosses you off!")
+                    elif (Utils.percent() / 5 + self.str + self.rapeMod <= Utils.percent() / 5 + self.enemy.strength - self.enemy.lust / 2):
+                        self.outputMainText(f"\n\nHowever, the {self.enemy.name} overpowers you and tosses you off!")
                         if (self.currentState == GameState.BATTLE):
                             self.enemyAttack()
-                    elif (self.ePref != self.gender and self.ePref != 4 and self.gender != Gender.HERM or self.ePref == 0):
+                    elif (self.enemy.preference != self.gender and self.enemy.preference != 4 and self.gender != Gender.HERM or self.enemy.preference == 0):
                         dmg = Math.floor(Utils.percent() / 10 + self.lust / 10)
-                        self.doMainText(f"\n\nHowever, the {self.enemyName()} is sorely turned off by your rough pounding on its sensitive area, merely hurting its genitals and its pride.\n\nBut you do deal {dmg} damage and satisfy yourself a bit.")
+                        self.doMainText(f"\n\nHowever, the {self.enemy.name} is sorely turned off by your rough pounding on its sensitive area, merely hurting its genitals and its pride.\n\nBut you do deal {dmg} damage and satisfy yourself a bit.")
                         self.doeHP(-dmg)
                         self.doLust(-Math.floor(Utils.percent() / 20 + self.sen / 10), 2, 1, 2)
                         self.displayMainText()
                     else:
                         self.doRape()
-                        eLustChange = Math.floor(Utils.percent() / 10 + self.eSen / 5)
-                        if (self.eLust - eLustChange <= 0):
-                            self.eLust = 0
-                        if (self.eMenta - eLustChange < 0):
+                        eLustChange = Math.floor(Utils.percent() / 10 + self.enemy.sensitivity / 5)
+                        if (self.enemy.lust - eLustChange <= 0):
+                            self.enemy.lust = 0
+                        if (self.enemy.mentality - eLustChange < 0):
                             self.specialRapeWin()
                             self.outputMainText("\n\nYou win!")
                             self.currentState = GameState.GENERAL
@@ -22993,9 +23118,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.battleWin()
                             self.doListen = doListen
                         else:
-                            self.outputMainText(f"\n\nThe {self.enemyName()} picks itself up after you had your way with it, a little distraught but not yet defeated.")
-                            self.eLust -= eLustChange
-                        self.eMenta -= eLustChange
+                            self.outputMainText(f"\n\nThe {self.enemy.name} picks itself up after you had your way with it, a little distraught but not yet defeated.")
+                            self.enemy.lust -= eLustChange
+                        self.enemy.mentality -= eLustChange
                     if (self.currentState == GameState.BATTLE):
                         self.doBattle()
 
@@ -23009,13 +23134,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             # Submit
             elif self.buttonChoice == 12:
-                self.doMainText(f"No longer wishing to fight, you attempt to submit yourself to the {self.enemyName()}'s whims in hopes of leaving the battle with a little fun.", True)
-                if (self.ePref == 0 or self.ePref == 1 and self.gender == Gender.FEMALE or self.ePref == 2 and self.gender == Gender.MALE or self.gender == Gender.ANDRO):
+                self.doMainText(f"No longer wishing to fight, you attempt to submit yourself to the {self.enemy.name}'s whims in hopes of leaving the battle with a little fun.", True)
+                if (self.enemy.preference == 0 or self.enemy.preference == 1 and self.gender == Gender.FEMALE or self.enemy.preference == 2 and self.gender == Gender.MALE or self.gender == Gender.ANDRO):
                     self.outputMainText("\n\nHowever, it is quickly apparent that the enemy has no interest in you, in that fashion.")
                     if (self.currentState == GameState.BATTLE):
                         self.enemyAttack()
-                elif (self.eLust < self.eMenta):
-                    self.outputMainText(f"\n\nHowever, the {self.enemyName()} isn't nearly aroused enough, a bit too cautious at the moment to assault you in such a way.")
+                elif (self.enemy.lust < self.enemy.mentality):
+                    self.outputMainText(f"\n\nHowever, the {self.enemy.name} isn't nearly aroused enough, a bit too cautious at the moment to assault you in such a way.")
                     if (self.currentState == GameState.BATTLE):
                         self.enemyAttack()
                 else:
@@ -23033,40 +23158,40 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def weaponAttack(self):
         if self.weapon == 2:
             dmg = 99999
-            self.outputMainText(f"You hit the {self.enemyName()} with your debug stick, dealing {dmg} damage!", True)
+            self.outputMainText(f"You hit the {self.enemy.name} with your debug stick, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
         elif self.weapon == 10:
-            dmg = Math.floor(Math.random() * 10) + 1 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You punch the {self.enemyName()} with your fists, dealing {dmg} damage!", True)
+            dmg = Math.floor(Math.random() * 10) + 1 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
+            self.outputMainText(f"You punch the {self.enemy.name} with your fists, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
         elif self.weapon == 116:
-            dmg = Math.floor(Math.random() * 8) + 5 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You lunge at the {self.enemyName()} and stab it with your dagger, dealing {dmg} damage!", True)
+            dmg = Math.floor(Math.random() * 8) + 5 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
+            self.outputMainText(f"You lunge at the {self.enemy.name} and stab it with your dagger, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
         elif self.weapon == 117:
-            dmg = Math.floor(Math.random() * 19) + 2 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You swing your hammer at the {self.enemyName()}, dealing {dmg} damage!", True)
+            dmg = Math.floor(Math.random() * 19) + 2 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
+            self.outputMainText(f"You swing your hammer at the {self.enemy.name}, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
         elif self.weapon == 118:
-            dmg = Math.floor(Math.random() * 16) + 10 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You slash at the {self.enemyName()} with your saber, dealing {dmg} damage!", True)
+            dmg = Math.floor(Math.random() * 16) + 10 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
+            self.outputMainText(f"You slash at the {self.enemy.name} with your saber, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
         elif self.weapon == 119:
-            dmg = Math.floor(Math.random() * 7) + 12 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You lash at the {self.enemyName()} with your whip, dealing {dmg} damage!", True)
+            dmg = Math.floor(Math.random() * 7) + 12 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
+            self.outputMainText(f"You lash at the {self.enemy.name} with your whip, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
         elif self.weapon == 127:
-            dmg = Math.floor(Math.random() * 11) + 10 + Math.floor(self.str / 2 - (100 - self.eSen) / 20)
-            self.outputMainText(f"You whip around your tail and smack the {self.enemyName()} with the spike at the end, dealing {dmg} damage!", True)
+            dmg = Math.floor(Math.random() * 11) + 10 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
+            self.outputMainText(f"You whip around your tail and smack the {self.enemy.name} with the spike at the end, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
         elif self.weapon == 235:
             dmg = Math.floor(Math.random() * 5) + 1 + Math.ceil(self.ment / 10)
             if (self.ment < 30):
-                self.outputMainText(f"You awkwardly stuff the wide-rimmed head of the rod into your mouth, sucking as hard as you can even though you only manage drain {dmg} HP from the {self.enemyName()}.", True)
+                self.outputMainText(f"You awkwardly stuff the wide-rimmed head of the rod into your mouth, sucking as hard as you can even though you only manage drain {dmg} HP from the {self.enemy.name}.", True)
             elif (self.ment < 70):
-                self.outputMainText(f"You gently lick around the wide-rimmed head of the rod before sliding it into your mouth and gently sucking from the tip, draining a whole {dmg} HP from the {self.enemyName()}.", True)
+                self.outputMainText(f"You gently lick around the wide-rimmed head of the rod before sliding it into your mouth and gently sucking from the tip, draining a whole {dmg} HP from the {self.enemy.name}.", True)
             else:
-                self.outputMainText(f"You lick up the shaft of the rod before swirling your tongue around the wide-rimmed head, coaxing it into your mouth as you continue to drag your tastebuds over and around it while pumping it in and out gently, draining {dmg} HP from the {self.enemyName()}!", True)
+                self.outputMainText(f"You lick up the shaft of the rod before swirling your tongue around the wide-rimmed head, coaxing it into your mouth as you continue to drag your tastebuds over and around it while pumping it in and out gently, draining {dmg} HP from the {self.enemy.name}!", True)
             self.doeHP(-dmg)
             self.doHP(dmg)
 
@@ -23162,11 +23287,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # Skunk Spray
         if ID == 1:
             dmg = Math.floor(10 + Utils.percent() / 10)
-            self.outputMainText(f"\n\nYou turn around and aim your {self.buttDesc()} butt at the {self.enemyName()} and spray out a foul odor. The {self.enemyName()} snorts and shakes, taking {dmg} damage.")
+            self.outputMainText(f"\n\nYou turn around and aim your {self.buttDesc()} butt at the {self.enemy.name} and spray out a foul odor. The {self.enemy.name} snorts and shakes, taking {dmg} damage.")
             self.doeHP(-dmg)
             if (self.currentState == GameState.BATTLE):
                 if (Utils.percent() < 35):
-                    self.outputMainText(f"\n\nThe {self.enemyName()} flinches so badly from the stench that it misses its chance to counter.")
+                    self.outputMainText(f"\n\nThe {self.enemy.name} flinches so badly from the stench that it misses its chance to counter.")
                 else:
                     self.enemyAttack()
 
@@ -23176,22 +23301,22 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def doEntice(self):
         # TODO: optimize if/else
         chance = Utils.percent()
-        if (self.eGen == Gender.MALE and self.gender == Gender.MALE and self.ePref != 2 and self.ePref != 0):
+        if (self.enemy.gender == Gender.MALE and self.gender == Gender.MALE and self.enemy.preference != 2 and self.enemy.preference != 0):
             if (chance <= 50):
-                self.doMainText(f"You turn around and bend over before the {self.enemyName()} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
+                self.doMainText(f"You turn around and bend over before the {self.enemy.name} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
                 if (self.tail != 0):
                     self.doMainText(f", your {self.tailDesc()} tail dancing above")
                 self.doMainText(" tantalizingly.")
             else:
                 self.doMainText(f"You flex your muscles, trying to show off your masculinity, while you thrust your {self.hipDesc()} hips in an attempt to show off your {self.cockDesc()} bulge.", True)
-            if self.ePref in {1, 4}:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
-            elif self.ePref == 3:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
+            if self.enemy.preference in {1, 4}:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5 + self.enticeMod / 2))
+            elif self.enemy.preference == 3:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10 + self.enticeMod / 2))
 
-        elif (self.eGen == Gender.MALE and self.gender == Gender.FEMALE and self.ePref != 1 and self.ePref != 0):
+        elif (self.enemy.gender == Gender.MALE and self.gender == Gender.FEMALE and self.enemy.preference != 1 and self.enemy.preference != 0):
             if (chance <= 50):
-                self.doMainText(f"You turn around and bend over before the {self.enemyName()}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}", True)
+                self.doMainText(f"You turn around and bend over before the {self.enemy.name}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}", True)
                 if (self.lust > 20 and self.moistCalc(2) > 3):
                     self.doMainText(" until your feminine arousal seeps through")
                 self.doMainText(f". Your {self.hipDesc()} hips wiggle erotically")
@@ -23200,12 +23325,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(".")
             else:
                 self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a {self.nipDesc()}nipple through your {self.clothesTop()} with your other hand.", True)
-            if self.ePref in {2, 4}:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
-            elif self.ePref == 3:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
+            if self.enemy.preference in {2, 4}:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5 + self.enticeMod / 2))
+            elif self.enemy.preference == 3:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10 + self.enticeMod / 2))
 
-        elif (self.eGen == Gender.FEMALE and self.gender == Gender.MALE and self.ePref != 2 and self.ePref != 0):
+        elif (self.enemy.gender == Gender.FEMALE and self.gender == Gender.MALE and self.enemy.preference != 2 and self.enemy.preference != 0):
             if (chance <= 50):
                 self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} a little, revealing the base of your cock-flesh", True)
                 if (self.lust > 20):
@@ -23216,32 +23341,32 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(".")
             else:
                 self.doMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.", True)
-            if self.ePref in {1, 4}:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
-            elif self.ePref == 3:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
+            if self.enemy.preference in {1, 4}:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5 + self.enticeMod / 2))
+            elif self.enemy.preference == 3:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10 + self.enticeMod / 2))
 
-        elif (self.eGen == Gender.FEMALE and self.gender == Gender.FEMALE and self.ePref != 1 and self.ePref != 0):
+        elif (self.enemy.gender == Gender.FEMALE and self.gender == Gender.FEMALE and self.enemy.preference != 1 and self.enemy.preference != 0):
             if (chance <= 50):
                 self.doMainText(f"You spread your {self.legDesc(6)}, crouching down as both hands grind into your {self.vulvaDesc()} pussy", True)
                 if (self.lust > 20 and self.moistCalc(2) > 3):
                     self.doMainText(f", your honey spreading from the crotch of your {self.clothesBottom()},")
                 if (self.tail != 0):
                     self.doMainText(f", your {self.tailDesc()} tail swishing across the ground,")
-                self.doMainText(f" luring the {self.enemyName()} to come grind instead.")
+                self.doMainText(f" luring the {self.enemy.name} to come grind instead.")
             else:
                 self.doMainText(f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger", True)
                 if (self.lust > 20 and self.nippleSize > 1 or self.nippleSize > 6):
                     self.doMainText(f", your {self.nipDesc()}nipples clearly visible through your {self.clothesTop()}")
                 self.doMainText(".")
-            if self.ePref in {2, 4}:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
-            elif self.ePref == 3:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
+            if self.enemy.preference in {2, 4}:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5 + self.enticeMod / 2))
+            elif self.enemy.preference == 3:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10 + self.enticeMod / 2))
 
-        elif (self.eGen == Gender.HERM and self.gender == Gender.MALE and self.ePref != 2 and self.ePref != 0):
+        elif (self.enemy.gender == Gender.HERM and self.gender == Gender.MALE and self.enemy.preference != 2 and self.enemy.preference != 0):
             if (chance <= 25):
-                self.doMainText(f"You turn around and bend over before the {self.enemyName()} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
+                self.doMainText(f"You turn around and bend over before the {self.enemy.name} stroking the {self.cockDesc()} bulge in your {self.clothesBottom()} and patting your {self.buttDesc()} rump while you wave your {self.hipDesc()} hips", True)
                 if (self.tail != 0):
                     self.doMainText(f", your {self.tailDesc()} tail dancing above")
                 self.doMainText(" tantalizingly.")
@@ -23257,26 +23382,26 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(".")
             elif (self.chance > 75):
                 self.doMainText("You flex your muscles as you groan with sexual desire, trying to turn you opponent on with the possibilities of what might come.", True)
-            if self.ePref in {1, 4}:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 5 + self.enticeMod / 2))
-            elif self.ePref == 3:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10 + self.enticeMod / 2))
+            if self.enemy.preference in {1, 4}:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5 + self.enticeMod / 2))
+            elif self.enemy.preference == 3:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10 + self.enticeMod / 2))
 
-        elif (self.eGen == Gender.HERM and self.gender == Gender.FEMALE and self.ePref != 1 and self.ePref != 0):
+        elif (self.enemy.gender == Gender.HERM and self.gender == Gender.FEMALE and self.enemy.preference != 1 and self.enemy.preference != 0):
             if (chance <= 25):
                 self.doMainText(f"You spread your {self.legDesc(6)}, crouching down as both hands grinding into your {self.vulvaDesc()} pussy", True)
                 if (self.lust > 20 and self.moistCalc(2) > 3):
                     self.doMainText(f", your honey spreading from the crotch of your {self.clothesBottom()},")
                 if (self.tail != 0):
                     self.doMainText(f", your {self.tailDesc()} tail swishing across the ground,")
-                self.doMainText(f" luring the {self.enemyName()} to come grind instead.")
+                self.doMainText(f" luring the {self.enemy.name} to come grind instead.")
             elif (chance > 25 and chance <= 50):
                 self.doMainText(f"Your arms hug beneath your {self.boobDesc()} chest, squeezing the mounds and making them look even bigger", True)
                 if (self.lust > 20 and self.nippleSize > 1 or self.nippleSize > 6):
                     self.doMainText(f", your {self.nipDesc()}nipples clearly visible through your {self.clothesTop()}.")
                 self.doMainText(".")
             elif (chance > 50 and chance <= 75):
-                self.doMainText(f"You turn around and bend over before the {self.enemyName()}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}", True)
+                self.doMainText(f"You turn around and bend over before the {self.enemy.name}, stroking your {self.vulvaDesc()} vulva through your {self.clothesBottom()}", True)
                 if (self.lust > 20 and self.moistCalc(2) > 3):
                     self.doMainText(" until your feminine arousal seeps through")
                 self.doMainText(f". Your {self.hipDesc()} hips waggle erotically")
@@ -23285,14 +23410,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(".")
             elif (chance > 75):
                 self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub a {self.nipDesc()}nipple through your {self.clothesTop()} with your other hand.", True)
-            if self.ePref in {2, 4}:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 5))
-            elif self.ePref == 3:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10))
+            if self.enemy.preference in {2, 4}:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5))
+            elif self.enemy.preference == 3:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10))
 
-        elif (self.gender == Gender.HERM and self.ePref != 0 and self.eGen != Gender.ANDRO):
+        elif (self.gender == Gender.HERM and self.enemy.preference != 0 and self.enemy.gender != Gender.ANDRO):
             if (chance <= 25):
-                self.doMainText(f"You turn around and bend over before the {self.enemyName()}, patting your {self.buttDesc()} ass and {self.vulvaDesc()} pussy. You waggle your {self.hipDesc()} hips, the {self.cockDesc()} bulge in your {self.clothesBottom()} swaying", True)
+                self.doMainText(f"You turn around and bend over before the {self.enemy.name}, patting your {self.buttDesc()} ass and {self.vulvaDesc()} pussy. You waggle your {self.hipDesc()} hips, the {self.cockDesc()} bulge in your {self.clothesBottom()} swaying", True)
                 if (self.tail != 0):
                     self.doMainText(f", your {self.tailDesc()} tail dancing above")
                 self.doMainText(" deliciously.")
@@ -23307,54 +23432,54 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(f"Your {self.tailDesc()} tail swishes across the ground in anticipation.")
             elif (chance > 75):
                 self.doMainText(f"You lick your finger before sliding it into your mouth, sucking and pulling it out slowly with a small drop of saliva dangling upon your supple lips while you rub the {self.cockDesc()} phallic outline in your {self.clothesBottom()} with your other hand.", True)
-            if self.ePref in {3, 4}:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 5))
-            elif self.ePref in {1, 2}:
-                self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10))
+            if self.enemy.preference in {3, 4}:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 5))
+            elif self.enemy.preference in {1, 2}:
+                self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10))
 
-        elif (self.gender == Gender.ANDRO and self.ePref != 0 and self.eGen != Gender.ANDRO):
+        elif (self.gender == Gender.ANDRO and self.enemy.preference != 0 and self.enemy.gender != Gender.ANDRO):
             self.doMainText(f"Your {self.hipDesc()} hips dance provocatively while you lick and suckle your fingers, trying to show off what you can do with what you've still got.", True)
-            self.doeLust(Math.floor(Utils.percent() / 10 + self.eLib / 10))
+            self.doeLust(Math.floor(Utils.percent() / 10 + self.enemy.libido / 10))
 
         else:
-            self.doMainText(f"Your attempt at an erotic display only seems to turn the {self.enemyName()} off further.", True)
-            self.eLust -= 5
+            self.doMainText(f"Your attempt at an erotic display only seems to turn the {self.enemy.name} off further.", True)
+            self.enemy.lust -= 5
         self.displayMainText()
 
     def battleWin(self):
         self.doMainText("You walk away from the battle the victor and to the victor goes the spoils.", True)
-        if (self.eCoin != 0):
-            self.doMainText(f"\n\nSomewhere on the passed out body (you probably don't want to know where) you find {self.eCoin} coins.")
-            self.doCoin(self.eCoin)
-        if (self.eItem != 0):
-            self.doMainText(f"\n\nYou manage to obtain {Items.name(self.eItem)} from your opponent.")
-        if (self.eSexP != 0):
-            self.doMainText(f"\n\nFor your efforts, you grow in experience, gaining {self.eSexP} SexP!")
-            self.doSexP(self.eSexP)
-        if (self.eItem != 0):
-            self.itemAdd(self.eItem)
+        if (self.enemy.coin != 0):
+            self.doMainText(f"\n\nSomewhere on the passed out body (you probably don't want to know where) you find {self.enemy.coin} coins.")
+            self.doCoin(self.enemy.coin)
+        if (self.enemy.item != 0):
+            self.doMainText(f"\n\nYou manage to obtain {Items.name(self.enemy.item)} from your opponent.")
+        if (self.enemy.SexP != 0):
+            self.doMainText(f"\n\nFor your efforts, you grow in experience, gaining {self.enemy.SexP} SexP!")
+            self.doSexP(self.enemy.SexP)
+        if (self.enemy.item != 0):
+            self.itemAdd(self.enemy.item)
         self.displayMainText()
         self.hrs = 2
         self.doEnd()
 
     def specialRapeWin(self):
-        if self.enemyID == Enemy.OCTOPUS_GIRL:
+        if self.enemy.ID == Enemy.OCTOPUS_GIRL:
             self.doMainText("\n\nThe octopus shudders as her belly quakes, the orgasm having wracked her a little too strongly. She huffs as she begins to crawl back towards the ocean. Just as she touches the water, she lets out a loud groan. Her tentacles quiver and part, exposing her vaginal-beak. The thing yawns wide as a spherical object pushes through.\n\nClear with a solid pink center, the egg falls from her dripping pussy-beak, and into the sand. Barely 4 inches in diameter, it doesn't come close to the size of her belly. She quickly catches her breath, her pink face red with embarrassment, before she pushes herself into the water, a tentacle grabbing the egg and pulling it with her before any more can escape...\n\nHowever, she seems to have left behind a big gob of pink goop.")
-        elif self.enemyID == Enemy.LITTLE_BIG_BUNNY_MAN or self.enemyID == Enemy.LITTLE_BIG_BUNNY_GIRL:
-            self.doMainText(f"\n\nAs the {self.enemyName()} collapses to the ground, wracked by orgasms and thoroughly distracted by the lewd fun, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemyName()}'s body, you find something wedged in a rather lewd location.")
-        elif self.enemyID == Enemy.FIERCE_NAGA:
+        elif self.enemy.ID == Enemy.LITTLE_BIG_BUNNY_MAN or self.enemy.ID == Enemy.LITTLE_BIG_BUNNY_GIRL:
+            self.doMainText(f"\n\nAs the {self.enemy.name} collapses to the ground, wracked by orgasms and thoroughly distracted by the lewd fun, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemy.name}'s body, you find something wedged in a rather lewd location.")
+        elif self.enemy.ID == Enemy.FIERCE_NAGA:
             self.doMainText("\n\nThe naga collapses to the ground, tail still squirming in delighted orgasm and no longer wishing to battle. You take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.")
-        elif self.enemyID == Enemy.MINOTAUR:
+        elif self.enemy.ID == Enemy.MINOTAUR:
             self.doMainText("\n\nHe succombs to the pleasant sensations and doesn't seem to want to stop. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then ignores you.")
             if (not self.defeatedMinotaur):
                 self.defeatedMinotaur = True
             self.currentDungeon = Dungeon.MINOTAUR_RAPED
-        elif self.enemyID == Enemy.FREAKY_LITTLE_GIRL:
+        elif self.enemy.ID == Enemy.FREAKY_LITTLE_GIRL:
             self.doMainText("\n\nA little too much for her, the girl can't seem to get back up. \"Y-You win... \" She proceeds to pull off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she tosses to you.\n\n\"Please go now, I want some time alone...\"")
             if (not self.defeatedFreakyGirl):
                 self.defeatedFreakyGirl = True
             self.currentDungeon = Dungeon.FREAKY_GIRL_RAPED
-        elif self.enemyID == Enemy.SUCCUBUS:
+        elif self.enemy.ID == Enemy.SUCCUBUS:
             self.doMainText("\n\nHowever, her hips can stop twitching and she has difficulty zipping back up, nearly coming again just from trying. \"O-Okay... You win. I... I can't take any more than that... Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
             if (not self.defeatedSuccubus):
                 self.defeatedSuccubus = True
@@ -23362,29 +23487,29 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.currentDungeon = Dungeon.SUCCUBUS_RAPED
         else:
-            self.doMainText(f"\n\nThe {self.enemyName()} collapses to the ground, quivering body wracked by orgasms. Having broken its mental state into a puddle of sex, it no longer wishes to battle.")
+            self.doMainText(f"\n\nThe {self.enemy.name} collapses to the ground, quivering body wracked by orgasms. Having broken its mental state into a puddle of sex, it no longer wishes to battle.")
         self.displayMainText()
 
     def specialKOWin(self):
-        if self.enemyID == Enemy.OCTOPUS_GIRL:
+        if self.enemy.ID == Enemy.OCTOPUS_GIRL:
             self.doMainText("\n\nSaddened with your rough treatment, you don't seem to want to play like she does. A bit hurt, she jumps back into the ocean, leaving nothing but a gob of pink goop behind.")
-        elif self.enemyID == Enemy.LITTLE_BIG_BUNNY_MAN or self.enemyID == Enemy.LITTLE_BIG_BUNNY_GIRL:
-            self.doMainText(f"\n\nAs the {self.enemyName()} passes out from all the pain, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemyName()}'s body, you find something wedged in a rather lewd location.")
-        elif self.enemyID == Enemy.DESICCATING_DUST_DEVIL:
+        elif self.enemy.ID == Enemy.LITTLE_BIG_BUNNY_MAN or self.enemy.ID == Enemy.LITTLE_BIG_BUNNY_GIRL:
+            self.doMainText(f"\n\nAs the {self.enemy.name} passes out from all the pain, you find yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Donning your outfit once again, however, it feels a little loose. It seems as though you're still missing a couple inches in height... On the other hand, however, inspecting the {self.enemy.name}'s body, you find something wedged in a rather lewd location.")
+        elif self.enemy.ID == Enemy.DESICCATING_DUST_DEVIL:
             self.doMainText("\n\nFeeling itself about to dissipate from your attacks, the desiccating dust devil feebly spins away, leaving behind some of the sand it can no longer support.")
-        elif self.enemyID == Enemy.FIERCE_NAGA:
+        elif self.enemy.ID == Enemy.FIERCE_NAGA:
             self.doMainText("\n\nThe naga passes out from your attacks, allowing you take a moment to brush off some of the sparkly colorful dust from her wings for potential use later. Not quite sparkly of colorful when in your hands, you can at least ball it up into a nice suppository.")
-        elif self.enemyID == Enemy.MINOTAUR:
+        elif self.enemy.ID == Enemy.MINOTAUR:
             self.doMainText("\n\n\"No, stop! No more! It hurts!\" He slinks away from you, sullen. \"You win, take this, go do stuff.\"\n\nThe Minotaur slides a jug across the floor to you and then starts grumbling to himself in a corner.")
             if (not self.defeatedMinotaur):
                 self.defeatedMinotaur = True
             self.currentDungeon = Dungeon.MINOTAUR_DEFEATED
-        elif self.enemyID == Enemy.FREAKY_LITTLE_GIRL:
+        elif self.enemy.ID == Enemy.FREAKY_LITTLE_GIRL:
             self.doMainText("\n\nShe growls and curses obsceneties while nursing her pain. \"GAH, NO MORE! TAKE YOUR DAMNED WINNINGS AND GO!\"\n\nShe proceeds to rip off Mr. Snuggles head, a feature the doll seems to naturally have, and she reaches down his neck to pull out an object which she throws at you.")
             if (not self.defeatedFreakyGirl):
                 self.defeatedFreakyGirl = True
             self.currentDungeon = Dungeon.FREAKY_GIRL_DEFEATED
-        elif self.enemyID == Enemy.SUCCUBUS:
+        elif self.enemy.ID == Enemy.SUCCUBUS:
             self.doMainText("\n\n\"Ow, ow, ow, ow. Okay, okay, you win! Here, you can have one of these for besting me. Should give you back some of what I took.\"\n\nShe detaches one of the glowing vials from her belt and tosses it to you.")
             if (not self.defeatedSuccubus):
                 self.defeatedSuccubus = True
@@ -23392,23 +23517,23 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.currentDungeon = Dungeon.SUCCUBUS_DEFEATED
         else:
-            self.doMainText(f"\n\nYou have made the {self.enemyName()} pass out from all the pain.")
+            self.doMainText(f"\n\nYou have made the {self.enemy.name} pass out from all the pain.")
         self.displayMainText()
 
     def specialKOLose(self):
         if (self.currentState == GameState.BATTLE):
-            if self.enemyID == Enemy.OCTOPUS_GIRL:
+            if self.enemy.ID == Enemy.OCTOPUS_GIRL:
                 self.doMainText("\n\nJust as you're about to pass out, you see the octopus girl lean over your body. She wears a disappointed expression, finding you were't strong enough for what she was looking for. Shrugging, she jumps back into the ocean, leaving you to yourself.")
-            elif self.enemyID in {Enemy.LITTLE_BIG_BUNNY_MAN, Enemy.LITTLE_BIG_BUNNY_GIRL}:
+            elif self.enemy.ID in {Enemy.LITTLE_BIG_BUNNY_MAN, Enemy.LITTLE_BIG_BUNNY_GIRL}:
                 self.doMainText("\n\nJust as you're about to pass out, you feel yourself beginning to grow. The effects of the bottle seems to wear off as you return to your normal height. Though not quite all the way...")
-            elif self.enemyID == Enemy.SUCCUBUS:
+            elif self.enemy.ID == Enemy.SUCCUBUS:
                 self.doMainText("\n\nThe succubus seems a bit surprised as you pass out. \"Oops... I thought you could take more than that. Sorry~\"")
 
     def doRape(self):
         '''
         Battle Rape action
         '''
-        if self.enemyID == Enemy.TEST_ENEMY:
+        if self.enemy.ID == Enemy.TEST_ENEMY:
             if self.gender == Gender.MALE:
                 self.doMainText("You stick your cock in the test enemy's butt and cum.", True)
             elif self.gender == Gender.FEMALE:
@@ -23416,7 +23541,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.gender == Gender.HERM:
                 self.doMainText("You stuff your cock in the test enemy's butt, then sit on its cock and cum.", True)
 
-        elif self.enemyID == Enemy.LONE_WOLF:
+        elif self.enemy.ID == Enemy.LONE_WOLF:
             self.doMainText(f"You easily roll the wolf onto his back. Pulling {self.pullUD(2)} your {self.clothesBottom()}, you squat your {self.vulvaDesc()} cunt over his sheath, wedging it between your folds while you grind against it. Once his bright red prick twitches as it stretches from its sheath, reaching long and hard while dribbling with pre, you slip it into {self.oneYour(2)} hungry hole{self.plural(2)}. You bounce on top of his belly,", True)
             if (self.moistCalc(2) > 7):
                 self.doMainText(" your honey splashing about everywhere,")
@@ -23427,10 +23552,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.doMainText("satiated cunt,")
             self.doMainText(f" the cock sliding out with cum dripping down {self.legWhere(1)} your {self.legDesc(2)}.")
-            self.doImpregnate(self.enemyBaby())
+            self.doImpregnate(self.enemy.baby)
             self.doLust(-Math.floor(self.sen / 2), 2, 2)
 
-        elif self.enemyID == Enemy.GAY_WOLF:
+        elif self.enemy.ID == Enemy.GAY_WOLF:
             self.doMainText(f"You easily roll the wolf onto his back. Pulling {self.pullUD(2)} your {self.clothesBottom()}, you squat your {self.buttDesc()} ass over the pointy prick. You grab the hard, meaty rod and gently squeeze out some of the pre, slipping it about between your cheeks to make things nice and slick. Slowly sitting down, you wince as the narrow tip kisses your tight hole and moan as it slides in, easily stretching your ass around its curvy girth.", True)
             if (self.showBalls):
                 self.doMainText(f" Your {self.ballDesc()} testicles eventually come to a rest upon the wolf's belly, with your own {self.cockDesc()} cock{self.plural(1)} bobbing above.")
@@ -23439,7 +23564,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText(f"\n\nAfter a couple breaths from taking in the warm intruder, you begin to bounce your hips upon the animal. It howls back up at you in pleasure, your own gasps matching as your erection{self.plural(1)} drum{self.plural(3)} the fur. The wolf's tongue lolls out of the side of its mouth, allowing you to do all the work as its hind legs twitch in the air and its tail swishes over the ground. It seems to be quite happy with the result of this ordeal, so much so that it begins to spurt into your rectum rather quickly, coating your insides with hot sticky spunk.\n\nHowever, you're not left out of the fun as you feel something swell within the entrance to your ass. The wolf's knot expanding, the prick grinds against your inner walls more and more as it sprays about. You can't last any longer and explode above the wolf, drenching its fur in strand after strand of fresh steamy semen. More soon begins to spew back out your ass as the pent-up wolf overflows your cavity, forming sticky webs about the cheeks of your rump.\n\nFur is eventually completely matted, dripping with wads of white, while your own {self.skinDesc()} is sufficiently gunked up around your bottom and thighs. The wolf pants below you, tired and elated. With an attempt to stand, you lift the hind legs with you, still tied to your backside. But, with all the mess that has been made, the cock slips out with a wet pop and sends the animal back into the puddle below with a splash.")
             self.doLust(-Math.floor(self.sen / 2), 2, 5)
 
-        elif self.enemyID == Enemy.HORNY_FELIN:
+        elif self.enemy.ID == Enemy.HORNY_FELIN:
             if (self.gender == Gender.MALE or Utils.percent() <= 50 and self.gender == Gender.HERM):
                 self.doMainText(f"The felin woman is easily bent forward by your efforts. Her loincloth droops out of the way, giving you a perfect view of the swollen, supple lips that pucker around the crotch of her bikini bottom. Pulling {self.pullUD(2)} your {self.clothesBottom()}, you slide {self.oneYour(1)} {self.cockDesc()} prick{self.plural(1)} out and through the cheeks of her ample rump, making her quiver with anticipation. Not wanting to leave her waiting for too long, the head of your cock pushes into the bikini bottom, pushing through to kiss the waiting hole within.", True)
                 # TODO: if/else-ify
@@ -23463,7 +23588,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f" You grind, cunt to cunt{self.plural(2)}, until you both let out a yowl as you climax together.\n\nYou're quick to gather your wits and clean yourself up, standing before her pussy even stops gushing with honey.")
             self.doLust(-Math.floor(self.sen / 2), 2, 1)
 
-        elif self.enemyID == Enemy.DRUNKEN_EQUAN:
+        elif self.enemy.ID == Enemy.DRUNKEN_EQUAN:
             if (self.gender == Gender.FEMALE or Utils.percent() <= 50 and self.gender == Gender.HERM):
                 self.doMainText(f"The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling {self.pullUD(2)} your {self.clothesBottom()} and showing him your own hungry flesh. You {self.legVerb(1)} your {self.legDesc(2)} over his twitchy rod, kissing the flat head of the horsy member with your {self.vulvaDesc()} lips.", True)
                 if (self.vagLimit() < 32):
@@ -23481,7 +23606,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.cockTotal > 0 and self.cumAmount() > 0):
                         self.doMainText(", while yours sprays across his chest and face")
                     self.doMainText(f".\n\nYou don't give him much time to recover as you pull him out, a bit of after-cum gushing across your clit{self.plural(2)}.")
-                    self.doImpregnate(self.enemyBaby())
+                    self.doImpregnate(self.enemy.baby)
             elif (self.gender == Gender.MALE or self.gender == Gender.HERM):
                 self.doMainText(f"The drunken equan falls to his ass, his huge cock bouncing out of his loose pants. It throbs in the air, a large gob of pre spilling out. With a smirk, you step over him, pulling {self.pullUD(2)} your {self.clothesBottom()} and brandishing {self.oneYour(1)} own {self.cockDesc()} cock{self.plural(1)}. You roll him over onto all fours, his pants quickly slipping from his tight rump as you give it a slap.", True)
                 self.doMainText(f"\n\nHe whinnies loudly as you plunge your {self.cockDesc()} erection into his backside. Again and again, you pump away at his hole, until he lets out a loud whinny. His eyes going wide, his giant rod explodes across the ground until its massive length is swimming in a puddle of his own stuff,")
@@ -23490,7 +23615,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" until you've both had a heady orgasm. You pull out quickly, fluids still dripping from your cock, while he heaves upon the ground.")
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 5)
 
-        elif self.enemyID == Enemy.OCTOPUS_GIRL:
+        elif self.enemy.ID == Enemy.OCTOPUS_GIRL:
             if self.gender in {Gender.MALE, Gender.HERM}:  # TODO: Add a percent chance to 3
                 self.doMainText(f"Able to wrestle through the octopus girl's eight powerful tentacles and knock her onto her squishy bottom, you pin her onto her back. Her tentacles spread wide before you, you're able to see the underside of her fleshy webbing. Her hands cover her face in a futile attempt to hide her blush while you inspect her. In the center of all the tentacles, right beneath her hips, gasps a gaping hole.\n\nA sort of 'beak', like octopuses normally have, encompasses the hole. It looks tougher than the surrounding flesh, able to maintain its shape, but as you stick your finger into the maw and it bites down upon you, you realize it's still quite soft, merely molding around your finger. Beyond the beak itself is a deep hallway of supple folds that ripple as it tries to swallow your finger, and supremely lubricated as your finger comes out with a long strand of translucent slime trailing behind it. With your own smirk, you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} erection{self.plural(2)} wobble out. Aligning yourself, you thrust ", True)
                 if (self.cockTotal == 1):
@@ -23517,14 +23642,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f" You can soon feel her shudder {self.legWhere(1)} your {self.legDesc(2)}, her large belly jiggling as milk drizzles past the feeding starfish and down her large breasts. The tentacles leave your slit{self.plural(2)} as you finish with your own orgasm...")
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
 
-        elif self.enemyID == Enemy.LITTLE_BIG_BUNNY_MAN:
+        elif self.enemy.ID == Enemy.LITTLE_BIG_BUNNY_MAN:
             if (self.vagTotal > 0 and self.vagLimit() > 80):
                 self.doMainText(f"Somehow managing to push the little big bunny-man onto his tail, you pull {self.pullUD(2)} your {self.clothesBottom()}, climb up through his thighs, and plant your {self.legDesc(10)} on his relatively large scrotum. His conical cock stands high before you, red and wet with arousal. With it's sloped shape, you easily manage to climb up it as well, {self.legVerb(5)} it at the top with your {self.legDesc(2)}. The narrow tip easily fits between your thighs and slips into {self.oneYour(2)} {self.vulvaDesc()} vagina{self.plural(4)} as you descend upon it.\n\nHis eyes roll up into his head as you slip down his length, the prick stretching your hole open wider and wider as it slides in.", True)
                 if (self.tallness < 180):
                     self.doMainText(f" Your belly begins to stretch as the tip burrows through your inner flesh, the giant cock filling you tremendously. By the time your {self.buttDesc()} rump lands upon his balls, your {self.legDesc(2)} wedge{self.legPlural(1)} into his sheath, the {self.skinDesc()} of your belly reaches past your head. You stand again to fuck his massive prick, though... you quickly find it's difficult to manage such a thing with his body so much larger that yours.\n\nTo your surprise, you find a white hand wrapping around your body, hugging you against the cock. Before you know it, you're being lifted into the air, slipping up the shaft, only to come back down once more. Difficult to tell who's raping who at the point, but he overtaken bunny-man masturbates with you as his toy. Fast and faster he pumps you up and down his length, quickly bringing you both to orgasm. His seed gushes into your belly, causing it to visibly ripple and distend from outside. It splashes back down the cock and spills around his sheath, quickly soaking through the fur of his balls. The warmth sends you to climax as well, slowly slipping off his shlong as it receeds into his sheath...")
                 else:
                     self.doMainText(" Taking in his entire length, you bounce again and again, letting it penetrate you thoroughly. His long foot beats against the ground in ecstasy while the whiskers around his nose twitch. It doesn't take long for him to freeze, his hips bucking into you, as your cunt fills with his seed, spilling back down around his sheath and soaking into the fur on his balls.")
-                self.doImpregnate(self.enemyBaby())
+                self.doImpregnate(self.enemy.baby)
             else:
                 self.doMainText(f"Rather intimidated by his size, you still manage to pull his head down until he's on all fours. You pull {self.pullUD(2)} your {self.clothesBottom()} and shove his face into your naked groin. He quickly notices your scent and lustfully opens his mouth. You debate whether this is actually rape or not as he seems eager to lap at your", True)
                 if self.gender == Gender.MALE:
@@ -23536,7 +23661,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f", expertly sucking and nibbling at your genitals. One of his hands reaches to his underside and begins to audibly slurp across his growing erection. He quickly drives you to orgasm and as his mouth fills with your fluids, you soon find his spraying about your {self.legDesc(10)} as well.\n\nYou both soon back away from each other, spent from the connection.")
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
 
-        elif self.enemyID == Enemy.LITTLE_BIG_BUNNY_GIRL:
+        elif self.enemy.ID == Enemy.LITTLE_BIG_BUNNY_GIRL:
             if (self.cockSize * self.cockSizeMod > 140 or self.cockTotal * self.cockSize * self.cockSizeMod > 280):
                 self.doMainText(f"Somehow managing to push the little big bunny-girl onto her tail, you pull {self.pullUD(2)} your {self.clothesBottom()} and step in between her thighs. Her pussy is already aroused and gaping, drooling with her feminine lubrication and forming webs from her large clit down through her inner labia. Hefting up your {self.cockDesc()} erection{self.plural(1)}, you aim for the sweet spot, spreading her even wider as you push yourself in, feeling her folds hug around you.", True)
                 if (self.tallness < 180):
@@ -23568,7 +23693,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.cumAmount()
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
 
-        elif self.enemyID == Enemy.FIERCE_NAGA:
+        elif self.enemy.ID == Enemy.FIERCE_NAGA:
             self.doMainText("Conceding to your assault rather willingly, she actually bends back over her tail and pulls up her sash, exposing herself to you. A supple slit amidst her belly-scales, the green of her scales part with a delicious and moist pink tunnel. Her fingers even roam down to part herself for you, waiting for you to please yourself with her.", True)
             if (self.cockTotal > 0):
                 self.doMainText(f"\n\nYou prepare {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)} as you remove it from your {self.clothesBottom()}. You slide it over the scales of her tail as you approach her hips, making her shiver expectantly.")
@@ -23582,7 +23707,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f"\n\nYou pull {self.pullUD(2)} your own {self.clothesBottom()} to expose yourself similarly. Climbing up her tail and straddling the humanoid half of her serpentine body, you press your {self.vulvaDesc()} lips against her own bulbous vulva, the slits kissing each other as they touch and making the naga let out a gasp. Despite your somewhat unstable position on top of her, she adjusts to keep you balanced, ensuring your continous mashing of feminine flesh.\n\nYou grind into her, grabbing at her scales and groping beneath the silken shawl for her breasts. So enjoying your ministrations upon her, that you don't see the tip of her tail sneaking up behind you. It's not until you pleasantly find the thick thing pressing itself into {self.oneYour(2)} hole{self.plural(2)} that you notice her own attack, though you can hardly object. You collapse upon her large body and embrace her, continuing your grinding into her sex as the agile tail swirls about your insides. For a creature that seemed so vicious before, she has become quite the docile and sexually charged. It doesn't take long before you're bucking your hips and she's bucking back in orgasm.\n\nAfter an extended period of moans from the two of you, it takes a few more before you can gather your strength and slide off, stumbling back.")
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
 
-        elif self.enemyID == Enemy.MINOTAUR:
+        elif self.enemy.ID == Enemy.MINOTAUR:
             self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} and push the Minotaur down onto his ", True)
             if (self.vagTotal > 0):
                 self.doMainText(" ass and his hefty cock bounces out from under his loin cloth, already half erect.")
@@ -23590,7 +23715,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(f" Way too big for you, the most you can do is sit your {self.buttDesc()} ass down on his head-sized testicles and hug yourself around his rod, grinding against it. He doesn't seem to mind though and rather eagerly snorts in excitement, taking your efforts as a rather physical lap dance. He grunts and groans as you grind your {self.clitDesc()} clit{self.plural(2)} against his shaft, especially when you begin to lick and knead his thick head.\n\nRather abruptly, steam blows out his bovine nostrils as spunk blows out his cock. The stuff sprays hard, making you lean back to dodge direct contact with the geyser. You focus more on getting yourself off as you're showered with semen from above, until your hips are twitching and bucking against his meat.\n\nHe was probably more pleasured by the performance than you were, but you manage.")
                 else:
                     self.doMainText(f" You climb up his bulky body and he doesnn't make any effort to stop you. He even flops his cock around so you can more easily squat over it, pushing the thick head into {self.oneYour(2)} {self.vulvaDesc()} cunt{self.plural(2)}. The bull-man seems rather excited, snorting eagerly as you slide down his erection while it causes your belly to bulge more and more. Your {self.buttDesc()} ass plops down into his lap, onto his head-sized balls and he leans back to let you do all the work.\n\nIt's a bit difficult going up and down the whole length, but you crawl over his chest and manage to do well enough to make his cock throb throughout your passage. He's a little too eager, though, and quickly begins to start spraying stupid amounts of seed inside of you...\n\nYou continue to fuck him as you fill with his spunk, with plenty more squirting out with each pump, and eventually you manage to come yourself. Not exactly the most gratifying rape, but it works well enough...")
-                    self.doImpregnate(self.enemyBaby())
+                    self.doImpregnate(self.enemy.baby)
             else:
                 self.doMainText(f"face and flip up his loin cloth to expose his large ass. The thing looks rather used already, though, and it doesn't take much to push in {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}. The bull-man even snorts across the floor like he was enjoying it and his large meaty cock rises to attention below him. Nevertheless, you continue to pump in and out grand rump, slapping the hard muscular buttocks")
                 if (self.showBalls):
@@ -23599,7 +23724,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.cumAmount()
             self.doLust(-Math.floor(self.sen / 2), 2, 2, 5)
 
-        elif self.enemyID == Enemy.FREAKY_LITTLE_GIRL:
+        elif self.enemy.ID == Enemy.FREAKY_LITTLE_GIRL:
             self.doMainText("The freaky little girl melts into your embrace rather readily, suddenly becoming more frail and acting more like she appears, holding Mr. Snuggles tight across her chest. \"Be gentle, please?\"\n\nCatching you slightly off guard, you comply and proceed a little less roughly. You take her from behind, sitting down to the ground and pulling her into your lap with you. You kiss her cheek and nibble on her long elven ears, making her squirm in your arms as your hand reaches down beneath her skirt. Her panties are rather moist, slick with her honey, and the tender region twitches as you start to massage it. However, you soon feel something bumping against your palm.\n\nPulling her undergarments down further, you can see her pink flesh protruding out past her crotch slightly. A clitoris as big as her thumb pokes out from her folds, stiff and twitching with arousal. Not quite as little as the rest of her...\n\nSeeing as though she's rather aroused, you take the liberty of pushing things a step further. ", True)
             if (self.cockTotal > 0 and self.cockSize * self.cockSizeMod < self.eVagLimit(24) or self.vagTotal > 0 and self.clitSize < 60):
                 self.doMainText(f"Pulling {self.pullUD(2)} your {self.clothesBottom()}, you angle ")
@@ -23620,7 +23745,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f"Turning the girl around, you land her back upon the floor. She looks up at you over the head of the doll, fearful of your menace as you press your {self.hipDesc()} hips down against her. Your {self.vulvaDesc()} nether-lips engulf her standing erection. Not enough to actually penetrate, you merely use the stiff button as a grinding post, slipping it through your labia again and again, banging it against your own {self.clitDesc()} clit{self.plural(2)}.\n\nThe sensation sends the girl into a tizzy, her rump wiggling against the floor as her hips squirm from your succulent flesh. She bites down on one of Mr. Snuggle's horn, muffling her moans as she approaches orgasm. You make up for her with your own cries of climax, shivering and spilling your honey across her dainty sex while her own pools beneath her.\n\nA few more moments of the blissful high passes before the girl inches her way out from under you, spreading her legs to air out her heated crotch while she pulls up her panties, the undergarments becoming wet with her honey and outlining her sex, especially the button that continues to poke out...")
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
 
-        elif self.enemyID == Enemy.SUCCUBUS:
+        elif self.enemy.ID == Enemy.SUCCUBUS:
             self.doMainText("\"Mmm, so you want to take the lead, huh?\" The succubus concedes to your advances, bending over and putting her hands up against the wall, even going so far as to unzip her panties down the middle, exposing her engorged plump lips. The meaty things are plush and look like they're made for being fucked hard, luring you in more as you press in behind her.", True)
             if (self.cockTotal > 0 or self.vagTotal > 0 and self.clitSize > 20):
                 self.doMainText("\n\nYou plunge ")
@@ -23650,7 +23775,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Battle Get Raped
         '''
-        if self.enemyID == Enemy.TEST_ENEMY:
+        if self.enemy.ID == Enemy.TEST_ENEMY:
             if self.gender == Gender.MALE:
                 self.doMainText("The test enemy pokes its cock in your butt and cums.", True)
             elif self.gender == Gender.FEMALE:
@@ -23658,7 +23783,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.gender == Gender.HERM:
                 self.doMainText("The test enemy pokes its cock in your vagina and cums while stroking you off.", True)
 
-        elif self.enemyID == Enemy.COCK_SNAKE:
+        elif self.enemy.ID == Enemy.COCK_SNAKE:
             if (self.cockTotal > 0):
                 self.doMainText(f"As your growing erection{self.plural(1)} spill{self.plural(3)} from your {self.clothesBottom()}, the cock-snake's mouth grows wide. It slithers forward, engulfing {self.oneYour(1)} cock{self.plural(1)}, its mouth stretching wider and wider to fully engulf it, its body so elastic it could take on any length.\n\nIn an instant, your body begins to writhe and shudder as the cock-snake's gullet strongly massages along your length, quickly building you to orgasm. You clench at the ground beneath you as the cum is sucked right from your body, your hips jerking while you pump it out. The cock-snake guzzles it down, drinking it until you're completely finished, some of the spunk splashing back out across your thighs...\n\nHunger sated, the cock-snake slithers away", True)
                 if (self.cumAmount() > 2300):
@@ -23682,7 +23807,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText("\n\nHowever, it seems to not be satisfied with what it has found. Barely sating any of your desire, the snake turns around and slithers off, completely losing interest...")
                     self.doLust(-5, 0)
 
-        elif self.enemyID == Enemy.LONE_WOLF:
+        elif self.enemy.ID == Enemy.LONE_WOLF:
             self.doMainText(f"The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your {self.buttDesc()} rump into the air. He sniffs your cunt{self.plural(2)}, lapping at the wetness that soaks through your {self.clothesBottom()}. He jumps up, clawing your {self.clothesBottom()} to shreds until your {self.vulvaDesc()} hot crotch is put on display. Scratching your back, he mounts you from behind.\n\nHis rock-hard rod pokes and prods around your sex until it finds {self.oneYour(2)} gaping hole{self.plural(2)} and plunges it in. You gasp as the steaming meaty flesh pounds into you, the wolf roughly humping away, the inner fur of his thighs rubbing back and forth along your {self.buttDesc()} naked bum. He hugs you with his paws, his muzzle panting beside your ear while drool drips down from his lolling tongue and down your cheek. It only takes a minute before he howls loudly, cum spurting into your pussy at an astonishing rate. You shout as it floods your insides, a thick knot growing at your entrance and spreading you open further...", True)
             self.changeBot(-1)
             self.doMainText("\n\nYou gasp as you're about to pass out, feeling the wolf tug at your violated cunt in an attempt to get away. Still tied by his knot, his cock squirting away within, ")
@@ -23696,16 +23821,16 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.doMainText("but your gaping cunt is more than enough to handle it,")
             self.doMainText(" until it finally pulls free and he runs back off into the forest.")
-            self.doImpregnate(self.enemyBaby())
+            self.doImpregnate(self.enemy.baby)
             self.doLust(-Math.floor(self.sen / 2), 2, 1)
 
-        elif self.enemyID == Enemy.GAY_WOLF:
+        elif self.enemy.ID == Enemy.GAY_WOLF:
             self.doMainText(f"The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your {self.buttDesc()} rump into the air. He sniffs the thing you have presented him, burrowing his wet nose into your cheeks slightly and blowing in acceptance of your offer. He jumps up, clawing your {self.clothesBottom()} to shreds until your {self.buttDesc()} ass is ready for the taking. Scratching your back, he mounts you from behind.\n\nYou can feel his pointed rod poke about the cushioning of your bum, swiftly finding its way into the crevice therein. Slick pre slips around the hole of your ass as the tips circles around, lubricating it lavishly for a smooth injection. A short gasp escapes your lips as the narrow tip kisses the hole, stretching it wide as it then rapidly rams in with a lewd schlick. The wolf's muzzle rests upon your shoulder, the long tongue lolling and panting hot humid air across your cheek. His hips bounce up and down, slipping in and out of your ass with slurping pops, growing more and more stiff. \n\nIt doesn't take long before you feel hot spurts coat the inside of your rectum, splashing against the inner wall again and again. So much semen inside that you can feel yourself begin to bloat. The pressure quickly makes your own {self.cockDesc()} erection{self.plural(1)} burst with white strands below, pumping out in tune to the throbbing of the growing girth in your ass. You can feel yourself stretch, the wolf's knot swelling to anchor itself within, overflowing cum spraying out as the hole tightens...", True)
             self.changeBot(-1)
             self.doMainText("You gasp as you're about to pass out, feeling the wolf tug at your violated ass in an attempt to get away, gush after gush of spent spunk blowing out each time. Still tied by his knot, his cock now slowly squirting away within, you can't help but get yanked backwards several feet as he drags you over the ground by your sensitive hole. Eventually, you manage to grab at the ground and hold yourself firm, allowing the knot to pop out from your ass, the member spraying across your cheeks with more rushing out about your thighs. Freed of your ass, the wolf takes off into the forest, satisfied, leaving you to lay in the white mess below. ")
             self.doLust(-Math.floor(self.sen / 2), 2, 5)
 
-        elif self.enemyID == Enemy.HORNY_FELIN:
+        elif self.enemy.ID == Enemy.HORNY_FELIN:
             self.doMainText(f"Finally having someone as horny as she is, she pounces onto you. She presses your face against her exposed nipples, forcing you to lick the soreness that had been caused by her own rubbing. She grinds up and down your belly, tearing your {self.clothesTop()} to tattered shreds with her claws while biting and suckling from your own {self.nipDesc()}nipples", True)
             self.changeTop(-1)
             if (self.lactation > 0):
@@ -23747,7 +23872,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" And she seems oddly content, as though her heat had passed with that romp for some reason...")
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
 
-        elif self.enemyID == Enemy.DRUNKEN_EQUAN:
+        elif self.enemy.ID == Enemy.DRUNKEN_EQUAN:
             self.doMainText("Seeing you laying defenseless and utterly aroused before him, the drunken equan falls to the ground. With a grunt and a grope, he pulls his huge cock from his pants, his erection barely 2/3 its full potential. Considering how drunk he is, it probably won't get much larger.", True)
             if (self.gender == Gender.MALE or self.gender == Gender.HERM and Utils.percent() <= 50):
                 self.doMainText(f" Nevertheless, not caring whether you're male or female, he turns you over to find the hole everybody has. Giving your {self.buttDesc()} ass a slap with his mug, he leans forward and plunges his erection deep inside.")
@@ -23759,22 +23884,22 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.vagLimit() < 28):
                     self.doMainText(" With a cry, the large horse-cock proves too big for your relatively small pussy, stretching it dramatically and causing you some pain.")
                     self.vagChange(3, 0)
-                    self.doHP(-Math.floor(self.eStr / 2))
-                    self.doImpregnate(self.enemyBaby())
+                    self.doHP(-Math.floor(self.enemy.strength / 2))
+                    self.doImpregnate(self.enemy.baby)
                 elif (self.vagLimit() < 52):
                     self.doMainText(" You wince as it pushes in too far, pounding your cervix further and further into your belly, permanently stretching you a bit.")
                     self.vagChange(1, 0)
-                    self.doImpregnate(self.enemyBaby())
+                    self.doImpregnate(self.enemy.baby)
                 else:
                     self.doMainText(f" You feel it push against your belly from within, the mound slightly protruding through your {self.skinDesc()}, taking his entire length inside of you.")
-                    self.doImpregnate(self.enemyBaby())
+                    self.doImpregnate(self.enemy.baby)
             self.doMainText(" Again and again, he has his way with your hole, until he lets out a loud whinny. Eyes going wide, you feel a flood of his hot stuff flush into your body, making you lose all thoughts of everything else...")
             if (self.cumAmount() > 0):
                 self.doMainText(f" Your cock{self.plural(1)} explode{self.plural(3)} across the ground just before you collapse, forming a nice puddle to splash in.")
             self.doMainText("\n\nAs drunk as he is, the large equan doesn't take long to pull out, cum dribbling in long strands from his huge cock and splattering across his pants, as he sways back towards Firmshaft.")
             self.doLust(-Math.floor(self.sen / 2), 2, 2, 5)
 
-        elif self.enemyID == Enemy.OCTOPUS_GIRL:
+        elif self.enemy.ID == Enemy.OCTOPUS_GIRL:
             if (self.gender == Gender.MALE):
                 self.doMainText(f"With a giggle at your vulnerable state, her tentacles wrap about your {self.buttDesc()} butt, weaving into your {self.clothesBottom()} and pulling out your {self.cockDesc()} erection{self.plural(1)}. She takes {self.oneYour(1)} cock{self.plural(1)} and fondles it with the slimy appendages, making sure it's nice and hard.", True)
                 if (self.cockSize * self.cockSizeMod > 50):
@@ -23834,7 +23959,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.doLust(-Math.floor(self.sen / 2), 2, 1)
 
-        elif self.enemyID == Enemy.LITTLE_BIG_BUNNY_MAN:
+        elif self.enemy.ID == Enemy.LITTLE_BIG_BUNNY_MAN:
             self.doMainText('A smirk crosses the bunny-man\'s face as you fall ', True)
             if (self.vagTotal > 0 and self.vagLimit() > 80):
                 self.doMainText(f"before him, your cunt{self.plural(2)} dripping with arousal. His own conical prick twitches in his sheath at the size of you gaping maw, even in your reduced state, eager to hop in and make you his new bunny-hole. He falls to his knees and wraps his arms around your body, his hips quickly closing the gap between your heights. You can hardly tell at first that {self.oneYour(2)} slit{self.plural(2)} is being penetrated, the narrow tip relatively small. But as he quickly plows the rest of his length in, your eyes nearly cross from the rapid change in girth.")
@@ -23846,12 +23971,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.cockTotal > 0):
                     self.doMainText(f", barely noticing the extra stickiness upon his fur that rubs against your belly as your own erection{self.plural(1)} explode{self.plural(3)}")
                 self.doMainText(".\n\nAll you seem to remember is the fact that he doesn't stop until you feel yourself begin to grow. He comes to an abrupt halt, yanking out while his spunk still spits between your thighs, and soon backs off as you begin to return to your normal state, though not quite...")
-                self.doImpregnate(self.enemyBaby())
+                self.doImpregnate(self.enemy.baby)
             else:
                 self.doMainText(f"to your {self.legDesc(6)}. He lunges forward to hold you up, his conical prick bobbing before your face. So lost in lust, your mouth subconsciously opens as you feel a supple tip press against it, sucking it in until you quickly find your jaw wedged open by the increasing girth. Just the tip of his penis is all that manages to fit inside, but he doesn't seem to care. He twirls what little there is around the inside of your mouth, pressing it down against your tongue. Your tongue lashes back, your throat sucking it in as it tries to gulp down the pre that leaks.\n\nThough he can't face-fuck you too well, he seems perfectly happy pleasuring the rest of his shaft with a hand. With each stroke of his length, your whole body bobs to keep up with the stiffness that holds your mouth agape. Until he comes to an abrupt halt...\n\nYour throat goes numb as hot seed gushes down it. You don't even have time to swallow, it's so forceful and so plentiful. Some sprays back out from your nose and even your eyes feel wet and slightly sticky from something that isn't tears. Your stomach quickly fills and you feel oh so full... For a moment, your hands can wrap around your belly as it distends to obscene sizes.\n\nHowever, oddly, you soon find yourself sucking in more and more of his length. Your extended belly shrinks as it's able to contain more of the stuff, your throat regaining composure. As your body grows out from his hands, he suddenly pulls out from you, spraying the last bit from your face. He quickly hops away as you begin to nearly grow to your normal size, though your head is still oversexed.")
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 5)
 
-        elif self.enemyID == Enemy.LITTLE_BIG_BUNNY_GIRL:
+        elif self.enemy.ID == Enemy.LITTLE_BIG_BUNNY_GIRL:
             self.doMainText('A smile crosses the bunny-girl\'s face as you fall before her', True)
             if ((self.gender == Gender.MALE or self.gender == Gender.HERM and Utils.percent() > 50) and (self.cockSize * self.cockSizeMod > 140 or self.cockTotal * self.cockSize * self.cockSizeMod > 280)):
                 self.doMainText(f", your cock{self.plural(1)} pushing at your {self.clothesBottom()}. She ducks down and releases your member{self.plural(1)} with one hand while her other disappears between her legs. It quickly reappears as she stands up and hovers over you, her fingers spreading her large snatch wide. Her honey drizzles down around your cock{self.plural(1)} with the rest of her swiftly bearing down after it. She lets out a loud sweet moan as she engulfs your length{self.plural(1)}. Her velvety puffy folds soon hug the rest of your body, covering you like warm wet blankets, and your face is buried by her clit. It's a rather comforting position, somewhat relaxing, that only lasts for a few seconds...\n\nHer strong legs quickly kick up, sending her skyward, before plunging back down upon you again. Her movements are so swift and powerful, your cock{self.plural(1)} can't tell if {self.plural(7)} inside or not, only feeling a constant rubbing against {self.plural(5)} sensitive skin. And despite the fervent efforts on your manhood, the bunny-girl still manages to climax first, as she lets out a succulent shout of ecstasy. Her walls clamp around your appendage{self.plural(1)}, sucking {self.plural(9)} in and tugging {self.plural(9)} along with her as her bouncing only grows more enthused.\n\nIt doesn't take long until your own arousal begins to build pressure, though you find that pressure to grow much greater than you would have expected. The bunny-girl's pussy seems to only be growing tighter and tighter, lifting her from your body as your cock{self.plural(1)} push her away. When you finally reach orgasm, she groans loudly as her belly fills and swells. Opening your eyes, you realize you're growing larger, almost your full size! She flies off your erection{self.plural(1)} with a slick pop before she is really harmed and hops away, leaving you to finish gushing outside of the cave...")
@@ -23877,7 +24002,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.cumAmount()
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 3, 4)
 
-        elif self.enemyID == Enemy.FIERCE_NAGA:
+        elif self.enemy.ID == Enemy.FIERCE_NAGA:
             self.doMainText(f"Pleased with your less-threatening state, she takes her time to tower over your prone body and wraps her tail around your {self.hipDesc()} hips and {self.legDesc(2)}, holding you still with her strength and leans in to taste her prey...\n\nPulling {self.pullUD(1)} your {self.clothesTop()}, she licks over the {self.skinDesc()} of your belly with her long serpentine tongue. She glides down, constricting her tail in an oscillating fashion to help pull your {self.clothesBottom()} {self.pullUD(2)} enough to access your", True)
             if (self.cockTotal > 0):
                 self.doMainText(f" {self.cockDesc()} erection{self.plural(1)}. Pleased with what she finds, she caresses {self.plural(9)} with her fingers and lavishes the tip{self.plural(1)} with her tongue, darting in and out of the urethra{self.plural(1)} pleasantly.\n\nQuite satisfied with your flavor, she drags her silk-covered breasts over the rod{self.plural(1)}, grinding her body up yours until the sash dangles over your glans. Lifting the cloth, her own awaiting sex spills a clear drop from the pink flesh that runs down through the valley of her fused thighs. Holding you tightly with her tail, she lifts {self.oneYour(1)} member{self.plural(1)} up and drives herself down to devour it.")
@@ -23891,7 +24016,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f" {self.vulvaDesc()} cunt{self.plural(2)}. Happy with what she finds, she slips a few fingers through your lips, followed by the long tongue.\n\nSatisfied with how swollen and aroused you are, she lifts the sash around her waist to expose her own bulbous vulva. A hungry pink amidst the green scales, she promptly thrusts it against your crotch, mashing your sexes together. Holding you tightly with her tail, she grinds against you, pushing you up from underneath to force you against her even more. Her arms wrap around your neck as she leans down, surrounding your face with her silk-covered bosom and pressing your {self.skinDesc()} to her scales.\n\nWith a whole tail of muscle the help her move, her hips gyrate so powerfully against you that it doesn't take long before you both reach climax. A concerted moan fills the air while her claws dig into you, her tail 'hugging' you even more.\n\nHowever, after a few moments of bliss, you're allowed to breath. The naga's tail unwinds, stretching out as she relishes in the last few moments of orgasm, her wings fanning out and back arching high. Then, she drops her sash with a pleased smile and slithers away over the dunes.")
             self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
 
-        elif self.enemyID == Enemy.MINOTAUR:
+        elif self.enemy.ID == Enemy.MINOTAUR:
             self.doMainText(f"The Minotaur grunts. \"Good. Could use a fuck!\"\n\nNot exactly a romantic, he lifts you by your {self.legDesc(8)} and pulls off your {self.clothesBottom()} so it's out of the way. He continues to {self.legVerb(3)} your {self.legDesc(2)}, inspecting what you have before he goes further. Shrugging at what he finds, he waggles his hips so that his big fat bulky cock flops out from behind his loin cloth. Already stiff and willing to go, pre dribbles down from the tip and lubes up your entire crotch, running into all your cracks and crevices.", True)
             if (self.vagTotal > 0 and self.vagLimit() > 72):
                 self.doMainText(f" He proceeds to stuff his massive schlong into {self.oneYour(2)} cunt{self.plural(2)} with a loud slurp, pushing in until he can see his own cock bulge out from your belly.")
@@ -23905,10 +24030,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.cumAmount()
             self.doMainText(".\n\nWith all the flurry of the abrupt orgasm, the Minotaur then lets go of you, making you shiver as you slide down his shaft and plop onto the floor, seed pooling out of your orifice...")
             if (self.vagTotal > 0 and self.vagLimit() > 72):
-                self.doImpregnate(self.enemyBaby())
+                self.doImpregnate(self.enemy.baby)
             self.doLust(-Math.floor(self.sen / 2), 2, 2)
 
-        elif self.enemyID == Enemy.FREAKY_LITTLE_GIRL:
+        elif self.enemy.ID == Enemy.FREAKY_LITTLE_GIRL:
             self.doMainText(f"Seeing you in your helpless state, the girl growls in delight. \"MMM... PREY~,\" Mr. Snuggles drops to the floor as her attention grows more focused upon you. Only then do you notice the large hole between the doll's legs, looking a bit moist as though it had been used many times and never able to dry. The reason for its existence also begins to grow quite clear while the freaky little girl paws at her own crotch.\n\nEach time she lifts her skirt with her fondling, you can see a bulge growing and pressing at her small panties. At first it looks like a rather large clitoris, but it continues to sweel rapidly. It bows outward, a meaty length of flesh bunching up within. Eventually, the waistband of the panties gives way, letting the phallic monster loose and lifting her skirt altogether. It coninues to grow all the way up to the little girl's chest, thick and throbbing and eager for a good meal. The cock is large and seems even larger compared to the rest of her small body, growing upward from her dripping feminine sex that is exposed from the fallen undies.\n\nShe rubs herself a bit, pleased to have it big and horny again, perfect for impaling you~ She bends down to the floor, scratching at the ground with her nails. Walking on all fours like and animal, her cock thumps up and down against her chest as she creeps toward you, sniffing at you to make sure you're ready. She crawls up between your legs, nipping here and there at your {self.currentClothes()}, until she finally reaches your chest. She pulls {self.pullUD(1)} your {self.clothesTop()} with her teeth, exposing your {self.nipDesc()} nipples which she promptly bites down upon. Hearing you gasp in slight pain and pleasure, ", True)
             if (self.lactation > 0):
                 self.doMainText("a few drops of your milk rewarding her, ")
@@ -23930,10 +24055,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" your ass, stirring up your insides as she forces her way through")
             self.doMainText(".\n\nThe little girl quickly begins to thrust her small hips, powerfully drilling into you again and again as she keeps her jaw clamped around your nipple, not letting go as she fucks your brains out. Each thrust makes your whole body jerk, her strength far more formidable than her figure might let on. It doesn't take long before you feel her spraying her seed inside of you, but that doesn't stop her. She continues on and on, bringing you to your own high from the rough treatment, and she doesn't stop there...")
             if (self.vagTotal > 0):
-                self.doMultiImpregnate(self.enemyBaby(), 2)
+                self.doMultiImpregnate(self.enemy.baby, 2)
             self.doLust(-Math.floor(self.sen / 2), 2, 2)
 
-        elif self.enemyID == Enemy.SUCCUBUS:
+        elif self.enemy.ID == Enemy.SUCCUBUS:
             self.doMainText(f"The succubus grins as you give yourself to her. \"That's right, you know what's best for you~\"\n\nHigh-heels click on either side of you as the she-devil positions herself over you. She zips her red panties right down the center, making them part to expose her engorged large feminine lips. The things look plump and practically made for intense fucking, which only leads you to be even more anxious for her to take you. However, before you can attempt to lunge at her, she squats down and sits upon your {self.bellyDesc()} belly and leans forward to grab your arms up above your head. Pinning you to the floor, her ample bosom engulfs your face, burrowing you inside her cleavage while her hips grind against you, her plush pussy slickening up your {self.skinDesc()}.", True)
             if (self.cockTotal > 0 or self.vagTotal > 0 and self.clitSize > 20):
                 self.doMainText("\n\nHer tail wraps around ")
@@ -23967,24 +24092,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.skipExhaustion = True
         self.doEnd()
 
-    def setEnemystats(self, enemyHP: int, enemyStr: int, enemyMenta: int, enemySen: int, enemyLib: int, enemyLust: int, enemyGen: int, enemyPref: int, enemyCoin: int, enemySexP: int, enemyItem: int):
-        self.eHP = enemyHP
-        self.eStr = enemyStr
-        self.eMenta = enemyMenta
-        self.eSen = enemySen
-        self.eLib = enemyLib
-        self.eLust = enemyLust
-        self.eGen = enemyGen
-        self.ePref = enemyPref
-        self.eCoin = enemyCoin
-        self.eSexP = enemySexP
-        self.eItem = enemyItem
-
     def doeHP(self, changes: int):
         '''
         Calculate and set enemy's HP
         '''
-        if (self.eHP + changes <= 0):
+        if (self.enemy.HP + changes <= 0):
             self.specialKOWin()
             self.outputMainText("\n\nYou win the battle!")
             if (self.inBag):
@@ -23995,33 +24107,33 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             def doListen():
                 self.battleWin()
             self.doListen = doListen
-        self.eHP += changes
-        if (self.eHP > 0):
-            self.outputMainText(f"\n\nYour enemy now seems to be under {Math.ceil(self.eHP / self.eMaxHP * 10) * 10}% HP.")
+        self.enemy.HP += changes
+        if (self.enemy.HP > 0):
+            self.outputMainText(f"\n\nYour enemy now seems to be under {Math.ceil(self.enemy.HP / self.enemy.maxHP * 10) * 10}% HP.")
 
     def doeLust(self, changes: int):
-        if self.eGen == Gender.MALE:
-            if (self.eLust + changes > 65 and self.eLust <= 65):
-                self.doMainText(f"\n\nThe {self.enemyName()} smears the pre across its rod, stroking it gently while fighting, majorly distracted.")
-            elif (self.eLust + changes > 40 and self.eLust <= 40):
-                self.doMainText(f"\n\nThe {self.enemyName()} squirms, pre dripping from the tip of its stiffness.")
-            elif (self.eLust + changes > 20 and self.eLust <= 20):
-                self.doMainText(f"\n\nThe {self.enemyName()} shifts a little, an erection clearly beginning to grow.")
-        elif self.eGen == Gender.FEMALE:
-            if (self.eLust + changes > 65 and self.eLust <= 65):
-                self.doMainText(f"\n\nThe {self.enemyName()} smears the honey all over as it rubs itself constantly while fighting, majorly distracted.")
-            elif (self.eLust + changes > 40 and self.eLust <= 40):
-                self.doMainText(f"\n\nThe {self.enemyName()} squirms, honey dribbling from its naughty hole.")
-            elif (self.eLust + changes > 20 and self.eLust <= 20):
-                self.doMainText(f"\n\nThe {self.enemyName()} shifts a little, caressing its pussy here and there when it can.")
-        elif self.eGen == Gender.HERM:
-            if (self.eLust + changes > 65 and self.eLust <= 65):
-                self.doMainText(f"\n\nThe {self.enemyName()} smears the lubricant all over as it rubs and strokes itself constantly while fighting, majorly distracted.")
-            elif (self.eLust + changes > 40 and self.eLust <= 40):
-                self.doMainText(f"\n\nThe {self.enemyName()} squirms, honey dribbling and pre dripping from its aroused genitals.")
-            elif (self.eLust + changes > 20 and self.eLust <= 20):
-                self.doMainText(f"\n\nThe {self.enemyName()} shifts a little, caressing its pussy here and there when it can while its erection clearly grows.")
-        self.eLust += changes
+        if self.enemy.gender == Gender.MALE:
+            if (self.enemy.lust + changes > 65 and self.enemy.lust <= 65):
+                self.doMainText(f"\n\nThe {self.enemy.name} smears the pre across its rod, stroking it gently while fighting, majorly distracted.")
+            elif (self.enemy.lust + changes > 40 and self.enemy.lust <= 40):
+                self.doMainText(f"\n\nThe {self.enemy.name} squirms, pre dripping from the tip of its stiffness.")
+            elif (self.enemy.lust + changes > 20 and self.enemy.lust <= 20):
+                self.doMainText(f"\n\nThe {self.enemy.name} shifts a little, an erection clearly beginning to grow.")
+        elif self.enemy.gender == Gender.FEMALE:
+            if (self.enemy.lust + changes > 65 and self.enemy.lust <= 65):
+                self.doMainText(f"\n\nThe {self.enemy.name} smears the honey all over as it rubs itself constantly while fighting, majorly distracted.")
+            elif (self.enemy.lust + changes > 40 and self.enemy.lust <= 40):
+                self.doMainText(f"\n\nThe {self.enemy.name} squirms, honey dribbling from its naughty hole.")
+            elif (self.enemy.lust + changes > 20 and self.enemy.lust <= 20):
+                self.doMainText(f"\n\nThe {self.enemy.name} shifts a little, caressing its pussy here and there when it can.")
+        elif self.enemy.gender == Gender.HERM:
+            if (self.enemy.lust + changes > 65 and self.enemy.lust <= 65):
+                self.doMainText(f"\n\nThe {self.enemy.name} smears the lubricant all over as it rubs and strokes itself constantly while fighting, majorly distracted.")
+            elif (self.enemy.lust + changes > 40 and self.enemy.lust <= 40):
+                self.doMainText(f"\n\nThe {self.enemy.name} squirms, honey dribbling and pre dripping from its aroused genitals.")
+            elif (self.enemy.lust + changes > 20 and self.enemy.lust <= 20):
+                self.doMainText(f"\n\nThe {self.enemy.name} shifts a little, caressing its pussy here and there when it can while its erection clearly grows.")
+        self.enemy.lust += changes
 
     def eDmg(self, eweapon):
         if mainobject.debugNoDamage and mainobject.isDebugger:
@@ -24031,85 +24143,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             dmgRed = Math.floor((100 - self.sen) / 2)
         if (dmgRed > self.level):
             dmgRed = self.level
-        dmg = Math.floor(Utils.percent() / eweapon + self.eStr / 2 - dmgRed)
+        dmg = Math.floor(Utils.percent() / eweapon + self.enemy.strength / 2 - dmgRed)
         if (dmg < 0):
             dmg = 0
         return dmg
 
-    def enemyName(self):
-        if self.enemyID == Enemy.COCK_SNAKE:
-            return "cock-snake"
-        if self.enemyID == Enemy.DESICCATING_DUST_DEVIL:
-            return "desiccating dust devil"
-        if self.enemyID == Enemy.LONE_WOLF:
-            return "lone male wolf"
-        if self.enemyID == Enemy.GAY_WOLF:
-            return "gay wolf"
-        if self.enemyID == Enemy.HORNY_FELIN:
-            return "felin in heat"
-        if self.enemyID == Enemy.DRUNKEN_EQUAN:
-            return "drunken equan"
-        if self.enemyID == Enemy.OCTOPUS_GIRL:
-            return "octopus girl"
-        if self.enemyID == Enemy.LITTLE_BIG_BUNNY_MAN:
-            return "little big bunny-man"
-        if self.enemyID == Enemy.LITTLE_BIG_BUNNY_GIRL:
-            return "little big bunny-girl"
-        if self.enemyID == Enemy.FIERCE_NAGA:
-            return "fierce naga"
-        if self.enemyID == Enemy.MINOTAUR:
-            return "Minotaur"
-        if self.enemyID == Enemy.FREAKY_LITTLE_GIRL:
-            return "freaky little girl"
-        if self.enemyID == Enemy.SUCCUBUS:
-            return "succubus"
-        return "ENEMY NAME ERROR"
-
-    def enemyBaseStats(self):
-        if self.enemyID == Enemy.COCK_SNAKE:
-            self.setEnemystats(30, 16, 4, 8, 0, 0, Gender.ANDRO, 4, 0, 15, 202)
-        elif self.enemyID == Enemy.DESICCATING_DUST_DEVIL:
-            self.setEnemystats(25, 0, 20, 0, 50, 0, Gender.ANDRO, 0, 0, 10, 231)
-        elif self.enemyID == Enemy.LONE_WOLF:
-            self.setEnemystats(45, 22, 16, 13, 11, 30, Gender.MALE, 2, 0, 20, 203)
-        elif self.enemyID == Enemy.GAY_WOLF:
-            self.setEnemystats(45, 26, 16, 20, 11, 40, Gender.MALE, 1, 0, 20, 203)
-        elif self.enemyID == Enemy.HORNY_FELIN:
-            self.setEnemystats(50, 12, 10, 24, 30, 40, Gender.FEMALE, 4, Math.floor(Utils.percent() / 10), 25, 204)
-        elif self.enemyID == Enemy.DRUNKEN_EQUAN:
-            self.setEnemystats(60, 28, 9, 18, 14, 30, Gender.MALE, 4, Math.floor(Utils.percent() / 10), 25, 205)
-        elif self.enemyID == Enemy.OCTOPUS_GIRL:
-            self.setEnemystats(150, 45, 30, 25, 35, 20, Gender.FEMALE, 4, 0, 50, 216)
-        elif self.enemyID == Enemy.LITTLE_BIG_BUNNY_MAN:
-            self.setEnemystats(55, 35, 30, 35, 45, 10, Gender.MALE, 4, Math.floor(Utils.percent() / 10), 30, 222)
-        elif self.enemyID == Enemy.LITTLE_BIG_BUNNY_GIRL:
-            self.setEnemystats(50, 35, 30, 45, 35, 10, Gender.FEMALE, 4, Math.floor(Utils.percent() / 10), 30, 222)
-        elif self.enemyID == Enemy.FIERCE_NAGA:
-            self.setEnemystats(100, 50, 20, 40, 2, 40, Gender.FEMALE, 4, Math.floor(Utils.percent() / 5), 55, 230)
-        elif self.enemyID == Enemy.MINOTAUR:
-            self.setEnemystats(250, 70, 20, 50, 20, 10, Gender.MALE, 4, Math.floor(Utils.percent() / 4 + 5), 50, 525)
-        elif self.enemyID == Enemy.FREAKY_LITTLE_GIRL:
-            self.setEnemystats(175, 80, 40, 70, 60, 10, Gender.FEMALE, 4, Math.floor(Utils.percent() / 4 + 5), 55, 259)
-        elif self.enemyID == Enemy.SUCCUBUS:
-            self.setEnemystats(150, 35, 80, 40, 40, 0, Gender.FEMALE, 4, Math.floor(Utils.percent() / 4 + 5), 60, 260)
-
-    def enemyBaby(self):
-        if self.enemyID == Enemy.LONE_WOLF:
-            return 100
-        if self.enemyID == Enemy.DRUNKEN_EQUAN:
-            return 2
-        if self.enemyID == Enemy.LITTLE_BIG_BUNNY_MAN:
-            return 7
-        if self.enemyID == Enemy.MINOTAUR:
-            return 307
-        if self.enemyID == Enemy.FREAKY_LITTLE_GIRL:
-            return 308
-        return 0
-
     def enemyAttack(self):
         attack = Utils.percent()
 
-        if self.enemyID == Enemy.COCK_SNAKE:
+        if self.enemy.ID == Enemy.COCK_SNAKE:
             if (attack <= 50):
                 self.doMainText("\n\nThe cock-snake whips around, slapping you harshly with its tail and causing a painful welt.")
                 self.doHP(-self.eDmg(9))
@@ -24139,7 +24181,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(" your groin. Though the endeavor proves fruitless, as all its venom manages to do is arouse you a little.")
                     self.doLust(Math.floor(Utils.percent() / 20), 1)
 
-        elif self.enemyID == Enemy.DESICCATING_DUST_DEVIL:
+        elif self.enemy.ID == Enemy.DESICCATING_DUST_DEVIL:
             if (attack <= 30):
                 self.doMainText(f"\n\nThe sentient dust devil overcomes you and whooshes about your body, getting sand all over your {self.skinDesc()} and into some crevices you'd rather not think of, making you very uncomfortable and wearing away some of your sensitivity.")
                 self.stats(0, 0, 0, -1)
@@ -24305,14 +24347,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.nippleSize = 1
                     self.doeHP(10)
 
-        elif self.enemyID == Enemy.LONE_WOLF:
+        elif self.enemy.ID == Enemy.LONE_WOLF:
             if (attack > 35 and attack <= 50):
                 self.doMainText("\n\nThe lone wolf leaps at you, taking a large bite with its sharp teeth.")
                 self.doHP(-self.eDmg(6))
             elif (attack > 50 and attack <= 70 and self.lust > 15):
                 self.doMainText(f"\n\nHis cock beating against his belly with each step, his lust overcomes him for a moment. He runs up to you, jumping onto your {self.legDesc(1)} and humps wildly, smearing his canine pre up and down your {self.legDesc(1)}. A small spurt of cum shoots out, the large drop oozing down to your {self.legDesc(10)}. Not exactly a full climax, but enough for now, the wolf backs off.")
                 self.doLust(self.lib / 3, 1)
-                self.doeLust(-Math.floor(Utils.percent() / 10 + self.eSen / 2))
+                self.doeLust(-Math.floor(Utils.percent() / 10 + self.enemy.sensitivity / 2))
             elif (attack > 70 and self.gender != Gender.ANDRO and self.gender != Gender.MALE):
                 self.doMainText(f"\n\nThe lone wolf lifts his leg after running up beside you, a bit of urine splashing out onto your {self.legDesc(10)}. However, he was simply peeing, as the heady smell wafts up to your nose, the pheromones making your body shudder with arousal.")
                 self.doLust(Math.floor(Utils.percent() / 10 + self.lib / 4), 1)
@@ -24320,14 +24362,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nThe lone wolf rushes at you, scratching you with its claws.")
                 self.doHP(-self.eDmg(8))
 
-        elif self.enemyID == Enemy.GAY_WOLF:
+        elif self.enemy.ID == Enemy.GAY_WOLF:
             if (attack > 35 and attack <= 50):
                 self.doMainText("\n\nThe gay wolf leaps at you, taking a large bite with its sharp teeth.")
                 self.doHP(-self.eDmg(6))
             elif (attack > 50 and attack <= 70 and self.lust > 15):
                 self.doMainText(f"\n\nHis cock beating against his belly with each step, his lust overcomes him for a moment. He runs up to you, jumping onto your {self.legDesc(1)} and humps wildly, smearing his canine pre up and down your {self.legDesc(1)}. A small spurt of cum shoots out, the large drop oozing down to your {self.legDesc(10)}. Not exactly a full climax, but enough for now, the wolf backs off.")
                 self.doLust(self.lib / 3, 1)
-                self.doeLust(-Math.floor(Utils.percent() / 10 + self.eSen / 2))
+                self.doeLust(-Math.floor(Utils.percent() / 10 + self.enemy.sensitivity / 2))
             elif (attack > 70 and self.gender != Gender.ANDRO and self.gender != Gender.MALE):
                 self.doMainText(f"\n\nThe gay wolf lifts his leg after running up beside you, a bit of urine splashing out onto your {self.legDesc(10)}. However, he was simply peeing, as the heady smell wafts up to your nose, the pheromones making your body shudder with arousal.")
                 self.doLust(Math.floor(Utils.percent() / 10 + self.lib / 4), 1)
@@ -24335,12 +24377,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nThe gay wolf rushes at you, scratching you with its claws.")
                 self.doHP(-self.eDmg(8))
 
-        elif self.enemyID == Enemy.HORNY_FELIN:
-            if (attack > 30 and attack <= 60 and self.eLust > 20):
+        elif self.enemy.ID == Enemy.HORNY_FELIN:
+            if (attack > 30 and attack <= 60 and self.enemy.lust > 20):
                 self.doMainText(f"\n\nThe horny felin woman comes in close, embracing you as she grinds her slick cunt up and down your {self.legDesc(1)}. She licks your {self.boobDesc()} chest while her feminine fluids spill down your thigh. She mewls a little as she has a small climax, alleviating some of her own frustrations while increasing yours in the process.")
                 self.doLust(Math.floor(Utils.percent() / 10 + self.lib / 3), 1)
-                self.doeLust(-Math.floor(Utils.percent() / 10 + self.eSen / 2))
-            elif (attack > 60 and attack <= 85 and self.eLust > 10):
+                self.doeLust(-Math.floor(Utils.percent() / 10 + self.enemy.sensitivity / 2))
+            elif (attack > 60 and attack <= 85 and self.enemy.lust > 10):
                 self.doMainText("\n\nUtterly thirsting for sex, she turns away from you and gets on all fours. She bends down further while raising her butt high into the air, showing off her lithe body while also showing off the swollen lips that bulge out of either side of her bikini bottom beneath the loin cloth, her tail waving enticingly above. Her sex-driven display makes you a little hot as well.")
                 self.doLust(Math.floor(Utils.percent() / 10 + self.lib / 4), 1)
             elif (attack > 85):
@@ -24351,8 +24393,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nIn her frustration, she claws at you.")
                 self.doHP(-self.eDmg(10))
 
-        elif self.enemyID == Enemy.DRUNKEN_EQUAN:
-            if (attack > 30 and attack <= 60 and self.eLust >= 20):
+        elif self.enemy.ID == Enemy.DRUNKEN_EQUAN:
+            if (attack > 30 and attack <= 60 and self.enemy.lust >= 20):
                 self.doMainText("\n\nThe drunken equan adjusts the giant bulge in his pants, grunting as a large gob of pre smears across his knee and blotches his pants. While not the most erotic display, whatever he's drinking makes the stuff smell extremely enticing...")
                 self.doLust(Math.floor(self.lib / 5), 1)
             elif (attack > 60 and attack <= 80):
@@ -24365,7 +24407,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nWith a hearty laugh, he bonks you on the head with his mug.")
                 self.doHP(-self.eDmg(9))
 
-        elif self.enemyID == Enemy.OCTOPUS_GIRL:
+        elif self.enemy.ID == Enemy.OCTOPUS_GIRL:
             if (attack > 30 and attack <= 55):
                 self.doMainText(f"\n\nWith a giggle that makes her breasts quiver, her hands move up to one of the starfish on her chest. She pries it away, her plump nipple popping out with a squirt of slightly pink milk. Giving you a quick wink, her other hand squeezes her breast, shooting a spurt of the stuff onto your body. The sweet-smelling liquid quickly absorbs into your {self.skinDesc()}, making you grow warm and aroused.")
                 self.doLust(Math.floor(20 + Utils.percent() / 10), 1)
@@ -24401,7 +24443,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nOne of her eight tentacles whips out and lashs you, leaving a welt. She still smiles, however, as she seems to find the act a little kinky.")
                 self.doHP(-self.eDmg(4))
 
-        elif self.enemyID == Enemy.LITTLE_BIG_BUNNY_MAN:
+        elif self.enemy.ID == Enemy.LITTLE_BIG_BUNNY_MAN:
             if (attack > 30 and attack <= 55):
                 self.doMainText(f"\n\nWith a chuckle, he bounces past you and gives you a quickswat to your {self.buttDesc()} tush with his large foot in a rather playful manner.")
                 self.doHP(-self.eDmg(15))
@@ -24414,7 +24456,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(" His feet spring him forward at you, his legs wrapping around your neck. Sitting on your shoulders, he presses his relatively giant balls into your face, making sure you get a nice whiff while he grinds his hips into your head.\n\nHappy with the quick massage, he bounds back, letting you breath again.")
                 self.doLust(Math.floor(Utils.percent() / 10 + self.lib / 5), 1)
                 self.doeLust(10)
-            elif (attack > 85 and self.eLust >= 70):
+            elif (attack > 85 and self.enemy.lust >= 70):
                 self.doMainText("\n\nHis pointy, carrot-like prick standing from his fuzzy sheath and dripping with pre, he decides to lunge at you.")
                 if (self.breastSize >= 100):
                     self.doMainText(f" He hops up to your {self.boobDesc()} chest and abruptly turns around. Bending forward, his fluffy tail brushes over your face as his rump slips by. His balls rest upon your head, his sheath pressing into your face. You can feel his slick prick slip into your cleavage, the pointy tip easily drilling a path between your breasts. Within seconds the rabbity fellow begins hopping up and down upon your chest with fervor, squeezing the sides of your tits to crush his cock. You can feel his pulse beat strongly through his sheath and very soon you feel his muscles tense again and again. He lets out a groan as your {self.clothesTop()} floods with hot spunk, spurting between your flesh with a naughty sound and leaving your front completly swamped in a warm, sticky mess.\n\nThe whole thing taking less than a minute, he hops off of you, slapping a strand of cum across your face before returning to the battle, his lust somewhat sated.")
@@ -24431,7 +24473,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nHe bounces closer and kicks you with one of his big feet, trying to soften you up a little.")
                 self.doHP(-self.eDmg(8))
 
-        elif self.enemyID == Enemy.LITTLE_BIG_BUNNY_GIRL:
+        elif self.enemy.ID == Enemy.LITTLE_BIG_BUNNY_GIRL:
             if (attack > 30 and attack <= 55):
                 self.doMainText("\n\nWith a giggle, she leans down and tickles you, amused by how cute you look. And as she stands back up, her relatively giant breasts thwap you upside the head.")
                 self.doHP(-self.eDmg(15))
@@ -24450,7 +24492,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.hair = 6
                 self.doLust(Math.floor(Utils.percent() / 10 + self.lib / 4), 1)
                 self.doeLust(10)
-            elif (attack > 85 and self.eLust >= 70):
+            elif (attack > 85 and self.enemy.lust >= 70):
                 self.doMainText("\n\nThe bunny-girl's vulva looks rather swollen and red, and her clitoris peeks through the clothes like a very small yet erect penis. Her arousal gets the best of her and she lunges at you.")
                 if (self.tallness > 80):
                     self.doMainText(f" Her legs spread wide and her clit rams into your side, grinding up your ribs. She does her best to clamp her thighs around your body.\n\nOne hand hugs your head while the other reaches down her backside and past her tail, nearly disappearing into her hungry cunny hole. She rapidly fists herself with loud schlicking sounds, her fem-juice squirting out across your {self.legDesc(2)} with each pump, while her hips pound again and against against your, powerfully dragging her relatively large clit up and down your {self.clothesTop()}.\n\nNot surprisingly, it doesn't take long before she quivers, one last splash messing your {self.clothesBottom()}, as she comes to a small orgasm.")
@@ -24463,7 +24505,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nShe bounces closer and kicks you with one of her big feet, trying to soften you up a little.")
                 self.doHP(-self.eDmg(8))
 
-        elif self.enemyID == Enemy.FIERCE_NAGA:
+        elif self.enemy.ID == Enemy.FIERCE_NAGA:
             if (attack > 25 and attack <= 45):
                 self.doMainText("\n\nShe lunges forward with open maw and bites you! Though her bite isn't exactly the strongest...")
                 self.doHP(-self.eDmg(10))
@@ -24508,7 +24550,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nLashing out with her claws, the naga slashes at you.")
                 self.doHP(-self.eDmg(8))
 
-        elif self.enemyID == Enemy.MINOTAUR:
+        elif self.enemy.ID == Enemy.MINOTAUR:
             if (attack <= 25):
                 self.doMainText("\n\nBANG, ZOOM! Straight to the moon! He slams into your chest with such force that he knocks the breath out of you, giving him time for another attack")
                 self.doHP(-self.eDmg(6))
@@ -24516,23 +24558,23 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.enemyAttack()
             elif (attack <= 45):
                 self.doMainText("\n\n\"Err...\" He stops for a moment, forgetting what he was going to do next... He's not a smart one, that's for sure.")
-            elif (attack <= 65 and self.eLust > 40):
+            elif (attack <= 65 and self.enemy.lust > 40):
                 self.doMainText("\n\nWith his cock growing erect out the side of his loin cloth, he pauses his assault for a moment to take care of himself... right in front of you. His large hand wraps around his thick cock and furiously begins to masturbate, the skin from his shaft dragging over the wide head again and again so quickly that it looks like it's winking. Then, with a grunt, a geyser of spunk sprays in your direction like a firehose.")
                 if (Utils.percent() > self.str):
                     self.doMainText(" It hits you with such force that you're blasted back against the wall and lose your breath for a moment, giving the Minotaur a chance for a followup attack while you catch your breath and wipe off some of the heady thick spooge.")
-                    self.doLust(Math.floor(self.eLust / 2), 1)
-                    self.eLust -= 20
+                    self.doLust(Math.floor(self.enemy.lust / 2), 1)
+                    self.enemy.lust -= 20
                     if (self.currentState == GameState.BATTLE):
                         self.enemyAttack()
                 else:
                     self.doMainText(" The spooge splatters all over you and the heady scent fills your nostrils...")
-                    self.doLust(Math.floor(self.eLust / 2), 1)
-                    self.eLust -= 20
+                    self.doLust(Math.floor(self.enemy.lust / 2), 1)
+                    self.enemy.lust -= 20
             else:
                 self.doMainText("\n\nPOW! He punches you right in the kisser.")
                 self.doHP(-self.eDmg(8))
 
-        elif self.enemyID == Enemy.FREAKY_LITTLE_GIRL:
+        elif self.enemy.ID == Enemy.FREAKY_LITTLE_GIRL:
             if (attack <= 23):
                 self.doMainText("\n\nHer schizophrenic bloodlust subsides for a moment as she looks down. \"Oh no! My shoe came undone!\"\n\nShe turns away from you, acting as though not seeing you means you're not there, and she proceeds to bend over at the hip so she can reach down to fix her shoe. Inevitably, her skirt rises, showing off the backside of her panties. Despite the big cute looking Minotaur face embroided on the back, the fabric sinks into her cheeks and outlines her tight little rump so perfectly. You can't help but gaze at it until she twirls back around to continue with the battle.")
                 self.doLust(Math.floor(Utils.percent() / 10 + self.lib / 4), 1)
@@ -24540,17 +24582,17 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f"\n\nShe coos... or snarls? Either way, you find her sinking her teeth into your {self.skinDesc()}, making you yelp a little in turn. And as soon as she lets go, she is suddenly much more timid, saying \"Aww, I'm sorry... I'll kiss your boo-boo and make it better...\". She proceeds to lick the wound she just cause, kissing it rather... sensually.")
                 self.doHP(-self.eDmg(4))
                 self.doLust(Math.floor(Utils.percent() / 10 + self.sen / 5), 1)
-            elif (attack > 46 and attack <= 61 and self.eHP < 85):
+            elif (attack > 46 and attack <= 61 and self.enemy.HP < 85):
                 self.doMainText("\n\n\"YOU THINK YOU CAN HURT ME?! ATTACK, MR. SNUGGLES!\"\n\nMr. Snuggles comes flying at you as she swing him around by his leg. The doll hits you with a surprising amount of force - extremely hard and heavy - and you lose your breath for a moment. You could swear the thing must be full of heavy metal and it's almost amazing a girl her size could even lift such a thing...")
                 self.doHP(-self.eDmg(2))
-            elif (attack > 61 and attack <= 76 and self.eLust > 50):
+            elif (attack > 61 and attack <= 76 and self.enemy.lust > 50):
                 self.doMainText("\n\n\"Mmm...\" The little girl actually seems like a little girl again as she holds her dolly close. Then a hand sinks down beneath her skirt. She lifts the frilly thing as she grabs at her crotch, exposing her panties and pulling them up through her slit, giving you a good view of her crevices. \"It's so tingly down there...\"")
                 self.doLust(Utils.percent() / 10 + self.lib / 4, 1)
             else:
                 self.doMainText("\n\nWith a growl, she jumps in and slashes at you with her claw-like fingernails. She lets out a gutteral giggle when she connects, licking her nails clean right away.")
                 self.doHP(-self.eDmg(3))
 
-        elif self.enemyID == Enemy.SUCCUBUS:
+        elif self.enemy.ID == Enemy.SUCCUBUS:
             if (attack <= 25):
                 if (self.breastSize < 8):
                     self.doMainText(f"\n\n\"Hmm... Your chest isn't quite up to par~\" Her wings flutter as she darts about and you feel her spaded tail graze across your {self.boobDesc()} chest. When she stops back where she started, one of her vials glows slightly and she smiles. You look down to see why and notice you chest has become more swollen, jiggling slightly!")
@@ -24628,7 +24670,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (attack <= 65):
                 self.doMainText("\n\nShe stops for a moment and one hand dips into her cleavage while the other slinks between her thighs. Her tail curls like a finger hithering you closer as she rocks her hips and jounces her bosom. \"This is so much fun, don't you think~?\" She tries to tempt you with a rather sensual tone.")
                 self.doLust(Math.floor(self.lib / 3), 1)
-            elif (attack <= 85 and self.eHP < 80):
+            elif (attack <= 85 and self.enemy.HP < 80):
                 self.doMainText("\n\nFeeling a bit winded from your attacks, she plucks a vial from her belt and brings it to her lips. As she drinks from it, she seems to be reinvigorated.")
                 self.doeHP(Math.floor(Utils.percent() / 5 + 10))
             else:
@@ -28945,7 +28987,7 @@ class PyminMain:
     def debugVariableDisplayText(self):
         if self.game.currentState == GameState.GAME_UNLOADED:
             return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Keyboard State|\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\nshiftHeld: {KeyState.shiftHeld}\noverrideShift: {KeyState.overrideShift}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Interface State Information|\nnewSaveLoadDialog_SortOrder: {self.newSaveLoadDialog_SortOrder}\n\n|Option Variables|\nsaveLocation: {self.saveLocation}\nsaveCompatMode: {self.saveCompatMode}\nfixedresolutionmode: {self.enforceSize}\ncustomFontColor: {self.customFontColor}\noTextColor: {self.oTextColor}\ncustomThemeColor: {self.customThemeColor}\noBackgroundColor: {self.oBackgroundColor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noriginalNewGameButtonSize: {self.originalNewGameButtonSize}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseExpandedSaveDialog: {self.useExpandedSaveDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.game.buttonChoice}\nsideFocus: {self.game.sideFocus}\n\n|Temporary Variables|\nbuy: {self.game.buy}\n\n|Choicelist|\nchoicePage: {self.game.choicePage}\nchoiceListArray = {self.game.choiceListArray}\nchoiceListResult = {self.game.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.game.bag.page}\nstashPage: {self.game.stash.page}\ntempBagPage: {self.game.tempBagPage}\n\n|Game State Information|\ncurrentState: {self.game.currentState}\n\n|RND|\nrndArray = {self.game.rndArray}\n\n|Other Variables|\ntextCheckArray = {self.game.textCheckArray}\nspecialAbilityArray = {self.game.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.game.currentText.get()}\nsideText = {self.game.sideText.get()}'
-        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Keyboard State|\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\nshiftHeld: {KeyState.shiftHeld}\noverrideShift: {KeyState.overrideShift}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Interface State Information|\nnewSaveLoadDialog_SortOrder: {self.newSaveLoadDialog_SortOrder}\n\n|Option Variables|\nsaveLocation: {self.saveLocation}\nsaveCompatMode: {self.saveCompatMode}\nfixedresolutionmode: {self.enforceSize}\ncustomFontColor: {self.customFontColor}\noTextColor: {self.oTextColor}\ncustomThemeColor: {self.customThemeColor}\noBackgroundColor: {self.oBackgroundColor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noriginalNewGameButtonSize: {self.originalNewGameButtonSize}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseExpandedSaveDialog: {self.useExpandedSaveDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.game.buttonChoice}\nsideFocus: {self.game.sideFocus}\n\n|Temporary Variables|\nbuy: {self.game.buy}\n\n|Choicelist|\nchoicePage: {self.game.choicePage}\nchoiceListArray = {self.game.choiceListArray}\nchoiceListResult = {self.game.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.game.bag.page}\nbagArray = {self.game.bag.items}\nbagStackArray = {self.game.bag.stack}\nstashPage: {self.game.stash.page}\nstashArray = {self.game.stash.items}\nstashStackArray = {self.game.stash.stack}\nmoveItemID: {self.game.moveItemID}\nmoveItemStack: {self.game.moveItemStack}\nmts: {self.game.mts}\nmtb: {self.game.mtb}\ntempBagPage: {self.game.tempBagPage}\nitemGainArray = {self.game.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.game.currentState}\ninBag: {self.game.inBag}\ninStash: {self.game.inStash}\ninShop: {self.game.inShop}\ncurrentZone: {self.game.currentZone}\nday: {self.game.day}\nhour: {self.game.hour}\nhrs: {self.game.hrs}\ninDungeon: {self.game.inDungeon}\ncurrentDungeon: {self.game.currentDungeon}\nskipExhaustion: {self.game.skipExhaustion}\ncurrentDayCare: {self.game.currentDayCare}\ngoToInDoProcess: {self.game.goToInDoProcess}\n\n|RND|\nrndArray = {self.game.rndArray}\n\n|Player Stats|\nstr: {self.game.str}\nment: {self.game.ment}\nlib: {self.game.lib}\nsen: {self.game.sen}\nHP: {self.game.HP}\nlust: {self.game.lust}\ncoin: {self.game.coin}\nstrength: {self.game.strength}\nmentality: {self.game.mentality}\nlibido: {self.game.libido}\nsensitivity: {self.game.sensitivity}\nhunger: {self.game.hunger}\nSexP: {self.game.SexP}\nlevelUP: {self.game.levelUP}\nlevel: {self.game.level}\n\n|Player Stat Multipliers|\nstrMod: {self.game.strMod}\nmentMod: {self.game.mentMod}\nlibMod: {self.game.libMod}\nsenMod: {self.game.senMod}\nHPMod: {self.game.HPMod}\nSexPMod: {self.game.SexPMod}\ncoinMod: {self.game.coinMod}\n\n|Other Modifiers|\nrunMod: {self.game.runMod}\nrapeMod: {self.game.rapeMod}\ncarryMod: {self.game.carryMod}\npregChanceMod: {self.game.pregChanceMod}\nextraPregChance: {self.game.extraPregChance}\npregTimeMod: {self.game.pregTimeMod}\nenticeMod: {self.game.enticeMod}\nmilkHPMod: {self.game.milkMod}\nchangeMod: {self.game.changeMod}\nminLust: {self.game.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.game.humanAffinity}\nhorseAffinity: {self.game.horseAffinity}\nwolfAffinity: {self.game.wolfAffinity}\ncatAffinity: {self.game.catAffinity}\ncowAffinity: {self.game.cowAffinity}\nlizardAffinity: {self.game.lizardAffinity}\nrabbitAffinity: {self.game.rabbitAffinity}\nmouseAffinity: {self.game.mouseAffinity}\nbirdAffinity: {self.game.birdAffinity}\npigAffinity: {self.game.pigAffinity}\nskunkAffinity: {self.game.skunkAffinity}\nbugAffinity: {self.game.bugAffinity}\nhumanTaurAffinity: {self.game.humanTaurAffinity}\ncowTaurAffinity: {self.game.cowTaurAffinity}\ntwoBoobAffinity: {self.game.twoBoobAffinity}\nfourBoobAffinity: {self.game.fourBoobAffinity}\nsixBoobAffinity: {self.game.sixBoobAffinity}\neightBoobAffinity: {self.game.eightBoobAffinity}\ntenBoobAffinity: {self.game.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.game.human}\nhorse: {self.game.horse}\nwolf: {self.game.wolf}\ncat: {self.game.cat}\ncow: {self.game.cow}\nlizard: {self.game.lizard}\nrabbit: {self.game.rabbit}\nmouse: {self.game.mouse}\nbird: {self.game.bird}\npig: {self.game.pig}\nskunk: {self.game.skunk}\nbug: {self.game.bug}\n\n|Player Body Features|\ngender: {self.game.gender}\nrace: {self.game.race}\nbody: {self.game.body}\ndominant: {self.game.dominant}\nhips: {self.game.hips}\nbutt: {self.game.butt}\ntallness: {self.game.tallness}\nskinType: {self.game.skinType}\ntail: {self.game.tail}\nears: {self.game.ears}\nhair: {self.game.hair}\nhairLength: {self.game.hairLength}\nhairColor: {self.game.hairColor}\nlegType: {self.game.legType}\nwings: {self.game.wings}\nfaceType: {self.game.faceType}\nskinColor: {self.game.skinColor}\nnipType: {self.game.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.game.cumMod}\ncockSizeMod: {self.game.cockSizeMod}\nvagSizeMod: {self.game.vagSizeMod}\nvagElastic: {self.game.vagElastic}\nmilkMod: {self.game.milkMod}\nvagBellyMod: {self.game.vagBellyMod}\nmilkCap: {self.game.milkCap}\nhipMod: {self.game.hipMod}\nbuttMod: {self.game.buttMod}\nbellyMod: {self.game.bellyMod}\ncockMoistMod: {self.game.cockMoistMod}\nvagMoistMod: {self.game.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.game.exhaustion}\nexhaustionPenalty: {self.game.exhaustionPenalty}\nmilkEngorgement: {self.game.milkEngorgement}\nmilkEngorgementLevel: {self.game.milkEngorgementLevel}\nudderEngorgement: {self.game.udderEngorgement}\nudderEngorgementLevel: {self.game.udderEngorgementLevel}\nheat: {self.game.heat}\nheatTime: {self.game.heatTime}\nheatMaxTime: {self.game.heatMaxTime}\nlactation: {self.game.lactation}\nudderLactation: {self.game.udderLactation}\nlustPenalty: {self.game.lustPenalty}\nnipplePlay: {self.game.nipplePlay}\nudderPlay: {self.game.udderPlay}\nblueBalls: {self.game.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.game.cockTotal}\nhumanCocks: {self.game.humanCocks}\nhorseCocks: {self.game.horseCocks}\nwolfCocks: {self.game.wolfCocks}\ncatCocks: {self.game.catCocks}\nlizardCocks: {self.game.lizardCocks}\nrabbitCocks: {self.game.rabbitCocks}\nbugCocks: {self.game.bugCocks}\ncockSize: {self.game.cockSize}\ncockMoist: {self.game.cockMoist}\nballs: {self.game.balls}\nballSize: {self.game.ballSize}\nshowBalls: {self.game.showBalls}\nknot: {self.game.knot}\nneuterizerHideBalls: {self.game.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.game.breastSize}\nboobTotal: {self.game.boobTotal}\nnippleSize: {self.game.nippleSize}\nclitSize: {self.game.clitSize}\nvagTotal: {self.game.vagTotal}\nvagSize: {self.game.vagSize}\nvagMoist: {self.game.vagMoist}\nvulvaSize: {self.game.vulvaSize}\n\n|Player Udders|\nudders: {self.game.udders}\nudderSize: {self.game.udderSize}\nteatSize: {self.game.teatSize}\n\n|Player Pregnancy|\npregArray = {self.game.pregArray}\npregStatus: {self.game.pregStatus}\npregnancyTime: {self.game.pregnancyTime}\npregRate: {self.game.pregRate}\neggLaying: {self.game.eggLaying}\neggMaxTime: {self.game.eggMaxTime}\neggTime: {self.game.eggTime}\neggRate: {self.game.eggRate}\neggType: {self.game.eggType}\n\n|Player Equiped Items|\nattireTop: {self.game.attireTop}\nattireBot: {self.game.attireBot}\nweapon: {self.game.weapon}\nsnuggleBall: {self.game.snuggleBall}\nsuppHarness: {self.game.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.game.masoPot}\nsMasoPot: {self.game.sMasoPot}\nbabyFree: {self.game.babyFree}\ncharmTime: {self.game.charmTime}\npheromone: {self.game.pheromone}\neggceleratorTime: {self.game.eggceleratorTime}\neggceleratorDose: {self.game.eggceleratorDose}\nbodyOil: {self.game.bodyOil}\nfertileGel: {self.game.fertileGel}\nmilkSuppressant: {self.game.milkSuppressant}\nmilkSuppressantLact: {self.game.milkSuppressantLact}\nmilkSuppressantUdder: {self.game.milkSuppressantUdder}\nplumpQuats: {self.game.plumpQuats}\ncockSnakePreg: {self.game.cockSnakePreg}\nmilkCPoisonNip: {self.game.milkCPoisonNip}\nmilkCPoisonUdd: {self.game.milkCPoisonUdd}\ncockSnakeVenom: {self.game.cockSnakeVenom}\nteatPump: {self.game.teatPump}\nnipPump: {self.game.nipPump}\ncockPump: {self.game.cockPump}\nclitPump: {self.game.clitPump}\nvulvaPump: {self.game.vulvaPump}\nfertilityStatueCurse: {self.game.fertilityStatueCurse}\ndairyFarmBrand: {self.game.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.game.babyFactLevel}\nbodyBuildLevel: {self.game.bodyBuildLevel}\nhyperHappyLevel: {self.game.hyperHappyLevel}\nalchemistLevel: {self.game.alchemistLevel}\nmilkMaidLevel: {self.game.milkMaidLevel}\nshapeshiftyLevel: {self.game.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.game.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.game.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.game.lockTail}\nlockFace: {self.game.lockFace}\nlockSkin: {self.game.lockSkin}\nlockBreasts: {self.game.lockBreasts}\nlockEars: {self.game.lockEars}\nlockLegs: {self.game.lockLegs}\nlockNipples: {self.game.lockNipples}\nlockCock: {self.game.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.game.knowLustDraft}\nknowRejuvPot: {self.game.knowRejuvPot}\nknowExpPreg: {self.game.knowExpPreg}\nknowBallSwell: {self.game.knowBallSwell}\nknowMaleEnhance: {self.game.knowMaleEnhance}\nknowSLustDraft: {self.game.knowSLustDraft}\nknowSRejuvPot: {self.game.knowSRejuvPot}\nknowSExpPreg: {self.game.knowSExpPreg}\nknowSBallSwell: {self.game.knowSBallSwell}\nknowBabyFree: {self.game.knowBabyFree}\nknowPotPot: {self.game.knowPotPot}\nknowGenSwap: {self.game.knowGenSwap}\nknowMasoPot: {self.game.knowMasoPot}\nknowMilkSuppress: {self.game.knowMilkSuppress}\nknowSGenSwap: {self.game.knowSGenSwap}\nknowSMasoPot: {self.game.knowSMasoPot}\nknowSBabyFree: {self.game.knowSBabyFree}\nknowSPotPot: {self.game.knowSPotPot}\nknowPussJuice: {self.game.knowPussJuice}\nknowPheromone: {self.game.knowPheromone}\nknowBazoomba: {self.game.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.game.firstExplore}\nfoundSoftlik: {self.game.foundSoftlik}\nfoundFirmshaft: {self.game.foundFirmshaft}\nfoundTieden: {self.game.foundTieden}\nfoundSizCalit: {self.game.foundSizCalit}\nfoundOviasis: {self.game.foundOviasis}\nfoundValley: {self.game.foundValley}\nfoundSanctuary: {self.game.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.game.defeatedMinotaur}\ndefeatedFreakyGirl: {self.game.defeatedFreakyGirl}\ndefeatedSuccubus: {self.game.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.game.humanChildren}\nequanChildren: {self.game.equanChildren}\nlupanChildren: {self.game.lupanChildren}\nfelinChildren: {self.game.felinChildren}\ncowChildren: {self.game.cowChildren}\nlizanEggs: {self.game.lizanEggs}\nlizanChildren: {self.game.lizanChildren}\nbunnionChildren: {self.game.bunnionChildren}\nwolfPupChildren: {self.game.wolfPupChildren}\nmiceChildren: {self.game.miceChildren}\nbirdEggs: {self.game.birdEggs}\nbirdChildren: {self.game.birdChildren}\npigChildren: {self.game.pigChildren}\ncalfChildren: {self.game.calfChildren}\nbugEggs: {self.game.bugEggs}\nbugChildren: {self.game.bugChildren}\nskunkChildren: {self.game.skunkChildren}\nminotaurChildren: {self.game.minotaurChildren}\nfreakyGirlChildren: {self.game.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.game.enemyID}\neHP: {self.game.eHP}\neMaxHP: {self.game.eMaxHP}\neStr: {self.game.eStr}\neMenta: {self.game.eMenta}\neSen: {self.game.eSen}\neLib: {self.game.eLib}\neLust: {self.game.eLust}\neGen: {self.game.eGen}\nePref: {self.game.ePref}\neCoin: {self.game.eCoin}\neSexP: {self.game.eSexP}\neItem: {self.game.eItem}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.game.lilaRep}\nlilaVulva: {self.game.lilaVulva}\nlilaMilk: {self.game.lilaMilk}\nlilaPreg: {self.game.lilaPreg}\nlilaUB: {self.game.lilaUB}\nlilaWetness: {self.game.lilaWetness}\nlilaWetStatus: {self.game.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.game.malonRep}\nmalonPreg: {self.game.malonPreg}\nmalonChildren: {self.game.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.game.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.game.jamieRep}\njamieSize: {self.game.jamieSize}\njamieChildren: {self.game.jamieChildren}\njamieRep1: {self.game.jamieRep1}\njamieRep2: {self.game.jamieRep2}\njamieRep3: {self.game.jamieRep3}\njamieButt: {self.game.jamieButt}\njamieBreasts: {self.game.jamieBreasts}\njamieHair: {self.game.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.game.silRep}\nsilPreg: {self.game.silPreg}\nsilRate: {self.game.silRate}\nsilLay: {self.game.silLay}\nsilTied: {self.game.silTied}\nsilGrowthTime: {self.game.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.game.textCheckArray}\nspecialAbilityArray = {self.game.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.game.currentText.get()}\nsideText = {self.game.sideText.get()}'
+        return f'|Game Info|\nGame Version: {NIMIN_VERSION}\nPort Version: {__version__}\nGame Directory: {GAME_DIR}\nTheme Directory: {THEME_DIR}\n\n|Window Open|\ndebugVarOpen: {self.debugvarwindow.isOpen}\ndebugGIWinOpen: {self.debuggiveitemwindow.isOpen}\ndebugAWinOpen: {self.debugaffwindow.isOpen}\noptionsWinOpen: {self.options.isOpen}\nsfcOpen: {self.saveconverter.isOpen}\nseOpen: {self.saveeditor.isOpen}\nwikiOpen: {self.wiki.isOpen}\n\n|Keyboard State|\naltHeld: {KeyState.altHeld}\nctrlHeld: {KeyState.ctrlHeld}\nshiftHeld: {KeyState.shiftHeld}\noverrideShift: {KeyState.overrideShift}\nhotkeysDisabled: {KeyState.hotkeysDisabled}\ndisabledKeys: {KeyState.disabledKeys}\n\n|Interface State Information|\nnewSaveLoadDialog_SortOrder: {self.newSaveLoadDialog_SortOrder}\n\n|Option Variables|\nsaveLocation: {self.saveLocation}\nsaveCompatMode: {self.saveCompatMode}\nfixedresolutionmode: {self.enforceSize}\ncustomFontColor: {self.customFontColor}\noTextColor: {self.oTextColor}\ncustomThemeColor: {self.customThemeColor}\noBackgroundColor: {self.oBackgroundColor}\n\n||Interface Tab||\nscrolledTextBorders: {self.scrolledTextBorders}\noriginalNewGameButtonSize: {self.originalNewGameButtonSize}\nstaticdoLevelUPButtons: {self.staticdoLevelUPButtons}\nuseNiminTheme: {self.useNiminTheme}\nuseExpandedSaveDialog: {self.useExpandedSaveDialog}\nuseNewStash: {self.useNewStash}\noriginalFrame1Message: {self.originalFrame1Message}\nhelpToWiki: {self.helpToWiki}\n\n||Grammar Tab||\nrespectShowBalls: {self.respectShowBalls}\nfemmeboyToFemboy: {self.femmeboyToFemboy}\nshemaleToFuta: {self.shemaleToFuta}\nngrammar: {self.ngrammar}\nfemmieMaleReplacement: {self.femmieMaleReplacement}\nfemboyishToGirly: {self.femboyishToGirly}\nsnuggleBallTweak: {self.snuggleBallTweak}\ngrammarFixes: {self.grammarFixes}\n\n||Gametweaks Tab||\nstatusTweaks: {self.statusTweaks}\nsuccubusLeavesOne: {self.succubusLeavesOne}\nuseIsBottomOpen: {self.useIsBottomOpen}\nlizanDontShowBalls: {self.lizanDontShowBalls}\nhermGetsBoth: {self.hermGetsBoth}\ninternalBallsEffectBelly: {self.internalBallsEffectBelly}\ndirectPathToSanctuary: {self.directPathToSanctuary}\ncorrectBeastRaceFeet: {self.correctBeastRaceFeet}\ngameTweaksMisc: {self.gameTweaksMisc}\n\n||Debugtweaks Tab||\ndebugChooseSenario = {self.debugChooseSenario}\ndebugNoDamage = {self.debugNoDamage}\n\n|Interface Variables|\ntheme: {self.backgroundColor}\nfontSize: {self.fontSize}\nfontBold: {self.fontBold}\nfontColor: {self.textColor}\nshowSide: {self.showSide}\nbuttonChoice: {self.game.buttonChoice}\nsideFocus: {self.game.sideFocus}\n\n|Temporary Variables|\nbuy: {self.game.buy}\n\n|Choicelist|\nchoicePage: {self.game.choicePage}\nchoiceListArray = {self.game.choiceListArray}\nchoiceListResult = {self.game.choiceListResult}\n\n|Bag/Stash|\nbagPage: {self.game.bag.page}\nbagArray = {self.game.bag.items}\nbagStackArray = {self.game.bag.stack}\nstashPage: {self.game.stash.page}\nstashArray = {self.game.stash.items}\nstashStackArray = {self.game.stash.stack}\nmoveItemID: {self.game.moveItemID}\nmoveItemStack: {self.game.moveItemStack}\nmts: {self.game.mts}\nmtb: {self.game.mtb}\ntempBagPage: {self.game.tempBagPage}\nitemGainArray = {self.game.itemGainArray}\n\n|Game State Information|\ncurrentState: {self.game.currentState}\ninBag: {self.game.inBag}\ninStash: {self.game.inStash}\ninShop: {self.game.inShop}\ncurrentZone: {self.game.currentZone}\nday: {self.game.day}\nhour: {self.game.hour}\nhrs: {self.game.hrs}\ninDungeon: {self.game.inDungeon}\ncurrentDungeon: {self.game.currentDungeon}\nskipExhaustion: {self.game.skipExhaustion}\ncurrentDayCare: {self.game.currentDayCare}\ngoToInDoProcess: {self.game.goToInDoProcess}\n\n|RND|\nrndArray = {self.game.rndArray}\n\n|Player Stats|\nstr: {self.game.str}\nment: {self.game.ment}\nlib: {self.game.lib}\nsen: {self.game.sen}\nHP: {self.game.HP}\nlust: {self.game.lust}\ncoin: {self.game.coin}\nstrength: {self.game.strength}\nmentality: {self.game.mentality}\nlibido: {self.game.libido}\nsensitivity: {self.game.sensitivity}\nhunger: {self.game.hunger}\nSexP: {self.game.SexP}\nlevelUP: {self.game.levelUP}\nlevel: {self.game.level}\n\n|Player Stat Multipliers|\nstrMod: {self.game.strMod}\nmentMod: {self.game.mentMod}\nlibMod: {self.game.libMod}\nsenMod: {self.game.senMod}\nHPMod: {self.game.HPMod}\nSexPMod: {self.game.SexPMod}\ncoinMod: {self.game.coinMod}\n\n|Other Modifiers|\nrunMod: {self.game.runMod}\nrapeMod: {self.game.rapeMod}\ncarryMod: {self.game.carryMod}\npregChanceMod: {self.game.pregChanceMod}\nextraPregChance: {self.game.extraPregChance}\npregTimeMod: {self.game.pregTimeMod}\nenticeMod: {self.game.enticeMod}\nmilkHPMod: {self.game.milkMod}\nchangeMod: {self.game.changeMod}\nminLust: {self.game.minLust}\n\n|Player Affinities|\nhumanAffinity: {self.game.humanAffinity}\nhorseAffinity: {self.game.horseAffinity}\nwolfAffinity: {self.game.wolfAffinity}\ncatAffinity: {self.game.catAffinity}\ncowAffinity: {self.game.cowAffinity}\nlizardAffinity: {self.game.lizardAffinity}\nrabbitAffinity: {self.game.rabbitAffinity}\nmouseAffinity: {self.game.mouseAffinity}\nbirdAffinity: {self.game.birdAffinity}\npigAffinity: {self.game.pigAffinity}\nskunkAffinity: {self.game.skunkAffinity}\nbugAffinity: {self.game.bugAffinity}\nhumanTaurAffinity: {self.game.humanTaurAffinity}\ncowTaurAffinity: {self.game.cowTaurAffinity}\ntwoBoobAffinity: {self.game.twoBoobAffinity}\nfourBoobAffinity: {self.game.fourBoobAffinity}\nsixBoobAffinity: {self.game.sixBoobAffinity}\neightBoobAffinity: {self.game.eightBoobAffinity}\ntenBoobAffinity: {self.game.tenBoobAffinity}\n\n|Player Affinities (Add)|\nhuman: {self.game.human}\nhorse: {self.game.horse}\nwolf: {self.game.wolf}\ncat: {self.game.cat}\ncow: {self.game.cow}\nlizard: {self.game.lizard}\nrabbit: {self.game.rabbit}\nmouse: {self.game.mouse}\nbird: {self.game.bird}\npig: {self.game.pig}\nskunk: {self.game.skunk}\nbug: {self.game.bug}\n\n|Player Body Features|\ngender: {self.game.gender}\nrace: {self.game.race}\nbody: {self.game.body}\ndominant: {self.game.dominant}\nhips: {self.game.hips}\nbutt: {self.game.butt}\ntallness: {self.game.tallness}\nskinType: {self.game.skinType}\ntail: {self.game.tail}\nears: {self.game.ears}\nhair: {self.game.hair}\nhairLength: {self.game.hairLength}\nhairColor: {self.game.hairColor}\nlegType: {self.game.legType}\nwings: {self.game.wings}\nfaceType: {self.game.faceType}\nskinColor: {self.game.skinColor}\nnipType: {self.game.nipType}\n\n|Player Body Modifiers|\ncumMod: {self.game.cumMod}\ncockSizeMod: {self.game.cockSizeMod}\nvagSizeMod: {self.game.vagSizeMod}\nvagElastic: {self.game.vagElastic}\nmilkMod: {self.game.milkMod}\nvagBellyMod: {self.game.vagBellyMod}\nmilkCap: {self.game.milkCap}\nhipMod: {self.game.hipMod}\nbuttMod: {self.game.buttMod}\nbellyMod: {self.game.bellyMod}\ncockMoistMod: {self.game.cockMoistMod}\nvagMoistMod: {self.game.vagMoistMod}\n\n|Player Body Statuses|\nexhaustion: {self.game.exhaustion}\nexhaustionPenalty: {self.game.exhaustionPenalty}\nmilkEngorgement: {self.game.milkEngorgement}\nmilkEngorgementLevel: {self.game.milkEngorgementLevel}\nudderEngorgement: {self.game.udderEngorgement}\nudderEngorgementLevel: {self.game.udderEngorgementLevel}\nheat: {self.game.heat}\nheatTime: {self.game.heatTime}\nheatMaxTime: {self.game.heatMaxTime}\nlactation: {self.game.lactation}\nudderLactation: {self.game.udderLactation}\nlustPenalty: {self.game.lustPenalty}\nnipplePlay: {self.game.nipplePlay}\nudderPlay: {self.game.udderPlay}\nblueBalls: {self.game.blueBalls}\n\n|Player \"Male\" Parts|\ncockTotal: {self.game.cockTotal}\nhumanCocks: {self.game.humanCocks}\nhorseCocks: {self.game.horseCocks}\nwolfCocks: {self.game.wolfCocks}\ncatCocks: {self.game.catCocks}\nlizardCocks: {self.game.lizardCocks}\nrabbitCocks: {self.game.rabbitCocks}\nbugCocks: {self.game.bugCocks}\ncockSize: {self.game.cockSize}\ncockMoist: {self.game.cockMoist}\nballs: {self.game.balls}\nballSize: {self.game.ballSize}\nshowBalls: {self.game.showBalls}\nknot: {self.game.knot}\nneuterizerHideBalls: {self.game.neuterizerHideBalls}\n\n|Player \"Female\" Parts|\nbreastSize: {self.game.breastSize}\nboobTotal: {self.game.boobTotal}\nnippleSize: {self.game.nippleSize}\nclitSize: {self.game.clitSize}\nvagTotal: {self.game.vagTotal}\nvagSize: {self.game.vagSize}\nvagMoist: {self.game.vagMoist}\nvulvaSize: {self.game.vulvaSize}\n\n|Player Udders|\nudders: {self.game.udders}\nudderSize: {self.game.udderSize}\nteatSize: {self.game.teatSize}\n\n|Player Pregnancy|\npregArray = {self.game.pregArray}\npregStatus: {self.game.pregStatus}\npregnancyTime: {self.game.pregnancyTime}\npregRate: {self.game.pregRate}\neggLaying: {self.game.eggLaying}\neggMaxTime: {self.game.eggMaxTime}\neggTime: {self.game.eggTime}\neggRate: {self.game.eggRate}\neggType: {self.game.eggType}\n\n|Player Equiped Items|\nattireTop: {self.game.attireTop}\nattireBot: {self.game.attireBot}\nweapon: {self.game.weapon}\nsnuggleBall: {self.game.snuggleBall}\nsuppHarness: {self.game.suppHarness}\n\n|Player Active Effects|\nmasoPot: {self.game.masoPot}\nsMasoPot: {self.game.sMasoPot}\nbabyFree: {self.game.babyFree}\ncharmTime: {self.game.charmTime}\npheromone: {self.game.pheromone}\neggceleratorTime: {self.game.eggceleratorTime}\neggceleratorDose: {self.game.eggceleratorDose}\nbodyOil: {self.game.bodyOil}\nfertileGel: {self.game.fertileGel}\nmilkSuppressant: {self.game.milkSuppressant}\nmilkSuppressantLact: {self.game.milkSuppressantLact}\nmilkSuppressantUdder: {self.game.milkSuppressantUdder}\nplumpQuats: {self.game.plumpQuats}\ncockSnakePreg: {self.game.cockSnakePreg}\nmilkCPoisonNip: {self.game.milkCPoisonNip}\nmilkCPoisonUdd: {self.game.milkCPoisonUdd}\ncockSnakeVenom: {self.game.cockSnakeVenom}\nteatPump: {self.game.teatPump}\nnipPump: {self.game.nipPump}\ncockPump: {self.game.cockPump}\nclitPump: {self.game.clitPump}\nvulvaPump: {self.game.vulvaPump}\nfertilityStatueCurse: {self.game.fertilityStatueCurse}\ndairyFarmBrand: {self.game.dairyFarmBrand}\n\n|Player Levels|\nbabyFactLevel: {self.game.babyFactLevel}\nbodyBuildLevel: {self.game.bodyBuildLevel}\nhyperHappyLevel: {self.game.hyperHappyLevel}\nalchemistLevel: {self.game.alchemistLevel}\nmilkMaidLevel: {self.game.milkMaidLevel}\nshapeshiftyLevel: {self.game.shapeshiftyLevel}\nshapeshiftyFirst: \"{self.game.shapeshiftyFirst}\"\nshapeshiftySecond: \"{self.game.shapeshiftySecond}\"\n\n|Player Frozen Features|\nlockTail: {self.game.lockTail}\nlockFace: {self.game.lockFace}\nlockSkin: {self.game.lockSkin}\nlockBreasts: {self.game.lockBreasts}\nlockEars: {self.game.lockEars}\nlockLegs: {self.game.lockLegs}\nlockNipples: {self.game.lockNipples}\nlockCock: {self.game.lockCock}\n\n|Player Learned Alchemy Recipies|\nknowLustDraft: {self.game.knowLustDraft}\nknowRejuvPot: {self.game.knowRejuvPot}\nknowExpPreg: {self.game.knowExpPreg}\nknowBallSwell: {self.game.knowBallSwell}\nknowMaleEnhance: {self.game.knowMaleEnhance}\nknowSLustDraft: {self.game.knowSLustDraft}\nknowSRejuvPot: {self.game.knowSRejuvPot}\nknowSExpPreg: {self.game.knowSExpPreg}\nknowSBallSwell: {self.game.knowSBallSwell}\nknowBabyFree: {self.game.knowBabyFree}\nknowPotPot: {self.game.knowPotPot}\nknowGenSwap: {self.game.knowGenSwap}\nknowMasoPot: {self.game.knowMasoPot}\nknowMilkSuppress: {self.game.knowMilkSuppress}\nknowSGenSwap: {self.game.knowSGenSwap}\nknowSMasoPot: {self.game.knowSMasoPot}\nknowSBabyFree: {self.game.knowSBabyFree}\nknowSPotPot: {self.game.knowSPotPot}\nknowPussJuice: {self.game.knowPussJuice}\nknowPheromone: {self.game.knowPheromone}\nknowBazoomba: {self.game.knowBazoomba}\n\n|Player Explored Locations|\nfirstExplore: {self.game.firstExplore}\nfoundSoftlik: {self.game.foundSoftlik}\nfoundFirmshaft: {self.game.foundFirmshaft}\nfoundTieden: {self.game.foundTieden}\nfoundSizCalit: {self.game.foundSizCalit}\nfoundOviasis: {self.game.foundOviasis}\nfoundValley: {self.game.foundValley}\nfoundSanctuary: {self.game.foundSanctuary}\n\n|Bosses|\ndefeatedMinotaur: {self.game.defeatedMinotaur}\ndefeatedFreakyGirl: {self.game.defeatedFreakyGirl}\ndefeatedSuccubus: {self.game.defeatedSuccubus}\n\n|Player Children|\nhumanChildren: {self.game.humanChildren}\nequanChildren: {self.game.equanChildren}\nlupanChildren: {self.game.lupanChildren}\nfelinChildren: {self.game.felinChildren}\ncowChildren: {self.game.cowChildren}\nlizanEggs: {self.game.lizanEggs}\nlizanChildren: {self.game.lizanChildren}\nbunnionChildren: {self.game.bunnionChildren}\nwolfPupChildren: {self.game.wolfPupChildren}\nmiceChildren: {self.game.miceChildren}\nbirdEggs: {self.game.birdEggs}\nbirdChildren: {self.game.birdChildren}\npigChildren: {self.game.pigChildren}\ncalfChildren: {self.game.calfChildren}\nbugEggs: {self.game.bugEggs}\nbugChildren: {self.game.bugChildren}\nskunkChildren: {self.game.skunkChildren}\nminotaurChildren: {self.game.minotaurChildren}\nfreakyGirlChildren: {self.game.freakyGirlChildren}\n\n|Enemy Stats|\nenemyID: {self.game.enemy.ID}\neHP: {self.game.enemy.HP}\neMaxHP: {self.game.enemy.maxHP}\neStr: {self.game.enemy.strength}\neMenta: {self.game.enemy.mentality}\neSen: {self.game.enemy.sensitivity}\neLib: {self.game.enemy.libido}\neLust: {self.game.enemy.lust}\neGen: {self.game.enemy.gender}\nePref: {self.game.enemy.preference}\neCoin: {self.game.enemy.coin}\neSexP: {self.game.enemy.SexP}\neItem: {self.game.enemy.item}\n\n|Tieden NPC Encounter State (Lila)|\nlilaRep: {self.game.lilaRep}\nlilaVulva: {self.game.lilaVulva}\nlilaMilk: {self.game.lilaMilk}\nlilaPreg: {self.game.lilaPreg}\nlilaUB: {self.game.lilaUB}\nlilaWetness: {self.game.lilaWetness}\nlilaWetStatus: {self.game.lilaWetStatus}\n\n|Dairy Farm NPC Encounter State (Malon)|\nmalonRep: {self.game.malonRep}\nmalonPreg: {self.game.malonPreg}\nmalonChildren: {self.game.malonChildren}\n\n|Siz\'Calit NPC Encounter State (Mistress)|\nmistressRep: {self.game.mistressRep}\n\n|Firmshaft NPC Encounter State (Jamie)|\njamieRep: {self.game.jamieRep}\njamieSize: {self.game.jamieSize}\njamieChildren: {self.game.jamieChildren}\njamieRep1: {self.game.jamieRep1}\njamieRep2: {self.game.jamieRep2}\njamieRep3: {self.game.jamieRep3}\njamieButt: {self.game.jamieButt}\njamieBreasts: {self.game.jamieBreasts}\njamieHair: {self.game.jamieHair}\n\n|Oviasis NPC Encounter State (Silandrias)|\nsilRep: {self.game.silRep}\nsilPreg: {self.game.silPreg}\nsilRate: {self.game.silRate}\nsilLay: {self.game.silLay}\nsilTied: {self.game.silTied}\nsilGrowthTime: {self.game.silGrowthTime}\n\n|Other Variables|\ntextCheckArray = {self.game.textCheckArray}\nspecialAbilityArray = {self.game.specialAbilityArray}\n\n|Text Variables|\ncurrentText = {self.game.currentText.get()}\nsideText = {self.game.sideText.get()}'
 
     def nextBackgroundColor(self):  # toggleTheme
         if self.backgroundColor == '#FFFFFF':
