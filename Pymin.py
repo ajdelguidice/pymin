@@ -11100,11 +11100,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd()
         elif ID == 247:
-            if (not self.suppHarness):
-                self.outputMainText("You wrap the harness around your back with the latches in front of you so you can see what you're doing. You gauge how tight they should be for your chest, crotch, and other various anatomy to fit before twisting it around. Then you stuff your chest into the appropriate sling, and continue on down until the multiple slings hold up your various weighty bits snugly, giving you a good deal more support. You can't exactly carry the world on your shoulders, but you can at least carry a bit more of yourself now.", True)
-                self.carryMod += 50
-                self.suppHarness = True
-            else:
+            if (self.suppHarness):
                 self.carryMod -= 50
                 if (self.doWeight()):
                     self.outputMainText("You reach around behind back and fiddle with the latches of the harness, forcing them open. Your anatomy immediately falls out of the slings, taken you with it as you crash to the ground, completely anchored by your own body. You at least manage to finish unequipping the harness and put it in your bag, but now you've got some issues...", True)
@@ -11112,6 +11108,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     self.outputMainText("You reach around behind back and fiddle with the latches of the harness, forcing them open. Your bits bounce out as they're set free, making you jerk as the weight falls back upon your body. You then stuff the harness back into your bag, no longer equipped, and prepare yourself to continue on with the unsupported weight.")
                 self.suppHarness = False
+            else:
+                self.outputMainText("You wrap the harness around your back with the latches in front of you so you can see what you're doing. You gauge how tight they should be for your chest, crotch, and other various anatomy to fit before twisting it around. Then you stuff your chest into the appropriate sling, and continue on down until the multiple slings hold up your various weighty bits snugly, giving you a good deal more support. You can't exactly carry the world on your shoulders, but you can at least carry a bit more of yourself now.", True)
+                self.carryMod += 50
+                self.suppHarness = True
             self.doEnd()
         elif ID == 248:
             self.doMainText("You gulp down the potion yourself, rather than giving it to some animal that it was intended for.", True)
@@ -13376,14 +13376,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f"You wander around the city of Softlik, putting yourself on display, hoping to earn some coin with the only asset you have to peddle. The crowds seem to largely ignore you. Some of the more prudish citizen even actively avoid you. As time passes, you worry that your efforts may be in vain. Just as you are about to give up, a very nervous young man hesitantly approaches you.\n\n\"Hey, I know, this might sound stupid, but you look like a...\" he blushes and stammers a bit \"well,..\" He looks around and lowers his voice, hoping no one can hear him, \"I always wanted to try to suck off a {self.domName()} like you. I'll pay you, if you let me...\" He blushes deeply as he looks at you with downcast eyes, his face turning almost as red as his hair. You find it rather endearing as you watch his nervousness warring with his desire.\n\nNeeding the money, you nod your head in acceptance. The young man grabs your arm as his enthusiasm overcomes his nervousness. He practically drags you into an empty alley before looking around, ensuring no one can see you two. Now that he has you in private, however, his nervousness reasserts itself, looking a bit unsure. You decide to take the lead for this moment and pull out {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}.", True)
                 if (self.cockSize * self.cockSizeMod <= 20):
                     self.doMainText("\n\nThe young man promptly falls down to his knees in front of you and touches it with a trace of wonder. Finally he begins stroking it in earnest and you realize that despite his uncertainty, he certainly has some talent. As he gains courage from your gasp of pleasure, he starts applying his tongue, teasing along the underside of your shaft. Despite his initial shyness, he is really quite good at this. He takes the tip of your cock into his mouth, licking around the tip and moaning softly. His expression is one of sheer bliss as he tastes the drop of pre that emerges. His head starts bobbing on your cock, going down on you in earnest, eliciting a low growl from you. If this guy is really new to this, he is a natural. He picks up speed and moves your up and down on your cock sucking harder and faster.")
-                    if (not self.knot):
-                        self.doMainText("\n\nYou enjoy his attentions, absently caressing his hair as he gives you one of the best blowjobs you've ever had. You pant heavily as as this young man moves his head, taking almost your whole cock in his mouth. You grab his head as you feel you are close to your climax and pull his head while thrusting with your hips, forcing him to take your entire length in his mouth as you release your pent-up climax, giving him all your seed to swallow.")
-                    elif (self.knot):
-                        self.doMainText("\n\nYou enjoy his attentions, absently caressing his hair as he gives you one of the best blowjobs you've ever had. You pant heavily as as this young man moves his head, taking almost your whole cock in his mouth, nearly down to your knot. You grab his hair and pull him closer, impaling his willing mouth on your cock, until he can reach your knot with his tongue. He gets the idea and begins teasing the swelling knot with his tongue.")
+                    self.doMainText("\n\nYou enjoy his attentions, absently caressing his hair as he gives you one of the best blowjobs you've ever had. You pant heavily as as this young man moves his head, taking almost your whole cock in his mouth")
+                    if (self.knot):
+                        self.doMainText(", nearly down to your knot. You grab his hair and pull him closer, impaling his willing mouth on your cock, until he can reach your knot with his tongue. He gets the idea and begins teasing the swelling knot with his tongue.")
                         if (self.cockSize * self.cockSizeMod <= 10):
                             self.doMainText(" You are surprised when he manages to not only take in your shaft, but your knot as well. You groan as his lips clench behind your knot, much like a woman's nether lips would, before squeezing it and massaging the swelling bulb. Then he looks up at you, his lips wrapped around your knot and the worshipful, needy expression on his face is too much for you. Unable to hold back any longer, you give him the reward he so eagerly seeks and he struggles to swallow every last drop as you spray your seed down his throat.")
                         else:
                             self.doMainText(" He then pulls off your shaft and begins sucking on the knot itself, allowing it to swell to full size. Then he goes back to deep-throating your cock while squeezing your knot with his hand. The sensation is too much for you and he struggles to swallow down every last drop as you spray your seed into his mouth.")
+                    else:
+                        self.doMainText(". You grab his head as you feel you are close to your climax and pull his head while thrusting with your hips, forcing him to take your entire length in his mouth as you release your pent-up climax, giving him all your seed to swallow.")
                 else:
                     self.doMainText(f"\n\nThe young man falls on his knees and admires your {self.cockDesc()} cock. He feels over your large member, surely too big for him to take it all. He slowly licks around the shaft before starting to suck on the tip. He takes in as much of your cock as he can, sucking and licking on it, eyes half-lidded in bliss and moaning softly. He starts to stroke the rest of your cock, much too large to fit in his mouth")
                     if not mainobject.respectShowBalls or mainobject.respectShowBalls and self.showBalls:
@@ -16365,8 +16366,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops a single pill into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
                         self.doCoin(-20)
                         self.itemAdd(534)
-                    self.displayMainText()
-                    self.doEnd()
                 elif self.buttonChoice == 3:
                     if (self.coin < 100):
                         self.doMainText("\"Err... You don't exactly have enough to buy that many... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.", True)
@@ -16374,8 +16373,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops six pills into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
                         self.doCoin(-100)
                         self.addManyItem(534, 6)
-                    self.displayMainText()
-                    self.doEnd()
                 elif self.buttonChoice == 6:
                     if (self.coin < 200):
                         self.doMainText("\"Sorry, but you don't have enough coins to buy that and I definitely can't afford to give the recipe away for free... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.", True)
@@ -16383,11 +16380,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText("\"Aha, an entrepreneur yourself, eh? Well, since you've got the coins to invest, here you go.\" He takes your money and hands you the parchment with the recipe. \"Thank you for your business and may we deal again in the future. Good luck to your ventures as well. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
                         self.doCoin(-200)
                         self.knowMaleEnhance = True
-                    self.displayMainText()
-                    self.doEnd()
                 elif self.buttonChoice == 11:
-                    self.outputMainText("\"Alright, maybe next time then.\" And just as quickly as he appeared, he vanishes into the town to sell off his wares.", True)
-                    self.doEnd()
+                    self.doMainText("\"Alright, maybe next time then.\" And just as quickly as he appeared, he vanishes into the town to sell off his wares.", True)
+                self.displayMainText()
+                self.doEnd()
             self.doListen = doListen
         elif chance == 3:
             self.doMainText("In the process of passing by a building, you hear some ruckus and an elderly man with wild white hair comes bursting out of the door before you.\n\n\"Dagnabbit! Another failed batch!\" He shouts as he carries out a small crate filled with half a dozen vials of swirling liquid.", True)
@@ -16625,8 +16621,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doSexP(5)
                         self.doCoin(30)
                         self.doLust(Math.floor(self.lib / 5), 0)
-                        self.displayMainText()
-                        self.doEnd()
                     elif (self.buttonChoice == 3):
                         self.doMainText("Licking your lips in preparation, you push Jamie in between a couple of tents for some privacy, like before. Settling him on the ground so you can have some room to work, you lift his shirt just in time for a nice gob or pre-cum to bead at the center of the wide and almost flat head. You watch it slowly drool down the cleft of his glans and polish the thick bulging shaft as it travels down. He watches you intently as you stare at the clear fluid and tenses when your tongue lunges forward, touching his skin and catching the large drop before it reaches the halfway point down the monster. The boy shivers and quakes as you lick the slimy bead back up the path it came, making the cock buck when your tongue drags back over the cleft and the balls throb below as your mouth manages its best to engulf the tip of the sizeable appendage.\n\nWarm and slightly salty, a very meaty flavor fills your maw, so much that your lips are stretched and your jaw strains to hold it in. Your hands quickly snatch up the rod below, holding it steady as the equine lad squirms. With some stuttered snorts for short breaths, he tries to contain himself the best he can. Which proves to be a rather difficult affair as his member is shoved down your throat, making your neck swell from the hefty portion inside.\n\nEven more pre floods your gullet, coating your tongue and teeth and cheeks as you slide the thing out, the smooth skin slipping all the more easily over it all. Plenty of the stuff, mixed with your saliva, dribbles out from the corners of your mouth, running down his shaft and giving your hand plenty of lubricant to work the rest of him with. Pumping up and down, reaching around and cradling the massive orbs beneath, your fingers dance in rhythm to your head, teasing and squishing and trying to milk the horse shlong for all it's worth. And as a whinny fills the small alley, you find out that the worth is more than you bargained for.\n\nSoft spooge shoots from your nose as your throat stretches more, your stomach rapidly flooding with hot cum. There's not much of a \"swallowing\" action, the stuff is jammed down your gullet with steady force. The taste of spunk is all you can recognize with all the stuff rushing back out and down his length, pooling around his testicles. Your gut distends a little with the excess spunk and your jaw aches slightly from the pulsing meat, leaving you grateful when the thing softens up enough to let you pull off, another squirt giving you a nice white necklace.\n\nYou both take a few moments to catch your breaths, leaving the final oozes of semen to drool down to the grass between you. At a slight loss for words, Jamie simply nudges a small pouch of coins towards you with a nod. Understanding, you take it and head out from the tents to wash up and possibly get something less sticky to drink, leaving the boy to enjoy replaying the scenario again and again in his mind.", True)
                         self.jamieRep = 2
@@ -16635,12 +16629,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doCoin(40)
                         self.aff(2, Math.floor(Utils.percent() / 20 + 4), -1)
                         self.doLust(Math.floor(self.lib / 5), 0)
-                        self.displayMainText()
-                        self.doEnd()
                     elif (self.buttonChoice == 10):
-                        self.outputMainText("\"Oh, you don't want to do anything right now?\" He says with increasing blush as he begins to ponder how he's going to deal with the monster. \"I-I'll see you around then!\"\n\nJamie is quick to be on his way undeterred, rather focused on trying to get through the streets without flashing his cock at random people or drawing other unwanted attention. He slinks away, allowing you to leave in peace.", True)
+                        self.doMainText("\"Oh, you don't want to do anything right now?\" He says with increasing blush as he begins to ponder how he's going to deal with the monster. \"I-I'll see you around then!\"\n\nJamie is quick to be on his way undeterred, rather focused on trying to get through the streets without flashing his cock at random people or drawing other unwanted attention. He slinks away, allowing you to leave in peace.", True)
                         self.hrs = 1
-                        self.doEnd()
+                    self.displayMainText()
+                    self.doEnd()
                 self.doListen = doListen
 
             elif (self.jamieRep == 3 or self.jamieRep == 4):
@@ -17886,13 +17879,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.exhaustion = 0
                                     self.skipExhaustion = True
                                     self.lilaRep = 5
-                                    self.doEnd()
                                 else:
                                     self.outputMainText("You shake your head, telling her that it's probably best that she not continue lactating. Not that you thought her flavor was bad, but that there might be troubles with her mother and friends.\n\nShe smiles and nods back. \"Okay, if yew say so. I don't have to worwy about Mommy then. Thank you for helping me so much, though.\" She leans up to kiss you on the forehead. \"I'll say hewwo if I see you again.\"\n\nFighting her tiredness, she lazily gets up from the bed and puts on the sundress. Though slime still drips down between her legs and leaving a trail behind her, much of it webbed up against her tail, she slowly walks back out into the city and waves goodbye.", True)
                                     self.doSexP(15)
                                     self.hrs = 2
                                     self.lilaRep = 4
-                                    self.doEnd()
+                                self.doEnd()
                             self.doListen = doListen
                         self.doListen = doListen
                     elif (self.buttonChoice == 10):
@@ -17911,14 +17903,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.lilaRep = 5
                                     self.doHP(5)
                                     self.doSexP(25)
-                                    self.doEnd()
                                 else:
                                     self.outputMainText("You shake your head, not really wanting the offered beverage.\n\n\"Hehe, it's alright, it's not for everyone.\" The mother then downs it herself, licking up the resulting mustache.\n\nHowever, Lila watches as you reject her milk and her expression turns somewhat serious. \"Mmm... I don't wanna make milk, Mommy. We can stop it.\"\n\nHer mother pats her on the head again. \"Alright honey, just try to not play with it so much and you'll stop making milk; I'll help you.\" Then she turns to you. \"Thanks for taking care of my daughter... again. I won't pretend to know how she has taken up certain... 'habits' to help her when her heat gets bad, but she seems much better for it. I hope you'll continue to take good care of her in the future and never harm her.\" She gives you a wink.\n\nEager to get dry again, Lila give you a quick hug and disappears into the hut. Her mother chuckles once more and says her goodbyes, giving you a few coins for you assistance.", True)
                                     self.doCoin(20)
                                     self.hrs = 2
                                     self.lilaRep = 4
                                     self.doSexP(5)
-                                    self.doEnd()
+                                self.doEnd()
                             self.doListen = doListen
                         self.doListen = doListen
                 self.doListen = doListen
@@ -18045,8 +18036,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.loseManyItem(103, 1)
                         self.doLust(Math.floor(self.lib / 6), 0)
                         self.hrs = 3
-                        self.displayMainText()
-                        self.doEnd()
                     elif (self.buttonChoice == 3):
                         self.doMainText("\n\nWith a wet cloth, you hope it will be able to wipe her up more efficiently while remaining sensitive to her tender areas, considering it's similarly slimy as she. You ")
                         if (self.lilaWetness <= 3):
@@ -18069,8 +18058,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.loseManyItem(213, 1)
                         self.doLust(Math.floor(self.lib / 5), 0)
                         self.hrs = 3
-                        self.displayMainText()
-                        self.doEnd()
                     elif (self.buttonChoice == 9):
                         self.doMainText("\n\nHowever, you can't stare forever, you've got a duty you have to uphold. Which you're not too hesitant about...\n\nYou lean in, hugging your arms around her legs")
                         if (self.breastSize > 4):
@@ -18116,12 +18103,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.hrs = 4
                         self.doLust(Math.floor(self.lib / 4), 0)
                         self.aff(4, Math.floor(Utils.percent() / 20 + self.lilaWetness / 2), -3)
-                        self.displayMainText()
-                        self.doEnd()
                     elif (self.buttonChoice == 12):
-                        self.outputMainText("You can't really do much to help her right now, but maybe next time.\n\n\"Oh, okay. I'll see yew later!\" She proceeds to creep away, cautious of her undergarment beneath.", True)
+                        self.doMainText("You can't really do much to help her right now, but maybe next time.\n\n\"Oh, okay. I'll see yew later!\" She proceeds to creep away, cautious of her undergarment beneath.", True)
                         self.hrs = 1
-                        self.doEnd()
+                    self.displayMainText()
+                    self.doEnd()
                 self.doListen = doListen
 
             elif (self.moistCalc(1) > 7 and self.cockTotal > 0 or self.moistCalc(2) > 7 and self.vagTotal > 0):
@@ -18752,22 +18738,21 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doLust(10, 0)
                             self.itemAdd(219)
                             self.hrs = 4
-                        self.displayMainText()
-                        self.doEnd()
                     else:
                         if (self.ment <= 10):
-                            self.outputMainText("Either not wanting to get your hands covered in oil or being allergic to the female species, you decide not to help her with her oiling. Instead you awkwardly step back and sneak away, leaving the woman wondering what happened.", True)
+                            self.doMainText("Either not wanting to get your hands covered in oil or being allergic to the female species, you decide not to help her with her oiling. Instead you awkwardly step back and sneak away, leaving the woman wondering what happened.", True)
                             self.stats(0, -1, 0, 0)
                         elif (self.ment <= 40):
-                            self.outputMainText("For whatever reason, you don't want to help her with the oiling. Instead you mumble some kind of lame excuse and walk away, leaving her to shrug and try to flag down the next passerby.", True)
+                            self.doMainText("For whatever reason, you don't want to help her with the oiling. Instead you mumble some kind of lame excuse and walk away, leaving her to shrug and try to flag down the next passerby.", True)
                         elif (self.ment <= 80):
-                            self.outputMainText("Deciding not to help her, you calmly explain that you either don't have the time or you have to do something else. You thank her for the offer anyways and she nods back with a smile, waiting to flag down someone else for assistance.", True)
+                            self.doMainText("Deciding not to help her, you calmly explain that you either don't have the time or you have to do something else. You thank her for the offer anyways and she nods back with a smile, waiting to flag down someone else for assistance.", True)
                             self.stats(0, 1, 0, 0)
                         else:
-                            self.outputMainText("You kindly decline her gracious offer, mentioning how beautiful she looks already and how you might have had \"trouble\" giving her a massage like that, considering her nice features. She gives you a blushing smirk and giggles a little, offering you to take a vial of her massage oils for yourself, as thanks for the sweet compliments.", True)
+                            self.doMainText("You kindly decline her gracious offer, mentioning how beautiful she looks already and how you might have had \"trouble\" giving her a massage like that, considering her nice features. She gives you a blushing smirk and giggles a little, offering you to take a vial of her massage oils for yourself, as thanks for the sweet compliments.", True)
                             self.itemAdd(228)
                         self.hrs = 1
-                        self.doEnd()
+                    self.displayMainText()
+                    self.doEnd()
                 self.doListen = doListen
             else:
                 self.doMainText(f"\n\nAs you peer over the beach of slick figures, one by your {self.legDesc(10)} squirms a little and opens an eye, only able make out your silhouette amidst the sunlight, but doesn't seem to care.\n\n\"Would you please give me a hand and oil me up? I can feel my scales starting to dry a little.\"\n\nThe deep voice of the very masculine figure is obviously directed at you. He's one of those who prefer to sunbathe in the buff, not afraid to show off his physique. His shoulders are broad and his muscles are nice and toned, even his ass shining with tightness. His tail droops over his crack, ")
@@ -18785,11 +18770,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doMainText("his large balls swinging beneath his dual cocks, ")
                             self.doMainText("as he whacks you for your crude treatment.\n\n\"What are you doing?!\", he shouts with an annoyed tone. \"I'll get someone else to help. You nut!\"\n\nHe stares you down and waits for you to leave before rolling back onto the sand, awkwardly trying to clean up the mess you made on his back...")
                             self.doHP(-5)
-                            self.displayMainText()
                             self.stats(0, -1, 0, 0)
                             self.hrs = 2
                         elif (self.ment <= 40):
-                            self.outputMainText("You nod and kneel down, splashing your hands around in the bowl to get them nice and drippy with oil. Then you press them onto his back, smearing them around haphazardly, trying to coat him the best you can. Your lack of finesse makes him eye you curiously for a bit, but he shrugs as you're getting the job done. Quite soon he's as shiny as the rest of them.\n\n\"Thanks for the help,\" he smiles and nods at you. Then he dozes off into another nap, content, allowing you to go off on your own again.", True)
+                            self.doMainText("You nod and kneel down, splashing your hands around in the bowl to get them nice and drippy with oil. Then you press them onto his back, smearing them around haphazardly, trying to coat him the best you can. Your lack of finesse makes him eye you curiously for a bit, but he shrugs as you're getting the job done. Quite soon he's as shiny as the rest of them.\n\n\"Thanks for the help,\" he smiles and nods at you. Then he dozes off into another nap, content, allowing you to go off on your own again.", True)
                             self.stats(0, 1, 0, 0)
                             self.hrs = 2
                         elif (self.ment <= 80):
@@ -18798,28 +18782,27 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doMainText("large testicles and ")
                             self.doMainText("dual cocks for a moment as he accidentally flashes you.\n\nSoon, he's quite coated and relaxed from your efforts. He thanks you for the unexpectedly pleasant experience and insists you take a vial of the oil with you, at least as compensation.")
                             self.doLust(6, 0)
-                            self.displayMainText()
                             self.itemAdd(228)
                             self.hrs = 3
                         else:
                             self.doMainText(f"You nod with a smile and straddle his bum as you kneel down, making sure to stay slightly aloft so as to not put any weight on him. You pick up the bowl and drizzle the oil down his spine, then press into it with your hands and spread it out across his body. Using your weight for more pressure, you deeply massage all of his muscles as you knead into his soft scales, making him groan a little from the tender treatment. You can feel his tail beging to flick beneath your {self.buttDesc()} rump as you make your way down to the small of his back, until you trap it as you shuffle back to sit over his knees.\n\nHis tight butt tenses a bit as you genetly brush the oil over it, but quickly relaxes as you grab and gently squeeze it. You softly grind into it, making his tail spasm beneath you until it eventually pulls out from under you as you begin to work at its base. You can see him wince with embarrassment as he realizes he's giving you a good view of his nethers, ", True)
-                            if not mainobject.lizanDontShowBalls:
-                                self.doMainText("his large balls squished between his thighs with the heads of twin cocks peeking out underneath")
-                            else:
+                            if mainobject.lizanDontShowBalls:
                                 self.doMainText("his twin cocks slightly erect from the pleasure of the massage")
+                            else:
+                                self.doMainText("his large balls squished between his thighs with the heads of twin cocks peeking out underneath")
                             self.doMainText(". You can see a few sparkles from the pre that drips out onto the sand, your efforts being a little too pleasant. However, he doesn't seem to try to cover himself and after a moment of your working at his tail, massaging from the tip to the base, he spreads his legs beneath you until you have to adjust your stance to kneel between them for better access.\n\nHis dongs clearly in view, ")
                             if not mainobject.lizanDontShowBalls:
                                 self.doMainText("his testicles squirming with cum, ")
                             self.doMainText("your hands move in to oil up between his thighs. You slowly work your way up his legs, teasing him until the drooling pre becomes much more prominent, large drops pushing out as you ")
-                            if not mainobject.lizanDontShowBalls:
-                                self.doMainText("grab the orbs")
-                            else:
+                            if mainobject.lizanDontShowBalls:
                                 self.doMainText("rub around his slit")
-                            self.doMainText(". His tail nearly slaps you in anticipation, flicking around so much, and practically urges you towards the happy ending. Taking the blatent hints, you ")
-                            if not mainobject.lizanDontShowBalls:
-                                self.doMainText("grope at the cum-filled things, reaching")
                             else:
+                                self.doMainText("grab the orbs")
+                            self.doMainText(". His tail nearly slaps you in anticipation, flicking around so much, and practically urges you towards the happy ending. Taking the blatent hints, you ")
+                            if mainobject.lizanDontShowBalls:
                                 self.doMainText("reach")
+                            else:
+                                self.doMainText("grope at the cum-filled things, reaching")
                             self.doMainText(" down to grab one cock in each hand. The fleshy things harden in your grip, growing slightly longer")
                             if not mainobject.lizanDontShowBalls:
                                 self.doMainText(", but the overgrown fruits still weigh down on them, covering much of your hands")
@@ -18828,25 +18811,25 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doMainText(", the balls working hard to keep up with the relief")
                             self.doMainText(" until you're kneeling in a puddle of the stuff.\n\nHis tail collapses onto your shoulder, resting there as you finish wiping him up and bringing him down from the orgasm, until you finally complete your task. Still breathing heavily, his body looking quite tired, he merely turns up towards you.\n\n\"Please, take some oil with you. You seem to be better at using it than me. And here,\" he reaches into his pile of clothes and pulls out a large berry, \"take this with you, I've had enough for a while, if you couldn't tell.\" He sticks out his tongue in jest, but quickly lays back down to take a nice soothing nap to reminisce the recent events, leaving you to go off on your own.")
                             self.doLust(10, 0)
-                            self.displayMainText()
                             self.itemAdd(228)
                             self.itemAdd(208)
                             self.hrs = 4
-                        self.doEnd()
+
                     else:
                         if (self.ment <= 10):
-                            self.outputMainText("Either not wanting to get your hands covered in oil or being allergic to the male species, you decide not to help him with his oiling. Instead you awkwardly step back and sneak away, leaving the man wondering what happened.", True)
+                            self.dotMainText("Either not wanting to get your hands covered in oil or being allergic to the male species, you decide not to help him with his oiling. Instead you awkwardly step back and sneak away, leaving the man wondering what happened.", True)
                             self.stats(0, -1, 0, 0)
                         elif (self.ment <= 40):
-                            self.outputMainText("For whatever reason, you don't want to help him with the oiling. Instead you mumble some kind of lame excuse and walk away, leaving him to shrug and try to flag down the next passerby.", True)
+                            self.doMainText("For whatever reason, you don't want to help him with the oiling. Instead you mumble some kind of lame excuse and walk away, leaving him to shrug and try to flag down the next passerby.", True)
                         elif (self.ment <= 80):
-                            self.outputMainText("Deciding not to help him, you calmly explain that you either don't have the time or you have to do something else. You thank him for the offer anyways and he nods back with a smile, waiting to flag down someone else for assistance.", True)
+                            self.doMainText("Deciding not to help him, you calmly explain that you either don't have the time or you have to do something else. You thank him for the offer anyways and he nods back with a smile, waiting to flag down someone else for assistance.", True)
                             self.stats(0, 1, 0, 0)
                         else:
-                            self.outputMainText("You kindly decline his gracious offer, mentioning how handsome he looks already and how you might have had \"trouble\" giving him a massage like that, considering his nice features. He laughs heartily at the thought, offering you to take a vial of his massage oils for yourself, as thanks for the complimentary humor.", True)
+                            self.doMainText("You kindly decline his gracious offer, mentioning how handsome he looks already and how you might have had \"trouble\" giving him a massage like that, considering his nice features. He laughs heartily at the thought, offering you to take a vial of his massage oils for yourself, as thanks for the complimentary humor.", True)
                             self.itemAdd(228)
                         self.hrs = 1
-                        self.doEnd()
+                    self.displayMainText()
+                    self.doEnd()
                 self.doListen = doListen
 
         elif chance == 3:
@@ -18873,10 +18856,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText("\n\nThen ")
                         if (self.vagTotal > 1):
                             self.doMainText(f"a lizan man seems surprised to see your exra attributes. Already hard from thinking about it, he happily kisses you and presses his two pricks against your {self.bellyDesc()} belly before each slips them {self.legWhere(1)} your {self.legDesc(2)} to dive into seperate passages. He hugs you tight as he plunges both in at the same time, quivering slightly as he can feel himself through the fleshy wall that separates the rods. In and out, pre and lubrication spitting into the cleft between the bases of the two cocks and dribbling down his")
-                            if not mainobject.lizanDontShowBalls:
-                                self.doMainText("scrotum")
-                            else:
+                            if mainobject.lizanDontShowBalls:
                                 self.doMainText("thighs")
+                            else:
+                                self.doMainText("scrotum")
                             self.doMainText(". He nuzzles into your neck, grunting loudly as both things jerk inside of you, pounding both holes in unison until painting them with spunk. You can feel both wombs filling at almost the same time, bringing you to quite a high. The experience was so powerful that when he eventually pulls out, he's as limp as a noodle and can hardly participate in the orgy anymore...")
                             self.doMultiImpregnate(6, 2)
                             self.doLust(Math.floor(-self.sen / 2), 2, 2)
@@ -18904,12 +18887,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.hrs += 2
                         self.doMainText("\n\nHaving taken all you can for now, you slowly clean yourself up and thank the carnal group for the delightful experience, then walk away with a satisfied kink in your step.")
                         self.doSexP(2 * tempInt)
-                        self.displayMainText()
-                        self.doEnd()
                     else:
-                        self.outputMainText("Deciding you're not in the 'orgy mood', you continue on your brisk walk.", True)
+                        self.doMainText("Deciding you're not in the 'orgy mood', you continue on your brisk walk.", True)
                         self.hrs = 1
-                        self.doEnd()
+                    self.displayMainText()
+                    self.doEnd()
                 self.doListen = doListen
 
         elif chance == 4:
@@ -19129,13 +19111,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     elif tempInt == 10:
                         self.doMainText("your blood floods to your genitals, suddenly arousing you.")
                         self.doLust(Math.floor(Utils.percent() / 5), 0)
-                    self.outputMainText(" You also managed to annihilate the flower...\n\nCaught off guard and quite confused, you stumble off, wondering if there's a tissue nearby.")
+                    self.doMainText(" You also managed to annihilate the flower...\n\nCaught off guard and quite confused, you stumble off, wondering if there's a tissue nearby.")
                     self.hrs += 2
-                    self.doEnd()
                 else:
-                    self.outputMainText("Wary of strangely beautiful flowers that fall randomly from the sky, you decide to let it continue its path to the ground and head on your way.", True)
+                    self.doMainText("Wary of strangely beautiful flowers that fall randomly from the sky, you decide to let it continue its path to the ground and head on your way.", True)
                     self.hrs += 1
-                    self.doEnd()
+                self.displayMainText()
+                self.doEnd()
             self.doListen = doListen
 
         elif chance == 5:
@@ -19239,12 +19221,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if (not self.foundSoftlik):
                             self.foundSoftlik = True
                     self.hrs = 4
-                    self.displayMainText()
-                    self.doEnd()
                 else:
-                    self.outputMainText("You return from whence you came.", True)
+                    self.doMainText("You return from whence you came.", True)
                     self.hrs = 1
-                    self.doEnd()
+                self.displayMainText()
+                self.doEnd()
             self.doListen = doListen
 
     def doJungle(self):
@@ -19433,12 +19414,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if (not self.foundTieden):
                             self.foundTieden = True
                     self.hrs = 4
-                    self.displayMainText()
-                    self.doEnd()
                 else:
-                    self.outputMainText("You return from whence you came.", True)
+                    self.doMainText("You return from whence you came.", True)
                     self.hrs = 1
-                    self.doEnd()
+                self.displayMainText()
+                self.doEnd()
             self.doListen = doListen
 
     def doPlains(self):
@@ -19514,12 +19494,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if (not self.foundSoftlik):
                             self.foundSoftlik = True
                     self.hrs = 4
-                    self.displayMainText()
-                    self.doEnd()
                 else:
-                    self.outputMainText("You return from whence you came.", True)
+                    self.doMainText("You return from whence you came.", True)
                     self.hrs = 1
-                    self.doEnd()
+                self.displayMainText()
+                self.doEnd()
             self.doListen = doListen
 
     def doSavanna(self):
@@ -19582,12 +19561,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if (not self.foundFirmshaft):
                             self.foundFirmshaft = True
                     self.hrs = 4
-                    self.displayMainText()
-                    self.doEnd()
                 else:
-                    self.outputMainText("You return from whence you came.", True)
+                    self.doMainText("You return from whence you came.", True)
                     self.hrs = 1
-                    self.doEnd()
+                self.displayMainText()
+                self.doEnd()
             self.doListen = doListen
 
     def doDesert(self):
@@ -19649,12 +19627,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.HP = 1
                         self.hrs = 4
                         self.doHP(0)
-                    self.displayMainText()
-                    self.doEnd()
                 else:
-                    self.outputMainText("Thinking it best to leave strange meats to themselves, you turn your back to the sandvich and walk away, feeling it taunting you from behind as you leave.", True)
+                    self.doMainText("Thinking it best to leave strange meats to themselves, you turn your back to the sandvich and walk away, feeling it taunting you from behind as you leave.", True)
                     self.hrs = 1
-                    self.doEnd()
+                self.displayMainText()
+                self.doEnd()
             self.doListen = doListen
 
         elif chance == 2:
@@ -19807,12 +19784,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if (not self.foundOviasis):
                             self.foundOviasis = True
                     self.hrs = 4
-                    self.displayMainText()
-                    self.doEnd()
                 else:
-                    self.outputMainText("You return from whence you came, avoiding any unwanted sand in your cracks.", True)
+                    self.doMainText("You return from whence you came, avoiding any unwanted sand in your cracks.", True)
                     self.hrs = 1
-                    self.doEnd()
+                self.displayMainText()
+                self.doEnd()
             self.doListen = doListen
 
         elif chance == 6:
@@ -19974,11 +19950,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.loseManyItem(219, 5)
                         self.knowPheromone = True
                         self.hrs = 3
-                        self.doEnd()
                     else:
                         self.outputMainText("Deciding not to give him any, the old man continues to ramble on about how the weather could be a bit better also and shows you some of his home-made tackle as well. Eventually, however, he realizes that he's talked so long that he might not catch anything at this rate! He hurriedly thanks you for letting him talk your ear off a bit and says he hopes you'll meet again before he pushes off into the water, rowing to get to the good spots.", True)
                         self.hrs = 2
-                        self.doEnd()
+                    self.doEnd()
                 self.doListen = doListen
             else:
                 self.outputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him.\n\n\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I'm a little low on my bait so I'm just going on luck. It's been a while since I've been able to get me those things from the people down south...\"\n\nHis hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard's. This man has obviously traveled a bit...\n\n\"If I could get maybe 5 of those eggs they kept plopping out, I'm sure one of them would be just what I need to really haul in some nice catch!\"\n\nHe continues to ramble on about how the weather could be a bit better also and shows you some of his home-made tackle as well. Eventually, however, he realizes that he's talked so long that he might not catch anything at this rate! He hurriedly thanks you for letting him talk your ear off a bit and says he hopes you'll meet again before he pushes off into the water, rowing to get to the good spots.", True)
@@ -20244,18 +20219,18 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.doEnd()
             self.doListen = doListen
          else:
-            if (not self.dairyFarmBrand):
-               self.outputMainText(f"As you head towards the dairy farm, one of the farmers spots you and walks over to greet you.\n\n\"Hello! If you want some of our milk, you should head over to Softlik. Though, umm...\" He glances down at the milky bag of flesh below your {self.bellyDesc()} belly. \"Hey, that there udder looks mighty similar to the ones my cows have. You wouldn't happen to be interested in testing out a new milking machine I've been working on, would you? It's normally only meant for cows, but they're too skittish around new equipment and you seem like you'd be a pretty good fit anyways. It'd only take about an hour and I'd also pay ya, of course.\"", True)
-            else:
+            if (self.dairyFarmBrand):
                self.outputMainText("As you head towards the dairy farm once again, a familiar looking farmer spots you in the distance with your drippy udder and makes sure to walk over and greet you.\n\n\"Why hello again! I was hoping to see you around here some time. Sorry about last time, but I really think I've fixed all the kinks with the milker. If you'd be a dear, would you mind testing it for me again? You'll be compensated as usual, of course.\"", True)
+            else:
+               self.outputMainText(f"As you head towards the dairy farm, one of the farmers spots you and walks over to greet you.\n\n\"Hello! If you want some of our milk, you should head over to Softlik. Though, umm...\" He glances down at the milky bag of flesh below your {self.bellyDesc()} belly. \"Hey, that there udder looks mighty similar to the ones my cows have. You wouldn't happen to be interested in testing out a new milking machine I've been working on, would you? It's normally only meant for cows, but they're too skittish around new equipment and you seem like you'd be a pretty good fit anyways. It'd only take about an hour and I'd also pay ya, of course.\"", True)
             self.buttonConfirm()
 
             def doListen():
                if (self.buttonChoice == 6):
-                  if (not self.dairyFarmBrand):
-                     self.doMainText(f"\"Really? Fantastic! Just come with me!\" The farmer nearly hops with joy as he twirls around and eagerly leads you towards one of the milking barns. Though, you don't quite go into it as he swerves off course towards a cellar door at the side. He hoists it open, waving for you to head on in.\n\nHeading down the steps, the scent of milk fills your nose. Candles lighting up the cool cellar, large crates surround you. Bottles and bottles of fresh milk waiting to be delivered surround your path. The farmer urges you forward, leading you deeper in until the crates become tools and parts. Equipment from around the farm is either dismantled or waiting to be repaired. And then there's a small workspace cleared out, filled with nothing but a large, clean machine. In front is a mechanical platform, laying several feet wide from the rest of the machine, with a thick railing surrounding it, perfect for tying cows up to as they stand on top.\n\n\"Well, this is it.\" The farmer proudly motions towards it. \"The Auto-Milker 5000! Why 5000? Eh, I thought it sounded nice. But this little doohickey should help save us plenty of work when milking the cows. Now, if you don't mind...\"\n\nHe directs you onto the platform, facing out towards the rail. A hand presses lightly on your back. \"Just need you to bend forward, you can lean over the rail. The cows don't quite walk on two legs, so you gotta press on the rail for the machine's safety protocols.\" He chuckles. You do as you're told, bending forward and leaning comfortably over the thick rail, crossing your arms to rest your head. Then you jerk a little as you feel him grope about your {self.clothesBottom()}. \"Cows don't quite wear clothes either, so we gotta get yer udder outta there.\"\n\nBefore you can protest, he pulls your {self.clothesBottom()} {self.pullUD(2)}, letting your {self.udderDesc()} udder hang freely. He pauses for a moment before going any further, staring at your ", True)
-                  else:
+                  if (self.dairyFarmBrand):
                      self.doMainText(f"\"Really? Great! Let's get going.\" The farmer skips a bit with excitement to try his machine again. Back down into the barn cellar, the large machination awaits you. He helps you to the platform and presses your back down towards the rail. \"I really hope it works this time!\"\n\nAgain, in his eagerness, he pulls {self.pullUD(2)} your {self.clothesBottom()} to let your {self.udderDesc()} udder hang loose, but can't help but stare once more at your ", True)
+                  else:
+                     self.doMainText(f"\"Really? Fantastic! Just come with me!\" The farmer nearly hops with joy as he twirls around and eagerly leads you towards one of the milking barns. Though, you don't quite go into it as he swerves off course towards a cellar door at the side. He hoists it open, waving for you to head on in.\n\nHeading down the steps, the scent of milk fills your nose. Candles lighting up the cool cellar, large crates surround you. Bottles and bottles of fresh milk waiting to be delivered surround your path. The farmer urges you forward, leading you deeper in until the crates become tools and parts. Equipment from around the farm is either dismantled or waiting to be repaired. And then there's a small workspace cleared out, filled with nothing but a large, clean machine. In front is a mechanical platform, laying several feet wide from the rest of the machine, with a thick railing surrounding it, perfect for tying cows up to as they stand on top.\n\n\"Well, this is it.\" The farmer proudly motions towards it. \"The Auto-Milker 5000! Why 5000? Eh, I thought it sounded nice. But this little doohickey should help save us plenty of work when milking the cows. Now, if you don't mind...\"\n\nHe directs you onto the platform, facing out towards the rail. A hand presses lightly on your back. \"Just need you to bend forward, you can lean over the rail. The cows don't quite walk on two legs, so you gotta press on the rail for the machine's safety protocols.\" He chuckles. You do as you're told, bending forward and leaning comfortably over the thick rail, crossing your arms to rest your head. Then you jerk a little as you feel him grope about your {self.clothesBottom()}. \"Cows don't quite wear clothes either, so we gotta get yer udder outta there.\"\n\nBefore you can protest, he pulls your {self.clothesBottom()} {self.pullUD(2)}, letting your {self.udderDesc()} udder hang freely. He pauses for a moment before going any further, staring at your ", True)
                   if (self.gender == Gender.MALE):
                      self.doMainText(f"{self.cockDesc()} shlong{self.plural(1)}")
                      if (self.showBalls):
@@ -20267,24 +20242,24 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doMainText(f"{self.cockDesc()} shlong{self.plural(1)} and {self.vulvaDesc()} hole{self.plural(2)} between him and the udder.")
                   elif (self.gender == Gender.ANDRO):
                      self.doMainText(f"{self.buttDesc()} ass between him and the udder.")
-                  if (not self.dairyFarmBrand):
-                     self.doMainText(f" He quickly clears his throat. \"Errr... Eh-hem... Cows don't exactly have bits like that either. Or, none that I'd look at in that sorta way... Sorry about that!\"\n\nAverting his eyes and quickly getting off the platform, he returns to the front. Grabbing a small control board attached to the machine by a wire, he begins to press some buttons. \"Okay, this thing here controls the whole machine. I can just press this button...\" As he does so, the platform shakes beneath you.\n\nHidden doors part and four soft cylinders rise up beneath your udder. They each separate into quarters with sheets of a flexible material being stretched out between them. They rise up to your {self.teatDesc()} hanging teats, engulfing them. The cylindars press up into your udder slightly and slowly close around your teats, the material snuggly hugging them. All of your teats are held perfectly by the machine, tight enough to hold pressure but not so much to hurt.\n\n\"And the machine hooks the pumps up all by itself, one size fits all. Then all I have to do is press this button...\"\n\nThe machine begins to hum and you feel a sudden suction on your teats. The cylindars begin to rise and fall, pressing into the flesh of your {self.udderDesc()} bag of milk just enough to help put pressure on the glands inside and then pull back while the vaccum within the tubes increase and descrease in rhythm.")
-                  else:
+                  if (self.dairyFarmBrand):
                      self.doMainText(f" After a moment, he realizes his mistake. \"Eh... heh. Sorry about that. I keep forgetting you're not one of my cows... Quite the view though!\" He tries to shrug it off with a joking laugh.\n\nQuickly escaping your backside, he steps off and heads to his control board. \"Alright, same as last time, so prepare yourself!\"\n\nYou clench a little as the hidden doors part and the four soft cylinders rise up beneath your udder. They each separate into quarters with sheets of a flexible material being stretched out between them. They rise up to your {self.teatDesc()} hanging teats, engulfing them. The cylindars press up into your udder slightly and slowly close around your teats, the material snuggly hugging them. All of your teats are held perfectly by the machine, tight enough to hold pressure but not so much to hurt. You let out a gasp as you relax into their pleasant grip, ready as the farmer presses the next button.\n\nThe machine begins to hum and you feel the gentle suction on your teats grow. The cylindars begin to rise and fall, pressing into the flesh of your {self.udderDesc()} bag of milk just enough to help put pressure on the glands inside and then pull back while the vaccum within the tubes increase and descrease in rhythm.")
-                  self.doMainText(f" Your {self.legDesc(6)} buckle slightly as the milk gushes from your teats, pleasantly and powerfully sucked into the machine. Your {self.hipDesc()} hips can't help but rock in tune to the rhythm, your lower bits warming up with the enjoyable sensation.")
-                  if (not self.dairyFarmBrand):
-                     self.doMainText("\n\nAs you let out a moan of relief and bliss, the farmer speaks up as though he didn't notice. \"And that button starts the milking process, almost like the machines we use on the cows already, but a bit more... thorough, so to speak. All I have to do is set up the timer - let's say... 30 minutes,\" he turns a dial on the control panel, \"and the machine will know when to let go. So, just relax and let the milk flow. I'll be right here.\"\n\nThe farmer sits in a nearby chair and tries to read a book while you gasp and moan. The machine tugs and sucks you in just the right way that... you can't help but cry out into your arms. The machine grows a bit louder as the incoming flood of milk makes it work harder, but settles back down to a steady level as you come down from your orgasm. With still plenty of milk and time to go, you melt against the railing, trying not to be too obvious about your further climaxes, though the farmer has a hard time not noticing when his machine churns louder every now and then...")
                   else:
+                     self.doMainText(f" He quickly clears his throat. \"Errr... Eh-hem... Cows don't exactly have bits like that either. Or, none that I'd look at in that sorta way... Sorry about that!\"\n\nAverting his eyes and quickly getting off the platform, he returns to the front. Grabbing a small control board attached to the machine by a wire, he begins to press some buttons. \"Okay, this thing here controls the whole machine. I can just press this button...\" As he does so, the platform shakes beneath you.\n\nHidden doors part and four soft cylinders rise up beneath your udder. They each separate into quarters with sheets of a flexible material being stretched out between them. They rise up to your {self.teatDesc()} hanging teats, engulfing them. The cylindars press up into your udder slightly and slowly close around your teats, the material snuggly hugging them. All of your teats are held perfectly by the machine, tight enough to hold pressure but not so much to hurt.\n\n\"And the machine hooks the pumps up all by itself, one size fits all. Then all I have to do is press this button...\"\n\nThe machine begins to hum and you feel a sudden suction on your teats. The cylindars begin to rise and fall, pressing into the flesh of your {self.udderDesc()} bag of milk just enough to help put pressure on the glands inside and then pull back while the vaccum within the tubes increase and descrease in rhythm.")
+                  self.doMainText(f" Your {self.legDesc(6)} buckle slightly as the milk gushes from your teats, pleasantly and powerfully sucked into the machine. Your {self.hipDesc()} hips can't help but rock in tune to the rhythm, your lower bits warming up with the enjoyable sensation.")
+                  if (self.dairyFarmBrand):
                      self.doMainText("\n\nAs you let out a moan of relief and bliss, the farmer speaks up as though he didn't notice. \"Well, I'll leave you to that for a while. We'll try 30 minutes again and cross our finger.\"\n\nThe farmer turns the dial on the board and sits in a nearby chair, trying to read a large book while you gasp and moan. The machine tugs and sucks you in just the right way that... you can't help but cry out into your arms. The machine grows a bit louder as the incoming flood of milk makes it work harder, but settles back down to a steady level as you come down from your orgasm. With still plenty of milk and time to go, you melt against the railing, trying not to be too obvious about your further climaxes, though the farmer has a hard time not noticing when his machine churns louder every now and then...")
+                  else:
+                     self.doMainText("\n\nAs you let out a moan of relief and bliss, the farmer speaks up as though he didn't notice. \"And that button starts the milking process, almost like the machines we use on the cows already, but a bit more... thorough, so to speak. All I have to do is set up the timer - let's say... 30 minutes,\" he turns a dial on the control panel, \"and the machine will know when to let go. So, just relax and let the milk flow. I'll be right here.\"\n\nThe farmer sits in a nearby chair and tries to read a book while you gasp and moan. The machine tugs and sucks you in just the right way that... you can't help but cry out into your arms. The machine grows a bit louder as the incoming flood of milk makes it work harder, but settles back down to a steady level as you come down from your orgasm. With still plenty of milk and time to go, you melt against the railing, trying not to be too obvious about your further climaxes, though the farmer has a hard time not noticing when his machine churns louder every now and then...")
                   self.displayMainText()
                   self.doNext()
 
                   def doListen():
                      self.doMainText("10 minutes pass and you're feeling quite well.\n\n20 minutes pass and you're udder is feeling much lighter, can't be much left in there.\n\n30 minutes pass and the farmer perks up, ready for the machine to shut off.\n\n40 minutes pass and he starts looking a little worried. Though you've been milked dry, the machine continues to pull and suck on your teats, but without any fluids the pressure is rather low and merely feels silly at this point.\n\n50 minutes pass and the farmer looks at his control panel, scratching his head. He starts to look around the machine, not saying a word...\n\n60 minutes pass and he steps before you sheepishly, hat in hand.", True)
-                     if (not self.dairyFarmBrand):
-                        self.doMainText("\n\n\"Umm... There seems to be an 'issue'... The timer inside the machine must have been tripped up by some of the other circuitry or something and, well... The machine won't stop now... And I can't shut it down while it's already going without potentially busting it all apart and we can't quite get you out of there without hurting you in the process; it's got ahold of you pretty well, we wouldn't want cows slipping out and walking off on their own.\" He shuffles his feet a bit in embarassment. \"Oh, but it won't go on forever! There's a built in safety shutoff just in case something like this happens. So if you don't mind waiting a little longer, it will turn off and release you on its own. But... The safety shutoff is another 11 hours from now. Don't ask for specifics why so long; it was the shortest time the machine could have such a natural shutoff, with the way it cycles. So, uhh... try to relax. I'll make sure somebody is down here with you for the whole time. We'll take shifts and bring you food and stuff. So terribly sorry...\"\n\nWith a shrug, there's nothing you can really do but wait.")
-                     else:
+                     if (self.dairyFarmBrand):
                         self.doMainText("\n\n\"Crud... I don't know how to say this...\" he twiddles his fingers sheepishly, \"but it seems the timer must have been tripped by one of the other changes to the circuits. So, I'm terribly sorry, but you'll be stuck here for 12 hours again... And we'll be sure to take shifts and keep you company of course. I'm just so embarassed this happened again...\n\nWith a shrug, there's nothing you can really do but wait.")
+                     else:
+                        self.doMainText("\n\n\"Umm... There seems to be an 'issue'... The timer inside the machine must have been tripped up by some of the other circuitry or something and, well... The machine won't stop now... And I can't shut it down while it's already going without potentially busting it all apart and we can't quite get you out of there without hurting you in the process; it's got ahold of you pretty well, we wouldn't want cows slipping out and walking off on their own.\" He shuffles his feet a bit in embarassment. \"Oh, but it won't go on forever! There's a built in safety shutoff just in case something like this happens. So if you don't mind waiting a little longer, it will turn off and release you on its own. But... The safety shutoff is another 11 hours from now. Don't ask for specifics why so long; it was the shortest time the machine could have such a natural shutoff, with the way it cycles. So, uhh... try to relax. I'll make sure somebody is down here with you for the whole time. We'll take shifts and bring you food and stuff. So terribly sorry...\"\n\nWith a shrug, there's nothing you can really do but wait.")
                      self.doMainText(" The machine persistently pumps your teats, ")
                      if (self.udderLactation > 4000):
                         self.doMainText("heavily and loudly, working hard to keep up with your milk production")
@@ -20295,7 +20270,29 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                      self.doMainText(f". It gets annoying after a while, but never painful. For a machine it's got a rather tender touch, never sucking so hard that your udder would ache while you're running dry. And when your udder starts to fill up again, the machine powers up, sucking out the milk as its made. With the constant gentle milking, it's hard to feel much from it. More like a lingering tingle that just won't go away. Occassionally the tingle starts to build as your nerves focus on it, growing until the machine whirs loudly and spooks whoever is accompanying you. You just grin bashfully and nod everything is alright, your face flushed with blush from the mild orgasm.\n\nThe time passes slowly, the farmers changing shift and try to keep you entertained with conversations about recent events. You also lift yourself from the rail slightly or stretch below it, kicking your {self.legDesc(2)} or even kneeling every now and then to prevent any cramping. Not exactly the most productive use of your time, save for all the milk you're producing...")
                      if (self.malonRep >= 4):
                         self.doMainText("\n\nEven Malon comes down to visit you one shift.")
-                        if (not self.dairyFarmBrand):
+                        if (self.dairyFarmBrand):
+                           self.doMainText(" She slowly walks over to you")
+                           if (self.malonPreg > 36):
+                              self.doMainText(", cradling her swollen pregnant belly,")
+                           if (self.malonChildren == 1):
+                              self.doMainText(" with your daughter following closely behind")
+                           elif (self.malonChildren > 1):
+                              self.doMainText(" with your daughters following closely behind")
+                           self.doMainText(" and covers you head with her breasts as she hugs you. \"Hehe, I heard you got caught in this thing again and thought I would take a shift to keep you company. Though gosh, with how much this thing is milking you, I'm starting to get a little jealous.\" She giggles at the thought. But then her shirt begins to blotch from the jiggling and she pulls the chair in closer. With plenty of buckets down here and all the privacy, she's able to start milking right in front of you")
+                           if (self.lactation > 0 and self.milkEngorgementLevel > 0):
+                              self.doMainText(" and takes the liberty to relieve your own chest of milk, since the machine is focused elsewhere")
+                           self.doMainText(". A nice conversation picks up as milk flies everywhere and helps the time pass quickly.")
+                           if (self.malonChildren == 1):
+                              self.doMainText("\n\n\"Mommy, mommy, can I be hooked up to the machine too? It looks like fun!\" Your daughter stands beside you, one hand reaching out to grab the rail so she can bend forward a little, the other hand pulling up her white dress. Her naked rump sticking out, she tries to pull the teats of her small exposed udder to try and mimic you.\n\nThe sight makes the two of you laugh. \"Sorry hun, but the machine only works for one person right now. Plus you're not big enough for it yet. Maybe one day.\" She gives the girl a pat on the head. Unphased, the girl just shrugs and continues to play like she's being milked like you, mooing in tune to your own gasps.")
+                           elif (self.malonChildren > 1):
+                              self.doMainText("\n\n\"Mommy, mommy, can we be hooked up to the machine too? It looks like fun!\" Your daughters stand on boths sides, hands grabbing the rail so they can bend forward a little while their other hands pull up their white dresses. Naked rumps sticking out all around, they try to pull the teats of their small exposed udders to try and mimic you.\n\nThe sight makes the two of you laugh. \"Sorry sweeties, but the machine only works for one person right now. Plus you're not big enough for it yet. Maybe one day.\" She gives the girls pats on their heads. Unphased, they continue to play like they're being milked like you, mooing in tune to your own gasps.")
+                           self.doMainText("\n\nAfter a couple hours, your lover needs to head back to work. \"Alright hun, you seem to be enjoying yourself.\" She leans in, smothering you in boob-flesh again as she kisses your forehead. \"Take care, I'll see you when you're out~\" Then she leaves")
+                           if (self.malonChildren == 1):
+                              self.doMainText(" with your girl")
+                           elif (self.malonChildren > 1):
+                              self.doMainText(" with your girls")
+                           self.doMainText(" and allows the next farmer to take the shift.")
+                        else:
                            self.doMainText(" She rushes over to you")
                            if (self.malonPreg > 36):
                               self.doMainText(", her swollen belly swaying from side to side,")
@@ -20320,28 +20317,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                            if (self.malonChildren == 1):
                               self.doMainText(" with your girl")
                            if (self.malonChildren > 1):
-                              self.doMainText(" with your girls")
-                           self.doMainText(" and allows the next farmer to take the shift.")
-                        else:
-                           self.doMainText(" She slowly walks over to you")
-                           if (self.malonPreg > 36):
-                              self.doMainText(", cradling her swollen pregnant belly,")
-                           if (self.malonChildren == 1):
-                              self.doMainText(" with your daughter following closely behind")
-                           elif (self.malonChildren > 1):
-                              self.doMainText(" with your daughters following closely behind")
-                           self.doMainText(" and covers you head with her breasts as she hugs you. \"Hehe, I heard you got caught in this thing again and thought I would take a shift to keep you company. Though gosh, with how much this thing is milking you, I'm starting to get a little jealous.\" She giggles at the thought. But then her shirt begins to blotch from the jiggling and she pulls the chair in closer. With plenty of buckets down here and all the privacy, she's able to start milking right in front of you")
-                           if (self.lactation > 0 and self.milkEngorgementLevel > 0):
-                              self.doMainText(" and takes the liberty to relieve your own chest of milk, since the machine is focused elsewhere")
-                           self.doMainText(". A nice conversation picks up as milk flies everywhere and helps the time pass quickly.")
-                           if (self.malonChildren == 1):
-                              self.doMainText("\n\n\"Mommy, mommy, can I be hooked up to the machine too? It looks like fun!\" Your daughter stands beside you, one hand reaching out to grab the rail so she can bend forward a little, the other hand pulling up her white dress. Her naked rump sticking out, she tries to pull the teats of her small exposed udder to try and mimic you.\n\nThe sight makes the two of you laugh. \"Sorry hun, but the machine only works for one person right now. Plus you're not big enough for it yet. Maybe one day.\" She gives the girl a pat on the head. Unphased, the girl just shrugs and continues to play like she's being milked like you, mooing in tune to your own gasps.")
-                           elif (self.malonChildren > 1):
-                              self.doMainText("\n\n\"Mommy, mommy, can we be hooked up to the machine too? It looks like fun!\" Your daughters stand on boths sides, hands grabbing the rail so they can bend forward a little while their other hands pull up their white dresses. Naked rumps sticking out all around, they try to pull the teats of their small exposed udders to try and mimic you.\n\nThe sight makes the two of you laugh. \"Sorry sweeties, but the machine only works for one person right now. Plus you're not big enough for it yet. Maybe one day.\" She gives the girls pats on their heads. Unphased, they continue to play like they're being milked like you, mooing in tune to your own gasps.")
-                           self.doMainText("\n\nAfter a couple hours, your lover needs to head back to work. \"Alright hun, you seem to be enjoying yourself.\" She leans in, smothering you in boob-flesh again as she kisses your forehead. \"Take care, I'll see you when you're out~\" Then she leaves")
-                           if (self.malonChildren == 1):
-                              self.doMainText(" with your girl")
-                           elif (self.malonChildren > 1):
                               self.doMainText(" with your girls")
                            self.doMainText(" and allows the next farmer to take the shift.")
                         if (self.lactation > 0 and self.milkEngorgementLevel > 0):
@@ -20396,12 +20371,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                   self.doCoin(-30)
                   self.itemAdd(211)
                   self.hrs = 2
-               self.displayMainText()
-               self.doEnd()
             else:
-               self.outputMainText("\"Well, come back again later if you change your mind. And have a nice day!\"\n\nHe gives you a nod before heading back to his work, leaving you to head back to Softlik.", True)
+               self.doMainText("\"Well, come back again later if you change your mind. And have a nice day!\"\n\nHe gives you a nod before heading back to his work, leaving you to head back to Softlik.", True)
                self.hrs = 1
-               self.doEnd()
+            self.displayMainText()
+            self.doEnd()
          self.doListen = doListen
 
       # Malon Encounter
@@ -20466,11 +20440,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                            def doListen():
                               if (self.buttonChoice == 5):
-                                 self.outputMainText("With tears welling up in her eyes, she rips away from the cups, letting them pop from her nipples with a milky flood. She turns and runs the other way, her tits bouncing from side to side and milk splashing across the walls as she goes, until she disappears out another door, leaving you with nothing.", True)
+                                 self.doMainText("With tears welling up in her eyes, she rips away from the cups, letting them pop from her nipples with a milky flood. She turns and runs the other way, her tits bouncing from side to side and milk splashing across the walls as she goes, until she disappears out another door, leaving you with nothing.", True)
                                  self.stats(0, -3, 0, 0)
                                  self.malonRep = -1
-                                 self.hrs = 2
-                                 self.doEnd()
                               elif (self.buttonChoice == 7):
                                  if (self.malonRep == 0):
                                     self.doMainText("\"Ahh, thank you so much!\" She looks like she wants to hug you, but she's a bit tethered at the moment... and half naked.\n\nShe begins to gather herself, trying to turn away as she removes the milk-cups. You get a short flash of her over-ample chest before she pulls her shirt back into position, rubbing her nipples so they don't show through as well and dabbing the resulting blotch with her shawl.\n\n\"M-My name is Malon. I've been this way most of my life... As a child, I always loved animals. A little too much, you could say... I liked the cows so much that I wanted to be like them. And so, I took one of their DairE Pills... To cut a long story short, I was happy with the results at first, becoming more like my bovine friends. Until eventually I grew up and realized my predicament. And, well, ever since then, I've been like this...\"\n\nShe shuffles uncomfortably in position for a bit, not quite sure what to say. She glances from side to side before deciding to step over to the milk machine, grabbing a bottle that was freshly made. Very freshly.\n\n\"I-I don't know how to thank you for not ruining one of the few pleasures of my life, but at least take this.\" She hands you the bottle as she bows her head.\n\nIn an instant, she turns and hurries out of the barn, her long tail squeezing against her backside and outlining her butt even more.", True)
@@ -20481,9 +20453,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.doSexP(5)
                                  self.itemAdd(214)
                                  self.stats(0, 1, 0, 0)
-                                 self.hrs = 2
-                                 self.displayMainText()
-                                 self.doEnd()
+                              self.hrs = 2
+                              self.displayMainText()
+                              self.doEnd()
                            self.doListen = doListen
                      elif (self.buttonChoice == 5):
                         if (self.malonRep < 1):
@@ -20530,14 +20502,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                        self.stats(0, 2, 0, -2)
                                        self.doSexP(5)
                                        self.malonRep = 2
-                                       self.doEnd()
                                     elif (self.buttonChoice == 7):
                                        self.outputMainText(f"You smile and pat her on the head, telling her that she shouldn't be ashamed of being a cow. There's a lot of races out there that are like other animals, so she's more like a new race on her own.\n\nHearing your uplifting words, her head rises back up with a big, goofy smile, her ears nearly flapping. \"M-Mooo?\"\n\nYou nod in acceptance.\n\nShe giggles loudly, lunging out at you with her arms stretched wide and plowing you to the ground under her massive soft tits in a great big hug. She nuzzles your {self.boobDesc()} chest a little, enjoying your presence, before lifting herself with milky drops spilling from her shirt onto you. Not caring in the slightest, however, she turns around and skips back to the farm, her chest bouncing immensely while her tail flits about happily behind her.\n\n\nAs you come to a stand, however, something drops from your body, having been intentionally left behind during her attack...", True)
                                        self.stats(0, 1, 0, 2)
                                        self.doSexP(25)
                                        self.malonRep = 3
                                        self.itemAdd(215)
-                                       self.doEnd()
+                                    self.doEnd()
                                  self.doListen = doListen
                               self.doListen = doListen
                            else:
@@ -20790,14 +20761,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                           self.stats(0, 2, 0, -2)
                                           self.doSexP(10)
                                           self.malonRep = 2
-                                          self.doEnd()
                                        elif (self.buttonChoice == 7):
                                           self.outputMainText(f"You smile and pat her on the head, telling her that she shouldn't be ashamed of being a cow. There's a lot of races out there that are like other animals, so she's actually a whole new race on her own rather than a mere animal.\n\nHearing your uplifting words, her head rises back up with a small smile, her ears twitching hesitantly. \"M-Mooo?\"\n\nYou nod in acceptance.\n\nShe giggles cheerfully, lunging out you with her arms stretched wide and plowing you to the ground under her massive soft tits in a great big hug. She nuzzles your {self.boobDesc()} chest a little, enjoying your presence, before lifting herself with milky drops spilling from her shirt onto you. Not caring in the slightest, however, she turns around and skips back to the farm, her chest bouncing immensely while her tail flails about happily behind her.\n\n\nAs you come to a stand, however, something drops from your body, having been intentionally left behind during her attack...", True)
                                           self.stats(0, 1, 0, 2)
                                           self.doSexP(25)
                                           self.malonRep = 3
                                           self.itemAdd(215)
-                                          self.doEnd()
+                                       self.doEnd()
                                     self.doListen = doListen
                                  self.doListen = doListen
                               self.doListen = doListen
@@ -22328,9 +22298,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.minLust += 10
                             self.doLust(0, 0)
                             self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                            self.displayMainText()
                             self.hrs = 2
-                            self.doEnd()
                         elif self.buttonChoice == 3:
                             self.doMainText(f"You attempt to poke the statue's mouth. That's soooo erotic. Poke. Poke. Poke. Poke. You're an idiot...\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
                             if (self.boobTotal == 2):
@@ -22346,19 +22314,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.minLust += 10
                             self.doLust(0, 0)
                             self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                            self.displayMainText()
                             self.hrs = 2
-                            self.doEnd()
                         elif self.buttonChoice == 8:
-                            self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
+                            self.doMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
                             self.hrs = 1
-                            self.doEnd()
                         elif self.buttonChoice == 9:
-                            self.outputMainText("You stick the cock carving into the statue's open mouth. It seems to be a perfect fit and a rather lewd activity. Not exactly pleasurable for the statue, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
+                            self.doMainText("You stick the cock carving into the statue's open mouth. It seems to be a perfect fit and a rather lewd activity. Not exactly pleasurable for the statue, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
                             self.doSexP(15)
                             self.loseManyItem(207, 1)
                             self.hrs = 2
-                            self.doEnd()
                         elif self.buttonChoice == 11:
                             self.doMainText("You pour the milk into the statue's open mouth. The sweet fluids flow down inside of her and she seems pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
                             if (self.bag.hasItem(254) or self.stash.hasItem(254)):
@@ -22370,9 +22334,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.loseManyItem(500, 1)
                             else:
                                 self.loseManyItem(501, 1)
-                            self.displayMainText()
                             self.hrs = 3
-                            self.doEnd()
+                        self.displayMainText()
+                        self.doEnd()
                     self.doListen = doListen
                 elif self.buttonChoice == 3:
                     self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
@@ -22392,9 +22356,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             else:
                                 self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.")
                                 self.itemAdd(254)
-                            self.displayMainText()
                             self.hrs = 3
-                            self.doEnd()
                         elif self.buttonChoice == 3:
                             self.doMainText(f"You attempt to poke the statue's ear. Why would you do such a thing? Would you like someone poking your ear? The statue sure doesn't seem to like it.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
                             if (self.boobTotal == 2):
@@ -22410,13 +22372,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.minLust += 10
                             self.doLust(0, 0)
                             self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                            self.displayMainText()
                             self.hrs = 2
-                            self.doEnd()
                         elif self.buttonChoice == 8:
-                            self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
+                            self.doMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
                             self.hrs = 1
-                            self.doEnd()
                         elif self.buttonChoice == 9:
                             self.doMainText(f"You attempt to stick a cock carving into the statue's ear. You attempt to stick a penis-like object into someone's ear. What the hell is wrong with you?!\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
                             if (self.boobTotal == 2):
@@ -22433,9 +22392,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.minLust += 10
                             self.doLust(0, 0)
                             self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                            self.displayMainText()
                             self.hrs = 2
-                            self.doEnd()
                         elif self.buttonChoice == 11:
                             self.doMainText(f"You attempt pour the milk into the statue's ear. Why? Maybe if there was a buildup of ear-wax that might be a good idea, but even then that's not exactly smart.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
                             if (self.boobTotal == 2):
@@ -22455,9 +22412,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.minLust += 10
                             self.doLust(0, 0)
                             self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                            self.displayMainText()
                             self.hrs = 2
-                            self.doEnd()
+                        self.displayMainText()
+                        self.doEnd()
                     self.doListen = doListen
                 elif self.buttonChoice == 6:
                     self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
@@ -22471,10 +22428,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                     def doListen():
                         if self.buttonChoice == 1:
-                            self.outputMainText("You lick the statue's breasts, pleasuring the nipples that stick out. It's not exactly something that can lead to climax alone, maybe with some actual suckling, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
+                            self.doMainText("You lick the statue's breasts, pleasuring the nipples that stick out. It's not exactly something that can lead to climax alone, maybe with some actual suckling, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
                             self.doSexP(10)
                             self.hrs = 2
-                            self.doEnd()
                         elif self.buttonChoice == 3:
                             self.doMainText(f"You attempt to poke the statue's boobs. The boobs definitely don't bite back, but it seems like a rather annoying way to react to boobs.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
                             if (self.boobTotal == 2):
@@ -22490,34 +22446,30 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.minLust += 10
                             self.doLust(0, 0)
                             self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
-                            self.displayMainText()
                             self.hrs = 2
-                            self.doEnd()
                         elif self.buttonChoice == 8:
-                            self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
+                            self.doMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
                             self.hrs = 1
-                            self.doEnd()
                         elif self.buttonChoice == 9:
-                            self.outputMainText("You wedge a cock carving in between the statue's two sets of breast. It fits relatively well and seems like a rather lewd act. Not exactly pleasurable for the statue, but quite kinky nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
+                            self.doMainText("You wedge a cock carving in between the statue's two sets of breast. It fits relatively well and seems like a rather lewd act. Not exactly pleasurable for the statue, but quite kinky nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
                             self.doSexP(15)
                             self.loseManyItem(207, 1)
                             self.hrs = 2
-                            self.doEnd()
                         elif self.buttonChoice == 11:
                             self.doMainText("You pour the milk out over the breasts until they're completely covered in the silky white fluid and the nipples drip with the stuff as though they are lactating. The statue seems very pleased with this idea and you hear gears turning within.\n\nAt the base of the statue, a hidden compartment pops out.", True)
-                            if (not self.knowBazoomba):
+                            if (self.knowBazoomba):
+                                self.doMainText(" However, it's completely empty. You already took the recipe that was in here before, so there's nothing left within.")
+                            else:
                                 self.doMainText(" A scroll rolls out, allowing you to take it. You open it up and read through the various pictographs. It seems to be an alchemical recipe! You can make out the actual ingredients for the concoction, but you can't seem to tell what it is exactly, only able to determine that it creates \"more of the best things in life\"?\n\nYou have learned the recipe for Bazoomba!")
                                 self.knowBazoomba = True
-                            else:
-                                self.doMainText(" However, it's completely empty. You already took the recipe that was in here before, so there's nothing left within.")
                             self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
                             self.hrs = 2
                             if (self.bag.hasItem(500)):
                                 self.loseManyItem(500, 1)
                             else:
                                 self.loseManyItem(501, 1)
-                            self.displayMainText()
-                            self.doEnd()
+                        self.displayMainText()
+                        self.doEnd()
                     self.doListen = doListen
                 elif self.buttonChoice == 10:
                     self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
@@ -22531,19 +22483,16 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                     def doListen():
                         if self.buttonChoice == 1:
-                            self.outputMainText("You lick the statue's pussy, pleasuring it with your mouth. A great form of foreplay, it could make the statue come from that alone. However, it still wants a little more. Yet, you feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
+                            self.doMainText("You lick the statue's pussy, pleasuring it with your mouth. A great form of foreplay, it could make the statue come from that alone. However, it still wants a little more. Yet, you feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
                             self.doSexP(20)
                             self.hrs = 2
-                            self.doEnd()
                         elif self.buttonChoice == 3:
-                            self.outputMainText("You poke the statue's gaping pussy. Your finger slides up inside and diddles within, pleasuring the statue a bit. It's not quite like the real thing, but a fun thing to do nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
+                            self.doMainText("You poke the statue's gaping pussy. Your finger slides up inside and diddles within, pleasuring the statue a bit. It's not quite like the real thing, but a fun thing to do nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
                             self.doSexP(8)
                             self.hrs = 2
-                            self.doEnd()
                         elif self.buttonChoice == 8:
-                            self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
+                            self.doMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
                             self.hrs = 1
-                            self.doEnd()
                         elif self.buttonChoice == 9:
                             self.doMainText("You slide a cock carving up into the statue's open pussy. The penis-like object seems to be a perfect fit and you hear a click as the thing unlocks something within. The statue seems rather pleased with the pleasurable gesture...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
                             if (self.bag.hasItem(254) or self.stash.hasItem(254)):
@@ -22552,18 +22501,17 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.")
                                 self.itemAdd(254)
                             self.loseManyItem(207, 1)
-                            self.displayMainText()
                             self.hrs = 3
-                            self.doEnd()
                         elif self.buttonChoice == 11:
-                            self.outputMainText("You push the bottle of milk up against the statue's pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you're looking rather pregnant!\n\nThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...", True)
+                            self.doMainText("You push the bottle of milk up against the statue's pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you're looking rather pregnant!\n\nThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...", True)
                             self.pregArray.push(True, 504, 208, 200, 0)
                             if (self.bag.hasItem(500)):
                                 self.loseManyItem(500, 1)
                             else:
                                 self.loseManyItem(501, 1)
                             self.hrs = 2
-                            self.doEnd()
+                        self.displayMainText()
+                        self.doEnd()
                     self.doListen = doListen
                 elif self.buttonChoice == 12:
                     self.outputMainText("Wary of ancient puzzles involving oversexualized statues, you head back to town for now.", True)
@@ -22916,10 +22864,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.buttonChoice == 6):
                         if (self.breastSize > 2 and self.hips > 2 and self.body < 20):
                             self.doMainText(f"The male Lupan with a collar before you nods and slowly comes to a stand, keeping his head down. With the stand, you have full view of his endowment, an already fully erect deep-red canine cock, with knot and all at attention out of his sheath.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan male before you counts himself down, then starts with a spin, and slide, giving you a very nice view of his furred ass.\n\nThe dance quickly turns erotic, his hands sliding over his body as his torso weaves in concert, putting on a rather arousing display for his audience. His tail sways with his motions, in rhythm to the drumbeat.\n\nThe collar he wears has a slight jingle of an oval, golden tag bearing his name. With how he moves, you don't get a good view of it, but you don't believe he is available for an owner anyway. Instead, you enjoy his display, watching the slender figure move and twist, showing off his supple ass and throbbing knotted canine shaft.\n\nAfter a couple hours of watching him dance almost nonstop to the ever-changing rhythm of the drum-house below, he is called by a female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be his owner and you watch as he obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to his collar.\n\nSeeing as you became rather aroused by his performance, you decide to leave the Knothole for now, leaving the male Lupan to his Mistress.", True)
-                            self.doLust(Math.floor(self.lib / 4), 0)
                         else:
                             self.doMainText(f"The female Lupan with a collar before you nods and slowly comes to a stand, keeping her head down. With the stand, you have a wondrous view of her supple bosom and damp pussy.\n\nThe beat of the drums below rumbles softly through the floor, being felt through your {self.legDesc(10)}. Tapping a toe to the rhythm, the slender Lupan female before you counts herself down, then starts with a spin, and slide, giving you a very nice view of her soft and firm furred ass.\n\nThe dance quickly turns erotic, her hands sliding over her breasts and slender belly as her torso weaves in concert, putting on a rather arousing display for her audience. Her fluffy tail sways with her motions, in rhythm to the drumbeat.\n\nThe collar she wears has a slight jingle of an oval, golden tag bearing her name. With how she moves, you don't get a good view of it, but you don't believe she is available for an owner anyway. Instead, you enjoy her erotic display, watching the slender figure move and twist, showing off her firm slim ass and damp cunny.\n\nAfter a couple hours of watching her dance almost nonstop to the ever-changing rhythm of the drum-house below, she is called by another female Lupan wearing a deep red corset and short skirt holding a couple of leashes. This woman you assume to be her owner and you watch as she obediently heeds her call, bowing to you before crawling back to her on all fours and letting her hook a leash to her collar.\n\nSeeing as you became rather aroused by her performance, you decide to leave the Knothole for now, leaving the female Lupan to her Mistress.", True)
-                            self.doLust(Math.floor(self.lib / 4), 0)
+                        self.doLust(Math.floor(self.lib / 4), 0)
                         self.hrs += 3
                     else:
                         self.doMainText("Dismissing the submissive Lupan before you, you lay your head back and relax, listening to the dulled beat of the drum-house below and the mixed sounds of pleasure, conversation, and ecstasy around the large room.\n\nSometime later, you don't know how long, you take a heavy yawn and stretch, having your rest filled with wet dreams and imaginings of the events around you. Seeing not much else to do, you take your leave of the Knothole.", True)
@@ -25442,7 +25389,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.nippleSize -= 8
             self.milkMod -= 50
         if (self.cowAffinity + self.cow < 55 and self.cowAffinity >= 55):
-            if (not self.udderCheck(1)):
+            if (self.udderCheck(1)):
+                self.doMainText("\n\nYour waistbands seem quite loose after your hips shrink by a few inches.")
+            else:
                 self.doMainText("\n\nThe fleshy bag of milk at your abdomen shrinks to nothing, disappearing along with its teats. You're no longer lugging around an udder. Plus your waistbands seem quite loose after your hips shrink by a few inches.")
                 self.udders = False
                 self.udderLactation = 0
@@ -25451,8 +25400,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.udderPlay = 0
                 self.udderSize = 0
                 self.teatSize = 0
-            else:
-                self.doMainText("\n\nYour waistbands seem quite loose after your hips shrink by a few inches.")
             self.lactChange(1, -100)
             self.hips -= 8
         if (self.lizardAffinity + self.lizard >= 40 and self.lizardAffinity < 40):
@@ -26237,6 +26184,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.currentText == "Something feels odd..."):
             self.outputMainText("", True)
             self.doProcess()
+
         else:
             self.displayMainText()
             self.doEnd()
@@ -26371,10 +26319,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (self.cockTotal > 0):
             self.cockSize += sizeChange
         if mainobject.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
-            if self.lizardCocks == self.cockTotal and self.cockTotal != 0:
-                self.showBalls = False
-            else:
-                self.showBalls = True
+            self.showBalls = not (self.lizardCocks == self.cockTotal and self.cockTotal != 0)
 
     def cockLoss(self):
         hasHumanCock = 101
@@ -26421,10 +26366,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText("\n\nYou have lost one bug cock.")
             self.bugCocks -= 1
         if mainobject.lizanDontShowBalls and self.cockTotal > 0 and not self.neuterizerHideBalls:
-            if self.lizardCocks == self.cockTotal:
-                self.showBalls = False
-            else:
-                self.showBalls = True
+            self.showBalls = not (self.lizardCocks == self.cockTotal)
 
     def vagChange(self, sizeChange: int, totalChange: int):
         if (self.cockSnakePreg > 0):
@@ -26620,13 +26562,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.doMainText(" The fur on your tauric half turns white in color, with large black spots around it")
             self.doMainText(f", while your {self.buttDesc()} ass grows larger and more square from the second hips. The ends of your legs harden, your ankles rising as the balls of your feet terminate in keratin hooves.")
-            if (not self.udders):
+            if (self.udders):
+                self.doMainText(" Your udder also went along with the rest of your crotch, now hanging down from your tauric belly and threatening to drag across the ground if it gets too big, instead of sitting at your normal waist.")
+            else:
                 self.doMainText(" And you feel a weight growing from your tauric belly. You look around yourself to see 4 long teats extend, an udder growing beneath you, making your lower half look much like a dairy cow...")
                 self.udders = True
                 self.udderSize = 2 * self.breastSize
                 self.teatSize = 2 * self.nippleSize
-            else:
-                self.doMainText(" Your udder also went along with the rest of your crotch, now hanging down from your tauric belly and threatening to drag across the ground if it gets too big, instead of sitting at your normal waist.")
         if (self.legType == 1001 and which != 1001 and which > 1000):
             if (not self.udderCheck(2) and self.udders):
                 self.doMainText(f"\n\nYour udder shrinks into your {self.skinDesc()} and disappears...")
