@@ -21,6 +21,7 @@ import math
 import os
 import random
 import platform
+import sys
 
 from tkhtmlview import html_parser
 if hasattr(html_parser, 'HLinkSlot_Command'):
@@ -209,6 +210,21 @@ class Race:
         return f"RACE PRETTY NAME ERROR {ID}"
 
 
+if sys.hexversion >= 0x030F0000:
+    # Python 3.15 added this
+    _EnemyStatsContainerParent = frozendict
+else:
+    _EnemyStatsContainerParent = dict
+
+
+class EnemyStatsContainer(_EnemyStatsContainerParent):
+    def __getattr__(self, item):
+        attr = dict.__getitem__(self, item)
+        if callable(attr):
+            attr = attr()
+        return attr
+
+
 class Enemy:
     NONE = 0
     TEST_ENEMY = 1
@@ -267,6 +283,23 @@ class Enemy:
         if ID == Enemy.FREAKY_LITTLE_GIRL:
             return 308
         return 0
+
+
+Enemy.STATS = {
+    Enemy.COCK_SNAKE: EnemyStatsContainer(HP = 30, str = 16, ment = 4, sen = 8, lib = 0, lust = 0, gender = Gender.ANDRO, pref = Preference.ANY, coin = 0, SexP = 15, item = 202),
+    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsContainer(HP = 25, str = 0, ment = 20, sen = 0, lib = 50, lust = 0, gender = Gender.ANDRO, pref = Preference.ANDRO, coin = 0, SexP = 10, item = 231),
+    Enemy.LONE_WOLF: EnemyStatsContainer(HP = 45, str = 22, ment = 16, sen = 13, lib = 11, lust = 30, gender = Gender.MALE, pref = Preference.FEMALE, coin = 0, SexP = 20, item = 203),
+    Enemy.GAY_WOLF: EnemyStatsContainer(HP = 45, str = 26, ment = 16, sen = 20, lib = 11, lust = 40, gender = Gender.MALE, pref = Preference.MALE, coin = 0, SexP = 20, item = 203),
+    Enemy.HORNY_FELIN: EnemyStatsContainer(HP = 50, str = 12, ment = 10, sen = 24, lib = 30, lust = 40, gender = Gender.FEMALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 10), SexP = 25, item = 204),
+    Enemy.DRUNKEN_EQUAN: EnemyStatsContainer(HP = 60, str = 28, ment = 9, sen = 18, lib = 14, lust = 30, gender = Gender.MALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 10), SexP = 25, item = 205),
+    Enemy.OCTOPUS_GIRL: EnemyStatsContainer(HP = 150, str = 45, ment = 30, sen = 25, lib = 35, lust = 20, gender = Gender.FEMALE, pref = Preference.ANY, coin = 0, SexP = 50, item = 216),
+    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsContainer(HP = 55, str = 35, ment = 30, sen = 35, lib = 45, lust = 10, gender = Gender.MALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 10), SexP = 30, item = 222),
+    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsContainer(HP = 50, str = 35, ment = 30, sen = 45, lib = 35, lust = 10, gender = Gender.FEMALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 10), SexP = 30, item = 222),
+    Enemy.FIERCE_NAGA: EnemyStatsContainer(HP = 100, str = 50, ment = 20, sen = 40, lib = 2, lust = 40, gender = Gender.FEMALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 5), SexP = 55, item = 230),
+    Enemy.MINOTAUR: EnemyStatsContainer(HP = 250, str = 70, ment = 20, sen = 50, lib = 20, lust = 10, gender = Gender.MALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 4 + 5), SexP = 50, item = 525),
+    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsContainer(HP = 175, str = 80, ment = 40, sen = 70, lib = 60, lust = 10, gender = Gender.FEMALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 4 + 5), SexP = 55, item = 259),
+    Enemy.SUCCUBUS: EnemyStatsContainer(HP = 150, str = 35, ment = 80, sen = 40, lib = 40, lust = 0, gender = Gender.FEMALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 4 + 5), SexP = 60, item = 260)
+}
 
 
 class StartType:
@@ -831,7 +864,7 @@ class SaveUtils:
         if data['level']['shapeshiftySecond'] is None:
             data['level']['shapeshiftySecond'] = ''
 
-        # Version of this port before 10 had a bug which would count up
+        # Versions of this port before 10 had a bug which would count up
         # eggTime instead of down. There is no bounds checking in this
         # direction so it could end up being very high.
         if data['status']['eggTime'] > data['status']['eggMaxTime'] and int(data['version']['port'].split('.')[-1]) < 10:
@@ -3067,31 +3100,6 @@ class PlayerItemContainer:
         return -1
 
 
-class EnemyStatsContainer(dict):
-    def __getattr__(self, item):
-        attr = dict.__getitem__(self, item)
-        if callable(attr):
-            attr = attr()
-        return attr
-
-
-ENEMY_STATS = {
-    Enemy.COCK_SNAKE: EnemyStatsContainer({'HP': 30, 'str': 16, 'ment': 4, 'sen': 8, 'lib': 0, 'lust': 0, 'gender': Gender.ANDRO, 'pref': Preference.ANY, 'coin': 0, 'SexP': 15, 'item': 202}),
-    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsContainer({'HP': 25, 'str': 0, 'ment': 20, 'sen': 0, 'lib': 50, 'lust': 0, 'gender': Gender.ANDRO, 'pref': Preference.ANDRO, 'coin': 0, 'SexP': 10, 'item': 231}),
-    Enemy.LONE_WOLF: EnemyStatsContainer({'HP': 45, 'str': 22, 'ment': 16, 'sen': 13, 'lib': 11, 'lust': 30, 'gender': Gender.MALE, 'pref': Preference.FEMALE, 'coin': 0, 'SexP': 20, 'item': 203}),
-    Enemy.GAY_WOLF: EnemyStatsContainer({'HP': 45, 'str': 26, 'ment': 16, 'sen': 20, 'lib': 11, 'lust': 40, 'gender': Gender.MALE, 'pref': Preference.MALE, 'coin': 0, 'SexP': 20, 'item': 203}),
-    Enemy.HORNY_FELIN: EnemyStatsContainer({'HP': 50, 'str': 12, 'ment': 10, 'sen': 24, 'lib': 30, 'lust': 40, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 25, 'item': 204}),
-    Enemy.DRUNKEN_EQUAN: EnemyStatsContainer({'HP': 60, 'str': 28, 'ment': 9, 'sen': 18, 'lib': 14, 'lust': 30, 'gender': Gender.MALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 25, 'item': 205}),
-    Enemy.OCTOPUS_GIRL: EnemyStatsContainer({'HP': 150, 'str': 45, 'ment': 30, 'sen': 25, 'lib': 35, 'lust': 20, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': 0, 'SexP': 50, 'item': 216}),
-    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsContainer({'HP': 55, 'str': 35, 'ment': 30, 'sen': 35, 'lib': 45, 'lust': 10, 'gender': Gender.MALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 30, 'item': 222}),
-    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsContainer({'HP': 50, 'str': 35, 'ment': 30, 'sen': 45, 'lib': 35, 'lust': 10, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 10), 'SexP': 30, 'item': 222}),
-    Enemy.FIERCE_NAGA: EnemyStatsContainer({'HP': 100, 'str': 50, 'ment': 20, 'sen': 40, 'lib': 2, 'lust': 40, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 5), 'SexP': 55, 'item': 230}),
-    Enemy.MINOTAUR: EnemyStatsContainer({'HP': 250, 'str': 70, 'ment': 20, 'sen': 50, 'lib': 20, 'lust': 10, 'gender': Gender.MALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 50, 'item': 525}),
-    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsContainer({'HP': 175, 'str': 80, 'ment': 40, 'sen': 70, 'lib': 60, 'lust': 10, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 55, 'item': 259}),
-    Enemy.SUCCUBUS: EnemyStatsContainer({'HP': 150, 'str': 35, 'ment': 80, 'sen': 40, 'lib': 40, 'lust': 0, 'gender': Gender.FEMALE, 'pref': Preference.ANY, 'coin': lambda: Math.floor(Utils.percent() / 4 + 5), 'SexP': 60, 'item': 260})
-}
-
-
 class EnemyContainer:
     @property
     def ID(self):
@@ -3099,10 +3107,10 @@ class EnemyContainer:
 
     @ID.setter
     def ID(self, value):
-        if value not in ENEMY_STATS:
+        if value not in Enemy.STATS:
             raise
         self._ID = value
-        stats = ENEMY_STATS[value]
+        stats = Enemy.STATS[value]
         self._HP = stats.HP
         self._maxHP = stats.HP
         self._str = stats.str
@@ -4885,11 +4893,7 @@ class SE_WidgetContainer(tkinter.Frame):
                 self[name] = SE_ValueWidget(self, name, value)
             self[name].pack(side=tkinter.TOP, fill=tkinter.X)
 
-    def getWidgets(self):
-        return {i: getattr(self, i) for i in dir(self) if i.startswith('WIDGET_')}
-
     def getValue(self):
-        # TODO: Should recursively return all values as a dict
         return {i.lstrip('WIDGET_'): getattr(self, i).getValue() for i in dir(self) if i.startswith('WIDGET_')}
 
 
@@ -6015,7 +6019,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Sets up the interface, then runs the "frame1" function
         '''
-        # TODO: initialise elements with the correct colours
         # window
         self._window = itk.itkWindow(width=1176, height=662, title='Nimin: Fetish Fantasy (Python port)', main=True, menu=True, defaultMenu=False)
         self.window.configureChild('display', background=self.backgroundColor)
@@ -10602,6 +10605,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempDict = {2: "None", 12: "Cancel"}
             if (self.cockTotal > 0):
                 tempDict[5] = "Cock"
+                # TODO: Make this work with lizanDon't show balls and nueterizerHideBalls
                 if (self.showBalls and self.balls > 0):
                     tempDict[10] = "Balls"
             if (self.vagTotal > 0):
@@ -13509,8 +13513,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         tempInt = Math.floor(Utils.percent() / 20 + self.ment / 5 + self.lib / 5)
         self.doMainText("", True)
-        # Softlik Whoring
 
+        # Softlik Whoring
         if self.currentZone == Zone.SOFTLIK:
             self.rndArray = Array(1, 4, 5)
             if self.cockTotal > 0:
