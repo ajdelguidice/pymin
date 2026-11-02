@@ -216,7 +216,7 @@ class Race:
         return f"RACE PRETTY NAME ERROR {ID}"
 
 
-class EnemyStatsContainer(frozendict):
+class CustomDict(frozendict):
     def __getattr__(self, item):
         attr = dict.__getitem__(self, item)
         if callable(attr):
@@ -285,19 +285,19 @@ class Enemy:
 
 
 Enemy.STATS = frozendict({
-    Enemy.COCK_SNAKE: EnemyStatsContainer(HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=202),
-    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsContainer(HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=231),
-    Enemy.LONE_WOLF: EnemyStatsContainer(HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=203),
-    Enemy.GAY_WOLF: EnemyStatsContainer(HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=203),
-    Enemy.HORNY_FELIN: EnemyStatsContainer(HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=204),
-    Enemy.DRUNKEN_EQUAN: EnemyStatsContainer(HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=205),
-    Enemy.OCTOPUS_GIRL: EnemyStatsContainer(HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=216),
-    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsContainer(HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
-    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsContainer(HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
-    Enemy.FIERCE_NAGA: EnemyStatsContainer(HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=230),
-    Enemy.MINOTAUR: EnemyStatsContainer(HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=525),
-    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsContainer(HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=259),
-    Enemy.SUCCUBUS: EnemyStatsContainer(HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=260)
+    Enemy.COCK_SNAKE: CustomDict(HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=202),
+    Enemy.DESICCATING_DUST_DEVIL: CustomDict(HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=231),
+    Enemy.LONE_WOLF: CustomDict(HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=203),
+    Enemy.GAY_WOLF: CustomDict(HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=203),
+    Enemy.HORNY_FELIN: CustomDict(HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=204),
+    Enemy.DRUNKEN_EQUAN: CustomDict(HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=205),
+    Enemy.OCTOPUS_GIRL: CustomDict(HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=216),
+    Enemy.LITTLE_BIG_BUNNY_MAN: CustomDict(HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
+    Enemy.LITTLE_BIG_BUNNY_GIRL: CustomDict(HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
+    Enemy.FIERCE_NAGA: CustomDict(HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=230),
+    Enemy.MINOTAUR: CustomDict(HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=525),
+    Enemy.FREAKY_LITTLE_GIRL: CustomDict(HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=259),
+    Enemy.SUCCUBUS: CustomDict(HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=260)
 })
 
 
@@ -4979,7 +4979,7 @@ class SaveEditor(PyminWindow):
         self.filelabel = tkinter.Label(self.filelabelframe, font=('TkTextFont', 9))
         self.filelabel.place(x=385, y=0, anchor='ne')
 
-        self.container = tkinter.Frame(self.window, highlightthickness=1, highlightbackground='#000000')  # TODO: Make scrollable
+        self.container = tkinter.Frame(self.window, highlightthickness=1, highlightbackground='#000000')
         self.container.place(x=5, y=25, width=490, height=370, anchor='nw')
 
         self.editorCanvas = tkinter.Canvas(self.container, width=470, height=370)
@@ -10611,7 +10611,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempDict = {2: "None", 12: "Cancel"}
             if (self.cockTotal > 0):
                 tempDict[5] = "Cock"
-                # TODO: Make this work with lizanDon't show balls and nueterizerHideBalls
+                # TODO: Make this work with lizanDontShowBalls and nueterizerHideBalls
                 if (self.showBalls and self.balls > 0):
                     tempDict[10] = "Balls"
             if (self.vagTotal > 0):
@@ -15057,67 +15057,66 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.makeAlchemy(536, 3)
         self.doListen = doListen
 
+    def canMakeAlchemy(self, ID: int):
+        if ID == 220 and self.bag.getCount(209) >= 7:
+            return True
+        if ID == 221 and self.bag.getCount(210) >= 6 and self.bag.hasItem(114):
+            return True
+        if ID == 503 and (self.bag.hasItem(209) and (self.bag.hasItem(114) or self.bag.hasItem(523) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
+            return True
+        if ID == 504 and self.bag.hasItem(115) and self.bag.hasItem(203):
+            return True
+        if ID == 506 and self.bag.hasItem(114) and self.bag.hasItem(219):
+            return True
+        if ID == 507 and self.bag.hasItem(208):
+            return True
+        if ID == 508 and (self.bag.getCount(209) >= 3 and (self.bag.getCount(112) >= 2 or self.bag.hasItem(524) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
+            return True
+        if ID == 509 and (self.bag.hasItem(503) and (self.bag.hasItem(501) or self.bag.getCount(500) >= 3)):
+            return True
+        if ID == 511 and self.bag.hasItem(213) and self.bag.getCount(219) >= 3:
+            return True
+        if ID == 512 and self.bag.hasItem(208) and self.bag.hasItem(218):
+            return True
+        if ID == 513 and self.bag.hasItem(110) and self.bag.hasItem(120):
+            return True
+        if ID == 514 and self.bag.getCount(203) >= 2 and self.bag.hasItem(503):
+            return True
+        if ID == 515 and self.bag.getCount(203) >= 5:
+            return True
+        if ID == 516 and self.bag.hasItem(110) and self.bag.hasItem(203):
+            return True
+        if ID == 517 and self.bag.getCount(507) >= 3 and self.bag.hasItem(523):
+            return True
+        if ID == 518 and self.bag.hasItem(201) and self.bag.hasItem(202) and self.bag.hasItem(207) and self.bag.hasItem(210):
+            return True
+        if ID == 519 and self.bag.hasItem(222) and self.bag.hasItem(206) and self.bag.hasItem(504):
+            return True
+        if ID == 520 and self.bag.hasItem(216) and self.bag.getCount(212) >= 3:
+            return True
+        if ID == 521 and self.bag.hasItem(120) and self.bag.hasItem(210):
+            return True
+        if ID == 522 and self.bag.getCount(512) >= 3 and self.bag.hasItem(524):
+            return True
+        if ID == 532 and self.bag.hasItem(530) and self.bag.hasItem(212) and self.bag.hasItem(206):
+            return True
+        if ID == 533 and self.bag.getCount(110) >= 2:
+            return True
+        if ID == 534 and (self.bag.getCount(202) >= 2 and (self.bag.hasItem(208) or self.bag.hasItem(218))):
+            return True
+        if ID == 535 and self.bag.hasItem(201) and self.bag.hasItem(533):
+            return True
+        if ID == 536 and self.bag.getCount(207) >= 2 and self.bag.getCount(212) >= 3 and self.bag.hasItem(501) and self.bag.hasItem(529):
+            return True
+        return False
+
     def makeAlchemy(self, ID: int, level: int):
         self.outputMainText(f"You have chosen to make a {Items.name(ID)}.\n\nAre you sure?", True)
         self.buttonConfirm()
 
         def doListen():
-            tempBool = False
             if (self.buttonChoice == 6):
-                tempBool = False
-                # TODO: See if this part can be separated into a different function
-                #       Maybe call it "canMake"
-                if ID == 220 and self.bag.getCount(209) >= 7:
-                    tempBool = True
-                elif ID == 221 and self.bag.getCount(210) >= 6 and self.bag.hasItem(114):
-                    tempBool = True
-                elif ID == 503 and (self.bag.hasItem(209) and (self.bag.hasItem(114) or self.bag.hasItem(523) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
-                    tempBool = True
-                elif ID == 504 and self.bag.hasItem(115) and self.bag.hasItem(203):
-                    tempBool = True
-                elif ID == 506 and self.bag.hasItem(114) and self.bag.hasItem(219):
-                    tempBool = True
-                elif ID == 507 and self.bag.hasItem(208):
-                    tempBool = True
-                elif ID == 508 and (self.bag.getCount(209) >= 3 and (self.bag.getCount(112) >= 2 or self.bag.hasItem(524) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
-                    tempBool = True
-                elif ID == 509 and (self.bag.hasItem(503) and (self.bag.hasItem(501) or self.bag.getCount(500) >= 3)):
-                    tempBool = True
-                elif ID == 511 and self.bag.hasItem(213) and self.bag.getCount(219) >= 3:
-                    tempBool = True
-                elif ID == 512 and self.bag.hasItem(208) and self.bag.hasItem(218):
-                    tempBool = True
-                elif ID == 513 and self.bag.hasItem(110) and self.bag.hasItem(120):
-                    tempBool = True
-                elif ID == 514 and self.bag.getCount(203) >= 2 and self.bag.hasItem(503):
-                    tempBool = True
-                elif ID == 515 and self.bag.getCount(203) >= 5:
-                    tempBool = True
-                elif ID == 516 and self.bag.hasItem(110) and self.bag.hasItem(203):
-                    tempBool = True
-                elif ID == 517 and self.bag.getCount(507) >= 3 and self.bag.hasItem(523):
-                    tempBool = True
-                elif ID == 518 and self.bag.hasItem(201) and self.bag.hasItem(202) and self.bag.hasItem(207) and self.bag.hasItem(210):
-                    tempBool = True
-                elif ID == 519 and self.bag.hasItem(222) and self.bag.hasItem(206) and self.bag.hasItem(504):
-                    tempBool = True
-                elif ID == 520 and self.bag.hasItem(216) and self.bag.getCount(212) >= 3:
-                    tempBool = True
-                elif ID == 521 and self.bag.hasItem(120) and self.bag.hasItem(210):
-                    tempBool = True
-                elif ID == 522 and self.bag.getCount(512) >= 3 and self.bag.hasItem(524):
-                    tempBool = True
-                elif ID == 532 and self.bag.hasItem(530) and self.bag.hasItem(212) and self.bag.hasItem(206):
-                    tempBool = True
-                elif ID == 533 and self.bag.getCount(110) >= 2:
-                    tempBool = True
-                elif ID == 534 and (self.bag.getCount(202) >= 2 and (self.bag.hasItem(208) or self.bag.hasItem(218))):
-                    tempBool = True
-                elif ID == 535 and self.bag.hasItem(201) and self.bag.hasItem(533):
-                    tempBool = True
-                elif ID == 536 and self.bag.getCount(207) >= 2 and self.bag.getCount(212) >= 3 and self.bag.hasItem(501) and self.bag.hasItem(529):
-                    tempBool = True
-                if (tempBool):
+                if (self.canMakeAlchemy(ID)):
                     if ID == 220:
                         self.loseManyItem(209, 7)
                     elif ID == 221:
