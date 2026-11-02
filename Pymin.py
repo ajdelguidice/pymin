@@ -31,6 +31,11 @@ else:
     # NOTE: Can't use trace here because it doesn't currently work properly.
     print('Warning: [PyminWiki] Custom tkhtmlview html_parser is not installed. Wiki links will not work')
 
+if sys.hexversion < 0x030F0000:
+    # Python 3.15 added this.
+    # TODO: Find a better way to do this
+    frozendict = dict
+
 '''
 These variables will need to be checked once as3lib.Array works properly.
 They might break.
@@ -210,14 +215,7 @@ class Race:
         return f"RACE PRETTY NAME ERROR {ID}"
 
 
-if sys.hexversion >= 0x030F0000:
-    # Python 3.15 added this
-    _EnemyStatsContainerParent = frozendict  # noqa
-else:
-    _EnemyStatsContainerParent = dict
-
-
-class EnemyStatsContainer(_EnemyStatsContainerParent):
+class EnemyStatsContainer(frozendict):
     def __getattr__(self, item):
         attr = dict.__getitem__(self, item)
         if callable(attr):
@@ -285,7 +283,7 @@ class Enemy:
         return 0
 
 
-Enemy.STATS = {
+Enemy.STATS = frozendict({
     Enemy.COCK_SNAKE: EnemyStatsContainer(HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=202),
     Enemy.DESICCATING_DUST_DEVIL: EnemyStatsContainer(HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=231),
     Enemy.LONE_WOLF: EnemyStatsContainer(HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=203),
@@ -299,7 +297,7 @@ Enemy.STATS = {
     Enemy.MINOTAUR: EnemyStatsContainer(HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=525),
     Enemy.FREAKY_LITTLE_GIRL: EnemyStatsContainer(HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=259),
     Enemy.SUCCUBUS: EnemyStatsContainer(HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=260)
-}
+})
 
 
 class StartType:
@@ -28386,7 +28384,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if not self.sidepanelvisible:
             for i in range(8):
                 tempcalc = Calc.showSidePanel(i)
-                self.window.addWidget(PyminButton, 'display', SIDE_PANEL_BUTTON_NAMES[i], x=tempcalc[0], y=tempcalc[1], width=80, height=30, font=self.font, text=SIDE_PANEL_BUTTON_TEXT[i], command=getattr(self, f'side{i+1}Event'))
+                self.window.addWidget(PyminButton, 'display', SIDE_PANEL_BUTTON_NAMES[i], x=tempcalc[0], y=tempcalc[1], width=80, height=30, font=self.font, text=SIDE_PANEL_BUTTON_TEXT[i], command=getattr(self, f'side{i + 1}Event'))
             self.window.addHTMLScrolledText('display', 'textside', x=823, y=275, width=330, height=315, font=self.font, border=self.scrolledTextBorders, text='Test', cursor='arrow', wrap='word', background=self.backgroundColor, foreground=self.textColor)
             self.displaySideText()
         self.sidepanelvisible = True
