@@ -29,8 +29,7 @@ if hasattr(html_parser, 'HLinkSlot_Command'):
     HAS_CUSTOM_HTML_PARSER = True
 else:
     HAS_CUSTOM_HTML_PARSER = False
-    # NOTE: Can't use trace here because it doesn't currently work properly.
-    print('Warning: [PyminWiki] Custom tkhtmlview html_parser is not installed. Wiki links will not work')
+    trace('Warning: [PyminWiki] Custom tkhtmlview html_parser is not installed. Wiki links will not work')
 
 if sys.hexversion < 0x030F0000:
     # Python 3.15 added this.
@@ -488,11 +487,11 @@ class PyminButton(itk.itkFrame):
     updateForeground = _noop
 
     @property
-    def text(self):
+    def text(self) -> str:
         return self._text
 
     @text.setter
-    def text(self, value):
+    def text(self, value: str):
         self._text = value
         self.label['text'] = value
 
@@ -3101,11 +3100,11 @@ class PlayerItemContainer:
 
 class EnemyContainer:
     @property
-    def ID(self):
+    def ID(self) -> int:
         return self._ID
 
     @ID.setter
-    def ID(self, value):
+    def ID(self, value: int):
         if value not in Enemy.STATS:
             raise
         self._ID = value
@@ -3124,63 +3123,65 @@ class EnemyContainer:
         self._item = stats.item
 
     @property
-    def HP(self):
+    def HP(self) -> int:
         return self._HP
 
     @HP.setter
-    def HP(self, value):
+    def HP(self, value: int):
         self._HP = value
 
     @property
-    def maxHP(self):
+    def maxHP(self) -> int:
         return self._maxHP
 
     @property
-    def strength(self):
+    def strength(self) -> int:
         return self._str
 
     @property
-    def mentality(self):
+    def mentality(self) -> int:
         return self._ment
 
     @property
-    def sensitivity(self):
+    def sensitivity(self) -> int:
         return self._sen
 
     @property
-    def libido(self):
+    def libido(self) -> int:
         return self._lib
 
     @property
-    def lust(self):
+    def lust(self) -> int:
         return self._lust
 
     @property
-    def gender(self):
+    def gender(self) -> int:
         return self._gender
 
     @property
-    def preference(self):
+    def preference(self) -> int:
         return self._pref
 
     @property
-    def coin(self):
+    def coin(self) -> int:
         return self._coin
 
     @property
-    def SexP(self):
+    def SexP(self) -> int:
         return self._SexP
 
     @property
-    def item(self):
+    def item(self) -> int:
         return self._item
 
     @property
-    def name(self):  # enemyName
+    def name(self) -> str:  # enemyName
+        # TODO: Maybe don't use a separate function for this
+        #       This could easily be stored like the other properties
         return Enemy.name(self.ID)
 
     @property
-    def baby(self):  # enemyBaby
+    def baby(self) -> int:  # enemyBaby
         return Enemy.baby(self.ID)
 
     def __init__(self):
@@ -3202,11 +3203,11 @@ class EnemyContainer:
 # Windows
 class PyminWindow:
     @property
-    def enforceSize(self):
+    def enforceSize(self) -> bool:
         return mainobject.enforceSize
 
     @enforceSize.setter
-    def enforceSize(self, value):
+    def enforceSize(self, value: bool):
         if self.isOpen:
             self._set_enforceSize(bool(value))
 
@@ -3214,35 +3215,35 @@ class PyminWindow:
         ...
 
     @property
-    def fontSize(self):
+    def fontSize(self) -> int:
         return mainobject.fontSize
 
     @fontSize.setter
-    def fontSize(self, value):
+    def fontSize(self, value: int):
         if self.isOpen:
             self._set_fontSize(value)
 
-    def _set_fontSize(self, value):
+    def _set_fontSize(self, value: int):
         ...
 
     @property
-    def fontBold(self):
+    def fontBold(self) -> bool:
         return mainobject.fontBold
 
     @fontBold.setter
-    def fontBold(self, value):
+    def fontBold(self, value: bool):
         if self.isOpen:
             self._set_fontBold(value)
 
-    def _set_fontBold(self, value):
+    def _set_fontBold(self, value: bool):
         ...
 
     @property
-    def isOpen(self):
+    def isOpen(self) -> bool:
         return self._isOpen
 
     @isOpen.setter
-    def isOpen(self, value):
+    def isOpen(self, value: bool):
         value = bool(value)
         if self._isOpen and not value:
             self.close()
@@ -3254,27 +3255,27 @@ class PyminWindow:
         return self._window
 
     @property
-    def backgroundColor(self):
+    def backgroundColor(self) -> str:
         return mainobject.backgroundColor
 
     @backgroundColor.setter
-    def backgroundColor(self, value):
+    def backgroundColor(self, value: str):
         if self.isOpen:
             self._set_backgroundColor(value)
 
-    def _set_backgroundColor(self, value):
+    def _set_backgroundColor(self, value: str):
         ...
 
     @property
-    def textColor(self):
+    def textColor(self) -> str:
         return mainobject.textColor
 
     @textColor.setter
-    def textColor(self, value):
+    def textColor(self, value: str):
         if self.isOpen:
             self._set_textColor(value)
 
-    def _set_textColor(self, value):
+    def _set_textColor(self, value: str):
         ...
 
     def __init__(self):
@@ -3309,10 +3310,10 @@ class PyminWindow:
 class AboutWindow(PyminWindow):
     TEXT = f'Python: Nimin Fetish Fantasy (Pymin) version {__version__}\nhttps://github.com/ajdelguidice/pymin\n\nBased on Nimin v{NIMIN_VERSION}\nhttps://www.furaffinity.net/view/12638483/ (Unavailable)\n\nPython {platform.python_version()}'
 
-    def _set_backgroundColor(self, value):
+    def _set_backgroundColor(self, value: str):
         self.window.configureChildren(('display', 'label'), background=value)
 
-    def _set_textColor(self, value):
+    def _set_textColor(self, value: str):
         self.window.configureChild('label', foreground=value)
 
     def open(self, *e):
@@ -4472,11 +4473,11 @@ class PyminWiki(PyminWindow):
     }
 
     @property
-    def focus(self):
+    def focus(self) -> int:
         return self._focus
 
     @focus.setter
-    def focus(self, value):
+    def focus(self, value: int):
         value = int(value)
         if value != 0 and value != 1:
             raise Error('[PyminWiki.focus] Invalid focus')
@@ -4487,27 +4488,27 @@ class PyminWiki(PyminWindow):
         self._focus = value
 
     @property
-    def text(self):
+    def text(self) -> str:
         return self.window._children['text'].text
 
     @text.setter
-    def text(self, value):
+    def text(self, value: str):
         self.window._children['text'].text = value
 
-    def _set_enforceSize(self, value):
+    def _set_enforceSize(self, value: bool):
         if value:
             self.window.geometry('700x500')
         self.window.resizable = not value
 
-    def _set_fontSize(self, value):
+    def _set_fontSize(self, value: int):
         # TODO: This broke
         self.window._children['text']._fontSize = value - 2
         self.window._children['text'].updateText()
 
-    def _set_backgroundColor(self, value):
+    def _set_backgroundColor(self, value: str):
         self.window.configureChildren(('text', 'menu'), background=value)
 
-    def _set_textColor(self, value):
+    def _set_textColor(self, value: str):
         self.window.configureChildren(('text', 'menu'), foreground=value)
 
     def __init__(self):
@@ -4664,22 +4665,22 @@ class PyminWiki(PyminWindow):
 class SaveConverter(PyminWindow):
     # TODO: Color message text based on ouput
     @property
-    def message(self):
+    def message(self) -> str:
         return self.window._children['message'].text
 
     @message.setter
-    def message(self, value):
+    def message(self, value: str):
         self.window._children['message'].text = value
 
-    def _set_enforceSize(self, value):
+    def _set_enforceSize(self, value: bool):
         if value:
             self.window.geometry('500x334')
         self.window.resizable = not value
 
-    def _set_backgroundColor(self, value):
+    def _set_backgroundColor(self, value: str):
         self.window.configureChildren(('display', 'title', 'message', 'inputfilebox', 'inputfilecombotext', 'outputfilebox', 'outputfilecomboboxtext', 'convertbutton'), background=value)
 
-    def _set_textColor(self, value):
+    def _set_textColor(self, value: str):
         self.window.configureChildren(('title', 'message', 'inputfilebox', 'inputfilecombotext', 'outputfilebox', 'outputfilecomboboxtext', 'convertbutton'), foreground=value)
 
     def open(self):
@@ -4865,11 +4866,11 @@ def SE_BindWidgetScroll(widget):
 
 class SE_WidgetContainer(tkinter.Frame):
     @property
-    def currentIndent(self):
+    def currentIndent(self) -> int:
         return SaveEditor._CurrentIndent
 
     @currentIndent.setter
-    def currentIndent(self, value):
+    def currentIndent(self, value: int):
         SaveEditor._CurrentIndent = value
 
     def __init__(self, *args, values=None, **kwargs):
@@ -5032,15 +5033,15 @@ class SaveEditor(PyminWindow):
 
 
 class DebugVariableDisplay(PyminWindow):
-    def _set_enforceSize(self, value):
+    def _set_enforceSize(self, value: bool):
         if value:
             self.window.geometry('400x400')
         self.window.resizable = not value
 
-    def _set_backgroundColor(self, value):
+    def _set_backgroundColor(self, value: str):
         self.window.configureChild('text', background=value)
 
-    def _set_textColor(self, value):
+    def _set_textColor(self, value: str):
         self.window.configureChild('text', foreground=value)
 
     def open(self):
@@ -5074,7 +5075,7 @@ class DebugVariableDisplay(PyminWindow):
 
 
 class DebugAffinityChange(PyminWindow):
-    def _set_enforceSize(self, value):
+    def _set_enforceSize(self, value: bool):
         if value:
             self.window.geometry('170x100')
         self.window.resizable = not value
@@ -5140,7 +5141,7 @@ class DebugAffinityChange(PyminWindow):
 class DebugGiveItem(PyminWindow):
     VALID_ITEMS = {2, 3, 404, 418, 101, 102, 103, 104, 105, 106, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540}
 
-    def _set_enforceSize(self, value):
+    def _set_enforceSize(self, value: bool):
         if value:
             self.window.geometry('150x100')
         self.window.resizable = not value
@@ -5195,17 +5196,17 @@ class DebugGiveItem(PyminWindow):
 
 class OptionsWindow(PyminWindow):
     # TODO: Window background does not start with the correct colour
-    def _set_enforceSize(self, value):
+    def _set_enforceSize(self, value: bool):
         if value:
             self.window.geometry('420x207')
         self.window.resizable = not value
 
-    def _set_backgroundColor(self, value):
+    def _set_backgroundColor(self, value: str):
         self.window.configureChildren(('display', 'options', 'SOLMode', 'FixedRes', 'Theme', 'FontColor', 'SaveLocation', 'if', 'ScrolledTextBorders', 'newgameoriginalsize', 'doLevelUPStaticButtons', 'NiminTheme', 'UseExpandedSaveDialog', 'UseNewStash', 'helpToWiki', 'doShopsReturn', 'gs', 'showBalls', 'femmeboytofemboy', 'shemaletofuta', 'ngrammar', 'replacefemmiemale', 'femboyishtogirly', 'snuggleball', 'grammarMisc', 'gt', 'StatusTweaks', 'SuccubusLeavesOne', 'UseIsBottomOpen', 'LizanDontShowBalls', 'HermGetsBoth', 'IntBallsEffectBelly', 'DirectPathToSanc', 'CorrectBeastRaceFeet', 'MiscChanges'), background=value)
         if mainobject.isDebugger:
             self.window.configureChildren(('dt', 'ChooseSenario', 'NoDamage'), background=value)
 
-    def _set_textColor(self, value):
+    def _set_textColor(self, value: str):
         self.window.configureChildren(('SOLMode', 'FixedRes', 'Theme', 'FontColor', 'SaveLocation', 'ScrolledTextBorders', 'newgameoriginalsize', 'doLevelUPStaticButtons', 'NiminTheme', 'UseExpandedSaveDialog', 'UseNewStash', 'helpToWiki', 'doShopsReturn', 'showBalls', 'femmeboytofemboy', 'shemaletofuta', 'ngrammar', 'replacefemmiemale', 'femboyishtogirly', 'snuggleball', 'grammarMisc', 'StatusTweaks', 'SuccubusLeavesOne', 'UseIsBottomOpen', 'LizanDontShowBalls', 'HermGetsBoth', 'IntBallsEffectBelly', 'DirectPathToSanc', 'CorrectBeastRaceFeet', 'MiscChanges'), foreground=value)
         if mainobject.isDebugger:
             self.window.configureChildren(('ChooseSenario', 'NoDamage'), foreground=value)
@@ -5557,28 +5558,28 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     # viewButtonOutline -> showButtons
     # showPage -> showPage, hidePage
     @property
-    def scrolledTextBorders(self):
+    def scrolledTextBorders(self) -> bool:
         return mainobject.scrolledTextBorders
 
     @scrolledTextBorders.setter
-    def scrolledTextBorders(self, value):
+    def scrolledTextBorders(self, value: bool):
         if self.isOpen:
             self.window._children['textmain'].border = value
             if self.sidepanelvisible:
                 self.window._children['textside'].border = value
 
-    def _set_enforceSize(self, value):
+    def _set_enforceSize(self, value: bool):
         if value:
             self.window.geometry('1176x662')
         self.window.resizable = not value
 
-    def _set_fontSize(self, value):
+    def _set_fontSize(self, value: int):
         self.updateText()
 
-    def _set_fontBold(self, value):
+    def _set_fontBold(self, value: bool):
         self.updateText()
 
-    def _set_backgroundColor(self, value):
+    def _set_backgroundColor(self, value: str):
         items = ['display', 'textmain']
         if self.statpanevisible:
             items.extend(('label1', 'strlabel', 'strcolonlabel', 'strvallabel', 'strimglabel', 'mentlabel', 'mentcolonlabel', 'mentvallabel', 'mentimglabel', 'liblabel', 'libcolonlabel', 'libvallabel', 'libimglabel', 'senlabel', 'sencolonlabel', 'senvallabel', 'senimglabel', 'label6', 'hplabel', 'hpcolonlabel', 'hpvallabel', 'hpimglabel', 'lustlabel', 'lustcolonlabel', 'lustvallabel', 'lustimglabel', 'hungerlabel', 'hungercolonlabel', 'hungervallabel'))
@@ -5596,7 +5597,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         mainobject.style.configure('TFrame', background=value)
         mainobject.style.configure('TNotebook', background=value)
 
-    def _set_textColor(self, value):
+    def _set_textColor(self, value: str):
         items = ['textmain']
         if self.statpanevisible:
             items.extend(('label1', 'strlabel', 'strcolonlabel', 'strvallabel', 'strimglabel', 'mentlabel', 'mentcolonlabel', 'mentvallabel', 'mentimglabel', 'liblabel', 'libcolonlabel', 'libvallabel', 'libimglabel', 'senlabel', 'sencolonlabel', 'senvallabel', 'senimglabel', 'label6', 'hplabel', 'hpcolonlabel', 'hpvallabel', 'hpimglabel', 'lustlabel', 'lustcolonlabel', 'lustvallabel', 'lustimglabel', 'hungerlabel', 'hungercolonlabel', 'hungervallabel'))
@@ -28545,15 +28546,15 @@ class PyminMain:
     # This class contains all game windows and config values
     # Doing it this way allows for easier debugging
     @property
-    def isDebugger(self):
+    def isDebugger(self) -> bool:
         return as3state.as3DebugEnable
 
     @property
-    def backgroundColor(self):
+    def backgroundColor(self) -> str:
         return self._backgroundColor
 
     @backgroundColor.setter
-    def backgroundColor(self, value):
+    def backgroundColor(self, value: str):
         self._backgroundColor = value
         self.game.backgroundColor = value
         self.aboutwindow.backgroundColor = value
@@ -28564,11 +28565,11 @@ class PyminMain:
         self.detailedDebug()
 
     @property
-    def fontSize(self):
+    def fontSize(self) -> int:
         return self._fontSize
 
     @fontSize.setter
-    def fontSize(self, value):
+    def fontSize(self, value: int):
         if (value < 3):  # originally 4
             value = 3
         if (value > 25):  # originally 26
@@ -28578,20 +28579,20 @@ class PyminMain:
         self.wiki.fontSize = value
 
     @property
-    def fontBold(self):
+    def fontBold(self) -> bool:
         return self._fontBold
 
     @fontBold.setter
-    def fontBold(self, value):
+    def fontBold(self, value: bool):
         self._fontBold = value
         self.game.fontBold = value
 
     @property
-    def textColor(self):
+    def textColor(self) -> str:
         return self._textColor
 
     @textColor.setter
-    def textColor(self, value):
+    def textColor(self, value: str):
         self._textColor = value
         self.game.textColor = value
         self.aboutwindow.textColor = value
@@ -28602,45 +28603,45 @@ class PyminMain:
         self.detailedDebug()
 
     @property
-    def showSide(self):
+    def showSide(self) -> bool:
         return self._showSide
 
     @showSide.setter
-    def showSide(self, value):
+    def showSide(self, value: bool):
         self._showSide = value
         ...  # TODO: Handle updating
 
     @property
-    def newSaveLoadDialog_SortOrder(self):
+    def newSaveLoadDialog_SortOrder(self) -> int:
         return self._nsldSortOrder
 
     @newSaveLoadDialog_SortOrder.setter
-    def newSaveLoadDialog_SortOrder(self, value):
+    def newSaveLoadDialog_SortOrder(self, value: int):
         self._nsldSortOrder = value
         ...  # TODO: Handle updating
 
     @property
-    def saveLocation(self):
+    def saveLocation(self) -> PurePath:
         return self._saveLocation
 
     @saveLocation.setter
-    def saveLocation(self, value):
+    def saveLocation(self, value: PurePath):
         self._saveLocation = value
 
     @property
-    def saveCompatMode(self):
+    def saveCompatMode(self) -> bool:
         return self._saveCompatMode
 
     @saveCompatMode.setter
-    def saveCompatMode(self, value):
+    def saveCompatMode(self, value: bool):
         self._saveCompatMode = value
 
     @property
-    def enforceSize(self):
+    def enforceSize(self) -> bool:
         return self._enforceSize
 
     @enforceSize.setter
-    def enforceSize(self, value):
+    def enforceSize(self, value: bool):
         self._enforceSize = value
         self.game.enforceSize = value
         self.options.enforceSize = value
@@ -28652,266 +28653,266 @@ class PyminMain:
         # self.saveeditor.enforceSize = value
 
     @property
-    def customFontColor(self):
+    def customFontColor(self) -> bool:
         return self._customFontColor
 
     @customFontColor.setter
-    def customFontColor(self, value):
+    def customFontColor(self, value: bool):
         self._customFontColor = value
         self.game.updateTextColorButtonState()
 
     @property
-    def oFontColor(self):
+    def oFontColor(self) -> str:
         return self._oFontColor
 
     @oFontColor.setter
-    def oFontColor(self, value):
+    def oFontColor(self, value: str):
         self._oFontColor = value
 
     @property
-    def customThemeColor(self):
+    def customThemeColor(self) -> bool:
         return self._customThemeColor
 
     @customThemeColor.setter
-    def customThemeColor(self, value):
+    def customThemeColor(self, value: bool):
         self._customThemeColor = value
         self.game.updateThemeButtonState()
 
     @property
-    def oThemeColor(self):
+    def oThemeColor(self) -> str:
         return self._oThemeColor
 
     @oThemeColor.setter
-    def oThemeColor(self, value):
+    def oThemeColor(self, value: str):
         self._oThemeColor = value
 
     @property
-    def useNiminTheme(self):
+    def useNiminTheme(self) -> bool:
         return self._useNiminTheme
 
     @useNiminTheme.setter
-    def useNiminTheme(self, value):
+    def useNiminTheme(self, value: bool):
         self._useNiminTheme = value
         self.updateStyle()
 
     @property
-    def scrolledTextBorders(self):
+    def scrolledTextBorders(self) -> bool:
         return self._scrolledTextBorders
 
     @scrolledTextBorders.setter
-    def scrolledTextBorders(self, value):
+    def scrolledTextBorders(self, value: bool):
         self._scrolledTextBorders = value
         self.game.scrolledTextBorders = value
 
     @property
-    def originalNewGameButtonSize(self):
+    def originalNewGameButtonSize(self) -> bool:
         return self._oNewGameButton
 
     @originalNewGameButtonSize.setter
-    def originalNewGameButtonSize(self, value):
+    def originalNewGameButtonSize(self, value: bool):
         self._oNewGameButton = value
         ...  # TODO: Handle updating
 
     @property
-    def staticdoLevelUPButtons(self):
+    def staticdoLevelUPButtons(self) -> bool:
         return self._staticdoLevelUPButtons
 
     @staticdoLevelUPButtons.setter
-    def staticdoLevelUPButtons(self, value):
+    def staticdoLevelUPButtons(self, value: bool):
         self._staticdoLevelUPButtons = value
 
     @property
-    def useExpandedSaveDialog(self):
+    def useExpandedSaveDialog(self) -> bool:
         return self._useNewSaveLoadDialog
 
     @useExpandedSaveDialog.setter
-    def useExpandedSaveDialog(self, value):
+    def useExpandedSaveDialog(self, value: bool):
         self._useNewSaveLoadDialog = value
 
     @property
-    def useNewStash(self):
+    def useNewStash(self) -> bool:
         return self._useNewStash
 
     @useNewStash.setter
-    def useNewStash(self, value):
+    def useNewStash(self, value: bool):
         self._useNewStash = value
 
     @property
-    def helpToWiki(self):
+    def helpToWiki(self) -> bool:
         return self._helpToWiki
 
     @helpToWiki.setter
-    def helpToWiki(self, value):
+    def helpToWiki(self, value: bool):
         self._helpToWiki = value
 
     @property
-    def doShopsReturn(self):
+    def doShopsReturn(self) -> bool:
         return self._doShopsReturn
 
     @doShopsReturn.setter
-    def doShopsReturn(self, value):
+    def doShopsReturn(self, value: bool):
         self._doShopsReturn = value
 
     @property
-    def originalFrame1Message(self):
+    def originalFrame1Message(self) -> bool:
         # TODO: Add this to the config
         return self._originalFrame1Message
 
     @originalFrame1Message.setter
-    def originalFrame1Message(self, value):
+    def originalFrame1Message(self, value: bool):
         self._originalFrame1Message = value
 
     @property
-    def respectShowBalls(self):
+    def respectShowBalls(self) -> bool:
         return self._respectShowBalls
 
     @respectShowBalls.setter
-    def respectShowBalls(self, value):
+    def respectShowBalls(self, value: bool):
         self._respectShowBalls = value
 
     @property
-    def femmeboyToFemboy(self):
+    def femmeboyToFemboy(self) -> bool:
         return self._femmeboyToFemboy
 
     @femmeboyToFemboy.setter
-    def femmeboyToFemboy(self, value):
+    def femmeboyToFemboy(self, value: bool):
         self._femmeboyToFemboy = value
 
     @property
-    def shemaleToFuta(self):
+    def shemaleToFuta(self) -> bool:
         return self._shemaleToFuta
 
     @shemaleToFuta.setter
-    def shemaleToFuta(self, value):
+    def shemaleToFuta(self, value: bool):
         self._shemaleToFuta = value
 
     @property
-    def ngrammar(self):
+    def ngrammar(self) -> bool:
         return self._ngrammar
 
     @ngrammar.setter
-    def ngrammar(self, value):
+    def ngrammar(self, value: bool):
         self._ngrammar = value
 
     @property
-    def femmieMaleReplacement(self):
+    def femmieMaleReplacement(self) -> int:
         return self._femmieMaleReplacement
 
     @femmieMaleReplacement.setter
-    def femmieMaleReplacement(self, value):
+    def femmieMaleReplacement(self, value: int):
         self._femmieMaleReplacement = value
 
     @property
-    def femboyishToGirly(self):
+    def femboyishToGirly(self) -> bool:
         return self._femboyishToGirly
 
     @femboyishToGirly.setter
-    def femboyishToGirly(self, value):
+    def femboyishToGirly(self, value: bool):
         self._femboyishToGirly = value
 
     @property
-    def snuggleBallTweak(self):
+    def snuggleBallTweak(self) -> bool:
         return self._snuggleBallTweak
 
     @snuggleBallTweak.setter
-    def snuggleBallTweak(self, value):
+    def snuggleBallTweak(self, value: bool):
         self._snuggleBallTweak = value
 
     @property
-    def grammarFixes(self):
+    def grammarFixes(self) -> bool:
         return self._grammarFixes
 
     @grammarFixes.setter
-    def grammarFixes(self, value):
+    def grammarFixes(self, value: bool):
         self._grammarFixes = value
 
     @property
-    def statusTweaks(self):
+    def statusTweaks(self) -> bool:
         return self._statusTweaks
 
     @statusTweaks.setter
-    def statusTweaks(self, value):
+    def statusTweaks(self, value: bool):
         self._statusTweaks = value
 
     @property
-    def succubusLeavesOne(self):
+    def succubusLeavesOne(self) -> bool:
         return self._succubusLeavesOne
 
     @succubusLeavesOne.setter
-    def succubusLeavesOne(self, value):
+    def succubusLeavesOne(self, value: bool):
         self._succubusLeavesOne = value
 
     @property
-    def useIsBottomOpen(self):
+    def useIsBottomOpen(self) -> bool:
         return self._useIsBottomOpen
 
     @useIsBottomOpen.setter
-    def useIsBottomOpen(self, value):
+    def useIsBottomOpen(self, value: bool):
         self._useIsBottomOpen = value
 
     @property
-    def lizanDontShowBalls(self):
+    def lizanDontShowBalls(self) -> bool:
         return self._lizanDontShowBalls
 
     @lizanDontShowBalls.setter
-    def lizanDontShowBalls(self, value):
+    def lizanDontShowBalls(self, value: bool):
         self._lizanDontShowBalls = value
 
     @property
-    def hermGetsBoth(self):
+    def hermGetsBoth(self) -> bool:
         return self._hermGetsBoth
 
     @hermGetsBoth.setter
-    def hermGetsBoth(self, value):
+    def hermGetsBoth(self, value: bool):
         # NOTE: Unused
         self._hermGetsBoth = value
 
     @property
-    def internalBallsEffectBelly(self):
+    def internalBallsEffectBelly(self) -> bool:
         return self._internalBallsEffectBelly
 
     @internalBallsEffectBelly.setter
-    def internalBallsEffectBelly(self, value):
+    def internalBallsEffectBelly(self, value: bool):
         self._internalBallsEffectBelly = value
 
     @property
-    def directPathToSanctuary(self):
+    def directPathToSanctuary(self) -> bool:
         return self._directPathToSanctuary
 
     @directPathToSanctuary.setter
-    def directPathToSanctuary(self, value):
+    def directPathToSanctuary(self, value: bool):
         self._directPathToSanctuary = value
 
     @property
-    def correctBeastRaceFeet(self):
+    def correctBeastRaceFeet(self) -> bool:
         return self._correctBeastRaceFeet
 
     @correctBeastRaceFeet.setter
-    def correctBeastRaceFeet(self, value):
+    def correctBeastRaceFeet(self, value: bool):
         self._correctBeastRaceFeet = value
 
     @property
-    def gameTweaksMisc(self):
+    def gameTweaksMisc(self) -> bool:
         return self._gameTweaksMisc
 
     @gameTweaksMisc.setter
-    def gameTweaksMisc(self, value):
+    def gameTweaksMisc(self, value: bool):
         self._gameTweaksMisc = value
 
     @property
-    def debugChooseSenario(self):
+    def debugChooseSenario(self) -> bool:
         return self._debugChooseSenario
 
     @debugChooseSenario.setter
-    def debugChooseSenario(self, value):
+    def debugChooseSenario(self, value: bool):
         self._debugChooseSenario = value
 
     @property
-    def debugNoDamage(self):
+    def debugNoDamage(self) -> bool:
         return self._debugNoDamage
 
     @debugNoDamage.setter
-    def debugNoDamage(self, value):
+    def debugNoDamage(self, value: bool):
         self._debugNoDamage = value
 
     @property
