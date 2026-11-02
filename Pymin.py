@@ -4910,7 +4910,7 @@ class SE_SectionWidget(SE_WidgetContainer):
 
 class SE_ValueWidget(SE_WidgetContainer):
     def __init__(self, parent, name, value, *args, **kwargs):
-        super().__init__(parent, *args, height=SaveEditor.ENTRY_LABEL_HEIGHT, **kwargs)
+        super().__init__(parent, *args, **kwargs)
         self.label = SE_Label(self, text=(' ' * self.currentIndent * 4) + str(name), width=SaveEditor.ENTRY_LABEL_WIDTH)
         self.label.pack(side=tkinter.LEFT, fill=tkinter.Y)
         SE_BindWidgetScroll(self.label)
@@ -4938,7 +4938,7 @@ class SE_ValueWidget(SE_WidgetContainer):
 
 class SE_ArrayWidget(SE_SectionWidget):
     def __init__(self, parent, name, values, *args, **kwargs):
-        super().__init__(parent, name, values, *args, height=SaveEditor.ENTRY_LABEL_HEIGHT, **kwargs)
+        super().__init__(parent, name, values, *args, **kwargs)
 
     def _doValues(self, values):
         for index, item in enumerate(values):
@@ -29155,11 +29155,9 @@ class PyminMain:
             self.enforceSize = False if prefs.find('fixedResMode') is None else Utils.strtobool(prefs.find('fixedResMode').text)
             if prefs.find('customFontColor') is not None and prefs.find('oFontColor') is not None:
                 self.customFontColor = Utils.strtobool(prefs.find('customFontColor').text)
-                self.game.window._children['textcolorbutton'].state = Utils.boolToState(not self.customFontColor)
                 self.oTextColor = prefs.find('oFontColor').text
             if prefs.find('customThemeColor') is not None and prefs.find('oThemeColor') is not None:
                 self.customThemeColor = Utils.strtobool(prefs.find('customThemeColor').text)
-                self.game.window._children['themebutton'].state = Utils.boolToState(not self.customThemeColor)
                 self.oBackgroundColor = prefs.find('oThemeColor').text
             if prefs.find('debugTweaks') is not None:
                 tempdebugtweaks = strtolistbools(prefs.find('debugTweaks').text)
