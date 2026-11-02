@@ -212,7 +212,7 @@ class Race:
 
 if sys.hexversion >= 0x030F0000:
     # Python 3.15 added this
-    _EnemyStatsContainerParent = frozendict
+    _EnemyStatsContainerParent = frozendict  # noqa
 else:
     _EnemyStatsContainerParent = dict
 
@@ -286,19 +286,19 @@ class Enemy:
 
 
 Enemy.STATS = {
-    Enemy.COCK_SNAKE: EnemyStatsContainer(HP = 30, str = 16, ment = 4, sen = 8, lib = 0, lust = 0, gender = Gender.ANDRO, pref = Preference.ANY, coin = 0, SexP = 15, item = 202),
-    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsContainer(HP = 25, str = 0, ment = 20, sen = 0, lib = 50, lust = 0, gender = Gender.ANDRO, pref = Preference.ANDRO, coin = 0, SexP = 10, item = 231),
-    Enemy.LONE_WOLF: EnemyStatsContainer(HP = 45, str = 22, ment = 16, sen = 13, lib = 11, lust = 30, gender = Gender.MALE, pref = Preference.FEMALE, coin = 0, SexP = 20, item = 203),
-    Enemy.GAY_WOLF: EnemyStatsContainer(HP = 45, str = 26, ment = 16, sen = 20, lib = 11, lust = 40, gender = Gender.MALE, pref = Preference.MALE, coin = 0, SexP = 20, item = 203),
-    Enemy.HORNY_FELIN: EnemyStatsContainer(HP = 50, str = 12, ment = 10, sen = 24, lib = 30, lust = 40, gender = Gender.FEMALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 10), SexP = 25, item = 204),
-    Enemy.DRUNKEN_EQUAN: EnemyStatsContainer(HP = 60, str = 28, ment = 9, sen = 18, lib = 14, lust = 30, gender = Gender.MALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 10), SexP = 25, item = 205),
-    Enemy.OCTOPUS_GIRL: EnemyStatsContainer(HP = 150, str = 45, ment = 30, sen = 25, lib = 35, lust = 20, gender = Gender.FEMALE, pref = Preference.ANY, coin = 0, SexP = 50, item = 216),
-    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsContainer(HP = 55, str = 35, ment = 30, sen = 35, lib = 45, lust = 10, gender = Gender.MALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 10), SexP = 30, item = 222),
-    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsContainer(HP = 50, str = 35, ment = 30, sen = 45, lib = 35, lust = 10, gender = Gender.FEMALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 10), SexP = 30, item = 222),
-    Enemy.FIERCE_NAGA: EnemyStatsContainer(HP = 100, str = 50, ment = 20, sen = 40, lib = 2, lust = 40, gender = Gender.FEMALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 5), SexP = 55, item = 230),
-    Enemy.MINOTAUR: EnemyStatsContainer(HP = 250, str = 70, ment = 20, sen = 50, lib = 20, lust = 10, gender = Gender.MALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 4 + 5), SexP = 50, item = 525),
-    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsContainer(HP = 175, str = 80, ment = 40, sen = 70, lib = 60, lust = 10, gender = Gender.FEMALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 4 + 5), SexP = 55, item = 259),
-    Enemy.SUCCUBUS: EnemyStatsContainer(HP = 150, str = 35, ment = 80, sen = 40, lib = 40, lust = 0, gender = Gender.FEMALE, pref = Preference.ANY, coin = lambda: Math.floor(Utils.percent() / 4 + 5), SexP = 60, item = 260)
+    Enemy.COCK_SNAKE: EnemyStatsContainer(HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=202),
+    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsContainer(HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=231),
+    Enemy.LONE_WOLF: EnemyStatsContainer(HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=203),
+    Enemy.GAY_WOLF: EnemyStatsContainer(HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=203),
+    Enemy.HORNY_FELIN: EnemyStatsContainer(HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=204),
+    Enemy.DRUNKEN_EQUAN: EnemyStatsContainer(HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=205),
+    Enemy.OCTOPUS_GIRL: EnemyStatsContainer(HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=216),
+    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsContainer(HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
+    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsContainer(HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
+    Enemy.FIERCE_NAGA: EnemyStatsContainer(HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=230),
+    Enemy.MINOTAUR: EnemyStatsContainer(HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=525),
+    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsContainer(HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=259),
+    Enemy.SUCCUBUS: EnemyStatsContainer(HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=260)
 }
 
 
@@ -476,7 +476,7 @@ class PyminButton(itk.itkFrame):
 
     def update(self):
         nm = self._window.mult
-        self.place(x=self._x*nm, y=self._y*nm, width=self._width*nm, height=self._height*nm, anchor=self._anchor)
+        self.place(x=self._x * nm, y=self._y * nm, width=self._width * nm, height=self._height * nm, anchor=self._anchor)
         self.label.pack(fill='both', expand=True)
 
     def updateText(self):
@@ -519,9 +519,9 @@ class Math:
         return min(values)
 
 
-#==============================================================================
-# Create tooltip. Modified example from https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python
 class ToolTip(object):
+    # Create tooltip. Modified example from https://stackoverflow.com/questions/20399243/display-message-when-hovering-over-something-with-mouse-cursor-in-python
+
     def __init__(self, widget, text):
         self.parent = widget
         self.window = None
@@ -549,7 +549,6 @@ class ToolTip(object):
         self.window = None
         if tw:
             tw.destroy()
-#==============================================================================
 
 
 class Utils:
@@ -1059,7 +1058,7 @@ class SaveUtils:
             _stashArray[i] = int(stash.find(tempstr).text)
             _stashStackArray[i] = int(stashStack.find(tempstr).text)
         for i in range(0, len(preg), 5):
-            _preg.extend((Utils.strtobool(preg.find(f'i{i}').text), int(preg.find(f'i{i+1}').text), int(preg.find(f'i{i+2}').text), int(preg.find(f'i{i+3}').text), int(preg.find(f'i{i+4}').text)))
+            _preg.extend((Utils.strtobool(preg.find(f'i{i}').text), int(preg.find(f'i{i + 1}').text), int(preg.find(f'i{i + 2}').text), int(preg.find(f'i{i + 3}').text), int(preg.find(f'i{i + 4}').text)))
         odata = {
             'track': {'currentState': int(strack.find('currentState').text), 'currentZone': int(strack.find('currentZone').text), 'day': int(strack.find('day').text), 'hour': int(strack.find('hour').text), 'currentDayCare': int(strack.find('currentDayCare').text), 'inDungeon': Utils.strtobool(strack.find('inDungeon').text), 'currentDungeon': int(strack.find('currentDungeon').text), 'v7': str(strack.find('v7').text)},
             'version': None,
@@ -5169,6 +5168,8 @@ class DebugGiveItem(PyminWindow):
             self.window._children['errlabel'].text = 'Error: Game not loaded'
             raise Error('[DebugGiveItem.giveItem] Game not loaded.')
         EN = self.window._children['combo'].getEntries()
+        # TODO: Use as3lib.parseInt for these to remove the try/except blocks
+        #       (as3lib.parseInt returns NaN on error instead of throwing)
         try:
             ID = int(EN[0], 10)
         except:
@@ -6084,13 +6085,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.sidepanelvisible = False
         self.appearancebuttonvisible = False
         self.window.addWidget(PyminButton, 'display', 'themebutton', x=823, y=595, width=60, height=30, font=self.font, text='Theme', command=self.option1Event)
-        self.window._children['themebutton'].state=Utils.boolToState(not mainobject.customThemeColor)
+        self.window._children['themebutton'].state = Utils.boolToState(not mainobject.customThemeColor)
         self.window.addWidget(PyminButton, 'display', 'textsizedownbutton', x=906, y=595, width=30, height=30, font=('Times New Roman', 10), text='A', command=self.option2Event)
         self.window.addWidget(PyminButton, 'display', 'textsizeresetbutton', x=941, y=595, width=30, height=30, font=('Times New Roman', 12), text='A', command=self.option3Event)
         self.window.addWidget(PyminButton, 'display', 'textsizeupbutton', x=976, y=595, width=30, height=30, font=('Times New Roman', 14), text='A', command=self.option4Event)
         self.window.addWidget(PyminButton, 'display', 'textboldbutton', x=1023, y=595, width=30, height=30, font=self.font, text='B', command=self.option5Event)
         self.window.addWidget(PyminButton, 'display', 'textcolorbutton', x=1067, y=595, width=30, height=30, font=self.font, text='C', command=self.option6Event)
-        self.window._children['textcolorbutton'].state=Utils.boolToState(not mainobject.customFontColor)
+        self.window._children['textcolorbutton'].state = Utils.boolToState(not mainobject.customFontColor)
         self.window.addWidget(PyminButton, 'display', 'themebutton7', x=1124, y=595, width=30, height=30, font=self.font, text='O', command=self.option7Event)
         self.option7Visible = True
         self.newSLDialogVisible = False
@@ -12117,7 +12118,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.exhaustion -= 6
             self.doEnd()
 
-    def doButtonDiscard(self, returnFunc, passiveRemove = False):
+    def doButtonDiscard(self, returnFunc, passiveRemove: bool = False):
         '''
         Discard button action
         '''
@@ -14216,8 +14217,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempDict = {4: "Bag", 7: "Breasts", 12: "Return"}
         if (self.cockTotal > 0):
             tempDict[1] = "Penis"
-        #if (self.cockTotal > 0 and self.vagTotal > 0):
-        #   tempDict[2] = "Both"
+        '''
+        if (self.cockTotal > 0 and self.vagTotal > 0):
+            tempDict[2] = "Both"
+        '''
         if (self.vagTotal > 0):
             tempDict[3] = "Vagina"
         if (self.udders):
@@ -14283,20 +14286,24 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         getCum = self.cumAmount()
         self.rndArray = Array()
         self.rndArray.push(1)
-        #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
-        #   self.rndArray.push(2)
-        #if getCum > 2000:
-        #   self.rndArray.push(3)
-        #if self.ment < self.lib - 50:
-        #   self.rndArray.push(4)
-        #if self.attireBot in {6,17} and self.lust > 80:
-        #   self.rndArray.push(5)
+        '''
+        if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
+            self.rndArray.push(2)
+        if getCum > 2000:
+            self.rndArray.push(3)
+        if self.ment < self.lib - 50:
+            self.rndArray.push(4)
+        if self.attireBot in {6,17} and self.lust > 80:
+            self.rndArray.push(5)
+        '''
         if (not mainobject.useIsBottomOpen and self.attireBot in {5, 7, 12, 13, 14, 16} or mainobject.useIsBottomOpen and self.isBottomOpen(self.attireBot)) and self.lust > 45:
             self.rndArray.push(6)
         if self.attireBot in {4, 15, 20}:
             self.rndArray.push(7)
-        #if self.attireBot in {10,11} and lust > 60:
-        #   self.rndArray.push(8)
+        '''
+        if self.attireBot in {10,11} and lust > 60:
+            self.rndArray.push(8)
+        '''
         chance = self.chooseFrom()
 
         if (chance == 1):
@@ -14436,19 +14443,23 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         self.rndArray = Array()
         self.rndArray.push(1)
-        #if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
-        #   self.rndArray.push(2)
-        #tempArr.push(3)
-        #if self.ment < self.lib - 50:
-        #   self.rndArray.push(4)
-        #if (self.attireBot == 6 or self.attireBot == 17 or self.attireBot == 20) and self.lust > 60):
-        #   self.rndArray.push(5)
+        '''
+        if self.cockSize * self.cockSizeMod * 6 > self.tallness and self.cockSize * self.cockSizeMod * 8 < self.tallness * 3:
+            self.rndArray.push(2)
+        self.rndArray.push(3)
+        if self.ment < self.lib - 50:
+            self.rndArray.push(4)
+        if (self.attireBot == 6 or self.attireBot == 17 or self.attireBot == 20) and self.lust > 60):
+            self.rndArray.push(5)
+        '''
         if self.attireBot in {13, 14} and self.lust > 80:
             self.rndArray.push(6)
-        #if (self.attireBot == 4 or self.attireBot == 15):
-        #   self.rndArray.push(7)
-        #if (self.attireBot == 10 or self.attireBot == 11) and self.lust > 60):
-        #   self.rndArray.push(8)
+        '''
+        if (self.attireBot == 4 or self.attireBot == 15):
+            self.rndArray.push(7)
+        if (self.attireBot == 10 or self.attireBot == 11) and self.lust > 60):
+            self.rndArray.push(8)
+        '''
         chance = self.chooseFrom()
 
         if chance == 1:
@@ -15256,8 +15267,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         def doListen():
             self.choiceListSelect("Level Up")
             # NOTE: Unused
-            #if (self.buttonChoice == 4 or self.buttonChoice == 8):
-            #   self.doLevelUP()
+            '''
+            if (self.buttonChoice == 4 or self.buttonChoice == 8):
+                self.doLevelUP()
+            '''
             if (self.buttonChoice == 12):
                 self.doReturn()
             else:
@@ -16150,6 +16163,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.bc()
         self.showButtons(ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
         # TODO: Ask again if value is invalid, make sure that ctrl-c works to exit prompt
+        # TODO: Use as3lib.parseInt
         try:
             temp = int(input(f"Enter a senario between {numbers[0]} and {numbers[1]}: "))
         except:
@@ -17876,7 +17890,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                                     self.doNext()
 
                                                     def doListen():
-                                                        self.outputMainText("Eventually the tall girl returns, with a rather 'relieved' look on her face and a content limp in her tail. She seems happy to bury the hatchet for now, joining the other girls and yourself with more 'mundane' roleplaying, with the game dying down as she and the pregnant girl tuck you all into bed. Of course, she neglects to return the young girl to an un-padded state, but everybody seems too tired to fix it, preferring to simply fall asleep.", True);
+                                                        self.outputMainText("Eventually the tall girl returns, with a rather 'relieved' look on her face and a content limp in her tail. She seems happy to bury the hatchet for now, joining the other girls and yourself with more 'mundane' roleplaying, with the game dying down as she and the pregnant girl tuck you all into bed. Of course, she neglects to return the young girl to an un-padded state, but everybody seems too tired to fix it, preferring to simply fall asleep.", True)
                                                         self.doNext()
 
                                                         def doListen():
@@ -17886,7 +17900,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                                 self.doListen = doListen
                                         self.doListen = doListen
                                     elif (self.buttonChoice == 9):
-                                        self.outputMainText("\"Ooo, a board game would be fun.\" They all seem to agree. Lila crouches down to her hands and knees. Her rump in the air, her tail nearly lifting her shirt up to expose the tight cheeks, she searches under her bed until she emerges with a decorated box. She then opens it up and lays out the board in the middle of you all, distributing the pieces and fake money. After the fighting over who gets to be the milk-cart ends, you wind up with the shoe and the game gets under way.", True);
+                                        self.outputMainText("\"Ooo, a board game would be fun.\" They all seem to agree. Lila crouches down to her hands and knees. Her rump in the air, her tail nearly lifting her shirt up to expose the tight cheeks, she searches under her bed until she emerges with a decorated box. She then opens it up and lays out the board in the middle of you all, distributing the pieces and fake money. After the fighting over who gets to be the milk-cart ends, you wind up with the shoe and the game gets under way.", True)
                                         if (self.tallness > 57 and self.str > 20):
                                             self.outputMainText("\n\nAs everybody settles in for a few hours of economic fun, the pregnant girl scooches over to you.\"Umm... Would you mind supporting me? I've kinda gotten a bit... big,\" she looks down and roves a hand over her belly, \"and sitting while playing like this is already starting to make my back ache. You seem like you would be big enough and strong enough to help hold me up...\" There's a tinge of blush beneath her fur with the lack of discretion over her fertile nature.\n\n", False)
                                         # pregnant one leans against you if tall enough and strong enough, your hand masturbating her; otherwise she leans against bed opposite of you and has to spread her legs.
