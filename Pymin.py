@@ -215,14 +215,6 @@ class Race:
         return f"RACE PRETTY NAME ERROR {ID}"
 
 
-class CustomDict(frozendict):
-    def __getattr__(self, item):
-        attr = dict.__getitem__(self, item)
-        if callable(attr):
-            attr = attr()
-        return attr
-
-
 class Enemy:
     NONE = 0
     TEST_ENEMY = 1
@@ -239,48 +231,6 @@ class Enemy:
     MINOTAUR = 307
     FREAKY_LITTLE_GIRL = 308
     SUCCUBUS = 309
-
-    def name(ID: int) -> str:  # enemyName
-        if ID == Enemy.COCK_SNAKE:
-            return "cock-snake"
-        if ID == Enemy.DESICCATING_DUST_DEVIL:
-            return "desiccating dust devil"
-        if ID == Enemy.LONE_WOLF:
-            return "lone male wolf"
-        if ID == Enemy.GAY_WOLF:
-            return "gay wolf"
-        if ID == Enemy.HORNY_FELIN:
-            return "felin in heat"
-        if ID == Enemy.DRUNKEN_EQUAN:
-            return "drunken equan"
-        if ID == Enemy.OCTOPUS_GIRL:
-            return "octopus girl"
-        if ID == Enemy.LITTLE_BIG_BUNNY_MAN:
-            return "little big bunny-man"
-        if ID == Enemy.LITTLE_BIG_BUNNY_GIRL:
-            return "little big bunny-girl"
-        if ID == Enemy.FIERCE_NAGA:
-            return "fierce naga"
-        if ID == Enemy.MINOTAUR:
-            return "Minotaur"
-        if ID == Enemy.FREAKY_LITTLE_GIRL:
-            return "freaky little girl"
-        if ID == Enemy.SUCCUBUS:
-            return "succubus"
-        return "ENEMY NAME ERROR"
-
-    def baby(ID: int) -> int:  # enemyBaby
-        if ID == Enemy.LONE_WOLF:
-            return 100
-        if ID == Enemy.DRUNKEN_EQUAN:
-            return 2
-        if ID == Enemy.LITTLE_BIG_BUNNY_MAN:
-            return 7
-        if ID == Enemy.MINOTAUR:
-            return 307
-        if ID == Enemy.FREAKY_LITTLE_GIRL:
-            return 308
-        return 0
 
 
 class ClothesSlot:
@@ -478,31 +428,40 @@ class Item:
     WORKER_EGG = 540
 
 
-class ClothesStatsItem(frozendict):
+class GenericStatsItem(frozendict):
+    _NAME_FALLBACK = ''
+    _VALUE_FALLBACK = 0
+    _DESCRIPTION_FALLBACK = ''
+
     @property
-    def name(self):
+    def name(self) -> str:
         name = self.get('name')
         if name is None:
-            return "CLOTHES NAME ERROR"
+            return self._NAME_FALLBACK
         return name
 
     @property
-    def value(self):
+    def value(self) -> int:
         value = self.get('value')
         if value is None:
-            return 0
+            return self._VALUE_FALLBACK
         return value
 
     @property
-    def slot(self):
-        return self['slot']
-
-    @property
-    def description(self):
+    def description(self) -> str:
         desc = self.get('description')
         if desc is None:
-            return "CLOTHES DESCRIPTION ERROR"
+            return self._DESCRIPTION_FALLBACK
         return desc
+
+
+class ClothesStatsItem(GenericStatsItem):
+    _NAME_FALLBACK = "CLOTHES NAME ERROR"
+    _DESCRIPTION_FALLBACK = "CLOTHES DESCRIPTION ERROR"
+
+    @property
+    def slot(self) -> int:
+        return self['slot']
 
 
 CLOTHES_STATS = frozendict({
@@ -541,20 +500,81 @@ CLOTHES_STATS = frozendict({
 })
 
 
-Enemy.STATS = frozendict({
-    Enemy.COCK_SNAKE: CustomDict(HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=202),
-    Enemy.DESICCATING_DUST_DEVIL: CustomDict(HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=231),
-    Enemy.LONE_WOLF: CustomDict(HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=203),
-    Enemy.GAY_WOLF: CustomDict(HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=203),
-    Enemy.HORNY_FELIN: CustomDict(HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=204),
-    Enemy.DRUNKEN_EQUAN: CustomDict(HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=205),
-    Enemy.OCTOPUS_GIRL: CustomDict(HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=216),
-    Enemy.LITTLE_BIG_BUNNY_MAN: CustomDict(HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
-    Enemy.LITTLE_BIG_BUNNY_GIRL: CustomDict(HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
-    Enemy.FIERCE_NAGA: CustomDict(HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=230),
-    Enemy.MINOTAUR: CustomDict(HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=525),
-    Enemy.FREAKY_LITTLE_GIRL: CustomDict(HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=259),
-    Enemy.SUCCUBUS: CustomDict(HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=260)
+class EnemyStatsItem(frozendict):
+    @property
+    def name(self) -> str:
+        name = self.get('name')
+        if name is None:
+            return "ENEMY NAME ERROR"
+        return name
+
+    @property
+    def baby(self) -> int:
+        baby = self.get('baby')
+        if baby is None:
+            return 0
+        return baby
+
+    @property
+    def HP(self) -> int:
+        return self['HP']
+
+    @property
+    def str(self) -> int:
+        return self['str']
+
+    @property
+    def ment(self) -> int:
+        return self['ment']
+
+    @property
+    def sen(self) -> int:
+        return self['sen']
+
+    @property
+    def lib(self) -> int:
+        return self['lib']
+
+    @property
+    def lust(self) -> int:
+        return self['lust']
+
+    @property
+    def gender(self) -> int:
+        return self['gender']
+
+    @property
+    def pref(self) -> int:
+        return self['pref']
+
+    @property
+    def coin(self) -> int:
+        return self['coin']
+
+    @property
+    def SexP(self) -> int:
+        return self['SexP']
+
+    @property
+    def item(self) -> int:
+        return self['item']
+
+
+
+ENEMY_STATS = frozendict({
+    Enemy.COCK_SNAKE: EnemyStatsItem(name="cock-snake", HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=202),
+    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsItem(name="desiccating dust devil", HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=231),
+    Enemy.LONE_WOLF: EnemyStatsItem(name="lone male wolf", HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=203, baby=100),
+    Enemy.GAY_WOLF: EnemyStatsItem(name="gay wolf", HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=203),
+    Enemy.HORNY_FELIN: EnemyStatsItem(name="felin in heat", HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=204),
+    Enemy.DRUNKEN_EQUAN: EnemyStatsItem(name="drunken equan", HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=205, baby=2),
+    Enemy.OCTOPUS_GIRL: EnemyStatsItem(name="octopus girl", HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=216),
+    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsItem(name="little big bunny-man", HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222, baby=7),
+    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsItem(name="little big bunny-girl", HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
+    Enemy.FIERCE_NAGA: EnemyStatsItem(name="fierce naga", HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=230),
+    Enemy.MINOTAUR: EnemyStatsItem(name="Minotaur", HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=525, baby=307),
+    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsItem(name="freaky little girl", HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=259, baby=308),
+    Enemy.SUCCUBUS: EnemyStatsItem(name="succubus", HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=260)
 })
 
 
@@ -3163,22 +3183,11 @@ class EnemyContainer:
 
     @ID.setter
     def ID(self, value: int):
-        if value not in Enemy.STATS:
+        if value not in ENEMY_STATS:
             raise
         self._ID = value
-        stats = Enemy.STATS[value]
-        self._HP = stats.HP
-        self._maxHP = stats.HP
-        self._str = stats.str
-        self._ment = stats.ment
-        self._sen = stats.sen
-        self._lib = stats.lib
-        self._lust = stats.lust
-        self._gender = stats.gender
-        self._pref = stats.pref
-        self._coin = stats.coin
-        self._SexP = stats.SexP
-        self._item = stats.item
+        self._s = ENEMY_STATS[value]
+        self._HP = self._s.HP
 
     @property
     def HP(self) -> int:
@@ -3190,72 +3199,60 @@ class EnemyContainer:
 
     @property
     def maxHP(self) -> int:
-        return self._maxHP
+        return self._s.HP
 
     @property
     def strength(self) -> int:
-        return self._str
+        return self._s.str
 
     @property
     def mentality(self) -> int:
-        return self._ment
+        return self._s.ment
 
     @property
     def sensitivity(self) -> int:
-        return self._sen
+        return self._s.sen
 
     @property
     def libido(self) -> int:
-        return self._lib
+        return self._s.lib
 
     @property
     def lust(self) -> int:
-        return self._lust
+        return self._s.lust
 
     @property
     def gender(self) -> int:
-        return self._gender
+        return self._s.gender
 
     @property
     def preference(self) -> int:
-        return self._pref
+        return self._s.pref
 
     @property
     def coin(self) -> int:
-        return self._coin
+        return self._s.coin
 
     @property
     def SexP(self) -> int:
-        return self._SexP
+        return self._s.SexP
 
     @property
     def item(self) -> int:
-        return self._item
+        return self._s.item
 
     @property
     def name(self) -> str:  # enemyName
-        # TODO: Maybe don't use a separate function for this
-        #       This could easily be stored like the other properties
-        return Enemy.name(self.ID)
+        return self._s.name
 
     @property
     def baby(self) -> int:  # enemyBaby
-        return Enemy.baby(self.ID)
+        return self._s.baby
 
     def __init__(self):
         self._ID = Enemy.NONE
+        self._s = None
         self._HP = 0
-        self._maxHP = 0
-        self._str = 0
-        self._ment = 0
-        self._sen = 0
-        self._lib = 0
-        self._lust = 0
-        self._gender = Gender.ANDRO
-        self._pref = 0
-        self._coin = 0
-        self._SexP = 0
-        self._item = 0
 
 
 # Windows
