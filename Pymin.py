@@ -322,6 +322,7 @@ class StartType:
 
 
 class Item:
+    # TODO
     NONE = 0
 
     TEST_ITEM = 1
@@ -461,6 +462,36 @@ class Item:
     SOLDIER_EGG = 538
     DRONE_EGG = 539
     WORKER_EGG = 540
+
+
+class Recipe:
+    LUST_DRAFT = 1
+    REJUV_POT = 2
+    EXP_PREG = 3
+    BALL_SWELL = 4
+    S_LUST_DRAFT = 5
+    S_REJUV_POT = 6
+    S_EXP_PREG = 7
+    S_BALL_SWELL = 8
+    GEN_SWAP = 9
+    MASO_POT = 10
+    BABY_FREE = 11
+    POT_POT = 12
+    S_GEN_SWAP = 13
+    S_MASO_POT = 14
+    S_BABY_FREE = 15
+    S_POT_POT = 16
+    MILK_SUPPRESS = 17
+
+    # NOTE: These were added for the wiki
+    BLONDIE = 50
+    PUSS_JUICE = 51
+    BLACK_DYE = 52
+    RED_DYE = 53
+    PHEROMONE = 54
+    REDUC_REDUC = 55
+    MALE_ENHANCE = 56
+    BAZOOMBA = 57
 
 
 class GenericStatsItem(frozendict):
@@ -2479,190 +2510,190 @@ class ApothecaryItems:
     def name(ID: int) -> str:
         if ID >= 200:
             return Items.name(ID)
-        if ID == 1:
+        if ID == Recipe.LUST_DRAFT:
             return 'R: LustDraft'
-        if ID == 2:
+        if ID == Recipe.REJUV_POT:
             return 'R: RejuvPot'
-        if ID == 3:
+        if ID == Recipe.EXP_PREG:
             return 'R: ExpPreg'
-        if ID == 4:
+        if ID == Recipe.BALL_SWELL:
             return 'R: BallSwell'
-        if ID == 5:
+        if ID == Recipe.S_LUST_DRAFT:
             return 'R: SLustDraft'
-        if ID == 6:
+        if ID == Recipe.S_REJUV_POT:
             return 'R: SRejuvPot'
-        if ID == 7:
+        if ID == Recipe.S_EXP_PREG:
             return 'R: SExpPreg'
-        if ID == 8:
+        if ID == Recipe.S_BALL_SWELL:
             return 'R: SBallSwell'
-        if ID == 9:
+        if ID == Recipe.GEN_SWAP:
             return 'R: GenSwap'
-        if ID == 10:
+        if ID == Recipe.MASO_POT:
             return 'R: MasoPot'
-        if ID == 11:
+        if ID == Recipe.BABY_FREE:
             return 'R: BabyFree'
-        if ID == 12:
+        if ID == Recipe.POT_POT:
             return 'R: PotPot'
-        if ID == 13:
+        if ID == Recipe.S_GEN_SWAP:
             return 'R: SGenSwap'
-        if ID == 14:
+        if ID == Recipe.S_MASO_POT:
             return 'R: SMasoPot'
-        if ID == 15:
+        if ID == Recipe.S_BABY_FREE:
             return 'R: SBabyFree'
-        if ID == 16:
+        if ID == Recipe.S_POT_POT:
             return 'R: SPotPot'
-        if ID == 17:
+        if ID == Recipe.MILK_SUPPRESS:
             return 'R: MilkSuppress'
         # NOTE: These were added for the wiki
-        if ID == 50:
-            return "R: BlondeDye"
-        if ID == 51:
+        if ID == Recipe.BLONDIE:
+            return "R: Blondie"
+        if ID == Recipe.PUSS_JUICE:
             return "R: PussJuice"
-        if ID == 52:
+        if ID == Recipe.BLACK_DYE:
             return "R: BlackDye"
-        if ID == 53:
+        if ID == Recipe.RED_DYE:
             return "R: RedDye"
-        if ID == 54:
+        if ID == Recipe.PHEROMONE:
             return "R: Pheromone"
-        if ID == 55:
+        if ID == Recipe.REDUC_REDUC:
             return "R: ReducReduc"
-        if ID == 56:
+        if ID == Recipe.MALE_ENHANCE:
             return "R: MaleEnhance"
-        if ID == 57:
+        if ID == Recipe.BAZOOMBA:
             return "R: Bazoomba"
         return ""
 
     def fullName(ID: int) -> str:
         if ID >= 200:
             return Items.fullName(ID)
-        if ID == 1:
+        if ID == Recipe.LUST_DRAFT:
             return "Recipe: Lust Draft"
-        if ID == 2:
+        if ID == Recipe.REJUV_POT:
             return "Recipe: Rejuvenation Potion"
-        if ID == 3:
+        if ID == Recipe.EXP_PREG:
             return "Recipe: Express Pregnancy Potion"
-        if ID == 4:
+        if ID == Recipe.BALL_SWELL:
             return "Recipe: Ball Sweller"
-        if ID == 5:
+        if ID == Recipe.S_LUST_DRAFT:
             return "Recipe: Superior Lust Draft"
-        if ID == 6:
+        if ID == Recipe.S_REJUV_POT:
             return "Recipe: Superior Rejuvenation Potion"
-        if ID == 7:
+        if ID == Recipe.S_EXP_PREG:
             return "Recipe: Superior Express Pregnancy Potion"
-        if ID == 8:
+        if ID == Recipe.S_BALL_SWELL:
             return "Recipe: Superior Ball Sweller"
-        if ID == 9:
+        if ID == Recipe.GEN_SWAP:
             return "Recipe: Gender Swap Potion"
-        if ID == 10:
+        if ID == Recipe.MASO_POT:
             return "Recipe: Masochism Potion"
-        if ID == 11:
+        if ID == Recipe.BABY_FREE:
             return "Recipe: Baby Free Potion"
-        if ID == 12:
+        if ID == Recipe.POT_POT:
             return "Recipe: Potency Potion"
-        if ID == 13:
+        if ID == Recipe.S_GEN_SWAP:
             return "Recipe: Superior Gender Swap Potion"
-        if ID == 14:
+        if ID == Recipe.S_MASO_POT:
             return "Recipe: Superior Masochism Potion"
-        if ID == 15:
+        if ID == Recipe.S_BABY_FREE:
             return "Recipe: Superior Baby Free Potion"
-        if ID == 16:
+        if ID == Recipe.S_POT_POT:
             return "Recipe: Superior Potency Potion"
-        if ID == 17:
+        if ID == Recipe.MILK_SUPPRESS:
             return "Recipe: Milk Suppressant"
         # NOTE: These were added for the wiki
-        if ID == 50:
+        if ID == Recipe.BLONDIE:
             return "Recipe: Blonde Dye"
-        if ID == 51:
+        if ID == Recipe.PUSSY_JUICE:
             return "Recipe: Pussy Juice"
-        if ID == 52:
+        if ID == Recipe.BLACK_DYE:
             return "Recipe: Black Dye"
-        if ID == 53:
+        if ID == Recipe.RED_DYE:
             return "Recipe: Red Dye"
-        if ID == 54:
+        if ID == Recipe.PHEROMONE:
             return "Recipe: Pheromone"
-        if ID == 55:
+        if ID == Recipe.REDUC_REDUC:
             return "Recipe: Reduced Reduction"
-        if ID == 56:
+        if ID == Recipe.MALE_ENHANCE:
             return "Recipe: Male Enhancement Drug"
-        if ID == 57:
+        if ID == Recipe.BAZOOMBA:
             return "Recipe: Bazoomba!"
         return ""
 
     def value(ID: int) -> int:
         if (ID >= 200):
             return Items.value(ID)
-        if ID == 1:
+        if ID == Recipe.LUST_DRAFT:
             return 20
-        if ID == 2:
+        if ID == Recipe.REJUV_POT:
             return 25
-        if ID == 3:
+        if ID == Recipe.EXP_PREG:
             return 25
-        if ID == 4:
+        if ID == Recipe.BALL_SWELL:
             return 20
-        if ID == 5:
+        if ID == Recipe.S_LUST_DRAFT:
             return 35
-        if ID == 6:
+        if ID == Recipe.S_REJUV_POT:
             return 40
-        if ID == 7:
+        if ID == Recipe.S_EXP_PREG:
             return 35
-        if ID == 8:
+        if ID == Recipe.S_BALL_SWELL:
             return 30
-        if ID == 9:
+        if ID == Recipe.GEN_SWAP:
             return 45
-        if ID == 10:
+        if ID == Recipe.MASO_POT:
             return 45
-        if ID == 11:
+        if ID == Recipe.BABY_FREE:
             return 40
-        if ID == 12:
+        if ID == Recipe.POT_POT:
             return 45
-        if ID == 13:
+        if ID == Recipe.S_GEN_SWAP:
             return 60
-        if ID == 14:
+        if ID == Recipe.S_MASO_POT:
             return 70
-        if ID == 15:
+        if ID == Recipe.S_BABY_FREE:
             return 55
-        if ID == 16:
+        if ID == Recipe.S_POT_POT:
             return 65
-        if ID == 17:
+        if ID == Recipe.MILK_SUPPRESS:
             return 35
         return 0
 
     def description(ID: int, context: object) -> str:
         if ID >= 200:
             return Items.description(ID, context)
-        if ID == 1:
+        if ID == Recipe.LUST_DRAFT:
             return "For those who need a boost in the bedroom.\n\nAlchemy difficulty: Simple"
-        if ID == 2:
+        if ID == Recipe.REJUV_POT:
             return "Useful for soothing what ailes you.\n\nAlchemy difficulty: Simple"
-        if ID == 3:
+        if ID == Recipe.EXP_PREG:
             return "Helps quicken the gestation period.\n\nAlchemy difficulty: Simple"
-        if ID == 4:
+        if ID == Recipe.BALL_SWELL:
             return "Gives your nuts a jump in their production.\n\nAlchemy difficulty: Simple"
-        if ID == 5:
+        if ID == Recipe.S_LUST_DRAFT:
             return "For when you've got a long night ahead with your spouse.\n\nAlchemy difficulty: Complex"
-        if ID == 6:
+        if ID == Recipe.S_REJUV_POT:
             return "Greatly soothes your ailments.\n\nAlchemy difficulty: Complex"
-        if ID == 7:
+        if ID == Recipe.S_EXP_PREG:
             return "Because that baby just needs to get out.\n\nAlchemy difficulty: Complex"
-        if ID == 8:
+        if ID == Recipe.S_BALL_SWELL:
             return "If you like that swollen, achy, full of seed feeling, this is what you want.\n\nAlchemy difficulty: Complex"
-        if ID == 9:
+        if ID == Recipe.GEN_SWAP:
             return "Don't like your current path in life? This will help start you off from a new perspective.\n\nAlchemy difficulty: Complex"
-        if ID == 10:
+        if ID == Recipe.MASO_POT:
             return "Makes some the pain feel pleasurable instead.\n\nAlchemy difficulty: Complex"
-        if ID == 11:
+        if ID == Recipe.BABY_FREE:
             return "A good contraceptive.\n\nAlchemy difficulty: Complex"
-        if ID == 12:
+        if ID == Recipe.POT_POT:
             return "Makes your testicles more efficient in their duties.\n\nAlchemy difficulty: Complex"
-        if ID == 13:
+        if ID == Recipe.S_GEN_SWAP:
             return "For when you're bored and wanna try out something new.\n\nAlchemy difficulty: Advanced"
-        if ID == 14:
+        if ID == Recipe.S_MASO_POT:
             return "Really helps take on the big fellas; all that soreness will be delightful instead.\n\nAlchemy difficulty: Advanced"
-        if ID == 15:
+        if ID == Recipe.S_BABY_FREE:
             return "Necessary in Siz'Calit.\n\nAlchemy difficulty: Advanced"
-        if ID == 16:
+        if ID == Recipe.S_POT_POT:
             return "Helps make sure you absolutely fertilize all those eggs with a good coating.\n\nAlchemy difficulty: Advanced"
-        if ID == 17:
+        if ID == Recipe.MILK_SUPPRESS:
             return "Sometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
         return ""
 
@@ -2794,13 +2825,13 @@ class Apothecary:
             if goodsSlot == 3:
                 return 523
             if goodsSlot == 7 and not knowledge.knowLustDraft:
-                return 1
+                return Recipe.LUST_DRAFT
             if goodsSlot == 9 and not knowledge.knowSRejuvPot:
-                return 6
+                return Recipe.S_REJUV_POT
             if goodsSlot == 10 and not knowledge.knowMasoPot:
-                return 10
+                return Recipe.MASO_POT
             if goodsSlot == 11 and not knowledge.knowBabyFree:
-                return 11
+                return Recipe.BABY_FREE
         elif currentZone == Zone.FIRMSHAFT:
             if goodsSlot == 1:
                 return 209
@@ -2813,11 +2844,11 @@ class Apothecary:
             if goodsSlot == 6:
                 return 524
             if goodsSlot == 9 and not knowledge.knowRejuvPot:
-                return 2
+                return Recipe.REJUV_POT
             if goodsSlot == 10 and not knowledge.knowSLustDraft:
-                return 5
+                return Recipe.S_LUST_DRAFT
             if goodsSlot == 11 and not knowledge.knowSMasoPot:
-                return 14
+                return Recipe.S_MASO_POT
         elif currentZone == Zone.TIEDEN:
             if goodsSlot == 1:
                 return 201
@@ -2828,11 +2859,11 @@ class Apothecary:
             if goodsSlot == 5:
                 return 203
             if goodsSlot == 9 and not knowledge.knowBallSwell:
-                return 4
+                return Recipe.BALL_SWELL
             if goodsSlot == 10 and not knowledge.knowPotPot:
-                return 12
+                return Recipe.POT_POT
             if goodsSlot == 11 and not knowledge.knowSGenSwap:
-                return 13
+                return Recipe.S_GEN_SWAP
         elif currentZone == Zone.SIZ_CALIT:
             if goodsSlot == 1:
                 return 210
@@ -2841,11 +2872,11 @@ class Apothecary:
             if goodsSlot == 3:
                 return 218
             if goodsSlot == 9 and not knowledge.knowExpPreg:
-                return 3
+                return Recipe.EXP_PREG
             if goodsSlot == 10 and not knowledge.knowGenSwap:
-                return 9
+                return Recipe.GEN_SWAP
             if goodsSlot == 11 and not knowledge.knowSBabyFree:
-                return 15
+                return Recipe.S_BABY_FREE
         elif currentZone == Zone.OVIASIS:
             if goodsSlot == 1:
                 return 207
@@ -2856,14 +2887,14 @@ class Apothecary:
             if goodsSlot == 5:
                 return 228
             if goodsSlot == 9 and not knowledge.knowSExpPreg:
-                return 7
+                return Recipe.S_EXP_PREG
             if goodsSlot == 10 and not knowledge.knowSBallSwell:
-                return 8
+                return Recipe.S_BALL_SWELL
             if goodsSlot == 11 and not knowledge.knowSPotPot:
-                return 16
+                return Recipe.S_POT_POT
         elif currentZone == Zone.SANCTUARY:
             if goodsSlot == 9 and not knowledge.knowMilkSuppress:
-                return 17
+                return Recipe.MILK_SUPPRESS
         return 0
 
 
@@ -12753,39 +12784,39 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def apothLearn(self, ID: int):
-        if ID == 1:
+        if ID == Recipe.LUST_DRAFT:
             self.knowLustDraft = True
-        if ID == 2:
+        if ID == Recipe.REJUV_POT:
             self.knowRejuvPot = True
-        if ID == 3:
+        if ID == Recipe.EXP_PREG:
             self.knowExpPreg = True
-        if ID == 4:
+        if ID == Recipe.BALL_SWELL:
             self.knowBallSwell = True
-        if ID == 5:
+        if ID == Recipe.S_LUST_DRAFT:
             self.knowSLustDraft = True
-        if ID == 6:
+        if ID == Recipe.S_REJUV_POT:
             self.knowSRejuvPot = True
-        if ID == 7:
+        if ID == Recipe.S_EXP_PREG:
             self.knowSExpPreg = True
-        if ID == 8:
+        if ID == Recipe.S_BALL_SWELL:
             self.knowSBallSwell = True
-        if ID == 9:
+        if ID == Recipe.GEN_SWAP:
             self.knowGenSwap = True
-        if ID == 10:
+        if ID == Recipe.MASO_POT:
             self.knowMasoPot = True
-        if ID == 11:
+        if ID == Recipe.BABY_FREE:
             self.knowBabyFree = True
-        if ID == 12:
+        if ID == Recipe.POT_POT:
             self.knowPotPot = True
-        if ID == 13:
+        if ID == Recipe.S_GEN_SWAP:
             self.knowSGenSwap = True
-        if ID == 14:
+        if ID == Recipe.S_MASO_POT:
             self.knowSMasoPot = True
-        if ID == 15:
+        if ID == Recipe.S_BABY_FREE:
             self.knowSBabyFree = True
-        if ID == 16:
+        if ID == Recipe.S_POT_POT:
             self.knowSPotPot = True
-        if ID == 17:
+        if ID == Recipe.MILK_SUPPRESS:
             self.knowMilkSuppress = True
 
     def doSalon(self):
@@ -14797,6 +14828,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.buttonChoice == 12:
                 self.doReturn()
         self.doListen = doListen
+
+    # TODO: Switch makeAlchemy to use the recipe number instead of the item number
 
     def simpleAlchemy(self):
         self.choiceListArray.clear()
