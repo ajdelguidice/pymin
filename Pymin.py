@@ -305,6 +305,146 @@ class StartType:
     SAVE_CONVERTER = 1
 
 
+class Item:
+    TEST = 1
+    DEBUG_STICK = 2
+    TS_ANY = 3
+
+    ANC_CLAWS = 101
+    IMB_SHOES = 102
+    DRY_SAND = 103
+    MILKER = 104
+    CATS_MEOW = 105
+    PENIS_PUMP = 106
+    BLOOD_GGE = 108
+    EDU_EGG = 109
+    REDUCTION = 110
+    SKIN_BALM = 111
+    BOL_JOICE = 112
+    TAINT_LEAF = 113
+    SWEET_SAP = 114
+    POULTICE = 115
+    DAGGER = 116
+    HAMMER = 117
+    SABER = 118
+    WHIP = 119
+    NEUTER = 120
+    TS_SOFT = 121
+    TS_FIRM = 122
+    TS_TIED = 123
+    TS_SIZ = 124
+    TS_OVI = 125
+    OAS_WATER = 126
+    TAIL_SPIKE = 127
+    TS_SANC = 128
+
+    LILAS_GIFT = 200
+    MILK_C_POIS = 201
+    CO_SNAK_VEN = 202
+    WOLF_FUR = 203
+    SM_POUCH1 = 204
+    SM_POUCH2 = 205
+    TRINKET = 206
+    COCK_CARV = 207
+    BLO_BERRY = 208
+    GRAIN = 209
+    PUSS_FRUIT = 210
+    DAIRE_PILL = 211
+    RED_MUSH = 212
+    WET_CLOTH = 213
+    LON_MILK = 214
+    LON_PENDANT = 215
+    PINK_INK = 216
+    EGG_JELLY = 217
+    BUL_BERRY = 218
+    FRESH_EGG = 219
+    BLONDE = 220
+    PUSS_JUICE = 221
+    KINKY_CARR = 222
+    EQ_SNACK = 223
+    LILAS_MILK = 224
+    BODY_WASH = 225
+    FELIN_TEA = 226
+    ORAL_WASH = 227
+    BODY_OIL = 228
+    LEATHER_STRAP = 229
+    EGGCELERATOR = 230
+    DESI_SAND = 231
+    FLYING_CARP = 232
+    A_GRAV_ROCK = 233
+    REIN_CHARM = 234
+    FELL_ROD = 235
+    RECEPT_BELL = 236
+    DEWY_GIFT = 237
+    SQU_CHEESE = 238
+    SHINY_ROCK = 239
+    AUBURN_DYE = 240
+    BROWN_DYE = 241
+    GREY_DYE = 242
+    WHITE_DYE = 243
+    SNUGGLE_BALL = 244
+    FACIAL_MUD = 245
+    FERTILE_GEL = 246
+    SUPP_HARNESS = 247
+    BREEDER_POT = 248
+    TREANTS_TEAR = 249
+    FOOMP_BOMB = 251
+    MILKY_PEND = 252
+    BUG_EGG = 253
+    LANTERN = 254
+    FRAG_FLOWER = 255
+    NECTAR_CANDY = 256
+    TOO_HUMAN = 257
+    TAINTED_POT = 258
+    SWEET_AND_SOUR = 259
+    SUCC_DRAFT = 260
+
+    ITEM_NOT_FOUND = 404
+    TEAPOT = 418
+
+    MILK_BOTTLE = 500
+    MILK_JUG = 501
+    MILK_BARREL = 502
+    LUST_DRAFT = 503
+    REJUV_POT = 504
+    BAD_EXPER = 505
+    EXP_PREG = 506
+    BALL_SWELLER = 507
+    S_LUST_DRAFT = 508
+    S_REJUV_POT = 509
+    S_BAD_EXPER = 510
+    S_EXP_PREG = 511
+    S_BALL_SWELLER = 512
+    GEN_SWAP = 513
+    MASO_POT = 514
+    BLACK_DYE = 515
+    BABY_FREE = 516
+    POT_POT = 517
+    S_GEN_SWAP = 518
+    S_MASO_POT = 519
+    RED_DYE = 520
+    S_BABY_FREE = 521
+    S_POT_POT = 522
+    CUM_VIAL = 523
+    CUM_BOTTLE = 524
+    CUM_JUG = 525
+    CUM_BARREL = 526
+    GOOD_EGG = 527
+    BAD_EGG = 528
+    STRANGE_EGG = 529
+    CHARMED_EGG = 530
+    DIVINE_EGG = 531
+    PHEROMONE = 532
+    REDUC_REDUC = 533
+    MALE_ENHANCE = 534
+    MILK_SUPPRESS = 535
+    BAZOOMBA = 536
+    QUEEN_EGG = 537
+    SOLDIER_EGG = 538
+    DRONE_EGG = 539
+    WORKER_EGG = 540
+
+
 class KeyStateStorage:
     @property
     def hotkeysDisabled(self) -> bool:
@@ -2119,6 +2259,12 @@ class Items:
         return f'TELEPORT SCROLL ANY ERROR BUTTON {buttonChoice}'
 
 
+class ClothesSlot:
+    TOP = 1
+    BOTTOM = 2
+    BOTH = 4
+
+
 class Clothes:
     TATTERED_SHREDS = -1
     INVISIBLE_UNDERWEAR = 0
@@ -2154,197 +2300,76 @@ class Clothes:
     BOUNCY_BRA = 30
 
     def name(ID: int) -> str:
-        if ID == Clothes.TATTERED_SHREDS:
-            return "Tattered Shreds"
-        if ID == Clothes.INVISIBLE_UNDERWEAR:
-            return "Invisible Underwear"
-        if ID == Clothes.SHIRT:
-            return "Shirt"
-        if ID == Clothes.PANTS:
-            return "Pants"
-        if ID == Clothes.BIKINI_TOP:
-            return "Bikini Top"
-        if ID == Clothes.BIKINI_BOTTOM:
-            return "Bikini Bottom"
-        if ID == Clothes.ELEGANT_DRESS:
-            return "Elegant Dress"
-        if ID == Clothes.LATEX_SUIT:
-            return "Latex Suit"
-        if ID == Clothes.SKIRT:
-            return "Skirt"
-        if ID == Clothes.SHORTS:
-            return "Shorts"
-        if ID == Clothes.BLOUSE:
-            return "Blouse"
-        if ID == Clothes.DIAPER:
-            return "Diaper"
-        if ID == Clothes.POOFY_DIAPER:
-            return "Poofy Diaper"
-        if ID == Clothes.SUNDRESS:
-            return "Sundress"
-        if ID == Clothes.SKIMPY_DRESS:
-            return "Skimpy Dress"
-        if ID == Clothes.SHORT_SKIRT:
-            return "Short Skirt"
-        if ID == Clothes.SHORT_SHORTS:
-            return "Short Shorts"
-        if ID == Clothes.LOIN_CLOTH:
-            return "Loin Cloth"
-        if ID == Clothes.BATHING_SUIT:
-            return "Bathing Suit"
-        if ID == Clothes.MUSCLE_SHIRT:
-            return "Muscle Shirt"
-        if ID == Clothes.CORSET:
-            return "Corset"
-        if ID == Clothes.SILK_PANTIES:
-            return "Silk Panties"
-        if ID == Clothes.SLINGKINI:
-            return "Slingkini"
-        if ID == Clothes.THONG:
-            return "Thong"
-        if ID == Clothes.BLOOMERS:
-            return "Bloomers"
-        if ID == Clothes.TIGHTS:
-            return "Tights"
-        if ID == Clothes.GOTHIC_DRESS:
-            return "Gothic Dress"
-        if ID == Clothes.TUBE_TOP:
-            return "Tube Top"
-        if ID == Clothes.NIPPLE_PASTIES:
-            return "Nipple Pasties"
-        if ID == Clothes.CAMISOLE:
-            return "Camisole"
-        if ID == Clothes.TRAINING_SUIT:
-            return "Training Suit"
-        if ID == Clothes.BOUNCY_BRA:
-            return "Bouncy Bra"
-        return "CLOTHES NAME ERROR"
+        return CLOTHES_STATS[ID].name
 
     def value(ID: int) -> int:
-        if ID == Clothes.SHIRT:
-            return 5
-        if ID == Clothes.PANTS:
-            return 5
-        if ID == Clothes.BIKINI_TOP:
-            return 25
-        if ID == Clothes.BIKINI_BOTTOM:
-            return 25
-        if ID == Clothes.ELEGANT_DRESS:
-            return 45
-        if ID == Clothes.LATEX_SUIT:
-            return 60
-        if ID == Clothes.SKIRT:
-            return 25
-        if ID == Clothes.SHORTS:
-            return 25
-        if ID == Clothes.BLOUSE:
-            return 25
-        if ID == Clothes.DIAPER:
-            return 30
-        if ID == Clothes.POOFY_DIAPER:
-            return 40
-        if ID == Clothes.SUNDRESS:
-            return 40
-        if ID == Clothes.SKIMPY_DRESS:
-            return 50
-        if ID == Clothes.SHORT_SKIRT:
-            return 35
-        if ID == Clothes.SHORT_SHORTS:
-            return 35
-        if ID == Clothes.LOIN_CLOTH:
-            return 40
-        if ID == Clothes.BATHING_SUIT:
-            return 55
-        if ID == Clothes.MUSCLE_SHIRT:
-            return 15
-        if ID == Clothes.CORSET:
-            return 50
-        if ID == Clothes.SILK_PANTIES:
-            return 35
-        if ID == Clothes.SLINGKINI:
-            return 65
-        if ID == Clothes.THONG:
-            return 40
-        if ID == Clothes.BLOOMERS:
-            return 30
-        if ID == Clothes.TIGHTS:
-            return 35
-        if ID == Clothes.GOTHIC_DRESS:
-            return 60
-        if ID == Clothes.TUBE_TOP:
-            return 20
-        if ID == Clothes.NIPPLE_PASTIES:
-            return 45
-        if ID == Clothes.CAMISOLE:
-            return 40
-        if ID == Clothes.TRAINING_SUIT:
-            return 35
-        if ID == Clothes.BOUNCY_BRA:
-            return 45
-        return 0
+        return CLOTHES_STATS[ID].value
 
     def description(ID: int) -> str:
-        if ID == Clothes.SHIRT:
-            return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
-        if ID == Clothes.PANTS:
-            return "A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."
-        if ID == Clothes.BIKINI_TOP:
-            return "A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."
-        if ID == Clothes.BIKINI_BOTTOM:
-            return "A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."
-        if ID == Clothes.ELEGANT_DRESS:
-            return "A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."
-        if ID == Clothes.LATEX_SUIT:
-            return "A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."
-        if ID == Clothes.SKIRT:
-            return "A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."
-        if ID == Clothes.SHORTS:
-            return "A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."
-        if ID == Clothes.BLOUSE:
-            return "A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."
-        if ID == Clothes.DIAPER:
-            return "A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
-        if ID == Clothes.POOFY_DIAPER:
-            return "A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
-        if ID == Clothes.SUNDRESS:
-            return "A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."
-        if ID == Clothes.SKIMPY_DRESS:
-            return "A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."
-        if ID == Clothes.SHORT_SKIRT:
-            return "A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."
-        if ID == Clothes.SHORT_SHORTS:
-            return "A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."
-        if ID == Clothes.LOIN_CLOTH:
-            return "A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."
-        if ID == Clothes.BATHING_SUIT:
-            return "A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."
-        if ID == Clothes.MUSCLE_SHIRT:
-            return "A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."
-        if ID == Clothes.CORSET:
-            return "A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."
-        if ID == Clothes.SILK_PANTIES:
-            return "A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."
-        if ID == Clothes.SLINGKINI:
-            return "A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."
-        if ID == Clothes.THONG:
-            return "A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."
-        if ID == Clothes.BLOOMERS:
-            return "A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."
-        if ID == Clothes.TIGHTS:
-            return "A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."
-        if ID == Clothes.GOTHIC_DRESS:
-            return "A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."
-        if ID == Clothes.TUBE_TOP:
-            return "A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."
-        if ID == Clothes.NIPPLE_PASTIES:
-            return "A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."
-        if ID == Clothes.CAMISOLE:
-            return "A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."
-        if ID == Clothes.TRAINING_SUIT:
-            return "A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."
-        if ID == Clothes.BOUNCY_BRA:
-            return "A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot."
-        return "CLOTHES DESCRIPTION ERROR"
+        return CLOTHES_STATS[ID].description
+
+
+class ClothesStatsItem(frozendict):
+    @property
+    def name(self):
+        name = self.get('name')
+        if name is None:
+            return "CLOTHES NAME ERROR"
+        return name
+
+    @property
+    def value(self):
+        value = self.get('value')
+        if value is None:
+            return 0
+        return value
+
+    @property
+    def slot(self):
+        return self['slot']
+
+    @property
+    def description(self):
+        desc = self.get('description')
+        if desc is None:
+            return "CLOTHES DESCRIPTION ERROR"
+        return desc
+
+
+CLOTHES_STATS = frozendict({
+    Clothes.TATTERED_SHREDS: ClothesStatsItem(name="Tattered Shreds", value=0, slot=ClothesSlot.BOTH),
+    Clothes.INVISIBLE_UNDERWEAR: ClothesStatsItem(name="Invisible Underwear", value=0, slot=ClothesSlot.BOTH),
+    Clothes.SHIRT: ClothesStatsItem(name="Shirt", value=5, slot=ClothesSlot.TOP, description="A generic shirt with no special attributes.\n\nTakes top clothes slot."),
+    Clothes.PANTS: ClothesStatsItem(name="Pants", value=5, slot=ClothesSlot.BOTTOM, description="A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."),
+    Clothes.BIKINI_TOP: ClothesStatsItem(name="Bikini Top", value=25, slot=ClothesSlot.TOP, description="A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."),
+    Clothes.BIKINI_BOTTOM: ClothesStatsItem(name="Bikini Bottom", value=25, slot=ClothesSlot.BOTTOM, description="A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."),
+    Clothes.ELEGANT_DRESS: ClothesStatsItem(name="Elegant Dress", value=45, slot=ClothesSlot.BOTH, description="A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."),
+    Clothes.LATEX_SUIT: ClothesStatsItem(name="Latex Suit", value=60, slot=ClothesSlot.BOTH, description="A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."),
+    Clothes.SKIRT: ClothesStatsItem(name="Skirt", value=25, slot=ClothesSlot.BOTTOM, description="A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."),
+    Clothes.SHORTS: ClothesStatsItem(name="Shorts", value=25, slot=ClothesSlot.BOTTOM, description="A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."),
+    Clothes.BLOUSE: ClothesStatsItem(name="Blouse", value=25, slot=ClothesSlot.TOP, description="A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."),
+    Clothes.DIAPER: ClothesStatsItem(name="Diaper", value=30, slot=ClothesSlot.BOTTOM, description="A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."),
+    Clothes.POOFY_DIAPER: ClothesStatsItem(name="Poofy Diaper", value=40, slot=ClothesSlot.BOTTOM, description="A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."),
+    Clothes.SUNDRESS: ClothesStatsItem(name="Sundress", value=40, slot=ClothesSlot.BOTH, description="A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."),
+    Clothes.SKIMPY_DRESS: ClothesStatsItem(name="Skimpy Dress", value=50, slot=ClothesSlot.BOTH, description="A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."),
+    Clothes.SHORT_SKIRT: ClothesStatsItem(name="Short Skirt", value=35, slot=ClothesSlot.BOTTOM, description="A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."),
+    Clothes.SHORT_SHORTS: ClothesStatsItem(name="Short Shorts", value=35, slot=ClothesSlot.BOTTOM, description="A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."),
+    Clothes.LOIN_CLOTH: ClothesStatsItem(name="Loin Cloth", value=40, slot=ClothesSlot.BOTTOM, description="A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."),
+    Clothes.BATHING_SUIT: ClothesStatsItem(name="Bathing Suit", value=55, slot=ClothesSlot.BOTH, description="A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."),
+    Clothes.MUSCLE_SHIRT: ClothesStatsItem(name="Muscle Shirt", value=15, slot=ClothesSlot.TOP, description="A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."),
+    Clothes.CORSET: ClothesStatsItem(name="Corset", value=50, slot=ClothesSlot.TOP, description="A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."),
+    Clothes.SILK_PANTIES: ClothesStatsItem(name="Silk Panties", value=35, slot=ClothesSlot.BOTTOM, description="A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."),
+    Clothes.SLINGKINI: ClothesStatsItem(name="Slingkini", value=65, slot=ClothesSlot.BOTH, description="A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."),
+    Clothes.THONG: ClothesStatsItem(name="Thong", value=40, slot=ClothesSlot.BOTTOM, description="A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."),
+    Clothes.BLOOMERS: ClothesStatsItem(name="Bloomers", value=30, slot=ClothesSlot.BOTTOM, description="A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."),
+    Clothes.TIGHTS: ClothesStatsItem(name="Tights", value=35, slot=ClothesSlot.BOTTOM, description="A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."),
+    Clothes.GOTHIC_DRESS: ClothesStatsItem(name="Gothic Dress", value=60, slot=ClothesSlot.BOTH, description="A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."),
+    Clothes.TUBE_TOP: ClothesStatsItem(name="Tube Top", value=20, slot=ClothesSlot.TOP, description="A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."),
+    Clothes.NIPPLE_PASTIES: ClothesStatsItem(name="Nipple Pasties", value=45, slot=ClothesSlot.TOP, description="A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."),
+    Clothes.CAMISOLE: ClothesStatsItem(name="Camisole", value=40, slot=ClothesSlot.TOP, description="A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."),
+    Clothes.TRAINING_SUIT: ClothesStatsItem(name="Training Suit", value=35, slot=ClothesSlot.BOTH, description="A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."),
+    Clothes.BOUNCY_BRA: ClothesStatsItem(name="Bouncy Bra", value=45, slot=ClothesSlot.TOP, description="A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot.")
+})
 
 
 class Hairstyles:
@@ -13097,74 +13122,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return f"PULL UP/DOWN ERROR {self.attireTop} {self.attireBot}"
 
     def clothesChange(self, ID: int):
-        if ID == Clothes.SHIRT:
-            self.changeTop(Clothes.SHIRT)
-        elif ID == Clothes.PANTS:
-            self.changeBot(Clothes.PANTS)
-        elif ID == Clothes.BIKINI_TOP:
-            self.changeTop(Clothes.BIKINI_TOP)
-        elif ID == Clothes.BIKINI_BOTTOM:
-            self.changeBot(Clothes.BIKINI_BOTTOM)
-        elif ID == Clothes.ELEGANT_DRESS:
-            self.changeTop(Clothes.ELEGANT_DRESS)
-            self.changeBot(Clothes.ELEGANT_DRESS)
-        elif ID == Clothes.LATEX_SUIT:
-            self.changeTop(Clothes.LATEX_SUIT)
-            self.changeBot(Clothes.LATEX_SUIT)
-        elif ID == Clothes.SKIRT:
-            self.changeBot(Clothes.SKIRT)
-        elif ID == Clothes.SHORTS:
-            self.changeBot(Clothes.SHORTS)
-        elif ID == Clothes.BLOUSE:
-            self.changeTop(Clothes.BLOUSE)
-        elif ID == Clothes.DIAPER:
-            self.changeBot(Clothes.DIAPER)
-        elif ID == Clothes.POOFY_DIAPER:
-            self.changeBot(Clothes.POOFY_DIAPER)
-        elif ID == Clothes.SUNDRESS:
-            self.changeTop(Clothes.SUNDRESS)
-            self.changeBot(Clothes.SUNDRESS)
-        elif ID == Clothes.SKIMPY_DRESS:
-            self.changeTop(Clothes.SKIMPY_DRESS)
-            self.changeBot(Clothes.SKIMPY_DRESS)
-        elif ID == Clothes.SHORT_SKIRT:
-            self.changeBot(Clothes.SHORT_SKIRT)
-        elif ID == Clothes.SHORT_SHORTS:
-            self.changeBot(Clothes.SHORT_SHORTS)
-        elif ID == Clothes.LOIN_CLOTH:
-            self.changeBot(Clothes.LOIN_CLOTH)
-        elif ID == Clothes.BATHING_SUIT:
-            self.changeTop(Clothes.BATHING_SUIT)
-            self.changeBot(Clothes.BATHING_SUIT)
-        elif ID == Clothes.MUSCLE_SHIRT:
-            self.changeTop(Clothes.MUSCLE_SHIRT)
-        elif ID == Clothes.CORSET:
-            self.changeTop(Clothes.CORSET)
-        elif ID == Clothes.SILK_PANTIES:
-            self.changeBot(Clothes.SILK_PANTIES)
-        elif ID == Clothes.SLINGKINI:
-            self.changeTop(Clothes.SLINGKINI)
-            self.changeBot(Clothes.SLINGKINI)
-        elif ID == Clothes.THONG:
-            self.changeBot(Clothes.THONG)
-        elif ID == Clothes.BLOOMERS:
-            self.changeBot(Clothes.BLOOMERS)
-        elif ID == Clothes.TIGHTS:
-            self.changeBot(Clothes.TIGHTS)
-        elif ID == Clothes.GOTHIC_DRESS:
-            self.changeTop(Clothes.GOTHIC_DRESS)
-            self.changeBot(Clothes.GOTHIC_DRESS)
-        elif ID == Clothes.TUBE_TOP:
-            self.changeTop(Clothes.TUBE_TOP)
-        elif ID == Clothes.NIPPLE_PASTIES:
-            self.changeTop(Clothes.NIPPLE_PASTIES)
-        elif ID == Clothes.CAMISOLE:
-            self.changeTop(Clothes.CAMISOLE)
-        elif ID == Clothes.TRAINING_SUIT:
-            self.changeTop(Clothes.TRAINING_SUIT)
-            self.changeBot(Clothes.TRAINING_SUIT)
-        elif ID == Clothes.BOUNCY_BRA:
-            self.changeTop(Clothes.BOUNCY_BRA)
+        slot = CLOTHES_STATS[ID].slot
+        if slot & ClothesSlot.BOTH:
+            self.changeTop(ID)
+            self.changeBot(ID)
+        elif slot & ClothesSlot.TOP:
+            self.changeTop(ID)
+        elif slot & ClothesSlot.BOTTOM:
+            self.changeBot(ID)
 
     def changeTop(self, ID: int):
         if (ID != self.attireTop):
