@@ -300,6 +300,18 @@ class Hairstyle:
     EMO = 13
     AFRO = 14
 
+    def name(ID: int) -> str:
+        return HAIRSTYLE_STATS[ID].name
+
+    def value(ID: int) -> int:
+        return HAIRSTYLE_STATS[ID].value
+
+    def description(ID: int) -> str:
+        return HAIRSTYLE_STATS[ID].description
+
+    def hasLengthOptions(ID: int) -> bool:
+        return HAIRSTYLE_STATS[ID].hasLengthOptions
+
 
 class StartType:
     GAME = 0
@@ -472,30 +484,33 @@ class GenericStatsItem(frozendict):
             return self._DESCRIPTION_FALLBACK
         return desc
 
-'''
+
 class HairstyleStatsItem(GenericStatsItem):
     _NAME_FALLBACK = "HAIRSTYLE NAME ERROR"
     _DESCRIPTION_FALLBACK = f"HAIR DESC_LONG ERROR"
 
+    @property
+    def hasLengthOptions(self):
+        return self['hasLengthOptions']
+
 
 HAIRSTYLE_STATS = frozendict({
-    Hairstyle.NONE: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.WAVY: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.PIGTAIL: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.PONYTAIL: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.STRAIGHT: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.BUZZCUT: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.MOHAWK: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.BUN: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.CURLY: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.BRAIDED_PIGTAIL: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.BRAIDED_PONYTAIL: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.BRAIDED: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.SPIKY: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.EMO: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
-    Hairstyle.AFRO: HairstyleStatsItem(name=, value=, description=, hasLengthOptions=),
+    Hairstyle.NONE: HairstyleStatsItem(name='None', hasLengthOptions=False, description="No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."),
+    Hairstyle.WAVY: HairstyleStatsItem(name='Wavy', value=5, hasLengthOptions=True, description="Wavy hair has subtle curves that make it seem more flowing.\n\nThis hairstyle has additional length options available after purchasing."),
+    Hairstyle.PIGTAIL: HairstyleStatsItem(name='Pigtail', value=8, hasLengthOptions=True, description="Pigtails are straight/wavy/curvy hair pulled away from the face and gathered towards the sides of your head, where it is bundled and tied at the base, allowing it to hang freely over your shoulders.\n\nThis hairstyle has additional length options available after purchasing."),
+    Hairstyle.PONYTAIL: HairstyleStatsItem(name='Ponytail', value=8, hasLengthOptions=True, description="A Ponytail is straight/wavy/curvy hair pulled away from the face and gathered at the back of your head, where it is bundled and tied at the base, allowing it to hang freely over your back.\n\nThis hairstyle has additional length options available after purchasing."),
+    Hairstyle.STRAIGHT: HairstyleStatsItem(name='Straight', value=5, hasLengthOptions=True, description="Straight hair has been combed out to be nice and straight.\n\nThis hairstyle has additional length options available after purchasing."),
+    Hairstyle.BUZZCUT: HairstyleStatsItem(name='Buzzcut', value=7, hasLengthOptions=False, description="A Buzzcut is hair cut quite short, less than a quarter inch from your head."),
+    Hairstyle.MOHAWK: HairstyleStatsItem(name='Mohawk', value=20, hasLengthOptions=False, description="A Mohawk leaves only the hair along the center, from front to back, left, shaving the rest. It's usually a couple inches long."),
+    Hairstyle.BUN: HairstyleStatsItem(name='Bun', value=10, hasLengthOptions=False, description="A Bun is straight or wavy hair pulled up into a bun-like shape on top of the back of your head."),
+    Hairstyle.CURLY: HairstyleStatsItem(name='Curly', value=5, hasLengthOptions=True, description="Curly hair has been treated to make it nice and curly with a bit of spring.\n\nThis hairstyle has additional length options available after purchasing."),
+    Hairstyle.BRAIDED_PIGTAIL: HairstyleStatsItem(name='B Pigtail', value=15, hasLengthOptions=True, description="Braided Pigtails are pigtails that have been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."),
+    Hairstyle.BRAIDED_PONYTAIL: HairstyleStatsItem(name='B Ponytail', value=15, hasLengthOptions=True, description="A Braided Ponytail is a ponytail that has been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."),
+    Hairstyle.BRAIDED: HairstyleStatsItem(name='Braided', value=23, hasLengthOptions=True, description="Braided hair involves tying all your hair into many braids, keeping it all in multiple tight formations.\n\nThis hairstyle has additional length options available after purchasing."),
+    Hairstyle.SPIKY: HairstyleStatsItem(name='Spiky', value=18, hasLengthOptions=False, description="Spiky hair is hair that has been treated to stand away from your head, defying gravity. Due to limitations, it can only reach a few inches in length."),
+    Hairstyle.EMO: HairstyleStatsItem(name='Emo', value=18, hasLengthOptions=True, description="Emo hair is hair that has been treated to sit straight at all times, with bangs often hanging over one eye.\n\nThis hairstyle has additional length options available after purchasing."),
+    Hairstyle.AFRO: HairstyleStatsItem(name='Afro', value=20, hasLengthOptions=False, description="An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head."),
 })
-'''
 
 
 class ClothesStatsItem(GenericStatsItem):
@@ -601,7 +616,6 @@ class EnemyStatsItem(frozendict):
     @property
     def item(self) -> int:
         return self['item']
-
 
 
 ENEMY_STATS = frozendict({
@@ -2435,111 +2449,6 @@ class Items:
         return f'TELEPORT SCROLL ANY ERROR BUTTON {buttonChoice}'
 
 
-class Hairstyles:
-    def name(ID: int) -> str:
-        if ID == Hairstyle.NONE:
-            return 'None'
-        if ID == Hairstyle.WAVY:
-            return 'Wavy'
-        if ID == Hairstyle.PIGTAIL:
-            return 'Pigtail'
-        if ID == Hairstyle.PONYTAIL:
-            return 'Ponytail'
-        if ID == Hairstyle.STRAIGHT:
-            return 'Straight'
-        if ID == Hairstyle.BUZZCUT:
-            return 'Buzzcut'
-        if ID == Hairstyle.MOHAWK:
-            return 'Mohawk'
-        if ID == Hairstyle.BUN:
-            return 'Bun'
-        if ID == Hairstyle.CURLY:
-            return 'Curly'
-        if ID == Hairstyle.BRAIDED_PIGTAIL:
-            return 'B Pigtail'
-        if ID == Hairstyle.BRAIDED_PONYTAIL:
-            return 'B Ponytail'
-        if ID == Hairstyle.BRAIDED:
-            return 'Braided'
-        if ID == Hairstyle.SPIKY:
-            return 'Spiky'
-        if ID == Hairstyle.EMO:
-            return 'Emo'
-        if ID == Hairstyle.AFRO:
-            return 'Afro'
-        return f"HAIRSTYLE NAME ERROR {ID}"
-
-    def value(ID: int) -> int:
-        if ID == Hairstyle.WAVY:
-            return 5
-        if ID == Hairstyle.PIGTAIL:
-            return 8
-        if ID == Hairstyle.PONYTAIL:
-            return 8
-        if ID == Hairstyle.STRAIGHT:
-            return 5
-        if ID == Hairstyle.BUZZCUT:
-            return 7
-        if ID == Hairstyle.MOHAWK:
-            return 20
-        if ID == Hairstyle.BUN:
-            return 10
-        if ID == Hairstyle.CURLY:
-            return 5
-        if ID == Hairstyle.BRAIDED_PIGTAIL:
-            return 15
-        if ID == Hairstyle.BRAIDED_PONYTAIL:
-            return 15
-        if ID == Hairstyle.BRAIDED:
-            return 23
-        if ID == Hairstyle.SPIKY:
-            return 18
-        if ID == Hairstyle.EMO:
-            return 18
-        if ID == Hairstyle.AFRO:
-            return 20
-        return 0
-
-    def description(ID: int) -> str:
-        if ID == Hairstyle.NONE:
-            return "No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."
-        if ID == Hairstyle.WAVY:
-            return "Wavy hair has subtle curves that make it seem more flowing.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == Hairstyle.PIGTAIL:
-            return "Pigtails are straight/wavy/curvy hair pulled away from the face and gathered towards the sides of your head, where it is bundled and tied at the base, allowing it to hang freely over your shoulders.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == Hairstyle.PONYTAIL:
-            return "A Ponytail is straight/wavy/curvy hair pulled away from the face and gathered at the back of your head, where it is bundled and tied at the base, allowing it to hang freely over your back.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == Hairstyle.STRAIGHT:
-            return "Straight hair has been combed out to be nice and straight.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == Hairstyle.BUZZCUT:
-            return "A Buzzcut is hair cut quite short, less than a quarter inch from your head."
-        if ID == Hairstyle.MOHAWK:
-            return "A Mohawk leaves only the hair along the center, from front to back, left, shaving the rest. It's usually a couple inches long."
-        if ID == Hairstyle.BUN:
-            return "A Bun is straight or wavy hair pulled up into a bun-like shape on top of the back of your head."
-        if ID == Hairstyle.CURLY:
-            return "Curly hair has been treated to make it nice and curly with a bit of spring.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == Hairstyle.BRAIDED_PIGTAIL:
-            return "Braided Pigtails are pigtails that have been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == Hairstyle.BRAIDED_PONYTAIL:
-            return "A Braided Ponytail is a ponytail that has been braided, keeping the dangling hair in a nice tight formation.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == Hairstyle.BRAIDED:
-            return "Braided hair involves tying all your hair into many braids, keeping it all in multiple tight formations.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == Hairstyle.SPIKY:
-            return "Spiky hair is hair that has been treated to stand away from your head, defying gravity. Due to limitations, it can only reach a few inches in length."
-        if ID == Hairstyle.EMO:
-            return "Emo hair is hair that has been treated to sit straight at all times, with bangs often hanging over one eye.\n\nThis hairstyle has additional length options available after purchasing."
-        if ID == Hairstyle.AFRO:
-            return "An Afro is a giant poofball of curly hair. Due to limitations, it only reaches about half a foot from your head."
-        return f"HAIR DESC_LONG ERROR {ID}"
-
-    def hasLengthOptions(ID: int) -> bool:
-        '''
-        Returns whether a specific hairstyle has length options
-        '''
-        return ID in {Hairstyle.WAVY, Hairstyle.PIGTAIL, Hairstyle.PONYTAIL, Hairstyle.STRAIGHT, Hairstyle.CURLY, Hairstyle.BRAIDED_PIGTAIL, Hairstyle.BRAIDED_PONYTAIL, Hairstyle.BRAIDED, Hairstyle.EMO}
-
-
 class SpecialAbilities:
     def name(ID: int) -> str:
         if ID == 1:
@@ -4096,7 +4005,7 @@ class WikiPages:
                 for j in RANGE9_BUTTON_MAP:
                     ID = Salon.ID(i, j)
                     if ID != 0:
-                        tempStr += f'\n{Hairstyles.name(ID)}'
+                        tempStr += f'\n{Hairstyle.name(ID)}'
             return tempStr
         if Num == 5:
             tempStr = "<h4><u>Tailor</u></h4><u>Description</u>\nThis is the Tailor where you can buy clothes. The list of clothes that can be bought is bellow."
@@ -7769,13 +7678,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # TODO: optimize
         tempStr = textObject()
         tempStr += Utils.applyBackspace(f"You began your journey as a {self.raceName()}.\n\n{Math.floor(self.tallness / 12)} feet and {self.tallness % 12} inches tall, you wield {self.hipDesc()} hips and a {self.buttDesc(ngrammar=True)} butt on an overall {self.bodyDesc()} figure.")
-        if (self.hair > Hairstyle.NONE):
+        if (self.hair == Hairstyle.NONE):
+            tempStr += " Y"
+        else:
             tempStr += f" With {self.hairC()}{self.hairDesc()}"
-            if (Hairstyles.hasLengthOptions(self.hair)):
+            if (Hairstyle.hasLengthOptions(self.hair)):
                 tempStr += f" {self.hairL()}"
             tempStr += ", y"
-        else:
-            tempStr += " Y"
         tempStr += f"ou look much like a{self.genName()} {self.domName()}{self.faceDesc()}"
         if (self.tail > 1):
             tempStr += Utils.applyBackspace(f", and a {self.tailDesc(True)} tail swishing upon your backside")
@@ -12724,7 +12633,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0))
         self.outputMainText(f"What would you like to apply the {Items.name(ID)} to?", True)
         tempDict = {7: "Body", 10: "Nevermind"}
-        if (self.hair > Hairstyle.NONE):
+        if (self.hair != Hairstyle.NONE):
             tempDict[5] = "Hair"
         self.doButtonChoices(tempDict)
 
@@ -12873,23 +12782,23 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempDict = {4: "Buy", 12: "Return"}
         for i in RANGE9_BUTTON_MAP:
             if i != 10:
-                tempDict[i] = Hairstyles.name(Salon.ID(self.currentZone, i))
+                tempDict[i] = Hairstyle.name(Salon.ID(self.currentZone, i))
         self.outputMainText("Click on a hairstyle to view a description of the hairstyle. If you would like to purchase it, click the Buy button.\n\nNote: Buying hairstyles automatically replaces your current hairstyle. You cannot sell hairstyles.", True)
         self.doButtonChoices(tempDict)
         self.disableSelectedButtons(dlist)
 
         def doListen():
             if (self.buttonChoice not in {4, 8, 12} and Salon.ID(self.currentZone, self.buttonChoice) != 0):
-                self.outputMainText(f"{Hairstyles.description(Salon.ID(self.currentZone, self.buttonChoice))}\n\nCost: {Hairstyles.value(Salon.ID(self.currentZone, self.buttonChoice))} coins.", True)
+                self.outputMainText(f"{Hairstyle.description(Salon.ID(self.currentZone, self.buttonChoice))}\n\nCost: {Hairstyle.value(Salon.ID(self.currentZone, self.buttonChoice))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {Hairstyles.name(Salon.ID(self.currentZone, self.buy))}?")
+                self.outputMainText(f"\n\nAre you sure you would like to buy {Hairstyle.name(Salon.ID(self.currentZone, self.buy))}?")
                 self.buttonConfirm()
 
                 def doListen():
                     if (self.buttonChoice == 6):
-                        if (self.coin < Hairstyles.value(Salon.ID(self.currentZone, self.buy))):
-                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {Hairstyles.value(Salon.ID(self.currentZone, self.buy)) - self.coin} more coins to purchase {Hairstyles.name(Salon.ID(self.currentZone, self.buy))}.", True)
+                        if (self.coin < Hairstyle.value(Salon.ID(self.currentZone, self.buy))):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {Hairstyle.value(Salon.ID(self.currentZone, self.buy)) - self.coin} more coins to purchase {Hairstyle.name(Salon.ID(self.currentZone, self.buy))}.", True)
                             self.doNext()
 
                             def doListen():
@@ -12897,8 +12806,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doListen = doListen
                         else:
                             self.hair = Salon.ID(self.currentZone, self.buy)
-                            self.doCoin(-Hairstyles.value(Salon.ID(self.currentZone, self.buy)))
-                            if (Hairstyles.hasLengthOptions(Salon.ID(self.currentZone, self.buy))):
+                            self.doCoin(-Hairstyle.value(Salon.ID(self.currentZone, self.buy)))
+                            if (Hairstyle.hasLengthOptions(Salon.ID(self.currentZone, self.buy))):
                                 self.showButtons(ButtonList(1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0))
                                 self.outputMainText("What length would you like your hair to be? This does not affect its cost.\n\nShort - Doesn't hang past head.\n\nMedium - Reaches shoulders.\n\nLong - Reaches past shoulderblades.\n\nX-Long - Hangs past your butt.\n\nXX-Long - Reaches the ground.")
                                 self.doButtonChoices({1: "Short", 2: "Medium", 5: "Long", 6: "X-Long", 7: "XX-Long"})
@@ -19294,7 +19203,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.buttonChoice == 6):
                     self.doMainText("It just looks so magnificent that you can't help but stuff your nose in and take a big whiff.\n\nYou immediately regret your impulsive inhaling, as an intense tingle erupts within your nose. You're nearly forced to laugh from the intense tickling sensation, but considering the area being affected, you instead halt your breath. Your next attempt to breath only intensifies the sensation further, your chest heaving to hold back. But, you're simply not strong enough...\n\n\"ACHOO!\" You sneeze loud and hard. So hard, in fact, that ", True)
                     self.rndArray = Array(1, 2)
-                    if (Hairstyles.hasLengthOptions(self.hair) and self.hairLength < 10):
+                    if (Hairstyle.hasLengthOptions(self.hair) and self.hairLength < 10):
                         self.rndArray.push(3)
                     if (self.cockTotal > 0):
                         self.rndArray.push(4)
@@ -24571,7 +24480,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(" She skips right up to you, towering over you. Her legs bend down, lowering her nether-lips to your face, her knees straddling either side of your head. She presses her relatively enormous pussy into your face, her clit rubbing across your cheek, practically smothering you with the scent of her arousal as she grinds her hips into your head.\n\nHappy with the quick massage, she bounds back, letting you breath again.")
                 elif (self.tallness > 144):
                     self.doMainText(" Her feet spring her forward at you, her legs wrapping around your neck. Sitting on your shoulders, she presses her relatively enormous pussy into your face, her clit rubbing across your cheek, practically smothering you with the scent of her arousal as she grinds her hips into your head.\n\nHappy with the quick massage, she bounds back, letting you breath again.")
-                if (self.hair > Hairstyle.NONE):
+                if (self.hair != Hairstyle.NONE):
                     self.doMainText(" However, the intense humidity and her thighs squeezing you so tightly has left your hair squished up into a mohawk.")
                     self.hair = Hairstyle.MOHAWK
                 self.doLust(Math.floor(Utils.percent() / 10 + self.lib / 4), 1)
@@ -24712,7 +24621,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.stats(0, 0, 1, 0)
             elif (attack <= 45):
                 chance = Utils.percent()
-                if (chance <= 20 and self.hair > Hairstyle.NONE and Hairstyles.hasLengthOptions(self.hair) and self.hairLength < 10):
+                if (chance <= 20 and self.hair != Hairstyle.NONE and Hairstyle.hasLengthOptions(self.hair) and self.hairLength < 10):
                     self.doMainText(f"\n\n\"You know what helps make a slut look good?\" She steps up behind you and runs her fingers through your {self.hairDesc()} hair. A tingly sensation envelops your skull")
                     if (Utils.percent() < self.ment):
                         self.doMainText(", but you manage to resist and interrupt her efforts.")
@@ -27232,7 +27141,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def humanTaurTailDesc(self) -> str:
         tempStr = ""
-        if (Hairstyles.hasLengthOptions(self.hair)):
+        if (Hairstyle.hasLengthOptions(self.hair)):
             if self.hairLength == 2:
                 tempStr = "short "
             elif self.hairLength == 4:
