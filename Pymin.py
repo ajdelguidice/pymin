@@ -283,21 +283,54 @@ class Enemy:
         return 0
 
 
-Enemy.STATS = frozendict({
-    Enemy.COCK_SNAKE: CustomDict(HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=202),
-    Enemy.DESICCATING_DUST_DEVIL: CustomDict(HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=231),
-    Enemy.LONE_WOLF: CustomDict(HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=203),
-    Enemy.GAY_WOLF: CustomDict(HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=203),
-    Enemy.HORNY_FELIN: CustomDict(HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=204),
-    Enemy.DRUNKEN_EQUAN: CustomDict(HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=205),
-    Enemy.OCTOPUS_GIRL: CustomDict(HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=216),
-    Enemy.LITTLE_BIG_BUNNY_MAN: CustomDict(HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
-    Enemy.LITTLE_BIG_BUNNY_GIRL: CustomDict(HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
-    Enemy.FIERCE_NAGA: CustomDict(HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=230),
-    Enemy.MINOTAUR: CustomDict(HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=525),
-    Enemy.FREAKY_LITTLE_GIRL: CustomDict(HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=259),
-    Enemy.SUCCUBUS: CustomDict(HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=260)
-})
+class ClothesSlot:
+    TOP = 1
+    BOTTOM = 2
+    BOTH = 4
+
+
+class Clothes:
+    TATTERED_SHREDS = -1
+    INVISIBLE_UNDERWEAR = 0
+    SHIRT = 1
+    PANTS = 2
+    BIKINI_TOP = 3
+    BIKINI_BOTTOM = 4
+    ELEGANT_DRESS = 5
+    LATEX_SUIT = 6
+    SKIRT = 7
+    SHORTS = 8
+    BLOUSE = 9
+    DIAPER = 10
+    POOFY_DIAPER = 11
+    SUNDRESS = 12
+    SKIMPY_DRESS = 13
+    SHORT_SKIRT = 14
+    SHORT_SHORTS = 15
+    LOIN_CLOTH = 16
+    BATHING_SUIT = 17
+    MUSCLE_SHIRT = 18
+    CORSET = 19
+    SILK_PANTIES = 20
+    SLINGKINI = 21
+    THONG = 22
+    BLOOMERS = 23
+    TIGHTS = 24
+    GOTHIC_DRESS = 25
+    TUBE_TOP = 26
+    NIPPLE_PASTIES = 27
+    CAMISOLE = 28
+    TRAINING_SUIT = 29
+    BOUNCY_BRA = 30
+
+    def name(ID: int) -> str:
+        return CLOTHES_STATS[ID].name
+
+    def value(ID: int) -> int:
+        return CLOTHES_STATS[ID].value
+
+    def description(ID: int) -> str:
+        return CLOTHES_STATS[ID].description
 
 
 class StartType:
@@ -443,6 +476,86 @@ class Item:
     SOLDIER_EGG = 538
     DRONE_EGG = 539
     WORKER_EGG = 540
+
+
+class ClothesStatsItem(frozendict):
+    @property
+    def name(self):
+        name = self.get('name')
+        if name is None:
+            return "CLOTHES NAME ERROR"
+        return name
+
+    @property
+    def value(self):
+        value = self.get('value')
+        if value is None:
+            return 0
+        return value
+
+    @property
+    def slot(self):
+        return self['slot']
+
+    @property
+    def description(self):
+        desc = self.get('description')
+        if desc is None:
+            return "CLOTHES DESCRIPTION ERROR"
+        return desc
+
+
+CLOTHES_STATS = frozendict({
+    Clothes.TATTERED_SHREDS: ClothesStatsItem(name="Tattered Shreds", value=0, slot=ClothesSlot.BOTH),
+    Clothes.INVISIBLE_UNDERWEAR: ClothesStatsItem(name="Invisible Underwear", value=0, slot=ClothesSlot.BOTH),
+    Clothes.SHIRT: ClothesStatsItem(name="Shirt", value=5, slot=ClothesSlot.TOP, description="A generic shirt with no special attributes.\n\nTakes top clothes slot."),
+    Clothes.PANTS: ClothesStatsItem(name="Pants", value=5, slot=ClothesSlot.BOTTOM, description="A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."),
+    Clothes.BIKINI_TOP: ClothesStatsItem(name="Bikini Top", value=25, slot=ClothesSlot.TOP, description="A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."),
+    Clothes.BIKINI_BOTTOM: ClothesStatsItem(name="Bikini Bottom", value=25, slot=ClothesSlot.BOTTOM, description="A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."),
+    Clothes.ELEGANT_DRESS: ClothesStatsItem(name="Elegant Dress", value=45, slot=ClothesSlot.BOTH, description="A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."),
+    Clothes.LATEX_SUIT: ClothesStatsItem(name="Latex Suit", value=60, slot=ClothesSlot.BOTH, description="A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."),
+    Clothes.SKIRT: ClothesStatsItem(name="Skirt", value=25, slot=ClothesSlot.BOTTOM, description="A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."),
+    Clothes.SHORTS: ClothesStatsItem(name="Shorts", value=25, slot=ClothesSlot.BOTTOM, description="A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."),
+    Clothes.BLOUSE: ClothesStatsItem(name="Blouse", value=25, slot=ClothesSlot.TOP, description="A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."),
+    Clothes.DIAPER: ClothesStatsItem(name="Diaper", value=30, slot=ClothesSlot.BOTTOM, description="A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."),
+    Clothes.POOFY_DIAPER: ClothesStatsItem(name="Poofy Diaper", value=40, slot=ClothesSlot.BOTTOM, description="A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."),
+    Clothes.SUNDRESS: ClothesStatsItem(name="Sundress", value=40, slot=ClothesSlot.BOTH, description="A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."),
+    Clothes.SKIMPY_DRESS: ClothesStatsItem(name="Skimpy Dress", value=50, slot=ClothesSlot.BOTH, description="A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."),
+    Clothes.SHORT_SKIRT: ClothesStatsItem(name="Short Skirt", value=35, slot=ClothesSlot.BOTTOM, description="A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."),
+    Clothes.SHORT_SHORTS: ClothesStatsItem(name="Short Shorts", value=35, slot=ClothesSlot.BOTTOM, description="A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."),
+    Clothes.LOIN_CLOTH: ClothesStatsItem(name="Loin Cloth", value=40, slot=ClothesSlot.BOTTOM, description="A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."),
+    Clothes.BATHING_SUIT: ClothesStatsItem(name="Bathing Suit", value=55, slot=ClothesSlot.BOTH, description="A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."),
+    Clothes.MUSCLE_SHIRT: ClothesStatsItem(name="Muscle Shirt", value=15, slot=ClothesSlot.TOP, description="A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."),
+    Clothes.CORSET: ClothesStatsItem(name="Corset", value=50, slot=ClothesSlot.TOP, description="A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."),
+    Clothes.SILK_PANTIES: ClothesStatsItem(name="Silk Panties", value=35, slot=ClothesSlot.BOTTOM, description="A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."),
+    Clothes.SLINGKINI: ClothesStatsItem(name="Slingkini", value=65, slot=ClothesSlot.BOTH, description="A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."),
+    Clothes.THONG: ClothesStatsItem(name="Thong", value=40, slot=ClothesSlot.BOTTOM, description="A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."),
+    Clothes.BLOOMERS: ClothesStatsItem(name="Bloomers", value=30, slot=ClothesSlot.BOTTOM, description="A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."),
+    Clothes.TIGHTS: ClothesStatsItem(name="Tights", value=35, slot=ClothesSlot.BOTTOM, description="A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."),
+    Clothes.GOTHIC_DRESS: ClothesStatsItem(name="Gothic Dress", value=60, slot=ClothesSlot.BOTH, description="A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."),
+    Clothes.TUBE_TOP: ClothesStatsItem(name="Tube Top", value=20, slot=ClothesSlot.TOP, description="A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."),
+    Clothes.NIPPLE_PASTIES: ClothesStatsItem(name="Nipple Pasties", value=45, slot=ClothesSlot.TOP, description="A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."),
+    Clothes.CAMISOLE: ClothesStatsItem(name="Camisole", value=40, slot=ClothesSlot.TOP, description="A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."),
+    Clothes.TRAINING_SUIT: ClothesStatsItem(name="Training Suit", value=35, slot=ClothesSlot.BOTH, description="A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."),
+    Clothes.BOUNCY_BRA: ClothesStatsItem(name="Bouncy Bra", value=45, slot=ClothesSlot.TOP, description="A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot.")
+})
+
+
+Enemy.STATS = frozendict({
+    Enemy.COCK_SNAKE: CustomDict(HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=202),
+    Enemy.DESICCATING_DUST_DEVIL: CustomDict(HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=231),
+    Enemy.LONE_WOLF: CustomDict(HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=203),
+    Enemy.GAY_WOLF: CustomDict(HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=203),
+    Enemy.HORNY_FELIN: CustomDict(HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=204),
+    Enemy.DRUNKEN_EQUAN: CustomDict(HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=205),
+    Enemy.OCTOPUS_GIRL: CustomDict(HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=216),
+    Enemy.LITTLE_BIG_BUNNY_MAN: CustomDict(HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
+    Enemy.LITTLE_BIG_BUNNY_GIRL: CustomDict(HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
+    Enemy.FIERCE_NAGA: CustomDict(HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=230),
+    Enemy.MINOTAUR: CustomDict(HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=525),
+    Enemy.FREAKY_LITTLE_GIRL: CustomDict(HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=259),
+    Enemy.SUCCUBUS: CustomDict(HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=260)
+})
 
 
 class KeyStateStorage:
@@ -2257,119 +2370,6 @@ class Items:
             return 'Oviasis'
 
         return f'TELEPORT SCROLL ANY ERROR BUTTON {buttonChoice}'
-
-
-class ClothesSlot:
-    TOP = 1
-    BOTTOM = 2
-    BOTH = 4
-
-
-class Clothes:
-    TATTERED_SHREDS = -1
-    INVISIBLE_UNDERWEAR = 0
-    SHIRT = 1
-    PANTS = 2
-    BIKINI_TOP = 3
-    BIKINI_BOTTOM = 4
-    ELEGANT_DRESS = 5
-    LATEX_SUIT = 6
-    SKIRT = 7
-    SHORTS = 8
-    BLOUSE = 9
-    DIAPER = 10
-    POOFY_DIAPER = 11
-    SUNDRESS = 12
-    SKIMPY_DRESS = 13
-    SHORT_SKIRT = 14
-    SHORT_SHORTS = 15
-    LOIN_CLOTH = 16
-    BATHING_SUIT = 17
-    MUSCLE_SHIRT = 18
-    CORSET = 19
-    SILK_PANTIES = 20
-    SLINGKINI = 21
-    THONG = 22
-    BLOOMERS = 23
-    TIGHTS = 24
-    GOTHIC_DRESS = 25
-    TUBE_TOP = 26
-    NIPPLE_PASTIES = 27
-    CAMISOLE = 28
-    TRAINING_SUIT = 29
-    BOUNCY_BRA = 30
-
-    def name(ID: int) -> str:
-        return CLOTHES_STATS[ID].name
-
-    def value(ID: int) -> int:
-        return CLOTHES_STATS[ID].value
-
-    def description(ID: int) -> str:
-        return CLOTHES_STATS[ID].description
-
-
-class ClothesStatsItem(frozendict):
-    @property
-    def name(self):
-        name = self.get('name')
-        if name is None:
-            return "CLOTHES NAME ERROR"
-        return name
-
-    @property
-    def value(self):
-        value = self.get('value')
-        if value is None:
-            return 0
-        return value
-
-    @property
-    def slot(self):
-        return self['slot']
-
-    @property
-    def description(self):
-        desc = self.get('description')
-        if desc is None:
-            return "CLOTHES DESCRIPTION ERROR"
-        return desc
-
-
-CLOTHES_STATS = frozendict({
-    Clothes.TATTERED_SHREDS: ClothesStatsItem(name="Tattered Shreds", value=0, slot=ClothesSlot.BOTH),
-    Clothes.INVISIBLE_UNDERWEAR: ClothesStatsItem(name="Invisible Underwear", value=0, slot=ClothesSlot.BOTH),
-    Clothes.SHIRT: ClothesStatsItem(name="Shirt", value=5, slot=ClothesSlot.TOP, description="A generic shirt with no special attributes.\n\nTakes top clothes slot."),
-    Clothes.PANTS: ClothesStatsItem(name="Pants", value=5, slot=ClothesSlot.BOTTOM, description="A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."),
-    Clothes.BIKINI_TOP: ClothesStatsItem(name="Bikini Top", value=25, slot=ClothesSlot.TOP, description="A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."),
-    Clothes.BIKINI_BOTTOM: ClothesStatsItem(name="Bikini Bottom", value=25, slot=ClothesSlot.BOTTOM, description="A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."),
-    Clothes.ELEGANT_DRESS: ClothesStatsItem(name="Elegant Dress", value=45, slot=ClothesSlot.BOTH, description="A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."),
-    Clothes.LATEX_SUIT: ClothesStatsItem(name="Latex Suit", value=60, slot=ClothesSlot.BOTH, description="A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."),
-    Clothes.SKIRT: ClothesStatsItem(name="Skirt", value=25, slot=ClothesSlot.BOTTOM, description="A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."),
-    Clothes.SHORTS: ClothesStatsItem(name="Shorts", value=25, slot=ClothesSlot.BOTTOM, description="A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."),
-    Clothes.BLOUSE: ClothesStatsItem(name="Blouse", value=25, slot=ClothesSlot.TOP, description="A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."),
-    Clothes.DIAPER: ClothesStatsItem(name="Diaper", value=30, slot=ClothesSlot.BOTTOM, description="A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."),
-    Clothes.POOFY_DIAPER: ClothesStatsItem(name="Poofy Diaper", value=40, slot=ClothesSlot.BOTTOM, description="A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."),
-    Clothes.SUNDRESS: ClothesStatsItem(name="Sundress", value=40, slot=ClothesSlot.BOTH, description="A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."),
-    Clothes.SKIMPY_DRESS: ClothesStatsItem(name="Skimpy Dress", value=50, slot=ClothesSlot.BOTH, description="A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."),
-    Clothes.SHORT_SKIRT: ClothesStatsItem(name="Short Skirt", value=35, slot=ClothesSlot.BOTTOM, description="A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."),
-    Clothes.SHORT_SHORTS: ClothesStatsItem(name="Short Shorts", value=35, slot=ClothesSlot.BOTTOM, description="A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."),
-    Clothes.LOIN_CLOTH: ClothesStatsItem(name="Loin Cloth", value=40, slot=ClothesSlot.BOTTOM, description="A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."),
-    Clothes.BATHING_SUIT: ClothesStatsItem(name="Bathing Suit", value=55, slot=ClothesSlot.BOTH, description="A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."),
-    Clothes.MUSCLE_SHIRT: ClothesStatsItem(name="Muscle Shirt", value=15, slot=ClothesSlot.TOP, description="A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."),
-    Clothes.CORSET: ClothesStatsItem(name="Corset", value=50, slot=ClothesSlot.TOP, description="A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."),
-    Clothes.SILK_PANTIES: ClothesStatsItem(name="Silk Panties", value=35, slot=ClothesSlot.BOTTOM, description="A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."),
-    Clothes.SLINGKINI: ClothesStatsItem(name="Slingkini", value=65, slot=ClothesSlot.BOTH, description="A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."),
-    Clothes.THONG: ClothesStatsItem(name="Thong", value=40, slot=ClothesSlot.BOTTOM, description="A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."),
-    Clothes.BLOOMERS: ClothesStatsItem(name="Bloomers", value=30, slot=ClothesSlot.BOTTOM, description="A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."),
-    Clothes.TIGHTS: ClothesStatsItem(name="Tights", value=35, slot=ClothesSlot.BOTTOM, description="A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."),
-    Clothes.GOTHIC_DRESS: ClothesStatsItem(name="Gothic Dress", value=60, slot=ClothesSlot.BOTH, description="A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."),
-    Clothes.TUBE_TOP: ClothesStatsItem(name="Tube Top", value=20, slot=ClothesSlot.TOP, description="A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."),
-    Clothes.NIPPLE_PASTIES: ClothesStatsItem(name="Nipple Pasties", value=45, slot=ClothesSlot.TOP, description="A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."),
-    Clothes.CAMISOLE: ClothesStatsItem(name="Camisole", value=40, slot=ClothesSlot.TOP, description="A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."),
-    Clothes.TRAINING_SUIT: ClothesStatsItem(name="Training Suit", value=35, slot=ClothesSlot.BOTH, description="A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."),
-    Clothes.BOUNCY_BRA: ClothesStatsItem(name="Bouncy Bra", value=45, slot=ClothesSlot.TOP, description="A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot.")
-})
 
 
 class Hairstyles:
