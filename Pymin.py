@@ -487,7 +487,7 @@ class GenericStatsItem(frozendict):
 
 class HairstyleStatsItem(GenericStatsItem):
     _NAME_FALLBACK = "HAIRSTYLE NAME ERROR"
-    _DESCRIPTION_FALLBACK = f"HAIR DESC_LONG ERROR"
+    _DESCRIPTION_FALLBACK = "HAIR DESC_LONG ERROR"
 
     @property
     def hasLengthOptions(self):
@@ -619,6 +619,8 @@ class EnemyStatsItem(frozendict):
 
 
 ENEMY_STATS = frozendict({
+    Enemy.NONE: EnemyStatsItem(name="none", HP=0, str=0, ment=0, sen=0, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=0, item=0),
+    Enemy.TEST_ENEMY: EnemyStatsItem(name="test enemy", HP=10, str=1, ment=1, sen=1, lib=1, lust=0, gender=Gender.MALE, pref=Preference.ANY, coin=1, SexP=1, item=1),
     Enemy.COCK_SNAKE: EnemyStatsItem(name="cock-snake", HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=202),
     Enemy.DESICCATING_DUST_DEVIL: EnemyStatsItem(name="desiccating dust devil", HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=231),
     Enemy.LONE_WOLF: EnemyStatsItem(name="lone male wolf", HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=203, baby=100),
@@ -3203,7 +3205,7 @@ class EnemyContainer:
 
     def __init__(self):
         self._ID = Enemy.NONE
-        self._s = None
+        self._s = ENEMY_STATS[Enemy.NONE]
         self._HP = 0
 
 
