@@ -494,6 +494,12 @@ class Recipe:
     BAZOOMBA = 57
 
 
+class AlchemyLevel:
+    SIMPLE = 1
+    COMPLEX = 2
+    ADVANCED = 3
+
+
 class GenericStatsItem(frozendict):
     _NAME_FALLBACK = ''
     _VALUE_FALLBACK = 0
@@ -598,6 +604,72 @@ CLOTHES_STATS = frozendict({
     Clothes.CAMISOLE: ClothesStatsItem(name="Camisole", value=40, slot=ClothesSlot.TOP, description="A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."),
     Clothes.TRAINING_SUIT: ClothesStatsItem(name="Training Suit", value=35, slot=ClothesSlot.BOTH, description="A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."),
     Clothes.BOUNCY_BRA: ClothesStatsItem(name="Bouncy Bra", value=45, slot=ClothesSlot.TOP, description="A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot.")
+})
+
+
+class RecipeStatsItem(GenericStatsItem):
+    @property
+    def longName(self):
+        name = self.get('longName')
+        if name is None:
+            return ''
+        return name
+
+    @property
+    def longDescription(self):
+        return self.longName + '\n\n' + self.description + '\n\n' + self.difficultyDescription
+
+    @property
+    def level(self):
+        return self['level']
+
+    @property
+    def creates(self):
+        return self['creates']
+
+    @property
+    def difficultyName(self):
+        if self.level == AlchemyLevel.SIMPLE:
+            return 'Simple'
+        if self.level == AlchemyLevel.COMPLEX:
+            return 'Complex'
+        if self.level == AlchemyLevel.ADVANCED:
+            return 'Advanced'
+        return f'DIFFICULTY ERROR {self.level}'
+
+    @property
+    def difficultyDescription(self):
+        return f'Alchemy difficulty: {self.difficultyName}'
+
+
+# TODO: Move the name that appears in the alchemy screen to here
+RECIPE_STATS = frozendict({
+    0: RecipeStatsItem(),
+    Recipe.LUST_DRAFT: RecipeStatsItem(name='R: LustDraft', longName="Recipe: Lust Draft", value=20, level=AlchemyLevel.SIMPLE, creates=503, description="For those who need a boost in the bedroom."),
+    Recipe.REJUV_POT: RecipeStatsItem(name='R: RejuvPot', longName="Recipe: Rejuvenation Potion", value=25, level=AlchemyLevel.SIMPLE, creates=504, description="Useful for soothing what ailes you."),
+    Recipe.EXP_PREG: RecipeStatsItem(name='R: ExpPreg', longName="Recipe: Express Pregnancy Potion", value=25, level=AlchemyLevel.SIMPLE, creates=506, description="Helps quicken the gestation period."),
+    Recipe.BALL_SWELL: RecipeStatsItem(name='R: BallSwell', longName="Recipe: Ball Sweller", value=20, level=AlchemyLevel.SIMPLE, creates=507, description="Gives your nuts a jump in their production."),
+    Recipe.S_LUST_DRAFT: RecipeStatsItem(name='R: SLustDraft', longName="Recipe: Superior Lust Draft", value=35, level=AlchemyLevel.COMPLEX, creates=508, description="For when you've got a long night ahead with your spouse."),
+    Recipe.S_REJUV_POT: RecipeStatsItem(name='R: SRejuvPot', longName="Recipe: Superior Rejuvenation Potion", value=40, level=AlchemyLevel.COMPLEX, creates=509, description="Greatly soothes your ailments."),
+    Recipe.S_EXP_PREG: RecipeStatsItem(name='R: SExpPreg', longName="Recipe: Superior Express Pregnancy Potion", value=35, level=AlchemyLevel.COMPLEX, creates=511, description="Because that baby just needs to get out."),
+    Recipe.S_BALL_SWELL: RecipeStatsItem(name='R: SBallSwell', longName="Recipe: Superior Ball Sweller", value=30, level=AlchemyLevel.COMPLEX, creates=512, description="If you like that swollen, achy, full of seed feeling, this is what you want."),
+    Recipe.GEN_SWAP: RecipeStatsItem(name='R: GenSwap', longName="Recipe: Gender Swap Potion", value=45, level=AlchemyLevel.COMPLEX, creates=513, description="Don't like your current path in life? This will help start you off from a new perspective."),
+    Recipe.MASO_POT: RecipeStatsItem(name='R: MasoPot', longName="Recipe: Masochism Potion", value=45, level=AlchemyLevel.COMPLEX, creates=514, description="Makes some the pain feel pleasurable instead."),
+    Recipe.BABY_FREE: RecipeStatsItem(name='R: BabyFree', longName="Recipe: Baby Free Potion", value=40, level=AlchemyLevel.COMPLEX, creates=516, description="A good contraceptive."),
+    Recipe.POT_POT: RecipeStatsItem(name='R: PotPot', longName="Recipe: Potency Potion", value=45, level=AlchemyLevel.COMPLEX, creates=517, description="Makes your testicles more efficient in their duties."),
+    Recipe.S_GEN_SWAP: RecipeStatsItem(name='R: SGenSwap', longName="Recipe: Superior Gender Swap Potion", value=60, level=AlchemyLevel.ADVANCED, creates=518, description="For when you're bored and wanna try out something new."),
+    Recipe.S_MASO_POT: RecipeStatsItem(name='R: SMasoPot', longName="Recipe: Superior Masochism Potion", value=70, level=AlchemyLevel.ADVANCED, creates=519, description="Really helps take on the big fellas; all that soreness will be delightful instead."),
+    Recipe.S_BABY_FREE: RecipeStatsItem(name='R: SBabyFree', longName="Recipe: Superior Baby Free Potion", value=55, level=AlchemyLevel.ADVANCED, creates=521, description="Necessary in Siz'Calit."),
+    Recipe.S_POT_POT: RecipeStatsItem(name='R: SPotPot', longName="Recipe: Superior Potency Potion", value=65, level=AlchemyLevel.ADVANCED, creates=522, description="Helps make sure you absolutely fertilize all those eggs with a good coating."),
+    Recipe.MILK_SUPPRESS: RecipeStatsItem(name='R: MilkSuppress', longName="Recipe: Milk Suppressant", value=35, level=AlchemyLevel.COMPLEX, creates=535, description="Sometimes all that leaking can be a bit of a nuisance... So, they came up with this!"),
+    Recipe.BLONDIE: RecipeStatsItem(name='R: Blondie', longName="Recipe: Blonde Dye", level=AlchemyLevel.SIMPLE, creates=220),
+    Recipe.PUSS_JUICE: RecipeStatsItem(name='R: PussJuice', longName="Recipe: Pussy Juice", level=AlchemyLevel.ADVANCED, creates=221),
+    Recipe.BLACK_DYE: RecipeStatsItem(name='R: BlackDye', longName="Recipe: Black Dye", level=AlchemyLevel.COMPLEX, creates=515),
+    Recipe.RED_DYE: RecipeStatsItem(name='R: RedDye', longName="Recipe: Red Dye", level=AlchemyLevel.ADVANCED, creates=520),
+    Recipe.PHEROMONE: RecipeStatsItem(name='R: Pheromone', longName="Recipe: Pheromone", level=AlchemyLevel.ADVANCED, creates=532),
+    Recipe.REDUC_REDUC: RecipeStatsItem(name='R: ReducReduc', longName="Recipe: Reduced Reduction", level=AlchemyLevel.SIMPLE, creates=533),
+    Recipe.MALE_ENHANCE: RecipeStatsItem(name='R: MaleEnhance', longName="Recipe: Male Enhancement Drug", level=AlchemyLevel.SIMPLE, creates=534),
+    Recipe.BAZOOMBA: RecipeStatsItem(name='R: Bazoomba', longName="Recipe: Bazoomba!", level=AlchemyLevel.ADVANCED, creates=536)
 })
 
 
@@ -2510,195 +2582,27 @@ class ApothecaryItems:
     def name(ID: int) -> str:
         if ID >= 200:
             return Items.name(ID)
-        if ID == Recipe.LUST_DRAFT:
-            return 'R: LustDraft'
-        if ID == Recipe.REJUV_POT:
-            return 'R: RejuvPot'
-        if ID == Recipe.EXP_PREG:
-            return 'R: ExpPreg'
-        if ID == Recipe.BALL_SWELL:
-            return 'R: BallSwell'
-        if ID == Recipe.S_LUST_DRAFT:
-            return 'R: SLustDraft'
-        if ID == Recipe.S_REJUV_POT:
-            return 'R: SRejuvPot'
-        if ID == Recipe.S_EXP_PREG:
-            return 'R: SExpPreg'
-        if ID == Recipe.S_BALL_SWELL:
-            return 'R: SBallSwell'
-        if ID == Recipe.GEN_SWAP:
-            return 'R: GenSwap'
-        if ID == Recipe.MASO_POT:
-            return 'R: MasoPot'
-        if ID == Recipe.BABY_FREE:
-            return 'R: BabyFree'
-        if ID == Recipe.POT_POT:
-            return 'R: PotPot'
-        if ID == Recipe.S_GEN_SWAP:
-            return 'R: SGenSwap'
-        if ID == Recipe.S_MASO_POT:
-            return 'R: SMasoPot'
-        if ID == Recipe.S_BABY_FREE:
-            return 'R: SBabyFree'
-        if ID == Recipe.S_POT_POT:
-            return 'R: SPotPot'
-        if ID == Recipe.MILK_SUPPRESS:
-            return 'R: MilkSuppress'
-        # NOTE: These were added for the wiki
-        if ID == Recipe.BLONDIE:
-            return "R: Blondie"
-        if ID == Recipe.PUSS_JUICE:
-            return "R: PussJuice"
-        if ID == Recipe.BLACK_DYE:
-            return "R: BlackDye"
-        if ID == Recipe.RED_DYE:
-            return "R: RedDye"
-        if ID == Recipe.PHEROMONE:
-            return "R: Pheromone"
-        if ID == Recipe.REDUC_REDUC:
-            return "R: ReducReduc"
-        if ID == Recipe.MALE_ENHANCE:
-            return "R: MaleEnhance"
-        if ID == Recipe.BAZOOMBA:
-            return "R: Bazoomba"
-        return ""
+        return RECIPE_STATS[ID].name
 
     def fullName(ID: int) -> str:
         if ID >= 200:
             return Items.fullName(ID)
-        if ID == Recipe.LUST_DRAFT:
-            return "Recipe: Lust Draft"
-        if ID == Recipe.REJUV_POT:
-            return "Recipe: Rejuvenation Potion"
-        if ID == Recipe.EXP_PREG:
-            return "Recipe: Express Pregnancy Potion"
-        if ID == Recipe.BALL_SWELL:
-            return "Recipe: Ball Sweller"
-        if ID == Recipe.S_LUST_DRAFT:
-            return "Recipe: Superior Lust Draft"
-        if ID == Recipe.S_REJUV_POT:
-            return "Recipe: Superior Rejuvenation Potion"
-        if ID == Recipe.S_EXP_PREG:
-            return "Recipe: Superior Express Pregnancy Potion"
-        if ID == Recipe.S_BALL_SWELL:
-            return "Recipe: Superior Ball Sweller"
-        if ID == Recipe.GEN_SWAP:
-            return "Recipe: Gender Swap Potion"
-        if ID == Recipe.MASO_POT:
-            return "Recipe: Masochism Potion"
-        if ID == Recipe.BABY_FREE:
-            return "Recipe: Baby Free Potion"
-        if ID == Recipe.POT_POT:
-            return "Recipe: Potency Potion"
-        if ID == Recipe.S_GEN_SWAP:
-            return "Recipe: Superior Gender Swap Potion"
-        if ID == Recipe.S_MASO_POT:
-            return "Recipe: Superior Masochism Potion"
-        if ID == Recipe.S_BABY_FREE:
-            return "Recipe: Superior Baby Free Potion"
-        if ID == Recipe.S_POT_POT:
-            return "Recipe: Superior Potency Potion"
-        if ID == Recipe.MILK_SUPPRESS:
-            return "Recipe: Milk Suppressant"
-        # NOTE: These were added for the wiki
-        if ID == Recipe.BLONDIE:
-            return "Recipe: Blonde Dye"
-        if ID == Recipe.PUSSY_JUICE:
-            return "Recipe: Pussy Juice"
-        if ID == Recipe.BLACK_DYE:
-            return "Recipe: Black Dye"
-        if ID == Recipe.RED_DYE:
-            return "Recipe: Red Dye"
-        if ID == Recipe.PHEROMONE:
-            return "Recipe: Pheromone"
-        if ID == Recipe.REDUC_REDUC:
-            return "Recipe: Reduced Reduction"
-        if ID == Recipe.MALE_ENHANCE:
-            return "Recipe: Male Enhancement Drug"
-        if ID == Recipe.BAZOOMBA:
-            return "Recipe: Bazoomba!"
-        return ""
+        return RECIPE_STATS[ID].longName
 
     def value(ID: int) -> int:
         if (ID >= 200):
             return Items.value(ID)
-        if ID == Recipe.LUST_DRAFT:
-            return 20
-        if ID == Recipe.REJUV_POT:
-            return 25
-        if ID == Recipe.EXP_PREG:
-            return 25
-        if ID == Recipe.BALL_SWELL:
-            return 20
-        if ID == Recipe.S_LUST_DRAFT:
-            return 35
-        if ID == Recipe.S_REJUV_POT:
-            return 40
-        if ID == Recipe.S_EXP_PREG:
-            return 35
-        if ID == Recipe.S_BALL_SWELL:
-            return 30
-        if ID == Recipe.GEN_SWAP:
-            return 45
-        if ID == Recipe.MASO_POT:
-            return 45
-        if ID == Recipe.BABY_FREE:
-            return 40
-        if ID == Recipe.POT_POT:
-            return 45
-        if ID == Recipe.S_GEN_SWAP:
-            return 60
-        if ID == Recipe.S_MASO_POT:
-            return 70
-        if ID == Recipe.S_BABY_FREE:
-            return 55
-        if ID == Recipe.S_POT_POT:
-            return 65
-        if ID == Recipe.MILK_SUPPRESS:
-            return 35
-        return 0
+        return RECIPE_STATS[ID].value
 
     def description(ID: int, context: object) -> str:
         if ID >= 200:
             return Items.description(ID, context)
-        if ID == Recipe.LUST_DRAFT:
-            return "For those who need a boost in the bedroom.\n\nAlchemy difficulty: Simple"
-        if ID == Recipe.REJUV_POT:
-            return "Useful for soothing what ailes you.\n\nAlchemy difficulty: Simple"
-        if ID == Recipe.EXP_PREG:
-            return "Helps quicken the gestation period.\n\nAlchemy difficulty: Simple"
-        if ID == Recipe.BALL_SWELL:
-            return "Gives your nuts a jump in their production.\n\nAlchemy difficulty: Simple"
-        if ID == Recipe.S_LUST_DRAFT:
-            return "For when you've got a long night ahead with your spouse.\n\nAlchemy difficulty: Complex"
-        if ID == Recipe.S_REJUV_POT:
-            return "Greatly soothes your ailments.\n\nAlchemy difficulty: Complex"
-        if ID == Recipe.S_EXP_PREG:
-            return "Because that baby just needs to get out.\n\nAlchemy difficulty: Complex"
-        if ID == Recipe.S_BALL_SWELL:
-            return "If you like that swollen, achy, full of seed feeling, this is what you want.\n\nAlchemy difficulty: Complex"
-        if ID == Recipe.GEN_SWAP:
-            return "Don't like your current path in life? This will help start you off from a new perspective.\n\nAlchemy difficulty: Complex"
-        if ID == Recipe.MASO_POT:
-            return "Makes some the pain feel pleasurable instead.\n\nAlchemy difficulty: Complex"
-        if ID == Recipe.BABY_FREE:
-            return "A good contraceptive.\n\nAlchemy difficulty: Complex"
-        if ID == Recipe.POT_POT:
-            return "Makes your testicles more efficient in their duties.\n\nAlchemy difficulty: Complex"
-        if ID == Recipe.S_GEN_SWAP:
-            return "For when you're bored and wanna try out something new.\n\nAlchemy difficulty: Advanced"
-        if ID == Recipe.S_MASO_POT:
-            return "Really helps take on the big fellas; all that soreness will be delightful instead.\n\nAlchemy difficulty: Advanced"
-        if ID == Recipe.S_BABY_FREE:
-            return "Necessary in Siz'Calit.\n\nAlchemy difficulty: Advanced"
-        if ID == Recipe.S_POT_POT:
-            return "Helps make sure you absolutely fertilize all those eggs with a good coating.\n\nAlchemy difficulty: Advanced"
-        if ID == Recipe.MILK_SUPPRESS:
-            return "Sometimes all that leaking can be a bit of a nuisance... So, they came up with this!\n\nAlchemy difficulty: Complex"
-        return ""
+        return RECIPE_STATS[ID].description
 
     def fullDescription(ID: int) -> str:
-        return ApothecaryItems.fullName(ID) + '\n\n' + ApothecaryItems.description(ID, mainobject.game)
+        if (ID >= 200):
+            return Items.fullDescription(ID)
+        return RECIPE_STATS[ID].longDescription
 
 
 class Shop:
@@ -3750,72 +3654,16 @@ class WikiPages:
         if ID == 540:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
-    def Recipe_CreatesTag(ID: int) -> str:
-        return f'\n\n<b>Creates: </b><a href="call_args://Item&{ID}">{Items.fullName(ID)}</a>'
-
     def Recipe(ID: int) -> str:
-        # TODO: Link to items created by a recipe
         # TODO: Add ingredients
-        contents = f"<h4><u>{ApothecaryItems.fullName(ID)} ({ApothecaryItems.name(ID)})</u><h4>"
+        recipeItem = RECIPE_STATS[ID]
+        contents = f"<h4><u>{recipeItem.longName} ({recipeItem.name})</u><h4>"
+        if recipeItem.description != '':
+            contents += f"<u>Description</u>\n{recipeItem.description}"
 
-        # Non-buyable recipes
-        if ID == 50:
-            return contents + WikiPages.Recipe_CreatesTag(220)
-        if ID == 51:
-            return contents + WikiPages.Recipe_CreatesTag(221)
-        if ID == 52:
-            return contents + WikiPages.Recipe_CreatesTag(515)
-        if ID == 53:
-            return contents + WikiPages.Recipe_CreatesTag(520)
-        if ID == 54:
-            return contents + WikiPages.Recipe_CreatesTag(532)
-        if ID == 55:
-            return contents + WikiPages.Recipe_CreatesTag(533)
-        if ID == 56:
-            return contents + WikiPages.Recipe_CreatesTag(534)
-        if ID == 57:
-            return contents + WikiPages.Recipe_CreatesTag(536)
+        contents += f"\n\n<b>Difficulty: </b>{recipeItem.difficultyName}"
 
-        # Buyable recipes
-        class FakeContext:
-            ...
-
-        contents += f"<u>Description</u>\n{ApothecaryItems.description(ID, FakeContext)}"
-        if ID == 1:
-            return contents + WikiPages.Recipe_CreatesTag(503)
-        if ID == 2:
-            return contents + WikiPages.Recipe_CreatesTag(504)
-        if ID == 3:
-            return contents + WikiPages.Recipe_CreatesTag(506)
-        if ID == 4:
-            return contents + WikiPages.Recipe_CreatesTag(507)
-        if ID == 5:
-            return contents + WikiPages.Recipe_CreatesTag(508)
-        if ID == 6:
-            return contents + WikiPages.Recipe_CreatesTag(509)
-        if ID == 7:
-            return contents + WikiPages.Recipe_CreatesTag(511)
-        if ID == 8:
-            return contents + WikiPages.Recipe_CreatesTag(512)
-        if ID == 9:
-            return contents + WikiPages.Recipe_CreatesTag(513)
-        if ID == 10:
-            return contents + WikiPages.Recipe_CreatesTag(514)
-        if ID == 11:
-            return contents + WikiPages.Recipe_CreatesTag(516)
-        if ID == 12:
-            return contents + WikiPages.Recipe_CreatesTag(517)
-        if ID == 13:
-            return contents + WikiPages.Recipe_CreatesTag(518)
-        if ID == 14:
-            return contents + WikiPages.Recipe_CreatesTag(519)
-        if ID == 15:
-            return contents + WikiPages.Recipe_CreatesTag(521)
-        if ID == 16:
-            return contents + WikiPages.Recipe_CreatesTag(522)
-        if ID == 17:
-            return contents + WikiPages.Recipe_CreatesTag(535)
-        return ""
+        return contents + f'\n<b>Creates: </b><a href="call_args://Item&{ID}">{Items.fullName(recipeItem.creates)}</a>'
 
     def Clothes(ID: int) -> str:
         if ID == -10:
@@ -15176,7 +15024,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.loseManyItem(529, 1)
                         self.loseManyItem(207, 2)
                         self.loseManyItem(212, 3)
-                    if level == 1:
+                    if level == AlchemyLevel.SIMPLE:
                         self.itemAdd(ID)
                         if (Utils.percent() <= 55 + self.alchemistLevel * 2):
                             self.itemAdd(ID)
@@ -15184,7 +15032,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.itemAdd(ID)
                         if (Utils.percent() <= 5 + self.alchemistLevel * 2):
                             self.itemAdd(ID)
-                    elif level == 2:
+                    elif level == AlchemyLevel.COMPLEX:
                         self.itemAdd(ID)
                         if (Utils.percent() <= 55 + self.alchemistLevel):
                             self.itemAdd(ID)
@@ -15192,7 +15040,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.itemAdd(ID)
                         if (Utils.percent() <= 5 + self.alchemistLevel):
                             self.itemAdd(ID)
-                    elif level == 3:
+                    elif level == AlchemyLevel.ADVANCED:
                         self.itemAdd(ID)
                         if (Utils.percent() <= 55 + self.alchemistLevel * 2 / 3):
                             self.itemAdd(ID)
@@ -15209,19 +15057,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doNext()
 
                     def doListen():
-                        if level == 1:
+                        if level == AlchemyLevel.SIMPLE:
                             self.simpleAlchemy()
-                        elif level == 2:
+                        elif level == AlchemyLevel.COMPLEX:
                             self.complexAlchemy()
-                        elif level == 3:
+                        elif level == AlchemyLevel.ADVANCED:
                             self.advancedAlchemy()
                     self.doListen = doListen
             else:
-                if level == 1:
+                if level == AlchemyLevel.SIMPLE:
                     self.simpleAlchemy()
-                elif level == 2:
+                elif level == AlchemyLevel.COMPLEX:
                     self.complexAlchemy()
-                elif level == 3:
+                elif level == AlchemyLevel.ADVANCED:
                     self.advancedAlchemy()
         self.doListen = doListen
 
