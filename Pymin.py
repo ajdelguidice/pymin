@@ -2120,196 +2120,229 @@ class Items:
 
 
 class Clothes:
+    TATTERED_SHREDS = -1
+    INVISIBLE_UNDERWEAR = 0
+    SHIRT = 1
+    PANTS = 2
+    BIKINI_TOP = 3
+    BIKINI_BOTTOM = 4
+    ELEGANT_DRESS = 5
+    LATEX_SUIT = 6
+    SKIRT = 7
+    SHORTS = 8
+    BLOUSE = 9
+    DIAPER = 10
+    POOFY_DIAPER = 11
+    SUNDRESS = 12
+    SKIMPY_DRESS = 13
+    SHORT_SKIRT = 14
+    SHORT_SHORTS = 15
+    LOIN_CLOTH = 16
+    BATHING_SUIT = 17
+    MUSCLE_SHIRT = 18
+    CORSET = 19
+    SILK_PANTIES = 20
+    SLINGKINI = 21
+    THONG = 22
+    BLOOMERS = 23
+    TIGHTS = 24
+    GOTHIC_DRESS = 25
+    TUBE_TOP = 26
+    NIPPLE_PASTIES = 27
+    CAMISOLE = 28
+    TRAINING_SUIT = 29
+    BOUNCY_BRA = 30
+
     def name(ID: int) -> str:
-        if ID == -1:
+        if ID == Clothes.TATTERED_SHREDS:
             return "Tattered Shreds"
-        if ID == 0:
+        if ID == Clothes.INVISIBLE_UNDERWEAR:
             return "Invisible Underwear"
-        if ID == 1:
+        if ID == Clothes.SHIRT:
             return "Shirt"
-        if ID == 2:
+        if ID == Clothes.PANTS:
             return "Pants"
-        if ID == 3:
+        if ID == Clothes.BIKINI_TOP:
             return "Bikini Top"
-        if ID == 4:
+        if ID == Clothes.BIKINI_BOTTOM:
             return "Bikini Bottom"
-        if ID == 5:
+        if ID == Clothes.ELEGANT_DRESS:
             return "Elegant Dress"
-        if ID == 6:
+        if ID == Clothes.LATEX_SUIT:
             return "Latex Suit"
-        if ID == 7:
+        if ID == Clothes.SKIRT:
             return "Skirt"
-        if ID == 8:
+        if ID == Clothes.SHORTS:
             return "Shorts"
-        if ID == 9:
+        if ID == Clothes.BLOUSE:
             return "Blouse"
-        if ID == 10:
+        if ID == Clothes.DIAPER:
             return "Diaper"
-        if ID == 11:
+        if ID == Clothes.POOFY_DIAPER:
             return "Poofy Diaper"
-        if ID == 12:
+        if ID == Clothes.SUNDRESS:
             return "Sundress"
-        if ID == 13:
+        if ID == Clothes.SKIMPY_DRESS:
             return "Skimpy Dress"
-        if ID == 14:
+        if ID == Clothes.SHORT_SKIRT:
             return "Short Skirt"
-        if ID == 15:
+        if ID == Clothes.SHORT_SHORTS:
             return "Short Shorts"
-        if ID == 16:
+        if ID == Clothes.LOIN_CLOTH:
             return "Loin Cloth"
-        if ID == 17:
+        if ID == Clothes.BATHING_SUIT:
             return "Bathing Suit"
-        if ID == 18:
+        if ID == Clothes.MUSCLE_SHIRT:
             return "Muscle Shirt"
-        if ID == 19:
+        if ID == Clothes.CORSET:
             return "Corset"
-        if ID == 20:
+        if ID == Clothes.SILK_PANTIES:
             return "Silk Panties"
-        if ID == 21:
+        if ID == Clothes.SLINGKINI:
             return "Slingkini"
-        if ID == 22:
+        if ID == Clothes.THONG:
             return "Thong"
-        if ID == 23:
+        if ID == Clothes.BLOOMERS:
             return "Bloomers"
-        if ID == 24:
+        if ID == Clothes.TIGHTS:
             return "Tights"
-        if ID == 25:
+        if ID == Clothes.GOTHIC_DRESS:
             return "Gothic Dress"
-        if ID == 26:
+        if ID == Clothes.TUBE_TOP:
             return "Tube Top"
-        if ID == 27:
+        if ID == Clothes.NIPPLE_PASTIES:
             return "Nipple Pasties"
-        if ID == 28:
+        if ID == Clothes.CAMISOLE:
             return "Camisole"
-        if ID == 29:
+        if ID == Clothes.TRAINING_SUIT:
             return "Training Suit"
-        if ID == 30:
+        if ID == Clothes.BOUNCY_BRA:
             return "Bouncy Bra"
         return "CLOTHES NAME ERROR"
 
     def value(ID: int) -> int:
-        if ID == 1:
+        if ID == Clothes.SHIRT:
             return 5
-        if ID == 2:
+        if ID == Clothes.PANTS:
             return 5
-        if ID == 3:
+        if ID == Clothes.BIKINI_TOP:
             return 25
-        if ID == 4:
+        if ID == Clothes.BIKINI_BOTTOM:
             return 25
-        if ID == 5:
+        if ID == Clothes.ELEGANT_DRESS:
             return 45
-        if ID == 6:
+        if ID == Clothes.LATEX_SUIT:
             return 60
-        if ID == 7:
+        if ID == Clothes.SKIRT:
             return 25
-        if ID == 8:
+        if ID == Clothes.SHORTS:
             return 25
-        if ID == 9:
+        if ID == Clothes.BLOUSE:
             return 25
-        if ID == 10:
+        if ID == Clothes.DIAPER:
             return 30
-        if ID == 11:
+        if ID == Clothes.POOFY_DIAPER:
             return 40
-        if ID == 12:
+        if ID == Clothes.SUNDRESS:
             return 40
-        if ID == 13:
+        if ID == Clothes.SKIMPY_DRESS:
             return 50
-        if ID == 14:
+        if ID == Clothes.SHORT_SKIRT:
             return 35
-        if ID == 15:
+        if ID == Clothes.SHORT_SHORTS:
             return 35
-        if ID == 16:
+        if ID == Clothes.LOIN_CLOTH:
             return 40
-        if ID == 17:
+        if ID == Clothes.BATHING_SUIT:
             return 55
-        if ID == 18:
+        if ID == Clothes.MUSCLE_SHIRT:
             return 15
-        if ID == 19:
+        if ID == Clothes.CORSET:
             return 50
-        if ID == 20:
+        if ID == Clothes.SILK_PANTIES:
             return 35
-        if ID == 21:
+        if ID == Clothes.SLINGKINI:
             return 65
-        if ID == 22:
+        if ID == Clothes.THONG:
             return 40
-        if ID == 23:
+        if ID == Clothes.BLOOMERS:
             return 30
-        if ID == 24:
+        if ID == Clothes.TIGHTS:
             return 35
-        if ID == 25:
+        if ID == Clothes.GOTHIC_DRESS:
             return 60
-        if ID == 26:
+        if ID == Clothes.TUBE_TOP:
             return 20
-        if ID == 27:
+        if ID == Clothes.NIPPLE_PASTIES:
             return 45
-        if ID == 28:
+        if ID == Clothes.CAMISOLE:
             return 40
-        if ID == 29:
+        if ID == Clothes.TRAINING_SUIT:
             return 35
-        if ID == 30:
+        if ID == Clothes.BOUNCY_BRA:
             return 45
         return 0
 
     def description(ID: int) -> str:
-        if ID == 1:
+        if ID == Clothes.SHIRT:
             return "A generic shirt with no special attributes.\n\nTakes top clothes slot."
-        if ID == 2:
+        if ID == Clothes.PANTS:
             return "A generic pair of pants with no special attributes.\n\nTakes bottom clothes slot."
-        if ID == 3:
+        if ID == Clothes.BIKINI_TOP:
             return "A rather revealing bikini top/s, covering all your breasts, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and milk production.\n\nTakes top clothes slot."
-        if ID == 4:
+        if ID == Clothes.BIKINI_BOTTOM:
             return "A rather revealing bikini bottom, covering your groin, looking good and hugging tightly to improve enticement and sensitivity, but reduces your mentality and cum production.\n\nTakes bottom clothes slot."
-        if ID == 5:
+        if ID == Clothes.ELEGANT_DRESS:
             return "A courtly dress that's more about giving a good impression than a slutty one, improving mentality, but the caution to prevent ripping reduces strength. It also increases the speed of your pregnancies slightly, in the attempt to not look slutty, or something.\n\nTakes both top and bottom clothes slots."
-        if ID == 6:
+        if ID == Clothes.LATEX_SUIT:
             return "A suit made of a thin, very tight material that covers most of your body and greatly improves enticement and sensitivity, but also reduces mentality, run chance, cum and milk production.\n\nTakes both top and bottom clothes slots."
-        if ID == 7:
+        if ID == Clothes.SKIRT:
             return "A modest skirt, very helpful in terms of function. Improves run chance, strength, and cum production, but reduces mentality and increases pregnancy chance with its 'ease of access'.\n\nTakes bottom clothes slot."
-        if ID == 8:
+        if ID == Clothes.SHORTS:
             return "A pair of shorts, very helpful in terms of function. Improves run chance and strength, but reduces libido with its lackluster appearance.\n\nTakes bottom clothes slot."
-        if ID == 9:
+        if ID == Clothes.BLOUSE:
             return "A buttoned shirt that allows your breasts to produce more milk while looking good to increase mentality, but reduces sensitivity and strength.\n\nTakes top clothes slot."
-        if ID == 10:
+        if ID == Clothes.DIAPER:
             return "A diaper that helps soak up some of your moistness and makes your hips look bigger, but reduces mentality.\n\nWarning: Removing the diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
-        if ID == 11:
+        if ID == Clothes.POOFY_DIAPER:
             return "A poofy diaper that helps soak up a lot of your moistness and makes both your hips and butt look bigger, but reduces mentality and libido.\n\nWarning: Removing the poofy diaper after wearing it could potentially make you even wetter than before you put it on, your body depending too much on it.\n\nTakes bottom clothes slot."
-        if ID == 12:
+        if ID == Clothes.SUNDRESS:
             return "A casual dress that gives your body a lot of exposure, improving sensitivity, cum production, and libido, but reduces run chance, strength, and increases pregnancy chance.\n\nTakes both top and bottom clothes slots."
-        if ID == 13:
+        if ID == Clothes.SKIMPY_DRESS:
             return "A skimpy dress that really hugs your curves, improving sensitivity, enticement, and libido, but reduces strength and mentality with its slutty appearance, and increases pregnancy chance with its ease of access.\n\nTakes both top and bottom clothes slots."
-        if ID == 14:
+        if ID == Clothes.SHORT_SKIRT:
             return "A short skirt that's more attractive than modest, improving cum production, sensitivity, and enticement, but reduces mentality and increases pregnancy chance with its ease of access.\n\nTakes bottom clothes slot."
-        if ID == 15:
+        if ID == Clothes.SHORT_SHORTS:
             return "A pair of short shorts that are more skimpy than functional, hugging tightly to improve sensitivity, enticement, and run chance, but reduces cum production, mentality, and strength.\n\nTakes bottom clothes slot."
-        if ID == 16:
+        if ID == Clothes.LOIN_CLOTH:
             return "A loin cloth that is more suited for the simplicity of the wild, but also a bit uncivilized, improving cum production, run chance, strength, and sensitivity, but reduces mentality and increases pregnancy chance.\n\nTakes bottom clothes slot."
-        if ID == 17:
+        if ID == Clothes.BATHING_SUIT:
             return "A one-piece bathing suit that covers both chest and groin and is great for swimming, it acts as a barrier to liquids. The suit prevents your sexual lubrication from drying away as easily, thus increasing your moistness, as well as increasing strength and sensitivity while reducing mentality and pregnancy chance.\n\nTakes both top and bottom clothes slots."
-        if ID == 18:
+        if ID == Clothes.MUSCLE_SHIRT:
             return "A simple muscle shirt that is more functional than civilized. Increases strength but reduces mentality, and makes your chest look slightly bigger.\n\nTakes top clothes slot."
-        if ID == 19:
+        if ID == Clothes.CORSET:
             return "A corset that ties tightly around your waist, greatly magnifying your bust and hips, increasing your mentality and libido, but is also quite restrictive and hard to breath in, reducing strength and your maximum HP.\n\nTakes top clothes slot."
-        if ID == 20:
+        if ID == Clothes.SILK_PANTIES:
             return "A pair of silken panties, this underwear looks and feels good, amplifying your vulva size, increasing your enticement, libido, and sensitivity, but also reduces mentality, cum production, and run chance as you're afraid of tearing them.\n\nTakes bottom clothes slot."
-        if ID == 21:
+        if ID == Clothes.SLINGKINI:
             return "A very scant bathing suit that consists of thin fabric that barely covers your crotch and forks to sling around your body and just barely cover your nipples. Largely increases enticement, as well as increasing libido and sensitivity. However, it largely reduces your mentality, reduces your strength, keeps you constantly slightly aroused, and is rather difficult to run in as it easily rides up your rear.\n\nTakes both top and bottom clothes slots."
-        if ID == 22:
+        if ID == Clothes.THONG:
             return "A quite small piece of underwear that shows off much of your posterior, the thong is quite enticing and raises your libido, but reduces strength, mentality, and sensitivity, and is slightly difficult to run in as it rides up your rear.\n\nTakes bottom clothes slot."
-        if ID == 23:
+        if ID == Clothes.BLOOMERS:
             return "A pair of form-fitting athletic bloomers, they are very nice to run in and increases strength and libido, but also reduces mentality and is slightly difficult to rape others while wearing them.\n\nTakes bottom clothes slot."
-        if ID == 24:
+        if ID == Clothes.TIGHTS:
             return "A pair of form-fitting, stretchy, agile tights, they are easy to run in and increase your sensitivity, but their tightness reduces cum production and ability to get pregnant.\n\nTakes bottom clothes slot."
-        if ID == 25:
+        if ID == Clothes.GOTHIC_DRESS:
             return "A dark and decorated frilly dress of the gothic variety, it increases your mentality and the intimidation helps you rape others, but it also makes vaginal passages more stretchy for some strange reason.\n\nTakes both top and bottom clothes slots."
-        if ID == 26:
+        if ID == Clothes.TUBE_TOP:
             return "A single piece of stretchy fabric that wraps around the chest, the tube top is slightly enticing and slightly increases milk production. However, it tends to outline nipples so well that it seems to make them bigger and also lowers mentality.\n\nTakes top clothes slot."
-        if ID == 27:
+        if ID == Clothes.NIPPLE_PASTIES:
             return "A simple bunch of adhesive stickers that paste to the nipples to cover them and only them. Extremely lewd, it lowers your mentality significantly, but also raises enticement, libido, and sensitivity, and increases the amount of milk your breasts can hold by literally capping your nipples.\n\nTakes top clothes slot."
-        if ID == 28:
+        if ID == Clothes.CAMISOLE:
             return "A soft and loose piece of lingerie, this camisole is an attractive and smart way to cover your breasts, increasing enticement, mentality, and sensitivity. The soft fabric constantly teasing your nipples also reduces the rate at which your breasts dry up, should they be lactating.\n\nTakes top clothes slot."
-        if ID == 29:
+        if ID == Clothes.TRAINING_SUIT:
             return "A yellow tracksuit with black stripes up the sides, this training suit makes you feel much stronger and heartier while wearing it, perfect for fighting. However, it looks fairly silly, basically the opposite of attractive, and reduces your mentality, libido, and sensitivity.\n\nTakes both top and bottom clothes slots."
-        if ID == 30:
+        if ID == Clothes.BOUNCY_BRA:
             return "A bra that allows for a little more bounce to your step by allowing you to withstand a bit more weight. And it's so wonderful that it helps you carry -any- extra weight, even beyond your breasts!\n\nTakes top clothes slot."
         return "CLOTHES DESCRIPTION ERROR"
 
@@ -2922,118 +2955,118 @@ class Tailor:
     def ID(currentZone: int, choice: int) -> int:
         if currentZone == Zone.SOFTLIK:
             if choice == 1:
-                return 1
+                return Clothes.SHIRT
             if choice == 2:
-                return 2
+                return Clothes.PANTS
             if choice == 3:
-                return 29
+                return Clothes.TRAINING_SUIT
             if choice == 5:
-                return 6
+                return Clothes.LATEX_SUIT
             if choice == 6:
-                return 9
+                return Clothes.BLOUSE
             if choice == 7:
-                return 10
+                return Clothes.DIAPER
             if choice == 9:
-                return 13
+                return Clothes.SKIMPY_DRESS
             if choice == 10:
-                return 22
+                return Clothes.THONG
             if choice == 11:
-                return 27
+                return Clothes.NIPPLE_PASTIES
         elif currentZone == Zone.FIRMSHAFT:
             if choice == 1:
-                return 1
+                return Clothes.SHIRT
             if choice == 2:
-                return 2
+                return Clothes.PANTS
             if choice == 3:
-                return 29
+                return Clothes.TRAINING_SUIT
             if choice == 5:
-                return 8
+                return Clothes.SHORTS
             if choice == 6:
-                return 9
+                return Clothes.BLOUSE
             if choice == 7:
-                return 15
+                return Clothes.SHORT_SHORTS
             if choice == 9:
-                return 18
+                return Clothes.MUSCLE_SHIRT
             if choice == 10:
-                return 24
+                return Clothes.TIGHTS
             if choice == 11:
-                return 26
+                return Clothes.TUBE_TOP
         elif currentZone == Zone.TIEDEN:
             if choice == 1:
-                return 1
+                return Clothes.SHIRT
             if choice == 2:
-                return 2
+                return Clothes.PANTS
             if choice == 3:
-                return 29
+                return Clothes.TRAINING_SUIT
             if choice == 5:
-                return 5
+                return Clothes.ELEGANT_DRESS
             if choice == 6:
-                return 13
+                return Clothes.SKIMPY_DRESS
             if choice == 7:
-                return 19
+                return Clothes.CORSET
             if choice == 9:
-                return 22
+                return Clothes.THONG
             if choice == 10:
-                return 23
+                return Clothes.BLOOMERS
             if choice == 11:
-                return 25
+                return Clothes.GOTHIC_DRESS
         elif currentZone == Zone.SIZ_CALIT:
             if choice == 1:
-                return 1
+                return Clothes.SHIRT
             if choice == 2:
-                return 2
+                return Clothes.PANTS
             if choice == 3:
-                return 29
+                return Clothes.TRAINING_SUIT
             if choice == 5:
-                return 3
+                return Clothes.BIKINI_TOP
             if choice == 6:
-                return 4
+                return Clothes.BIKINI_BOTTOM
             if choice == 7:
-                return 11
+                return Clothes.POOFY_DIAPER
             if choice == 9:
-                return 12
+                return Clothes.SUNDRESS
             if choice == 10:
-                return 20
+                return Clothes.SILK_PANTIES
             if choice == 11:
-                return 28
+                return Clothes.CAMISOLE
         elif currentZone == Zone.OVIASIS:
             if choice == 1:
-                return 1
+                return Clothes.SHIRT
             if choice == 2:
-                return 2
+                return Clothes.PANTS
             if choice == 3:
-                return 29
+                return Clothes.TRAINING_SUIT
             if choice == 5:
-                return 7
+                return Clothes.SKIRT
             if choice == 6:
-                return 14
+                return Clothes.SHORT_SKIRT
             if choice == 7:
-                return 16
+                return Clothes.LOIN_CLOTH
             if choice == 9:
-                return 17
+                return Clothes.BATHING_SUIT
             if choice == 10:
-                return 19
+                return Clothes.CORSET
             if choice == 11:
-                return 21
+                return Clothes.SLINGKINI
         elif currentZone == Zone.SANCTUARY:
             if choice == 1:
-                return 1
+                return Clothes.SHIRT
             if choice == 2:
-                return 2
+                return Clothes.PANTS
             if choice == 3:
-                return 29
+                return Clothes.TRAINING_SUIT
             if choice == 5:
-                return 28
+                return Clothes.CAMISOLE
             if choice == 6:
-                return 30
+                return Clothes.BOUNCY_BRA
             if choice == 7:
-                return 25
+                return Clothes.GOTHIC_DRESS
             if choice == 9:
-                return 23
+                return Clothes.BLOOMERS
             if choice == 10:
-                return 22
+                return Clothes.THONG
             if choice == 11:
-                return 19
+                return Clothes.CORSET
         return 0
 
 
@@ -3768,72 +3801,73 @@ class WikiPages:
     def Clothes(ID: int) -> str:
         if ID == -10:
             return "<h4><u>Clothes Name</u></h4>(Clothes ID #)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == -1:
+        if ID == Clothes.TATTERED_SHREDS:
             return "<h4><u>Tattered Shreds</u></h4>(Clothes ID -1)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nWhen worn\n\t-4 strMod (strength modifier)\n\t-4 mentMod (mentality modifier)\n\n<u>How to obtain</u>\nThese clothes are obtained when your clothes get ripped up."
-        if ID == 0:
+        if ID == Clothes.INVISIBLE_UNDERWEAR:
             return "<h4><u>Invisible Underwear</u></h4>(Clothes ID 0)\n\n<u>Description</u>\nThis clothing item is a test item and has no use to the player. Most of the stuff from this item seems to have been removed.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
-        if ID == 1:
+        if ID == Clothes.SHIRT:
             return "<h4><u>Shirt</u></h4>(Clothes ID 1)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
-        if ID == 2:
+        if ID == Clothes.PANTS:
             return "<h4><u>Pants</u></h4>(Clothes ID 2)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
-        if ID == 3:
+        if ID == Clothes.BIKINI_TOP:
             return "<h4><u>Bikini Top</u></h4>(Clothes ID 3)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 4:
+        if ID == Clothes.BIKINI_BOTTOM:
             return "<h4><u>Bikini Bottom</u></h4>(Clothes ID 4)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 5:
+        if ID == Clothes.ELEGANT_DRESS:
             return "<h4><u>Elegant Dress</u></h4>(Clothes ID 5)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 6:
+        if ID == Clothes.LATEX_SUIT:
             return "<h4><u>Latex Suit</u></h4>(Clothes ID 6)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 7:
+        if ID == Clothes.SKIRT:
             return "<h4><u>Skirt</u></h4>(Clothes ID 7)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 8:
+        if ID == Clothes.SHORTS:
             return "<h4><u>Shorts</u></h4>(Clothes ID 8)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 9:
+        if ID == Clothes.BLOUSE:
             return "<h4><u>Blouse</u></h4>(Clothes ID 9)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 10:
+        if ID == Clothes.DIAPER:
             return "<h4><u>Diaper</u></h4>(Clothes ID 10)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 11:
+        if ID == Clothes.POOFY_DIAPER:
             return "<h4><u>Poofy Diaper</u></h4>(Clothes ID 11)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 12:
+        if ID == Clothes.SUNDRESS:
             return "<h4><u>Sundress</u></h4>(Clothes ID 12)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 13:
+        if ID == Clothes.SKIMPY_DRESS:
             return "<h4><u>Skimpy Dress</u></h4>(Clothes ID 13)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 14:
+        if ID == Clothes.SHORT_SKIRT:
             return "<h4><u>Short Skirt</u></h4>(Clothes ID 14)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 15:
+        if ID == Clothes.SHORT_SHORTS:
             return "<h4><u>Short Shorts</u></h4>(Clothes ID 15)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 16:
+        if ID == Clothes.LOIN_CLOTH:
             return "<h4><u>Loin Cloth</u></h4>(Clothes ID 16)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 17:
+        if ID == Clothes.BATHING_SUIT:
             return "<h4><u>Bathing Suite</u></h4>(Clothes ID 17)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 18:
+        if ID == Clothes.MUSCLE_SHIRT:
             return "<h4><u>Muscle Shirt</u></h4>(Clothes ID 18)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 19:
+        if ID == Clothes.CORSET:
             return "<h4><u>Corset</u></h4>(Clothes ID 19)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 20:
+        if ID == Clothes.SILK_PANTIES:
             return "<h4><u>Silk Panties</u></h4>(Clothes ID 20)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 21:
+        if ID == Clothes.SLINGKINI:
             return "<h4><u>Slingkini</u></h4>(Clothes ID 21)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 22:
+        if ID == Clothes.THONG:
             return "<h4><u>Thong</u></h4>(Clothes ID 22)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 23:
+        if ID == Clothes.BLOOMERS:
             return "<h4><u>Bloomers</u></h4>(Clothes ID 23)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 24:
+        if ID == Clothes.TIGHTS:
             return "<h4><u>Tights</u></h4>(Clothes ID 24)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 25:
+        if ID == Clothes.GOTHIC_DRESS:
             return "<h4><u>Gothic Dress</u></h4>(Clothes ID 25)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 26:
+        if ID == Clothes.TUBE_TOP:
             return "<h4><u>Tube Top</u></h4>(Clothes ID 26)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 27:
+        if ID == Clothes.NIPPLE_PASTIES:
             return "<h4><u>Nipple Pasties</u></h4>(Clothes ID 27)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 28:
+        if ID == Clothes.CAMISOLE:
             return "<h4><u>Camisole</u></h4>(Clothes ID 28)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 29:
+        if ID == Clothes.TRAINING_SUIT:
             return "<h4><u>Training Suit</u></h4>(Clothes ID 29)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 30:
+        if ID == Clothes.BOUNCY_BRA:
             return "<h4><u>Bouncy Bra</u></h4>(Clothes ID 30)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
     def Enemy(ID: int) -> str:
+        # TODO: Use enum here
         if ID == -10:
             return "<h4><u>Enemy Name</u></h4>(Enemy ID #)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nBaseStats\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
         if ID == 1:
@@ -3866,6 +3900,7 @@ class WikiPages:
             return "<h4><u>Succubus</u></h4>(Enemy ID 309)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:35\nMentality:80\nSensitivity:40\nLibido:40\nLust:0\nGender:2\nPreference:4\nCoin:5-30\nSexp:60\nItem:260\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n<i>Sanctuary</i> \u25CE\n\n<u>Encounter Conditions</u>\nDefeat the Freaky Little Girl (defeatedFreakyGirl == True)"
 
     def Race(ID: int) -> str:
+        # TODO: Use enum here
         if ID == -10:
             return "<h4><u>Race Name</u></h4>(Race ID #)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\nItems"
         if ID == 1:
@@ -3894,6 +3929,7 @@ class WikiPages:
             return "<h4><u>Bug</u></h4>(Race ID 12)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Nectar Candy</i> (Item ID 256)"
 
     def Town(Num: int) -> str:
+        # TODO: Use enum here
         if Num == -10:
             return "<h4><u>Town Name</u></h4>(Zone ID #)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
         if Num == 1:
@@ -4368,39 +4404,40 @@ class PyminWiki(PyminWindow):
             'R: Bazoomba': ('Recipe', 57)
         },
         'Clothes': {
-            'Tattered Shreds': ('Clothes', -1),
-            'Invisible Underwear': ('Clothes', 0),
-            'Shirt': ('Clothes', 1),
-            'Pants': ('Clothes', 2),
-            'Bikini Top': ('Clothes', 3),
-            'Bikini Bottom': ('Clothes', 4),
-            'Elegant Dress': ('Clothes', 5),
-            'Latex Suit': ('Clothes', 6),
-            'Skirt': ('Clothes', 7),
-            'Shorts': ('Clothes', 8),
-            'Blouse': ('Clothes', 9),
-            'Diaper': ('Clothes', 10),
-            'Poofy Diaper': ('Clothes', 11),
-            'Sundress': ('Clothes', 12),
-            'Skimpy Dress': ('Clothes', 13),
-            'Short Skirt': ('Clothes', 14),
-            'Short Shorts': ('Clothes', 15),
-            'Loin Cloth': ('Clothes', 16),
-            'Bathing Suit': ('Clothes', 17),
-            'Muscle Shirt': ('Clothes', 18),
-            'Corset': ('Clothes', 19),
-            'Silk Panties': ('Clothes', 20),
-            'Slingkini': ('Clothes', 21),
-            'Thong': ('Clothes', 22),
-            'Bloomers': ('Clothes', 23),
-            'Tights': ('Clothes', 24),
-            'Gothic Dress': ('Clothes', 25),
-            'Tube Top': ('Clothes', 26),
-            'Nipple Pasties': ('Clothes', 27),
-            'Camisole': ('Clothes', 28),
-            'Training Suit': ('Clothes', 29),
-            'Bouncy Bra': ('Clothes', 30)
+            'Tattered Shreds': ('Clothes', Clothes.TATTERED_SHREDS),
+            'Invisible Underwear': ('Clothes', Clothes.INVISIBLE_UNDERWEAR),
+            'Shirt': ('Clothes', Clothes.SHIRT),
+            'Pants': ('Clothes', Clothes.PANTS),
+            'Bikini Top': ('Clothes', Clothes.BIKINI_TOP),
+            'Bikini Bottom': ('Clothes', Clothes.BIKINI_BOTTOM),
+            'Elegant Dress': ('Clothes', Clothes.ELEGANT_DRESS),
+            'Latex Suit': ('Clothes', Clothes.LATEX_SUIT),
+            'Skirt': ('Clothes', Clothes.SKIRT),
+            'Shorts': ('Clothes', Clothes.SHORTS),
+            'Blouse': ('Clothes', Clothes.BLOUSE),
+            'Diaper': ('Clothes', Clothes.DIAPER),
+            'Poofy Diaper': ('Clothes', Clothes.POOFY_DIAPER),
+            'Sundress': ('Clothes', Clothes.SUNDRESS),
+            'Skimpy Dress': ('Clothes', Clothes.SKIMPY_DRESS),
+            'Short Skirt': ('Clothes', Clothes.SHORT_SKIRT),
+            'Short Shorts': ('Clothes', Clothes.SHORT_SHORTS),
+            'Loin Cloth': ('Clothes', Clothes.LOIN_CLOTH),
+            'Bathing Suit': ('Clothes', Clothes.BATHING_SUIT),
+            'Muscle Shirt': ('Clothes', Clothes.MUSCLE_SHIRT),
+            'Corset': ('Clothes', Clothes.CORSET),
+            'Silk Panties': ('Clothes', Clothes.SILK_PANTIES),
+            'Slingkini': ('Clothes', Clothes.SLINGKINI),
+            'Thong': ('Clothes', Clothes.THONG),
+            'Bloomers': ('Clothes', Clothes.BLOOMERS),
+            'Tights': ('Clothes', Clothes.TIGHTS),
+            'Gothic Dress': ('Clothes', Clothes.GOTHIC_DRESS),
+            'Tube Top': ('Clothes', Clothes.TUBE_TOP),
+            'Nipple Pasties': ('Clothes', Clothes.NIPPLE_PASTIES),
+            'Camisole': ('Clothes', Clothes.CAMISOLE),
+            'Training Suit': ('Clothes', Clothes.TRAINING_SUIT),
+            'Bouncy Bra': ('Clothes', Clothes.BOUNCY_BRA)
         },
+        # TODO: Use enum here
         'Enemies': {
             'Test Enemy': ('Enemy', 1),
             'Cock-snake': ('Enemy', 101),
@@ -4417,6 +4454,7 @@ class PyminWiki(PyminWindow):
             'Freaky Little Girl': ('Enemy', 308),
             'Succubus': ('Enemy', 309)
         },
+        # TODO: Use enum here
         'Races': {
             'Human': ('Race', 1),
             'Equan': ('Race', 2),
@@ -4432,6 +4470,7 @@ class PyminWiki(PyminWindow):
             'Bug': ('Race', 12)
         },
         'Locations': {
+            # TODO: Use enum here
             'Towns': {
                 'Softlik': ('Town', 1),
                 'Firmshaft': ('Town', 2),
@@ -5855,8 +5894,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # self.eggType = 0
 
         # Weapon and attire
-        # self.attireTop = 1
-        # self.attireBot = 2
+        # self.attireTop = Clothes.SHIRT
+        # self.attireBot = Clothes.PANTS
         # self.weapon = 10
 
         # Item effects
@@ -7407,8 +7446,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.vagMoist = 0
                 self.vulvaSize = 0
                 self.nipType = 0
-                self.attireTop = 1
-                self.attireBot = 2
+                self.attireTop = Clothes.SHIRT
+                self.attireBot = Clothes.PANTS
                 self.weapon = 10
                 self.pregArray = Array()
                 self.pregStatus = 0
@@ -7715,7 +7754,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempStr += "while you defend yourself unarmed."
         else:
             tempStr += f"while you defend yourself with a {Items.name(self.weapon)} as your weapon."
-        if (self.lilaWetStatus > 0 and self.attireBot in {10, 11}):
+        if (self.lilaWetStatus > 0 and self.attireBot in {Clothes.DIAPER, Clothes.POOFY_DIAPER}):
             tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
         if (self.legType >= 1000):
             if False and mainobject.internalBallsEffectBelly and not self.showBalls:
@@ -9676,7 +9715,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.exhaustion += 15
         else:
             self.doMainText(f"\n\nThe sound of your {self.clothesBottom()} being shredded fills the air in {Zone.name(self.currentZone)} as a massive amount of hot thick slimy sticky cum erupts from your {self.cockDesc()} cock{self.plural(1)} and tears a path through your {self.clothesBottom()}. You fall onto your back from the force, your fingers scratching at the ground below you to anchor your writhing as your body is completely wracked by the sudden orgasm. Your {self.hipDesc()} hips thrash about as the {self.cockDesc()} erection{self.plural(1)} swing{self.plural(3)} around from the force of the gushing seed. Thick ropes of the white stuff tosses about, painting houses and drenching innocent bystanders. Some run for cover while others brace themselves against the onslaught. Some stay and begin to masturbate themselves while they get showered in your cum. You completely lose track of the time as your mind goes numb and you're completely bathed in your own spunk.\n\nSome minutes later, your severe pre-mature ejaculation calms down, your senses returning. You blink and look around, seeing strangers cower in fear or masturbate furiously. The thought that 'now might be a good time to leave' pops into your head and you can only agree. You don't want to witness the fallout after this.\n\nYour {self.legDesc(2)} weak, you begin to crawl yourself through the shallow lake of semen you've created, making your way back to your home where you can hide and clean yourself up... It'll take several hours to clean and your mind just wants to shut down. You should really learn to masturbate more often.")
-            self.changeBot(-1)
+            self.changeBot(Clothes.TATTERED_SHREDS)
             self.hrs += 10
             self.stats(0, -5, 2, 0)
             self.exhaustion += 20
@@ -12938,95 +12977,95 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     # TODO: Move out of game class
     def clothesTop(self) -> str:
-        if self.attireTop == -1:
+        if self.attireTop == Clothes.TATTERED_SHREDS:
             return "tattered shreds"
-        if self.attireTop == 0:
+        if self.attireTop == Clothes.INVISIBLE_UNDERWEAR:
             return "invisible underwear"
-        if self.attireTop == 1:
+        if self.attireTop == Clothes.SHIRT:
             return "shirt"
-        if self.attireTop == 3:
+        if self.attireTop == Clothes.BIKINI_TOP:
             if (self.boobTotal > 2):
                 return "bikini tops"
             return "bikini top"
-        if self.attireTop == 5:
+        if self.attireTop == Clothes.ELEGANT_DRESS:
             return "elegant dress"
-        if self.attireTop == 6:
+        if self.attireTop == Clothes.LATEX_SUIT:
             return "latex suit"
-        if self.attireTop == 9:
+        if self.attireTop == Clothes.BLOUSE:
             return "blouse"
-        if self.attireTop == 12:
+        if self.attireTop == Clothes.SUNDRESS:
             return "sundress"
-        if self.attireTop == 13:
+        if self.attireTop == Clothes.SKIMPY_DRESS:
             return "skimpy dress"
-        if self.attireTop == 17:
+        if self.attireTop == Clothes.BATHING_SUIT:
             return "bathing suit"
-        if self.attireTop == 18:
+        if self.attireTop == Clothes.MUSCLE_SHIRT:
             return "muscle shirt"
-        if self.attireTop == 19:
+        if self.attireTop == Clothes.CORSET:
             return "corset"
-        if self.attireTop == 21:
+        if self.attireTop == Clothes.SLINGKINI:
             return "slingkini"
-        if self.attireTop == 25:
+        if self.attireTop == Clothes.GOTHIC_DRESS:
             return "gothic dress"
-        if self.attireTop == 26:
+        if self.attireTop == Clothes.TUBE_TOP:
             return "tube top"
-        if self.attireTop == 27:
+        if self.attireTop == Clothes.NIPPLE_PASTIES:
             return "nipple pasties"
-        if self.attireTop == 28:
+        if self.attireTop == Clothes.CAMISOLE:
             return "camisole"
-        if self.attireTop == 29:
+        if self.attireTop == Clothes.TRAINING_SUIT:
             return "training suit"
-        if self.attireTop == 30:
+        if self.attireTop == Clothes.BOUNCY_BRA:
             return "bouncy bra"
         return f"CLOTHES TOP ERROR {self.attireTop}"
 
     # TODO: Move out of game class
     def clothesBottom(self) -> str:
-        if self.attireBot == -1:
+        if self.attireBot == Clothes.TATTERED_SHREDS:
             return "tattered shreds"
-        if self.attireBot == 0:
+        if self.attireBot == Clothes.INVISIBLE_UNDERWEAR:
             return "invisible underwear"
-        if self.attireBot == 2:
+        if self.attireBot == Clothes.PANTS:
             return "pants"
-        if self.attireBot == 4:
+        if self.attireBot == Clothes.BIKINI_BOTTOM:
             return "bikini bottom"
-        if self.attireBot == 5:
+        if self.attireBot == Clothes.ELEGANT_DRESS:
             return "elegant dress"
-        if self.attireBot == 6:
+        if self.attireBot == Clothes.LATEX_SUIT:
             return "latex suit"
-        if self.attireBot == 7:
+        if self.attireBot == Clothes.SKIRT:
             return "skirt"
-        if self.attireBot == 8:
+        if self.attireBot == Clothes.SHORTS:
             return "shorts"
-        if self.attireBot == 10:
+        if self.attireBot == Clothes.DIAPER:
             return "diaper"
-        if self.attireBot == 11:
+        if self.attireBot == Clothes.POOFY_DIAPER:
             return "poofy diaper"
-        if self.attireBot == 12:
+        if self.attireBot == Clothes.SUNDRESS:
             return "sundress"
-        if self.attireBot == 13:
+        if self.attireBot == Clothes.SKIMPY_DRESS:
             return "skimpy dress"
-        if self.attireBot == 14:
+        if self.attireBot == Clothes.SHORT_SKIRT:
             return "short skirt"
-        if self.attireBot == 15:
+        if self.attireBot == Clothes.SHORT_SHORTS:
             return "short shorts"
-        if self.attireBot == 16:
+        if self.attireBot == Clothes.LOIN_CLOTH:
             return "loincloth"
-        if self.attireBot == 17:
+        if self.attireBot == Clothes.BATHING_SUIT:
             return "bathing suit"
-        if self.attireBot == 20:
+        if self.attireBot == Clothes.SILK_PANTIES:
             return "silken panties"
-        if self.attireBot == 21:
+        if self.attireBot == Clothes.SLINGKINI:
             return "slingkini"
-        if self.attireBot == 22:
+        if self.attireBot == Clothes.THONG:
             return "thong"
-        if self.attireBot == 23:
+        if self.attireBot ==Clothes.BLOOMERS:
             return "bloomer"
-        if self.attireBot == 24:
+        if self.attireBot == Clothes.TIGHTS:
             return "tights"
-        if self.attireBot == 25:
+        if self.attireBot == Clothes.GOTHIC_DRESS:
             return "gothic dress"
-        if self.attireBot == 29:
+        if self.attireBot == Clothes.TRAINING_SUIT:
             return "training suit"
         return f"CLOTHES BOTTOM ERROR {self.attireBot}"
 
@@ -13038,382 +13077,382 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def pullUD(self, source: int) -> str:
         if source == 1:
-            if self.attireTop in {-1, 6, 9, 21, 29}:
+            if self.attireTop in {Clothes.TATTERED_SHREDS, Clothes.LATEX_SUIT, Clothes.BLOUSE, Clothes.SLINGKINI, Clothes.TRAINING_SUIT}:
                 return "open"
-            if self.attireTop in {0, 1, 18, 28}:
+            if self.attireTop in {Clothes.INVISIBLE_UNDERWEAR, Clothes.SHIRT, Clothes.MUSCLE_SHIRT, Clothes.CAMISOLE}:
                 return "up"
-            if self.attireTop in {3, 5, 12, 13, 17, 19, 25, 26, 30}:
+            if self.attireTop in {Clothes.BIKINI_TOP, Clothes.ELEGANT_DRESS, Clothes.SUNDRESS, Clothes.SKIMPY_DRESS, Clothes.BATHING_SUIT, Clothes.CORSET, Clothes.GOTHIC_DRESS, Clothes.TUBE_TOP, Clothes.BOUNCY_BRA}:
                 return "down"
-            if self.attireTop == 27:
+            if self.attireTop == Clothes.NIPPLE_PASTIES:
                 return "off"
         elif source == 2:
-            if self.attireBot in {-1, 6, 29}:
+            if self.attireBot in {Clothes.TATTERED_SHREDS, Clothes.LATEX_SUIT, Clothes.TRAINING_SUIT}:
                 return "open"
-            if self.attireBot in {0, 2, 4, 8, 10, 11, 15, 20, 22, 23, 24}:
+            if self.attireBot in {Clothes.INVISIBLE_UNDERWEAR, Clothes.PANTS, Clothes.BIKINI_BOTTOM, Clothes.SHORTS, Clothes.DIAPER, Clothes.POOFY_DIAPER, Clothes.SHORT_SHORTS, Clothes.SILK_PANTIES, Clothes.THONG, Clothes.BLOOMERS, Clothes.TIGHTS}:
                 return "down"
-            if self.attireBot in {5, 7, 12, 13, 14, 16, 25}:
+            if self.attireBot in {Clothes.ELEGANT_DRESS, Clothes.SKIRT, Clothes.SUNDRESS, Clothes.SKIMPY_DRESS, Clothes.SHORT_SKIRT, Clothes.LOIN_CLOTH, Clothes.GOTHIC_DRESS}:
                 return "up"
-            if self.attireBot in {17, 21}:
+            if self.attireBot in {Clothes.BATHING_SUIT, Clothes.SLINGKINI}:
                 return "aside"
         return f"PULL UP/DOWN ERROR {self.attireTop} {self.attireBot}"
 
     def clothesChange(self, ID: int):
-        if ID == 1:
-            self.changeTop(1)
-        elif ID == 2:
-            self.changeBot(2)
-        elif ID == 3:
-            self.changeTop(3)
-        elif ID == 4:
-            self.changeBot(4)
-        elif ID == 5:
-            self.changeTop(5)
-            self.changeBot(5)
-        elif ID == 6:
-            self.changeTop(6)
-            self.changeBot(6)
-        elif ID == 7:
-            self.changeBot(7)
-        elif ID == 8:
-            self.changeBot(8)
-        elif ID == 9:
-            self.changeTop(9)
-        elif ID == 10:
-            self.changeBot(10)
-        elif ID == 11:
-            self.changeBot(11)
-        elif ID == 12:
-            self.changeTop(12)
-            self.changeBot(12)
-        elif ID == 13:
-            self.changeTop(13)
-            self.changeBot(13)
-        elif ID == 14:
-            self.changeBot(14)
-        elif ID == 15:
-            self.changeBot(15)
-        elif ID == 16:
-            self.changeBot(16)
-        elif ID == 17:
-            self.changeTop(17)
-            self.changeBot(17)
-        elif ID == 18:
-            self.changeTop(18)
-        elif ID == 19:
-            self.changeTop(19)
-        elif ID == 20:
-            self.changeBot(20)
-        elif ID == 21:
-            self.changeTop(21)
-            self.changeBot(21)
-        elif ID == 22:
-            self.changeBot(22)
-        elif ID == 23:
-            self.changeBot(23)
-        elif ID == 24:
-            self.changeBot(24)
-        elif ID == 25:
-            self.changeTop(25)
-            self.changeBot(25)
-        elif ID == 26:
-            self.changeTop(26)
-        elif ID == 27:
-            self.changeTop(27)
-        elif ID == 28:
-            self.changeTop(28)
-        elif ID == 29:
-            self.changeTop(29)
-            self.changeBot(29)
-        elif ID == 30:
-            self.changeTop(30)
+        if ID == Clothes.SHIRT:
+            self.changeTop(Clothes.SHIRT)
+        elif ID == Clothes.PANTS:
+            self.changeBot(Clothes.PANTS)
+        elif ID == Clothes.BIKINI_TOP:
+            self.changeTop(Clothes.BIKINI_TOP)
+        elif ID == Clothes.BIKINI_BOTTOM:
+            self.changeBot(Clothes.BIKINI_BOTTOM)
+        elif ID == Clothes.ELEGANT_DRESS:
+            self.changeTop(Clothes.ELEGANT_DRESS)
+            self.changeBot(Clothes.ELEGANT_DRESS)
+        elif ID == Clothes.LATEX_SUIT:
+            self.changeTop(Clothes.LATEX_SUIT)
+            self.changeBot(Clothes.LATEX_SUIT)
+        elif ID == Clothes.SKIRT:
+            self.changeBot(Clothes.SKIRT)
+        elif ID == Clothes.SHORTS:
+            self.changeBot(Clothes.SHORTS)
+        elif ID == Clothes.BLOUSE:
+            self.changeTop(Clothes.BLOUSE)
+        elif ID == Clothes.DIAPER:
+            self.changeBot(Clothes.DIAPER)
+        elif ID == Clothes.POOFY_DIAPER:
+            self.changeBot(Clothes.POOFY_DIAPER)
+        elif ID == Clothes.SUNDRESS:
+            self.changeTop(Clothes.SUNDRESS)
+            self.changeBot(Clothes.SUNDRESS)
+        elif ID == Clothes.SKIMPY_DRESS:
+            self.changeTop(Clothes.SKIMPY_DRESS)
+            self.changeBot(Clothes.SKIMPY_DRESS)
+        elif ID == Clothes.SHORT_SKIRT:
+            self.changeBot(Clothes.SHORT_SKIRT)
+        elif ID == Clothes.SHORT_SHORTS:
+            self.changeBot(Clothes.SHORT_SHORTS)
+        elif ID == Clothes.LOIN_CLOTH:
+            self.changeBot(Clothes.LOIN_CLOTH)
+        elif ID == Clothes.BATHING_SUIT:
+            self.changeTop(Clothes.BATHING_SUIT)
+            self.changeBot(Clothes.BATHING_SUIT)
+        elif ID == Clothes.MUSCLE_SHIRT:
+            self.changeTop(Clothes.MUSCLE_SHIRT)
+        elif ID == Clothes.CORSET:
+            self.changeTop(Clothes.CORSET)
+        elif ID == Clothes.SILK_PANTIES:
+            self.changeBot(Clothes.SILK_PANTIES)
+        elif ID == Clothes.SLINGKINI:
+            self.changeTop(Clothes.SLINGKINI)
+            self.changeBot(Clothes.SLINGKINI)
+        elif ID == Clothes.THONG:
+            self.changeBot(Clothes.THONG)
+        elif ID == Clothes.BLOOMERS:
+            self.changeBot(Clothes.BLOOMERS)
+        elif ID == Clothes.TIGHTS:
+            self.changeBot(Clothes.TIGHTS)
+        elif ID == Clothes.GOTHIC_DRESS:
+            self.changeTop(Clothes.GOTHIC_DRESS)
+            self.changeBot(Clothes.GOTHIC_DRESS)
+        elif ID == Clothes.TUBE_TOP:
+            self.changeTop(Clothes.TUBE_TOP)
+        elif ID == Clothes.NIPPLE_PASTIES:
+            self.changeTop(Clothes.NIPPLE_PASTIES)
+        elif ID == Clothes.CAMISOLE:
+            self.changeTop(Clothes.CAMISOLE)
+        elif ID == Clothes.TRAINING_SUIT:
+            self.changeTop(Clothes.TRAINING_SUIT)
+            self.changeBot(Clothes.TRAINING_SUIT)
+        elif ID == Clothes.BOUNCY_BRA:
+            self.changeTop(Clothes.BOUNCY_BRA)
 
     def changeTop(self, ID: int):
         if (ID != self.attireTop):
-            if (self.attireTop == -1):
+            if (self.attireTop == Clothes.TATTERED_SHREDS):
                 self.statsMod(2, 2, 0, 0)
-            elif (self.attireTop == 0):
+            elif (self.attireTop == Clothes.INVISIBLE_UNDERWEAR):
                 self.statsMod(0, 4, 0, 0)
-            elif (self.attireTop == 1):
+            elif (self.attireTop == Clothes.SHIRT):
                 ...
-            elif (self.attireTop == 3):
+            elif (self.attireTop == Clothes.BIKINI_TOP):
                 self.enticeMod -= 6
                 self.statsMod(0, 2, 0, -2)
                 self.milkMod += 15
-            elif (self.attireTop == 5):
+            elif (self.attireTop == Clothes.ELEGANT_DRESS):
                 self.statsMod(2, -4, 0, 0)
                 self.pregRate -= 0.2
-            elif (self.attireTop == 6):
+            elif (self.attireTop == Clothes.LATEX_SUIT):
                 self.enticeMod -= 8
                 self.statsMod(0, 2, 0, -8)
                 self.cumMod += 0.2
                 self.milkMod += 10
                 self.runMod += 5
-            elif (self.attireTop == 9):
+            elif (self.attireTop == Clothes.BLOUSE):
                 self.statsMod(2, -2, 0, 1)
                 self.milkMod -= 20
-            elif (self.attireTop == 12):
+            elif (self.attireTop == Clothes.SUNDRESS):
                 self.statsMod(2, 0, -2, -2)
                 self.cumMod -= 0.2
                 self.runMod += 5
                 self.pregChanceMod -= 5
-            elif (self.attireTop == 13):
+            elif (self.attireTop == Clothes.SKIMPY_DRESS):
                 self.statsMod(2, 3, -2, -3)
                 self.enticeMod -= 14
                 self.pregChanceMod -= 5
-            elif (self.attireTop == 17):
+            elif (self.attireTop == Clothes.BATHING_SUIT):
                 self.statsMod(-2, 2, 0, -2)
                 self.vagMoistMod -= 2
                 self.cockMoistMod -= 2
                 self.pregChanceMod += 5
-            elif (self.attireTop == 18):
+            elif (self.attireTop == Clothes.MUSCLE_SHIRT):
                 self.statsMod(-2, 2, 0, 0)
                 self.breastSize -= 1
-            elif (self.attireTop == 19):
+            elif (self.attireTop == Clothes.CORSET):
                 self.statsMod(2, -2, -2, 0)
                 self.breastSize -= 4
                 self.hips -= 2
                 self.HPMod += 5
-            elif (self.attireTop == 21):
+            elif (self.attireTop == Clothes.SLINGKINI):
                 self.enticeMod -= 18
                 self.statsMod(2, 6, -4, -4)
                 self.runMod += 10
                 self.minLust -= 5
-            elif (self.attireTop == 25):
+            elif (self.attireTop == Clothes.GOTHIC_DRESS):
                 self.statsMod(0, -4, 0, 0)
                 self.rapeMod -= 3
                 self.vagElastic -= 0.2
-            elif (self.attireTop == 26):
+            elif (self.attireTop == Clothes.TUBE_TOP):
                 self.enticeMod -= 2
                 self.statsMod(0, 2, 0, 0)
                 self.milkMod -= 5
                 self.nippleSize -= 2
-            elif (self.attireTop == 27):
+            elif (self.attireTop == Clothes.NIPPLE_PASTIES):
                 self.statsMod(0, 6, -2, -4)
                 self.milkCap -= 250
                 self.enticeMod -= 6
-            elif (self.attireTop == 28):
+            elif (self.attireTop == Clothes.CAMISOLE):
                 self.statsMod(0, -2, 0, -4)
                 self.enticeMod -= 4
-            elif (self.attireTop == 29):
+            elif (self.attireTop == Clothes.TRAINING_SUIT):
                 self.statsMod(-10, 2, 2, 2)
                 self.enticeMod += 10
                 self.HPMod -= 10
-            elif (self.attireTop == 30):
+            elif (self.attireTop == Clothes.BOUNCY_BRA):
                 self.carryMod -= 15
-            if (ID == -1):
-                if (self.attireTop == self.attireBot and self.attireBot != -1):
+            if (ID == Clothes.TATTERED_SHREDS):
+                if (self.attireTop == self.attireBot and self.attireBot != Clothes.TATTERED_SHREDS):
                     self.attireTop = ID
-                    self.changeBot(-1)
+                    self.changeBot(Clothes.TATTERED_SHREDS)
                 self.statsMod(-2, -2, 0, 0)
-            elif (ID == 0):
+            elif (ID == Clothes.INVISIBLE_UNDERWEAR):
                 self.statsMod(0, -4, 0, 0)
-            elif (ID == 1):
+            elif (ID == Clothes.SHIRT):
                 ...
-            elif (ID == 3):
+            elif (ID == Clothes.BIKINI_TOP):
                 self.enticeMod += 6
                 self.statsMod(0, -2, 0, 2)
                 self.milkMod -= 15
-            elif (ID == 5):
+            elif (ID == Clothes.ELEGANT_DRESS):
                 self.statsMod(-2, 4, 0, 0)
                 self.pregRate += 0.2
-            elif (ID == 6):
+            elif (ID == Clothes.LATEX_SUIT):
                 self.enticeMod += 8
                 self.statsMod(0, -2, 0, 8)
                 self.cumMod -= 0.2
                 self.milkMod -= 10
                 self.runMod -= 5
-            elif (ID == 9):
+            elif (ID == Clothes.BLOUSE):
                 self.statsMod(-2, 2, 0, -1)
                 self.milkMod += 20
-            elif (ID == 12):
+            elif (ID == Clothes.SUNDRESS):
                 self.statsMod(-2, 0, 2, 2)
                 self.cumMod += 0.2
                 self.runMod -= 5
                 self.pregChanceMod += 5
-            elif (ID == 13):
+            elif (ID == Clothes.SKIMPY_DRESS):
                 self.statsMod(-2, -3, 2, 3)
                 self.enticeMod += 14
                 self.pregChanceMod += 5
-            elif (ID == 17):
+            elif (ID == Clothes.BATHING_SUIT):
                 self.statsMod(2, -2, 0, 2)
                 self.vagMoistMod += 2
                 self.cockMoistMod += 2
                 self.pregChanceMod -= 5
-            elif (ID == 18):
+            elif (ID == Clothes.MUSCLE_SHIRT):
                 self.statsMod(2, -2, 0, 0)
                 self.breastSize += 1
-            elif (ID == 19):
+            elif (ID == Clothes.CORSET):
                 self.statsMod(-2, 2, 2, 0)
                 self.breastSize += 4
                 self.hips += 2
                 self.HPMod -= 5
-            elif (ID == 21):
+            elif (ID == Clothes.SLINGKINI):
                 self.enticeMod += 18
                 self.statsMod(-2, -6, 4, 4)
                 self.runMod -= 10
                 self.minLust += 5
-            elif (ID == 25):
+            elif (ID == Clothes.GOTHIC_DRESS):
                 self.statsMod(0, 4, 0, 0)
                 self.rapeMod += 3
                 self.vagElastic += 0.2
-            elif (ID == 26):
+            elif (ID == Clothes.TUBE_TOP):
                 self.enticeMod += 2
                 self.statsMod(0, -2, 0, 0)
                 self.milkMod += 5
                 self.nippleSize += 2
-            elif (ID == 27):
+            elif (ID == Clothes.NIPPLE_PASTIES):
                 self.statsMod(0, -6, 2, 4)
                 self.milkCap += 250
                 self.enticeMod += 6
-            elif (ID == 28):
+            elif (ID == Clothes.CAMISOLE):
                 self.statsMod(0, 2, 0, 4)
                 self.enticeMod += 4
-            elif (ID == 29):
+            elif (ID == Clothes.TRAINING_SUIT):
                 self.statsMod(10, -2, -2, -2)
                 self.enticeMod -= 10
                 self.HPMod += 10
-            elif (ID == 30):
+            elif (ID == Clothes.BOUNCY_BRA):
                 self.carryMod += 15
-            if (self.attireTop == self.attireBot and ID != 0 and ID != -1):
+            if (self.attireTop == self.attireBot and ID != Clothes.INVISIBLE_UNDERWEAR and ID != Clothes.TATTERED_SHREDS):
                 self.attireTop = ID
-                self.changeBot(2)
+                self.changeBot(Clothes.PANTS)
             else:
                 self.attireTop = ID
 
     def changeBot(self, ID: int):
         if (ID != self.attireBot):
-            if (self.attireBot == -1):
+            if (self.attireBot == Clothes.TATTERED_SHREDS):
                 self.statsMod(2, 2, 0, 0)
-            elif (self.attireBot == 0):
+            elif (self.attireBot == Clothes.INVISIBLE_UNDERWEAR):
                 self.statsMod(0, 4, 0, 0)
-            elif (self.attireBot == 2):
+            elif (self.attireBot == Clothes.PANTS):
                 ...
-            elif (self.attireBot == 4):
+            elif (self.attireBot == Clothes.BIKINI_BOTTOM):
                 self.enticeMod -= 6
                 self.statsMod(0, 2, 0, -2)
                 self.cumMod += 0.2
-            elif (self.attireBot == 7):
+            elif (self.attireBot == Clothes.SKIRT):
                 self.runMod -= 3
                 self.cumMod -= 0.2
                 self.statsMod(-2, 2, 0, 0)
                 self.pregChanceMod -= 4
-            elif (self.attireBot == 8):
+            elif (self.attireBot == Clothes.SHORTS):
                 self.runMod -= 3
                 self.statsMod(-2, 0, 3, 0)
-            elif (self.attireBot == 10):
+            elif (self.attireBot == Clothes.DIAPER):
                 self.vagMoistMod += 2
                 self.cockMoistMod += 2
                 self.hips -= 1
                 self.statsMod(0, 4, 0, 0)
-            elif (self.attireBot == 11):
+            elif (self.attireBot == Clothes.POOFY_DIAPER):
                 self.vagMoistMod += 5
                 self.cockMoistMod += 5
                 self.hips -= 1
                 self.butt -= 2
                 self.statsMod(0, 4, 4, 0)
-            elif (self.attireBot == 14):
+            elif (self.attireBot == Clothes.SHORT_SKIRT):
                 self.cumMod -= 0.2
                 self.enticeMod -= 7
                 self.statsMod(0, 4, 0, -2)
                 self.pregChanceMod -= 6
-            elif (self.attireBot == 15):
+            elif (self.attireBot == Clothes.SHORT_SHORTS):
                 self.cumMod += 0.2
                 self.runMod -= 5
                 self.enticeMod -= 4
                 self.statsMod(2, 3, 0, -2)
-            elif (self.attireBot == 16):
+            elif (self.attireBot == Clothes.LOIN_CLOTH):
                 self.cumMod -= 0.2
                 self.runMod -= 4
                 self.pregChanceMod -= 5
                 self.statsMod(-2, 4, 0, -2)
-            elif (self.attireBot == 20):
+            elif (self.attireBot == Clothes.SILK_PANTIES):
                 self.cumMod += 0.3
                 self.runMod += 3
                 self.vulvaSize -= 1
                 self.enticeMod -= 7
                 self.statsMod(0, 2, -2, -2)
-            elif (self.attireBot == 22):
+            elif (self.attireBot == Clothes.THONG):
                 self.runMod += 5
                 self.enticeMod -= 9
                 self.statsMod(2, 2, -4, 2)
-            elif (self.attireBot == 23):
+            elif (self.attireBot == Clothes.BLOOMERS):
                 self.runMod -= 6
                 self.rapeMod += 4
                 self.statsMod(-2, 2, -2, 0)
-            elif (self.attireBot == 24):
+            elif (self.attireBot == Clothes.TIGHTS):
                 self.runMod -= 4
                 self.cumMod += 0.2
                 self.pregChanceMod += 3
                 self.statsMod(0, 0, 0, -2)
-            if (ID == -1):
-                if (self.attireTop == self.attireBot and self.attireTop != -1):
+            if (ID == Clothes.TATTERED_SHREDS):
+                if (self.attireTop == self.attireBot and self.attireTop != Clothes.TATTERED_SHREDS):
                     self.attireBot = ID
-                    self.changeTop(-1)
+                    self.changeTop(Clothes.TATTERED_SHREDS)
                 self.statsMod(-2, -2, 0, 0)
-            elif (ID == 0):
+            elif (ID == Clothes.INVISIBLE_UNDERWEAR):
                 self.statsMod(0, -4, 0, 0)
-            elif (ID == 2):
+            elif (ID == Clothes.PANTS):
                 ...
-            elif (ID == 4):
+            elif (ID == Clothes.BIKINI_BOTTOM):
                 self.enticeMod += 6
                 self.statsMod(0, -2, 0, 2)
                 self.cumMod -= 0.2
-            elif (ID == 7):
+            elif (ID == Clothes.SKIRT):
                 self.runMod += 3
                 self.cumMod += 0.2
                 self.statsMod(2, -2, 0, 0)
                 self.pregChanceMod += 4
-            elif (ID == 8):
+            elif (ID == Clothes.SHORTS):
                 self.runMod += 3
                 self.statsMod(2, 0, -3, 0)
-            elif (ID == 10):
+            elif (ID == Clothes.DIAPER):
                 self.vagMoistMod -= 2
                 self.cockMoistMod -= 2
                 self.hips += 1
                 self.statsMod(0, -4, 0, 0)
-            elif (ID == 11):
+            elif (ID == Clothes.POOFY_DIAPER):
                 self.vagMoistMod -= 5
                 self.cockMoistMod -= 5
                 self.hips += 1
                 self.butt += 2
                 self.statsMod(0, -4, -4, 0)
-            elif (ID == 14):
+            elif (ID == Clothes.SHORT_SKIRT):
                 self.cumMod += 0.2
                 self.enticeMod += 7
                 self.statsMod(0, -4, 0, 2)
                 self.pregChanceMod += 6
-            elif (ID == 15):
+            elif (ID == Clothes.SHORT_SHORTS):
                 self.cumMod -= 0.2
                 self.runMod += 5
                 self.enticeMod += 4
                 self.statsMod(-2, -3, 0, 2)
-            elif (ID == 16):
+            elif (ID == Clothes.LOIN_CLOTH):
                 self.cumMod += 0.2
                 self.runMod += 4
                 self.pregChanceMod += 5
                 self.statsMod(2, -4, 0, 2)
-            elif (ID == 20):
+            elif (ID == Clothes.SILK_PANTIES):
                 self.cumMod -= 0.3
                 self.runMod -= 3
                 self.vulvaSize += 1
                 self.enticeMod += 7
                 self.statsMod(0, -2, 2, 2)
-            elif (ID == 22):
+            elif (ID == Clothes.THONG):
                 self.runMod -= 5
                 self.enticeMod += 9
                 self.statsMod(-2, -2, 4, -2)
-            elif (ID == 23):
+            elif (ID == Clothes.BLOOMERS):
                 self.runMod += 6
                 self.rapeMod -= 4
                 self.statsMod(2, -2, 2, 0)
-            elif (ID == 24):
+            elif (ID == Clothes.TIGHTS):
                 self.runMod += 4
                 self.cumMod -= 0.2
                 self.pregChanceMod -= 3
                 self.statsMod(0, 0, 0, 2)
-            if (self.attireTop == self.attireBot and ID != 0 and ID != -1):
+            if (self.attireTop == self.attireBot and ID != Clothes.INVISIBLE_UNDERWEAR and ID != Clothes.TATTERED_SHREDS):
                 self.attireBot = ID
-                self.changeTop(1)
+                self.changeTop(Clothes.SHIRT)
             else:
                 self.attireBot = ID
 
@@ -13813,7 +13852,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
             elif chance == 3:
                 self.doMainText(f"While you parade around a dark street corner in Tieden wearing your {self.currentClothes()}, you are finally approached by a rather tall and grizzled Lupan male. After exchanging some coins with you, you’re led into a back-alley with him. Once out of sight, he grabs you roughly and kisses you hard, though difficult as it is with a muzzle. You can feel his long, rough tongue darting inside your mouth, the sour tinge of alcohol still apparent upon it. He takes the time to ", True)
-                if (self.attireTop == 6):
+                if (self.attireTop == Clothes.LATEX_SUIT):
                     self.doMainText(f"explore your body with his hands. Through the latex, you can feel his attentions. His hands pay especially close attention to your breasts. You support yourself against a nearby bin, his muzzle going to your neck as he licks and tastes the sweat from your body. You can feel yourself getting damp, your pussy tingling in eager desire. You wait for anything, but, with a hint of disappointment in the back of your mind, he continues to feel his way across your body.\n\nFinally, he lets go of you and turns you around as you tempt him some with a wiggle of your ass. A grin spreads across his face as he pulls his cock out of his pants, the large tool having come from the sheath long ago. With your back turned, you wonder what he’ll do. The wait isn't long before he pushes the pointed tip against your latex covered pussy, making you moan in delight. After a few more seconds of rubbing up and down, he lowers himself slowly and begins to thrust back and forth against your pussy. You {self.legVerb(4)} your {self.legDesc(2)}, giving him a fake pussy to fuck below yours. One which he begins to happily use. You can feel the large member against your thighs and rubbing your pussy, every so often hitting your clit which causes a shiver of electric pleasure to race up your spine. His thrusts began to increase, each time he almost pushes his knot through but stops himself. For you, time is lost as an orgasm rocks through your body. During this time, while the latex around your crotch begins to fill with your pussy juice, you feel his thrusts have gotten faster. There is a look of intense desire on his face, his tongue lolling out the side of his muzzle as he grips your waist tighter.\n\nYou can feel him getting close. With some effort, you manage to pry yourself away from his iron grip and get to your {self.legDesc(6)}. You deftly begin to jerk his cock, using both hands to try and draw him to orgasm. It only takes moment, but soon you can feel his cock pulsing in your hands as he sprays you with his cum. At first it’s overwhelming, but you smile as you bathe in the creamy Lupan seed, letting it wash over you and your latex suit.")
                     self.doMainText(" His cock twitches a few times at the end before he puts it away. Satisfied, he leaves you in the alley, the thick scent still heavy in the air.")
                     self.doLust(Math.floor(self.lib / 4), 0, 2)
@@ -14304,15 +14343,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.rndArray.push(3)
         if self.ment < self.lib - 50:
             self.rndArray.push(4)
-        if self.attireBot in {6,17} and self.lust > 80:
+        if self.attireBot in {Clothes.LATEX_SUIT, Clothes.BATHING_SUIT} and self.lust > 80:
             self.rndArray.push(5)
         '''
-        if (not mainobject.useIsBottomOpen and self.attireBot in {5, 7, 12, 13, 14, 16} or mainobject.useIsBottomOpen and self.isBottomOpen(self.attireBot)) and self.lust > 45:
+        if (not mainobject.useIsBottomOpen and self.attireBot in {Clothes.ELEGANT_DRESS, Clothes.SKIRT, Clothes.SUNDRESS, Clothes.SKIMPY_DRESS, Clothes.SHORT_SKIRT, Clothes.LOIN_CLOTH} or mainobject.useIsBottomOpen and self.isBottomOpen(self.attireBot)) and self.lust > 45:
             self.rndArray.push(6)
-        if self.attireBot in {4, 15, 20}:
+        if self.attireBot in {Clothes.BIKINI_BOTTOM, Clothes.SHORT_SHORTS, Clothes.SILK_PANTIES}:
             self.rndArray.push(7)
         '''
-        if self.attireBot in {10,11} and lust > 60:
+        if self.attireBot in {Clothes.DIAPER, Clothes.POOFY_DIAPER} and lust > 60:
             self.rndArray.push(8)
         '''
         chance = self.chooseFrom()
@@ -14460,15 +14499,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.rndArray.push(3)
         if self.ment < self.lib - 50:
             self.rndArray.push(4)
-        if (self.attireBot == 6 or self.attireBot == 17 or self.attireBot == 20) and self.lust > 60):
+        if (self.attireBot == Clothes.LATEX_SUIT or self.attireBot == Clothes.BATHING_SUIT or self.attireBot == Clothes.SILK_PANTIES) and self.lust > 60):
             self.rndArray.push(5)
         '''
-        if self.attireBot in {13, 14} and self.lust > 80:
+        if self.attireBot in {Clothes.SKIMPY_DRESS, Clothes.SHORT_SKIRT} and self.lust > 80:
             self.rndArray.push(6)
         '''
-        if (self.attireBot == 4 or self.attireBot == 15):
+        if (self.attireBot == Clothes.BIKINI_BOTTOM or self.attireBot == Clothes.SHORT_SHORTS):
             self.rndArray.push(7)
-        if (self.attireBot == 10 or self.attireBot == 11) and self.lust > 60):
+        if (self.attireBot == Clothes.DIAPER or self.attireBot == Clothes.POOFY_DIAPER) and self.lust > 60):
             self.rndArray.push(8)
         '''
         chance = self.chooseFrom()
@@ -19994,7 +20033,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("The desert night with the dry air is bitterly cold.", True)
                 if (self.skinType == 2):
                     self.doMainText(" However, your coat of fur helps insulate you, keeping you plenty warm.")
-                elif (self.attireTop == 6):
+                elif (self.attireTop == Clothes.LATEX_SUIT):
                     self.doMainText(" However, the latex suit you wear helps insulate you, keeping you plenty warm.")
                 elif (self.breastSize > 25 or self.boobTotal > 2 and self.breastSize > 17):
                     self.doMainText(" However, your masses of plentiful breast-flesh provides enough warmth to not freeze.")
@@ -21425,8 +21464,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText("You pick up the cake and lift it to your lips. Barely a nibble and it's already gone, hardly enough for even a full swallow. It was somewhat sweet, like a cross between chocolate and the number 3, which is rather ludicrous when you think about it. Wondering why it should have been eaten at all, you attempt to check the table for any sort of shenanigans. You begin to bend down to reach it, only to find yourself bending lower and lower with the table seemingly further and further away. It seems to be shrinking beside you, but then again so is everything else at an increasingly rapid rate...\n\nVery quickly, you realize that you're the one who's growing.", True)
                         if (self.ment < 30):
                             self.doMainText(f" Your {self.currentClothes()} rapidly grows tighter and tighter, squeezing your body until you can hardly breathe. Tearing can be heard along the stitching, flesh from your {self.boobDesc()} chest squeezing through the newly torn holes and a painful wedgie of ripped cloth slips into your {self.buttDesc()} rump, your cheeks slapped by a light breeze. Your {self.hipDesc()} hips soon relieve your ass of the torment as they stretch the waist of your {self.clothesBottom()} to the point to where it barely hangs around your body by thin strands, the rest of the garment flapping in the wind and no longer concealing your genitals. Your {self.boobDesc()} chest follows suit, growing so tight until you can hardly breath until your {self.clothesTop()} bursts into shreds around you, your {self.nipDesc()}nipples perking freely in the cooler air through what's left of your outfit.")
-                            self.changeTop(-1)
-                            self.changeBot(-1)
+                            self.changeTop(Clothes.TATTERED_SHREDS)
+                            self.changeBot(Clothes.TATTERED_SHREDS)
                         else:
                             self.doMainText(f" Your {self.currentClothes()} rapidly grows tighter and tighter, squeezing your body until you can hardly breath. With your quick wit, however, you think fast enough to remove your outfit to prevent yourself from being crushed. You're just in time to slip {self.pullUD(1)} your {self.clothesTop()} before your {self.boobDesc()} chest plows through it and step out of your {self.clothesBottom()} before your {self.buttDesc()} tush shone through the backside. Growing to fast to lay them neatly on the ground, however, you simply let them fall idly, leaving you with a naked bosom and your genitals being frisked by a slight breeze.")
                         if (self.tallness <= 18):
@@ -23849,7 +23888,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         elif self.enemy.ID == Enemy.LONE_WOLF:
             self.doMainText(f"The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your {self.buttDesc()} rump into the air. He sniffs your cunt{self.plural(2)}, lapping at the wetness that soaks through your {self.clothesBottom()}. He jumps up, clawing your {self.clothesBottom()} to shreds until your {self.vulvaDesc()} hot crotch is put on display. Scratching your back, he mounts you from behind.\n\nHis rock-hard rod pokes and prods around your sex until it finds {self.oneYour(2)} gaping hole{self.plural(2)} and plunges it in. You gasp as the steaming meaty flesh pounds into you, the wolf roughly humping away, the inner fur of his thighs rubbing back and forth along your {self.buttDesc()} naked bum. He hugs you with his paws, his muzzle panting beside your ear while drool drips down from his lolling tongue and down your cheek. It only takes a minute before he howls loudly, cum spurting into your pussy at an astonishing rate. You shout as it floods your insides, a thick knot growing at your entrance and spreading you open further...", True)
-            self.changeBot(-1)
+            self.changeBot(Clothes.TATTERED_SHREDS)
             self.doMainText("\n\nYou gasp as you're about to pass out, feeling the wolf tug at your violated cunt in an attempt to get away. Still tied by his knot, his cock squirting away within, ")
             if (self.vagLimit() < 32):
                 self.doMainText("you wince with each pull, the knot stretching you wider,")
@@ -23866,13 +23905,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         elif self.enemy.ID == Enemy.GAY_WOLF:
             self.doMainText(f"The lone wolf rolls you onto all fours with its nose. Obliging, you duck forward, raising your {self.buttDesc()} rump into the air. He sniffs the thing you have presented him, burrowing his wet nose into your cheeks slightly and blowing in acceptance of your offer. He jumps up, clawing your {self.clothesBottom()} to shreds until your {self.buttDesc()} ass is ready for the taking. Scratching your back, he mounts you from behind.\n\nYou can feel his pointed rod poke about the cushioning of your bum, swiftly finding its way into the crevice therein. Slick pre slips around the hole of your ass as the tips circles around, lubricating it lavishly for a smooth injection. A short gasp escapes your lips as the narrow tip kisses the hole, stretching it wide as it then rapidly rams in with a lewd schlick. The wolf's muzzle rests upon your shoulder, the long tongue lolling and panting hot humid air across your cheek. His hips bounce up and down, slipping in and out of your ass with slurping pops, growing more and more stiff. \n\nIt doesn't take long before you feel hot spurts coat the inside of your rectum, splashing against the inner wall again and again. So much semen inside that you can feel yourself begin to bloat. The pressure quickly makes your own {self.cockDesc()} erection{self.plural(1)} burst with white strands below, pumping out in tune to the throbbing of the growing girth in your ass. You can feel yourself stretch, the wolf's knot swelling to anchor itself within, overflowing cum spraying out as the hole tightens...", True)
-            self.changeBot(-1)
+            self.changeBot(Clothes.TATTERED_SHREDS)
             self.doMainText("You gasp as you're about to pass out, feeling the wolf tug at your violated ass in an attempt to get away, gush after gush of spent spunk blowing out each time. Still tied by his knot, his cock now slowly squirting away within, you can't help but get yanked backwards several feet as he drags you over the ground by your sensitive hole. Eventually, you manage to grab at the ground and hold yourself firm, allowing the knot to pop out from your ass, the member spraying across your cheeks with more rushing out about your thighs. Freed of your ass, the wolf takes off into the forest, satisfied, leaving you to lay in the white mess below. ")
             self.doLust(-Math.floor(self.sen / 2), 2, 5)
 
         elif self.enemy.ID == Enemy.HORNY_FELIN:
             self.doMainText(f"Finally having someone as horny as she is, she pounces onto you. She presses your face against her exposed nipples, forcing you to lick the soreness that had been caused by her own rubbing. She grinds up and down your belly, tearing your {self.clothesTop()} to tattered shreds with her claws while biting and suckling from your own {self.nipDesc()}nipples", True)
-            self.changeTop(-1)
+            self.changeTop(Clothes.TATTERED_SHREDS)
             if (self.lactation > 0):
                 self.doMainText(", delighting in the taste of your milk")
             self.doMainText(f". However, it doesn't take long until she reaches beneath her loin cloth and pulls her bikini bottom to the side before she goes diving into your {self.clothesBottom()},")
@@ -24453,7 +24492,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doLust(Math.floor(20 + Utils.percent() / 10), 1)
             elif (attack > 55 and attack <= 80):
                 self.doMainText(f"\n\nOne of her tentacles lashes out at you and whips up {self.legWhere(1)} your {self.legDesc(2)}. It smarts a bit, but it seems as though she intentionally hit you with the softer underside. The suction cups tear through your {self.clothesBottom()} and stick to ")
-                self.changeBot(-1)
+                self.changeBot(Clothes.TATTERED_SHREDS)
                 if (self.vagTotal > 0):
                     self.doMainText(f"the front of your feminine cleft{self.plural(2)}. You can feel fluid seep from the cups and into your clit{self.plural(2)}, arousing you further. She twists with a focused expression, tugging again and again at your clit{self.plural(2)}, trying to wrench herself free after the attack and making your hips buck in turn. By the time she manages to remove her tentacle with a pop, your poor button{self.plural(2)} feel{self.plural(4)} a bit larger than before...")
                     self.doLust(Math.floor(20 + Utils.percent() / 5), 1)
@@ -24465,7 +24504,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif (self.vagTotal < 1 and self.cockTotal < 1):
                     self.doMainText(f"your empty groin. You can feel fluid seep from the cups and into your crotch, arousing you further. She twists with a focused expression, tugging again and again at your {self.skinDesc()}, trying to wrench herself free after the attack. By the time she manages to remove her tentacle with a pop, you spot several hickies from where she had her way with you.")
                     self.doLust(Math.floor(10 + Utils.percent() / 10), 1)
-            elif (attack > 80 and (mainobject.useIsBottomOpen and self.isBottomOpen(self.attireBot) or not mainobject.useIsBottomOpen and self.attireBot == -1)):
+            elif (attack > 80 and (mainobject.useIsBottomOpen and self.isBottomOpen(self.attireBot) or not mainobject.useIsBottomOpen and self.attireBot == Clothes.TATTERED_SHREDS)):
                 self.doMainText("\n\nShe lunges forward at you with a naughty look in her large eyes. She comes intimately close to your face, a long tongue drawing from her mouth and licking you up your cheek. Caught off guard by the sudden sign of affection, you fail to notice her tentacles move in around you.")
                 if (self.vagTotal > 0):
                     self.doMainText(f" Some creep up your {self.legDesc(2)} and sneak beneath your {self.clothesBottom()}, sliding through your {self.vulvaDesc()} nether-lips. With a jump, you find your naughty hole{self.plural(2)} being penetrated. The slick tentacle{self.plural(2)} thrust{self.plural(4)} in and out slightly, as if gauging your size.")
@@ -24565,11 +24604,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.eggceleratorDose += 1
                     if (self.eggceleratorDose > 8 + Math.ceil(Utils.percent() / 20)):
                         self.doMainText(f"A little too fast...\n\nYour {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. In the midst of battle, you squat where you stand, already in the process of laying.")
-                        if (mainobject.useIsBottomOpen and self.isBottomOpen(self.attireBot) or not mainobject.useIsBottomOpen and self.attireBot in {-2, 5, 7, 12, 13, 14, 16, 25}):
+                        # TODO: Fix original game bug, it uses -2 here but clothing item -2 does not exist
+                        if (mainobject.useIsBottomOpen and self.isBottomOpen(self.attireBot) or not mainobject.useIsBottomOpen and self.attireBot in {-2, Clothes.ELEGANT_DRESS, Clothes.SKIRT, Clothes.SUNDRESS, Clothes.SKIMPY_DRESS, Clothes.SHORT_SKIRT, Clothes.LOIN_CLOTH, Clothes.GOTHIC_DRESS}):
                             self.doMainText(f" Without time to remove your clothes, you're thankful for your {self.clothesBottom}'s open crotch as the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and falls to the ground where it shatters and spills its unfertilized contents. Your {self.legDesc(6)} quake to hold yourself up as another egg is already on its way, with another close behind, firing from your poor cunt in such rapid succession that when you open your mouth to scream in climax, nothing can come out.")
                         else:
                             self.doMainText(f" Without time to remove your clothes, the egg immediately slips through {self.oneYour(2)} {self.vulvaDesc()} opening{self.plural(2)} and pushes at your {self.clothesBottom()}. Just one stuck in the crotch of the fabric isn't too much of an issue, but you grip your quaking {self.legDesc(6)} as there are plenty more to come. Another egg pushes against the first, expanding your {self.clothesBottom()} further, their shells cracking slightly against each other, with a third forcing its way through you right behind. After four or five eggs filling your crotch, the cloth finally gives way and tears through, a mess of yolk and shell falling below you. Without any more blockage, the rest of the eggs are free to fly out of your poor cunt and shatter upon the ground, in such rapid succession that when you open your mouth to scream in climax, nothing can come out.")
-                            self.changeBot(-1)
+                            self.changeBot(Clothes.TATTERED_SHREDS)
                         self.doMainText(f"\n\nIt doesn't take long before your {self.legDesc(2)} finally give{self.legPlural(1)} out and you fall into the mess, eggs still slipping through your slit. It doesn't take long for your body to burn through its production, your loins crying out in arousal as the laying slows. And once the last egg slips out, the naga licks her lips and closes in on the defenseless prey...")
                         self.doLust(1000, 0)
                         self.eggceleratorTime = 0
@@ -24959,7 +24999,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText("\n\nYour breasts feel even more active, the high demand on their motherly supply increase your production rate.")
             self.udderPlay = 0
 
-        if (self.lactation > 0 and not (self.attireTop == 28 and Utils.percent() < 50)):
+        if (self.lactation > 0 and not (self.attireTop == Clothes.CAMISOLE and Utils.percent() < 50)):
             self.nipplePlay -= time
 
         if (self.nipplePlay > 100 and self.lactation <= 0):
@@ -25048,7 +25088,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.milkEngorgement = ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 0.5
                     self.milkEngorgementLevel = 0
                     self.stats(0, 0, 0, -5)
-                    self.changeTop(-1)
+                    self.changeTop(Clothes.TATTERED_SHREDS)
                 elif (self.milkEngorgement >= ((self.breastSize * (self.breastSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4):
                     self.doMainText(f"\n\nYou suddenly can't breath as your chest tenses up. For an instant, you feel your {self.nipDesc()} nipples soften.\n\nMilk sprays with fervor all around you, spewing from your nipples like hoses. You shudder in orgasm from the force, milk getting everywhere. There's so much in there that you nearly tear apart your {self.clothesTop()} from the pressure of the gushing. But thankfully, the fabric survives and your nipples die back down, allowing you to see again... So much milk lost, but your breasts have returned to normal in those few moments...")
                     self.milkAmount(1)
@@ -25065,7 +25105,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.udderEngorgement = ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 0.5
                     self.udderEngorgementLevel = 0
                     self.stats(0, 0, 0, -5)
-                    self.changeBot(-1)
+                    self.changeBot(Clothes.TATTERED_SHREDS)
                 elif (self.udderEngorgement >= ((self.udderSize * (self.udderSize + 1) + self.tallness / 4) * 4 + self.milkCap) * 4 and self.udders):
                     self.doMainText(f"\n\nYou suddenly feel sick as your belly tenses up. For an instant, you feel your {self.teatDesc()} teats soften.\n\nMilk sprays with fervor all around you, spewing from your teats like hoses. You shudder in orgasm from the force, milk getting everywhere. There's so much in there that you nearly tear apart your {self.clothesBottom()} from the pressure of the gushing. But thankfully, the fabric survives and your teats die back down, allowing you to see again... So much milk lost, but your udder has returned to normal in those few moments...")
                     self.milkAmount(1)
@@ -26635,7 +26675,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (self.legType == 1):
                 self.carryMod += 10
                 self.runMod -= 10
-            self.changeBot(-1)
+            self.changeBot(Clothes.TATTERED_SHREDS)
             self.carryMod += 100
         if (self.legType != 1001 and which == 1001):
             self.doMainText("\n\nYour tauric half feels strange and tingly.")
@@ -27969,9 +28009,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def domName(self) -> str:
         return Race.name(self.dominant)
 
+    # TODO: Move out of game class
     def isBottomOpen(self, ID: int) -> bool:
-        # Tattered Shreds, Elegant Dress, Skirt, Sundress, Skimpy Dress, Short Skirt, Loin Cloth, Gothic Dress
-        return ID in {-1, 5, 7, 12, 13, 14, 16, 25}
+        return ID in {Clothes.TATTERED_SHREDS, Clothes.ELEGANT_DRESS, Clothes.SKIRT, Clothes.SUNDRESS, Clothes.SKIMPY_DRESS, Clothes.SHORT_SKIRT, Clothes.LOIN_CLOTH, Clothes.GOTHIC_DRESS}
 
     def genName(self) -> str:
         if self.gender == Gender.ANDRO:
