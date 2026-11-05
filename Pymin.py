@@ -507,24 +507,51 @@ class GenericStatsItem(frozendict):
 
     @property
     def name(self) -> str:
-        name = self.get('name')
-        if name is None:
-            return self._NAME_FALLBACK
-        return name
+        return self.get('name', self._NAME_FALLBACK)
 
     @property
     def value(self) -> int:
-        value = self.get('value')
-        if value is None:
-            return self._VALUE_FALLBACK
-        return value
+        return self.get('value', self._VALUE_FALLBACK)
 
     @property
     def description(self) -> str:
-        desc = self.get('description')
-        if desc is None:
-            return self._DESCRIPTION_FALLBACK
-        return desc
+        return self.get('description', self._DESCRIPTION_FALLBACK)
+
+
+class ItemStatsItem(GenericStatsItem):
+    @property
+    def longName(self):
+        ...
+
+    def description(self, context):
+        ...
+
+    @property
+    def longDescription(self):
+        return self.longName + '\n\n' + self.description(mainobject.game)
+
+    @property
+    def isUsable(self):
+        ...
+
+    @property
+    def isConsumable(self):
+        ...
+
+    @property
+    def stackMax(self):
+        ...
+
+    @property
+    def foodValue(self):
+        ...
+
+    @property
+    def useHidesPage(self):
+        ...
+
+
+ITEM_STATS = frozendict({})
 
 
 class HairstyleStatsItem(GenericStatsItem):
@@ -533,10 +560,7 @@ class HairstyleStatsItem(GenericStatsItem):
 
     @property
     def shortDescription(self) -> str:
-        desc = self.get('shortDescription')
-        if desc is None:
-            return 'HAIR DESC_SHORT ERROR'
-        return desc
+        return self.get('shortDescription', 'HAIR DESC_SHORT ERROR')
 
     @property
     def hasLengthOptions(self):
@@ -610,10 +634,7 @@ CLOTHES_STATS = frozendict({
 class RecipeStatsItem(GenericStatsItem):
     @property
     def longName(self):
-        name = self.get('longName')
-        if name is None:
-            return ''
-        return name
+        return self.get('longName', '')
 
     @property
     def longDescription(self):
@@ -676,17 +697,11 @@ RECIPE_STATS = frozendict({
 class EnemyStatsItem(frozendict):
     @property
     def name(self) -> str:
-        name = self.get('name')
-        if name is None:
-            return "ENEMY NAME ERROR"
-        return name
+        return self.get('name', "ENEMY NAME ERROR")
 
     @property
     def baby(self) -> int:
-        baby = self.get('baby')
-        if baby is None:
-            return 0
-        return baby
+        return self.get('baby', 0)
 
     @property
     def HP(self) -> int:
