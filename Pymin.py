@@ -2578,33 +2578,6 @@ class SpecialAbilities:
         return f"SPECIAL ABILITY DESC ERROR {ID}"
 
 
-class ApothecaryItems:
-    def name(ID: int) -> str:
-        if ID >= 200:
-            return Items.name(ID)
-        return RECIPE_STATS[ID].name
-
-    def fullName(ID: int) -> str:
-        if ID >= 200:
-            return Items.fullName(ID)
-        return RECIPE_STATS[ID].longName
-
-    def value(ID: int) -> int:
-        if (ID >= 200):
-            return Items.value(ID)
-        return RECIPE_STATS[ID].value
-
-    def description(ID: int, context: object) -> str:
-        if ID >= 200:
-            return Items.description(ID, context)
-        return RECIPE_STATS[ID].description
-
-    def fullDescription(ID: int) -> str:
-        if (ID >= 200):
-            return Items.fullDescription(ID)
-        return RECIPE_STATS[ID].longDescription
-
-
 class Shop:
     def ID(currentZone: int, goodsSlot: int) -> int:
         if currentZone == Zone.SOFTLIK:
@@ -2800,6 +2773,21 @@ class Apothecary:
             if goodsSlot == 9 and not knowledge.knowMilkSuppress:
                 return Recipe.MILK_SUPPRESS
         return 0
+
+    def itemName(ID: int) -> str:
+        if ID >= 200:
+            return Items.name(ID)
+        return RECIPE_STATS[ID].name
+
+    def itemValue(ID: int) -> int:
+        if (ID >= 200):
+            return Items.value(ID)
+        return RECIPE_STATS[ID].value
+
+    def itemDescription(ID: int) -> str:
+        if (ID >= 200):
+            return Items.fullDescription(ID)
+        return RECIPE_STATS[ID].longDescription
 
 
 class Salon:
@@ -3888,7 +3876,7 @@ class WikiPages:
                         if ID >= 200:
                             tempStr += f'\n<a href="call_args://Item&{ID}">{Items.fullName(ID)}</a>'
                         else:
-                            tempStr += f'\n<a href="call_args://Recipe&{ID}">{ApothecaryItems.fullName(ID)}</a>'
+                            tempStr += f'\n<a href="call_args://Recipe&{ID}">{RECIPE_STATS[ID].longName}</a>'
             return tempStr
         if Num == 4:
             tempStr = "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow."
@@ -12549,8 +12537,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         dlist = []
         tempDict = {4: "Buy", 12: "Return"}
         for i in RANGE9_BUTTON_MAP:
-            tempDict[i] = ApothecaryItems.name(Apothecary.ID(self.currentZone, i, self))
-            if (ApothecaryItems.name(Apothecary.ID(self.currentZone, i, self)) == ""):
+            tempDict[i] = Apothecary.itemName(Apothecary.ID(self.currentZone, i, self))
+            if (Apothecary.itemName(Apothecary.ID(self.currentZone, i, self)) == ""):
                 dlist.append(i)
         self.outputMainText("Click on an item to view its description. If you would like to purchase it, click the Buy button.\n\nRecipes for Alchemy only need to be bought once. After you have learned the recipe, you don't need to learn it again.", True)
         self.doButtonChoices(tempDict)
@@ -12558,22 +12546,22 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             if (self.buttonChoice not in {4, 8, 12} and Apothecary.ID(self.currentZone, self.buttonChoice, self) != 0):
-                self.outputMainText(f"{ApothecaryItems.fullDescription(Apothecary.ID(self.currentZone, self.buttonChoice, self))}\n\nCost: {3 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buttonChoice, self))} coins.", True)
+                self.outputMainText(f"{Apothecary.itemDescription(Apothecary.ID(self.currentZone, self.buttonChoice, self))}\n\nCost: {3 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buttonChoice, self))} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {ApothecaryItems.name(Apothecary.ID(self.currentZone, self.buy, self))}?")
+                self.outputMainText(f"\n\nAre you sure you would like to buy {Apothecary.itemName(Apothecary.ID(self.currentZone, self.buy, self))}?")
                 if (Apothecary.ID(self.currentZone, self.buy, self) > 200 and Items.stackMax(Apothecary.ID(self.currentZone, self.buy, self)) > 1):
                     buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                     tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
-                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))} coins, 2 for {6 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))} coins, 5 for {15 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))} coins")
+                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins, 2 for {6 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins, 5 for {15 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins")
                     if (Items.stackMax(Apothecary.ID(self.currentZone, self.buy, self)) >= 10):
                         tempDict[9] = "Buy 10"
                         buttonlist[9] = 1
-                        self.doMainText(f", 10 for {30 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))} coins")
+                        self.doMainText(f", 10 for {30 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins")
                     if (Items.stackMax(Apothecary.ID(self.currentZone, self.buy, self)) >= 15):
                         tempDict[10] = "Buy 15"
                         buttonlist[10] = 1
-                        self.doMainText(f", 15 for {45 * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))} coins")
+                        self.doMainText(f", 15 for {45 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins")
                     self.outputMainText(".")
                     self.showButtons(buttonlist)
                     self.doButtonChoices(tempDict)
@@ -12597,12 +12585,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             tempInt = 10
                         elif self.buttonChoice == 10:
                             tempInt = 15
-                        if (self.coin < 3 * tempInt * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self))):
-                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self)) - self.coin} more coins to purchase ", True)
+                        if (self.coin < 3 * tempInt * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))):
+                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self)) - self.coin} more coins to purchase ", True)
                             if (tempInt > 1):
-                                self.doMainText(f"{tempInt}x {ApothecaryItems.name(Apothecary.ID(self.currentZone, self.buy, self))}.")
+                                self.doMainText(f"{tempInt}x {Apothecary.itemName(Apothecary.ID(self.currentZone, self.buy, self))}.")
                             else:
-                                self.doMainText(f"{ApothecaryItems.name(Apothecary.ID(self.currentZone, self.buy, self))}.")
+                                self.doMainText(f"{Apothecary.itemName(Apothecary.ID(self.currentZone, self.buy, self))}.")
                             self.displayMainText()
                             self.doNext()
 
@@ -12610,14 +12598,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doApothecary()
                             self.doListen = doListen
                         elif (self.bag.hasItem(Apothecary.ID(self.currentZone, self.buy, self)) and not Items.isConsumable(Apothecary.ID(self.currentZone, self.buy, self))):
-                            self.outputMainText(f"Sorry, but you cannot buy {ApothecaryItems.name(Apothecary.ID(self.currentZone, self.buy, self))} if you already have one. Please choose something else.", True)
+                            self.outputMainText(f"Sorry, but you cannot buy {Apothecary.itemName(Apothecary.ID(self.currentZone, self.buy, self))} if you already have one. Please choose something else.", True)
                             self.doNext()
 
                             def doListen():
                                 self.doApothecary()
                             self.doListen = doListen
                         else:
-                            self.doCoin(-3 * tempInt * ApothecaryItems.value(Apothecary.ID(self.currentZone, self.buy, self)))
+                            self.doCoin(-3 * tempInt * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self)))
                             if (Apothecary.ID(self.currentZone, self.buy, self) > 200):
                                 self.addManyItem(Apothecary.ID(self.currentZone, self.buy, self), tempInt)
                             else:
