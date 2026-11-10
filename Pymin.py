@@ -4389,6 +4389,15 @@ WIKI_MENUS = {
 
 class PyminWiki(PyminWindow):
     @property
+    def scrolledTextBorders(self) -> bool:
+        return mainobject.scrolledTextBorders
+
+    @scrolledTextBorders.setter
+    def scrolledTextBorders(self, value: bool):
+        if self.isOpen:
+            self.window._children['text'].border = value
+
+    @property
     def focus(self) -> int:
         return self._focus
 
@@ -4447,8 +4456,8 @@ class PyminWiki(PyminWindow):
             self.window.resizable = False
 
         # Set up widgets
-        self.window.addScrolledListbox('display', 'menu', x=0, y=0, width=153, height=500, font=('TkTextFont', 8), sbwidth=10, background=self.backgroundColor, foreground=self.textColor)
-        self.window.addHTMLScrolledText('display', 'text', x=153, y=0, width=547, height=500, font=('TkTextFont', self.fontSize - 2), sbwidth=12, background=self.backgroundColor, foreground=self.textColor)
+        self.window.addScrolledListbox('display', 'menu', x=0, y=0, width=153, height=500, font=('TkDefaultFont', 8), sbwidth=10, background=self.backgroundColor, foreground=self.textColor)
+        self.window.addHTMLScrolledText('display', 'text', x=153, y=0, width=547, height=500, font=('TkDefaultFont', self.fontSize - 2), sbwidth=12, background=self.backgroundColor, foreground=self.textColor, border=self.scrolledTextBorders)
         if HAS_CUSTOM_HTML_PARSER:
             self.window._children['text'].html_parser.callobject = self.toPage
         self.window.bindChild('menu', '<Double-1>', self.selectOption_bind)
@@ -28530,6 +28539,7 @@ class PyminMain:
     def scrolledTextBorders(self, value: bool):
         self._scrolledTextBorders = value
         self.game.scrolledTextBorders = value
+        self.wiki.scrolledTextBorders = value
 
     @property
     def originalNewGameButtonSize(self) -> bool:
