@@ -11870,8 +11870,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.disableSelectedButtons(dlist)
 
         def doListen():
-            # TODO: Remove the != 0 check. 0 is a valid hairstyle
-            if (self.buttonChoice not in {4, 8, 12} and Salon.ID(self.currentZone, self.buttonChoice) != 0):
+            # NOTE: The != 0 check is commented out because 0 is a valid hairstyle
+            if (self.buttonChoice not in {4, 8, 12}):  # and Salon.ID(self.currentZone, self.buttonChoice) != 0):
                 self.outputMainText(f"{HAIRSTYLE_STATS[Salon.ID(self.currentZone, self.buttonChoice)].description}\n\nCost: {HAIRSTYLE_STATS[Salon.ID(self.currentZone, self.buttonChoice)].value} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
