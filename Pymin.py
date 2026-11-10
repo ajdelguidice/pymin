@@ -533,7 +533,9 @@ class ItemStatsItem(GenericStatsItem):
         desc = self.get('description')
         if desc is None:
             return self._DESCRIPTION_FALLBACK
-        return desc(context)
+        if callable(desc):
+            return desc(context)
+        return desc
 
     @property
     def longDescription(self):
@@ -561,8 +563,141 @@ class ItemStatsItem(GenericStatsItem):
 
 
 ITEM_STATS = frozendict({
-    Item.NONE: ItemStatsItem(name=' ')
-    # Item.<item>: ItemStatsItem(name=, longName=, value=, isConsumable=, isUsable=, foodValue=, stackMax, useHidesPage=, description=)
+    Item.NONE: ItemStatsItem(name=' '),
+    Item.TEST_ITEM: ItemStatsItem(name="Test", longName="Test Item", value=13, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=True, description="Does nothing."),
+    Item.DEBUG_STICK: ItemStatsItem(name="Debug Stick", longName="Debug Stick", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="Debug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"),
+    Item.TS_ANY: ItemStatsItem(name="TS Any", longName="Teleport Scroll: Any", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="Created for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."),
+    Item.ANC_CLAWS: ItemStatsItem(name="Anc Claws", longName="Claws of the Lupine Ancestors", value=50, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description="Harkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."),
+    Item.IMB_SHOES: ItemStatsItem(name="Imb Shoes", longName="Imbued Horseshoes", value=50, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description="Crafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."),
+    Item.DRY_SAND: ItemStatsItem(name="Dry Sand", longName="Magical Sands of the Dry Dunes", value=20, foodValue=0, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="Applying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."),
+    Item.MILKER: ItemStatsItem(name="Milker", longName="Milking Machine", value=100, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="A compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."),
+    Item.CATS_MEOW: ItemStatsItem(name="Cat's Meow", longName="'Cat's Meow' Potion", value=30, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Favored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."),
+    Item.PENIS_PUMP: ItemStatsItem(name="Penis Pump", longName="Penis Pump", value=75, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="A simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."),
+    Item.BLOOD_GGE: ItemStatsItem(name="Blood Gge", longName="Blood Gauge", value=50, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="Due to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."),
+    Item.EDU_EGG: ItemStatsItem(name="Edu Egg", longName="Educated Eggdicator", value=125, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="With so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."),
+    Item.REDUCTION: ItemStatsItem(name="Reduction", longName="A Reduction of Reducer Agents", value=20, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."),
+    Item.SKIN_BALM: ItemStatsItem(name="Skin Balm", longName="Skin Balm", value=15, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Used and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."),
+    Item.BOL_JOICE: ItemStatsItem(name="Bol Juice", longName="Bolstering Juice", value=15, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."),
+    Item.TAINT_LEAF: ItemStatsItem(name="Taint Leaf", longName="Tainted Leaf", value=15, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."),
+    Item.SWEET_SAP: ItemStatsItem(name="Sweet Sap", longName="Sweet Sap", value=15, foodValue=5, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Used and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."),
+    Item.POULTICE: ItemStatsItem(name="Poultice", longName="Poultice", value=5, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."),
+    Item.DAGGER: ItemStatsItem(name="Dagger", longName="Dagger", value=20, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="A relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"),
+    Item.HAMMER: ItemStatsItem(name="Hammer", longName="Warhammer", value=30, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="A rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"),
+    Item.SABER: ItemStatsItem(name="Saber", longName="Saber", value=55, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="A well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"),
+    Item.WHIP: ItemStatsItem(name="Whip", longName="Whip", value=40, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="A somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"),
+    Item.NEUTER: ItemStatsItem(name="Neuter", longName="Neuterizer", value=30, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Developed by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."),
+    Item.TS_SOFT: ItemStatsItem(name="TS Soft", longName="Teleport Scroll: Softlik", value=15, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."),
+    Item.TS_FIRM: ItemStatsItem(name="TS Firm", longName="Teleport Scroll: Firmshaft", value=15, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."),
+    Item.TS_TIED: ItemStatsItem(name="TS Tied", longName="Teleport Scroll: Tieden", value=15, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."),
+    Item.TS_SIZ: ItemStatsItem(name="TS Siz", longName="Teleport Scroll: Siz'Calit", value=15, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."),
+    Item.TS_OVI: ItemStatsItem(name="TS Ovi", longName="Teleport Scroll: Oviasis", value=15, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."),
+    Item.OAS_WATER: ItemStatsItem(name="Oas Water", longName="Oasis Water", value=15, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="A vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."),
+    Item.TAIL_SPIKE: ItemStatsItem(name="Tail Spike", longName="Tail Spike", value=35, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="This large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."),
+    Item.TS_SANC: ItemStatsItem(name="TS Sanct", longName="Teleport Scroll: Sanctuary", value=25, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Created for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."),
+    Item.LILAS_GIFT: ItemStatsItem(name="Lila's Gift", longName="Lila's Gift", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description="A small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."),
+    Item.MILK_C_POIS: ItemStatsItem(name="Milk C Pois", longName="Milk Creeper Poison", value=15, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Obtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."),
+    Item.CO_SNAK_VEN: ItemStatsItem(name="Co-Snak Ven", longName="Cock-Snake Venom", value=15, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Obtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."),
+    Item.WOLF_FUR: ItemStatsItem(name="Wolf Fur", longName="Tuft of Wolf Fur", value=5, foodValue=0, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description=lambda player: f"Obtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {player.skinDesc()}."),
+    Item.SM_POUCH1: ItemStatsItem(name="Sm Pouch", longName="Small Pouch", value=1, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This is a small pouch you have obtained somewhere. Use it to see what it contains!"),
+    Item.SM_POUCH2: ItemStatsItem(name="Sm Pouch", longName="Small Pouch", value=1, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This is a small pouch you have obtained somewhere. Use it to see what it contains!"),
+    Item.TRINKET: ItemStatsItem(name="Trinket", longName="Shiny Trinket", value=30, foodValue=0, stackMax=10, isConsumable=False, isUsable=False, useHidesPage=False, description="Other than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."),
+    Item.COCK_CARV: ItemStatsItem(name="Cock Carv", longName="Wooden Cock Carving", value=20, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"),
+    Item.BLO_BERRY: ItemStatsItem(name="Blo Berry", longName="Bloated Berry", value=15, foodValue=8, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."),
+    Item.GRAIN: ItemStatsItem(name="Grain", longName="Handful of Grain", value=3, foodValue=10, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="A handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"),
+    Item.PUSS_FRUIT: ItemStatsItem(name="Puss Fruit", longName="Pussy Fruit", value=17, foodValue=20, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="It is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."),
+    Item.DAIRE_PILL: ItemStatsItem(name="DairE Pill", longName="DairE Pill", value=10, foodValue=5, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="Produced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."),
+    Item.RED_MUSH: ItemStatsItem(name="Red Mush", longName="Red Mushroom", value=14, foodValue=15, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="An odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."),
+    Item.WET_CLOTH: ItemStatsItem(name="Wet Cloth", longName="Wet, Slimy Cloth", value=5, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="This piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."),
+    Item.LON_MILK: ItemStatsItem(name="Lon Milk", longName="Malon's Milk", value=5, foodValue=30, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Unlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."),
+    Item.LON_PENDANT: ItemStatsItem(name="Lon Pendant", longName="Malon's Pendant", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description="Given to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."),
+    Item.PINK_INK: ItemStatsItem(name="Pink Ink", longName="Pink Ink", value=150, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Octopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."),
+    Item.EGG_JELLY: ItemStatsItem(name="Egg Jelly", longName="Octopus Egg Jelly", value=40, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="The jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."),
+    Item.BUL_BERRY: ItemStatsItem(name="Bul Berry", longName="Bulging Berry", value=20, foodValue=10, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."),
+    Item.FRESH_EGG: ItemStatsItem(name="Fresh Egg", longName="Fresh Egg", value=5, foodValue=15, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="An unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."),
+    Item.BLONDE_DYE: ItemStatsItem(name="Blondie", longName="Blonde Dye", value=50, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="A dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."),
+    Item.PUSS_JUICE: ItemStatsItem(name="Puss Juice", longName="Concentrated Pussy Fruit Juice", value=30, foodValue=15, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Created by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."),
+    Item.KINKY_CARR: ItemStatsItem(name="Kinky Carr", longName="Kinky Carrot", value=15, foodValue=10, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Used in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."),
+    Item.EQ_SNACK: ItemStatsItem(name="Eq Snack", longName="Equan Snack", value=15, foodValue=25, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."),
+    Item.LILAS_MILK: ItemStatsItem(name="Lila's Milk", longName="Lila's Milk", value=10, foodValue=20, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="From the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."),
+    Item.BODY_WASH: ItemStatsItem(name="Body Wash", longName="Body Wash", value=10, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="This nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."),
+    Item.FELIN_TEA: ItemStatsItem(name="Felin Tea", longName="Felin Tea Mix", value=5, foodValue=10, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="A common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."),
+    Item.ORAL_WASH: ItemStatsItem(name="Oral Wash", longName="Felin Oral Wash", value=10, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="With bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."),
+    Item.BODY_OIL: ItemStatsItem(name="Body Oil", longName="Body Oil", value=10, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Nice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."),
+    Item.LEATHER_STRAP: ItemStatsItem(name="Leath Strap", longName="Leather Strap", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description="Found somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."),
+    Item.EGGCELERATOR: ItemStatsItem(name="Eggcelerator", longName="Eggcelerator", value=25, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Meant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."),
+    Item.DESI_SAND: ItemStatsItem(name="Desi Sand", longName="Desiccating Sand", value=15, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Obtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."),
+    Item.FLYING_CARP: ItemStatsItem(name="Flying Carp", longName="Flying Carpet", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="Borrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."),
+    Item.A_GRAV_ROCK: ItemStatsItem(name="A-Grav Rock", longName="Anti-Gravity Rock", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description=lambda player: f"Borrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {player.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"),
+    Item.REIN_CHARM: ItemStatsItem(name="Rein Charm", longName="Reindeer Charm", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description="Borrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."),
+    Item.FELL_ROD: ItemStatsItem(name="Fell Rod", longName="Fellatio Rod", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description="Borrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."),
+    Item.RECEPT_BELL: ItemStatsItem(name="Recept Bell", longName="Reception Bell", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description="Borrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"),
+    Item.DEWY_GIFT: ItemStatsItem(name="Dewy Gift", longName="Lila's Dewy Gift", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description="Originally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."),
+    Item.SQU_CHEESE: ItemStatsItem(name="Squ Cheese", longName="Squeaky Cheese", value=10, foodValue=20, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="Some cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."),
+    Item.SHINY_ROCK: ItemStatsItem(name="Shiny Rock", longName="Shiny Rock", value=3, foodValue=0, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="A rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."),
+    Item.AUBURN_DYE: ItemStatsItem(name="Auburn Dye", longName="Auburn Dye", value=75, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="A dark reddish color, this dye will turn your hair auburn when used, if you have hair"),
+    Item.BROWN_DYE: ItemStatsItem(name="Brown Dye", longName="Brown Dye", value=30, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="A simple brownish, this dye will turn your hair brown when used, if you have hair"),
+    Item.GREY_DYE: ItemStatsItem(name="Grey Dye", longName="Grey Dye", value=45, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="A shade, this dye will turn your hair grey when used, if you have hair"),
+    Item.WHITE_DYE: ItemStatsItem(name="White Dye", longName="White Dye", value=100, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Lacking any color, this dye will turn your hair pure white when used, if you have hair"),
+    Item.SNUGGLE_BALL: ItemStatsItem(name="Snuggle Ball", longName="Snuggle Ball", value=35, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description=lambda player: "Not really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy." if (player.snuggleBall) else "Squishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."),
+    Item.FACIAL_MUD: ItemStatsItem(name="Facial Mud", longName="Facial Mud", value=15, foodValue=0, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="Some mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."),
+    Item.FERTILE_GEL: ItemStatsItem(name="Fertile Gel", longName="Fertile Gel", value=20, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."),
+    Item.SUPP_HARNESS: ItemStatsItem(name="Supp Harness", longName="Support Harness", value=80, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description=lambda player: "This contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!" + ("\n\nYou currently have a harness equipped. Using it will unequip the harness." if (player.suppHarness) else "")),
+    Item.BREEDER_POT: ItemStatsItem(name="Breeder Pot", longName="Breeder Potion", value=25, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="This potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."),
+    Item.TREANTS_TEAR: ItemStatsItem(name="Treant's Tear", longName="Treant's Tear", value=45, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."),
+    Item.FOOMP_BOMB: ItemStatsItem(name="Foomp Bomb", longName="Foomp Bomb", value=45, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Much like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."),
+    Item.PLUMP_QUAT: ItemStatsItem(name="Plump Quat", longName="Plump Quat", value=10, foodValue=40, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="The quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."),
+    Item.MILKY_PEND: ItemStatsItem(name="Milky Pend", longName="Malon's Milky Pendant", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description="This is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."),
+    Item.BUG_EGG: ItemStatsItem(name="Bug Egg", longName="Bug Egg", value=3, foodValue=4, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description=lambda player: "Relatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty." + ("\n\nHowever, you do notice that the egg is just about the right size for the ovipositor hanging off your backside." if (player.tail == 12) else "")),
+    Item.LANTERN: ItemStatsItem(name="Lantern", longName="Lantern", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description="This is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."),
+    Item.FRAG_FLOWER: ItemStatsItem(name="Frag Flower", longName="Fragrant Flower", value=15, foodValue=0, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="A very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."),
+    Item.NECTAR_CANDY: ItemStatsItem(name="Nectar Candy", longName="Nectar Candy", value=20, foodValue=15, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="A sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."),
+    Item.TOO_HUMAN: ItemStatsItem(name="Too Human", longName="Too Human Potion", value=30, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"),
+    Item.TAINTED_POT: ItemStatsItem(name="Tainted Pot", longName="Tainted Potion", value=30, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."),
+    Item.SWEET_AND_SOUR: ItemStatsItem(name="Sweet&Sour", longName="Sweet & Sour Candy", value=50, foodValue=25, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="This rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."),
+    Item.SUCC_DRAFT: ItemStatsItem(name="Succ Draft", longName="Succubus Draft", value=45, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="One of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."),
+    Item.ITEM_NOT_FOUND: ItemStatsItem(name="Item Not Found", longName="Item Not Found", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=False, useHidesPage=False, description=lambda player: "Item Not Found" + (" (This is a joke item referencing status code 404)" if (mainobject.isDebugger) else "")),
+    Item.TEAPOT: ItemStatsItem(name="Teapot", longName="Strange Teapot", value=0, foodValue=0, stackMax=1, isConsumable=False, isUsable=True, useHidesPage=True, description=lambda player: "Inscribed on the side are the words \"I'm a teapot\"." + (" (This is a joke item referencing status code 418)" if (mainobject.isDebugger) else "")),
+    Item.MILK_BOTTLE: ItemStatsItem(name="Milk Bottle", longName="Bottle of Milk", value=5, foodValue=30, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."),
+    Item.MILK_JUG: ItemStatsItem(name="Milk Jug", longName="Jug of Milk", value=15, foodValue=70, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="A large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."),
+    Item.MILK_BARREL: ItemStatsItem(name="Milk Barrel", longName="Barrel of Milk", value=70, foodValue=0, stackMax=1, isConsumable=True, isUsable=False, useHidesPage=True, description="A barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."),
+    Item.LUST_DRAFT: ItemStatsItem(name="Lust Draft", longName="Lust Draft", value=10, foodValue=3, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A potion that will increase your lust by 20 instantly when used."),
+    Item.REJUV_POT: ItemStatsItem(name="Rejuv Pot", longName="Rejuvenating Potion", value=10, foodValue=5, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A potion that will heal 30 HP and reduce your lust by 15 instantly when used."),
+    Item.BAD_EXPER: ItemStatsItem(name="Bad Exper", longName="Bad Experiment", value=10, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."),
+    Item.EXP_PREG: ItemStatsItem(name="Exp Preg", longName="Express Pregnancy Potion", value=10, foodValue=5, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="When that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."),
+    Item.BALL_SWELLER: ItemStatsItem(name="Ball Sweller", longName="Ball Sweller", value=10, foodValue=7, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Imbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."),
+    Item.S_LUST_DRAFT: ItemStatsItem(name="S Lust Draft", longName="Superior Lust Draft", value=25, foodValue=7, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A potion that will increase your lust by 50 instantly when used."),
+    Item.S_REJUV_POT: ItemStatsItem(name="S Rejuv Pot", longName="Superior Rejuvenating Potion", value=25, foodValue=8, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A potion that will heal 70 HP and reduce your lust by 40 instantly when used."),
+    Item.S_BAD_EXPER: ItemStatsItem(name="S Bad Exper", longName="Super Bad Experiment", value=25, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="This extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."),
+    Item.S_EXP_PREG: ItemStatsItem(name="S Exp Preg", longName="Superior Express Pregnancy Potion", value=25, foodValue=10, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="When that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."),
+    Item.S_BALL_SWELLER: ItemStatsItem(name="S Ball Sweller", longName="Superior Ball Sweller", value=25, foodValue=10, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Imbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."),
+    Item.GEN_SWAP: ItemStatsItem(name="Gen Swap", longName="Gender Swap Potion", value=20, foodValue=4, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="If you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."),
+    Item.MASO_POT: ItemStatsItem(name="Maso Pot", longName="Masochism Potion", value=20, foodValue=4, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="After this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."),
+    Item.BLACK_DYE: ItemStatsItem(name="Black Dye", longName="Black Dye", value=20, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This will turn your hair black in color when used, if you have hair."),
+    Item.BABY_FREE: ItemStatsItem(name="Baby Free", longName="Baby Free Potion", value=20, foodValue=15, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."),
+    Item.POT_POT: ItemStatsItem(name="Pot Pot", longName="Potency Potion", value=20, foodValue=15, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Kicking your balls into gear, they will permanently produce 20% more cum, despite their size."),
+    Item.S_GEN_SWAP: ItemStatsItem(name="S Gen Swap", longName="Superior Gender Swap Potion", value=50, foodValue=8, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="If you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."),
+    Item.S_MASO_POT: ItemStatsItem(name="S Maso Pot", longName="Superior Masochism Potion", value=50, foodValue=8, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="After this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."),
+    Item.RED_DYE: ItemStatsItem(name="Red Dye", longName="Red Dye", value=150, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This will turn your hair red in color when used, if you have hair."),
+    Item.S_BABY_FREE: ItemStatsItem(name="S Baby Free", longName="Superior Baby Free Potion", value=50, foodValue=20, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."),
+    Item.S_POT_POT: ItemStatsItem(name="S Pot Pot", longName="Superior Potency Potion", value=50, foodValue=20, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Drop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."),
+    Item.CUM_VIAL: ItemStatsItem(name="Cum Vial", longName="Vial of Cum", value=2, foodValue=10, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="Still kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."),
+    Item.CUM_BOTTLE: ItemStatsItem(name="Cum Bottle", longName="Bottle of Cum", value=7, foodValue=30, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."),
+    Item.CUM_JUG: ItemStatsItem(name="Cum Jug", longName="Jug of Cum", value=25, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="A jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."),
+    Item.CUM_BARREL: ItemStatsItem(name="Cum Barrel", longName="Barrel of Cum", value=5, foodValue=0, stackMax=1, isConsumable=True, isUsable=False, useHidesPage=True, description="There's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."),
+    Item.GOOD_EGG: ItemStatsItem(name="Good Egg", longName="Good Egg", value=10, foodValue=15, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="An unfertilized fresh egg that is especially good for your health and body."),
+    Item.BAD_EGG: ItemStatsItem(name="Bad Egg", longName="Bad Egg", value=2, foodValue=0, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="An unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."),
+    Item.STRANGE_EGG: ItemStatsItem(name="Strange Egg", longName="Strange Egg", value=30, foodValue=1, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="An unfertilized fresh egg that can do... odd things to your body."),
+    Item.CHARMED_EGG: ItemStatsItem(name="Charmed Egg", longName="Charmed Egg", value=40, foodValue=20, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="An unfertilized fresh egg that will make you quite alluring for 20 hours."),
+    Item.DIVINE_EGG: ItemStatsItem(name="Divine Egg", longName="Divine Egg", value=69, foodValue=50, stackMax=1, isConsumable=True, isUsable=False, useHidesPage=True, description="A very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."),
+    Item.PHEROMONE: ItemStatsItem(name="Pheromone", longName="Strong Pheromone", value=75, foodValue=0, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Originally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."),
+    Item.REDUC_REDUC: ItemStatsItem(name="Reduc Reduc", longName="Reduced Reduction", value=5, foodValue=0, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="A weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."),
+    Item.MALE_ENHANCE: ItemStatsItem(name="Male Enhance", longName="Male Enhancement Drug", value=10, foodValue=5, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="A simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."),
+    Item.MILK_SUPPRESS: ItemStatsItem(name="Milk Suppress", longName="Milk Suppressant", value=20, foodValue=10, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="This drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."),
+    Item.BAZOOMBA: ItemStatsItem(name="Bazoomba!", longName="Bazoomba!", value=20, foodValue=15, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="This glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."),
+    Item.QUEEN_EGG: ItemStatsItem(name="Queen Egg", longName="Queen Egg", value=30, foodValue=25, stackMax=5, isConsumable=True, isUsable=False, useHidesPage=True, description="Not the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."),
+    Item.SOLDIER_EGG: ItemStatsItem(name="Soldier Egg", longName="Soldier Egg", value=20, foodValue=20, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Not the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"),
+    Item.DRONE_EGG: ItemStatsItem(name="Drone Egg", longName="Drone Egg", value=10, foodValue=15, stackMax=10, isConsumable=True, isUsable=False, useHidesPage=True, description="Not the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."),
+    Item.WORKER_EGG: ItemStatsItem(name="Worker Egg", longName="Worker Egg", value=5, foodValue=10, stackMax=15, isConsumable=True, isUsable=False, useHidesPage=True, description="Not the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!")
 })
 
 
@@ -1599,966 +1734,6 @@ class Calc:
 
 
 class Items:
-    def name(ID: int) -> str:
-        '''
-        Function which returns the name of the item ID
-        '''
-        if (ID == Item.NONE):
-            return " "
-        if (ID == Item.TEST_ITEM):
-            return "Test"
-        if (ID == Item.DEBUG_STICK):
-            return "Debug Stick"
-        if (ID == Item.TS_ANY):
-            return "TS Any"
-        if (ID == Item.ITEM_NOT_FOUND):
-            return "Item Not Found"
-        if (ID == Item.TEAPOT):
-            return "Teapot"
-        if (ID == Item.ANC_CLAWS):
-            return "Anc Claws"
-        if (ID == Item.IMB_SHOES):
-            return "Imb Shoes"
-        if (ID == Item.DRY_SAND):
-            return "Dry Sand"
-        if (ID == Item.MILKER):
-            return "Milker"
-        if (ID == Item.CATS_MEOW):
-            return "Cat's Meow"
-        if (ID == Item.PENIS_PUMP):
-            return "Penis Pump"
-        if (ID == Item.BLOOD_GGE):
-            return "Blood Gge"
-        if (ID == Item.EDU_EGG):
-            return "Edu Egg"
-        if (ID == Item.REDUCTION):
-            return "Reduction"
-        if (ID == Item.SKIN_BALM):
-            return "Skin Balm"
-        if (ID == Item.BOL_JOICE):
-            return "Bol Juice"
-        if (ID == Item.TAINT_LEAF):
-            return "Taint Leaf"
-        if (ID == Item.SWEET_SAP):
-            return "Sweet Sap"
-        if (ID == Item.POULTICE):
-            return "Poultice"
-        if (ID == Item.DAGGER):
-            return "Dagger"
-        if (ID == Item.HAMMER):
-            return "Hammer"
-        if (ID == Item.SABER):
-            return "Saber"
-        if (ID == Item.WHIP):
-            return "Whip"
-        if (ID == Item.NEUTER):
-            return "Neuter"
-        if (ID == Item.TS_SOFT):
-            return "TS Soft"
-        if (ID == Item.TS_FIRM):
-            return "TS Firm"
-        if (ID == Item.TS_TIED):
-            return "TS Tied"
-        if (ID == Item.TS_SIZ):
-            return "TS Siz"
-        if (ID == Item.TS_OVI):
-            return "TS Ovi"
-        if (ID == Item.OAS_WATER):
-            return "Oas Water"
-        if (ID == Item.TAIL_SPIKE):
-            return "Tail Spike"
-        if (ID == Item.TS_SANC):
-            return "TS Sanct"
-        if (ID == Item.LILAS_GIFT):
-            return "Lila's Gift"
-        if (ID == Item.MILK_C_POIS):
-            return "Milk C Pois"
-        if (ID == Item.CO_SNAK_VEN):
-            return "Co-Snak Ven"
-        if (ID == Item.WOLF_FUR):
-            return "Wolf Fur"
-        if (ID == Item.SM_POUCH1):
-            return "Sm Pouch"
-        if (ID == Item.SM_POUCH2):
-            return "Sm Pouch"
-        if (ID == Item.TRINKET):
-            return "Trinket"
-        if (ID == Item.COCK_CARV):
-            return "Cock Carv"
-        if (ID == Item.BLO_BERRY):
-            return "Blo Berry"
-        if (ID == Item.GRAIN):
-            return "Grain"
-        if (ID == Item.PUSS_FRUIT):
-            return "Puss Fruit"
-        if (ID == Item.DAIRE_PILL):
-            return "DairE Pill"
-        if (ID == Item.RED_MUSH):
-            return "Red Mush"
-        if (ID == Item.WET_CLOTH):
-            return "Wet Cloth"
-        if (ID == Item.LON_MILK):
-            return "Lon Milk"
-        if (ID == Item.LON_PENDANT):
-            return "Lon Pendant"
-        if (ID == Item.PINK_INK):
-            return "Pink Ink"
-        if (ID == Item.EGG_JELLY):
-            return "Egg Jelly"
-        if (ID == Item.BUL_BERRY):
-            return "Bul Berry"
-        if (ID == Item.FRESH_EGG):
-            return "Fresh Egg"
-        if (ID == Item.BLONDE_DYE):
-            return "Blondie"
-        if (ID == Item.PUSS_JUICE):
-            return "Puss Juice"
-        if (ID == Item.KINKY_CARR):
-            return "Kinky Carr"
-        if (ID == Item.EQ_SNACK):
-            return "Eq Snack"
-        if (ID == Item.LILAS_MILK):
-            return "Lila's Milk"
-        if (ID == Item.BODY_WASH):
-            return "Body Wash"
-        if (ID == Item.FELIN_TEA):
-            return "Felin Tea"
-        if (ID == Item.ORAL_WASH):
-            return "Oral Wash"
-        if (ID == Item.BODY_OIL):
-            return "Body Oil"
-        if (ID == Item.LEATHER_STRAP):
-            return "Leath Strap"
-        if (ID == Item.EGGCELERATOR):
-            return "Eggcelerator"
-        if (ID == Item.DESI_SAND):
-            return "Desi Sand"
-        if (ID == Item.FLYING_CARP):
-            return "Flying Carp"
-        if (ID == Item.A_GRAV_ROCK):
-            return "A-Grav Rock"
-        if (ID == Item.REIN_CHARM):
-            return "Rein Charm"
-        if (ID == Item.FELL_ROD):
-            return "Fell Rod"
-        if (ID == Item.RECEPT_BELL):
-            return "Recept Bell"
-        if (ID == Item.DEWY_GIFT):
-            return "Dewy Gift"
-        if (ID == Item.SQU_CHEESE):
-            return "Squ Cheese"
-        if (ID == Item.SHINY_ROCK):
-            return "Shiny Rock"
-        if (ID == Item.AUBURN_DYE):
-            return "Auburn Dye"
-        if (ID == Item.BROWN_DYE):
-            return "Brown Dye"
-        if (ID == Item.GREY_DYE):
-            return "Grey Dye"
-        if (ID == Item.WHITE_DYE):
-            return "White Dye"
-        if (ID == Item.SNUGGLE_BALL):
-            return "Snuggle Ball"
-        if (ID == Item.FACIAL_MUD):
-            return "Facial Mud"
-        if (ID == Item.FERTILE_GEL):
-            return "Fertile Gel"
-        if (ID == Item.SUPP_HARNESS):
-            return "Supp Harness"
-        if (ID == Item.BREEDER_POT):
-            return "Breeder Pot"
-        if (ID == Item.TREANTS_TEAR):
-            return "Treant\'s Tear"
-        if (ID == Item.FOOMP_BOMB):
-            return "Foomp Bomb"
-        if (ID == Item.PLUMP_QUAT):
-            return "Plump Quat"
-        if (ID == Item.MILKY_PEND):
-            return "Milky Pend"
-        if (ID == Item.BUG_EGG):
-            return "Bug Egg"
-        if (ID == Item.LANTERN):
-            return "Lantern"
-        if (ID == Item.FRAG_FLOWER):
-            return "Frag Flower"
-        if (ID == Item.NECTAR_CANDY):
-            return "Nectar Candy"
-        if (ID == Item.TOO_HUMAN):
-            return "Too Human"
-        if (ID == Item.TAINTED_POT):
-            return "Tainted Pot"
-        if (ID == Item.SWEET_AND_SOUR):
-            return "Sweet&Sour"
-        if (ID == Item.SUCC_DRAFT):
-            return "Succ Draft"
-        if (ID == Item.MILK_BOTTLE):
-            return "Milk Bottle"
-        if (ID == Item.MILK_JUG):
-            return "Milk Jug"
-        if (ID == Item.MILK_BARREL):
-            return "Milk Barrel"
-        if (ID == Item.LUST_DRAFT):
-            return "Lust Draft"
-        if (ID == Item.REJUV_POT):
-            return "Rejuv Pot"
-        if (ID == Item.BAD_EXPER):
-            return "Bad Exper"
-        if (ID == Item.EXP_PREG):
-            return "Exp Preg"
-        if (ID == Item.BALL_SWELLER):
-            return "Ball Sweller"
-        if (ID == Item.S_LUST_DRAFT):
-            return "S Lust Draft"
-        if (ID == Item.S_REJUV_POT):
-            return "S Rejuv Pot"
-        if (ID == Item.S_BAD_EXPER):
-            return "S Bad Exper"
-        if (ID == Item.S_EXP_PREG):
-            return "S Exp Preg"
-        if (ID == Item.S_BALL_SWELLER):
-            return "S Ball Sweller"
-        if (ID == Item.GEN_SWAP):
-            return "Gen Swap"
-        if (ID == Item.MASO_POT):
-            return "Maso Pot"
-        if (ID == Item.BLACK_DYE):
-            return "Black Dye"
-        if (ID == Item.BABY_FREE):
-            return "Baby Free"
-        if (ID == Item.POT_POT):
-            return "Pot Pot"
-        if (ID == Item.S_GEN_SWAP):
-            return "S Gen Swap"
-        if (ID == Item.S_MASO_POT):
-            return "S Maso Pot"
-        if (ID == Item.RED_DYE):
-            return "Red Dye"
-        if (ID == Item.S_BABY_FREE):
-            return "S Baby Free"
-        if (ID == Item.S_POT_POT):
-            return "S Pot Pot"
-        if (ID == Item.CUM_VIAL):
-            return "Cum Vial"
-        if (ID == Item.CUM_BOTTLE):
-            return "Cum Bottle"
-        if (ID == Item.CUM_JUG):
-            return "Cum Jug"
-        if (ID == Item.CUM_BARREL):
-            return "Cum Barrel"
-        if (ID == Item.GOOD_EGG):
-            return "Good Egg"
-        if (ID == Item.BAD_EGG):
-            return "Bad Egg"
-        if (ID == Item.STRANGE_EGG):
-            return "Strange Egg"
-        if (ID == Item.CHARMED_EGG):
-            return "Charmed Egg"
-        if (ID == Item.DIVINE_EGG):
-            return "Divine Egg"
-        if (ID == Item.PHEROMONE):
-            return "Pheromone"
-        if (ID == Item.REDUC_REDUC):
-            return "Reduc Reduc"
-        if (ID == Item.MALE_ENHANCE):
-            return "Male Enhance"
-        if (ID == Item.MILK_SUPPRESS):
-            return "Milk Suppress"
-        if (ID == Item.BAZOOMBA):
-            return "Bazoomba!"
-        if (ID == Item.QUEEN_EGG):
-            return "Queen Egg"
-        if (ID == Item.SOLDIER_EGG):
-            return "Soldier Egg"
-        if (ID == Item.DRONE_EGG):
-            return "Drone Egg"
-        if (ID == Item.WORKER_EGG):
-            return "Worker Egg"
-        return f"ITEM NAME ERROR {ID}"
-
-    def fullName(ID: int) -> str:
-        if ID == Item.TEST_ITEM:
-            return "Test Item"
-        if ID == Item.DEBUG_STICK:
-            return "Debug Stick"
-        if ID == Item.TS_ANY:
-            return "Teleport Scroll: Any"
-        if ID == Item.ANC_CLAWS:
-            return "Claws of the Lupine Ancestors"
-        if ID == Item.IMB_SHOES:
-            return "Imbued Horseshoes"
-        if ID == Item.DRY_SAND:
-            return "Magical Sands of the Dry Dunes"
-        if ID == Item.MILKER:
-            return "Milking Machine"
-        if ID == Item.CATS_MEOW:
-            return "'Cat's Meow' Potion"
-        if ID == Item.PENIS_PUMP:
-            return "Penis Pump"
-        if ID == Item.BLOOD_GGE:
-            return "Blood Gauge"
-        if ID == Item.EDU_EGG:
-            return "Educated Eggdicator"
-        if ID == Item.REDUCTION:
-            return "A Reduction of Reducer Agents"
-        if ID == Item.SKIN_BALM:
-            return "Skin Balm"
-        if ID == Item.BOL_JOICE:
-            return "Bolstering Juice"
-        if ID == Item.TAINT_LEAF:
-            return "Tainted Leaf"
-        if ID == Item.SWEET_SAP:
-            return "Sweet Sap"
-        if ID == Item.POULTICE:
-            return "Poultice"
-        if ID == Item.DAGGER:
-            return "Dagger"
-        if ID == Item.HAMMER:
-            return "Warhammer"
-        if ID == Item.SABER:
-            return "Saber"
-        if ID == Item.WHIP:
-            return "Whip"
-        if ID == Item.NEUTER:
-            return "Neuterizer"
-        if ID == Item.TS_SOFT:
-            return "Teleport Scroll: Softlik"
-        if ID == Item.TS_FIRM:
-            return "Teleport Scroll: Firmshaft"
-        if ID == Item.TS_TIED:
-            return "Teleport Scroll: Tieden"
-        if ID == Item.TS_SIZ:
-            return "Teleport Scroll: Siz'Calit"
-        if ID == Item.TS_OVI:
-            return "Teleport Scroll: Oviasis"
-        if ID == Item.OAS_WATER:
-            return "Oasis Water"
-        if ID == Item.TAIL_SPIKE:
-            return "Tail Spike"
-        if ID == Item.TS_SANC:
-            return "Teleport Scroll: Sanctuary"
-        if ID == Item.LILAS_GIFT:
-            return "Lila's Gift"
-        if ID == Item.MILK_C_POIS:
-            return "Milk Creeper Poison"
-        if ID == Item.CO_SNAK_VEN:
-            return "Cock-Snake Venom"
-        if ID == Item.WOLF_FUR:
-            return "Tuft of Wolf Fur"
-        if ID == Item.SM_POUCH1:
-            return "Small Pouch"
-        if ID == Item.SM_POUCH2:
-            return "Small Pouch"
-        if ID == Item.TRINKET:
-            return "Shiny Trinket"
-        if ID == Item.COCK_CARV:
-            return "Wooden Cock Carving"
-        if ID == Item.BLO_BERRY:
-            return "Bloated Berry"
-        if ID == Item.GRAIN:
-            return "Handful of Grain"
-        if ID == Item.PUSS_FRUIT:
-            return "Pussy Fruit"
-        if ID == Item.DAIRE_PILL:
-            return "DairE Pill"
-        if ID == Item.RED_MUSH:
-            return "Red Mushroom"
-        if ID == Item.WET_CLOTH:
-            return "Wet, Slimy Cloth"
-        if ID == Item.LON_MILK:
-            return "Malon's Milk"
-        if ID == Item.LON_PENDANT:
-            return "Malon's Pendant"
-        if ID == Item.PINK_INK:
-            return "Pink Ink"
-        if ID == Item.EGG_JELLY:
-            return "Octopus Egg Jelly"
-        if ID == Item.BUL_BERRY:
-            return "Bulging Berry"
-        if ID == Item.FRESH_EGG:
-            return "Fresh Egg"
-        if ID == Item.BLONDE_DYE:
-            return "Blonde Dye"
-        if ID == Item.PUSS_JUICE:
-            return "Concentrated Pussy Fruit Juice"
-        if ID == Item.KINKY_CARR:
-            return "Kinky Carrot"
-        if ID == Item.EQ_SNACK:
-            return "Equan Snack"
-        if ID == Item.LILAS_MILK:
-            return "Lila's Milk"
-        if ID == Item.BODY_WASH:
-            return "Body Wash"
-        if ID == Item.FELIN_TEA:
-            return "Felin Tea Mix"
-        if ID == Item.ORAL_WASH:
-            return "Felin Oral Wash"
-        if ID == Item.BODY_OIL:
-            return "Body Oil"
-        if ID == Item.LEATHER_STRAP:
-            return "Leather Strap"
-        if ID == Item.EGGCELERATOR:
-            return "Eggcelerator"
-        if ID == Item.DESI_SAND:
-            return "Desiccating Sand"
-        if ID == Item.FLYING_CARP:
-            return "Flying Carpet"
-        if ID == Item.A_GRAV_ROCK:
-            return "Anti-Gravity Rock"
-        if ID == Item.REIN_CHARM:
-            return "Reindeer Charm"
-        if ID == Item.FELL_ROD:
-            return "Fellatio Rod"
-        if ID == Item.RECEPT_BELL:
-            return "Reception Bell"
-        if ID == Item.DEWY_GIFT:
-            return "Lila's Dewy Gift"
-        if ID == Item.SQU_CHEESE:
-            return "Squeaky Cheese"
-        if ID == Item.SHINY_ROCK:
-            return "Shiny Rock"
-        if ID == Item.AUBURN_DYE:
-            return "Auburn Dye"
-        if ID == Item.BROWN_DYE:
-            return "Brown Dye"
-        if ID == Item.GREY_DYE:
-            return "Grey Dye"
-        if ID == Item.WHITE_DYE:
-            return "White Dye"
-        if ID == Item.SNUGGLE_BALL:
-            return "Snuggle Ball"
-        if ID == Item.FACIAL_MUD:
-            return "Facial Mud"
-        if ID == Item.FERTILE_GEL:
-            return "Fertile Gel"
-        if ID == Item.SUPP_HARNESS:
-            return "Support Harness"
-        if ID == Item.BREEDER_POT:
-            return "Breeder Potion"
-        if ID == Item.TREANTS_TEAR:
-            return "Treant's Tear"
-        if ID == Item.FOOMP_BOMB:
-            return "Foomp Bomb"
-        if ID == Item.PLUMP_QUAT:
-            return "Plump Quat"
-        if ID == Item.MILKY_PEND:
-            return "Malon's Milky Pendant"
-        if ID == Item.BUG_EGG:
-            return "Bug Egg"
-        if ID == Item.LANTERN:
-            return "Lantern"
-        if ID == Item.FRAG_FLOWER:
-            return "Fragrant Flower"
-        if ID == Item.NECTAR_CANDY:
-            return "Nectar Candy"
-        if ID == Item.TOO_HUMAN:
-            return "Too Human Potion"
-        if ID == Item.TAINTED_POT:
-            return "Tainted Potion"
-        if ID == Item.SWEET_AND_SOUR:
-            return "Sweet & Sour Candy"
-        if ID == Item.SUCC_DRAFT:
-            return "Succubus Draft"
-        if ID == Item.ITEM_NOT_FOUND:
-            return "Item Not Found"
-        if ID == Item.TEAPOT:
-            return "Strange Teapot"
-        if ID == Item.MILK_BOTTLE:
-            return "Bottle of Milk"
-        if ID == Item.MILK_JUG:
-            return "Jug of Milk"
-        if ID == Item.MILK_BARREL:
-            return "Barrel of Milk"
-        if ID == Item.LUST_DRAFT:
-            return "Lust Draft"
-        if ID == Item.REJUV_POT:
-            return "Rejuvenating Potion"
-        if ID == Item.BAD_EXPER:
-            return "Bad Experiment"
-        if ID == Item.EXP_PREG:
-            return "Express Pregnancy Potion"
-        if ID == Item.BALL_SWELLER:
-            return "Ball Sweller"
-        if ID == Item.S_LUST_DRAFT:
-            return "Superior Lust Draft"
-        if ID == Item.S_REJUV_POT:
-            return "Superior Rejuvenating Potion"
-        if ID == Item.S_BAD_EXPER:
-            return "Super Bad Experiment"
-        if ID == Item.S_EXP_PREG:
-            return "Superior Express Pregnancy Potion"
-        if ID == Item.S_BALL_SWELLER:
-            return "Superior Ball Sweller"
-        if ID == Item.GEN_SWAP:
-            return "Gender Swap Potion"
-        if ID == Item.MASO_POT:
-            return "Masochism Potion"
-        if ID == Item.BLACK_DYE:
-            return "Black Dye"
-        if ID == Item.BABY_FREE:
-            return "Baby Free Potion"
-        if ID == Item.POT_POT:
-            return "Potency Potion"
-        if ID == Item.S_GEN_SWAP:
-            return "Superior Gender Swap Potion"
-        if ID == Item.S_MASO_POT:
-            return "Superior Masochism Potion"
-        if ID == Item.RED_DYE:
-            return "Red Dye"
-        if ID == Item.S_BABY_FREE:
-            return "Superior Baby Free Potion"
-        if ID == Item.S_POT_POT:
-            return "Superior Potency Potion"
-        if ID == Item.CUM_VIAL:
-            return "Vial of Cum"
-        if ID == Item.CUM_BOTTLE:
-            return "Bottle of Cum"
-        if ID == Item.CUM_JUG:
-            return "Jug of Cum"
-        if ID == Item.CUM_BARREL:
-            return "Barrel of Cum"
-        if ID == Item.GOOD_EGG:
-            return "Good Egg"
-        if ID == Item.BAD_EGG:
-            return "Bad Egg"
-        if ID == Item.STRANGE_EGG:
-            return "Strange Egg"
-        if ID == Item.CHARMED_EGG:
-            return "Charmed Egg"
-        if ID == Item.DIVINE_EGG:
-            return "Divine Egg"
-        if ID == Item.PHEROMONE:
-            return "Strong Pheromone"
-        if ID == Item.REDUC_REDUC:
-            return "Reduced Reduction"
-        if ID == Item.MALE_ENHANCE:
-            return "Male Enhancement Drug"
-        if ID == Item.MILK_SUPPRESS:
-            return "Milk Suppressant"
-        if ID == Item.BAZOOMBA:
-            return "Bazoomba!"
-        if ID == Item.QUEEN_EGG:
-            return "Queen Egg"
-        if ID == Item.SOLDIER_EGG:
-            return "Soldier Egg"
-        if ID == Item.DRONE_EGG:
-            return "Drone Egg"
-        if ID == Item.WORKER_EGG:
-            return "Worker Egg"
-        return f"ITEM FULL NAME ERROR {ID}"
-
-    def isUsable(ID: int) -> bool:
-        '''
-        Returns True if item ID can be used
-        '''
-        return ID in {Item.DEBUG_STICK, Item.TS_ANY, Item.MILKER, Item.PENIS_PUMP, Item.BLOOD_GGE, Item.EDU_EGG, Item.DAGGER, Item.HAMMER, Item.SABER, Item.WHIP, Item.TAIL_SPIKE, Item.FLYING_CARP, Item.FELL_ROD, Item.SNUGGLE_BALL, Item.SUPP_HARNESS, Item.TEAPOT}
-
-    def isConsumable(ID: int) -> bool:
-        '''
-        Returns True if item ID is consumable
-        '''
-        return ID in {Item.DRY_SAND, Item.CATS_MEOW, Item.REDUCTION, Item.SKIN_BALM, Item.BOL_JOICE, Item.TAINT_LEAF, Item.SWEET_SAP, Item.POULTICE, Item.NEUTER, Item.TS_SOFT, Item.TS_FIRM, Item.TS_TIED, Item.TS_SIZ, Item.TS_OVI, Item.OAS_WATER, Item.TS_SANC, Item.MILK_C_POIS, Item.CO_SNAK_VEN, Item.WOLF_FUR, Item.SM_POUCH1, Item.SM_POUCH2, Item.COCK_CARV, Item.BLO_BERRY, Item.GRAIN, Item.PUSS_FRUIT, Item.DAIRE_PILL, Item.RED_MUSH, Item.WET_CLOTH, Item.LON_MILK, Item.PINK_INK, Item.EGG_JELLY, Item.BUL_BERRY, Item.FRESH_EGG, Item.BLONDE_DYE, Item.PUSS_JUICE, Item.KINKY_CARR, Item.EQ_SNACK, Item.LILAS_MILK, Item.BODY_WASH, Item.FELIN_TEA, Item.ORAL_WASH, Item.BODY_OIL, Item.EGGCELERATOR, Item.DESI_SAND, Item.SQU_CHEESE, Item.SHINY_ROCK, Item.AUBURN_DYE, Item.BROWN_DYE, Item.GREY_DYE, Item.WHITE_DYE, Item.FACIAL_MUD, Item.FERTILE_GEL, Item.BREEDER_POT, Item.TREANTS_TEAR, Item.FOOMP_BOMB, Item.PLUMP_QUAT, Item.BUG_EGG, Item.FRAG_FLOWER, Item.NECTAR_CANDY, Item.TOO_HUMAN, Item.TAINTED_POT, Item.SWEET_AND_SOUR, Item.SUCC_DRAFT, Item.MILK_BOTTLE, Item.MILK_JUG, Item.MILK_BARREL, Item.LUST_DRAFT, Item.REJUV_POT, Item.BAD_EXPER, Item.EXP_PREG, Item.BALL_SWELLER, Item.S_LUST_DRAFT, Item.S_REJUV_POT, Item.S_BAD_EXPER, Item.S_EXP_PREG, Item.S_BALL_SWELLER, Item.GEN_SWAP, Item.MASO_POT, Item.BLACK_DYE, Item.BABY_FREE, Item.POT_POT, Item.S_GEN_SWAP, Item.S_MASO_POT, Item.RED_DYE, Item.S_BABY_FREE, Item.S_POT_POT, Item.CUM_VIAL, Item.CUM_BOTTLE, Item.CUM_JUG, Item.CUM_BARREL, Item.GOOD_EGG, Item.BAD_EGG, Item.STRANGE_EGG, Item.CHARMED_EGG, Item.DIVINE_EGG, Item.PHEROMONE, Item.REDUC_REDUC, Item.MALE_ENHANCE, Item.MILK_SUPPRESS, Item.BAZOOMBA, Item.QUEEN_EGG, Item.SOLDIER_EGG, Item.DRONE_EGG, Item.WORKER_EGG}
-
-    def value(ID: int) -> int:
-        '''
-        Function which returns the value of the item ID
-        '''
-        if ID in {Item.LILAS_GIFT, Item.LON_PENDANT, Item.LEATHER_STRAP, Item.FLYING_CARP, Item.A_GRAV_ROCK, Item.REIN_CHARM, Item.FELL_ROD, Item.RECEPT_BELL, Item.DEWY_GIFT, Item.MILKY_PEND, Item.LANTERN}:
-            return 0
-        if ID in {Item.SM_POUCH1, Item.SM_POUCH2}:
-            return 1
-        if ID in {Item.CUM_VIAL, Item.BAD_EGG}:
-            return 2
-        if ID in {Item.GRAIN, Item.SHINY_ROCK, Item.BUG_EGG}:
-            return 3
-        if ID in {Item.POULTICE, Item.WOLF_FUR, Item.WET_CLOTH, Item.LON_MILK, Item.FRESH_EGG, Item.FELIN_TEA, Item.MILK_BOTTLE, Item.CUM_BARREL, Item.REDUC_REDUC, Item.WORKER_EGG}:
-            return 5
-        if ID == Item.CUM_BOTTLE:
-            return 7
-        if ID in {Item.DAIRE_PILL, Item.LILAS_MILK, Item.BODY_WASH, Item.ORAL_WASH, Item.BODY_OIL, Item.SQU_CHEESE, Item.PLUMP_QUAT, Item.LUST_DRAFT, Item.REJUV_POT, Item.BAD_EXPER, Item.EXP_PREG, Item.BALL_SWELLER, Item.GOOD_EGG, Item.MALE_ENHANCE, Item.DRONE_EGG}:
-            return 10
-        if ID == 1:
-            return 13
-        if ID == Item.RED_MUSH:
-            return 14
-        if ID in {Item.SKIN_BALM, Item.BOL_JOICE, Item.TAINT_LEAF, Item.SWEET_SAP, Item.TS_SOFT, Item.TS_FIRM, Item.TS_TIED, Item.TS_SIZ, Item.TS_OVI, Item.OAS_WATER, Item.MILK_C_POIS, Item.CO_SNAK_VEN, Item.BLO_BERRY, Item.KINKY_CARR, Item.EQ_SNACK, Item.DESI_SAND, Item.FACIAL_MUD, Item.FRAG_FLOWER, Item.MILK_JUG}:
-            return 15
-        if ID == Item.PUSS_FRUIT:
-            return 17
-        if ID in {Item.DRY_SAND, Item.REDUCTION, Item.DAGGER, Item.COCK_CARV, Item.BUL_BERRY, Item.FERTILE_GEL, Item.NECTAR_CANDY, Item.GEN_SWAP, Item.MASO_POT, Item.BLACK_DYE, Item.BABY_FREE, Item.POT_POT, Item.MILK_SUPPRESS, Item.BAZOOMBA, Item.SOLDIER_EGG}:
-            return 20
-        if ID in {Item.TS_SANC, Item.EGGCELERATOR, Item.BREEDER_POT, Item.S_LUST_DRAFT, Item.S_REJUV_POT, Item.S_BAD_EXPER, Item.S_EXP_PREG, Item.S_BALL_SWELLER, Item.CUM_JUG}:
-            return 25
-        if ID in {Item.CATS_MEOW, Item.HAMMER, Item.NEUTER, Item.TRINKET, Item.PUSS_JUICE, Item.BROWN_DYE, Item.TOO_HUMAN, Item.TAINTED_POT, Item.STRANGE_EGG, Item.QUEEN_EGG}:
-            return 30
-        if ID in {Item.TAIL_SPIKE, Item.SNUGGLE_BALL}:
-            return 35
-        if ID in {Item.WHIP, Item.EGG_JELLY, Item.CHARMED_EGG}:
-            return 40
-        if ID in {Item.GREY_DYE, Item.TREANTS_TEAR, Item.FOOMP_BOMB, Item.SUCC_DRAFT}:
-            return 45
-        if ID in {Item.ANC_CLAWS, Item.IMB_SHOES, Item.BLOOD_GGE, Item.BLONDE_DYE, Item.SWEET_AND_SOUR, Item.S_GEN_SWAP, Item.S_MASO_POT, Item.S_BABY_FREE, Item.S_POT_POT}:
-            return 50
-        if ID == Item.SABER:
-            return 55
-        if ID == Item.DIVINE_EGG:
-            return 69
-        if ID == Item.MILK_BARREL:
-            return 70
-        if ID in {Item.PENIS_PUMP, Item.AUBURN_DYE, Item.PHEROMONE}:
-            return 75
-        if ID == Item.SUPP_HARNESS:
-            return 80
-        if ID in {Item.MILKER, Item.WHITE_DYE}:
-            return 100
-        if ID == Item.EDU_EGG:
-            return Item.TS_OVI
-        if ID in {Item.PINK_INK, Item.RED_DYE}:
-            return 150
-        return 0
-
-    def description(ID: int, context: object) -> str:
-        if ID == Item.TEST_ITEM:
-            return "Does nothing."
-        if ID == Item.DEBUG_STICK:
-            return "Debug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
-        if ID == Item.TS_ANY:
-            return "Created for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."
-        if ID == Item.ANC_CLAWS:
-            return "Harkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."
-        if ID == Item.IMB_SHOES:
-            return "Crafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
-        if ID == Item.DRY_SAND:
-            return "Applying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
-        if ID == Item.MILKER:
-            return "A compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."
-        if ID == Item.CATS_MEOW:
-            return "Favored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
-        if ID == Item.PENIS_PUMP:
-            return "A simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."
-        if ID == Item.BLOOD_GGE:
-            return "Due to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
-        if ID == Item.EDU_EGG:
-            return "With so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."
-        if ID == Item.REDUCTION:
-            return "This is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."
-        if ID == Item.SKIN_BALM:
-            return "Used and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
-        if ID == Item.BOL_JOICE:
-            return "This white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
-        if ID == Item.TAINT_LEAF:
-            return "This paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
-        if ID == Item.SWEET_SAP:
-            return "Used and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
-        if ID == Item.POULTICE:
-            return "A generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
-        if ID == Item.DAGGER:
-            return "A relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"
-        if ID == Item.HAMMER:
-            return "A rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"
-        if ID == Item.SABER:
-            return "A well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"
-        if ID == Item.WHIP:
-            return "A somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"
-        if ID == Item.NEUTER:
-            return "Developed by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
-        if ID == Item.TS_SOFT:
-            return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."
-        if ID == Item.TS_FIRM:
-            return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."
-        if ID == Item.TS_TIED:
-            return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."
-        if ID == Item.TS_SIZ:
-            return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."
-        if ID == Item.TS_OVI:
-            return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."
-        if ID == Item.OAS_WATER:
-            return "A vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
-        if ID == Item.TAIL_SPIKE:
-            return "This large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
-        if ID == Item.TS_SANC:
-            return "Created for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."
-        if ID == Item.LILAS_GIFT:
-            return "A small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."
-        if ID == Item.MILK_C_POIS:
-            return "Obtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
-        if ID == Item.CO_SNAK_VEN:
-            return "Obtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
-        if ID == Item.WOLF_FUR:
-            return f"Obtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {context.skinDesc()}."
-        if ID == Item.SM_POUCH1:
-            return "This is a small pouch you have obtained somewhere. Use it to see what it contains!"
-        if ID == Item.SM_POUCH2:
-            return "This is a small pouch you have obtained somewhere. Use it to see what it contains!"
-        if ID == Item.TRINKET:
-            return "Other than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
-        if ID == Item.COCK_CARV:
-            return "This thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
-        if ID == Item.BLO_BERRY:
-            return "A berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
-        if ID == Item.GRAIN:
-            return "A handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
-        if ID == Item.PUSS_FRUIT:
-            return "It is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
-        if ID == Item.DAIRE_PILL:
-            return "Produced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
-        if ID == Item.RED_MUSH:
-            return "An odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
-        if ID == Item.WET_CLOTH:
-            return "This piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
-        if ID == Item.LON_MILK:
-            return "Unlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
-        if ID == Item.LON_PENDANT:
-            return "Given to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."
-        if ID == Item.PINK_INK:
-            return "Octopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
-        if ID == Item.EGG_JELLY:
-            return "The jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
-        if ID == Item.BUL_BERRY:
-            return "A cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."
-        if ID == Item.FRESH_EGG:
-            return "An unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
-        if ID == Item.BLONDE_DYE:
-            return "A dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
-        if ID == Item.PUSS_JUICE:
-            return "Created by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
-        if ID == Item.KINKY_CARR:
-            return "Used in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
-        if ID == Item.EQ_SNACK:
-            return "A common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
-        if ID == Item.LILAS_MILK:
-            return "From the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
-        if ID == Item.BODY_WASH:
-            return "This nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
-        if ID == Item.FELIN_TEA:
-            return "A common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
-        if ID == Item.ORAL_WASH:
-            return "With bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
-        if ID == Item.BODY_OIL:
-            return "Nice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
-        if ID == Item.LEATHER_STRAP:
-            return "Found somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
-        if ID == Item.EGGCELERATOR:
-            return "Meant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."
-        if ID == Item.DESI_SAND:
-            return "Obtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."
-        if ID == Item.FLYING_CARP:
-            return "Borrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
-        if ID == Item.A_GRAV_ROCK:
-            return f"Borrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {context.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
-        if ID == Item.REIN_CHARM:
-            return "Borrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
-        if ID == Item.FELL_ROD:
-            return "Borrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
-        if ID == Item.RECEPT_BELL:
-            return "Borrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
-        if ID == Item.DEWY_GIFT:
-            return "Originally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."
-        if ID == Item.SQU_CHEESE:
-            return "Some cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
-        if ID == Item.SHINY_ROCK:
-            return "A rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
-        if ID == Item.AUBURN_DYE:
-            return "A dark reddish color, this dye will turn your hair auburn when used, if you have hair"
-        if ID == Item.BROWN_DYE:
-            return "A simple brownish, this dye will turn your hair brown when used, if you have hair"
-        if ID == Item.GREY_DYE:
-            return "A shade, this dye will turn your hair grey when used, if you have hair"
-        if ID == Item.WHITE_DYE:
-            return "Lacking any color, this dye will turn your hair pure white when used, if you have hair"
-        if ID == Item.SNUGGLE_BALL:
-            if (context.snuggleBall):
-                return "Not really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
-            return "Squishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
-        if ID == Item.FACIAL_MUD:
-            return "Some mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
-        if ID == Item.FERTILE_GEL:
-            return "A soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
-        if ID == Item.SUPP_HARNESS:
-            tempStr = "This contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
-            if (context.suppHarness):
-                tempStr += "\n\nYou currently have a harness equipped. Using it will unequip the harness."
-            return tempStr
-        if ID == Item.BREEDER_POT:
-            return "This potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
-        if ID == Item.TREANTS_TEAR:
-            return "This small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
-        if ID == Item.FOOMP_BOMB:
-            return "Much like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."
-        if ID == Item.PLUMP_QUAT:
-            return "The quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
-        if ID == Item.MILKY_PEND:
-            return "This is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
-        if ID == Item.BUG_EGG:
-            tempStr = "Relatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
-            if (context.tail == 12):
-                tempStr += "\n\nHowever, you do notice that the egg is just about the right size for the ovipositor hanging off your backside."
-            return tempStr
-        if ID == Item.LANTERN:
-            return "This is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
-        if ID == Item.FRAG_FLOWER:
-            return "A very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
-        if ID == Item.NECTAR_CANDY:
-            return "A sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
-        if ID == Item.TOO_HUMAN:
-            return "This potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
-        if ID == Item.TAINTED_POT:
-            return "This potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
-        if ID == Item.SWEET_AND_SOUR:
-            return "This rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
-        if ID == Item.SUCC_DRAFT:
-            return "One of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
-        if ID == Item.ITEM_NOT_FOUND:
-            tempStr = "Item Not Found"
-            if mainobject.isDebugger:
-                tempStr += " (This is a joke item referencing status code 404)"
-            return tempStr
-        if ID == Item.TEAPOT:
-            tempStr = "Inscribed on the side are the words \"I'm a teapot\"."
-            if mainobject.isDebugger:
-                tempStr += " (This is a joke item referencing status code 418)"
-            return tempStr
-        if ID == Item.MILK_BOTTLE:
-            return "A bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
-        if ID == Item.MILK_JUG:
-            return "A large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
-        if ID == Item.MILK_BARREL:
-            return "A barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
-        if ID == Item.LUST_DRAFT:
-            return "A potion that will increase your lust by 20 instantly when used."
-        if ID == Item.REJUV_POT:
-            return "A potion that will heal 30 HP and reduce your lust by 15 instantly when used."
-        if ID == Item.BAD_EXPER:
-            return "This combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."
-        if ID == Item.EXP_PREG:
-            return "When that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
-        if ID == Item.BALL_SWELLER:
-            return "Imbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
-        if ID == Item.S_LUST_DRAFT:
-            return "A potion that will increase your lust by 50 instantly when used."
-        if ID == Item.S_REJUV_POT:
-            return "A potion that will heal 70 HP and reduce your lust by 40 instantly when used."
-        if ID == Item.S_BAD_EXPER:
-            return "This extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."
-        if ID == Item.S_EXP_PREG:
-            return "When that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
-        if ID == Item.S_BALL_SWELLER:
-            return "Imbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
-        if ID == Item.GEN_SWAP:
-            return "If you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
-        if ID == Item.MASO_POT:
-            return "After this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
-        if ID == Item.BLACK_DYE:
-            return "This will turn your hair black in color when used, if you have hair."
-        if ID == Item.BABY_FREE:
-            return "Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-        if ID == Item.POT_POT:
-            return "Kicking your balls into gear, they will permanently produce 20% more cum, despite their size."
-        if ID == Item.S_GEN_SWAP:
-            return "If you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
-        if ID == Item.S_MASO_POT:
-            return "After this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
-        if ID == Item.RED_DYE:
-            return "This will turn your hair red in color when used, if you have hair."
-        if ID == Item.S_BABY_FREE:
-            return "Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-        if ID == Item.S_POT_POT:
-            return "Drop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
-        if ID == Item.CUM_VIAL:
-            return "Still kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
-        if ID == Item.CUM_BOTTLE:
-            return "A bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
-        if ID == Item.CUM_JUG:
-            return "A jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
-        if ID == Item.CUM_BARREL:
-            return "There's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
-        if ID == Item.GOOD_EGG:
-            return "An unfertilized fresh egg that is especially good for your health and body."
-        if ID == Item.BAD_EGG:
-            return "An unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."
-        if ID == Item.STRANGE_EGG:
-            return "An unfertilized fresh egg that can do... odd things to your body."
-        if ID == Item.CHARMED_EGG:
-            return "An unfertilized fresh egg that will make you quite alluring for 20 hours."
-        if ID == Item.DIVINE_EGG:
-            return "A very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
-        if ID == Item.PHEROMONE:
-            return "Originally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
-        if ID == Item.REDUC_REDUC:
-            return "A weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
-        if ID == Item.MALE_ENHANCE:
-            return "A simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."
-        if ID == Item.MILK_SUPPRESS:
-            return "This drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
-        if ID == Item.BAZOOMBA:
-            return "This glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."
-        if ID == Item.QUEEN_EGG:
-            return "Not the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
-        if ID == Item.SOLDIER_EGG:
-            return "Not the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
-        if ID == Item.DRONE_EGG:
-            return "Not the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
-        if ID == Item.WORKER_EGG:
-            return "Not the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
-        return f"ITEM DESCRIPTION ERROR {ID}"
-
-    def fullDescription(ID: int) -> str:
-        return Items.fullName(ID) + '\n\n' + Items.description(ID, mainobject.game)
-
-    def stackMax(ID: int) -> int:
-        '''
-        Function which returns the maximum number of the item ID that can be in a stack
-        '''
-        if ID in {Item.TEST_ITEM, Item.DEBUG_STICK, Item.TS_ANY, Item.ANC_CLAWS, Item.IMB_SHOES, Item.MILKER, Item.PENIS_PUMP, Item.BLOOD_GGE, Item.EDU_EGG, Item.DAGGER, Item.HAMMER, Item.SABER, Item.WHIP, Item.TAIL_SPIKE, Item.LILAS_GIFT, Item.LON_PENDANT, Item.LEATHER_STRAP, Item.FLYING_CARP, Item.A_GRAV_ROCK, Item.REIN_CHARM, Item.FELL_ROD, Item.RECEPT_BELL, Item.DEWY_GIFT, Item.SNUGGLE_BALL, Item.SUPP_HARNESS, Item.MILKY_PEND, Item.LANTERN, Item.ITEM_NOT_FOUND, Item.TEAPOT, Item.MILK_BARREL, Item.CUM_BARREL, Item.DIVINE_EGG}:
-            return 1
-        if ID in {Item.CATS_MEOW, Item.REDUCTION, Item.SKIN_BALM, Item.BOL_JOICE, Item.TAINT_LEAF, Item.SWEET_SAP, Item.NEUTER, Item.OAS_WATER, Item.MILK_C_POIS, Item.CO_SNAK_VEN, Item.SM_POUCH1, Item.SM_POUCH2, Item.COCK_CARV, Item.PUSS_FRUIT, Item.PINK_INK, Item.EGG_JELLY, Item.FRESH_EGG, Item.BLONDE_DYE, Item.KINKY_CARR, Item.EGGCELERATOR, Item.AUBURN_DYE, Item.BROWN_DYE, Item.GREY_DYE, Item.WHITE_DYE, Item.TREANTS_TEAR, Item.FOOMP_BOMB, Item.TOO_HUMAN, Item.TAINTED_POT, Item.MILK_JUG, Item.BAD_EXPER, Item.GEN_SWAP, Item.MASO_POT, Item.BLACK_DYE, Item.BABY_FREE, Item.POT_POT, Item.S_GEN_SWAP, Item.S_MASO_POT, Item.RED_DYE, Item.S_BABY_FREE, Item.S_POT_POT, Item.CUM_JUG, Item.STRANGE_EGG, Item.CHARMED_EGG, Item.PHEROMONE, Item.BAZOOMBA, Item.QUEEN_EGG}:
-            return 5
-        if ID in {Item.POULTICE, Item.TS_SOFT, Item.TS_FIRM, Item.TS_TIED, Item.TS_SIZ, Item.TS_OVI, Item.TS_SANC, Item.TRINKET, Item.BLO_BERRY, Item.RED_MUSH, Item.WET_CLOTH, Item.LON_MILK, Item.BUL_BERRY, Item.PUSS_JUICE, Item.EQ_SNACK, Item.LILAS_MILK, Item.BODY_WASH, Item.ORAL_WASH, Item.BODY_OIL, Item.DESI_SAND, Item.FERTILE_GEL, Item.BREEDER_POT, Item.SWEET_AND_SOUR, Item.SUCC_DRAFT, Item.MILK_BOTTLE, Item.LUST_DRAFT, Item.REJUV_POT, Item.EXP_PREG, Item.BALL_SWELLER, Item.S_LUST_DRAFT, Item.S_REJUV_POT, Item.S_BAD_EXPER, Item.S_EXP_PREG, Item.S_BALL_SWELLER, Item.CUM_BOTTLE, Item.GOOD_EGG, Item.BAD_EGG, Item.MALE_ENHANCE, Item.MILK_SUPPRESS, Item.SOLDIER_EGG, Item.DRONE_EGG}:
-            return 10
-        if ID in {Item.DRY_SAND, Item.WOLF_FUR, Item.GRAIN, Item.DAIRE_PILL, Item.FELIN_TEA, Item.SQU_CHEESE, Item.SHINY_ROCK, Item.FACIAL_MUD, Item.PLUMP_QUAT, Item.BUG_EGG, Item.FRAG_FLOWER, Item.NECTAR_CANDY, Item.CUM_VIAL, Item.REDUC_REDUC, Item.WORKER_EGG}:
-            return 15
-        return 0
-
-    def foodValue(ID: int) -> int:
-        '''
-        Function which returns the food value of the item ID
-        '''
-        tempNum = 0
-        if ID == Item.STRANGE_EGG:
-            tempNum = 1
-        elif ID == Item.LUST_DRAFT:
-            tempNum = 3
-        elif ID in {Item.GEN_SWAP, Item.MASO_POT, Item.BUG_EGG}:
-            tempNum = 4
-        elif ID in {Item.SWEET_SAP, Item.DAIRE_PILL, Item.MALE_ENHANCE, Item.REJUV_POT, Item.EXP_PREG}:
-            tempNum = 5
-        elif ID in {Item.BALL_SWELLER, Item.S_LUST_DRAFT}:
-            tempNum = 7
-        elif ID in {Item.BLO_BERRY, Item.S_REJUV_POT, Item.S_GEN_SWAP, Item.S_MASO_POT}:
-            tempNum = 8
-        elif ID in {Item.S_BALL_SWELLER, Item.FELIN_TEA, Item.CUM_VIAL, Item.GRAIN, Item.MILK_SUPPRESS, Item.BUL_BERRY, Item.WORKER_EGG, Item.KINKY_CARR, Item.S_EXP_PREG}:
-            tempNum = 10
-        elif ID in {Item.NECTAR_CANDY, Item.BABY_FREE, Item.POT_POT, Item.GOOD_EGG, Item.RED_MUSH, Item.BAZOOMBA, Item.DRONE_EGG, Item.FRESH_EGG, Item.PUSS_JUICE}:
-            tempNum = 15
-        elif ID in {Item.LILAS_MILK, Item.S_BABY_FREE, Item.S_POT_POT, Item.SQU_CHEESE, Item.PUSS_FRUIT, Item.CHARMED_EGG, Item.SOLDIER_EGG}:
-            tempNum = 20
-        elif ID in {Item.QUEEN_EGG, Item.SWEET_AND_SOUR, Item.EQ_SNACK}:
-            tempNum = 25
-        elif ID in {Item.MILK_BOTTLE, Item.CUM_BOTTLE, Item.LON_MILK}:
-            tempNum = 30
-        elif ID == Item.PLUMP_QUAT:
-            tempNum = 40
-        elif ID == Item.DIVINE_EGG:
-            tempNum = 50
-        elif ID == Item.MILK_JUG:
-            tempNum = 70
-        return tempNum * 2
-
-    def useHidesPage(ID: int) -> bool:
-        '''
-        Whether the page label should be hidden when using an item
-        '''
-        return ID not in {Item.IMB_SHOES, Item.ANC_CLAWS, Item.LILAS_GIFT, Item.TRINKET, Item.LON_PENDANT, Item.LEATHER_STRAP, Item.A_GRAV_ROCK, Item.REIN_CHARM, Item.RECEPT_BELL, Item.DEWY_GIFT, Item.MILKY_PEND, Item.LANTERN, Item.ITEM_NOT_FOUND}
-
     def TeleportScrollAny_GetButtonOrder(currentZone) -> dict:
         if currentZone == 1:
             return {1: "Tieden", 5: "Siz'Calit", 7: "Firmshaft", 8: "Sanctuary", 10: "Oviasis"}
@@ -2803,17 +1978,17 @@ class Apothecary:
 
     def itemName(ID: int) -> str:
         if ID >= 200:
-            return Items.name(ID)
+            return ITEM_STATS[ID].name
         return RECIPE_STATS[ID].name
 
     def itemValue(ID: int) -> int:
         if (ID >= 200):
-            return Items.value(ID)
+            return ITEM_STATS[ID].value
         return RECIPE_STATS[ID].value
 
     def itemDescription(ID: int) -> str:
         if (ID >= 200):
-            return Items.fullDescription(ID)
+            return ITEM_STATS[ID].longDescription
         return RECIPE_STATS[ID].longDescription
 
 
@@ -3084,7 +2259,7 @@ class PlayerItemContainer:
 
     def getEmptySlot(self, ID: int) -> int:  # checkOpenSlot
         for i in range(27):
-            if (self.stack[i] < Items.stackMax(ID) and self.items[i] == ID):
+            if (self.stack[i] < ITEM_STATS[ID].stackMax and self.items[i] == ID):
                 return i
         for i in range(27):
             if (not self.items[i]):
@@ -3374,7 +2549,7 @@ class WikiPages:
         # TODO: Add links to recipes for things that can be created with alchemy
         if ID == -10:
             return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        contents = f"<h4><u>{Items.fullName(ID)} ({Items.name(ID)})</u></h4>(Item ID {ID})"
+        contents = f"<h4><u>{ITEM_STATS[ID].longName} ({ITEM_STATS[ID].name})</u></h4>(Item ID {ID})"
 
         class FakeContext:
             snuggleBall = False
@@ -3389,23 +2564,23 @@ class WikiPages:
 
         # Dynamic Descriptions
         if ID == Item.SNUGGLE_BALL:
-            contents += f"\n\n<u>Description</u>\n<b>When Not Equipped:</b>\n{Items.description(ID, FakeContext)}"
+            contents += f"\n\n<u>Description</u>\n<b>When Not Equipped:</b>\n{ITEM_STATS[ID].description(FakeContext)}"
             FakeContext.snuggleBall = True
-            contents += f"\n\n<b>When Equipped:</b>\n{Items.description(ID, FakeContext)}"
+            contents += f"\n\n<b>When Equipped:</b>\n{ITEM_STATS[ID].description(FakeContext)}"
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Item.SUPP_HARNESS:
-            contents += f"\n\n<u>Description</u>\n<b>When Not Equipped:</b>\n{Items.description(ID, FakeContext)}"
+            contents += f"\n\n<u>Description</u>\n<b>When Not Equipped:</b>\n{ITEM_STATS[ID].description(FakeContext)}"
             FakeContext.suppHarness = True
-            contents += f"\n\n<b>When Equipped:</b>\n{Items.description(ID, FakeContext)}"
+            contents += f"\n\n<b>When Equipped:</b>\n{ITEM_STATS[ID].description(FakeContext)}"
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Item.BUG_EGG:
-            contents += f"\n\n<u>Description</u>\n<b>When tail != 12:</b>\n{Items.description(ID, FakeContext)}"
+            contents += f"\n\n<u>Description</u>\n<b>When tail != 12:</b>\n{ITEM_STATS[ID].description(FakeContext)}"
             FakeContext.tail = 12
-            contents += f"\n\n<b>When tail == 12:</b>\n{Items.description(ID, FakeContext)}"
+            contents += f"\n\n<b>When tail == 12:</b>\n{ITEM_STATS[ID].description(FakeContext)}"
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
         # Static Descriptions
-        contents += f"\n\n<u>Description</u>\n{Items.description(ID, FakeContext)}"
+        contents += f"\n\n<u>Description</u>\n{ITEM_STATS[ID].description(FakeContext)}"
         if ID == Item.TEST_ITEM:
             return contents + "\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
         if ID == Item.DEBUG_STICK:
@@ -3680,7 +2855,7 @@ class WikiPages:
 
         contents += f"\n\n<b>Difficulty: </b>{recipeItem.difficultyName}"
 
-        return contents + f'\n<b>Creates: </b><a href="call_args://Item&{recipeItem.creates}">{Items.fullName(recipeItem.creates)}</a>'
+        return contents + f'\n<b>Creates: </b><a href="call_args://Item&{recipeItem.creates}">{ITEM_STATS[recipeItem.creates].longName}</a>'
 
     def Clothes(ID: int) -> str:
         if ID == -10:
@@ -3876,7 +3051,7 @@ class WikiPages:
                 for j in RANGE9_BUTTON_MAP:
                     ID = Shop.ID(i, j)
                     if ID != 0:
-                        tempStr += f'\n<a href="call_args://Item&{ID}">{Items.fullName(ID)}</a>'
+                        tempStr += f'\n<a href="call_args://Item&{ID}">{ITEM_STATS[ID].longName}</a>'
             return tempStr
         if Num == 2:
             return "<h4><u>Dye Shop</u></h4><u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
@@ -3909,7 +3084,7 @@ class WikiPages:
                     ID = Apothecary.ID(i, j, FakeKnowledge)
                     if ID != 0:
                         if ID >= 200:
-                            tempStr += f'\n<a href="call_args://Item&{ID}">{Items.fullName(ID)}</a>'
+                            tempStr += f'\n<a href="call_args://Item&{ID}">{ITEM_STATS[ID].longName}</a>'
                         else:
                             tempStr += f'\n<a href="call_args://Recipe&{ID}">{RECIPE_STATS[ID].longName}</a>'
             return tempStr
@@ -6457,7 +5632,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         else:
             self.showDiscard()
         buttonDict = {12: "Return", 4: "<<", 8: ">>"}
-        itemNameArray = tuple(Items.name(i) for i in each(storage.items))
+        itemNameArray = tuple(ITEM_STATS[i].name for i in each(storage.items))
         for i in range(9):
             tempI = i + (self.choicePage * 9 - 9)
             if (itemNameArray[tempI] != " "):
@@ -6754,7 +5929,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.choicePage = 1
         if (not (self.inBag or self.inStash) and self.moveItemID != 0):
             self.hideAmountAll()
-            self.doMainText(f'You seem to have not placed your {Items.name(self.moveItemID)}', True)
+            self.doMainText(f'You seem to have not placed your {ITEM_STATS[self.moveItemID].name}', True)
             if (self.moveItemStack > 1):
                 self.doMainText(f' x{self.moveItemStack}')
             self.outputMainText(' in your bag. Do you want to discard the item?')
@@ -7653,7 +6828,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.weapon == 10):
             tempStr += "while you defend yourself unarmed."
         else:
-            tempStr += f"while you defend yourself with a {Items.name(self.weapon)} as your weapon."
+            tempStr += f"while you defend yourself with a {ITEM_STATS[self.weapon].name} as your weapon."
         if (self.lilaWetStatus > 0 and self.attireBot in {Clothes.DIAPER, Clothes.POOFY_DIAPER}):
             tempStr += f" Although, your {self.clothesBottom()} doesn't do much to stem your squishy flow of slick fluids, just like a certain little felin girl."
         if (self.legType >= 1000):
@@ -8194,7 +7369,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += "You have the following items in your Bag:\n"
         for i in range(27):
             if (self.bag.items[i]):
-                tempStr += f"\n{Items.name(self.bag.items[i])}"
+                tempStr += f"\n{ITEM_STATS[self.bag.items[i]].name}"
                 if (self.bag.stack[i] > 1):
                     tempStr += f" x{self.bag.stack[i]}"
         if (mainobject.showSide):
@@ -9649,11 +8824,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if (self.canLose(self.moveItemID, 0)):
                             self.moveToStash()
                         else:
-                            self.outputMainText(f"Something is preventing you from removing the {Items.name(self.moveItemID)}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
+                            self.outputMainText(f"Something is preventing you from removing the {ITEM_STATS[self.moveItemID].name}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
                     else:
                         self.hideAmountAll()
                         self.hidePage()
-                        self.doMainText(f"Closing your bag while moving an item will discard the item.\n\nAre you sure you want to discard {Items.name(self.moveItemID)}", True)
+                        self.doMainText(f"Closing your bag while moving an item will discard the item.\n\nAre you sure you want to discard {ITEM_STATS[self.moveItemID].name}", True)
                         if (self.moveItemStack > 1):
                             self.doMainText(f" x{self.moveItemStack}")
                         self.outputMainText("?")
@@ -9688,14 +8863,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.outputMainText("This slot is empty.", True)
             self.doBag()
             return
-        if Items.useHidesPage(ID):
+        if ITEM_STATS[ID].useHidesPage:
             self.hidePage()
         self.choicePage = 1
-        self.doMainText(Items.fullDescription(ID), True)
-        if (Items.isUsable(ID) or Items.isConsumable(ID)):
+        self.doMainText(ITEM_STATS[ID].longDescription, True)
+        if (ITEM_STATS[ID].isUsable or ITEM_STATS[ID].isConsumable):
             self.hideAmountAll()
             self.doMainText("\n\nAre you sure you want to use this item?")
-            if (Items.isConsumable(ID)):
+            if (ITEM_STATS[ID].isConsumable):
                 self.doMainText("\n\nWarning: Using this item will consume it.")
             self.displayMainText()
             self.buttonConfirm()
@@ -9704,12 +8879,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             def doListen():
                 KeyState.overrideShift = False
                 if (self.buttonChoice == 6):
-                    if (Items.isConsumable(ID)):
+                    if (ITEM_STATS[ID].isConsumable):
                         if (self.bag.stack[self.choiceListResult[1]] <= 1):
                             self.bagSlotClear(self.choiceListResult[1])
                         else:
                             self.bag.stack[self.choiceListResult[1]] = self.bag.stack[self.choiceListResult[1]] - 1
-                    self.hunger += Items.foodValue(ID)
+                    self.hunger += ITEM_STATS[ID].foodValue
                     KeyState.overrideShift = True
                     self.doItemUse(ID)
                     KeyState.overrideShift = False
@@ -9758,7 +8933,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempNum = 0
         openSlot = self.bag.getEmptySlot(ID)
         if openSlot < 0:
-            self.outputMainText(f"You have obtained a {Items.name(ID)}!\n\nHowever, you do not have enough room in your bag. Click on an item in your bag to replace it with the new one or click a non-item button to ignore the new item.", True)
+            self.outputMainText(f"You have obtained a {ITEM_STATS[ID].name}!\n\nHowever, you do not have enough room in your bag. Click on an item in your bag to replace it with the new one or click a non-item button to ignore the new item.", True)
             self.doDiscard(ID)
             return
         if (self.bag.items[openSlot] == 0):
@@ -9766,21 +8941,21 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.bag.stack[openSlot] = 1
             self.passiveItemAdd(ID)
             tempNum += 1
-            while (self.bag.stack[openSlot] < Items.stackMax(ID) and ID in self.itemGainArray):
+            while (self.bag.stack[openSlot] < ITEM_STATS[ID].stackMax and ID in self.itemGainArray):
                 self.itemGainArray.pop()
                 self.bag.stack[openSlot] += 1
                 tempNum += 1
         else:
             tempNum += 1
             self.bag.stack[openSlot] += 1
-            while (self.bag.stack[openSlot] < Items.stackMax(ID) and ID in self.itemGainArray):
+            while (self.bag.stack[openSlot] < ITEM_STATS[ID].stackMax and ID in self.itemGainArray):
                 self.itemGainArray.pop()
                 self.bag.stack[openSlot] += 1
                 tempNum += 1
         if (tempNum < 2):
-            self.outputMainText(f"You have obtained a {Items.name(ID)}!", True)
+            self.outputMainText(f"You have obtained a {ITEM_STATS[ID].name}!", True)
         else:
-            self.outputMainText(f"You have obtained {tempNum}x {Items.name(ID)}!", True)
+            self.outputMainText(f"You have obtained {tempNum}x {ITEM_STATS[ID].name}!", True)
         self.doEnd()
 
     def bagSlotClear(self, slot: int):
@@ -9815,9 +8990,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.buttonChoice == 4 or self.buttonChoice == 8):
                 self.displayBag()
             elif (self.canLose(self.choiceListResult[0])):
-                self.doMainText(f"{Items.fullDescription(self.choiceListResult[0])}\n\n{Items.fullDescription(ID)}\n\nDo you want to replace {Items.name(self.choiceListResult[0])} with {Items.name(ID)}?", True)
+                self.doMainText(f"{ITEM_STATS[self.choiceListResult[0]].longDescription}\n\n{ITEM_STATS[ID].longDescription}\n\nDo you want to replace {ITEM_STATS[self.choiceListResult[0]].name} with {ITEM_STATS[ID].name}?", True)
                 if (self.bag.stack[self.choiceListResult[1]] > 1):
-                    self.doMainText(f"\n\nYou will lose all {self.bag.stack[self.choiceListResult[1]]} of {Items.name(self.choiceListResult[0])} if you do.")
+                    self.doMainText(f"\n\nYou will lose all {self.bag.stack[self.choiceListResult[1]]} of {ITEM_STATS[self.choiceListResult[0]].name} if you do.")
                 self.displayMainText()
                 self.buttonConfirm()
 
@@ -9829,7 +9004,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doDiscard(ID)
                 self.doListen = doListen
             else:
-                self.outputMainText(f"Something is preventing you from removing the {Items.name(self.choiceListResult[0])}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
+                self.outputMainText(f"Something is preventing you from removing the {ITEM_STATS[self.choiceListResult[0]].name}. You may have to unequip it first or it could be cursed!\n\nPlease choose something else.", True)
                 self.doDiscard(ID)
         self.doListen = doListen
 
@@ -9843,14 +9018,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if slot < 12:
             tempI -= Math.floor(slot / 4) + 1
         if self.inBag:
-            if (self.moveItemID == self.bag.items[tempI] and self.bag.stack[tempI] < Items.stackMax(self.bag.items[tempI])):
-                if (self.moveItemStack + self.bag.stack[tempI] <= Items.stackMax(self.bag.items[tempI])):
+            if (self.moveItemID == self.bag.items[tempI] and self.bag.stack[tempI] < ITEM_STATS[self.bag.items[tempI]].stackMax):
+                if (self.moveItemStack + self.bag.stack[tempI] <= ITEM_STATS[self.bag.items[tempI]].stackMax):
                     self.bag.stack[tempI] += self.moveItemStack
                     self.moveItemID = 0
                     self.moveItemStack = 0
                 else:
-                    self.moveItemStack -= Items.stackMax(self.bag.items[tempI]) - self.bag.stack[tempI]
-                    self.bag.stack[tempI] = Items.stackMax(self.bag.items[tempI])
+                    self.moveItemStack -= ITEM_STATS[self.bag.items[tempI]].stackMax - self.bag.stack[tempI]
+                    self.bag.stack[tempI] = ITEM_STATS[self.bag.items[tempI]].stackMax
             else:
                 self.moveItemID = self.bag.items[tempI]
                 self.moveItemStack = self.bag.stack[tempI]
@@ -9860,14 +9035,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 trace(self.bag.items)
                 trace(self.bag.stack)
         elif self.inStash:
-            if (self.moveItemID == self.stash.items[tempI] and self.stash.stack[tempI] < Items.stackMax(self.stash.items[tempI])):
-                if (self.moveItemStack + self.stash.stack[tempI] <= Items.stackMax(self.stash.items[tempI])):
+            if (self.moveItemID == self.stash.items[tempI] and self.stash.stack[tempI] < ITEM_STATS[self.stash.items[tempI]].stackMax):
+                if (self.moveItemStack + self.stash.stack[tempI] <= ITEM_STATS[self.stash.items[tempI]].stackMax):
                     self.stash.stack[tempI] += self.moveItemStack
                     self.moveItemID = 0
                     self.moveItemStack = 0
                 else:
-                    self.moveItemStack -= Items.stackMax(self.stash.items[tempI]) - self.stash.stack[tempI]
-                    self.stash.stack[tempI] = Items.stackMax(self.stash.items[tempI])
+                    self.moveItemStack -= ITEM_STATS[self.stash.items[tempI]].stackMax - self.stash.stack[tempI]
+                    self.stash.stack[tempI] = ITEM_STATS[self.stash.items[tempI]].stackMax
             else:
                 self.moveItemID = self.stash.items[tempI]
                 self.moveItemStack = self.stash.stack[tempI]
@@ -12069,7 +11244,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Discard button action
         '''
         self.hidePage()
-        self.doMainText(f"Are you sure you want to discard {Items.name(self.moveItemID)}", True)
+        self.doMainText(f"Are you sure you want to discard {ITEM_STATS[self.moveItemID].name}", True)
         if (self.moveItemStack > 1):
             self.doMainText(f" x{self.moveItemStack}")
         self.outputMainText("?")
@@ -12138,7 +11313,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def moveToStash(self):
         self.mts = True
         self.displayStash()
-        self.outputMainText(f"Click on the stash slot you would like to place {Items.name(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+        self.outputMainText(f"Click on the stash slot you would like to place {ITEM_STATS[self.moveItemID].name} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
         def doListen():
             self.choiceListSelect("Stash")
@@ -12151,10 +11326,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.canLose(self.moveItemID, 0):
                 tempNum = self.moveItemID
                 tempNum2 = self.moveItemStack
-                if (tempNum == self.stash.items[self.choiceListResult[1]] and self.stash.stack[self.choiceListResult[1]] < Items.stackMax(tempNum)):
-                    if (self.stash.stack[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
-                        self.moveItemStack -= Items.stackMax(tempNum) - self.stash.stack[self.choiceListResult[1]]
-                        self.stash.stack[self.choiceListResult[1]] = Items.stackMax(tempNum)
+                if (tempNum == self.stash.items[self.choiceListResult[1]] and self.stash.stack[self.choiceListResult[1]] < ITEM_STATS[tempNum].stackMax):
+                    if (self.stash.stack[self.choiceListResult[1]] + tempNum2 > ITEM_STATS[tempNum].stackMax):
+                        self.moveItemStack -= ITEM_STATS[tempNum].stackMax - self.stash.stack[self.choiceListResult[1]]
+                        self.stash.stack[self.choiceListResult[1]] = ITEM_STATS[tempNum].stackMax
                         self.refreshMoveItem(self.moveItemID, self.moveItemStack)
                         self.moveToStash()
                     else:
@@ -12180,7 +11355,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def moveToBag(self):
         self.mtb = True
         self.displayBag()
-        self.outputMainText(f"Click on the bag slot you would like to place {Items.name(self.moveItemID)} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+        self.outputMainText(f"Click on the bag slot you would like to place {ITEM_STATS[self.moveItemID].name} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
         def doListen():
             self.choiceListSelect("Bag")
@@ -12193,10 +11368,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 tempNum = self.moveItemID
                 tempNum2 = self.moveItemStack
-                if (tempNum == self.bag.items[self.choiceListResult[1]] and self.bag.stack[self.choiceListResult[1]] < Items.stackMax(tempNum)):
-                    if (self.bag.stack[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
-                        self.moveItemStack -= Items.stackMax(tempNum) - self.bag.stack[self.choiceListResult[1]]
-                        self.bag.stack[self.choiceListResult[1]] = Items.stackMax(tempNum)
+                if (tempNum == self.bag.items[self.choiceListResult[1]] and self.bag.stack[self.choiceListResult[1]] < ITEM_STATS[tempNum].stackMax):
+                    if (self.bag.stack[self.choiceListResult[1]] + tempNum2 > ITEM_STATS[tempNum].stackMax):
+                        self.moveItemStack -= ITEM_STATS[tempNum].stackMax - self.bag.stack[self.choiceListResult[1]]
+                        self.bag.stack[self.choiceListResult[1]] = ITEM_STATS[tempNum].stackMax
                         self.refreshMoveItem(self.moveItemID, self.moveItemStack)
                         self.moveToBag()
                     else:
@@ -12271,7 +11446,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def stashStore(self, storeItem: int):
         self.displayStash()
-        self.outputMainText(f"Click on the stash slot you would like to place {Items.name(self.bag.items[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+        self.outputMainText(f"Click on the stash slot you would like to place {ITEM_STATS[self.bag.items[storeItem]].name} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
         def doListen():
             self.choiceListSelect("Stash")
@@ -12282,10 +11457,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 tempNum = self.bag.items[storeItem]
                 tempNum2 = self.bag.stack[storeItem]
-                if (tempNum == self.stash.items[self.choiceListResult[1]] and self.stash.stack[self.choiceListResult[1]] < Items.stackMax(tempNum)):
-                    if (self.stash.stack[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
-                        self.bag.stack[storeItem] -= Items.stackMax(tempNum) - self.stash.stack[self.choiceListResult[1]]
-                        self.stash.stack[self.choiceListResult[1]] = Items.stackMax(tempNum)
+                if (tempNum == self.stash.items[self.choiceListResult[1]] and self.stash.stack[self.choiceListResult[1]] < ITEM_STATS[tempNum].stackMax):
+                    if (self.stash.stack[self.choiceListResult[1]] + tempNum2 > ITEM_STATS[tempNum].stackMax):
+                        self.bag.stack[storeItem] -= ITEM_STATS[tempNum].stackMax - self.stash.stack[self.choiceListResult[1]]
+                        self.stash.stack[self.choiceListResult[1]] = ITEM_STATS[tempNum].stackMax
                     else:
                         self.stash.stack[self.choiceListResult[1]] += tempNum2
                         self.bagSlotClear(storeItem)
@@ -12300,7 +11475,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def stashRemove(self, storeItem: int):
         self.displayBag()
-        self.outputMainText(f"Click on the bag slot you would like to place {Items.name(self.stash.items[storeItem])} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
+        self.outputMainText(f"Click on the bag slot you would like to place {ITEM_STATS[self.stash.items[storeItem]].name} in. If you click on a slot that is already used, you will swap the items.\n\nClick 'Return' to return to the main stash options.", True)
 
         def doListen():
             self.choiceListSelect("Bag")
@@ -12311,10 +11486,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.canLose(self.choiceListResult[0])):
                 tempNum = self.stash.items[storeItem]
                 tempNum2 = self.stash.stack[storeItem]
-                if (tempNum == self.bag.items[self.choiceListResult[1]] and self.bag.stack[self.choiceListResult[1]] < Items.stackMax(tempNum)):
-                    if (self.bag.stack[self.choiceListResult[1]] + tempNum2 > Items.stackMax(tempNum)):
-                        self.stash.stack[storeItem] -= Items.stackMax(tempNum) - self.bag.stack[self.choiceListResult[1]]
-                        self.bag.stack[self.choiceListResult[1]] = Items.stackMax(tempNum)
+                if (tempNum == self.bag.items[self.choiceListResult[1]] and self.bag.stack[self.choiceListResult[1]] < ITEM_STATS[tempNum].stackMax):
+                    if (self.bag.stack[self.choiceListResult[1]] + tempNum2 > ITEM_STATS[tempNum].stackMax):
+                        self.stash.stack[storeItem] -= ITEM_STATS[tempNum].stackMax - self.bag.stack[self.choiceListResult[1]]
+                        self.bag.stack[self.choiceListResult[1]] = ITEM_STATS[tempNum].stackMax
                     else:
                         self.bag.stack[self.choiceListResult[1]] += tempNum2
                         self.stash.items[storeItem] = 0
@@ -12359,8 +11534,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempDict = {4: "Buy", 8: "Sell", 12: "Return"}
         dlist = []
         for i in RANGE9_BUTTON_MAP:
-            tempDict[i] = Items.name(Shop.ID(self.currentZone, i))
-            if (Items.name(Shop.ID(self.currentZone, i)) == " "):
+            tempDict[i] = ITEM_STATS[Shop.ID(self.currentZone, i)].name
+            if (ITEM_STATS[Shop.ID(self.currentZone, i)].name == " "):
                 dlist.append(i)
         self.outputMainText("Click on an item to view a description of the item. If you would like to purchase it, click the Buy button.\n\nIf you would like to sell an item from your bag, click Sell.", True)
         self.doButtonChoices(tempDict)
@@ -12368,22 +11543,22 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             if (self.buttonChoice not in {4, 8, 12} and Shop.ID(self.currentZone, self.buttonChoice) != 0):
-                self.outputMainText(f"{Items.fullDescription(Shop.ID(self.currentZone, self.buttonChoice))}\n\nCost: {3 * Items.value(Shop.ID(self.currentZone, self.buttonChoice))} coins.", True)
+                self.outputMainText(f"{ITEM_STATS[Shop.ID(self.currentZone, self.buttonChoice)].longDescription}\n\nCost: {3 * ITEM_STATS[Shop.ID(self.currentZone, self.buttonChoice)].value} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {Items.name(Shop.ID(self.currentZone, self.buy))}?")
-                if (Items.stackMax(Shop.ID(self.currentZone, self.buy)) > 1):
+                self.outputMainText(f"\n\nAre you sure you would like to buy {ITEM_STATS[Shop.ID(self.currentZone, self.buy)].name}?")
+                if (ITEM_STATS[Shop.ID(self.currentZone, self.buy)].stackMax > 1):
                     buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                     tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
-                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * Items.value(Shop.ID(self.currentZone, self.buy))} coins, 2 for {6 * Items.value(Shop.ID(self.currentZone, self.buy))} coins, 5 for {15 * Items.value(Shop.ID(self.currentZone, self.buy))} coins")
-                    if (Items.stackMax(Shop.ID(self.currentZone, self.buy)) >= 10):
+                    self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * ITEM_STATS[Shop.ID(self.currentZone, self.buy)].value} coins, 2 for {6 * ITEM_STATS[Shop.ID(self.currentZone, self.buy)].value} coins, 5 for {15 * ITEM_STATS[Shop.ID(self.currentZone, self.buy)].value} coins")
+                    if (ITEM_STATS[Shop.ID(self.currentZone, self.buy)].stackMax >= 10):
                         buttonlist[9] = 1
                         tempDict[9] = "Buy 10"
-                        self.doMainText(f", 10 for {30 * Items.value(Shop.ID(self.currentZone, self.buy))} coins")
-                    if (Items.stackMax(Shop.ID(self.currentZone, self.buy)) >= 15):
+                        self.doMainText(f", 10 for {30 * ITEM_STATS[Shop.ID(self.currentZone, self.buy)].value} coins")
+                    if (ITEM_STATS[Shop.ID(self.currentZone, self.buy)].stackMax >= 15):
                         buttonlist[10] = 1
                         tempDict[10] = "Buy 15"
-                        self.doMainText(f", 15 for {45 * Items.value(Shop.ID(self.currentZone, self.buy))} coins")
+                        self.doMainText(f", 15 for {45 * ITEM_STATS[Shop.ID(self.currentZone, self.buy)].value} coins")
                     self.outputMainText(".")
                     self.showButtons(buttonlist)
                     self.doButtonChoices(tempDict)
@@ -12407,20 +11582,20 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             tempInt = 10
                         elif (self.buttonChoice == 10):
                             tempInt = 15
-                        if (self.coin < 3 * tempInt * Items.value(Shop.ID(self.currentZone, self.buy))):
-                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * Items.value(Shop.ID(self.currentZone, self.buy)) - self.coin} more coins to purchase ", True)
+                        if (self.coin < 3 * tempInt * ITEM_STATS[Shop.ID(self.currentZone, self.buy)].value):
+                            self.doMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * tempInt * ITEM_STATS[Shop.ID(self.currentZone, self.buy)].value - self.coin} more coins to purchase ", True)
                             if (tempInt > 1):
-                                self.doMainText(f"{tempInt}x {Items.name(Shop.ID(self.currentZone, self.buy))}.")
+                                self.doMainText(f"{tempInt}x {ITEM_STATS[Shop.ID(self.currentZone, self.buy)].name}.")
                             else:
-                                self.doMainText(f"{Items.name(Shop.ID(self.currentZone, self.buy))}.")
+                                self.doMainText(f"{ITEM_STATS[Shop.ID(self.currentZone, self.buy)].name}.")
                             self.displayMainText()
                             self.doNext()
 
                             def doListen():
                                 self.doShop()
                             self.doListen = doListen
-                        elif (self.bag.hasItem(Shop.ID(self.currentZone, self.buy)) and not Items.isConsumable(Shop.ID(self.currentZone, self.buy))):
-                            self.outputMainText(f"Sorry, but you cannot buy {Items.name(Shop.ID(self.currentZone, self.buy))} if you already have one. Please choose something else.", True)
+                        elif (self.bag.hasItem(Shop.ID(self.currentZone, self.buy)) and not ITEM_STATS[Shop.ID(self.currentZone, self.buy)].isConsumable):
+                            self.outputMainText(f"Sorry, but you cannot buy {ITEM_STATS[Shop.ID(self.currentZone, self.buy)].name} if you already have one. Please choose something else.", True)
                             self.doNext()
 
                             def doListen():
@@ -12428,7 +11603,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doListen = doListen
                         else:
                             self.addManyItem(Shop.ID(self.currentZone, self.buy), tempInt)
-                            self.doCoin(-3 * tempInt * Items.value(Shop.ID(self.currentZone, self.buy)))
+                            self.doCoin(-3 * tempInt * ITEM_STATS[Shop.ID(self.currentZone, self.buy)].value)
                             self.doProcess()
                 self.doListen = doListen
             elif (self.buttonChoice == 8):
@@ -12458,18 +11633,18 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.displayBag()
                 self.bagDisableEmpty()
             elif (self.choiceListResult[0]):
-                canSellItem = Items.value(self.choiceListResult[0]) != 0 and self.canLose(self.choiceListResult[0])
+                canSellItem = ITEM_STATS[self.choiceListResult[0]].value != 0 and self.canLose(self.choiceListResult[0])
                 if canSellItem:
                     self.hideAmountAll()
                     self.hidePage()
                 if (self.bag.stack[self.choiceListResult[1]] < 2):
                     if canSellItem:
-                        self.outputMainText(f"{Items.name(self.choiceListResult[0])} sells for {Items.value(self.choiceListResult[0])}.\n\nAre you sure you want to sell it?", True)
+                        self.outputMainText(f"{ITEM_STATS[self.choiceListResult[0]].name} sells for {ITEM_STATS[self.choiceListResult[0]].value}.\n\nAre you sure you want to sell it?", True)
                         self.buttonConfirm()
 
                         def doListen():
                             if (self.buttonChoice == 6):
-                                self.doCoin(Items.value(self.choiceListResult[0]))
+                                self.doCoin(ITEM_STATS[self.choiceListResult[0]].value)
                                 self.bag.items[self.choiceListResult[1]] = 0
                                 self.passiveItemRemove(self.choiceListResult[0])
                             self.doSell()
@@ -12478,7 +11653,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.outputMainText("You cannot sell the selected item. Either it is not yours to sell or needs to be unequipped first. Please select another item.", True)
                         self.doSell(False)
                 else:
-                    self.outputMainText(f"{Items.name(self.choiceListResult[0])} sells for {Items.value(self.choiceListResult[0])} each.\n\nHow many would you like to sell?", True)
+                    self.outputMainText(f"{ITEM_STATS[self.choiceListResult[0]].name} sells for {ITEM_STATS[self.choiceListResult[0]].value} each.\n\nHow many would you like to sell?", True)
                     buttonlist = ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0)
                     tempDict = {1: "1", 3: "2", 9: "All", 11: "None"}
                     if (self.bag.stack[self.choiceListResult[1]] >= 5):
@@ -12507,7 +11682,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         else:
                             self.bag.stack[self.choiceListResult[1]] -= tempInt
                         if (tempInt > 0):
-                            self.doCoin(tempInt * Items.value(self.choiceListResult[0]))
+                            self.doCoin(tempInt * ITEM_STATS[self.choiceListResult[0]].value)
                         self.doSell()
                     self.doListen = doListen
         self.doListen = doListen
@@ -12518,8 +11693,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempDict = {4: "Buy", 12: "Return"}
         dlist = []
         for i in RANGE9_BUTTON_MAP:
-            tempDict[i] = Items.name(DyeShop.ID(i))
-            if (Items.name(DyeShop.ID(i)) == " "):
+            tempDict[i] = ITEM_STATS[DyeShop.ID(i)].name
+            if (ITEM_STATS[DyeShop.ID(i)].name == " "):
                 dlist.append(i)
         self.outputMainText("Click on a dye to view a description of the color. If you would like to purchase it, click the Buy button..", True)
         self.doButtonChoices(tempDict)
@@ -12527,16 +11702,16 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             if (self.buttonChoice not in {4, 8, 12} and DyeShop.ID(self.buttonChoice) != 0):
-                self.outputMainText(f"{Items.fullDescription(DyeShop.ID(self.buttonChoice))}\n\nCost: {3 * Items.value(DyeShop.ID(self.buttonChoice))} coins.", True)
+                self.outputMainText(f"{ITEM_STATS[DyeShop.ID(self.buttonChoice)].longDescription}\n\nCost: {3 * ITEM_STATS[DyeShop.ID(self.buttonChoice)].value} coins.", True)
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
-                self.outputMainText(f"\n\nAre you sure you would like to buy {Items.name(DyeShop.ID(self.buy))}?")
+                self.outputMainText(f"\n\nAre you sure you would like to buy {ITEM_STATS[DyeShop.ID(self.buy)].name}?")
                 self.buttonConfirm()
 
                 def doListen():
                     if (self.buttonChoice == 6):
-                        if (self.coin < 3 * Items.value(DyeShop.ID(self.buy))):
-                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * Items.value(DyeShop.ID(self.buy)) - self.coin} more coins to purchase{Items.name(DyeShop.ID(self.buy))}.", True)
+                        if (self.coin < 3 * ITEM_STATS[DyeShop.ID(self.buy)].value):
+                            self.outputMainText(f"Sorry, but you only have {self.coin} coins. You require at least {3 * ITEM_STATS[DyeShop.ID(self.buy)].value - self.coin} more coins to purchase{ITEM_STATS[DyeShop.ID(self.buy)].name}.", True)
                             self.doNext()
 
                             def doListen():
@@ -12544,7 +11719,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doListen = doListen
                         else:
                             self.itemAdd(DyeShop.ID(self.buy))
-                            self.doCoin(-3 * Items.value(DyeShop.ID(self.buy)))
+                            self.doCoin(-3 * ITEM_STATS[DyeShop.ID(self.buy)].value)
                             self.doProcess()
                     else:
                         self.doDyeShop()
@@ -12558,7 +11733,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def dyeThing(self, ID: int, color: int):
         self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0))
-        self.outputMainText(f"What would you like to apply the {Items.name(ID)} to?", True)
+        self.outputMainText(f"What would you like to apply the {ITEM_STATS[ID].name} to?", True)
         tempDict = {7: "Body", 10: "Nevermind"}
         if (self.hair != Hairstyle.NONE):
             tempDict[5] = "Hair"
@@ -12567,10 +11742,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         def doListen():
             if self.buttonChoice == 5:
                 self.hairColor = color
-                self.doMainText(f"You smear the {Items.name(ID)} around in your {Hairstyle.shortDescription(self.hair)}, turning it {self.hairC()} in color.", True)
+                self.doMainText(f"You smear the {ITEM_STATS[ID].name} around in your {Hairstyle.shortDescription(self.hair)}, turning it {self.hairC()} in color.", True)
             elif self.buttonChoice == 7:
                 self.skinColor = color
-                self.doMainText(f"You rub the {Items.name(ID)} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.", True)
+                self.doMainText(f"You rub the {ITEM_STATS[ID].name} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.", True)
             elif self.buttonChoice == 10:
                 self.doMainText("Apparently you derped and didn't mean to use it, so you put the dye back in your bag.", True)
                 self.itemAdd(ID)
@@ -12598,15 +11773,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.buttonChoice == 4 and self.buy != 0):
                 self.outputMainText(f"\n\nAre you sure you would like to buy {Apothecary.itemName(Apothecary.ID(self.currentZone, self.buy, self))}?")
                 # TODO: Use >= to match other uses
-                if (Apothecary.ID(self.currentZone, self.buy, self) > 200 and Items.stackMax(Apothecary.ID(self.currentZone, self.buy, self)) > 1):
+                if (Apothecary.ID(self.currentZone, self.buy, self) > 200 and ITEM_STATS[Apothecary.ID(self.currentZone, self.buy, self)].stackMax > 1):
                     buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                     tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
                     self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins, 2 for {6 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins, 5 for {15 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins")
-                    if (Items.stackMax(Apothecary.ID(self.currentZone, self.buy, self)) >= 10):
+                    if (ITEM_STATS[Apothecary.ID(self.currentZone, self.buy, self)].stackMax >= 10):
                         tempDict[9] = "Buy 10"
                         buttonlist[9] = 1
                         self.doMainText(f", 10 for {30 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins")
-                    if (Items.stackMax(Apothecary.ID(self.currentZone, self.buy, self)) >= 15):
+                    if (ITEM_STATS[Apothecary.ID(self.currentZone, self.buy, self)].stackMax >= 15):
                         tempDict[10] = "Buy 15"
                         buttonlist[10] = 1
                         self.doMainText(f", 15 for {45 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins")
@@ -12645,7 +11820,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             def doListen():
                                 self.doApothecary()
                             self.doListen = doListen
-                        elif (self.bag.hasItem(Apothecary.ID(self.currentZone, self.buy, self)) and not Items.isConsumable(Apothecary.ID(self.currentZone, self.buy, self))):
+                        elif (self.bag.hasItem(Apothecary.ID(self.currentZone, self.buy, self)) and not ITEM_STATS[Apothecary.ID(self.currentZone, self.buy, self)].isConsumable):
                             self.outputMainText(f"Sorry, but you cannot buy {Apothecary.itemName(Apothecary.ID(self.currentZone, self.buy, self))} if you already have one. Please choose something else.", True)
                             self.doNext()
 
@@ -14964,7 +14139,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return False
 
     def makeAlchemy(self, ID: int, level: int):
-        self.outputMainText(f"You have chosen to make a {Items.name(ID)}.\n\nAre you sure?", True)
+        self.outputMainText(f"You have chosen to make a {ITEM_STATS[ID].name}.\n\nAre you sure?", True)
         self.buttonConfirm()
 
         def doListen():
@@ -23346,7 +22521,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText(f"\n\nSomewhere on the passed out body (you probably don't want to know where) you find {self.enemy.coin} coins.")
             self.doCoin(self.enemy.coin)
         if (self.enemy.item != 0):
-            self.doMainText(f"\n\nYou manage to obtain {Items.name(self.enemy.item)} from your opponent.")
+            self.doMainText(f"\n\nYou manage to obtain {ITEM_STATS[self.enemy.item].name} from your opponent.")
         if (self.enemy.SexP != 0):
             self.doMainText(f"\n\nFor your efforts, you grow in experience, gaining {self.enemy.SexP} SexP!")
             self.doSexP(self.enemy.SexP)
@@ -28329,7 +27504,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.window._children[f'{which}imglabel'].image_name = img
 
     def moveItemShow(self):
-        text = Items.name(self.moveItemID)
+        text = ITEM_STATS[self.moveItemID].name
         if (not self.moveitembuttonvisible):
             self.window.addWidget(PyminButton, 'display', 'moveitembutton', x=920, y=96, width=140, height=46, font=self.font, text=text)
             self.moveitembuttonvisible = True
