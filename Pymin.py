@@ -3664,9 +3664,11 @@ class WikiPages:
         if recipeItem.description != '':
             contents += f"<u>Description</u>\n{recipeItem.description}"
 
+        contents += '\n\n<u>Required Ingredients:</u>\nPLACEHOLDER'
+
         contents += f"\n\n<b>Difficulty: </b>{recipeItem.difficultyName}"
 
-        return contents + f'\n<b>Creates: </b><a href="call_args://Item&{ID}">{Items.fullName(recipeItem.creates)}</a>'
+        return contents + f'\n<b>Creates: </b><a href="call_args://Item&{recipeItem.creates}">{Items.fullName(recipeItem.creates)}</a>'
 
     def Clothes(ID: int) -> str:
         if ID == -10:
