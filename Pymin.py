@@ -322,12 +322,13 @@ class StartType:
 
 
 class Item:
-    # TODO
     NONE = 0
 
     TEST_ITEM = 1
     DEBUG_STICK = 2
     TS_ANY = 3
+
+    # UNARMED_WEAPON = 10
 
     ANC_CLAWS = 101
     IMB_SHOES = 102
@@ -407,7 +408,8 @@ class Item:
     SUPP_HARNESS = 247
     BREEDER_POT = 248
     TREANTS_TEAR = 249
-    FOOMP_BOMB = 251
+    FOOMP_BOMB = 250
+    PLUMP_QUAT = 251
     MILKY_PEND = 252
     BUG_EGG = 253
     LANTERN = 254
@@ -519,12 +521,19 @@ class GenericStatsItem(frozendict):
 
 
 class ItemStatsItem(GenericStatsItem):
+    _NAME_FALLBACK = "ITEM NAME ERROR"
+    _DESCRIPTION_FALLBACK = "ITEM DESCRIPTION ERROR"
+    _LONGNAME_FALLBACK = "ITEM FULL NAME ERROR"
+
     @property
     def longName(self):
-        ...
+        return self.get('longName', self._LONGNAME_FALLBACK)
 
     def description(self, context):
-        ...
+        desc = self.get('description')
+        if desc is None:
+            return self._DESCRIPTION_FALLBACK
+        return desc(context)
 
     @property
     def longDescription(self):
@@ -532,26 +541,29 @@ class ItemStatsItem(GenericStatsItem):
 
     @property
     def isUsable(self):
-        ...
+        return self.get('isUsable', False)
 
     @property
     def isConsumable(self):
-        ...
+        return self.get('isConsumable', False)
 
     @property
     def stackMax(self):
-        ...
+        return self.get('stackMax', 0)
 
     @property
     def foodValue(self):
-        ...
+        return self.get('foodValue', 0) * 2
 
     @property
     def useHidesPage(self):
-        ...
+        return self.get('useHidesPage', True)
 
 
-ITEM_STATS = frozendict({})
+ITEM_STATS = frozendict({
+    Item.NONE: ItemStatsItem(name=' ')
+    # Item.<item>: ItemStatsItem(name=, longName=, value=, isConsumable=, isUsable=, foodValue=, stackMax, useHidesPage=, description=)
+})
 
 
 class HairstyleStatsItem(GenericStatsItem):
@@ -666,31 +678,31 @@ class RecipeStatsItem(GenericStatsItem):
 # TODO: Move the name that appears in the alchemy screen to here
 RECIPE_STATS = frozendict({
     0: RecipeStatsItem(),
-    Recipe.LUST_DRAFT: RecipeStatsItem(name='R: LustDraft', longName="Recipe: Lust Draft", value=20, level=AlchemyLevel.SIMPLE, creates=503, description="For those who need a boost in the bedroom."),
-    Recipe.REJUV_POT: RecipeStatsItem(name='R: RejuvPot', longName="Recipe: Rejuvenation Potion", value=25, level=AlchemyLevel.SIMPLE, creates=504, description="Useful for soothing what ailes you."),
-    Recipe.EXP_PREG: RecipeStatsItem(name='R: ExpPreg', longName="Recipe: Express Pregnancy Potion", value=25, level=AlchemyLevel.SIMPLE, creates=506, description="Helps quicken the gestation period."),
-    Recipe.BALL_SWELL: RecipeStatsItem(name='R: BallSwell', longName="Recipe: Ball Sweller", value=20, level=AlchemyLevel.SIMPLE, creates=507, description="Gives your nuts a jump in their production."),
-    Recipe.S_LUST_DRAFT: RecipeStatsItem(name='R: SLustDraft', longName="Recipe: Superior Lust Draft", value=35, level=AlchemyLevel.COMPLEX, creates=508, description="For when you've got a long night ahead with your spouse."),
-    Recipe.S_REJUV_POT: RecipeStatsItem(name='R: SRejuvPot', longName="Recipe: Superior Rejuvenation Potion", value=40, level=AlchemyLevel.COMPLEX, creates=509, description="Greatly soothes your ailments."),
-    Recipe.S_EXP_PREG: RecipeStatsItem(name='R: SExpPreg', longName="Recipe: Superior Express Pregnancy Potion", value=35, level=AlchemyLevel.COMPLEX, creates=511, description="Because that baby just needs to get out."),
-    Recipe.S_BALL_SWELL: RecipeStatsItem(name='R: SBallSwell', longName="Recipe: Superior Ball Sweller", value=30, level=AlchemyLevel.COMPLEX, creates=512, description="If you like that swollen, achy, full of seed feeling, this is what you want."),
-    Recipe.GEN_SWAP: RecipeStatsItem(name='R: GenSwap', longName="Recipe: Gender Swap Potion", value=45, level=AlchemyLevel.COMPLEX, creates=513, description="Don't like your current path in life? This will help start you off from a new perspective."),
-    Recipe.MASO_POT: RecipeStatsItem(name='R: MasoPot', longName="Recipe: Masochism Potion", value=45, level=AlchemyLevel.COMPLEX, creates=514, description="Makes some the pain feel pleasurable instead."),
-    Recipe.BABY_FREE: RecipeStatsItem(name='R: BabyFree', longName="Recipe: Baby Free Potion", value=40, level=AlchemyLevel.COMPLEX, creates=516, description="A good contraceptive."),
-    Recipe.POT_POT: RecipeStatsItem(name='R: PotPot', longName="Recipe: Potency Potion", value=45, level=AlchemyLevel.COMPLEX, creates=517, description="Makes your testicles more efficient in their duties."),
-    Recipe.S_GEN_SWAP: RecipeStatsItem(name='R: SGenSwap', longName="Recipe: Superior Gender Swap Potion", value=60, level=AlchemyLevel.ADVANCED, creates=518, description="For when you're bored and wanna try out something new."),
-    Recipe.S_MASO_POT: RecipeStatsItem(name='R: SMasoPot', longName="Recipe: Superior Masochism Potion", value=70, level=AlchemyLevel.ADVANCED, creates=519, description="Really helps take on the big fellas; all that soreness will be delightful instead."),
-    Recipe.S_BABY_FREE: RecipeStatsItem(name='R: SBabyFree', longName="Recipe: Superior Baby Free Potion", value=55, level=AlchemyLevel.ADVANCED, creates=521, description="Necessary in Siz'Calit."),
-    Recipe.S_POT_POT: RecipeStatsItem(name='R: SPotPot', longName="Recipe: Superior Potency Potion", value=65, level=AlchemyLevel.ADVANCED, creates=522, description="Helps make sure you absolutely fertilize all those eggs with a good coating."),
-    Recipe.MILK_SUPPRESS: RecipeStatsItem(name='R: MilkSuppress', longName="Recipe: Milk Suppressant", value=35, level=AlchemyLevel.COMPLEX, creates=535, description="Sometimes all that leaking can be a bit of a nuisance... So, they came up with this!"),
-    Recipe.BLONDIE: RecipeStatsItem(name='R: Blondie', longName="Recipe: Blonde Dye", level=AlchemyLevel.SIMPLE, creates=220),
-    Recipe.PUSS_JUICE: RecipeStatsItem(name='R: PussJuice', longName="Recipe: Pussy Juice", level=AlchemyLevel.ADVANCED, creates=221),
-    Recipe.BLACK_DYE: RecipeStatsItem(name='R: BlackDye', longName="Recipe: Black Dye", level=AlchemyLevel.COMPLEX, creates=515),
-    Recipe.RED_DYE: RecipeStatsItem(name='R: RedDye', longName="Recipe: Red Dye", level=AlchemyLevel.ADVANCED, creates=520),
-    Recipe.PHEROMONE: RecipeStatsItem(name='R: Pheromone', longName="Recipe: Pheromone", level=AlchemyLevel.ADVANCED, creates=532),
-    Recipe.REDUC_REDUC: RecipeStatsItem(name='R: ReducReduc', longName="Recipe: Reduced Reduction", level=AlchemyLevel.SIMPLE, creates=533),
-    Recipe.MALE_ENHANCE: RecipeStatsItem(name='R: MaleEnhance', longName="Recipe: Male Enhancement Drug", level=AlchemyLevel.SIMPLE, creates=534),
-    Recipe.BAZOOMBA: RecipeStatsItem(name='R: Bazoomba', longName="Recipe: Bazoomba!", level=AlchemyLevel.ADVANCED, creates=536)
+    Recipe.LUST_DRAFT: RecipeStatsItem(name='R: LustDraft', longName="Recipe: Lust Draft", value=20, level=AlchemyLevel.SIMPLE, creates=Item.LUST_DRAFT, description="For those who need a boost in the bedroom."),
+    Recipe.REJUV_POT: RecipeStatsItem(name='R: RejuvPot', longName="Recipe: Rejuvenation Potion", value=25, level=AlchemyLevel.SIMPLE, creates=Item.REJUV_POT, description="Useful for soothing what ailes you."),
+    Recipe.EXP_PREG: RecipeStatsItem(name='R: ExpPreg', longName="Recipe: Express Pregnancy Potion", value=25, level=AlchemyLevel.SIMPLE, creates=Item.EXP_PREG, description="Helps quicken the gestation period."),
+    Recipe.BALL_SWELL: RecipeStatsItem(name='R: BallSwell', longName="Recipe: Ball Sweller", value=20, level=AlchemyLevel.SIMPLE, creates=Item.BALL_SWELLER, description="Gives your nuts a jump in their production."),
+    Recipe.S_LUST_DRAFT: RecipeStatsItem(name='R: SLustDraft', longName="Recipe: Superior Lust Draft", value=35, level=AlchemyLevel.COMPLEX, creates=Item.S_LUST_DRAFT, description="For when you've got a long night ahead with your spouse."),
+    Recipe.S_REJUV_POT: RecipeStatsItem(name='R: SRejuvPot', longName="Recipe: Superior Rejuvenation Potion", value=40, level=AlchemyLevel.COMPLEX, creates=Item.S_REJUV_POT, description="Greatly soothes your ailments."),
+    Recipe.S_EXP_PREG: RecipeStatsItem(name='R: SExpPreg', longName="Recipe: Superior Express Pregnancy Potion", value=35, level=AlchemyLevel.COMPLEX, creates=Item.S_EXP_PREG, description="Because that baby just needs to get out."),
+    Recipe.S_BALL_SWELL: RecipeStatsItem(name='R: SBallSwell', longName="Recipe: Superior Ball Sweller", value=30, level=AlchemyLevel.COMPLEX, creates=Item.S_BALL_SWELLER, description="If you like that swollen, achy, full of seed feeling, this is what you want."),
+    Recipe.GEN_SWAP: RecipeStatsItem(name='R: GenSwap', longName="Recipe: Gender Swap Potion", value=45, level=AlchemyLevel.COMPLEX, creates=Item.GEN_SWAP, description="Don't like your current path in life? This will help start you off from a new perspective."),
+    Recipe.MASO_POT: RecipeStatsItem(name='R: MasoPot', longName="Recipe: Masochism Potion", value=45, level=AlchemyLevel.COMPLEX, creates=Item.MASO_POT, description="Makes some the pain feel pleasurable instead."),
+    Recipe.BABY_FREE: RecipeStatsItem(name='R: BabyFree', longName="Recipe: Baby Free Potion", value=40, level=AlchemyLevel.COMPLEX, creates=Item.BABY_FREE, description="A good contraceptive."),
+    Recipe.POT_POT: RecipeStatsItem(name='R: PotPot', longName="Recipe: Potency Potion", value=45, level=AlchemyLevel.COMPLEX, creates=Item.POT_POT, description="Makes your testicles more efficient in their duties."),
+    Recipe.S_GEN_SWAP: RecipeStatsItem(name='R: SGenSwap', longName="Recipe: Superior Gender Swap Potion", value=60, level=AlchemyLevel.ADVANCED, creates=Item.S_GEN_SWAP, description="For when you're bored and wanna try out something new."),
+    Recipe.S_MASO_POT: RecipeStatsItem(name='R: SMasoPot', longName="Recipe: Superior Masochism Potion", value=70, level=AlchemyLevel.ADVANCED, creates=Item.S_MASO_POT, description="Really helps take on the big fellas; all that soreness will be delightful instead."),
+    Recipe.S_BABY_FREE: RecipeStatsItem(name='R: SBabyFree', longName="Recipe: Superior Baby Free Potion", value=55, level=AlchemyLevel.ADVANCED, creates=Item.S_BABY_FREE, description="Necessary in Siz'Calit."),
+    Recipe.S_POT_POT: RecipeStatsItem(name='R: SPotPot', longName="Recipe: Superior Potency Potion", value=65, level=AlchemyLevel.ADVANCED, creates=Item.S_POT_POT, description="Helps make sure you absolutely fertilize all those eggs with a good coating."),
+    Recipe.MILK_SUPPRESS: RecipeStatsItem(name='R: MilkSuppress', longName="Recipe: Milk Suppressant", value=35, level=AlchemyLevel.COMPLEX, creates=Item.MILK_SUPPRESS, description="Sometimes all that leaking can be a bit of a nuisance... So, they came up with this!"),
+    Recipe.BLONDIE: RecipeStatsItem(name='R: Blondie', longName="Recipe: Blonde Dye", level=AlchemyLevel.SIMPLE, creates=Item.BLONDE_DYE),
+    Recipe.PUSS_JUICE: RecipeStatsItem(name='R: PussJuice', longName="Recipe: Pussy Juice", level=AlchemyLevel.ADVANCED, creates=Item.PUSS_JUICE),
+    Recipe.BLACK_DYE: RecipeStatsItem(name='R: BlackDye', longName="Recipe: Black Dye", level=AlchemyLevel.COMPLEX, creates=Item.BLACK_DYE),
+    Recipe.RED_DYE: RecipeStatsItem(name='R: RedDye', longName="Recipe: Red Dye", level=AlchemyLevel.ADVANCED, creates=Item.RED_DYE),
+    Recipe.PHEROMONE: RecipeStatsItem(name='R: Pheromone', longName="Recipe: Pheromone", level=AlchemyLevel.ADVANCED, creates=Item.PHEROMONE),
+    Recipe.REDUC_REDUC: RecipeStatsItem(name='R: ReducReduc', longName="Recipe: Reduced Reduction", level=AlchemyLevel.SIMPLE, creates=Item.REDUC_REDUC),
+    Recipe.MALE_ENHANCE: RecipeStatsItem(name='R: MaleEnhance', longName="Recipe: Male Enhancement Drug", level=AlchemyLevel.SIMPLE, creates=Item.MALE_ENHANCE),
+    Recipe.BAZOOMBA: RecipeStatsItem(name='R: Bazoomba', longName="Recipe: Bazoomba!", level=AlchemyLevel.ADVANCED, creates=Item.BAZOOMBA)
 })
 
 
@@ -751,19 +763,19 @@ class EnemyStatsItem(frozendict):
 ENEMY_STATS = frozendict({
     Enemy.NONE: EnemyStatsItem(name="none", HP=0, str=0, ment=0, sen=0, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=0, item=0),
     Enemy.TEST_ENEMY: EnemyStatsItem(name="test enemy", HP=10, str=1, ment=1, sen=1, lib=1, lust=0, gender=Gender.MALE, pref=Preference.ANY, coin=1, SexP=1, item=1),
-    Enemy.COCK_SNAKE: EnemyStatsItem(name="cock-snake", HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=202),
-    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsItem(name="desiccating dust devil", HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=231),
-    Enemy.LONE_WOLF: EnemyStatsItem(name="lone male wolf", HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=203, baby=100),
-    Enemy.GAY_WOLF: EnemyStatsItem(name="gay wolf", HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=203),
-    Enemy.HORNY_FELIN: EnemyStatsItem(name="felin in heat", HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=204),
-    Enemy.DRUNKEN_EQUAN: EnemyStatsItem(name="drunken equan", HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=205, baby=2),
-    Enemy.OCTOPUS_GIRL: EnemyStatsItem(name="octopus girl", HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=216),
-    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsItem(name="little big bunny-man", HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222, baby=7),
-    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsItem(name="little big bunny-girl", HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=222),
-    Enemy.FIERCE_NAGA: EnemyStatsItem(name="fierce naga", HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=230),
-    Enemy.MINOTAUR: EnemyStatsItem(name="Minotaur", HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=525, baby=307),
-    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsItem(name="freaky little girl", HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=259, baby=308),
-    Enemy.SUCCUBUS: EnemyStatsItem(name="succubus", HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=260)
+    Enemy.COCK_SNAKE: EnemyStatsItem(name="cock-snake", HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=Item.CO_SNAK_VEN),
+    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsItem(name="desiccating dust devil", HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=Item.DESI_SAND),
+    Enemy.LONE_WOLF: EnemyStatsItem(name="lone male wolf", HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=Item.WOLF_FUR, baby=100),
+    Enemy.GAY_WOLF: EnemyStatsItem(name="gay wolf", HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=Item.WOLF_FUR),
+    Enemy.HORNY_FELIN: EnemyStatsItem(name="felin in heat", HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=Item.SM_POUCH1),
+    Enemy.DRUNKEN_EQUAN: EnemyStatsItem(name="drunken equan", HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=Item.SM_POUCH2, baby=2),
+    Enemy.OCTOPUS_GIRL: EnemyStatsItem(name="octopus girl", HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=Item.PINK_INK),
+    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsItem(name="little big bunny-man", HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=Item.KINKY_CARR, baby=7),
+    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsItem(name="little big bunny-girl", HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=Item.KINKY_CARR),
+    Enemy.FIERCE_NAGA: EnemyStatsItem(name="fierce naga", HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=Item.EGGCELERATOR),
+    Enemy.MINOTAUR: EnemyStatsItem(name="Minotaur", HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=Item.CUM_JUG, baby=307),
+    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsItem(name="freaky little girl", HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=Item.SWEET_AND_SOUR, baby=308),
+    Enemy.SUCCUBUS: EnemyStatsItem(name="succubus", HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=Item.SUCC_DRAFT)
 })
 
 
@@ -1591,546 +1603,546 @@ class Items:
         '''
         Function which returns the name of the item ID
         '''
-        if (ID == 0):
+        if (ID == Item.NONE):
             return " "
-        if (ID == 1):
+        if (ID == Item.TEST_ITEM):
             return "Test"
-        if (ID == 2):
+        if (ID == Item.DEBUG_STICK):
             return "Debug Stick"
-        if (ID == 3):
+        if (ID == Item.TS_ANY):
             return "TS Any"
-        if (ID == 404):
+        if (ID == Item.ITEM_NOT_FOUND):
             return "Item Not Found"
-        if (ID == 418):
+        if (ID == Item.TEAPOT):
             return "Teapot"
-        if (ID == 101):
+        if (ID == Item.ANC_CLAWS):
             return "Anc Claws"
-        if (ID == 102):
+        if (ID == Item.IMB_SHOES):
             return "Imb Shoes"
-        if (ID == 103):
+        if (ID == Item.DRY_SAND):
             return "Dry Sand"
-        if (ID == 104):
+        if (ID == Item.MILKER):
             return "Milker"
-        if (ID == 105):
+        if (ID == Item.CATS_MEOW):
             return "Cat's Meow"
-        if (ID == 106):
+        if (ID == Item.PENIS_PUMP):
             return "Penis Pump"
-        if (ID == 108):
+        if (ID == Item.BLOOD_GGE):
             return "Blood Gge"
-        if (ID == 109):
+        if (ID == Item.EDU_EGG):
             return "Edu Egg"
-        if (ID == 110):
+        if (ID == Item.REDUCTION):
             return "Reduction"
-        if (ID == 111):
+        if (ID == Item.SKIN_BALM):
             return "Skin Balm"
-        if (ID == 112):
+        if (ID == Item.BOL_JOICE):
             return "Bol Juice"
-        if (ID == 113):
+        if (ID == Item.TAINT_LEAF):
             return "Taint Leaf"
-        if (ID == 114):
+        if (ID == Item.SWEET_SAP):
             return "Sweet Sap"
-        if (ID == 115):
+        if (ID == Item.POULTICE):
             return "Poultice"
-        if (ID == 116):
+        if (ID == Item.DAGGER):
             return "Dagger"
-        if (ID == 117):
+        if (ID == Item.HAMMER):
             return "Hammer"
-        if (ID == 118):
+        if (ID == Item.SABER):
             return "Saber"
-        if (ID == 119):
+        if (ID == Item.WHIP):
             return "Whip"
-        if (ID == 120):
+        if (ID == Item.NEUTER):
             return "Neuter"
-        if (ID == 121):
+        if (ID == Item.TS_SOFT):
             return "TS Soft"
-        if (ID == 122):
+        if (ID == Item.TS_FIRM):
             return "TS Firm"
-        if (ID == 123):
+        if (ID == Item.TS_TIED):
             return "TS Tied"
-        if (ID == 124):
+        if (ID == Item.TS_SIZ):
             return "TS Siz"
-        if (ID == 125):
+        if (ID == Item.TS_OVI):
             return "TS Ovi"
-        if (ID == 126):
+        if (ID == Item.OAS_WATER):
             return "Oas Water"
-        if (ID == 127):
+        if (ID == Item.TAIL_SPIKE):
             return "Tail Spike"
-        if (ID == 128):
+        if (ID == Item.TS_SANC):
             return "TS Sanct"
-        if (ID == 200):
+        if (ID == Item.LILAS_GIFT):
             return "Lila's Gift"
-        if (ID == 201):
+        if (ID == Item.MILK_C_POIS):
             return "Milk C Pois"
-        if (ID == 202):
+        if (ID == Item.CO_SNAK_VEN):
             return "Co-Snak Ven"
-        if (ID == 203):
+        if (ID == Item.WOLF_FUR):
             return "Wolf Fur"
-        if (ID == 204):
+        if (ID == Item.SM_POUCH1):
             return "Sm Pouch"
-        if (ID == 205):
+        if (ID == Item.SM_POUCH2):
             return "Sm Pouch"
-        if (ID == 206):
+        if (ID == Item.TRINKET):
             return "Trinket"
-        if (ID == 207):
+        if (ID == Item.COCK_CARV):
             return "Cock Carv"
-        if (ID == 208):
+        if (ID == Item.BLO_BERRY):
             return "Blo Berry"
-        if (ID == 209):
+        if (ID == Item.GRAIN):
             return "Grain"
-        if (ID == 210):
+        if (ID == Item.PUSS_FRUIT):
             return "Puss Fruit"
-        if (ID == 211):
+        if (ID == Item.DAIRE_PILL):
             return "DairE Pill"
-        if (ID == 212):
+        if (ID == Item.RED_MUSH):
             return "Red Mush"
-        if (ID == 213):
+        if (ID == Item.WET_CLOTH):
             return "Wet Cloth"
-        if (ID == 214):
+        if (ID == Item.LON_MILK):
             return "Lon Milk"
-        if (ID == 215):
+        if (ID == Item.LON_PENDANT):
             return "Lon Pendant"
-        if (ID == 216):
+        if (ID == Item.PINK_INK):
             return "Pink Ink"
-        if (ID == 217):
+        if (ID == Item.EGG_JELLY):
             return "Egg Jelly"
-        if (ID == 218):
+        if (ID == Item.BUL_BERRY):
             return "Bul Berry"
-        if (ID == 219):
+        if (ID == Item.FRESH_EGG):
             return "Fresh Egg"
-        if (ID == 220):
+        if (ID == Item.BLONDE_DYE):
             return "Blondie"
-        if (ID == 221):
+        if (ID == Item.PUSS_JUICE):
             return "Puss Juice"
-        if (ID == 222):
+        if (ID == Item.KINKY_CARR):
             return "Kinky Carr"
-        if (ID == 223):
+        if (ID == Item.EQ_SNACK):
             return "Eq Snack"
-        if (ID == 224):
+        if (ID == Item.LILAS_MILK):
             return "Lila's Milk"
-        if (ID == 225):
+        if (ID == Item.BODY_WASH):
             return "Body Wash"
-        if (ID == 226):
+        if (ID == Item.FELIN_TEA):
             return "Felin Tea"
-        if (ID == 227):
+        if (ID == Item.ORAL_WASH):
             return "Oral Wash"
-        if (ID == 228):
+        if (ID == Item.BODY_OIL):
             return "Body Oil"
-        if (ID == 229):
+        if (ID == Item.LEATHER_STRAP):
             return "Leath Strap"
-        if (ID == 230):
+        if (ID == Item.EGGCELERATOR):
             return "Eggcelerator"
-        if (ID == 231):
+        if (ID == Item.DESI_SAND):
             return "Desi Sand"
-        if (ID == 232):
+        if (ID == Item.FLYING_CARP):
             return "Flying Carp"
-        if (ID == 233):
+        if (ID == Item.A_GRAV_ROCK):
             return "A-Grav Rock"
-        if (ID == 234):
+        if (ID == Item.REIN_CHARM):
             return "Rein Charm"
-        if (ID == 235):
+        if (ID == Item.FELL_ROD):
             return "Fell Rod"
-        if (ID == 236):
+        if (ID == Item.RECEPT_BELL):
             return "Recept Bell"
-        if (ID == 237):
+        if (ID == Item.DEWY_GIFT):
             return "Dewy Gift"
-        if (ID == 238):
+        if (ID == Item.SQU_CHEESE):
             return "Squ Cheese"
-        if (ID == 239):
+        if (ID == Item.SHINY_ROCK):
             return "Shiny Rock"
-        if (ID == 240):
+        if (ID == Item.AUBURN_DYE):
             return "Auburn Dye"
-        if (ID == 241):
+        if (ID == Item.BROWN_DYE):
             return "Brown Dye"
-        if (ID == 242):
+        if (ID == Item.GREY_DYE):
             return "Grey Dye"
-        if (ID == 243):
+        if (ID == Item.WHITE_DYE):
             return "White Dye"
-        if (ID == 244):
+        if (ID == Item.SNUGGLE_BALL):
             return "Snuggle Ball"
-        if (ID == 245):
+        if (ID == Item.FACIAL_MUD):
             return "Facial Mud"
-        if (ID == 246):
+        if (ID == Item.FERTILE_GEL):
             return "Fertile Gel"
-        if (ID == 247):
+        if (ID == Item.SUPP_HARNESS):
             return "Supp Harness"
-        if (ID == 248):
+        if (ID == Item.BREEDER_POT):
             return "Breeder Pot"
-        if (ID == 249):
+        if (ID == Item.TREANTS_TEAR):
             return "Treant\'s Tear"
-        if (ID == 250):
+        if (ID == Item.FOOMP_BOMB):
             return "Foomp Bomb"
-        if (ID == 251):
+        if (ID == Item.PLUMP_QUAT):
             return "Plump Quat"
-        if (ID == 252):
+        if (ID == Item.MILKY_PEND):
             return "Milky Pend"
-        if (ID == 253):
+        if (ID == Item.BUG_EGG):
             return "Bug Egg"
-        if (ID == 254):
+        if (ID == Item.LANTERN):
             return "Lantern"
-        if (ID == 255):
+        if (ID == Item.FRAG_FLOWER):
             return "Frag Flower"
-        if (ID == 256):
+        if (ID == Item.NECTAR_CANDY):
             return "Nectar Candy"
-        if (ID == 257):
+        if (ID == Item.TOO_HUMAN):
             return "Too Human"
-        if (ID == 258):
+        if (ID == Item.TAINTED_POT):
             return "Tainted Pot"
-        if (ID == 259):
+        if (ID == Item.SWEET_AND_SOUR):
             return "Sweet&Sour"
-        if (ID == 260):
+        if (ID == Item.SUCC_DRAFT):
             return "Succ Draft"
-        if (ID == 500):
+        if (ID == Item.MILK_BOTTLE):
             return "Milk Bottle"
-        if (ID == 501):
+        if (ID == Item.MILK_JUG):
             return "Milk Jug"
-        if (ID == 502):
+        if (ID == Item.MILK_BARREL):
             return "Milk Barrel"
-        if (ID == 503):
+        if (ID == Item.LUST_DRAFT):
             return "Lust Draft"
-        if (ID == 504):
+        if (ID == Item.REJUV_POT):
             return "Rejuv Pot"
-        if (ID == 505):
+        if (ID == Item.BAD_EXPER):
             return "Bad Exper"
-        if (ID == 506):
+        if (ID == Item.EXP_PREG):
             return "Exp Preg"
-        if (ID == 507):
+        if (ID == Item.BALL_SWELLER):
             return "Ball Sweller"
-        if (ID == 508):
+        if (ID == Item.S_LUST_DRAFT):
             return "S Lust Draft"
-        if (ID == 509):
+        if (ID == Item.S_REJUV_POT):
             return "S Rejuv Pot"
-        if (ID == 510):
+        if (ID == Item.S_BAD_EXPER):
             return "S Bad Exper"
-        if (ID == 511):
+        if (ID == Item.S_EXP_PREG):
             return "S Exp Preg"
-        if (ID == 512):
+        if (ID == Item.S_BALL_SWELLER):
             return "S Ball Sweller"
-        if (ID == 513):
+        if (ID == Item.GEN_SWAP):
             return "Gen Swap"
-        if (ID == 514):
+        if (ID == Item.MASO_POT):
             return "Maso Pot"
-        if (ID == 515):
+        if (ID == Item.BLACK_DYE):
             return "Black Dye"
-        if (ID == 516):
+        if (ID == Item.BABY_FREE):
             return "Baby Free"
-        if (ID == 517):
+        if (ID == Item.POT_POT):
             return "Pot Pot"
-        if (ID == 518):
+        if (ID == Item.S_GEN_SWAP):
             return "S Gen Swap"
-        if (ID == 519):
+        if (ID == Item.S_MASO_POT):
             return "S Maso Pot"
-        if (ID == 520):
+        if (ID == Item.RED_DYE):
             return "Red Dye"
-        if (ID == 521):
+        if (ID == Item.S_BABY_FREE):
             return "S Baby Free"
-        if (ID == 522):
+        if (ID == Item.S_POT_POT):
             return "S Pot Pot"
-        if (ID == 523):
+        if (ID == Item.CUM_VIAL):
             return "Cum Vial"
-        if (ID == 524):
+        if (ID == Item.CUM_BOTTLE):
             return "Cum Bottle"
-        if (ID == 525):
+        if (ID == Item.CUM_JUG):
             return "Cum Jug"
-        if (ID == 526):
+        if (ID == Item.CUM_BARREL):
             return "Cum Barrel"
-        if (ID == 527):
+        if (ID == Item.GOOD_EGG):
             return "Good Egg"
-        if (ID == 528):
+        if (ID == Item.BAD_EGG):
             return "Bad Egg"
-        if (ID == 529):
+        if (ID == Item.STRANGE_EGG):
             return "Strange Egg"
-        if (ID == 530):
+        if (ID == Item.CHARMED_EGG):
             return "Charmed Egg"
-        if (ID == 531):
+        if (ID == Item.DIVINE_EGG):
             return "Divine Egg"
-        if (ID == 532):
+        if (ID == Item.PHEROMONE):
             return "Pheromone"
-        if (ID == 533):
+        if (ID == Item.REDUC_REDUC):
             return "Reduc Reduc"
-        if (ID == 534):
+        if (ID == Item.MALE_ENHANCE):
             return "Male Enhance"
-        if (ID == 535):
+        if (ID == Item.MILK_SUPPRESS):
             return "Milk Suppress"
-        if (ID == 536):
+        if (ID == Item.BAZOOMBA):
             return "Bazoomba!"
-        if (ID == 537):
+        if (ID == Item.QUEEN_EGG):
             return "Queen Egg"
-        if (ID == 538):
+        if (ID == Item.SOLDIER_EGG):
             return "Soldier Egg"
-        if (ID == 539):
+        if (ID == Item.DRONE_EGG):
             return "Drone Egg"
-        if (ID == 540):
+        if (ID == Item.WORKER_EGG):
             return "Worker Egg"
         return f"ITEM NAME ERROR {ID}"
 
     def fullName(ID: int) -> str:
-        if ID == 1:
+        if ID == Item.TEST_ITEM:
             return "Test Item"
-        if ID == 2:
+        if ID == Item.DEBUG_STICK:
             return "Debug Stick"
-        if ID == 3:
+        if ID == Item.TS_ANY:
             return "Teleport Scroll: Any"
-        if ID == 101:
+        if ID == Item.ANC_CLAWS:
             return "Claws of the Lupine Ancestors"
-        if ID == 102:
+        if ID == Item.IMB_SHOES:
             return "Imbued Horseshoes"
-        if ID == 103:
+        if ID == Item.DRY_SAND:
             return "Magical Sands of the Dry Dunes"
-        if ID == 104:
+        if ID == Item.MILKER:
             return "Milking Machine"
-        if ID == 105:
+        if ID == Item.CATS_MEOW:
             return "'Cat's Meow' Potion"
-        if ID == 106:
+        if ID == Item.PENIS_PUMP:
             return "Penis Pump"
-        if ID == 108:
+        if ID == Item.BLOOD_GGE:
             return "Blood Gauge"
-        if ID == 109:
+        if ID == Item.EDU_EGG:
             return "Educated Eggdicator"
-        if ID == 110:
+        if ID == Item.REDUCTION:
             return "A Reduction of Reducer Agents"
-        if ID == 111:
+        if ID == Item.SKIN_BALM:
             return "Skin Balm"
-        if ID == 112:
+        if ID == Item.BOL_JOICE:
             return "Bolstering Juice"
-        if ID == 113:
+        if ID == Item.TAINT_LEAF:
             return "Tainted Leaf"
-        if ID == 114:
+        if ID == Item.SWEET_SAP:
             return "Sweet Sap"
-        if ID == 115:
+        if ID == Item.POULTICE:
             return "Poultice"
-        if ID == 116:
+        if ID == Item.DAGGER:
             return "Dagger"
-        if ID == 117:
+        if ID == Item.HAMMER:
             return "Warhammer"
-        if ID == 118:
+        if ID == Item.SABER:
             return "Saber"
-        if ID == 119:
+        if ID == Item.WHIP:
             return "Whip"
-        if ID == 120:
+        if ID == Item.NEUTER:
             return "Neuterizer"
-        if ID == 121:
+        if ID == Item.TS_SOFT:
             return "Teleport Scroll: Softlik"
-        if ID == 122:
+        if ID == Item.TS_FIRM:
             return "Teleport Scroll: Firmshaft"
-        if ID == 123:
+        if ID == Item.TS_TIED:
             return "Teleport Scroll: Tieden"
-        if ID == 124:
+        if ID == Item.TS_SIZ:
             return "Teleport Scroll: Siz'Calit"
-        if ID == 125:
+        if ID == Item.TS_OVI:
             return "Teleport Scroll: Oviasis"
-        if ID == 126:
+        if ID == Item.OAS_WATER:
             return "Oasis Water"
-        if ID == 127:
+        if ID == Item.TAIL_SPIKE:
             return "Tail Spike"
-        if ID == 128:
+        if ID == Item.TS_SANC:
             return "Teleport Scroll: Sanctuary"
-        if ID == 200:
+        if ID == Item.LILAS_GIFT:
             return "Lila's Gift"
-        if ID == 201:
+        if ID == Item.MILK_C_POIS:
             return "Milk Creeper Poison"
-        if ID == 202:
+        if ID == Item.CO_SNAK_VEN:
             return "Cock-Snake Venom"
-        if ID == 203:
+        if ID == Item.WOLF_FUR:
             return "Tuft of Wolf Fur"
-        if ID == 204:
+        if ID == Item.SM_POUCH1:
             return "Small Pouch"
-        if ID == 205:
+        if ID == Item.SM_POUCH2:
             return "Small Pouch"
-        if ID == 206:
+        if ID == Item.TRINKET:
             return "Shiny Trinket"
-        if ID == 207:
+        if ID == Item.COCK_CARV:
             return "Wooden Cock Carving"
-        if ID == 208:
+        if ID == Item.BLO_BERRY:
             return "Bloated Berry"
-        if ID == 209:
+        if ID == Item.GRAIN:
             return "Handful of Grain"
-        if ID == 210:
+        if ID == Item.PUSS_FRUIT:
             return "Pussy Fruit"
-        if ID == 211:
+        if ID == Item.DAIRE_PILL:
             return "DairE Pill"
-        if ID == 212:
+        if ID == Item.RED_MUSH:
             return "Red Mushroom"
-        if ID == 213:
+        if ID == Item.WET_CLOTH:
             return "Wet, Slimy Cloth"
-        if ID == 214:
+        if ID == Item.LON_MILK:
             return "Malon's Milk"
-        if ID == 215:
+        if ID == Item.LON_PENDANT:
             return "Malon's Pendant"
-        if ID == 216:
+        if ID == Item.PINK_INK:
             return "Pink Ink"
-        if ID == 217:
+        if ID == Item.EGG_JELLY:
             return "Octopus Egg Jelly"
-        if ID == 218:
+        if ID == Item.BUL_BERRY:
             return "Bulging Berry"
-        if ID == 219:
+        if ID == Item.FRESH_EGG:
             return "Fresh Egg"
-        if ID == 220:
+        if ID == Item.BLONDE_DYE:
             return "Blonde Dye"
-        if ID == 221:
+        if ID == Item.PUSS_JUICE:
             return "Concentrated Pussy Fruit Juice"
-        if ID == 222:
+        if ID == Item.KINKY_CARR:
             return "Kinky Carrot"
-        if ID == 223:
+        if ID == Item.EQ_SNACK:
             return "Equan Snack"
-        if ID == 224:
+        if ID == Item.LILAS_MILK:
             return "Lila's Milk"
-        if ID == 225:
+        if ID == Item.BODY_WASH:
             return "Body Wash"
-        if ID == 226:
+        if ID == Item.FELIN_TEA:
             return "Felin Tea Mix"
-        if ID == 227:
+        if ID == Item.ORAL_WASH:
             return "Felin Oral Wash"
-        if ID == 228:
+        if ID == Item.BODY_OIL:
             return "Body Oil"
-        if ID == 229:
+        if ID == Item.LEATHER_STRAP:
             return "Leather Strap"
-        if ID == 230:
+        if ID == Item.EGGCELERATOR:
             return "Eggcelerator"
-        if ID == 231:
+        if ID == Item.DESI_SAND:
             return "Desiccating Sand"
-        if ID == 232:
+        if ID == Item.FLYING_CARP:
             return "Flying Carpet"
-        if ID == 233:
+        if ID == Item.A_GRAV_ROCK:
             return "Anti-Gravity Rock"
-        if ID == 234:
+        if ID == Item.REIN_CHARM:
             return "Reindeer Charm"
-        if ID == 235:
+        if ID == Item.FELL_ROD:
             return "Fellatio Rod"
-        if ID == 236:
+        if ID == Item.RECEPT_BELL:
             return "Reception Bell"
-        if ID == 237:
+        if ID == Item.DEWY_GIFT:
             return "Lila's Dewy Gift"
-        if ID == 238:
+        if ID == Item.SQU_CHEESE:
             return "Squeaky Cheese"
-        if ID == 239:
+        if ID == Item.SHINY_ROCK:
             return "Shiny Rock"
-        if ID == 240:
+        if ID == Item.AUBURN_DYE:
             return "Auburn Dye"
-        if ID == 241:
+        if ID == Item.BROWN_DYE:
             return "Brown Dye"
-        if ID == 242:
+        if ID == Item.GREY_DYE:
             return "Grey Dye"
-        if ID == 243:
+        if ID == Item.WHITE_DYE:
             return "White Dye"
-        if ID == 244:
+        if ID == Item.SNUGGLE_BALL:
             return "Snuggle Ball"
-        if ID == 245:
+        if ID == Item.FACIAL_MUD:
             return "Facial Mud"
-        if ID == 246:
+        if ID == Item.FERTILE_GEL:
             return "Fertile Gel"
-        if ID == 247:
+        if ID == Item.SUPP_HARNESS:
             return "Support Harness"
-        if ID == 248:
+        if ID == Item.BREEDER_POT:
             return "Breeder Potion"
-        if ID == 249:
+        if ID == Item.TREANTS_TEAR:
             return "Treant's Tear"
-        if ID == 250:
+        if ID == Item.FOOMP_BOMB:
             return "Foomp Bomb"
-        if ID == 251:
+        if ID == Item.PLUMP_QUAT:
             return "Plump Quat"
-        if ID == 252:
+        if ID == Item.MILKY_PEND:
             return "Malon's Milky Pendant"
-        if ID == 253:
+        if ID == Item.BUG_EGG:
             return "Bug Egg"
-        if ID == 254:
+        if ID == Item.LANTERN:
             return "Lantern"
-        if ID == 255:
+        if ID == Item.FRAG_FLOWER:
             return "Fragrant Flower"
-        if ID == 256:
+        if ID == Item.NECTAR_CANDY:
             return "Nectar Candy"
-        if ID == 257:
+        if ID == Item.TOO_HUMAN:
             return "Too Human Potion"
-        if ID == 258:
+        if ID == Item.TAINTED_POT:
             return "Tainted Potion"
-        if ID == 259:
+        if ID == Item.SWEET_AND_SOUR:
             return "Sweet & Sour Candy"
-        if ID == 260:
+        if ID == Item.SUCC_DRAFT:
             return "Succubus Draft"
-        if ID == 404:
+        if ID == Item.ITEM_NOT_FOUND:
             return "Item Not Found"
-        if ID == 418:
+        if ID == Item.TEAPOT:
             return "Strange Teapot"
-        if ID == 500:
+        if ID == Item.MILK_BOTTLE:
             return "Bottle of Milk"
-        if ID == 501:
+        if ID == Item.MILK_JUG:
             return "Jug of Milk"
-        if ID == 502:
+        if ID == Item.MILK_BARREL:
             return "Barrel of Milk"
-        if ID == 503:
+        if ID == Item.LUST_DRAFT:
             return "Lust Draft"
-        if ID == 504:
+        if ID == Item.REJUV_POT:
             return "Rejuvenating Potion"
-        if ID == 505:
+        if ID == Item.BAD_EXPER:
             return "Bad Experiment"
-        if ID == 506:
+        if ID == Item.EXP_PREG:
             return "Express Pregnancy Potion"
-        if ID == 507:
+        if ID == Item.BALL_SWELLER:
             return "Ball Sweller"
-        if ID == 508:
+        if ID == Item.S_LUST_DRAFT:
             return "Superior Lust Draft"
-        if ID == 509:
+        if ID == Item.S_REJUV_POT:
             return "Superior Rejuvenating Potion"
-        if ID == 510:
+        if ID == Item.S_BAD_EXPER:
             return "Super Bad Experiment"
-        if ID == 511:
+        if ID == Item.S_EXP_PREG:
             return "Superior Express Pregnancy Potion"
-        if ID == 512:
+        if ID == Item.S_BALL_SWELLER:
             return "Superior Ball Sweller"
-        if ID == 513:
+        if ID == Item.GEN_SWAP:
             return "Gender Swap Potion"
-        if ID == 514:
+        if ID == Item.MASO_POT:
             return "Masochism Potion"
-        if ID == 515:
+        if ID == Item.BLACK_DYE:
             return "Black Dye"
-        if ID == 516:
+        if ID == Item.BABY_FREE:
             return "Baby Free Potion"
-        if ID == 517:
+        if ID == Item.POT_POT:
             return "Potency Potion"
-        if ID == 518:
+        if ID == Item.S_GEN_SWAP:
             return "Superior Gender Swap Potion"
-        if ID == 519:
+        if ID == Item.S_MASO_POT:
             return "Superior Masochism Potion"
-        if ID == 520:
+        if ID == Item.RED_DYE:
             return "Red Dye"
-        if ID == 521:
+        if ID == Item.S_BABY_FREE:
             return "Superior Baby Free Potion"
-        if ID == 522:
+        if ID == Item.S_POT_POT:
             return "Superior Potency Potion"
-        if ID == 523:
+        if ID == Item.CUM_VIAL:
             return "Vial of Cum"
-        if ID == 524:
+        if ID == Item.CUM_BOTTLE:
             return "Bottle of Cum"
-        if ID == 525:
+        if ID == Item.CUM_JUG:
             return "Jug of Cum"
-        if ID == 526:
+        if ID == Item.CUM_BARREL:
             return "Barrel of Cum"
-        if ID == 527:
+        if ID == Item.GOOD_EGG:
             return "Good Egg"
-        if ID == 528:
+        if ID == Item.BAD_EGG:
             return "Bad Egg"
-        if ID == 529:
+        if ID == Item.STRANGE_EGG:
             return "Strange Egg"
-        if ID == 530:
+        if ID == Item.CHARMED_EGG:
             return "Charmed Egg"
-        if ID == 531:
+        if ID == Item.DIVINE_EGG:
             return "Divine Egg"
-        if ID == 532:
+        if ID == Item.PHEROMONE:
             return "Strong Pheromone"
-        if ID == 533:
+        if ID == Item.REDUC_REDUC:
             return "Reduced Reduction"
-        if ID == 534:
+        if ID == Item.MALE_ENHANCE:
             return "Male Enhancement Drug"
-        if ID == 535:
+        if ID == Item.MILK_SUPPRESS:
             return "Milk Suppressant"
-        if ID == 536:
+        if ID == Item.BAZOOMBA:
             return "Bazoomba!"
-        if ID == 537:
+        if ID == Item.QUEEN_EGG:
             return "Queen Egg"
-        if ID == 538:
+        if ID == Item.SOLDIER_EGG:
             return "Soldier Egg"
-        if ID == 539:
+        if ID == Item.DRONE_EGG:
             return "Drone Egg"
-        if ID == 540:
+        if ID == Item.WORKER_EGG:
             return "Worker Egg"
         return f"ITEM FULL NAME ERROR {ID}"
 
@@ -2138,354 +2150,354 @@ class Items:
         '''
         Returns True if item ID can be used
         '''
-        return ID in {2, 3, 104, 106, 108, 109, 116, 117, 118, 119, 127, 232, 235, 244, 247, 418}
+        return ID in {Item.DEBUG_STICK, Item.TS_ANY, Item.MILKER, Item.PENIS_PUMP, Item.BLOOD_GGE, Item.EDU_EGG, Item.DAGGER, Item.HAMMER, Item.SABER, Item.WHIP, Item.TAIL_SPIKE, Item.FLYING_CARP, Item.FELL_ROD, Item.SNUGGLE_BALL, Item.SUPP_HARNESS, Item.TEAPOT}
 
     def isConsumable(ID: int) -> bool:
         '''
         Returns True if item ID is consumable
         '''
-        return ID in {103, 105, 110, 111, 112, 113, 114, 115, 120, 121, 122, 123, 124, 125, 126, 128, 201, 202, 203, 204, 205, 207, 208, 209, 210, 211, 212, 213, 214, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 230, 231, 238, 239, 240, 241, 242, 243, 245, 246, 248, 249, 250, 251, 253, 255, 256, 257, 258, 259, 260, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540}
+        return ID in {Item.DRY_SAND, Item.CATS_MEOW, Item.REDUCTION, Item.SKIN_BALM, Item.BOL_JOICE, Item.TAINT_LEAF, Item.SWEET_SAP, Item.POULTICE, Item.NEUTER, Item.TS_SOFT, Item.TS_FIRM, Item.TS_TIED, Item.TS_SIZ, Item.TS_OVI, Item.OAS_WATER, Item.TS_SANC, Item.MILK_C_POIS, Item.CO_SNAK_VEN, Item.WOLF_FUR, Item.SM_POUCH1, Item.SM_POUCH2, Item.COCK_CARV, Item.BLO_BERRY, Item.GRAIN, Item.PUSS_FRUIT, Item.DAIRE_PILL, Item.RED_MUSH, Item.WET_CLOTH, Item.LON_MILK, Item.PINK_INK, Item.EGG_JELLY, Item.BUL_BERRY, Item.FRESH_EGG, Item.BLONDE_DYE, Item.PUSS_JUICE, Item.KINKY_CARR, Item.EQ_SNACK, Item.LILAS_MILK, Item.BODY_WASH, Item.FELIN_TEA, Item.ORAL_WASH, Item.BODY_OIL, Item.EGGCELERATOR, Item.DESI_SAND, Item.SQU_CHEESE, Item.SHINY_ROCK, Item.AUBURN_DYE, Item.BROWN_DYE, Item.GREY_DYE, Item.WHITE_DYE, Item.FACIAL_MUD, Item.FERTILE_GEL, Item.BREEDER_POT, Item.TREANTS_TEAR, Item.FOOMP_BOMB, Item.PLUMP_QUAT, Item.BUG_EGG, Item.FRAG_FLOWER, Item.NECTAR_CANDY, Item.TOO_HUMAN, Item.TAINTED_POT, Item.SWEET_AND_SOUR, Item.SUCC_DRAFT, Item.MILK_BOTTLE, Item.MILK_JUG, Item.MILK_BARREL, Item.LUST_DRAFT, Item.REJUV_POT, Item.BAD_EXPER, Item.EXP_PREG, Item.BALL_SWELLER, Item.S_LUST_DRAFT, Item.S_REJUV_POT, Item.S_BAD_EXPER, Item.S_EXP_PREG, Item.S_BALL_SWELLER, Item.GEN_SWAP, Item.MASO_POT, Item.BLACK_DYE, Item.BABY_FREE, Item.POT_POT, Item.S_GEN_SWAP, Item.S_MASO_POT, Item.RED_DYE, Item.S_BABY_FREE, Item.S_POT_POT, Item.CUM_VIAL, Item.CUM_BOTTLE, Item.CUM_JUG, Item.CUM_BARREL, Item.GOOD_EGG, Item.BAD_EGG, Item.STRANGE_EGG, Item.CHARMED_EGG, Item.DIVINE_EGG, Item.PHEROMONE, Item.REDUC_REDUC, Item.MALE_ENHANCE, Item.MILK_SUPPRESS, Item.BAZOOMBA, Item.QUEEN_EGG, Item.SOLDIER_EGG, Item.DRONE_EGG, Item.WORKER_EGG}
 
     def value(ID: int) -> int:
         '''
         Function which returns the value of the item ID
         '''
-        if ID in {200, 215, 229, 232, 233, 234, 235, 236, 237, 252, 254}:
+        if ID in {Item.LILAS_GIFT, Item.LON_PENDANT, Item.LEATHER_STRAP, Item.FLYING_CARP, Item.A_GRAV_ROCK, Item.REIN_CHARM, Item.FELL_ROD, Item.RECEPT_BELL, Item.DEWY_GIFT, Item.MILKY_PEND, Item.LANTERN}:
             return 0
-        if ID in {204, 205}:
+        if ID in {Item.SM_POUCH1, Item.SM_POUCH2}:
             return 1
-        if ID in {523, 528}:
+        if ID in {Item.CUM_VIAL, Item.BAD_EGG}:
             return 2
-        if ID in {209, 239, 253}:
+        if ID in {Item.GRAIN, Item.SHINY_ROCK, Item.BUG_EGG}:
             return 3
-        if ID in {115, 203, 213, 214, 219, 226, 500, 526, 533, 540}:
+        if ID in {Item.POULTICE, Item.WOLF_FUR, Item.WET_CLOTH, Item.LON_MILK, Item.FRESH_EGG, Item.FELIN_TEA, Item.MILK_BOTTLE, Item.CUM_BARREL, Item.REDUC_REDUC, Item.WORKER_EGG}:
             return 5
-        if ID == 524:
+        if ID == Item.CUM_BOTTLE:
             return 7
-        if ID in {211, 224, 225, 227, 228, 238, 251, 503, 504, 505, 506, 507, 527, 534, 539}:
+        if ID in {Item.DAIRE_PILL, Item.LILAS_MILK, Item.BODY_WASH, Item.ORAL_WASH, Item.BODY_OIL, Item.SQU_CHEESE, Item.PLUMP_QUAT, Item.LUST_DRAFT, Item.REJUV_POT, Item.BAD_EXPER, Item.EXP_PREG, Item.BALL_SWELLER, Item.GOOD_EGG, Item.MALE_ENHANCE, Item.DRONE_EGG}:
             return 10
         if ID == 1:
             return 13
-        if ID == 212:
+        if ID == Item.RED_MUSH:
             return 14
-        if ID in {111, 112, 113, 114, 121, 122, 123, 124, 125, 126, 201, 202, 208, 222, 223, 231, 245, 255, 501}:
+        if ID in {Item.SKIN_BALM, Item.BOL_JOICE, Item.TAINT_LEAF, Item.SWEET_SAP, Item.TS_SOFT, Item.TS_FIRM, Item.TS_TIED, Item.TS_SIZ, Item.TS_OVI, Item.OAS_WATER, Item.MILK_C_POIS, Item.CO_SNAK_VEN, Item.BLO_BERRY, Item.KINKY_CARR, Item.EQ_SNACK, Item.DESI_SAND, Item.FACIAL_MUD, Item.FRAG_FLOWER, Item.MILK_JUG}:
             return 15
-        if ID == 210:
+        if ID == Item.PUSS_FRUIT:
             return 17
-        if ID in {103, 110, 116, 207, 218, 246, 256, 513, 514, 515, 516, 517, 535, 536, 538}:
+        if ID in {Item.DRY_SAND, Item.REDUCTION, Item.DAGGER, Item.COCK_CARV, Item.BUL_BERRY, Item.FERTILE_GEL, Item.NECTAR_CANDY, Item.GEN_SWAP, Item.MASO_POT, Item.BLACK_DYE, Item.BABY_FREE, Item.POT_POT, Item.MILK_SUPPRESS, Item.BAZOOMBA, Item.SOLDIER_EGG}:
             return 20
-        if ID in {128, 230, 248, 508, 509, 510, 511, 512, 525}:
+        if ID in {Item.TS_SANC, Item.EGGCELERATOR, Item.BREEDER_POT, Item.S_LUST_DRAFT, Item.S_REJUV_POT, Item.S_BAD_EXPER, Item.S_EXP_PREG, Item.S_BALL_SWELLER, Item.CUM_JUG}:
             return 25
-        if ID in {105, 117, 120, 206, 221, 241, 257, 258, 529, 537}:
+        if ID in {Item.CATS_MEOW, Item.HAMMER, Item.NEUTER, Item.TRINKET, Item.PUSS_JUICE, Item.BROWN_DYE, Item.TOO_HUMAN, Item.TAINTED_POT, Item.STRANGE_EGG, Item.QUEEN_EGG}:
             return 30
-        if ID in {127, 244}:
+        if ID in {Item.TAIL_SPIKE, Item.SNUGGLE_BALL}:
             return 35
-        if ID in {119, 217, 530}:
+        if ID in {Item.WHIP, Item.EGG_JELLY, Item.CHARMED_EGG}:
             return 40
-        if ID in {242, 249, 250, 260}:
+        if ID in {Item.GREY_DYE, Item.TREANTS_TEAR, Item.FOOMP_BOMB, Item.SUCC_DRAFT}:
             return 45
-        if ID in {101, 102, 108, 220, 259, 518, 519, 521, 522}:
+        if ID in {Item.ANC_CLAWS, Item.IMB_SHOES, Item.BLOOD_GGE, Item.BLONDE_DYE, Item.SWEET_AND_SOUR, Item.S_GEN_SWAP, Item.S_MASO_POT, Item.S_BABY_FREE, Item.S_POT_POT}:
             return 50
-        if ID == 118:
+        if ID == Item.SABER:
             return 55
-        if ID == 531:
+        if ID == Item.DIVINE_EGG:
             return 69
-        if ID == 502:
+        if ID == Item.MILK_BARREL:
             return 70
-        if ID in {106, 240, 532}:
+        if ID in {Item.PENIS_PUMP, Item.AUBURN_DYE, Item.PHEROMONE}:
             return 75
-        if ID == 247:
+        if ID == Item.SUPP_HARNESS:
             return 80
-        if ID in {104, 243}:
+        if ID in {Item.MILKER, Item.WHITE_DYE}:
             return 100
-        if ID == 109:
-            return 125
-        if ID in {216, 520}:
+        if ID == Item.EDU_EGG:
+            return Item.TS_OVI
+        if ID in {Item.PINK_INK, Item.RED_DYE}:
             return 150
         return 0
 
     def description(ID: int, context: object) -> str:
-        if ID == 1:
+        if ID == Item.TEST_ITEM:
             return "Does nothing."
-        if ID == 2:
+        if ID == Item.DEBUG_STICK:
             return "Debug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"
-        if ID == 3:
+        if ID == Item.TS_ANY:
             return "Created for debug purposes.\n\nWorks like any other teleport scroll except it has a menu to choose where to go."
-        if ID == 101:
+        if ID == Item.ANC_CLAWS:
             return "Harkening back to supposed Lupan ancestry, as long as this item remains in your bag, your hands will change into clawed paws that will help hold down your foes, just like the wolves of the forest.\n\nAlthough, in your case, it just gives you a bonus to Rape attempts..."
-        if ID == 102:
+        if ID == Item.IMB_SHOES:
             return "Crafted by the Equans of Firmshaft, these horseshoes help improve your running capabilities as long as they're in your bag. And they'll turn your feet into hooves."
-        if ID == 103:
+        if ID == Item.DRY_SAND:
             return "Applying this special sand to your genitalia will permanently make it a bit less moist than usual. Often used by the women of Siz'Calit when their heat makes them a little too moist. Or when they're producing a bit too much milk (though that's rarely the case in Siz'Calit)."
-        if ID == 104:
+        if ID == Item.MILKER:
             return "A compact device that produces enough suction to pump any breasts/udder you wish to collect the lactation of. Doing so will allow you to store the milk to be used or sold later, if you can produce enough. Comes with 2 hoses and multiple cups to work on almost any nipple/teat.\n\nWarning: Excessive use may result in permanent nipple/teat growth.\n\nCan only be used during Masturbation."
-        if ID == 105:
+        if ID == Item.CATS_MEOW:
             return "Favored by the Felins of Siz'Calit, this potion helps increase the production of breastmilk. Just try not to show off in Siz'Calit, or you may draw a crowd."
-        if ID == 106:
+        if ID == Item.PENIS_PUMP:
             return "A simple device with an elastic cylinder that's intended to slip over a penis and pump it until it climaxes. Doing so will allow you to store the semen to be used or sold later, if you can produce enough.\n\nCan only be used during Masturbation."
-        if ID == 108:
+        if ID == Item.BLOOD_GGE:
             return "Due to their propensity to be swayed by outside blood, humans developed this nifty little gadget. Pressing it against your pulse, the magic of the device can detect the levels of racial influence in your body."
-        if ID == 109:
+        if ID == Item.EDU_EGG:
             return "With so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."
-        if ID == 110:
+        if ID == Item.REDUCTION:
             return "This is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."
-        if ID == 111:
+        if ID == Item.SKIN_BALM:
             return "Used and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."
-        if ID == 112:
+        if ID == Item.BOL_JOICE:
             return "This white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."
-        if ID == 113:
+        if ID == Item.TAINT_LEAF:
             return "This paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."
-        if ID == 114:
+        if ID == Item.SWEET_SAP:
             return "Used and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."
-        if ID == 115:
+        if ID == Item.POULTICE:
             return "A generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."
-        if ID == 116:
+        if ID == Item.DAGGER:
             return "A relatively cheap weapon, the dagger is a nice way to defend oneself in Nimin.\n\nBase damage: 5-12"
-        if ID == 117:
+        if ID == Item.HAMMER:
             return "A rather blunt weapon, it's a bit unwieldy but gets the job done.\n\nBase damage: 2-20"
-        if ID == 118:
+        if ID == Item.SABER:
             return "A well-designed blade, the saber can deal significant damage to foes.\n\nBase damage: 10-25"
-        if ID == 119:
+        if ID == Item.WHIP:
             return "A somewhat kinky weapon, the whip can leave some rather nasty welts.\n\nBase damage: 12-18"
-        if ID == 120:
+        if ID == Item.NEUTER:
             return "Developed by the Lupans of Tieden, this isn't actually intended to be used on most of their inhabitants. Instead, it was created as a post-defensive measure against the... oddities of Nimin."
-        if ID == 121:
+        if ID == Item.TS_SOFT:
             return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Softlik.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 122:
+        if ID == Item.TS_FIRM:
             return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Firmshaft.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 123:
+        if ID == Item.TS_TIED:
             return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Tieden.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 124:
+        if ID == Item.TS_SIZ:
             return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Siz'Calit.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 125:
+        if ID == Item.TS_OVI:
             return "Created to make sure explorers can find their way back home, this scroll of teleportation will instantly return the user to the city of Oviasis.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 126:
+        if ID == Item.OAS_WATER:
             return "A vial of the fresh water from the oasis in the lizan city of Oviasis, it helps the residents cool off and moisten their scales so they can hunt and sunbathe more, as well as ward off the influences of other races."
-        if ID == 127:
+        if ID == Item.TAIL_SPIKE:
             return "This large spike is held firm upon leather straps. When attached to a tail, it can be used as a rather effective weapon.\n\nBase damage: 10-20\n\nRequirement: Must have a muscular/skeletal tail to equip (tails of hair or excessively fluffy tails will not work)."
-        if ID == 128:
+        if ID == Item.TS_SANC:
             return "Created for an easy return, this scroll of teleportation will instantly return the user to the city of Sanctuary.\n\nCan be used at any time, even in the midst of battle."
-        if ID == 200:
+        if ID == Item.LILAS_GIFT:
             return "A small charm given to you by the young felin girl in Siz'Calit, it seems to be pretty decoration made from flowers and leaves and some other cute little things. However, as you hold it, you notice it makes you wetter down under... This might have been the reason the girl was so wet to begin with, or maybe her extreme wetness for such a young age rubbed off onto her charm? Either way, as long as you carry it, you'll be wetter than usual. And you seem much more sensitive than usual...\n\nWarning: You cannot regain this item should you lose it."
-        if ID == 201:
+        if ID == Item.MILK_C_POIS:
             return "Obtained from a passed out Milk Creeper, this poison is a bit diluted from her ingestion from so much of your milk. It is unlikely that it will affect your lactation rate directly like the pure poison does, but rubbing it into your mammary glands will cause them to swell slightly larger."
-        if ID == 202:
+        if ID == Item.CO_SNAK_VEN:
             return "Obtained from the fangs of a passed out cock-snake, this venom is a potent male enhancement. And if you aren't male when you use it, you will be, if at least partially..."
-        if ID == 203:
+        if ID == Item.WOLF_FUR:
             return f"Obtained from an encounter with a feral wolf, a tuft of their fur has been known to decrease sensitivity, and thus increase your toughness against attacks, when rubbed onto your {context.skinDesc()}."
-        if ID == 204:
+        if ID == Item.SM_POUCH1:
             return "This is a small pouch you have obtained somewhere. Use it to see what it contains!"
-        if ID == 205:
+        if ID == Item.SM_POUCH2:
             return "This is a small pouch you have obtained somewhere. Use it to see what it contains!"
-        if ID == 206:
+        if ID == Item.TRINKET:
             return "Other than being a pretty decoration, this thing isn't much use to you. However, it probably sells fairly well."
-        if ID == 207:
+        if ID == Item.COCK_CARV:
             return "This thing looks like a dildo made of wood, with decorated carvings all around. It sounds hollow, so maybe you could break it open and see if anything is inside?"
-        if ID == 208:
+        if ID == Item.BLO_BERRY:
             return "A berry from across the ocean, it looks oddly bloated, nearly two berries in one. It seems edible though."
-        if ID == 209:
+        if ID == Item.GRAIN:
             return "A handful of fresh grain, it smells slightly sweet in your hands. Eating it will provide you some energy from the carbs!"
-        if ID == 210:
+        if ID == Item.PUSS_FRUIT:
             return "It is unknown whether the name derives from the cat-like felin people that enjoy this fruit or from the fruit's rather... lewd shape. Either way, it is a very sweet and juicy fruit that felin females love."
-        if ID == 211:
+        if ID == Item.DAIRE_PILL:
             return "Produced by the farmers of the Dairy Farm outside of Softlik, this pill supposedly helps increase the lactation rate of dairy cows. It is not suggested to be ingested by anything other than cows, though that's just a suggestion."
-        if ID == 212:
+        if ID == Item.RED_MUSH:
             return "An odd looking mushroom with a red cap with a few white dots found on the walls of the Old Cave. You're not really sure what it does, but you think you'll get bigger so you can smash some blocks... or something."
-        if ID == 213:
+        if ID == Item.WET_CLOTH:
             return "This piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."
-        if ID == 214:
+        if ID == Item.LON_MILK:
             return "Unlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."
-        if ID == 215:
+        if ID == Item.LON_PENDANT:
             return "Given to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."
-        if ID == 216:
+        if ID == Item.PINK_INK:
             return "Octopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."
-        if ID == 217:
+        if ID == Item.EGG_JELLY:
             return "The jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."
-        if ID == 218:
+        if ID == Item.BUL_BERRY:
             return "A cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."
-        if ID == 219:
+        if ID == Item.FRESH_EGG:
             return "An unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."
-        if ID == 220:
+        if ID == Item.BLONDE_DYE:
             return "A dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."
-        if ID == 221:
+        if ID == Item.PUSS_JUICE:
             return "Created by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."
-        if ID == 222:
+        if ID == Item.KINKY_CARR:
             return "Used in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."
-        if ID == 223:
+        if ID == Item.EQ_SNACK:
             return "A common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."
-        if ID == 224:
+        if ID == Item.LILAS_MILK:
             return "From the ample supply of a certain little felin girl, this milk seems to be a tad sweeter than normal milk and also slightly tainted by the poor girl's constant heat."
-        if ID == 225:
+        if ID == Item.BODY_WASH:
             return "This nice body wash is scented like a meadow of flowers. It can help clean up some dirty thoughts and make your body feel much fresher."
-        if ID == 226:
+        if ID == Item.FELIN_TEA:
             return "A common brew amongst felins, this tea helps calm the body and mind. Especially the body, which is often necessary for Felins..."
-        if ID == 227:
+        if ID == Item.ORAL_WASH:
             return "With bath by licking being commonplace amongst felins, this wash is to aid in such endeavors. Delightfully tingly, this stuff will leave both your breath and your fur feeling fresh."
-        if ID == 228:
+        if ID == Item.BODY_OIL:
             return "Nice and slick, this stuff is great for your skin or scales and makes you look quite shiny and alluring for the next 5 hours."
-        if ID == 229:
+        if ID == Item.LEATHER_STRAP:
             return "Found somewhere in Silandrias' den, this leather strap seems to be fitted to tie tightly around the base of her tail. Otherwise, you have no idea what it could be for."
-        if ID == 230:
+        if ID == Item.EGGCELERATOR:
             return "Meant to temporarily increase the rate of egg production in Lizan females, this pill looks to be a little egg-shaped itself, with more of a torpedo-like tip. This pill also seems to be too large to be ingested orally by the average person, which you deduct means it's meant as a suppository... Though, considering its nature, it's safe to say it's not meant to be administered anally, at least.\n\nIts effect stacks."
-        if ID == 231:
+        if ID == Item.DESI_SAND:
             return "Obtained from a sentient dust devil, this sand is specially imbued with the ability to suck moisture from a body. Though the Dust Devil only uses it to feed, in this quantity it can be rather damaging if thrown at an enemy all at once. Be wary of blow-back, though.\n\nThis item can only be used during battle."
-        if ID == 232:
+        if ID == Item.FLYING_CARP:
             return "Borrowed from Silandrias, this flying carpet can take you on a magical ride to see a whole new world. However, it can only take you to towns you have already found, since you wouldn't know how to guide it someplace you haven't been, so the whole 'new' aspect is rather moot. But it is still quite convenient!\n\nYou cannot activate the flying carpet in amidst the heat of battle or amidst the heat of masturbation."
-        if ID == 233:
+        if ID == Item.A_GRAV_ROCK:
             return f"Borrowed from Silandrias, this small rock, more of a pebble really, just kind of floats there and defies gravity. Yet, as you carry it, even you seem to defy gravity to a degree. You feel much lighter on your {context.legDesc(10)} and your carry capacity increases by a whole 75! '75 what', you have no idea, but it's a big number so it's got to be good, right?"
-        if ID == 234:
+        if ID == Item.REIN_CHARM:
             return "Borrowed from Silandrias, this sapphire charm is carved into the shape of a reindeer's head, with large antlers. Carrying it imbues you with the essence of a reindeer mother, providing you with a nice set of antlers and a matching deer-butt, as well as speeding up your pregnancies and increasing your minimum lust, urging you to give birth to plenty of children."
-        if ID == 235:
+        if ID == Item.FELL_ROD:
             return "Borrowed from Silandrias, this rather phallic rod is actually a weapon. When the base is pointed at the target, you can siphon out some of their life force by placing your lips around the bulbous end of the rod and gently sucking. If you're very skilled, you can make the weapon perform even stronger. It even ignores their natural resistance to physical attacks."
-        if ID == 236:
+        if ID == Item.RECEPT_BELL:
             return "Borrowed from Silandrias, this small cowbell is worn around the neck and makes one more receptive to outside influences. In other words, the wearer gains 50% more SexP than usual *ding*. They also tend to be 30% more susceptible to blood-changes though... *dong*"
-        if ID == 237:
+        if ID == Item.DEWY_GIFT:
             return "Originally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."
-        if ID == 238:
+        if ID == Item.SQU_CHEESE:
             return "Some cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."
-        if ID == 239:
+        if ID == Item.SHINY_ROCK:
             return "A rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."
-        if ID == 240:
+        if ID == Item.AUBURN_DYE:
             return "A dark reddish color, this dye will turn your hair auburn when used, if you have hair"
-        if ID == 241:
+        if ID == Item.BROWN_DYE:
             return "A simple brownish, this dye will turn your hair brown when used, if you have hair"
-        if ID == 242:
+        if ID == Item.GREY_DYE:
             return "A shade, this dye will turn your hair grey when used, if you have hair"
-        if ID == 243:
+        if ID == Item.WHITE_DYE:
             return "Lacking any color, this dye will turn your hair pure white when used, if you have hair"
-        if ID == 244:
+        if ID == Item.SNUGGLE_BALL:
             if (context.snuggleBall):
                 return "Not really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy."
             return "Squishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."
-        if ID == 245:
+        if ID == Item.FACIAL_MUD:
             return "Some mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."
-        if ID == 246:
+        if ID == Item.FERTILE_GEL:
             return "A soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."
-        if ID == 247:
+        if ID == Item.SUPP_HARNESS:
             tempStr = "This contraption of straps and slings can be equipped to help support all those sizable appendages. Like a bra, except for the whole body!"
             if (context.suppHarness):
                 tempStr += "\n\nYou currently have a harness equipped. Using it will unequip the harness."
             return tempStr
-        if ID == 248:
+        if ID == Item.BREEDER_POT:
             return "This potion is normally used by animal breeders to increase the litter sizes of their animals and make their animals more frequently fertily receptive."
-        if ID == 249:
+        if ID == Item.TREANTS_TEAR:
             return "This small tear-shaped piece of wood looks almost like a seed. However, across its surface are etched images of tree-like beings losing their limbs as they dance around the tear, progressively larger and larger with the more limbs they have lost. It's like some sort of ancient ritual, one you have never heard of..."
-        if ID == 250:
+        if ID == Item.FOOMP_BOMB:
             return "Much like a smoke bomb, this small ball can be tossed at an enemy to provide you an immediate escape from battle.\n\nThis item can only be used during battle. This item will automatically successfully run from battle."
-        if ID == 251:
+        if ID == Item.PLUMP_QUAT:
             return "The quats is a very delicious fruit, so plump and ripe and full of mmm-mmm-goodness."
-        if ID == 252:
+        if ID == Item.MILKY_PEND:
             return "This is the pendant Malon had given you, except now infused with a sort of milky complexion that ensures you'll always share her milky tendancies as long as you hold it, supporting your relationship as a couple of drippy cows~ It still seems to retain all the properties it had before as well."
-        if ID == 253:
+        if ID == Item.BUG_EGG:
             tempStr = "Relatively small, this squishy unfertilized egg seems rather gooey. You could eat it, but the thought of doing so is somewhat nasty."
             if (context.tail == 12):
                 tempStr += "\n\nHowever, you do notice that the egg is just about the right size for the ovipositor hanging off your backside."
             return tempStr
-        if ID == 254:
+        if ID == Item.LANTERN:
             return "This is a fairly basic lantern that you found at the hidden entrance below the ground in the valley. And though it might be basic and have no other function, the light it gives off can help you access areas that are otherwise too dark."
-        if ID == 255:
+        if ID == Item.FRAG_FLOWER:
             return "A very pleasant smelling flower whose petals are black with white stripes. If you took a good whiff, it would likely help hone your senses a bit."
-        if ID == 256:
+        if ID == Item.NECTAR_CANDY:
             return "A sweet treat that bugs seem to swarm if not stored properly. It bolsters your muscles and helps egg laying."
-        if ID == 257:
+        if ID == Item.TOO_HUMAN:
             return "This potion was made to help the humans of Softlik regain some of their human attributes. However, this batch was apparently a failure for being too effective, somehow?"
-        if ID == 258:
+        if ID == Item.TAINTED_POT:
             return "This potion was tainted by your DairE Pill, so you don't really know what it will do until you ingest it."
-        if ID == 259:
+        if ID == Item.SWEET_AND_SOUR:
             return "This rare little treat is a favorite among many, if you can find it. It's that the sweetness is so sweet that you'll drop from the bliss and that the sourness is so sour that you'll suck yourself in."
-        if ID == 260:
+        if ID == Item.SUCC_DRAFT:
             return "One of the glowing vials from the succubus, this is some concentrated masculinity that has been drained from various people, quite possibly even yourself. For her, it's a source of food and power, for you... the effects are probably different."
-        if ID == 404:
+        if ID == Item.ITEM_NOT_FOUND:
             tempStr = "Item Not Found"
             if mainobject.isDebugger:
                 tempStr += " (This is a joke item referencing status code 404)"
             return tempStr
-        if ID == 418:
+        if ID == Item.TEAPOT:
             tempStr = "Inscribed on the side are the words \"I'm a teapot\"."
             if mainobject.isDebugger:
                 tempStr += " (This is a joke item referencing status code 418)"
             return tempStr
-        if ID == 500:
+        if ID == Item.MILK_BOTTLE:
             return "A bottle of delicious milk that, when drunk, will heal 10 HP and help you stay awake a little longer."
-        if ID == 501:
+        if ID == Item.MILK_JUG:
             return "A large jug of delicious milk that, when drunk, will heal 40 HP and help you stay awake a while longer. When you're done peeing, of course."
-        if ID == 502:
+        if ID == Item.MILK_BARREL:
             return "A barrel full of delicious milk, this is mostly meant to be used for easy handling by merchants. However, if you use it, you will gain 4 Jugs of Milk instantly."
-        if ID == 503:
+        if ID == Item.LUST_DRAFT:
             return "A potion that will increase your lust by 20 instantly when used."
-        if ID == 504:
+        if ID == Item.REJUV_POT:
             return "A potion that will heal 30 HP and reduce your lust by 15 instantly when used."
-        if ID == 505:
+        if ID == Item.BAD_EXPER:
             return "This combustable concoction will deal 10-20 damage to your enemy before they can react!\n\nThis item can only be used during battle."
-        if ID == 506:
+        if ID == Item.EXP_PREG:
             return "When that baby is taking a while to gestate, this potion up the pregnancy as though 50 hours had passed."
-        if ID == 507:
+        if ID == Item.BALL_SWELLER:
             return "Imbibing this will make your balls feel as though you hadn't ejaculated in 30 hours."
-        if ID == 508:
+        if ID == Item.S_LUST_DRAFT:
             return "A potion that will increase your lust by 50 instantly when used."
-        if ID == 509:
+        if ID == Item.S_REJUV_POT:
             return "A potion that will heal 70 HP and reduce your lust by 40 instantly when used."
-        if ID == 510:
+        if ID == Item.S_BAD_EXPER:
             return "This extremely combustable concoction will deal 20-40 damage to your enemy before they can react!\n\nThis item can only be used during battle."
-        if ID == 511:
+        if ID == Item.S_EXP_PREG:
             return "When that baby is taking a while to gestate, this potion up the pregnancy as though 120 hours had passed."
-        if ID == 512:
+        if ID == Item.S_BALL_SWELLER:
             return "Imbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."
-        if ID == 513:
+        if ID == Item.GEN_SWAP:
             return "If you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."
-        if ID == 514:
+        if ID == Item.MASO_POT:
             return "After this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."
-        if ID == 515:
+        if ID == Item.BLACK_DYE:
             return "This will turn your hair black in color when used, if you have hair."
-        if ID == 516:
+        if ID == Item.BABY_FREE:
             return "Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-        if ID == 517:
+        if ID == Item.POT_POT:
             return "Kicking your balls into gear, they will permanently produce 20% more cum, despite their size."
-        if ID == 518:
+        if ID == Item.S_GEN_SWAP:
             return "If you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."
-        if ID == 519:
+        if ID == Item.S_MASO_POT:
             return "After this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."
-        if ID == 520:
+        if ID == Item.RED_DYE:
             return "This will turn your hair red in color when used, if you have hair."
-        if ID == 521:
+        if ID == Item.S_BABY_FREE:
             return "Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."
-        if ID == 522:
+        if ID == Item.S_POT_POT:
             return "Drop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."
-        if ID == 523:
+        if ID == Item.CUM_VIAL:
             return "Still kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."
-        if ID == 524:
+        if ID == Item.CUM_BOTTLE:
             return "A bottle of warm cum that will arouse you and heal you slightly when imbibed. If you can get it all down."
-        if ID == 525:
+        if ID == Item.CUM_JUG:
             return "A jug full of hot cum, this is mostly meant to be used for easy handling by the merchants that might be able to find a use for it. However, if you use it, you will gain 3 Bottles of Cum instantly."
-        if ID == 526:
+        if ID == Item.CUM_BARREL:
             return "There's... not really much you can do with a barrel full of hot cum. The merchants will still buy it, but at a very low price, since there's not much they can do with it either..."
-        if ID == 527:
+        if ID == Item.GOOD_EGG:
             return "An unfertilized fresh egg that is especially good for your health and body."
-        if ID == 528:
+        if ID == Item.BAD_EGG:
             return "An unfertilized fresh egg that should never be eaten... Instead it can be thrown at your enemy for a quick 10-20 damage.\n\nThis item can only be used during battle."
-        if ID == 529:
+        if ID == Item.STRANGE_EGG:
             return "An unfertilized fresh egg that can do... odd things to your body."
-        if ID == 530:
+        if ID == Item.CHARMED_EGG:
             return "An unfertilized fresh egg that will make you quite alluring for 20 hours."
-        if ID == 531:
+        if ID == Item.DIVINE_EGG:
             return "A very rare unfertilized fresh egg, eating it will make you closer to a diety of fertility."
-        if ID == 532:
+        if ID == Item.PHEROMONE:
             return "Originally meant to be fishing bait, this concoction is much more potent than originally intended and attracts far more than fish for 30 hours..."
-        if ID == 533:
+        if ID == Item.REDUC_REDUC:
             return "A weaker form of a Reduction, this will shrink the desired body part by a regular amount instead of halving its size."
-        if ID == 534:
+        if ID == Item.MALE_ENHANCE:
             return "A simple pill that, when ingested, will increase the size of you male genitals.\n\nCaution: females taking this pill may have similar side-effects."
-        if ID == 535:
+        if ID == Item.MILK_SUPPRESS:
             return "This drug will prevent any milk from leaking from your body. It does not prevent your mammary glands from producing milk, but it does prevent the milk from escaping for its duration, avoiding most unsightly leaks."
-        if ID == 536:
+        if ID == Item.BAZOOMBA:
             return "This glowing squishy orb is a secret recipe that creates more of one of the best things in life when ingested...!\n\nWarning - Be wary of overload."
-        if ID == 537:
+        if ID == Item.QUEEN_EGG:
             return "Not the egg of a queen, but rather an unfertilized egg fit for a queen! This wonderful egg would make any queen's abdomen larger and sexier. Though, if you're not an insect, this mostly translates to things below the waist. It will also help shorten the gestation period for quicker offspring and help your breasts hold more milk for all those births."
-        if ID == 538:
+        if ID == Item.SOLDIER_EGG:
             return "Not the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"
-        if ID == 539:
+        if ID == Item.DRONE_EGG:
             return "Not the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."
-        if ID == 540:
+        if ID == Item.WORKER_EGG:
             return "Not the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!"
         return f"ITEM DESCRIPTION ERROR {ID}"
 
@@ -2496,13 +2508,13 @@ class Items:
         '''
         Function which returns the maximum number of the item ID that can be in a stack
         '''
-        if ID in {1, 2, 3, 101, 102, 104, 106, 108, 109, 116, 117, 118, 119, 127, 200, 215, 229, 232, 233, 234, 235, 236, 237, 244, 247, 252, 254, 404, 418, 502, 526, 531}:
+        if ID in {Item.TEST_ITEM, Item.DEBUG_STICK, Item.TS_ANY, Item.ANC_CLAWS, Item.IMB_SHOES, Item.MILKER, Item.PENIS_PUMP, Item.BLOOD_GGE, Item.EDU_EGG, Item.DAGGER, Item.HAMMER, Item.SABER, Item.WHIP, Item.TAIL_SPIKE, Item.LILAS_GIFT, Item.LON_PENDANT, Item.LEATHER_STRAP, Item.FLYING_CARP, Item.A_GRAV_ROCK, Item.REIN_CHARM, Item.FELL_ROD, Item.RECEPT_BELL, Item.DEWY_GIFT, Item.SNUGGLE_BALL, Item.SUPP_HARNESS, Item.MILKY_PEND, Item.LANTERN, Item.ITEM_NOT_FOUND, Item.TEAPOT, Item.MILK_BARREL, Item.CUM_BARREL, Item.DIVINE_EGG}:
             return 1
-        if ID in {105, 110, 111, 112, 113, 114, 120, 126, 201, 202, 204, 205, 207, 210, 216, 217, 219, 220, 222, 230, 240, 241, 242, 243, 249, 250, 257, 258, 501, 505, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 525, 529, 530, 532, 536, 537}:
+        if ID in {Item.CATS_MEOW, Item.REDUCTION, Item.SKIN_BALM, Item.BOL_JOICE, Item.TAINT_LEAF, Item.SWEET_SAP, Item.NEUTER, Item.OAS_WATER, Item.MILK_C_POIS, Item.CO_SNAK_VEN, Item.SM_POUCH1, Item.SM_POUCH2, Item.COCK_CARV, Item.PUSS_FRUIT, Item.PINK_INK, Item.EGG_JELLY, Item.FRESH_EGG, Item.BLONDE_DYE, Item.KINKY_CARR, Item.EGGCELERATOR, Item.AUBURN_DYE, Item.BROWN_DYE, Item.GREY_DYE, Item.WHITE_DYE, Item.TREANTS_TEAR, Item.FOOMP_BOMB, Item.TOO_HUMAN, Item.TAINTED_POT, Item.MILK_JUG, Item.BAD_EXPER, Item.GEN_SWAP, Item.MASO_POT, Item.BLACK_DYE, Item.BABY_FREE, Item.POT_POT, Item.S_GEN_SWAP, Item.S_MASO_POT, Item.RED_DYE, Item.S_BABY_FREE, Item.S_POT_POT, Item.CUM_JUG, Item.STRANGE_EGG, Item.CHARMED_EGG, Item.PHEROMONE, Item.BAZOOMBA, Item.QUEEN_EGG}:
             return 5
-        if ID in {115, 121, 122, 123, 124, 125, 128, 206, 208, 212, 213, 214, 218, 221, 223, 224, 225, 227, 228, 231, 246, 248, 259, 260, 500, 503, 504, 506, 507, 508, 509, 510, 511, 512, 524, 527, 528, 534, 535, 538, 539}:
+        if ID in {Item.POULTICE, Item.TS_SOFT, Item.TS_FIRM, Item.TS_TIED, Item.TS_SIZ, Item.TS_OVI, Item.TS_SANC, Item.TRINKET, Item.BLO_BERRY, Item.RED_MUSH, Item.WET_CLOTH, Item.LON_MILK, Item.BUL_BERRY, Item.PUSS_JUICE, Item.EQ_SNACK, Item.LILAS_MILK, Item.BODY_WASH, Item.ORAL_WASH, Item.BODY_OIL, Item.DESI_SAND, Item.FERTILE_GEL, Item.BREEDER_POT, Item.SWEET_AND_SOUR, Item.SUCC_DRAFT, Item.MILK_BOTTLE, Item.LUST_DRAFT, Item.REJUV_POT, Item.EXP_PREG, Item.BALL_SWELLER, Item.S_LUST_DRAFT, Item.S_REJUV_POT, Item.S_BAD_EXPER, Item.S_EXP_PREG, Item.S_BALL_SWELLER, Item.CUM_BOTTLE, Item.GOOD_EGG, Item.BAD_EGG, Item.MALE_ENHANCE, Item.MILK_SUPPRESS, Item.SOLDIER_EGG, Item.DRONE_EGG}:
             return 10
-        if ID in {103, 203, 209, 211, 226, 238, 239, 245, 251, 253, 255, 256, 523, 533, 540}:
+        if ID in {Item.DRY_SAND, Item.WOLF_FUR, Item.GRAIN, Item.DAIRE_PILL, Item.FELIN_TEA, Item.SQU_CHEESE, Item.SHINY_ROCK, Item.FACIAL_MUD, Item.PLUMP_QUAT, Item.BUG_EGG, Item.FRAG_FLOWER, Item.NECTAR_CANDY, Item.CUM_VIAL, Item.REDUC_REDUC, Item.WORKER_EGG}:
             return 15
         return 0
 
@@ -2511,33 +2523,33 @@ class Items:
         Function which returns the food value of the item ID
         '''
         tempNum = 0
-        if ID == 529:
+        if ID == Item.STRANGE_EGG:
             tempNum = 1
-        elif ID == 503:
+        elif ID == Item.LUST_DRAFT:
             tempNum = 3
-        elif ID in {513, 514, 253}:
+        elif ID in {Item.GEN_SWAP, Item.MASO_POT, Item.BUG_EGG}:
             tempNum = 4
-        elif ID in {114, 211, 534, 504, 506}:
+        elif ID in {Item.SWEET_SAP, Item.DAIRE_PILL, Item.MALE_ENHANCE, Item.REJUV_POT, Item.EXP_PREG}:
             tempNum = 5
-        elif ID in {507, 508}:
+        elif ID in {Item.BALL_SWELLER, Item.S_LUST_DRAFT}:
             tempNum = 7
-        elif ID in {208, 509, 518, 519}:
+        elif ID in {Item.BLO_BERRY, Item.S_REJUV_POT, Item.S_GEN_SWAP, Item.S_MASO_POT}:
             tempNum = 8
-        elif ID in {512, 226, 523, 209, 535, 218, 540, 222, 511}:
+        elif ID in {Item.S_BALL_SWELLER, Item.FELIN_TEA, Item.CUM_VIAL, Item.GRAIN, Item.MILK_SUPPRESS, Item.BUL_BERRY, Item.WORKER_EGG, Item.KINKY_CARR, Item.S_EXP_PREG}:
             tempNum = 10
-        elif ID in {256, 516, 517, 527, 212, 536, 539, 219, 221}:
+        elif ID in {Item.NECTAR_CANDY, Item.BABY_FREE, Item.POT_POT, Item.GOOD_EGG, Item.RED_MUSH, Item.BAZOOMBA, Item.DRONE_EGG, Item.FRESH_EGG, Item.PUSS_JUICE}:
             tempNum = 15
-        elif ID in {224, 521, 522, 238, 210, 530, 538}:
+        elif ID in {Item.LILAS_MILK, Item.S_BABY_FREE, Item.S_POT_POT, Item.SQU_CHEESE, Item.PUSS_FRUIT, Item.CHARMED_EGG, Item.SOLDIER_EGG}:
             tempNum = 20
-        elif ID in {537, 259, 223}:
+        elif ID in {Item.QUEEN_EGG, Item.SWEET_AND_SOUR, Item.EQ_SNACK}:
             tempNum = 25
-        elif ID in {500, 524, 214}:
+        elif ID in {Item.MILK_BOTTLE, Item.CUM_BOTTLE, Item.LON_MILK}:
             tempNum = 30
-        elif ID == 251:
+        elif ID == Item.PLUMP_QUAT:
             tempNum = 40
-        elif ID == 531:
+        elif ID == Item.DIVINE_EGG:
             tempNum = 50
-        elif ID == 501:
+        elif ID == Item.MILK_JUG:
             tempNum = 70
         return tempNum * 2
 
@@ -2545,7 +2557,7 @@ class Items:
         '''
         Whether the page label should be hidden when using an item
         '''
-        return ID not in {101, 102, 200, 206, 215, 229, 233, 234, 236, 237, 252, 254, 404}
+        return ID not in {Item.IMB_SHOES, Item.ANC_CLAWS, Item.LILAS_GIFT, Item.TRINKET, Item.LON_PENDANT, Item.LEATHER_STRAP, Item.A_GRAV_ROCK, Item.REIN_CHARM, Item.RECEPT_BELL, Item.DEWY_GIFT, Item.MILKY_PEND, Item.LANTERN, Item.ITEM_NOT_FOUND}
 
     def TeleportScrollAny_GetButtonOrder(currentZone) -> dict:
         if currentZone == 1:
@@ -2597,113 +2609,113 @@ class Shop:
     def ID(currentZone: int, goodsSlot: int) -> int:
         if currentZone == Zone.SOFTLIK:
             if goodsSlot == 1:
-                return 104
+                return Item.MILKER
             if goodsSlot == 2:
-                return 111
+                return Item.SKIN_BALM
             if goodsSlot == 3:
-                return 116
+                return Item.DAGGER
             if goodsSlot == 5:
-                return 500
+                return Item.MILK_BOTTLE
             if goodsSlot == 6:
-                return 501
+                return Item.MILK_JUG
             if goodsSlot == 7:
-                return 108
+                return Item.BLOOD_GGE
             if goodsSlot == 9:
-                return 110
+                return Item.REDUCTION
             if goodsSlot == 10:
-                return 115
+                return Item.POULTICE
             if goodsSlot == 11:
-                return 121
+                return Item.TS_SOFT
         elif currentZone == Zone.FIRMSHAFT:
             if goodsSlot == 1:
-                return 102
+                return Item.IMB_SHOES
             if goodsSlot == 2:
-                return 112
+                return Item.BOL_JOICE
             if goodsSlot == 3:
-                return 117
+                return Item.HAMMER
             if goodsSlot == 5:
-                return 106
+                return Item.PENIS_PUMP
             if goodsSlot == 9:
-                return 110
+                return Item.REDUCTION
             if goodsSlot == 10:
-                return 115
+                return Item.POULTICE
             if goodsSlot == 11:
-                return 122
+                return Item.TS_FIRM
         elif currentZone == Zone.TIEDEN:
             if goodsSlot == 1:
-                return 101
+                return Item.ANC_CLAWS
             if goodsSlot == 2:
-                return 113
+                return Item.TAINT_LEAF
             if goodsSlot == 3:
-                return 118
+                return Item.SABER
             if goodsSlot == 5:
-                return 120
+                return Item.NEUTER
             if goodsSlot == 9:
-                return 110
+                return Item.REDUCTION
             if goodsSlot == 10:
-                return 115
+                return Item.POULTICE
             if goodsSlot == 11:
-                return 123
+                return Item.TS_TIED
         elif currentZone == Zone.SIZ_CALIT:
             if goodsSlot == 2:
-                return 114
+                return Item.SWEET_SAP
             if goodsSlot == 3:
-                return 119
+                return Item.WHIP
             if goodsSlot == 5:
-                return 103
+                return Item.DRY_SAND
             if goodsSlot == 6:
-                return 105
+                return Item.CATS_MEOW
             if goodsSlot == 9:
-                return 110
+                return Item.REDUCTION
             if goodsSlot == 10:
-                return 115
+                return Item.POULTICE
             if goodsSlot == 11:
-                return 124
+                return Item.TS_SIZ
         elif currentZone == Zone.OVIASIS:
             if goodsSlot == 1:
-                return 109
+                return Item.EDU_EGG
             if goodsSlot == 2:
-                return 126
+                return Item.OAS_WATER
             if goodsSlot == 3:
-                return 127
+                return Item.TAIL_SPIKE
             if goodsSlot == 5:
-                return 103
+                return Item.DRY_SAND
             if goodsSlot == 6:
-                return 230
+                return Item.EGGCELERATOR
             if goodsSlot == 9:
-                return 110
+                return Item.REDUCTION
             if goodsSlot == 10:
-                return 115
+                return Item.POULTICE
             if goodsSlot == 11:
-                return 125
+                return Item.TS_OVI
         elif currentZone == Zone.SANCTUARY:
             if goodsSlot == 1:
-                return 247
+                return Item.SUPP_HARNESS
             if goodsSlot == 2:
-                return 250
+                return Item.FOOMP_BOMB
             if goodsSlot == 3:
-                return 256
+                return Item.NECTAR_CANDY
             if goodsSlot == 5:
-                return 120
+                return Item.NEUTER
             if goodsSlot == 9:
-                return 110
+                return Item.REDUCTION
             if goodsSlot == 10:
-                return 115
+                return Item.POULTICE
             if goodsSlot == 11:
-                return 128
+                return Item.TS_SANC
         return 0
 
 
 class DyeShop:
     def ID(goodsSlot: int) -> int:
         if goodsSlot == 1:
-            return 240
+            return Item.AUBURN_DYE
         if goodsSlot == 2:
-            return 241
+            return Item.BROWN_DYE
         if goodsSlot == 5:
-            return 242
+            return Item.GREY_DYE
         if goodsSlot == 6:
-            return 243
+            return Item.WHITE_DYE
         return 0
 
 
@@ -2711,11 +2723,11 @@ class Apothecary:
     def ID(currentZone: int, goodsSlot: int, knowledge: object) -> int:
         if currentZone == Zone.SOFTLIK:
             if goodsSlot == 1:
-                return 203
+                return Item.WOLF_FUR
             if goodsSlot == 2:
-                return 209
+                return Item.GRAIN
             if goodsSlot == 3:
-                return 523
+                return Item.CUM_VIAL
             if goodsSlot == 7 and not knowledge.knowLustDraft:
                 return Recipe.LUST_DRAFT
             if goodsSlot == 9 and not knowledge.knowSRejuvPot:
@@ -2726,15 +2738,15 @@ class Apothecary:
                 return Recipe.BABY_FREE
         elif currentZone == Zone.FIRMSHAFT:
             if goodsSlot == 1:
-                return 209
+                return Item.GRAIN
             if goodsSlot == 2:
-                return 202
+                return Item.CO_SNAK_VEN
             if goodsSlot == 3:
-                return 206
+                return Item.TRINKET
             if goodsSlot == 5:
-                return 212
+                return Item.RED_MUSH
             if goodsSlot == 6:
-                return 524
+                return Item.CUM_BOTTLE
             if goodsSlot == 9 and not knowledge.knowRejuvPot:
                 return Recipe.REJUV_POT
             if goodsSlot == 10 and not knowledge.knowSLustDraft:
@@ -2743,13 +2755,13 @@ class Apothecary:
                 return Recipe.S_MASO_POT
         elif currentZone == Zone.TIEDEN:
             if goodsSlot == 1:
-                return 201
+                return Item.MILK_C_POIS
             if goodsSlot == 2:
-                return 202
+                return Item.CO_SNAK_VEN
             if goodsSlot == 3:
-                return 213
+                return Item.WET_CLOTH
             if goodsSlot == 5:
-                return 203
+                return Item.WOLF_FUR
             if goodsSlot == 9 and not knowledge.knowBallSwell:
                 return Recipe.BALL_SWELL
             if goodsSlot == 10 and not knowledge.knowPotPot:
@@ -2758,11 +2770,11 @@ class Apothecary:
                 return Recipe.S_GEN_SWAP
         elif currentZone == Zone.SIZ_CALIT:
             if goodsSlot == 1:
-                return 210
+                return Item.PUSS_FRUIT
             if goodsSlot == 2:
-                return 201
+                return Item.MILK_C_POIS
             if goodsSlot == 3:
-                return 218
+                return Item.BUL_BERRY
             if goodsSlot == 9 and not knowledge.knowExpPreg:
                 return Recipe.EXP_PREG
             if goodsSlot == 10 and not knowledge.knowGenSwap:
@@ -2771,13 +2783,13 @@ class Apothecary:
                 return Recipe.S_BABY_FREE
         elif currentZone == Zone.OVIASIS:
             if goodsSlot == 1:
-                return 207
+                return Item.COCK_CARV
             if goodsSlot == 2:
-                return 213
+                return Item.WET_CLOTH
             if goodsSlot == 3:
-                return 208
+                return Item.BLO_BERRY
             if goodsSlot == 5:
-                return 228
+                return Item.BODY_OIL
             if goodsSlot == 9 and not knowledge.knowSExpPreg:
                 return Recipe.S_EXP_PREG
             if goodsSlot == 10 and not knowledge.knowSBallSwell:
@@ -3058,7 +3070,7 @@ class PlayerItemContainer:
         return ID in self.items
 
     def hasMagicItem(self) -> bool:  # checkMagicItem
-        for i in {101, 102, 200, 215, 232, 233, 234, 235, 236, 237, 252}:
+        for i in {Item.ANC_CLAWS, Item.IMB_SHOES, Item.LILAS_GIFT, Item.LON_PENDANT, Item.FLYING_CARP, Item.A_GRAV_ROCK, Item.REIN_CHARM, Item.FELL_ROD, Item.RECEPT_BELL, Item.DEWY_GIFT, Item.MILKY_PEND}:
             if self.hasItem(i):
                 return True
         return False
@@ -3376,17 +3388,17 @@ class WikiPages:
                 return "[Leg Description]"
 
         # Dynamic Descriptions
-        if ID == 244:
+        if ID == Item.SNUGGLE_BALL:
             contents += f"\n\n<u>Description</u>\n<b>When Not Equipped:</b>\n{Items.description(ID, FakeContext)}"
             FakeContext.snuggleBall = True
             contents += f"\n\n<b>When Equipped:</b>\n{Items.description(ID, FakeContext)}"
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 247:
+        if ID == Item.SUPP_HARNESS:
             contents += f"\n\n<u>Description</u>\n<b>When Not Equipped:</b>\n{Items.description(ID, FakeContext)}"
             FakeContext.suppHarness = True
             contents += f"\n\n<b>When Equipped:</b>\n{Items.description(ID, FakeContext)}"
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 253:
+        if ID == Item.BUG_EGG:
             contents += f"\n\n<u>Description</u>\n<b>When tail != 12:</b>\n{Items.description(ID, FakeContext)}"
             FakeContext.tail = 12
             contents += f"\n\n<b>When tail == 12:</b>\n{Items.description(ID, FakeContext)}"
@@ -3394,267 +3406,267 @@ class WikiPages:
 
         # Static Descriptions
         contents += f"\n\n<u>Description</u>\n{Items.description(ID, FakeContext)}"
-        if ID == 1:
+        if ID == Item.TEST_ITEM:
             return contents + "\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
-        if ID == 2:
+        if ID == Item.DEBUG_STICK:
             return contents + "\n\n<u>Effects</u>\n999 damage\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-        if ID == 3:
+        if ID == Item.TS_ANY:
             return contents + "\n\n<u>Effects</u>\nTeleportation\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-        if ID == 404:
+        if ID == Item.ITEM_NOT_FOUND:
             return contents + "\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-        if ID == 418:
+        if ID == Item.TEAPOT:
             return contents + "\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
-        if ID == 101:
+        if ID == Item.ANC_CLAWS:
             return contents + "\n\n<u>Effects and Stats</u>\nTurns player's hands into paws.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrapeMod +10\n\n<u>How to obtain</u>\nCan be bought from the shop in Tieden."
-        if ID == 102:
+        if ID == Item.IMB_SHOES:
             return contents + "\n\n<u>Effects and Stats</u>\nTurns the player's feet into hooves.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrunMod +20\n\n<u>How to obtain</u>\nCan be bought from the shop in Firmshaft."
-        if ID == 103:
+        if ID == Item.DRY_SAND:
             return contents + "\n\n<u>Effects and Stats</u>\nMakes the part that the player applies it to less moist.\n<b>ItemType:</b> Consumable\n<b>StackMax:</b> 15\n<b>Value:</b> 20 coins\ncockMoist -4 (cock)\nvagMoist -4 (vagina)\nlactation -75 (boobs)\nudderLactation -75 (udders)\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 104:
+        if ID == Item.MILKER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 105:
+        if ID == Item.CATS_MEOW:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 106:
+        if ID == Item.PENIS_PUMP:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 108:
+        if ID == Item.BLOOD_GGE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 109:
+        if ID == Item.EDU_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 110:
+        if ID == Item.REDUCTION:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 111:
+        if ID == Item.SKIN_BALM:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 112:
+        if ID == Item.BOL_JOICE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 113:
+        if ID == Item.TAINT_LEAF:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 114:
+        if ID == Item.SWEET_SAP:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 115:
+        if ID == Item.POULTICE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 116:
+        if ID == Item.DAGGER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 117:
+        if ID == Item.HAMMER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 118:
+        if ID == Item.SABER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 119:
+        if ID == Item.WHIP:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 120:
+        if ID == Item.NEUTER:
             return contents + "\n\nThe game says that using the neuterizer to make the player have less than 2 balls is 'too dangerous' but the real reason is because most things were coded to expect at the player to have at least two balls when they have a cock.\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 121:
+        if ID == Item.TS_SOFT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 122:
+        if ID == Item.TS_FIRM:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 123:
+        if ID == Item.TS_TIED:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 124:
+        if ID == Item.TS_SIZ:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 125:
+        if ID == Item.TS_OVI:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 126:
+        if ID == Item.OAS_WATER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 127:
+        if ID == Item.TAIL_SPIKE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 128:
+        if ID == Item.TS_SANC:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 200:
+        if ID == Item.LILAS_GIFT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 201:
+        if ID == Item.MILK_C_POIS:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 202:
+        if ID == Item.CO_SNAK_VEN:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 203:
+        if ID == Item.WOLF_FUR:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 204:
+        if ID == Item.SM_POUCH1:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 205:
+        if ID == Item.SM_POUCH2:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 206:
+        if ID == Item.TRINKET:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 207:
+        if ID == Item.COCK_CARV:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 208:
+        if ID == Item.BLO_BERRY:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 209:
+        if ID == Item.GRAIN:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 210:
+        if ID == Item.PUSS_FRUIT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 211:
+        if ID == Item.DAIRE_PILL:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 212:
+        if ID == Item.RED_MUSH:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 213:
+        if ID == Item.WET_CLOTH:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 214:
+        if ID == Item.LON_MILK:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 215:
+        if ID == Item.LON_PENDANT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 216:
+        if ID == Item.PINK_INK:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 217:
+        if ID == Item.EGG_JELLY:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 218:
+        if ID == Item.BUL_BERRY:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 219:
+        if ID == Item.FRESH_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 220:
+        if ID == Item.BLONDE_DYE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 221:
+        if ID == Item.PUSS_JUICE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 222:
+        if ID == Item.KINKY_CARR:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 223:
+        if ID == Item.EQ_SNACK:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 224:
+        if ID == Item.LILAS_MILK:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 225:
+        if ID == Item.BODY_WASH:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 226:
+        if ID == Item.FELIN_TEA:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 227:
+        if ID == Item.ORAL_WASH:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 228:
+        if ID == Item.BODY_OIL:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 229:
+        if ID == Item.LEATHER_STRAP:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 230:
+        if ID == Item.EGGCELERATOR:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 231:
+        if ID == Item.DESI_SAND:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 232:
+        if ID == Item.FLYING_CARP:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 233:
+        if ID == Item.A_GRAV_ROCK:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 234:
+        if ID == Item.REIN_CHARM:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 235:
+        if ID == Item.FELL_ROD:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 236:
+        if ID == Item.RECEPT_BELL:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 237:
+        if ID == Item.DEWY_GIFT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 238:
+        if ID == Item.SQU_CHEESE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 239:
+        if ID == Item.SHINY_ROCK:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 240:
+        if ID == Item.AUBURN_DYE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 241:
+        if ID == Item.BROWN_DYE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 242:
+        if ID == Item.GREY_DYE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 243:
+        if ID == Item.WHITE_DYE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 245:
+        if ID == Item.FACIAL_MUD:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 246:
+        if ID == Item.FERTILE_GEL:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 248:
+        if ID == Item.BREEDER_POT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 249:
+        if ID == Item.TREANTS_TEAR:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 250:
+        if ID == Item.FOOMP_BOMB:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 251:
+        if ID == Item.PLUMP_QUAT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 252:
+        if ID == Item.MILKY_PEND:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 254:
+        if ID == Item.LANTERN:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 255:
+        if ID == Item.FRAG_FLOWER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 256:
+        if ID == Item.NECTAR_CANDY:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 257:
+        if ID == Item.TOO_HUMAN:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 258:
+        if ID == Item.TAINTED_POT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 259:
+        if ID == Item.SWEET_AND_SOUR:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 260:
+        if ID == Item.SUCC_DRAFT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 500:
+        if ID == Item.MILK_BOTTLE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 501:
+        if ID == Item.MILK_JUG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 502:
+        if ID == Item.MILK_BARREL:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 503:
+        if ID == Item.LUST_DRAFT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 504:
+        if ID == Item.REJUV_POT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 505:
+        if ID == Item.BAD_EXPER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 506:
+        if ID == Item.EXP_PREG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 507:
+        if ID == Item.BALL_SWELLER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 508:
+        if ID == Item.S_LUST_DRAFT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 509:
+        if ID == Item.S_REJUV_POT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 510:
+        if ID == Item.S_BAD_EXPER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 511:
+        if ID == Item.S_EXP_PREG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 512:
+        if ID == Item.S_BALL_SWELLER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 513:
+        if ID == Item.GEN_SWAP:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 514:
+        if ID == Item.MASO_POT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 515:
+        if ID == Item.BLACK_DYE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 516:
+        if ID == Item.BABY_FREE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 517:
+        if ID == Item.POT_POT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 518:
+        if ID == Item.S_GEN_SWAP:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 519:
+        if ID == Item.S_MASO_POT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 520:
+        if ID == Item.RED_DYE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 521:
+        if ID == Item.S_BABY_FREE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 522:
+        if ID == Item.S_POT_POT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 523:
+        if ID == Item.CUM_VIAL:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 524:
+        if ID == Item.CUM_BOTTLE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 525:
+        if ID == Item.CUM_JUG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 526:
+        if ID == Item.CUM_BARREL:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 527:
+        if ID == Item.GOOD_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 528:
+        if ID == Item.BAD_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 529:
+        if ID == Item.STRANGE_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 530:
+        if ID == Item.CHARMED_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 531:
+        if ID == Item.DIVINE_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 532:
+        if ID == Item.PHEROMONE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 533:
+        if ID == Item.REDUC_REDUC:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 534:
+        if ID == Item.MALE_ENHANCE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 535:
+        if ID == Item.MILK_SUPPRESS:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 536:
+        if ID == Item.BAZOOMBA:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 537:
+        if ID == Item.QUEEN_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 538:
+        if ID == Item.SOLDIER_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 539:
+        if ID == Item.DRONE_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == 540:
+        if ID == Item.WORKER_EGG:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
     def Recipe(ID: int) -> str:
@@ -3961,299 +3973,300 @@ WIKI_MENUS = {
     'Items': {
         'All Items': {
             'Test': ('Item', 1),
-            'Anc Claws': ('Item', 101),
-            'Imb Shoes': ('Item', 102),
-            'Dry Sand': ('Item', 103),
-            'Milker': ('Item', 104),
-            'Cat\'s Meow': ('Item', 105),
-            'Penis Pump': ('Item', 106),
-            'Blood Gge': ('Item', 108),
-            'Edu Egg': ('Item', 109),
-            'Reduction': ('Item', 110),
-            'Skin Balm': ('Item', 111),
-            'Bol Juice': ('Item', 112),
-            'Taint Leaf': ('Item', 113),
-            'Sweet Sap': ('Item', 114),
-            'Poultice': ('Item', 115),
-            'Dagger': ('Item', 116),
-            'Hammer': ('Item', 117),
-            'Saber': ('Item', 118),
-            'Whip': ('Item', 119),
-            'Neuter': ('Item', 120),
-            'TS Soft': ('Item', 121),
-            'TS Firm': ('Item', 122),
-            'TS Tied': ('Item', 123),
-            'TS Siz': ('Item', 124),
-            'TS Ovi': ('Item', 125),
-            'Oas Water': ('Item', 126),
-            'Tail Spike': ('Item', 127),
-            'TS Sanct': ('Item', 128),
-            'Lila\'s Gift': ('Item', 200),
-            'Milk C Pois': ('Item', 201),
-            'Co-Snak Ven': ('Item', 202),
-            'Wolf Fur': ('Item', 203),
-            'Sm Pouch (ItemID 204)': ('Item', 204),
-            'Sm Pouch (ItemID 205)': ('Item', 205),
-            'Trinket': ('Item', 206),
-            'Cock Carv': ('Item', 207),
-            'Blo Berry': ('Item', 208),
-            'Grain': ('Item', 209),
-            'Puss Fruit': ('Item', 210),
-            'DairE Pill': ('Item', 211),
-            'Red Mush': ('Item', 212),
-            'Wet Cloth': ('Item', 213),
-            'Lon Milk': ('Item', 214),
-            'Lon Pendant': ('Item', 215),
-            'Pink Ink': ('Item', 216),
-            'Egg Jelly': ('Item', 217),
-            'Bul Berry': ('Item', 218),
-            'Fresh Egg': ('Item', 219),
-            'Blondie': ('Item', 220),
-            'Puss Juice': ('Item', 221),
-            'Kinky Carr': ('Item', 222),
-            'Eq Snack': ('Item', 223),
-            'Lila\'s Milk': ('Item', 224),
-            'Body Wash': ('Item', 225),
-            'Felin Tea': ('Item', 226),
-            'Oral Wash': ('Item', 227),
-            'Body Oil': ('Item', 228),
-            'Leath Strap': ('Item', 229),
-            'Eggcelerator': ('Item', 230),
-            'Desi Sand': ('Item', 231),
-            'Flying Carp': ('Item', 232),
-            'A-Grav Rock': ('Item', 233),
-            'Rein Charm': ('Item', 234),
-            'Fell Rod': ('Item', 235),
-            'Recept Bell': ('Item', 236),
-            'Dewy Gift': ('Item', 237),
-            'Squ Cheese': ('Item', 238),
-            'Shiny Rock': ('Item', 239),
-            'Auburn Dye': ('Item', 240),
-            'Brown Dye': ('Item', 241),
-            'Grey Dye': ('Item', 242),
-            'White Dye': ('Item', 243),
-            'Snuggle Ball': ('Item', 244),
-            'Facial Mud': ('Item', 245),
-            'Fertile Gel': ('Item', 246),
-            'Supp Harness': ('Item', 247),
-            'Breeder Pot': ('Item', 248),
-            'Treant\'s Tear': ('Item', 249),
-            'Foomp Bomb': ('Item', 250),
-            'Plump Quat': ('Item', 251),
-            'Milky Pend': ('Item', 252),
-            'Bug Egg': ('Item', 253),
-            'Lantern': ('Item', 254),
-            'Frag Flower': ('Item', 255),
-            'Nectar Candy': ('Item', 256),
-            'Too Human': ('Item', 257),
-            'Tainted Pot': ('Item', 258),
-            'Sweet&Sour': ('Item', 259),
-            'Succ Draft': ('Item', 260),
-            'Milk Bottle': ('Item', 500),
-            'Milk Jug': ('Item', 501),
-            'Milk Barrel': ('Item', 502),
-            'Lust Draft': ('Item', 503),
-            'Rejuv Pot': ('Item', 504),
-            'Bad Exper': ('Item', 505),
-            'Exp Preg': ('Item', 506),
-            'Ball Sweller': ('Item', 507),
-            'S Lust Draft': ('Item', 508),
-            'S Rejuv Pot': ('Item', 509),
-            'S Bad Exper': ('Item', 510),
-            'S Exp Preg': ('Item', 511),
-            'S Ball Sweller': ('Item', 512),
-            'Gen Swap': ('Item', 513),
-            'Maso Pot': ('Item', 514),
-            'Black Dye': ('Item', 515),
-            'Baby Free': ('Item', 516),
-            'Pot Pot': ('Item', 517),
-            'S Gen Swap': ('Item', 518),
-            'S Maso Pot': ('Item', 519),
-            'Red Dye': ('Item', 520),
-            'S Baby Free': ('Item', 521),
-            'S Pot Pot': ('Item', 522),
-            'Cum Vial': ('Item', 523),
-            'Cum Bottle': ('Item', 524),
-            'Cum Jug': ('Item', 525),
-            'Cum Barrel': ('Item', 526),
-            'Good Egg': ('Item', 527),
-            'Bad Egg': ('Item', 528),
-            'Strange Egg': ('Item', 529),
-            'Charmed Egg': ('Item', 530),
-            'Divine Egg': ('Item', 531),
-            'Pheromone': ('Item', 532),
-            'Reduc Reduc': ('Item', 533),
-            'Male Enhance': ('Item', 534),
-            'Milk Suppress': ('Item', 535),
-            'Bazoomba!': ('Item', 536),
-            'Queen Egg': ('Item', 537),
-            'Soldier Egg': ('Item', 538),
-            'Drone Egg': ('Item', 539),
-            'Worker Egg': ('Item', 540)
+            'Anc Claws': ('Item', Item.ANC_CLAWS),
+            'Imb Shoes': ('Item', Item.IMB_SHOES),
+            'Dry Sand': ('Item', Item.DRY_SAND),
+            'Milker': ('Item', Item.MILKER),
+            'Cat\'s Meow': ('Item', Item.CATS_MEOW),
+            'Penis Pump': ('Item', Item.PENIS_PUMP),
+            'Blood Gge': ('Item', Item.BLOOD_GGE),
+            'Edu Egg': ('Item', Item.EDU_EGG),
+            'Reduction': ('Item', Item.REDUCTION),
+            'Skin Balm': ('Item', Item.SKIN_BALM),
+            'Bol Juice': ('Item', Item.BOL_JOICE),
+            'Taint Leaf': ('Item', Item.TAINT_LEAF),
+            'Sweet Sap': ('Item', Item.SWEET_SAP),
+            'Poultice': ('Item', Item.POULTICE),
+            'Dagger': ('Item', Item.DAGGER),
+            'Hammer': ('Item', Item.HAMMER),
+            'Saber': ('Item', Item.SABER),
+            'Whip': ('Item', Item.WHIP),
+            'Neuter': ('Item', Item.NEUTER),
+            'TS Soft': ('Item', Item.TS_SOFT),
+            'TS Firm': ('Item', Item.TS_FIRM),
+            'TS Tied': ('Item', Item.TS_TIED),
+            'TS Siz': ('Item', Item.TS_SIZ),
+            'TS Ovi': ('Item', Item.TS_OVI),
+            'Oas Water': ('Item', Item.OAS_WATER),
+            'Tail Spike': ('Item', Item.TAIL_SPIKE),
+            'TS Sanct': ('Item', Item.TS_SANC),
+            'Lila\'s Gift': ('Item', Item.LILAS_GIFT),
+            'Milk C Pois': ('Item', Item.MILK_C_POIS),
+            'Co-Snak Ven': ('Item', Item.CO_SNAK_VEN),
+            'Wolf Fur': ('Item', Item.WOLF_FUR),
+            'Sm Pouch (ItemID 204)': ('Item', Item.SM_POUCH1),
+            'Sm Pouch (ItemID 205)': ('Item', Item.SM_POUCH2),
+            'Trinket': ('Item', Item.TRINKET),
+            'Cock Carv': ('Item', Item.COCK_CARV),
+            'Blo Berry': ('Item', Item.BLO_BERRY),
+            'Grain': ('Item', Item.GRAIN),
+            'Puss Fruit': ('Item', Item.PUSS_FRUIT),
+            'DairE Pill': ('Item', Item.DAIRE_PILL),
+            'Red Mush': ('Item', Item.RED_MUSH),
+            'Wet Cloth': ('Item', Item.WET_CLOTH),
+            'Lon Milk': ('Item', Item.LON_MILK),
+            'Lon Pendant': ('Item', Item.LON_PENDANT),
+            'Pink Ink': ('Item', Item.PINK_INK),
+            'Egg Jelly': ('Item', Item.EGG_JELLY),
+            'Bul Berry': ('Item', Item.BUL_BERRY),
+            'Fresh Egg': ('Item', Item.FRESH_EGG),
+            'Blondie': ('Item', Item.BLONDE_DYE),
+            'Puss Juice': ('Item', Item.PUSS_JUICE),
+            'Kinky Carr': ('Item', Item.KINKY_CARR),
+            'Eq Snack': ('Item', Item.EQ_SNACK),
+            'Lila\'s Milk': ('Item', Item.LILAS_MILK),
+            'Body Wash': ('Item', Item.BODY_WASH),
+            'Felin Tea': ('Item', Item.FELIN_TEA),
+            'Oral Wash': ('Item', Item.ORAL_WASH),
+            'Body Oil': ('Item', Item.BODY_OIL),
+            'Leath Strap': ('Item', Item.LEATHER_STRAP),
+            'Eggcelerator': ('Item', Item.EGGCELERATOR),
+            'Desi Sand': ('Item', Item.DESI_SAND),
+            'Flying Carp': ('Item', Item.FLYING_CARP),
+            'A-Grav Rock': ('Item', Item.A_GRAV_ROCK),
+            'Rein Charm': ('Item', Item.REIN_CHARM),
+            'Fell Rod': ('Item', Item.FELL_ROD),
+            'Recept Bell': ('Item', Item.RECEPT_BELL),
+            'Dewy Gift': ('Item', Item.DEWY_GIFT),
+            'Squ Cheese': ('Item', Item.SQU_CHEESE),
+            'Shiny Rock': ('Item', Item.SHINY_ROCK),
+            'Auburn Dye': ('Item', Item.AUBURN_DYE),
+            'Brown Dye': ('Item', Item.BROWN_DYE),
+            'Grey Dye': ('Item', Item.GREY_DYE),
+            'White Dye': ('Item', Item.WHITE_DYE),
+            'Snuggle Ball': ('Item', Item.SNUGGLE_BALL),
+            'Facial Mud': ('Item', Item.FACIAL_MUD),
+            'Fertile Gel': ('Item', Item.FERTILE_GEL),
+            'Supp Harness': ('Item', Item.SUPP_HARNESS),
+            'Breeder Pot': ('Item', Item.BREEDER_POT),
+            'Treant\'s Tear': ('Item', Item.TREANTS_TEAR),
+            'Foomp Bomb': ('Item', Item.FOOMP_BOMB),
+            'Plump Quat': ('Item', Item.PLUMP_QUAT),
+            'Milky Pend': ('Item', Item.MILKY_PEND),
+            'Bug Egg': ('Item', Item.BUG_EGG),
+            'Lantern': ('Item', Item.LANTERN),
+            'Frag Flower': ('Item', Item.FRAG_FLOWER),
+            'Nectar Candy': ('Item', Item.NECTAR_CANDY),
+            'Too Human': ('Item', Item.TOO_HUMAN),
+            'Tainted Pot': ('Item', Item.TAINTED_POT),
+            'Sweet&Sour': ('Item', Item.SWEET_AND_SOUR),
+            'Succ Draft': ('Item', Item.SUCC_DRAFT),
+            'Milk Bottle': ('Item', Item.MILK_BOTTLE),
+            'Milk Jug': ('Item', Item.MILK_JUG),
+            'Milk Barrel': ('Item', Item.MILK_BARREL),
+            'Lust Draft': ('Item', Item.LUST_DRAFT),
+            'Rejuv Pot': ('Item', Item.REJUV_POT),
+            'Bad Exper': ('Item', Item.BAD_EXPER),
+            'Exp Preg': ('Item', Item.EXP_PREG),
+            'Ball Sweller': ('Item', Item.BALL_SWELLER),
+            'S Lust Draft': ('Item', Item.S_LUST_DRAFT),
+            'S Rejuv Pot': ('Item', Item.S_REJUV_POT),
+            'S Bad Exper': ('Item', Item.S_BAD_EXPER),
+            'S Exp Preg': ('Item', Item.S_EXP_PREG),
+            'S Ball Sweller': ('Item', Item.S_BALL_SWELLER),
+            'Gen Swap': ('Item', Item.GEN_SWAP),
+            'Maso Pot': ('Item', Item.MASO_POT),
+            'Black Dye': ('Item', Item.BLACK_DYE),
+            'Baby Free': ('Item', Item.BABY_FREE),
+            'Pot Pot': ('Item', Item.POT_POT),
+            'S Gen Swap': ('Item', Item.S_GEN_SWAP),
+            'S Maso Pot': ('Item', Item.S_MASO_POT),
+            'Red Dye': ('Item', Item.RED_DYE),
+            'S Baby Free': ('Item', Item.S_BABY_FREE),
+            'S Pot Pot': ('Item', Item.S_POT_POT),
+            'Cum Vial': ('Item', Item.CUM_VIAL),
+            'Cum Bottle': ('Item', Item.CUM_BOTTLE),
+            'Cum Jug': ('Item', Item.CUM_JUG),
+            'Cum Barrel': ('Item', Item.CUM_BARREL),
+            'Good Egg': ('Item', Item.GOOD_EGG),
+            'Bad Egg': ('Item', Item.BAD_EGG),
+            'Strange Egg': ('Item', Item.STRANGE_EGG),
+            'Charmed Egg': ('Item', Item.CHARMED_EGG),
+            'Divine Egg': ('Item', Item.DIVINE_EGG),
+            'Pheromone': ('Item', Item.PHEROMONE),
+            'Reduc Reduc': ('Item', Item.REDUC_REDUC),
+            'Male Enhance': ('Item', Item.MALE_ENHANCE),
+            'Milk Suppress': ('Item', Item.MILK_SUPPRESS),
+            'Bazoomba!': ('Item', Item.BAZOOMBA),
+            'Queen Egg': ('Item', Item.QUEEN_EGG),
+            'Soldier Egg': ('Item', Item.SOLDIER_EGG),
+            'Drone Egg': ('Item', Item.DRONE_EGG),
+            'Worker Egg': ('Item', Item.WORKER_EGG)
         },
         'Debug Items': {
             'Debug Stick': ('Item', 2),
-            'Item Not Found': ('Item', 404),
-            'Teapot': ('Item', 418),
+            'Item Not Found': ('Item', Item.ITEM_NOT_FOUND),
+            'Teapot': ('Item', Item.TEAPOT),
             'Test': ('Item', 1)
         },
         'Equipable Items': {
             'Weapons': {
-                'Dagger': ('Item', 116),
-                'Hammer': ('Item', 117),
-                'Saber': ('Item', 118),
-                'Whip': ('Item', 119),
-                'Tail Spike': ('Item', 127)
+                'Dagger': ('Item', Item.DAGGER),
+                'Hammer': ('Item', Item.HAMMER),
+                'Saber': ('Item', Item.SABER),
+                'Whip': ('Item', Item.WHIP),
+                'Tail Spike': ('Item', Item.TAIL_SPIKE)
             },
             'Other Equipables': {
-                'Snuggle Ball': ('Item', 244),
-                'Supp Harness': ('Item', 247)
+                'Snuggle Ball': ('Item', Item.SNUGGLE_BALL),
+                'Supp Harness': ('Item', Item.SUPP_HARNESS)
             }
         },
         'Passive Items': {
-            'Anc Claws': ('Item', 101),
-            'Imb Shoes': ('Item', 102),
-            'Lila\'s Gift': ('Item', 200),
-            'Lon Pendant': ('Item', 215),
-            'Dewy Gift': ('Item', 237),
-            'Milky Pend': ('Item', 252)
+            'Anc Claws': ('Item', Item.ANC_CLAWS),
+            'Imb Shoes': ('Item', Item.IMB_SHOES),
+            'Lila\'s Gift': ('Item', Item.LILAS_GIFT),
+            'Lon Pendant': ('Item', Item.LON_PENDANT),
+            'Dewy Gift': ('Item', Item.DEWY_GIFT),
+            'Milky Pend': ('Item', Item.MILKY_PEND)
         },
         'Consumables': {
             'Affinity Items': {
-                'Skin Balm': ('Item', 111),
-                'Bol Juice': ('Item', 112),
-                'Taint Leaf': ('Item', 113),
-                'Sweet Sap': ('Item', 114),
-                'Oas Water': ('Item', 126),
-                'DairE Pill': ('Item', 211),
-                'Lon Milk': ('Item', 214),
-                'Kinky Carr': ('Item', 222),
-                'Squ Cheese': ('Item', 238),
-                'Shiny Rock': ('Item', 239),
-                'Facial Mud': ('Item', 245),
-                'Frag Flower': ('Item', 255),
-                'Nectar Candy': ('Item', 256),
-                'Too Human': ('Item', 257),
-                'Tainted Pot': ('Item', 258)
+                'Skin Balm': ('Item', Item.SKIN_BALM),
+                'Bol Juice': ('Item', Item.BOL_JOICE),
+                'Taint Leaf': ('Item', Item.TAINT_LEAF),
+                'Sweet Sap': ('Item', Item.SWEET_SAP),
+                'Oas Water': ('Item', Item.OAS_WATER),
+                'DairE Pill': ('Item', Item.DAIRE_PILL),
+                'Lon Milk': ('Item', Item.LON_MILK),
+                'Kinky Carr': ('Item', Item.KINKY_CARR),
+                'Squ Cheese': ('Item', Item.SQU_CHEESE),
+                'Shiny Rock': ('Item', Item.SHINY_ROCK),
+                'Facial Mud': ('Item', Item.FACIAL_MUD),
+                'Frag Flower': ('Item', Item.FRAG_FLOWER),
+                'Nectar Candy': ('Item', Item.NECTAR_CANDY),
+                'Too Human': ('Item', Item.TOO_HUMAN),
+                'Tainted Pot': ('Item', Item.TAINTED_POT)
             },
             'Alchemy Items': {
-                'Blondie': ('Item', 220),
-                'Puss Juice': ('Item', 221),
-                'Lust Draft': ('Item', 503),
-                'Rejuv Pot': ('Item', 504),
-                'Exp Preg': ('Item', 506),
-                'Ball Sweller': ('Item', 507),
-                'S Lust Draft': ('Item', 508),
-                'S Rejuv Pot': ('Item', 509),
-                'S Exp Preg': ('Item', 511),
-                'S Ball Sweller': ('Item', 512),
-                'Gen Swap': ('Item', 513),
-                'Maso Pot': ('Item', 514),
-                'Baby Free': ('Item', 516),
-                'Pot Pot': ('Item', 517),
-                'S Gen Swap': ('Item', 518),
-                'S Maso Pot': ('Item', 519),
-                'S Baby Free': ('Item', 521),
-                'S Pot Pot': ('Item', 522),
-                'Pheromone': ('Item', 532),
-                'Reduc Reduc': ('Item', 533),
-                'Male Enhance': ('Item', 534),
-                'Milk Suppress': ('Item', 535),
-                'Bazoomba!': ('Item', 536)
+                'Blondie': ('Item', Item.BLONDE_DYE),
+                'Puss Juice': ('Item', Item.PUSS_JUICE),
+                'Lust Draft': ('Item', Item.LUST_DRAFT),
+                'Rejuv Pot': ('Item', Item.REJUV_POT),
+                'Exp Preg': ('Item', Item.EXP_PREG),
+                'Ball Sweller': ('Item', Item.BALL_SWELLER),
+                'S Lust Draft': ('Item', Item.S_LUST_DRAFT),
+                'S Rejuv Pot': ('Item', Item.S_REJUV_POT),
+                'S Exp Preg': ('Item', Item.S_EXP_PREG),
+                'S Ball Sweller': ('Item', Item.S_BALL_SWELLER),
+                'Gen Swap': ('Item', Item.GEN_SWAP),
+                'Maso Pot': ('Item', Item.MASO_POT),
+                'Baby Free': ('Item', Item.BABY_FREE),
+                'Pot Pot': ('Item', Item.POT_POT),
+                'S Gen Swap': ('Item', Item.S_GEN_SWAP),
+                'S Maso Pot': ('Item', Item.S_MASO_POT),
+                'S Baby Free': ('Item', Item.S_BABY_FREE),
+                'S Pot Pot': ('Item', Item.S_POT_POT),
+                'Pheromone': ('Item', Item.PHEROMONE),
+                'Reduc Reduc': ('Item', Item.REDUC_REDUC),
+                'Male Enhance': ('Item', Item.MALE_ENHANCE),
+                'Milk Suppress': ('Item', Item.MILK_SUPPRESS),
+                'Bazoomba!': ('Item', Item.BAZOOMBA)
             },
             'Dyes': {
-                'Pink Ink': ('Item', 216),
-                'Blondie': ('Item', 220),
-                'Auburn Dye': ('Item', 240),
-                'Brown Dye': ('Item', 241),
-                'Grey Dye': ('Item', 242),
-                'White Dye': ('Item', 243),
-                'Black Dye': ('Item', 515),
-                'Red Dye': ('Item', 520)
+                'Pink Ink': ('Item', Item.PINK_INK),
+                'Blondie': ('Item', Item.BLONDE_DYE),
+                'Auburn Dye': ('Item', Item.AUBURN_DYE),
+                'Brown Dye': ('Item', Item.BROWN_DYE),
+                'Grey Dye': ('Item', Item.GREY_DYE),
+                'White Dye': ('Item', Item.WHITE_DYE),
+                'Black Dye': ('Item', Item.BLACK_DYE),
+                'Red Dye': ('Item', Item.RED_DYE)
             },
             'Teleport Scrolls': {
-                'TS Soft': ('Item', 121),
-                'TS Firm': ('Item', 122),
-                'TS Tied': ('Item', 123),
-                'TS Siz': ('Item', 124),
-                'TS Ovi': ('Item', 125),
-                'TS Sanct': ('Item', 128)
+                'TS Soft': ('Item', Item.TS_SOFT),
+                'TS Firm': ('Item', Item.TS_FIRM),
+                'TS Tied': ('Item', Item.TS_TIED),
+                'TS Siz': ('Item', Item.TS_SIZ),
+                'TS Ovi': ('Item', Item.TS_OVI),
+                'TS Sanct': ('Item', Item.TS_SANC)
             },
             'Eggs': {
-                'Fresh Egg': ('Item', 219),
-                'Bug Egg': ('Item', 253),
-                'Good Egg': ('Item', 527),
-                'Bad Egg': ('Item', 528),
-                'Strange Egg': ('Item', 529),
-                'Charmed Egg': ('Item', 530),
-                'Divine Egg': ('Item', 531),
-                'Queen Egg': ('Item', 537),
-                'Soldier Egg': ('Item', 538),
-                'Drone Egg': ('Item', 539),
-                'Worker Egg': ('Item', 540)
+                'Fresh Egg': ('Item', Item.FRESH_EGG),
+                'Bug Egg': ('Item', Item.BUG_EGG),
+                'Good Egg': ('Item', Item.GOOD_EGG),
+                'Bad Egg': ('Item', Item.BAD_EGG),
+                'Strange Egg': ('Item', Item.STRANGE_EGG),
+                'Charmed Egg': ('Item', Item.CHARMED_EGG),
+                'Divine Egg': ('Item', Item.DIVINE_EGG),
+                'Queen Egg': ('Item', Item.QUEEN_EGG),
+                'Soldier Egg': ('Item', Item.SOLDIER_EGG),
+                'Drone Egg': ('Item', Item.DRONE_EGG),
+                'Worker Egg': ('Item', Item.WORKER_EGG)
             },
             'Other Consumables': {
-                'Dry Sand': ('Item', 103),
-                'Cat\'s Meow': ('Item', 105),
-                'Reduction': ('Item', 110),
-                'Poultice': ('Item', 115),
-                'Neuter': ('Item', 120),
-                'Milk C Pois': ('Item', 201),
-                'Co-Snak Ven': ('Item', 202),
-                'Wolf Fur': ('Item', 203),
-                'Sm Pouch (ItemID 204)': ('Item', 204),
-                'Sm Pouch (ItemID 205)': ('Item', 205),
-                'Cock Carv': ('Item', 207),
-                'Blo Berry': ('Item', 208),
-                'Grain': ('Item', 209),
-                'Puss Fruit': ('Item', 210),
-                'Red Mush': ('Item', 212),
-                'Wet Cloth': ('Item', 213),
-                'Egg Jelly': ('Item', 217),
-                'Bul Berry': ('Item', 218),
-                'Eq Snack': ('Item', 223),
-                'Lila\'s Milk': ('Item', 224),
-                'Body Wash': ('Item', 225),
-                'Felin Tea': ('Item', 226),
-                'Oral Wash': ('Item', 227),
-                'Body Oil': ('Item', 228),
-                'Eggcelerator': ('Item', 230),
-                'Desi Sand': ('Item', 231),
-                'Fertile Gel': ('Item', 246),
-                'Breeder Pot': ('Item', 248),
-                'Treant\'s Tear': ('Item', 249),
-                'Foomp Bomb': ('Item', 250),
-                'Plump Quat': ('Item', 251),
-                'Sweet&Sour': ('Item', 259),
-                'Succ Draft': ('Item', 260),
-                'Milk Bottle': ('Item', 500),
-                'Milk Jug': ('Item', 501),
-                'Milk Barrel': ('Item', 502),
-                'Bad Exper': ('Item', 505),
-                'S Bad Exper': ('Item', 510),
-                'Cum Vial': ('Item', 523),
-                'Cum Bottle': ('Item', 524),
-                'Cum Jug': ('Item', 525),
-                'Cum Barrel': ('Item', 526)
+                'Dry Sand': ('Item', Item.DRY_SAND),
+                'Cat\'s Meow': ('Item', Item.CATS_MEOW),
+                'Reduction': ('Item', Item.REDUCTION),
+                'Poultice': ('Item', Item.POULTICE),
+                'Neuter': ('Item', Item.NEUTER),
+                'Milk C Pois': ('Item', Item.MILK_C_POIS),
+                'Co-Snak Ven': ('Item', Item.CO_SNAK_VEN),
+                'Wolf Fur': ('Item', Item.WOLF_FUR),
+                'Sm Pouch (ItemID 204)': ('Item', Item.SM_POUCH1),
+                'Sm Pouch (ItemID 205)': ('Item', Item.SM_POUCH2),
+                'Cock Carv': ('Item', Item.COCK_CARV),
+                'Blo Berry': ('Item', Item.BLO_BERRY),
+                'Grain': ('Item', Item.GRAIN),
+                'Puss Fruit': ('Item', Item.PUSS_FRUIT),
+                'Red Mush': ('Item', Item.RED_MUSH),
+                'Wet Cloth': ('Item', Item.WET_CLOTH),
+                'Egg Jelly': ('Item', Item.EGG_JELLY),
+                'Bul Berry': ('Item', Item.BUL_BERRY),
+                'Eq Snack': ('Item', Item.EQ_SNACK),
+                'Lila\'s Milk': ('Item', Item.LILAS_MILK),
+                'Body Wash': ('Item', Item.BODY_WASH),
+                'Felin Tea': ('Item', Item.FELIN_TEA),
+                'Oral Wash': ('Item', Item.ORAL_WASH),
+                'Body Oil': ('Item', Item.BODY_OIL),
+                'Eggcelerator': ('Item', Item.EGGCELERATOR),
+                'Desi Sand': ('Item', Item.DESI_SAND),
+                'Fertile Gel': ('Item', Item.FERTILE_GEL),
+                'Breeder Pot': ('Item', Item.BREEDER_POT),
+                'Treant\'s Tear': ('Item', Item.TREANTS_TEAR),
+                'Foomp Bomb': ('Item', Item.FOOMP_BOMB),
+                'Plump Quat': ('Item', Item.PLUMP_QUAT),
+                'Sweet&Sour': ('Item', Item.SWEET_AND_SOUR),
+                'Succ Draft': ('Item', Item.SUCC_DRAFT),
+                'Milk Bottle': ('Item', Item.MILK_BOTTLE),
+                'Milk Jug': ('Item', Item.MILK_JUG),
+                'Milk Barrel': ('Item', Item.MILK_BARREL),
+                'Bad Exper': ('Item', Item.BAD_EXPER),
+                'S Bad Exper': ('Item', Item.S_BAD_EXPER),
+                'Cum Vial': ('Item', Item.CUM_VIAL),
+                'Cum Bottle': ('Item', Item.CUM_BOTTLE),
+                'Cum Jug': ('Item', Item.CUM_JUG),
+                'Cum Barrel': ('Item', Item.CUM_BARREL)
             }
         },
         'Silandrias\' Items': {
-            'Leath Strap': ('Item', 229),
-            'Flying Carp': ('Item', 232),
-            'A-Grav Rock': ('Item', 233),
-            'Rein Charm': ('Item', 234),
-            'Fell Rod': ('Item', 235),
-            'Recept Bell': ('Item', 236)
+            'Leath Strap': ('Item', Item.LEATHER_STRAP),
+            'Flying Carp': ('Item', Item.FLYING_CARP),
+            'A-Grav Rock': ('Item', Item.A_GRAV_ROCK),
+            'Rein Charm': ('Item', Item.REIN_CHARM),
+            'Fell Rod': ('Item', Item.FELL_ROD),
+            'Recept Bell': ('Item', Item.RECEPT_BELL)
         },
         'Special Items': {
-            'Milker': ('Item', 104),
-            'Penis Pump': ('Item', 106),
-            'Blood Gge': ('Item', 108),
-            'Edu Egg': ('Item', 109),
-            'Trinket': ('Item', 206),
-            'Lantern': ('Item', 254)
+            'Milker': ('Item', Item.MILKER),
+            'Penis Pump': ('Item', Item.PENIS_PUMP),
+            'Blood Gge': ('Item', Item.BLOOD_GGE),
+            'Edu Egg': ('Item', Item.EDU_EGG),
+            'Trinket': ('Item', Item.TRINKET),
+            'Lantern': ('Item', Item.LANTERN)
         }
     },
+    # TODO: Use enum here
     'Recipes': {
         'R: LustDraft': ('Recipe', 1),
         'R: RejuvPot': ('Recipe', 2),
@@ -5064,7 +5077,7 @@ class DebugAffinityChange(PyminWindow):
 
 
 class DebugGiveItem(PyminWindow):
-    VALID_ITEMS = {2, 3, 404, 418, 101, 102, 103, 104, 105, 106, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 512, 513, 514, 515, 516, 517, 518, 519, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530, 531, 532, 533, 534, 535, 536, 537, 538, 539, 540}
+    VALID_ITEMS = {2, 3, Item.ITEM_NOT_FOUND, Item.TEAPOT, Item.ANC_CLAWS, Item.IMB_SHOES, Item.DRY_SAND, Item.MILKER, Item.CATS_MEOW, Item.PENIS_PUMP, Item.BLOOD_GGE, Item.EDU_EGG, Item.REDUCTION, Item.SKIN_BALM, Item.BOL_JOICE, Item.TAINT_LEAF, Item.SWEET_SAP, Item.POULTICE, Item.DAGGER, Item.HAMMER, Item.SABER, Item.WHIP, Item.NEUTER, Item.TS_SOFT, Item.TS_FIRM, Item.TS_TIED, Item.TS_SIZ, Item.TS_OVI, Item.OAS_WATER, Item.TAIL_SPIKE, Item.TS_SANC, Item.LILAS_GIFT, Item.MILK_C_POIS, Item.CO_SNAK_VEN, Item.WOLF_FUR, Item.SM_POUCH1, Item.SM_POUCH2, Item.TRINKET, Item.COCK_CARV, Item.BLO_BERRY, Item.GRAIN, Item.PUSS_FRUIT, Item.DAIRE_PILL, Item.RED_MUSH, Item.WET_CLOTH, Item.LON_MILK, Item.LON_PENDANT, Item.PINK_INK, Item.EGG_JELLY, Item.BUL_BERRY, Item.FRESH_EGG, Item.BLONDE_DYE, Item.PUSS_JUICE, Item.KINKY_CARR, Item.EQ_SNACK, Item.LILAS_MILK, Item.BODY_WASH, Item.FELIN_TEA, Item.ORAL_WASH, Item.BODY_OIL, Item.LEATHER_STRAP, Item.EGGCELERATOR, Item.DESI_SAND, Item.FLYING_CARP, Item.A_GRAV_ROCK, Item.REIN_CHARM, Item.FELL_ROD, Item.RECEPT_BELL, Item.DEWY_GIFT, Item.SQU_CHEESE, Item.SHINY_ROCK, Item.AUBURN_DYE, Item.BROWN_DYE, Item.GREY_DYE, Item.WHITE_DYE, Item.SNUGGLE_BALL, Item.FACIAL_MUD, Item.FERTILE_GEL, Item.SUPP_HARNESS, Item.BREEDER_POT, Item.TREANTS_TEAR, Item.FOOMP_BOMB, Item.PLUMP_QUAT, Item.MILKY_PEND, Item.BUG_EGG, Item.LANTERN, Item.FRAG_FLOWER, Item.NECTAR_CANDY, Item.TOO_HUMAN, Item.TAINTED_POT, Item.SWEET_AND_SOUR, Item.SUCC_DRAFT, Item.MILK_BOTTLE, Item.MILK_JUG, Item.MILK_BARREL, Item.LUST_DRAFT, Item.REJUV_POT, Item.BAD_EXPER, Item.EXP_PREG, Item.BALL_SWELLER, Item.S_LUST_DRAFT, Item.S_REJUV_POT, Item.S_BAD_EXPER, Item.S_EXP_PREG, Item.S_BALL_SWELLER, Item.GEN_SWAP, Item.MASO_POT, Item.BLACK_DYE, Item.BABY_FREE, Item.POT_POT, Item.S_GEN_SWAP, Item.S_MASO_POT, Item.RED_DYE, Item.S_BABY_FREE, Item.S_POT_POT, Item.CUM_VIAL, Item.CUM_BOTTLE, Item.CUM_JUG, Item.CUM_BARREL, Item.GOOD_EGG, Item.BAD_EGG, Item.STRANGE_EGG, Item.CHARMED_EGG, Item.DIVINE_EGG, Item.PHEROMONE, Item.REDUC_REDUC, Item.MALE_ENHANCE, Item.MILK_SUPPRESS, Item.BAZOOMBA, Item.QUEEN_EGG, Item.SOLDIER_EGG, Item.DRONE_EGG, Item.WORKER_EGG}
 
     def _set_enforceSize(self, value: bool):
         if value:
@@ -5108,6 +5121,7 @@ class DebugGiveItem(PyminWindow):
         except:
             self.window._children['errlabel'].text = 'Quantity must be an integer'
             raise Error('[DebugGiveItem.giveItem] Quantity must be an integer.')
+        # TODO: Use either ITEM_STATS or Item enum for this instead of adding a separate list of values
         if ID not in DebugGiveItem.VALID_ITEMS:
             self.window._children['errlabel'].text = f'Invalid ItemID: {ID}'
             raise Error('[DebugGiveItem.giveItem] ID must be a valid ItemID.')
@@ -7607,9 +7621,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.tail == 11):
                     tempStr += " where they connect to the stripes on your tail"
         tempStr += f". {self.earDesc()}."
-        if (self.bag.hasItem(234)):
+        if (self.bag.hasItem(Item.REIN_CHARM)):
             tempStr += " Large, multi-pointed, slightly fuzzy antlers grow out from atop your head, feeling slightly heavy but perfectly melded to your skull so you can easily lift them."
-        if (self.bag.hasItem(101)):
+        if (self.bag.hasItem(Item.ANC_CLAWS)):
             tempStr += " Soft padding protects the palms of your hands, making them look much like paws, your nails being sharp claws."
         elif (self.dominant == Race.BIRD):
             tempStr += " Pointy talons grow from the tips of your fingers, more menacing than normal nails but not useful enough to be a threat."
@@ -7620,13 +7634,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif self.legType == 1002:
                 tempStr += f" This second body matches the {self.skinDesc()} of your upper half, with a thin and lithe torso, looking somewhat like a humans and not exactly made for riding but makes up for the frailness with plantigrade feet that easily support yourself, even though they aren't the speediest."
         # TODO: Add other foot types here
-        if (self.bag.hasItem(102) or self.legType in {2, 1001}):
+        if (self.bag.hasItem(Item.IMB_SHOES) or self.legType in {2, 1001}):
             tempStr += " Keratin extends from your combined toes like hooves, your ankle angled upward and high up like a second backwards knee, making you walk on the tips of your hooved toes with a clap against the ground every step."
         elif (self.legType == 1):
             tempStr += " Your ankles elongated and lithe, the front of your feet are large wide paws that help balance you as you walk digitigrade, your steps nothing but a soft and gentle patter against the ground."
         elif (self.skinType == 5 and self.legDesc(10) == "feet"):
             tempStr += " Chitin extends further past your heels, making you stand higher and balancing more on your toes."
-        if (self.bag.hasItem(234)):
+        if (self.bag.hasItem(Item.REIN_CHARM)):
             tempStr += f" Your {self.buttDesc()} butt also looks a bit tighter for its size with the {self.skinDesc()} around it a lighter color than the rest, acting like a bullseye to your nethers. Below, the bone structure of your {self.legDesc(2)} is also fairly lithe, causing you to step with a graceful swagger and wave your {self.hipDesc()} hips erotically with every footfall."
         tempStr += "\n\nYou are currently wearing a "
         if (self.attireTop != self.attireBot):
@@ -9894,35 +9908,35 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         Returns True if item ID can be lost
         '''
-        return not (ID == 244 and self.bag.getCount(244) == check and self.snuggleBall or ID == 247 and self.bag.getCount(247) == check and self.suppHarness)
+        return not (ID == Item.SNUGGLE_BALL and self.bag.getCount(Item.SNUGGLE_BALL) == check and self.snuggleBall or ID == Item.SUPP_HARNESS and self.bag.getCount(Item.SUPP_HARNESS) == check and self.suppHarness)
 
     def passiveItemAdd(self, ID: int):
         '''
         Applies the passive effect for item ID
         '''
-        if ID == 101:
+        if ID == Item.ANC_CLAWS:
             self.rapeMod += 10
-        elif ID == 102:
+        elif ID == Item.IMB_SHOES:
             self.runMod += 20
-        elif ID == 200:
+        elif ID == Item.LILAS_GIFT:
             self.vagMoistMod += 4
             self.cockMoistMod += 4
             self.statsMod(0, 0, 0, 10)
-        elif ID == 215:
+        elif ID == Item.LON_PENDANT:
             self.rapeMod += 5
             self.runMod += 5
             self.milkHPMod += 5
-        elif ID == 233:
+        elif ID == Item.A_GRAV_ROCK:
             self.carryMod += 75
-        elif ID == 234:
+        elif ID == Item.REIN_CHARM:
             self.pregRate += 0.5
             self.minLust += 10
             self.hips += 10
             self.doLust(0, 0)
-        elif ID == 236:
+        elif ID == Item.RECEPT_BELL:
             self.SexPMod += 0.5
             self.changeMod += 0.3
-        elif ID == 237:
+        elif ID == Item.DEWY_GIFT:
             self.vagMoistMod += 8
             self.cockMoistMod += 8
             self.statsMod(0, 0, 0, 10)
@@ -9933,7 +9947,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif (self.heat >= 1):
                 self.heatMaxTime -= 12
                 self.heat += 1
-        elif ID == 252:
+        elif ID == Item.MILKY_PEND:
             self.rapeMod += 5
             self.runMod += 5
             self.milkHPMod += 5
@@ -9946,35 +9960,35 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         '''
         if (ID == self.weapon):
             self.weapon = 10
-        elif ID == 101:
+        elif ID == Item.ANC_CLAWS:
             self.rapeMod -= 10
-        elif ID == 102:
+        elif ID == Item.IMB_SHOES:
             self.runMod -= 20
-        elif ID == 200:
+        elif ID == Item.LILAS_GIFT:
             self.vagMoistMod -= 4
             self.cockMoistMod -= 4
             self.statsMod(0, 0, 0, -10)
-        elif ID == 215:
+        elif ID == Item.LON_PENDANT:
             self.rapeMod -= 5
             self.runMod -= 5
             self.milkHPMod -= 5
-        elif ID == 233:
+        elif ID == Item.A_GRAV_ROCK:
             self.carryMod -= 75
-        elif ID == 234:
+        elif ID == Item.REIN_CHARM:
             self.pregRate -= 0.5
             self.minLust -= 10
             self.hips -= 10
-        elif ID == 236:
+        elif ID == Item.RECEPT_BELL:
             self.SexPMod -= 0.5
             self.changeMod -= 0.3
-        elif ID == 237:
+        elif ID == Item.DEWY_GIFT:
             self.vagMoistMod -= 8
             self.cockMoistMod -= 8
             self.statsMod(0, 0, 0, -10)
             if (self.heat >= 2):
                 self.heatMaxTime += 12
             self.heat -= 1
-        elif ID == 252:
+        elif ID == Item.MILKY_PEND:
             self.rapeMod -= 5
             self.runMod -= 5
             self.milkHPMod -= 5
@@ -9986,15 +10000,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Does the behaviour of item "ID"
         '''
         # TODO: optimize
-        if ID == 418:
+        if ID == Item.TEAPOT:
             self.outputMainText("You pour yourself a cup of tea from the strange teapot and drink it. You feel very refreshed.", True)
             self.doHP(100000)
             self.doEnd()
-        elif ID == 2:
+        elif ID == Item.DEBUG_STICK:
             self.outputMainText("You have equipped the debug stick.", True)
-            self.weapon = 2
+            self.weapon = Item.DEBUG_STICK
             self.doEnd()
-        elif ID == 3:
+        elif ID == Item.TS_ANY:
             if self.currentState != GameState.BATTLE:
                 self.outputMainText("Where would you like to go?", True)
                 self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 0))
@@ -10036,7 +10050,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doReturn()
                     self.doListen = doListen
                 self.doListen = doListen
-        elif ID == 103:
+        elif ID == Item.DRY_SAND:
             self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1))
             tempDict = {9: "Breasts", 12: "Cancel"}
             if (self.cockTotal > 0):
@@ -10070,10 +10084,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.displayMainText()
                     self.doEnd()
                 elif self.buttonChoice == 12:
-                    self.itemAdd(103)
+                    self.itemAdd(Item.DRY_SAND)
                     self.doProcess()
             self.doListen = doListen
-        elif ID == 104:
+        elif ID == Item.MILKER:
             if (self.currentState != GameState.MASTURBATE):
                 self.outputMainText("You can only use a milker while masturbating.", True)
                 self.doEnd()
@@ -10171,22 +10185,22 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if getMilk < 1000:
                             self.doMainText("\n\nUnfortunately, you haven't produced enough milk to fill a full bottle yet.")
                         elif getMilk < 3000:
-                            self.itemAdd(500)
+                            self.itemAdd(Item.MILK_BOTTLE)
                         elif getMilk < 6000:
-                            self.itemAdd(501)
+                            self.itemAdd(Item.MILK_JUG)
                         elif getMilk < 17000:
-                            self.addManyItem(501, 2)
+                            self.addManyItem(Item.MILK_JUG, 2)
                         elif getMilk < 25000:
-                            self.itemAdd(502)
+                            self.itemAdd(Item.MILK_BARREL)
                         else:
-                            self.itemAdd(502)
+                            self.itemAdd(Item.MILK_BARREL)
                             self.doMainText("\n\nHowever, you produced so much milk that the container in the milker couldn't hold it all and everything beyond a barrel-full splashed out around the edges, making a mess everywhere!")
                         self.displayMainText()
                         self.hrs += 1
                         self.doEnd()
                     self.doListen = doListen
                 self.doListen = doListen
-        elif ID == 106:
+        elif ID == Item.PENIS_PUMP:
             if (self.currentState != GameState.MASTURBATE):
                 self.outputMainText("You can only use the a penis pump while masturbating.", True)
                 self.doEnd()
@@ -10263,26 +10277,26 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doMainText(" Although, the resulting amount is so small that you can't really do anything with it...")
                             elif (getCum <= 600):
                                 self.doMainText(" The resulting amount of spunk is just enough to fill a vial!")
-                                self.itemAdd(523)
+                                self.itemAdd(Item.CUM_VIAL)
                             elif (getCum <= 1200):
                                 self.doMainText(" The resulting amount of spunk is more than enough to fill a vial, with a quite a bit left to spill over the edge.")
-                                self.itemAdd(523)
+                                self.itemAdd(Item.CUM_VIAL)
                             elif (getCum <= 2000):
                                 self.doMainText(" You come so much that you fill the whole bottle, great for resale!")
-                                self.itemAdd(524)
+                                self.itemAdd(Item.CUM_BOTTLE)
                             elif (getCum <= 4500):
                                 self.doMainText(" You come so much that you fill the whole bottle, and more continues to gush out over the edge, making quite the mess.")
-                                self.itemAdd(524)
+                                self.itemAdd(Item.CUM_BOTTLE)
                             elif (getCum <= 5500):
                                 self.doMainText(" Well prepared, you quickly swap out the bottle with a jug. Your cum floods inside, filling it up to the brim!")
-                                self.itemAdd(525)
+                                self.itemAdd(Item.CUM_JUG)
                             elif (getCum <= 21000):
                                 self.doMainText(" Prepared, you quickly swap out the bottle with a jug. Your cum floods inside, filling it up to the brim. However, you continue to gush, overfilling it until cum spills over the edge and floods around you, making quite the mess...")
-                                self.itemAdd(525)
+                                self.itemAdd(Item.CUM_JUG)
                             elif (getCum > 21000):
                                 self.doMainText(" Worried about drowing in your own cum, you quickly pull the bottle out and attach a hose to the item you came prepared with... a barrel. Though you still manage to overfill it, you haven't created quite the natural disaster. And since you can't quite get much for a whole barrel of cum, you top off a jug as well...")
-                                self.itemAdd(525)
-                                self.itemAdd(526)
+                                self.itemAdd(Item.CUM_JUG)
+                                self.itemAdd(Item.CUM_BARREL)
                             self.cockPump += 10
                             if (self.cockPump > 40):
                                 self.cockPump = 0
@@ -10336,7 +10350,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.outputMainText("You realize you didn't actually want to use the pump and put it back in your bag. You fickle bastard.", True)
                         self.doEnd()
                 self.doListen = doListen
-        elif ID == 105:
+        elif ID == Item.CATS_MEOW:
             self.doMainText(f"Bringing the vial filled with white liquid to your lips, you soon taste the sweet, milky stuff within. Downing it, your {self.boobDesc()} breasts feel warm. Small blotches of milk form through your {self.clothesTop()}, around your nipples. The tingling heat then permeates your body, making you feel slightly more aroused as well.", True)
             self.stats(0, 0, 1, 0)
             self.doLust(5, 0)
@@ -10346,7 +10360,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.lactChange(1, 15)
             self.displayMainText()
             self.doEnd()
-        elif ID == 108:
+        elif ID == Item.BLOOD_GGE:
             self.doMainText("You push the gauge against your pulse. It grows warm for a moment before a vague display shows up on the other side.", True)
             if (self.humanAffinity > 0):
                 self.doMainText("\n\nHuman:\n" + "|" * self.humanAffinity)
@@ -10374,36 +10388,36 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nBug:\n" + "|" * self.bugAffinity)
             self.displayMainText()
             self.doEnd()
-        elif ID == 109:
-            if (self.bag.hasItem(219)):
-                if (self.knowPheromone and self.silRep < 1 and not (self.bag.hasItem(530) or self.stash.hasItem(530) or self.bag.hasItem(532) or self.stash.hasItem(532)) and self.pheromone < 1):
-                    self.loseManyItem(219, 1)
+        elif ID == Item.EDU_EGG:
+            if (self.bag.hasItem(Item.FRESH_EGG)):
+                if (self.knowPheromone and self.silRep < 1 and not (self.bag.hasItem(Item.CHARMED_EGG) or self.stash.hasItem(Item.CHARMED_EGG) or self.bag.hasItem(Item.PHEROMONE) or self.stash.hasItem(Item.PHEROMONE)) and self.pheromone < 1):
+                    self.loseManyItem(Item.FRESH_EGG, 1)
                     self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\nInto the reception bin rolls a white-shelled egg with pretty red hearts all over.", True)
-                    self.itemAdd(530)
+                    self.itemAdd(Item.CHARMED_EGG)
                 else:
                     chance = Utils.percent()
                     self.doMainText("You slip a Fresh Egg into the eggdicator and listen to it whir as it studies the egg. Within moments, you hear a *DING*.\n\n", True)
-                    self.loseManyItem(219, 1)
+                    self.loseManyItem(Item.FRESH_EGG, 1)
                     if (chance <= 45):
                         self.doMainText("Into the reception bin rolls a blue-shelled egg.")
-                        self.itemAdd(527)
+                        self.itemAdd(Item.GOOD_EGG)
                     elif (chance <= 85):
                         self.doMainText("Into the reception bin rolls a red-shelled egg.")
-                        self.itemAdd(528)
+                        self.itemAdd(Item.BAD_EGG)
                     elif (chance <= 92):
                         self.doMainText("Into the reception bin rolls a pink-shelled egg with teal polka-dots.")
-                        self.itemAdd(529)
+                        self.itemAdd(Item.STRANGE_EGG)
                     elif (chance <= 97):
                         self.doMainText("Into the reception bin rolls a white-shelled egg with pretty red hearts all over.")
-                        self.itemAdd(530)
+                        self.itemAdd(Item.CHARMED_EGG)
                     elif (chance <= 100):
                         self.doMainText("Into the reception bin rolls a golden-shelled glowing egg.")
-                        self.itemAdd(531)
+                        self.itemAdd(Item.DIVINE_EGG)
             else:
                 self.doMainText("The well-educated eggdicator indicates a deficiency in your ovoid protein supply and thus cannot adequately correspond to your commands.\n\nI.e. - You need a Fresh Egg to use this.", True)
             self.displayMainText()
             self.doEnd()
-        elif ID == 110:
+        elif ID == Item.REDUCTION:
             self.choiceListArray.clear()
             if (self.breastSize > 0):
                 self.choiceListArray.push("Breasts")
@@ -10485,54 +10499,54 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if self.buttonChoice in {4, 8}:
                     self.choiceListButtons("Reduction")
                 elif self.buttonChoice == 12:
-                    self.itemAdd(110)
+                    self.itemAdd(Item.REDUCTION)
                     self.doProcess()
                 else:
                     self.doEnd()
             self.doListen = doListen
-        elif ID == 111:
+        elif ID == Item.SKIN_BALM:
             self.outputMainText("Smearing the balm around your body, you feel slightly more sensitive and your curiousity is slightly piquied.", True)
             self.stats(0, 1, 0, 1)
             self.aff(1, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
-        elif ID == 112:
+        elif ID == Item.BOL_JOICE:
             self.outputMainText("Downing the 'juice', you realize it's a lot thicker and stickier than you expected, and quite heady. Your heart beats a bit stronger and you shudder a bit.", True)
             self.stats(1, 0, 1, 0)
             self.aff(2, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
-        elif ID == 113:
+        elif ID == Item.TAINT_LEAF:
             self.outputMainText("Biting into the leaf, it feels oddly sour. However, afterward your mind feels a bit clearer and your body more prepared for whatever may come.", True)
             self.stats(1, 1, 0, 0)
             self.aff(3, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
-        elif ID == 114:
+        elif ID == Item.SWEET_SAP:
             self.outputMainText("Drinking the slick, slimey, slightly sweet sap, you realize it probably isn't sap... The thought makes you tingle with arousal, your whole body slightly more sensitive.", True)
             self.stats(0, 0, 1, 1)
             self.aff(4, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
-        elif ID == 115:
+        elif ID == Item.POULTICE:
             self.doMainText("You rub the soothing poultice all over your wounds, quickly making them heal. Rubbing yourself down with the wet rag, you rub a little too much in some areas and become slightly more aroused.", True)
             self.doHP(20)
             self.doLust(5, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 116:
+        elif ID == Item.DAGGER:
             self.outputMainText("You have equipped the dagger.", True)
-            self.weapon = 116
+            self.weapon = Item.DAGGER
             self.doEnd()
-        elif ID == 117:
+        elif ID == Item.HAMMER:
             self.outputMainText("You have equipped the warhammer.", True)
-            self.weapon = 117
+            self.weapon = Item.HAMMER
             self.doEnd()
-        elif ID == 118:
+        elif ID == Item.SABER:
             self.outputMainText("You have equipped the saber.", True)
-            self.weapon = 118
+            self.weapon = Item.SABER
             self.doEnd()
-        elif ID == 119:
+        elif ID == Item.WHIP:
             self.outputMainText("You have equipped the whip.", True)
-            self.weapon = 119
+            self.weapon = Item.WHIP
             self.doEnd()
-        elif ID == 120:
+        elif ID == Item.NEUTER:
             self.showButtons(ButtonList(0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1))
             tempDict = {2: "None", 12: "Cancel"}
             if (self.cockTotal > 0):
@@ -10546,9 +10560,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doButtonChoices(tempDict)
 
             def doListen():
+                # TODO: See if 2 and 12 can be combined
                 if self.buttonChoice == 2:
                     self.outputMainText("You decide you'd rather keep what you got, for the moment, and put the neuterizer back in your bag.", True)
-                    self.itemAdd(120)
+                    self.itemAdd(Item.NEUTER)
                     self.doEnd()
                 elif self.buttonChoice == 5:
                     self.doMainText(f"You rub the neuterizer into {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}...", True)
@@ -10571,45 +10586,45 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.showBalls = False
                     self.doEnd()
                 elif self.buttonChoice == 12:
-                    self.itemAdd(120)
+                    self.itemAdd(Item.NEUTER)
                     self.doProcess()
             self.doListen = doListen
-        elif ID == 121:
+        elif ID == Item.TS_SOFT:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(Zone.SOFTLIK)
             self.doEnd()
-        elif ID == 122:
+        elif ID == Item.TS_FIRM:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whistle, they quickly disappear and you find yourself back in the equan city of Firmshaft!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(Zone.FIRMSHAFT)
             self.doEnd()
-        elif ID == 123:
+        elif ID == Item.TS_TIED:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a howl, they quickly disappear and you find yourself back in the lupan city of Tieden!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(Zone.TIEDEN)
             self.doEnd()
-        elif ID == 124:
+        elif ID == Item.TS_SIZ:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a swish, they quickly disappear and you find yourself back in the felin city of Siz'Calit!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(Zone.SIZ_CALIT)
             self.doEnd()
-        elif ID == 125:
+        elif ID == Item.TS_OVI:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a splash, they quickly disappear and you find yourself back in the lizan city of Oviasis!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(Zone.OVIASIS)
             self.doEnd()
-        elif ID == 126:
+        elif ID == Item.OAS_WATER:
             self.outputMainText("Sipping the refreshing water, you notice a slight aftertaste of something funny, like people have been bathing and doing... things in the water. It's kinda kinky when you think about it, but also feels nice inside of you.", True)
             if (Utils.percent() <= 50):
                 self.stats(1, 0, 1, 0)
@@ -10617,21 +10632,21 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.stats(0, 0, 1, 1)
             self.aff(6, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
-        elif ID == 127:
+        elif ID == Item.TAIL_SPIKE:
             if self.tail in {4, 5, 6, 8}:
                 self.outputMainText("You strap the tail spike to your tail, equipping it as your weapon.", True)
-                self.weapon = 127
+                self.weapon = Item.TAIL_SPIKE
             else:
                 self.outputMainText("You do not have an appropriate tail to strap this onto and thus cannot equip it.", True)
             self.doEnd()
-        elif ID == 128:
+        elif ID == Item.TS_SANC:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a thump, they quickly disappear and you find yourself back in the city of Sanctuary!", True)
             self.currentState = GameState.GENERAL
             self.inBag = False
             self.inDungeon = False
             self.regionChange(Zone.SANCTUARY)
             self.doEnd()
-        elif ID == 201:
+        elif ID == Item.MILK_C_POIS:
             self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1))
             tempDict = {5: "Breasts", 12: "Cancel"}
             if (self.udders):
@@ -10653,10 +10668,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.displayMainText()
                     self.doEnd()
                 elif self.buttonChoice == 12:
-                    self.itemAdd(201)
+                    self.itemAdd(Item.MILK_C_POIS)
                     self.doProcess()
             self.doListen = doListen
-        elif ID == 202:
+        elif ID == Item.CO_SNAK_VEN:
             if (self.cockTotal > 0):
                 self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your cock{self.plural(1)}. Within seconds, you begin to shudder erotically as warmth fills your cock{self.plural(1)}, becoming erect. After waiting a few moments, the erection settles somewhat, but the warmth of the venom within persists, as though lying in wait...", True)
                 self.doLust(4 * self.cockTotal, 0)
@@ -10676,45 +10691,45 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f"You pull your {self.clothesBottom()} {self.pullUD(2)} and rub the venom into your groin. You wait for several seconds and... nothing seems to happen. What a waste.", True)
             self.displayMainText()
             self.doEnd()
-        elif ID == 203:
+        elif ID == Item.WOLF_FUR:
             self.outputMainText(f"You rub the tuft of coarse wolf fur into your {self.skinDesc()}. The roughness desensitizes you a bit.", True)
             self.stats(0, 0, 0, -3)
             self.doEnd()
-        elif ID == 204:
+        elif ID == Item.SM_POUCH1:
             chance = Utils.percent()
             if (chance <= 30):
                 self.outputMainText("You find some coins inside!", True)
                 self.doCoin(Math.floor(Utils.percent() / 5))
             elif (chance <= 40):
-                self.itemAdd(246)
+                self.itemAdd(Item.FERTILE_GEL)
             elif (chance <= 55):
-                self.itemAdd(105)
+                self.itemAdd(Item.CATS_MEOW)
             elif (chance <= 75):
-                self.itemAdd(103)
+                self.itemAdd(Item.DRY_SAND)
             elif (chance <= 90):
-                self.itemAdd(114)
+                self.itemAdd(Item.SWEET_SAP)
             else:
                 self.outputMainText("Daww, turns out the pouch was empty...", True)
             if chance > 30 and chance <= 90:
                 self.doProcess()
             else:
                 self.doEnd()
-        elif ID == 205:
+        elif ID == Item.SM_POUCH2:
             chance = Utils.percent()
             if (chance <= 50):
                 self.outputMainText("You find some coins inside!", True)
                 self.doCoin(Math.floor(Utils.percent() / 5 + 5))
             elif (chance <= 65):
-                self.itemAdd(112)
+                self.itemAdd(Item.BOL_JOICE)
             elif (chance <= 85):
-                self.itemAdd(115)
+                self.itemAdd(Item.POULTICE)
             else:
                 self.outputMainText("Daww, turns out the pouch was empty...", True)
             if chance > 50 and chance <= 85:
                 self.doProcess()
             else:
                 self.doEnd()
-        elif ID == 207:
+        elif ID == Item.COCK_CARV:
             chance = Utils.percent()
             self.doMainText("You crack open the wooden cock. ", True)
             if (chance <= 15):
@@ -10729,7 +10744,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" There's nothing inside... Either this thing was just some kinky woman's play-toy, or it was a dud.")
             self.displayMainText()
             self.doEnd()
-        elif ID == 208:
+        elif ID == Item.BLO_BERRY:
             self.doMainText("You pop the berry into your mouth. As it pops and gushes with juice within your mouth, your face cringes at how un-sweet it is. Tasting more salty with a thick texture, you swallow it as fast as possible.", True)
             if (self.balls > 0 and self.ballSize > 0 and self.hunger >= 60):
                 self.doMainText(' Moments later, you feel a warmth in your groin as the food digests. You squirm as you feel your ')
@@ -10745,7 +10760,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" Moments later, you feel a bit of warmth in your groin, but it quickly passes. Now all you're left with is the aftertaste...")
             self.displayMainText()
             self.doEnd()
-        elif ID == 209:
+        elif ID == Item.GRAIN:
             self.doMainText("You pop the handful into your mouth and munch on them. Doesn't taste too bad. Although, the thought of mixing them in a bowl with some milk for breakfast does cross your mind, but passes shortly as you feel like you can get through the day better anyways.", True)
             self.exhaustion -= 4
             if (self.hunger >= 80):
@@ -10754,7 +10769,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hunger -= 20
             self.displayMainText()
             self.doEnd()
-        elif ID == 210:
+        elif ID == Item.PUSS_FRUIT:
             chance = Utils.percent()
             self.doMainText("You bite into the fold-like cleft of the pussy fruit, sweet juices spilling out around your face and drooling from your chin in long, slimy strands. You devour it shortly and feel great!", True)
             self.doHP(15)
@@ -10777,7 +10792,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doLust(Utils.percent() / 10, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 211:
+        elif ID == Item.DAIRE_PILL:
             self.doMainText(f"Considering you don't have any cows to give it to, you pop the pill into your mouth and gulp it down. Within some moments your {self.boobDesc()} chest feels rather warm...", True)
             if (self.udders):
                 self.doMainText(" And so does your udder.")
@@ -10793,7 +10808,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.aff(5, Math.floor(Utils.percent() / 20 + 2), -1)
             self.displayMainText()
             self.doEnd()
-        elif ID == 212:
+        elif ID == Item.RED_MUSH:
             self.doMainText("You munch on the red mushroom. It doesn't taste terribly good or bad, but a blush quickly heats up your face as your chest turns intensely warm.", True)
             if (self.hunger >= 80):
                 self.doMainText(f" Your {self.clothesTop()} feels unexpectedly tight, thanks to all the food you've been eating.\n\nAs you look down, you let out a gasp as your {self.boobDesc()} chest swells beneath your {self.clothesTop()}, your {self.nipDesc()}nipples pushing against the fabric. You grab the mounds and feel them grow larger, heavier, and more wobbly...\n\nThe warmth soon passes, leaving you bent over slightly as you adjust to the increased weight. You don't feel quite as full anymore though, much of your excess energy used up by this sudden growth.")
@@ -10803,7 +10818,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" Then the warmth subsides and your stomach grumbles from the strange food. You do feel less hungry though.")
             self.displayMainText()
             self.doEnd()
-        elif ID == 213:
+        elif ID == Item.WET_CLOTH:
             self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1))
             tempDict = {10: "Breasts", 12: "Cancel"}
             if (self.cockTotal > 0):
@@ -10836,19 +10851,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.displayMainText()
                     self.doEnd()
                 elif self.buttonChoice == 12:
-                    self.itemAdd(213)
+                    self.itemAdd(Item.WET_CLOTH)
                     self.doProcess()
             self.doListen = doListen
-        elif ID == 214:
+        elif ID == Item.LON_MILK:
             self.doMainText("You down the bottle of milk and feel refreshed!", True)
             self.doHP(15 + self.milkHPMod)
             self.displayMainText()
             self.aff(5, Math.floor(Utils.percent() / 10), 0)
             self.exhaustion -= 3
             self.doEnd()
-        elif ID == 216:
+        elif ID == Item.PINK_INK:
             self.dyeThing(ID, 5)
-        elif ID == 217:
+        elif ID == Item.EGG_JELLY:
             self.doMainText("You smear the jelly around your genitals. It's so slick and hot, you can't help but feel immensely aroused.", True)
             if (self.vagTotal > 0):
                 self.doMainText(f" And as you rub it into your nether-lips, you feel it absorb into the walls of your vagina{self.plural(2)}. Slipping a finger in, it doesn't feel much different, until you actually prod a wall. It bends much more easily, as though it were more elastic than before. You could probably shove even larger things in there without feeling pain...")
@@ -10856,7 +10871,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doLust(50, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 218:
+        elif ID == Item.BUL_BERRY:
             self.doMainText("You pop the berry into your mouth. As it pops and gushes with juice within your mouth, your face cringes at how un-sweet it is. Tasting more salty with a thick texture, you swallow it as fast as possible.", True)
             if (self.balls > 0 and self.ballSize > 0):
                 self.doMainText(' Moments later, you feel a warmth in your groin. You squirm as you')
@@ -10870,7 +10885,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" Moments later, you feel a bit of warmth in your groin, but it quickly passes. Now all you're left with is the aftertaste...")
             self.displayMainText()
             self.doEnd()
-        elif ID == 219:
+        elif ID == Item.FRESH_EGG:
             self.doMainText("You crack the egg open and swallow its contents, your belly thanking you for the food.", True)
             self.doHP(5)
             if (self.hunger >= 70):
@@ -10879,9 +10894,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.hunger -= 25
             self.displayMainText()
             self.doEnd()
-        elif ID == 220:
+        elif ID == Item.BLONDE_DYE:
             self.dyeThing(ID, 2)
-        elif ID == 221:
+        elif ID == Item.PUSS_JUICE:
             self.doMainText("You down the vial. It's so sweet that your face puckers a bit, the concentrated syrup slowly dripping down your throat.", True)
             if (self.vagTotal > 0):
                 self.doMainText(f"\n\nYour loins begin to grow hot. Your hand jerks down to your crotch, rubbing yourself feverishly through your {self.clothesBottom()}. The garment quickly grows moist, your arousal spreading {self.legWhere(1)} your {self.legDesc(2)}. You can feel your labia swell beneath your grip, your lips bulging out of your grasp, while your belly aches slightly with a bloating sensation. Your clit{self.plural(2)} squeeze{self.plural(4)} between your fingers.\n\nThe change soon passes, but the changing in the size of your nethers is easily noticeable, making you walk awkwardly at first as you become accustomed.")
@@ -10893,13 +10908,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nYour loins feel quite warm for a moment, but the sensation quickly passes. It does nothing for you other than overwhelm your sweet-tooth.")
             self.displayMainText()
             self.doEnd()
-        elif ID == 222:
+        elif ID == Item.KINKY_CARR:
             self.doMainText("Happy with how clean you've gotten it, you munch on the tasty vegetable. It makes you feel healthier to the point where you're nearly hopping with energy.", True)
             self.aff(7, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doHP(4)
             self.displayMainText()
             self.doEnd()
-        elif ID == 223:
+        elif ID == Item.EQ_SNACK:
             self.doMainText("The tasty morsel crumbles delightfully in your mouth.", True)
             self.doHP(5)
             if (self.vagTotal > 0 and self.hunger >= 90):
@@ -10911,7 +10926,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.carryMod += 1
             self.displayMainText()
             self.doEnd()
-        elif ID == 224:
+        elif ID == Item.LILAS_MILK:
             self.doMainText("Lila's breastmilk tastes quite sweet, with a slight aftertaste of her other fluids. It makes you feel a bit... tender, so to speak.", True)
             if (Utils.percent() <= 25 and self.vagMoist < 12 and self.vagTotal > 0):
                 self.doMainText(" You feel some extra moistness in your loins as well, the liquid seeming to imprint some of the girl's wetness upon you.")
@@ -10928,14 +10943,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.heatTime -= 5
             self.displayMainText()
             self.doEnd()
-        elif ID == 225:
+        elif ID == Item.BODY_WASH:
             self.doMainText("You quickly scrub yourself down with the body wash, feeling so fresh and so clean. Which is kinda odd, considering that you're currently playing a porn game.", True)
             self.exhaustion -= 8
             self.stats(0, 1, 0, 2)
             self.doLust(-10, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 226:
+        elif ID == Item.FELIN_TEA:
             self.doMainText("You mix the tea with a nice cup of hot water, producing a nice calming aroma. You sip it down and quite quickly feel much more relaxed.", True)
             self.exhaustion -= 6
             self.doLust(-10, 0)
@@ -10949,7 +10964,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.heatTime = -1
             self.displayMainText()
             self.doEnd()
-        elif ID == 227:
+        elif ID == Item.ORAL_WASH:
             self.doMainText("Taking a swig of the sweet-smelling stuff, you feel it tingle all the way down your throat and spread throughout your body from the inside.", True)
             self.doLust(10, 0)
             self.stats(0, 0, 1, 0)
@@ -10958,7 +10973,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.stats(0, 0, 0, 1)
             self.displayMainText()
             self.doEnd()
-        elif ID == 228:
+        elif ID == Item.BODY_OIL:
             self.doMainText(f"You rub the oil all over your {self.skinDesc()}, making yourself look shiny and attractive, bringing attention to all the contours of your body.", True)
             if (self.bodyOil <= 0):
                 self.enticeMod += 5
@@ -10968,16 +10983,16 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.stats(0, 0, 0, 1)
             self.displayMainText()
             self.doEnd()
-        elif ID == 230:
+        elif ID == Item.EGGCELERATOR:
             if (self.vagTotal < 1):
                 self.doMainText("You take out the eggcelerator, realize you don't have an appropriate orifice, and put it back away...", True)
-                self.itemAdd(230)
+                self.itemAdd(Item.EGGCELERATOR)
             else:
                 self.doMainText(f"You pull {self.pullUD(2)} your {self.clothesBottom()} and squat down to help spread your {self.vulvaDesc()} lips. Grabbing the eggcelerator with your fingertips, you slip it into {self.oneYour(2)} slit{self.plural(2)}, pointy end first. It doesn't take much before physics takes over and the suppository slips up into your deeper spaces where you can feel a slight tingle as it dissolves.", True)
                 if (self.eggLaying > 0):
                     if (self.eggceleratorDose > 6 + Math.ceil(Utils.percent() / 20)):
                         self.doMainText(f"\n\nYou can feel your next egg starting to come along more quickly than before... but it continues to build. Your {self.bellyDesc()} belly lets out a groan as you feel the fresh egg already press against your lips, demanding its way out. You fall back onto your hands, your {self.legDesc(6)} in the air as you lay it with such expediency that your thighs quiver and your pussy gasps in surprise. Yet, the sensation doesn't end, as more eggs begin to develop almost instantly inside your womb, one by one forcing their way through your passageway. Your {self.hipDesc()} hips jerk and your {self.clitDesc()} clit{self.plural(2)} stand{self.plural(4)} tall with a strange arousal as you thrust into the air again and again to plop out egg after egg. Part of you wants to furiously rub yourself as the eggs nearly launch from your spread cunt, but the rapid pace of the laying makes your body a twitching, seizing mess as you cry out in desparation. So many eggs fly out of you into a pile that you can hardly save them all; quite a few crack and ooze over the others. The round, smooth, slick object having their way with your sensitive flesh eventually makes you quake with an odd orgasm, somewhat powerful but not quite fulfilling, making you collapse back onto the ground as your womb pops out the rest...\n\nOver half an hour passes after your egg-laying extravaganza before you can collect yourself. You sit up to wipe the slime from your pussy, gazing upon the pile of eggs you have laid until you finally go through and pull out the good ones. You also notice that your womb seems to have completely calmed down afterwards, the eggcelerator having been purged from your system. It seems you had taken so many doses that your body could no longer handle it...")
-                        self.addManyItem(219, self.eggceleratorDose)
+                        self.addManyItem(Item.FRESH_EGG, self.eggceleratorDose)
                         self.doLust(Math.floor(-self.sen / 3), 2, 2)
                         self.eggceleratorTime = 0
                         self.eggRate -= self.eggceleratorDose
@@ -10992,10 +11007,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText("\n\nOther than the tingling, it doesn't seem to do much... It would probably be more useful if you could actually lay eggs.")
             self.displayMainText()
             self.doEnd()
-        elif ID == 231:
+        elif ID == Item.DESI_SAND:
             if (self.currentState != GameState.BATTLE):
                 self.outputMainText("You can only use this dangerous sand in battle. You put the sand back into your bag.", True)
-                self.itemAdd(231)
+                self.itemAdd(Item.DESI_SAND)
                 self.doEnd()
             else:
                 dmg = Math.floor(Math.random() * 21) + 20
@@ -11038,7 +11053,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.displayMainText()
                 if (self.currentState == GameState.BATTLE):
                     self.doEnd()
-        elif ID == 232:
+        elif ID == Item.FLYING_CARP:
             if (self.currentState != GameState.GENERAL):
                 self.outputMainText("You cannot activate the flying carpet during battle or while attempting to masturbate. It takes too long to set up during battle and it is not the kind of 'carpet-munching' you should be doing while masturbating.", True)
                 self.doEnd()
@@ -11140,29 +11155,29 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.hrs = 2
                         self.doEnd()
                 self.doListen = doListen
-        elif ID == 235:
+        elif ID == Item.FELL_ROD:
             self.outputMainText("You have equipped the fellatio rod.", True)
-            self.weapon = 235
+            self.weapon = Item.FELL_ROD
             self.doEnd()
-        elif ID == 238:
+        elif ID == Item.SQU_CHEESE:
             self.outputMainText("Nibbling the cheese, the delicious flavor melts in your mouth and feels so good going down. It feels good just eating it, like you could go hunting for lots more. Though... Hey, did your clothes get looser, or is it just your imagination?", True)
             self.tallness -= 1
             self.aff(8, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
-        elif ID == 239:
+        elif ID == Item.SHINY_ROCK:
             self.outputMainText("You take out the rock and stare at it, intently focused on how shiny it is. Your mind grows sharper, allowing you to focus even harder and... Wait, what? One last glint of shininess and the rock suddenly became dull. Maybe you stared too hard? Either way, you toss the now dull rock, no longer interested in it.", True)
             self.stats(0, 1, 0, 0)
             self.aff(9, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
-        elif ID == 240:
+        elif ID == Item.AUBURN_DYE:
             self.dyeThing(ID, 6)
-        elif ID == 241:
+        elif ID == Item.BROWN_DYE:
             self.dyeThing(ID, 7)
-        elif ID == 242:
+        elif ID == Item.GREY_DYE:
             self.dyeThing(ID, 8)
-        elif ID == 243:
+        elif ID == Item.WHITE_DYE:
             self.dyeThing(ID, 9)
-        elif ID == 244:
+        elif ID == Item.SNUGGLE_BALL:
             if (self.snuggleBall):
                 self.outputMainText(f"Would you like to try and remove the plush shiny layer of cuddliness that covers your {self.skinDesc()}?", True)
                 self.buttonConfirm()
@@ -11182,12 +11197,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.outputMainText(f"You take out the snuggle ball and squeeze it against your chest, hugging it gleefully. So squishy and soft, the pleasant sensation of it forming around your body as you compress it is oh so nice~ Though it doesn't stop forming around your body...\n\nLiquidy tendrils lash out from the ball, sticking to your face and arms, belly and {self.legDesc(2)}. You don't have time to resist as it wraps around your body, seeping past your {self.currentClothes()} and coating your {self.skinDesc()}.\n\nOver within moments, you stand there and gradually try to move. A plush and soft layer, slightly shiny and malleable just like the ball, covers all your {self.skinDesc()}. It doesn't impede your movement or actions, almost like it was an extra layer of skin, and doesn't do much but make you... snuggly.", True)
                 self.snuggleBall = True
                 self.doEnd()
-        elif ID == 245:
+        elif ID == Item.FACIAL_MUD:
             self.outputMainText(f"You pour the mud out into your hands and slather it all over your face. You let it sit there for a few moments, enjoying the warm sensation and feeling it creep into your pores and make your {self.skinDesc()} feel nice.\n\nYou soon wipe it off once it has had its effect, but tickle your nose a little in the process and make you laugh until you oink- err... snort.", True)
             self.stats(0, 0, 0, 1)
             self.aff(10, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
-        elif ID == 246:
+        elif ID == Item.FERTILE_GEL:
             self.doMainText("You pour out the gel into your hand and rub it into your loins, making sure it gets in niiice and deeeep.", True)
             if (self.vagTotal > 0):
                 self.doMainText(" Your womb seems to soak up the warmth of the gel, feeling more receptive to semen~")
@@ -11198,7 +11213,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" However, you're not sure why you did that, since you don't exactly have a womb to make more fertile... Oh well, you're a pervert anyways.")
             self.displayMainText()
             self.doEnd()
-        elif ID == 247:
+        elif ID == Item.SUPP_HARNESS:
             if (self.suppHarness):
                 self.carryMod -= 50
                 if (self.doWeight()):
@@ -11212,7 +11227,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.carryMod += 50
                 self.suppHarness = True
             self.doEnd()
-        elif ID == 248:
+        elif ID == Item.BREEDER_POT:
             self.doMainText("You gulp down the potion yourself, rather than giving it to some animal that it was intended for.", True)
             if (self.vagTotal > 0):
                 self.doMainText(" Your womb immediately begins to warm up a little, your ovaries 'feeling' like they're working harder. It's strange to describe, but your body quickly adapts and the warmth settles down.")
@@ -11224,7 +11239,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.heatMaxTime -= Math.floor(self.heatMaxTime * 0.1)
             self.displayMainText()
             self.doEnd()
-        elif ID == 249:
+        elif ID == Item.TREANTS_TEAR:
             self.doMainText("You drop the small tear into your mouth, swallowing it easily with a quick gulp. You don't even feel it in your stomach; it doesn't seem to do anything at first.\n\nHowever, a sensation of wilting envelopes your appendages, like they're growing weaker.", True)
             if (self.cockTotal > 0 or self.vagTotal > 0):
                 self.doMainText(" The sensation coalesces into your crotch, focusing within your extra genitalia.")
@@ -11244,10 +11259,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(" The sensation coalesces into your crotch for an instance, but quickly dissolves. Then... that's it.\n\nSeems whatever the tear was supposed to do didn't affect you. So much for that.")
             self.displayMainText()
             self.doEnd()
-        elif ID == 250:
+        elif ID == Item.FOOMP_BOMB:
             if (self.currentState != GameState.BATTLE):
                 self.outputMainText("You can only use this escape bomb in battle, it's not really useful otherwise. You put the foomp bomb back into your bag.", True)
-                self.itemAdd(250)
+                self.itemAdd(Item.FOOMP_BOMB)
                 self.doEnd()
             else:
                 self.doMainText(f"Needing a quick escape, you throw the foomp bomb at the enemy. It explodes on contact with a cloud of magical dust and, just as its name implies, there's a sort of \"foomp!\" sound. As the dust clears, you can't help but giggle at the results. The {self.enemy.name}'s whole body has ballooned to amusing proportions; inflated by the bomb.", True)
@@ -11261,12 +11276,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.currentState = GameState.GENERAL
                 self.hrs += 1
                 self.doEnd()
-        elif ID == 251:
+        elif ID == Item.PLUMP_QUAT:
             self.outputMainText("Biting into the plump fruit, the sweet flesh melts delightfully in your mouth with a nice citrusy sour tinge. Gulping it down and feeling it splash into your stomach and warm your insides makes you crave even more. Your mouth immediately bites off another chunk of the fruit, then another, insatiably devouring the delicious thing. The flesh slips down your throat and sinks into your stomach, filling you up so delightfully~\n\nBut before you know it, you've already eaten the whole thing. You glutton. Though there's no more left, you can still feel it digesting inside, which in itself is rather pleasant...", True)
             self.bellyMod += 10
             self.plumpQuats += 6
             self.doEnd()
-        elif ID == 253:
+        elif ID == Item.BUG_EGG:
             if (self.tail == 12):
                 self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0))
                 self.outputMainText("Considering the egg is just about the right size for the hole in your large ovipositor tail, what would you like to do with it?", True)
@@ -11283,21 +11298,21 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         chance = Utils.percent()
                         if (chance <= 8):
                             self.doMainText("The egg now glows with a sort of regal luster, slightly larger than before with a heavier weight.")
-                            self.itemAdd(537)
+                            self.itemAdd(Item.QUEEN_EGG)
                         elif (chance <= 25):
                             self.doMainText("The egg now feels tougher, less squishy in your hand than before.")
-                            self.itemAdd(538)
+                            self.itemAdd(Item.SOLDIER_EGG)
                         elif (chance <= 55):
                             self.doMainText("The egg now looks somewhat dimmer, but also has some more warmth to it than before.")
-                            self.itemAdd(539)
+                            self.itemAdd(Item.DRONE_EGG)
                         else:
                             self.doMainText("The egg now seems rather bland, not as gooey and more starchy than before.")
-                            self.itemAdd(540)
+                            self.itemAdd(Item.WORKER_EGG)
                         self.displayMainText()
                         self.doEnd()
                     elif self.buttonChoice == 10:
                         self.outputMainText("You decide to do nothing and put the egg away.", True)
-                        self.itemAdd(253)
+                        self.itemAdd(Item.BUG_EGG)
                         self.doEnd()
                 self.doListen = doListen
             else:
@@ -11305,12 +11320,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doLust(-3, 0)
                 self.displayMainText()
                 self.doEnd()
-        elif ID == 255:
+        elif ID == Item.FRAG_FLOWER:
             self.outputMainText("You bring the flower to your nose and inhale deeply. It smells so good, the delightful scent filling your nostils and your lungs and leaving you feeling quite tingly all over.\n\nHowever, once you look back down afterwards, the flower has wilted and no longer has any scent at all...", True)
             self.stats(0, 0, 0, 2)
             self.aff(11, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
-        elif ID == 256:
+        elif ID == Item.NECTAR_CANDY:
             self.doMainText("You suck on the hard candy, the nutrient-rich ingredients making you feel stronger as the sweet flavors fill your belly.", True)
             if (self.eggLaying > 0):
                 if (not mainobject.grammarFixes or mainobject.grammarFixes and self.vagTotal > 0):
@@ -11320,7 +11335,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.aff(12, Math.floor(Utils.percent() / 15 + 2), -2)
             self.displayMainText()
             self.doEnd()
-        elif ID == 257:
+        elif ID == Item.TOO_HUMAN:
             self.doMainText("You drink down the potion. You immediately begin to feel very odd...", True)
             if (self.legType != 1002):
                 self.humanTaurAffinity = 100
@@ -11330,7 +11345,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nBut the feeling passes as nothing happens.")
             self.displayMainText()
             self.doEnd()
-        elif ID == 258:
+        elif ID == Item.TAINTED_POT:
             self.doMainText("You drink down the potion. You immediately begin to feel very odd...", True)
             if (self.legType != 1001):
                 self.cowTaurAffinity = 100
@@ -11340,7 +11355,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nBut the feeling passes as nothing happens.")
             self.displayMainText()
             self.doEnd()
-        elif ID == 259:
+        elif ID == Item.SWEET_AND_SOUR:
             self.doMainText("You pop the candy into your mouth and let it slowly dissolve. You immediately realize that the 'sour' comes before the 'sweet', despite the name, and your face puckers up with the intensity, your pain subsiding in relation.", True)
             if (self.vagTotal > 0):
                 self.doMainText(f" You pucker so hard that you can feel your cunt{self.plural(2)} stretch further into your body from the force, permanently slightly larger...")
@@ -11353,7 +11368,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doLust(5, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 260:
+        elif ID == Item.SUCC_DRAFT:
             self.doMainText("You gulp down the draft. The stuff is very thick and heady, nearly burning your throat on the way down. The warmth spreads from your belly, your mind becoming more focused while your body grows stronger, more mature, and taller.", True)
             if (self.cockTotal > 0):
                 self.doMainText(f" Your {self.cockDesc()} cock{self.plural(1)} also grow{self.plural(3)} from the concentrated masculinity, bulging in your {self.clothesBottom()}.")
@@ -11366,44 +11381,44 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.stats(2, 1, 0, 0)
             self.doEnd()
-        elif ID == 500:
+        elif ID == Item.MILK_BOTTLE:
             self.doMainText("You down the bottle of milk and feel refreshed!", True)
             self.doHP(10 + self.milkHPMod)
             self.displayMainText()
             self.exhaustion -= 2
             self.doEnd()
-        elif ID == 501:
+        elif ID == Item.MILK_JUG:
             self.doMainText("You guzzle down the jug of milk and feel very refreshed! And you feel like you have a rather full bladder...", True)
             self.doHP(40 + self.milkHPMod)
             self.exhaustion -= 6
             self.displayMainText()
             self.doEnd()
-        elif ID == 502:
+        elif ID == Item.MILK_BARREL:
             self.outputMainText("You pour the milk out of the barrel into 4 jugs...", True)
-            self.addManyItem(501, 4)
+            self.addManyItem(Item.MILK_JUG, 4)
             self.doEnd()
-        elif ID == 503:
+        elif ID == Item.LUST_DRAFT:
             self.doMainText("You take a swig of the draft, your loins warming within seconds.", True)
             self.doLust(20, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 504:
+        elif ID == Item.REJUV_POT:
             self.doMainText("You down the potion, your body feeling much better than before.", True)
             self.doHP(30)
             self.doLust(-15, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 505:
+        elif ID == Item.BAD_EXPER:
             if (self.currentState != GameState.BATTLE):
                 self.outputMainText("You can only use this explosive potion in battle. You put the bad experiment back into your bag.", True)
-                self.itemAdd(505)
+                self.itemAdd(Item.BAD_EXPER)
                 self.doEnd()
             else:
                 dmg = Math.floor(Math.random() * 11) + 10
                 self.outputMainText(f"You pull the bad experiment from your bag and toss it at the {self.enemy.name}. The crude stuff explodes, far enough away to not harm you, dealing {dmg} damage!", True)
                 self.doeHP(-dmg)
                 self.doBattle()
-        elif ID == 506:
+        elif ID == Item.EXP_PREG:
             if (self.pregCheck(0)):
                 self.doMainText(f"Drinking this potion, you can feel your {self.bellyDesc()} belly quiver, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You can almost hear the {self.skinDesc()} creak, growing taut!", True)
                 for i in range(0, self.pregArray.length, 5):
@@ -11414,7 +11429,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely feel like you have to go to the bathroom all of a sudden...", True)
             self.displayMainText()
             self.doEnd()
-        elif ID == 507:
+        elif ID == Item.BALL_SWELLER:
             if (self.balls > 0):
                 self.doMainText('Downing the potion, you quickly begin to feel a slight ache in your ', True)
                 if (self.showBalls):
@@ -11427,28 +11442,28 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.", True)
             self.displayMainText()
             self.doEnd()
-        elif ID == 508:
+        elif ID == Item.S_LUST_DRAFT:
             self.doMainText("You take a swig of the draft, your loins burning hot within seconds.", True)
             self.doLust(50, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 509:
+        elif ID == Item.S_REJUV_POT:
             self.doMainText("You down the potion, your body feeling immensely better than before.", True)
             self.doHP(70)
             self.doLust(-40, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 510:
+        elif ID == Item.S_BAD_EXPER:
             if (self.currentState != GameState.BATTLE):
                 self.outputMainText("You can only use this explosive potion in battle. You put the bad experiment back into your bag.", True)
-                self.itemAdd(510)
+                self.itemAdd(Item.S_BAD_EXPER)
                 self.doEnd()
             else:
                 dmg = Math.floor(Math.random() * 21) + 20
                 self.outputMainText(f"You pull the super bad experiment from your bag and toss it at the {self.enemy.name}. The super crude stuff explodes superbly, far enough away to not harm you, dealing a super {dmg} damage!", True)
                 self.doeHP(-dmg)
                 self.doBattle()
-        elif ID == 511:
+        elif ID == Item.S_EXP_PREG:
             if (self.pregCheck(0)):
                 self.doMainText(f"Drinking this potion, you can feel your {self.bellyDesc()} belly shake, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You're pretty sure you can hear the {self.skinDesc()} creak, growing taut, to the point where you fear it will tear!", True)
                 for i in range(0, self.pregArray.length, 5):
@@ -11459,7 +11474,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely wish there was a bathroom here all of a sudden...", True)
             self.displayMainText()
             self.doEnd()
-        elif ID == 512:
+        elif ID == Item.S_BALL_SWELLER:
             if (self.balls > 0):
                 self.doMainText('Downing the potion, you quickly begin to feel a great ache in your ', True)
                 if (self.showBalls):
@@ -11472,7 +11487,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("Despite not having any balls to speak of, you drink this potion anyways. It does nothing. I hope you're happy.", True)
             self.displayMainText()
             self.doEnd()
-        elif ID == 513:
+        elif ID == Item.GEN_SWAP:
             if self.gender == Gender.MALE:
                 self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for a small amount of vaginal flesh inside.", True)
                 if (self.showBalls):
@@ -11541,17 +11556,17 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.vagChange(1, 1)
             self.displayMainText()
             self.doEnd()
-        elif ID == 514:
+        elif ID == Item.MASO_POT:
             self.outputMainText("After drinking the potion, your body feels tingly all over. You have the odd feeling like it would be fun to be whipped right about now...", True)
             self.masoPot += 24
             self.doEnd()
-        elif ID == 515:
+        elif ID == Item.BLACK_DYE:
             self.dyeThing(ID, 1)
-        elif ID == 516:
+        elif ID == Item.BABY_FREE:
             self.outputMainText("Taking the potion, you sudden feel less... fertile than before. You might still be a little fertile, but you suspect you can go out 'clubbing' for the next few days and not have to worry so much about a little extra weight in a few more. If you knew what any of that even meant.", True)
             self.babyFree += 72
             self.doEnd()
-        elif ID == 517:
+        elif ID == Item.POT_POT:
             if (self.balls > 0):
                 self.doMainText('Within seconds of drinking this potion, you can feel your ', True)
                 if (self.showBalls):
@@ -11564,7 +11579,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.cumMod += 0.2
             self.displayMainText()
             self.doEnd()
-        elif ID == 518:
+        elif ID == Item.S_GEN_SWAP:
             if self.gender == Gender.MALE:
                 self.doMainText(f"You ingest the potion and quickly begin to feel its effects. You pull {self.pullUD(2)} your {self.clothesBottom()} and watch as your {self.cockDesc()} cock{self.plural(1)} shrink more and more before eventually disappearing into your groin. Then, you hug your belly as you feel your insides wrench, making room for an equal amount of vaginal flesh inside.", True)
                 if (self.showBalls):
@@ -11645,17 +11660,17 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.clitSize = Math.ceil(Utils.percent() / 5)
             self.displayMainText()
             self.doEnd()
-        elif ID == 519:
+        elif ID == Item.S_MASO_POT:
             self.outputMainText("After drinking the potion, your body feels like electricity is sparking all over. You have the odd feeling like it would be fun to be beaten to a pulp right about now...", True)
             self.sMasoPot += 24
             self.doEnd()
-        elif ID == 520:
+        elif ID == Item.RED_DYE:
             self.dyeThing(ID, 3)
-        elif ID == 521:
+        elif ID == Item.S_BABY_FREE:
             self.outputMainText("Taking the potion, you sudden feel less... fertile than before. You might still be a little fertile, but you suspect you can go out 'clubbing' for the next several days and not have to worry so much about a little extra weight afterwards. If you knew what any of that even meant.", True)
             self.babyFree += 216
             self.doEnd()
-        elif ID == 522:
+        elif ID == Item.S_POT_POT:
             if (self.balls > 0):
                 self.doMainText('Within seconds of drinking this potion, you can feel your ', True)
                 if (self.showBalls):
@@ -11668,42 +11683,42 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.cumMod += 0.5
             self.displayMainText()
             self.doEnd()
-        elif ID == 523:
+        elif ID == Item.CUM_VIAL:
             self.doMainText("You pop open the vial of cum and let it ooze down your throat, shivering a bit from the heady taste.", True)
             self.doHP(2)
             self.doLust(5, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 524:
+        elif ID == Item.CUM_BOTTLE:
             self.doMainText("You gulp down the thick, creamy, sticky cum, having difficulty getting down the large amount of hot spunk with its heady taste.", True)
             self.doHP(5)
             self.doLust(15, 0)
             self.displayMainText()
             self.doEnd()
-        elif ID == 525:
+        elif ID == Item.CUM_JUG:
             self.outputMainText("You pour the jug of cum out into 3 bottles...", True)
-            self.addManyItem(524, 3)
+            self.addManyItem(Item.CUM_BOTTLE, 3)
             self.doEnd()
-        elif ID == 526:
+        elif ID == Item.CUM_BARREL:
             if (self.currentState == GameState.BATTLE):
                 self.doMainText("You have no use for a barrel full of cum in the midst of battle, so you... tuck it away somewhere in your bag?", True)
-                self.itemAdd(526)
+                self.itemAdd(Item.CUM_BARREL)
             else:
                 self.doMainText(f"Without much of a use for it otherwise, you decide to... strip down naked and jump in!\n\nThe cum is nice and warm and feels so good on your {self.skinDesc()}. You scrub yourself nice and thoroughly, making sure to get all the nooks and crannies. And with the slimy goop, you really focus on those crannies~\n\nAfter cleaning yourself up a bit, you sit back and relax, pulling out a toy to play with.\n\n\n'Oh rubber ducky, you're the one. You make bath-time lots of fun~'", True)
                 self.stats(0, 0, 1, 1)
                 self.hrs += 1
             self.displayMainText()
             self.doEnd()
-        elif ID == 527:
+        elif ID == Item.GOOD_EGG:
             self.doMainText("You crack open the good egg and down its contents, feeling healthier and stronger already.", True)
             self.doHP(15)
             self.displayMainText()
             self.stats(1, 0, 0, 0)
             self.doEnd()
-        elif ID == 528:
+        elif ID == Item.BAD_EGG:
             if (self.currentState != GameState.BATTLE):
                 self.outputMainText("You can only use this dangerous egg in battle. You put the bad egg back into your bag.", True)
-                self.itemAdd(528)
+                self.itemAdd(Item.BAD_EGG)
                 self.doEnd()
             else:
                 dmg = Math.floor(Math.random() * 11) + 10
@@ -11711,7 +11726,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doeHP(-dmg)
                 if (self.currentState == GameState.BATTLE):
                     self.doEnd()
-        elif ID == 529:
+        elif ID == Item.STRANGE_EGG:
             self.doMainText("You crack open the strange egg and down its contents, feeling odd...", True)
             # TODO: Maybe make this its own gametweak
             if mainobject.gameTweaksMisc:
@@ -11753,7 +11768,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.clitSize -= Math.ceil(Utils.percent() / 10)
                     if (Utils.percent() <= 10):
                         self.doMainText(f"\n\nYou grunt and squat, {self.legVerb(1)} your {self.legDesc(2)} and pulling {self.pullUD(2)} your {self.clothesBottom()} in time for more fresh eggs to come sliding out of your slit{self.plural(2)} from nowhere!")
-                        self.addManyItem(219, 3)
+                        self.addManyItem(Item.FRESH_EGG, 3)
                 if (Utils.percent() <= 10):
                     self.doMainText("\n\nIt feels as though your blood has thinned out a bit.")
                     self.aff(0, 0, -10)
@@ -11805,7 +11820,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.clitSize -= Math.ceil(Utils.percent() / 10)
                     if (Utils.percent() <= 10):
                         self.doMainText(f"\n\nYou grunt and squat, {self.legVerb(1)} your {self.legDesc(2)} and pulling {self.pullUD(2)} your {self.clothesBottom()} in time for more fresh eggs to come sliding out of your slit{self.plural(2)} from nowhere!")
-                        self.addManyItem(219, 3)
+                        self.addManyItem(Item.FRESH_EGG, 3)
                 if (Utils.percent() <= 10):
                     self.doMainText("\n\nIt feels as though your blood has thinned out a bit.")
                     self.aff(0, 0, -10)
@@ -11821,7 +11836,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doMainText("\n\nQuite strange indeed...")
             self.displayMainText()
             self.doEnd()
-        elif ID == 530:
+        elif ID == Item.CHARMED_EGG:
             self.outputMainText("You crack the charmed egg open and gulp its contents. You suddenly feel charming, oh so charming, it's alarming how charming you feeeeel~", True)
             if (self.charmTime <= 0):
                 self.enticeMod += 13
@@ -11830,7 +11845,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.charmTime += 20
             self.stats(0, 1, 0, 0)
             self.doEnd()
-        elif ID == 531:
+        elif ID == Item.DIVINE_EGG:
             self.doMainText("You can nearly hear the sounds of an angelic chorus as you crack the divine egg open, its gooey contents slipping down your throat.", True)
             if (self.cockTotal > 0):
                 self.doMainText(f" Your {self.cockDesc()} cock{self.plural(1)} pulse{self.plural(3)} and bulge{self.plural(3)} in your {self.clothesBottom()}, swelling in size.")
@@ -11850,7 +11865,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.boobChange(5)
             self.displayMainText()
             self.doEnd()
-        elif ID == 532:
+        elif ID == Item.PHEROMONE:
             self.outputMainText("You rub the strong-scented pheromones all over your body. It's so... powerful that even you feel a little rambunctious just wearing it. Others would probably find it much more enticing as well, strengthening their attraction to you.", True)
             if (self.pheromone <= 0):
                 self.pheromone = 30
@@ -11859,7 +11874,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.pheromone += 30
             self.doEnd()
-        elif ID == 533:
+        elif ID == Item.REDUC_REDUC:
             self.choiceListArray.clear()
             if (self.breastSize > 0):
                 self.choiceListArray.push("Breasts")
@@ -11940,12 +11955,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.buttonChoice == 4 or self.buttonChoice == 8):
                     self.choiceListButtons("Reduc Reduc")
                 elif (self.buttonChoice == 12):
-                    self.itemAdd(533)
+                    self.itemAdd(Item.REDUC_REDUC)
                     self.doProcess()
                 else:
                     self.doEnd()
             self.doListen = doListen
-        elif ID == 534:
+        elif ID == Item.MALE_ENHANCE:
             self.doMainText("You pop the pill into your mouth, feeling a bit of warmth emanating from your groin.", True)
             if (self.cockTotal > 0):
                 self.doMainText(f" You pull {self.pullUD(2)} your {self.clothesBottom()} and watch with awe as your schlong{self.plural(1)} grow longer")
@@ -11964,7 +11979,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nYou don't have any genitals for it to enhance though, so it was kind of a waste.")
             self.displayMainText()
             self.doEnd()
-        elif ID == 535:
+        elif ID == Item.MILK_SUPPRESS:
             self.doMainText(f"You gulp down the vial of Milk Suppressant. You don't notice much of a difference, except that your {self.nipDesc()} nipples", True)
             if (self.udders):
                 self.doMainText(f" and {self.teatDesc()} teats")
@@ -11975,7 +11990,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.lactation = 0
             self.udderLactation = 0
             self.doEnd()
-        elif ID == 536:
+        elif ID == Item.BAZOOMBA:
             self.doMainText("You pop the little growing orb into your mouth and quickly gulp it down past your gag reflex. It doesn't take long before your chest begins to feel warm...", True)
             if self.boobTotal == 2:
                 self.doMainText(f"\n\nYour chest, close beneath your nipples, begins to tickle. A new pair of sensitive areolas form amongst your {self.skinDesc()}, creating an extra row of breasts beneath the originals.")
@@ -12012,7 +12027,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.tenBoobAffinity = 0
             self.displayMainText()
             self.doEnd()
-        elif ID == 537:
+        elif ID == Item.QUEEN_EGG:
             self.doMainText(f"You munch on the egg, the wonderful flavors flowing over your tongue. It's sweet and buttery, quickly sliding down your gullet with delight until you're sucking the leftovers from your fingers. And as you ruminate over the delicious snack, you feel your {self.clothesBottom()} grow tighter. Your hips grow wider and your rump larger,", True)
             if (self.vagTotal > 0):
                 self.doMainText(" the lips of your sex swelling as well, while your womb becomes more efficient,")
@@ -12024,13 +12039,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.butt += 1
             self.milkCap += 4
             self.doEnd()
-        elif ID == 538:
+        elif ID == Item.SOLDIER_EGG:
             self.outputMainText("You bite down into the egg, getting through the tougher rind and giving it a good chew before you swallow. It takes a bit to get through the whole thing and by the time you're done the ground looks further away than usual. You've grown slightly taller and feel more lean and strong.", True)
             self.tallness += 1
             self.body += 1
             self.stats(1, 0, 0, 0)
             self.doEnd()
-        elif ID == 539:
+        elif ID == Item.DRONE_EGG:
             self.doMainText("You gobble down the egg, your mind quickly drifting more towards lustful thoughts.", True)
             if (self.cockTotal > 0):
                 self.doMainText(f" Your cock{self.plural(1)} grow{self.plural(3)} slightly larger, more able to ensure a deeper injection of your seed.")
@@ -12044,7 +12059,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.stats(0, -1, 1, 0)
             self.doEnd()
-        elif ID == 540:
+        elif ID == Item.WORKER_EGG:
             self.outputMainText("You quickly chomp down the egg. It doesn't exactly taste good or bad, but that doesn't really matter. You just feel like you've got more energy to keep working!", True)
             self.exhaustion -= 6
             self.doEnd()
@@ -12582,6 +12597,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
                 self.outputMainText(f"\n\nAre you sure you would like to buy {Apothecary.itemName(Apothecary.ID(self.currentZone, self.buy, self))}?")
+                # TODO: Use >= to match other uses
                 if (Apothecary.ID(self.currentZone, self.buy, self) > 200 and Items.stackMax(Apothecary.ID(self.currentZone, self.buy, self)) > 1):
                     buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                     tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
@@ -12638,6 +12654,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doListen = doListen
                         else:
                             self.doCoin(-3 * tempInt * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self)))
+                            # TODO: Use >= to match other uses
                             if (Apothecary.ID(self.currentZone, self.buy, self) > 200):
                                 self.addManyItem(Apothecary.ID(self.currentZone, self.buy, self), tempInt)
                             else:
@@ -13488,7 +13505,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     self.doMainText(" you don’t even bother to make sure you’re alone as you ravenously turn your attention upon him.")
                 self.doMainText(f" Sinking to your {self.legDesc(6)} and unfastening his trousers, you emit a gasp of lustful delight as you find it isn’t only his stature that is large. Your")
-                if (self.bag.hasItem(101)):
+                if (self.bag.hasItem(Item.ANC_CLAWS)):
                     self.doMainText(" paws")
                 else:
                     self.doMainText(" hands")
@@ -13594,7 +13611,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText("\n\nShe sighs gratefully as you let her down off your cock and she haphazardly rearranges her clothes enough to be decent. \"I'm sorry. I just needed to get that taken care of. I still go into heat even though I'm more Lupan than ever. Please take a few coins for your trouble.\"\n\nWith that she hurries off again, still looking the males up and down predatorially despite the cum very plainly dripping from under her skirt. And that leaves you alone in the smell of sex and heat to get dressed and make your way back.")
                 else:
                     self.doMainText("\n\nShe looks down at you as you keep filling her, bewildered but growing very fond of the constant flow of seed into her belly. She moans softly as her body swells with your rich essence. Her whimpers grow louder and louder until she squeals with a third orgasm, this time flushing out some of your spunk onto your lap with her juices.\n\nOnce you’re finished, she climbs gingerly off your dick and massages her sore lips with an exhausted smile. \"Thank you so much,\" she whispers, pulling her clothes back into place as best she can around her now bulging belly, so stuffed with your baby batter that she looks pregnant already. \"It's been so hard to adjust to becoming a Lupan. I'm still not changed enough that my heat will go away.\"\n\nAgain hurrying to beat your response, she fishes some coins out of her pouch as well as a sizeable vial of some kind. \"Take this with my gratitude.\" With that she hurries off again clumsily, cum very plainly cascading down her legs and leaving you alone, surrounded by the smell of sex and a trail of your cum leading out of the alleyway.")
-                    self.itemAdd(114)
+                    self.itemAdd(Item.SWEET_SAP)
                 self.doLust(-Math.floor(self.sen / 2), 2, 1)
                 self.hrs = 3
 
@@ -14740,19 +14757,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.choicePage = 1
             if (self.choiceListResult[0] == "Blondie"):
-                self.makeAlchemy(220, 1)
+                self.makeAlchemy(Item.BLONDE_DYE, 1)
             elif (self.choiceListResult[0] == "Reduc Reduc"):
-                self.makeAlchemy(533, 1)
+                self.makeAlchemy(Item.REDUC_REDUC, 1)
             elif (self.choiceListResult[0] == "Lust Draft"):
-                self.makeAlchemy(503, 1)
+                self.makeAlchemy(Item.LUST_DRAFT, 1)
             elif (self.choiceListResult[0] == "Rejuv Pot"):
-                self.makeAlchemy(504, 1)
+                self.makeAlchemy(Item.REJUV_POT, 1)
             elif (self.choiceListResult[0] == "Exp Preg"):
-                self.makeAlchemy(506, 1)
+                self.makeAlchemy(Item.EXP_PREG, 1)
             elif (self.choiceListResult[0] == "Ball Swell"):
-                self.makeAlchemy(507, 1)
+                self.makeAlchemy(Item.BALL_SWELLER, 1)
             elif (self.choiceListResult[0] == "Male Enhance"):
-                self.makeAlchemy(534, 1)
+                self.makeAlchemy(Item.MALE_ENHANCE, 1)
         self.doListen = doListen
 
     def complexAlchemy(self):
@@ -14809,25 +14826,25 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.choicePage = 1
             if (self.choiceListResult[0] == "Black Dye"):
-                self.makeAlchemy(515, 2)
+                self.makeAlchemy(Item.BLACK_DYE, 2)
             elif (self.choiceListResult[0] == "S Lust Draft"):
-                self.makeAlchemy(508, 2)
+                self.makeAlchemy(Item.S_LUST_DRAFT, 2)
             elif (self.choiceListResult[0] == "S Rejuv Pot"):
-                self.makeAlchemy(509, 2)
+                self.makeAlchemy(Item.S_REJUV_POT, 2)
             elif (self.choiceListResult[0] == "S Exp Preg"):
-                self.makeAlchemy(511, 2)
+                self.makeAlchemy(Item.S_EXP_PREG, 2)
             elif (self.choiceListResult[0] == "S Ball Swell"):
-                self.makeAlchemy(512, 2)
+                self.makeAlchemy(Item.S_BALL_SWELLER, 2)
             elif (self.choiceListResult[0] == "Baby Free"):
-                self.makeAlchemy(516, 2)
+                self.makeAlchemy(Item.BABY_FREE, 2)
             elif (self.choiceListResult[0] == "Pot Pot"):
-                self.makeAlchemy(517, 2)
+                self.makeAlchemy(Item.POT_POT, 2)
             elif (self.choiceListResult[0] == "Gen Swap"):
-                self.makeAlchemy(513, 2)
+                self.makeAlchemy(Item.GEN_SWAP, 2)
             elif (self.choiceListResult[0] == "Maso Pot"):
-                self.makeAlchemy(514, 2)
+                self.makeAlchemy(Item.MASO_POT, 2)
             elif (self.choiceListResult[0] == "Milk Suppress"):
-                self.makeAlchemy(535, 2)
+                self.makeAlchemy(Item.MILK_SUPPRESS, 2)
         self.doListen = doListen
 
     def advancedAlchemy(self):
@@ -14876,73 +14893,73 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.choicePage = 1
             if (self.choiceListResult[0] == "Red Dye"):
-                self.makeAlchemy(520, 3)
+                self.makeAlchemy(Item.RED_DYE, 3)
             elif (self.choiceListResult[0] == "S Baby free"):
-                self.makeAlchemy(521, 3)
+                self.makeAlchemy(Item.S_BABY_FREE, 3)
             elif (self.choiceListResult[0] == "S Pot Pot"):
-                self.makeAlchemy(522, 3)
+                self.makeAlchemy(Item.S_POT_POT, 3)
             elif (self.choiceListResult[0] == "S Gen Swap"):
-                self.makeAlchemy(518, 3)
+                self.makeAlchemy(Item.S_GEN_SWAP, 3)
             elif (self.choiceListResult[0] == "S Maso Pot"):
-                self.makeAlchemy(519, 3)
+                self.makeAlchemy(Item.S_MASO_POT, 3)
             elif (self.choiceListResult[0] == "Puss Juice"):
-                self.makeAlchemy(221, 3)
+                self.makeAlchemy(Item.PUSS_JUICE, 3)
             elif (self.choiceListResult[0] == "Pheromone"):
-                self.makeAlchemy(532, 3)
+                self.makeAlchemy(Item.PHEROMONE, 3)
             elif (self.choiceListResult[0] == "Bazoomba!"):
-                self.makeAlchemy(536, 3)
+                self.makeAlchemy(Item.BAZOOMBA, 3)
         self.doListen = doListen
 
     def canMakeAlchemy(self, ID: int):
-        if ID == 220 and self.bag.getCount(209) >= 7:
+        if ID == Item.BLONDE_DYE and self.bag.getCount(Item.GRAIN) >= 7:
             return True
-        if ID == 221 and self.bag.getCount(210) >= 6 and self.bag.hasItem(114):
+        if ID == Item.PUSS_JUICE and self.bag.getCount(Item.PUSS_FRUIT) >= 6 and self.bag.hasItem(Item.SWEET_SAP):
             return True
-        if ID == 503 and (self.bag.hasItem(209) and (self.bag.hasItem(114) or self.bag.hasItem(523) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
+        if ID == Item.LUST_DRAFT and (self.bag.hasItem(Item.GRAIN) and (self.bag.hasItem(Item.SWEET_SAP) or self.bag.hasItem(Item.CUM_VIAL) or self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000)):
             return True
-        if ID == 504 and self.bag.hasItem(115) and self.bag.hasItem(203):
+        if ID == Item.REJUV_POT and self.bag.hasItem(Item.POULTICE) and self.bag.hasItem(Item.WOLF_FUR):
             return True
-        if ID == 506 and self.bag.hasItem(114) and self.bag.hasItem(219):
+        if ID == Item.EXP_PREG and self.bag.hasItem(Item.SWEET_SAP) and self.bag.hasItem(Item.FRESH_EGG):
             return True
-        if ID == 507 and self.bag.hasItem(208):
+        if ID == Item.BALL_SWELLER and self.bag.hasItem(Item.BLO_BERRY):
             return True
-        if ID == 508 and (self.bag.getCount(209) >= 3 and (self.bag.getCount(112) >= 2 or self.bag.hasItem(524) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
+        if ID == Item.S_LUST_DRAFT and (self.bag.getCount(Item.GRAIN) >= 3 and (self.bag.getCount(Item.BOL_JOICE) >= 2 or self.bag.hasItem(Item.CUM_BOTTLE) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
             return True
-        if ID == 509 and (self.bag.hasItem(503) and (self.bag.hasItem(501) or self.bag.getCount(500) >= 3)):
+        if ID == Item.S_REJUV_POT and (self.bag.hasItem(Item.LUST_DRAFT) and (self.bag.hasItem(Item.MILK_JUG) or self.bag.getCount(Item.MILK_BOTTLE) >= 3)):
             return True
-        if ID == 511 and self.bag.hasItem(213) and self.bag.getCount(219) >= 3:
+        if ID == Item.S_EXP_PREG and self.bag.hasItem(Item.WET_CLOTH) and self.bag.getCount(Item.FRESH_EGG) >= 3:
             return True
-        if ID == 512 and self.bag.hasItem(208) and self.bag.hasItem(218):
+        if ID == Item.S_BALL_SWELLER and self.bag.hasItem(Item.BLO_BERRY) and self.bag.hasItem(Item.BUL_BERRY):
             return True
-        if ID == 513 and self.bag.hasItem(110) and self.bag.hasItem(120):
+        if ID == Item.GEN_SWAP and self.bag.hasItem(Item.REDUCTION) and self.bag.hasItem(Item.NEUTER):
             return True
-        if ID == 514 and self.bag.getCount(203) >= 2 and self.bag.hasItem(503):
+        if ID == Item.MASO_POT and self.bag.getCount(Item.WOLF_FUR) >= 2 and self.bag.hasItem(Item.LUST_DRAFT):
             return True
-        if ID == 515 and self.bag.getCount(203) >= 5:
+        if ID == Item.BLACK_DYE and self.bag.getCount(Item.WOLF_FUR) >= 5:
             return True
-        if ID == 516 and self.bag.hasItem(110) and self.bag.hasItem(203):
+        if ID == Item.BABY_FREE and self.bag.hasItem(Item.REDUCTION) and self.bag.hasItem(Item.WOLF_FUR):
             return True
-        if ID == 517 and self.bag.getCount(507) >= 3 and self.bag.hasItem(523):
+        if ID == Item.POT_POT and self.bag.getCount(Item.BALL_SWELLER) >= 3 and self.bag.hasItem(Item.CUM_VIAL):
             return True
-        if ID == 518 and self.bag.hasItem(201) and self.bag.hasItem(202) and self.bag.hasItem(207) and self.bag.hasItem(210):
+        if ID == Item.S_GEN_SWAP and self.bag.hasItem(Item.MILK_C_POIS) and self.bag.hasItem(Item.CO_SNAK_VEN) and self.bag.hasItem(Item.COCK_CARV) and self.bag.hasItem(Item.PUSS_FRUIT):
             return True
-        if ID == 519 and self.bag.hasItem(222) and self.bag.hasItem(206) and self.bag.hasItem(504):
+        if ID == Item.S_MASO_POT and self.bag.hasItem(Item.KINKY_CARR) and self.bag.hasItem(Item.TRINKET) and self.bag.hasItem(Item.REJUV_POT):
             return True
-        if ID == 520 and self.bag.hasItem(216) and self.bag.getCount(212) >= 3:
+        if ID == Item.RED_DYE and self.bag.hasItem(Item.PINK_INK) and self.bag.getCount(Item.RED_MUSH) >= 3:
             return True
-        if ID == 521 and self.bag.hasItem(120) and self.bag.hasItem(210):
+        if ID == Item.S_BABY_FREE and self.bag.hasItem(Item.NEUTER) and self.bag.hasItem(Item.PUSS_FRUIT):
             return True
-        if ID == 522 and self.bag.getCount(512) >= 3 and self.bag.hasItem(524):
+        if ID == Item.S_POT_POT and self.bag.getCount(Item.S_BALL_SWELLER) >= 3 and self.bag.hasItem(Item.CUM_BOTTLE):
             return True
-        if ID == 532 and self.bag.hasItem(530) and self.bag.hasItem(212) and self.bag.hasItem(206):
+        if ID == Item.PHEROMONE and self.bag.hasItem(Item.CHARMED_EGG) and self.bag.hasItem(Item.RED_MUSH) and self.bag.hasItem(Item.TRINKET):
             return True
-        if ID == 533 and self.bag.getCount(110) >= 2:
+        if ID == Item.REDUC_REDUC and self.bag.getCount(Item.REDUCTION) >= 2:
             return True
-        if ID == 534 and (self.bag.getCount(202) >= 2 and (self.bag.hasItem(208) or self.bag.hasItem(218))):
+        if ID == Item.MALE_ENHANCE and (self.bag.getCount(Item.CO_SNAK_VEN) >= 2 and (self.bag.hasItem(Item.BLO_BERRY) or self.bag.hasItem(Item.BUL_BERRY))):
             return True
-        if ID == 535 and self.bag.hasItem(201) and self.bag.hasItem(533):
+        if ID == Item.MILK_SUPPRESS and self.bag.hasItem(Item.MILK_C_POIS) and self.bag.hasItem(Item.REDUC_REDUC):
             return True
-        if ID == 536 and self.bag.getCount(207) >= 2 and self.bag.getCount(212) >= 3 and self.bag.hasItem(501) and self.bag.hasItem(529):
+        if ID == Item.BAZOOMBA and self.bag.getCount(Item.COCK_CARV) >= 2 and self.bag.getCount(Item.RED_MUSH) >= 3 and self.bag.hasItem(Item.MILK_JUG) and self.bag.hasItem(Item.STRANGE_EGG):
             return True
         return False
 
@@ -14953,97 +14970,97 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         def doListen():
             if (self.buttonChoice == 6):
                 if (self.canMakeAlchemy(ID)):
-                    if ID == 220:
-                        self.loseManyItem(209, 7)
-                    elif ID == 221:
-                        self.loseManyItem(210, 6)
-                        self.loseManyItem(114, 1)
-                    elif ID == 503:
-                        self.loseManyItem(209, 1)
+                    if ID == Item.BLONDE_DYE:
+                        self.loseManyItem(Item.GRAIN, 7)
+                    elif ID == Item.PUSS_JUICE:
+                        self.loseManyItem(Item.PUSS_FRUIT, 6)
+                        self.loseManyItem(Item.SWEET_SAP, 1)
+                    elif ID == Item.LUST_DRAFT:
+                        self.loseManyItem(Item.GRAIN, 1)
                         if not (self.moistCalc(2) * 10 * self.lust > 3000 or self.moistCalc(1) * 10 * self.lust > 3000):
-                            if (self.bag.hasItem(523)):
-                                self.loseManyItem(523, 1)
+                            if (self.bag.hasItem(Item.CUM_VIAL)):
+                                self.loseManyItem(Item.CUM_VIAL, 1)
                             else:
-                                self.loseManyItem(114, 1)
-                    elif ID == 504:
-                        self.loseManyItem(115, 1)
-                        self.loseManyItem(203, 1)
-                    elif ID == 506:
-                        self.loseManyItem(114, 1)
-                        self.loseManyItem(219, 1)
-                    elif ID == 507:
-                        self.loseManyItem(208, 1)
-                    elif ID == 508:
-                        self.loseManyItem(209, 3)
+                                self.loseManyItem(Item.SWEET_SAP, 1)
+                    elif ID == Item.REJUV_POT:
+                        self.loseManyItem(Item.POULTICE, 1)
+                        self.loseManyItem(Item.WOLF_FUR, 1)
+                    elif ID == Item.EXP_PREG:
+                        self.loseManyItem(Item.SWEET_SAP, 1)
+                        self.loseManyItem(Item.FRESH_EGG, 1)
+                    elif ID == Item.BALL_SWELLER:
+                        self.loseManyItem(Item.BLO_BERRY, 1)
+                    elif ID == Item.S_LUST_DRAFT:
+                        self.loseManyItem(Item.GRAIN, 3)
                         if not (self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000):
-                            if (self.bag.hasItem(524)):
-                                self.loseManyItem(524, 1)
+                            if (self.bag.hasItem(Item.CUM_BOTTLE)):
+                                self.loseManyItem(Item.CUM_BOTTLE, 1)
                             else:
-                                self.loseManyItem(112, 2)
-                    elif ID == 509:
-                        self.loseManyItem(503, 1)
-                        if (self.bag.getCount(500) >= 3):
-                            self.loseManyItem(500, 3)
+                                self.loseManyItem(Item.BOL_JOICE, 2)
+                    elif ID == Item.S_REJUV_POT:
+                        self.loseManyItem(Item.LUST_DRAFT, 1)
+                        if (self.bag.getCount(Item.MILK_BOTTLE) >= 3):
+                            self.loseManyItem(Item.MILK_BOTTLE, 3)
                         else:
-                            self.loseManyItem(501, 1)
-                    elif ID == 511:
-                        self.loseManyItem(213, 1)
-                        self.loseManyItem(219, 3)
-                    elif ID == 512:
-                        self.loseManyItem(208, 1)
-                        self.loseManyItem(218, 1)
-                    elif ID == 513:
-                        self.loseManyItem(110, 1)
-                        self.loseManyItem(120, 1)
-                    elif ID == 514:
-                        self.loseManyItem(203, 2)
-                        self.loseManyItem(503, 1)
-                    elif ID == 515:
-                        self.loseManyItem(203, 5)
-                    elif ID == 516:
-                        self.loseManyItem(110, 1)
-                        self.loseManyItem(203, 1)
-                    elif ID == 517:
-                        self.loseManyItem(507, 3)
-                        self.loseManyItem(523, 1)
-                    elif ID == 518:
-                        self.loseManyItem(201, 1)
-                        self.loseManyItem(202, 1)
-                        self.loseManyItem(207, 1)
-                        self.loseManyItem(210, 1)
-                    elif ID == 519:
-                        self.loseManyItem(206, 1)
-                        self.loseManyItem(222, 1)
-                        self.loseManyItem(504, 1)
-                    elif ID == 520:
-                        self.loseManyItem(212, 3)
-                        self.loseManyItem(216, 1)
-                    elif ID == 521:
-                        self.loseManyItem(120, 1)
-                        self.loseManyItem(210, 1)
-                    elif ID == 522:
-                        self.loseManyItem(512, 3)
-                        self.loseManyItem(524, 1)
-                    elif ID == 532:
-                        self.loseManyItem(530, 1)
-                        self.loseManyItem(212, 1)
-                        self.loseManyItem(206, 1)
-                    elif ID == 533:
-                        self.loseManyItem(110, 2)
-                    elif ID == 534:
-                        self.loseManyItem(202, 2)
-                        if (self.bag.hasItem(208)):
-                            self.loseManyItem(208, 1)
+                            self.loseManyItem(Item.MILK_JUG, 1)
+                    elif ID == Item.S_EXP_PREG:
+                        self.loseManyItem(Item.WET_CLOTH, 1)
+                        self.loseManyItem(Item.FRESH_EGG, 3)
+                    elif ID == Item.S_BALL_SWELLER:
+                        self.loseManyItem(Item.BLO_BERRY, 1)
+                        self.loseManyItem(Item.BUL_BERRY, 1)
+                    elif ID == Item.GEN_SWAP:
+                        self.loseManyItem(Item.REDUCTION, 1)
+                        self.loseManyItem(Item.NEUTER, 1)
+                    elif ID == Item.MASO_POT:
+                        self.loseManyItem(Item.WOLF_FUR, 2)
+                        self.loseManyItem(Item.LUST_DRAFT, 1)
+                    elif ID == Item.BLACK_DYE:
+                        self.loseManyItem(Item.WOLF_FUR, 5)
+                    elif ID == Item.BABY_FREE:
+                        self.loseManyItem(Item.REDUCTION, 1)
+                        self.loseManyItem(Item.WOLF_FUR, 1)
+                    elif ID == Item.POT_POT:
+                        self.loseManyItem(Item.BALL_SWELLER, 3)
+                        self.loseManyItem(Item.CUM_VIAL, 1)
+                    elif ID == Item.S_GEN_SWAP:
+                        self.loseManyItem(Item.MILK_C_POIS, 1)
+                        self.loseManyItem(Item.CO_SNAK_VEN, 1)
+                        self.loseManyItem(Item.COCK_CARV, 1)
+                        self.loseManyItem(Item.PUSS_FRUIT, 1)
+                    elif ID == Item.S_MASO_POT:
+                        self.loseManyItem(Item.TRINKET, 1)
+                        self.loseManyItem(Item.KINKY_CARR, 1)
+                        self.loseManyItem(Item.REJUV_POT, 1)
+                    elif ID == Item.RED_DYE:
+                        self.loseManyItem(Item.RED_MUSH, 3)
+                        self.loseManyItem(Item.PINK_INK, 1)
+                    elif ID == Item.S_BABY_FREE:
+                        self.loseManyItem(Item.NEUTER, 1)
+                        self.loseManyItem(Item.PUSS_FRUIT, 1)
+                    elif ID == Item.S_POT_POT:
+                        self.loseManyItem(Item.S_BALL_SWELLER, 3)
+                        self.loseManyItem(Item.CUM_BOTTLE, 1)
+                    elif ID == Item.PHEROMONE:
+                        self.loseManyItem(Item.CHARMED_EGG, 1)
+                        self.loseManyItem(Item.RED_MUSH, 1)
+                        self.loseManyItem(Item.TRINKET, 1)
+                    elif ID == Item.REDUC_REDUC:
+                        self.loseManyItem(Item.REDUCTION, 2)
+                    elif ID == Item.MALE_ENHANCE:
+                        self.loseManyItem(Item.CO_SNAK_VEN, 2)
+                        if (self.bag.hasItem(Item.BLO_BERRY)):
+                            self.loseManyItem(Item.BLO_BERRY, 1)
                         else:
-                            self.loseManyItem(218, 1)
-                    elif ID == 535:
-                        self.loseManyItem(201, 1)
-                        self.loseManyItem(533, 1)
-                    elif ID == 536:
-                        self.loseManyItem(501, 1)
-                        self.loseManyItem(529, 1)
-                        self.loseManyItem(207, 2)
-                        self.loseManyItem(212, 3)
+                            self.loseManyItem(Item.BUL_BERRY, 1)
+                    elif ID == Item.MILK_SUPPRESS:
+                        self.loseManyItem(Item.MILK_C_POIS, 1)
+                        self.loseManyItem(Item.REDUC_REDUC, 1)
+                    elif ID == Item.BAZOOMBA:
+                        self.loseManyItem(Item.MILK_JUG, 1)
+                        self.loseManyItem(Item.STRANGE_EGG, 1)
+                        self.loseManyItem(Item.COCK_CARV, 2)
+                        self.loseManyItem(Item.RED_MUSH, 3)
                     if level == AlchemyLevel.SIMPLE:
                         self.itemAdd(ID)
                         if (Utils.percent() <= 55 + self.alchemistLevel * 2):
@@ -15069,7 +15086,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         if (Utils.percent() <= 5 + self.alchemistLevel * 2 / 3):
                             self.itemAdd(ID)
                     # Items that give more per creation
-                    if (ID == 533):
+                    if (ID == Item.REDUC_REDUC):
                         self.addManyItem(ID, 4)
                     self.doProcess()
                 else:
@@ -15320,49 +15337,50 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.alchemistLevel += 1
                         i = 0
                         while (Utils.percent() < self.alchemistLevel * (10 + Utils.percent()) - 20 * (i + 2) * i):
-                            self.rndArray = Array(209, 110, 203, 212)
+                            # TODO: Make sure these are all correct
+                            self.rndArray = Array(Item.GRAIN, Item.REDUCTION, Item.WOLF_FUR, Item.RED_MUSH)
                             if (self.knowLustDraft):
-                                self.rndArray.push(209, 114, 523)
+                                self.rndArray.push(Item.GRAIN, Item.SWEET_SAP, Item.CUM_VIAL)
                             if (self.knowRejuvPot):
-                                self.rndArray.push(115, 203)
+                                self.rndArray.push(Item.POULTICE, Item.WOLF_FUR)
                             if (self.knowExpPreg):
-                                self.rndArray.push(114, 219)
+                                self.rndArray.push(Item.SWEET_SAP, Item.FRESH_EGG)
                             if (self.knowBallSwell):
-                                self.rndArray.push(208)
+                                self.rndArray.push(Item.BLO_BERRY)
                             if (self.knowMaleEnhance):
-                                self.rndArray.push(201, 208, 218)
+                                self.rndArray.push(Item.MILK_C_POIS, Item.BLO_BERRY, Item.BUL_BERRY)
                             if (self.knowSLustDraft):
-                                self.rndArray.push(209, 112, 524)
+                                self.rndArray.push(Item.GRAIN, Item.BOL_JOICE, Item.CUM_BOTTLE)
                             if (self.knowSRejuvPot):
-                                self.rndArray.push(503, 500, 501)
+                                self.rndArray.push(Item.LUST_DRAFT, Item.MILK_BOTTLE, Item.MILK_JUG)
                             if (self.knowSExpPreg):
-                                self.rndArray.push(213, 219)
+                                self.rndArray.push(Item.WET_CLOTH, Item.FRESH_EGG)
                             if (self.knowSBallSwell):
-                                self.rndArray.push(208, 218)
+                                self.rndArray.push(Item.BLO_BERRY, Item.BUL_BERRY)
                             if (self.knowGenSwap):
-                                self.rndArray.push(110, 120)
+                                self.rndArray.push(Item.REDUCTION, Item.NEUTER)
                             if (self.knowMasoPot):
-                                self.rndArray.push(203, 503)
+                                self.rndArray.push(Item.WOLF_FUR, Item.LUST_DRAFT)
                             if (self.knowBabyFree):
-                                self.rndArray.push(110, 203)
+                                self.rndArray.push(Item.REDUCTION, Item.WOLF_FUR)
                             if (self.knowPotPot):
-                                self.rndArray.push(507, 523)
+                                self.rndArray.push(Item.BALL_SWELLER, Item.CUM_VIAL)
                             if (self.knowMilkSuppress):
-                                self.rndArray.push(201, 533)
+                                self.rndArray.push(Item.MILK_C_POIS, Item.REDUC_REDUC)
                             if (self.knowSGenSwap):
-                                self.rndArray.push(201, 202, 207, 210)
+                                self.rndArray.push(Item.MILK_C_POIS, Item.CO_SNAK_VEN, Item.COCK_CARV, Item.PUSS_FRUIT)
                             if (self.knowSMasoPot):
-                                self.rndArray.push(222, 504)
+                                self.rndArray.push(Item.KINKY_CARR, Item.REJUV_POT)
                             if (self.knowSBabyFree):
-                                self.rndArray.push(120, 210)
+                                self.rndArray.push(Item.NEUTER, Item.PUSS_FRUIT)
                             if (self.knowSPotPot):
-                                self.rndArray.push(512, 524)
+                                self.rndArray.push(Item.S_BALL_SWELLER, Item.CUM_BOTTLE)
                             if (self.knowPussJuice):
-                                self.rndArray.push(210, 114)
+                                self.rndArray.push(Item.PUSS_FRUIT, Item.SWEET_SAP)
                             if (self.knowPheromone):
-                                self.rndArray.push(530, 212, 206)
+                                self.rndArray.push(Item.CHARMED_EGG, Item.RED_MUSH, Item.TRINKET)
                             if (self.knowBazoomba):
-                                self.rndArray.push(207, 212, 501, 529)
+                                self.rndArray.push(Item.COCK_CARV, Item.RED_MUSH, Item.MILK_JUG, Item.STRANGE_EGG)
                             self.itemAdd(self.chooseFrom())
                             i += 1
                         self.doEnd()
@@ -15561,7 +15579,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.changeMod -= 0.1
                                 elif self.buttonChoice == 10:
                                     self.outputMainText(f"You meditate and focus hard... but you're not sure what you're focusing on to begin with. You grunt and push, trying to focus with all your might, seeing where it might go!\n\n\n... *Ploop*\n\nFrom somewhere {self.legWhere(1)} your {self.legDesc(2)}, a single... egg descends and gently falls to the ground. You're not sure where it came from and your energy feels as though it had dissipated, but at least you've got a snack.", True)
-                                    self.itemAdd(219)
+                                    self.itemAdd(Item.FRESH_EGG)
                                 elif self.buttonChoice == 12:
                                     self.doLevelUP()
                                 if (self.buttonChoice != 12):
@@ -16184,7 +16202,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif which == "Plains":
             # Snuggle Ball
             tempArray = (1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0)
-            if (tempArray[self.hour] and self.bag.getEmptySlot(244) > 0):
+            if (tempArray[self.hour] and self.bag.getEmptySlot(Item.SNUGGLE_BALL) > 0):
                 self.rndArray.push(1)
             # Cock Snake
             tempArray = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0)
@@ -16331,7 +16349,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif which == "Den":
             # Strap
             tempArray = (0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0)
-            if (tempArray[self.hour] and not self.silTied and not (self.bag.hasItem(229) or self.stash.hasItem(229))):
+            if (tempArray[self.hour] and not self.silTied and not (self.bag.hasItem(Item.LEATHER_STRAP) or self.stash.hasItem(Item.LEATHER_STRAP))):
                 self.rndArray.push(1)
             # Sil
             tempArray = (1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
@@ -16368,7 +16386,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if chance == 1:
             self.outputMainText("You pass by an alley while exploring when a scent catches your nose. Savory and salty and strong, you sniff your way between the buildings down to some empty crates.\n\nIn one, there's a slice of perfectly good cheese. You pick it up and it's a bit dry on the outside, squeaking in your fingers as they rub over it. There's no dirt or mold or anything, looking quite edible and smelling quite tasty,. Since it was left out here like trash, there's no harm in taking it, so you do.", True)
-            self.itemAdd(238)
+            self.itemAdd(Item.SQU_CHEESE)
             self.hrs = 2
             self.doEnd()
 
@@ -16394,14 +16412,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     else:
                         self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops a single pill into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
                         self.doCoin(-20)
-                        self.itemAdd(534)
+                        self.itemAdd(Item.MALE_ENHANCE)
                 elif self.buttonChoice == 3:
                     if (self.coin < 100):
                         self.doMainText("\"Err... You don't exactly have enough to buy that many... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.", True)
                     else:
                         self.doMainText("\"Alrighty stranger, here you go!\" He quickly takes your money and drops six pills into your hand. \"Thank you for your business and may we deal again in the future. Meanwhile I must be off, time is money after all!\"  And with that he disappears down into the streets as randomly as he showed up.", True)
                         self.doCoin(-100)
-                        self.addManyItem(534, 6)
+                        self.addManyItem(Item.MALE_ENHANCE, 6)
                 elif self.buttonChoice == 6:
                     if (self.coin < 200):
                         self.doMainText("\"Sorry, but you don't have enough coins to buy that and I definitely can't afford to give the recipe away for free... If you get more coins later, stranger, then maybe we can deal then, but for now I must be on my way. Time is money!\" And with that he disappears down into the streets as randomly as he showed up.", True)
@@ -16416,7 +16434,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doListen = doListen
         elif chance == 3:
             self.doMainText("In the process of passing by a building, you hear some ruckus and an elderly man with wild white hair comes bursting out of the door before you.\n\n\"Dagnabbit! Another failed batch!\" He shouts as he carries out a small crate filled with half a dozen vials of swirling liquid.", True)
-            if (self.bag.hasItem(211)):
+            if (self.bag.hasItem(Item.DAIRE_PILL)):
                 self.doMainText("\n\nHe bursts out in such a tirade that he catches you off guard and sends you stumbling into him. You mostly catch yourself, merely bumping into him slightly without causing a catastrophe with what he is carrying. However, a loose DairE pill in your bag pops out from the sudden stop and flies through the air until it lands in one of the vials with a plop. The solution inside the vial turns white with small black clouds puffing throughout it.\n\nThe man doesn't mind the bump you gave him, but he stares down at the vial you've just tainted and then turns his attention to you. \"Now look at what you've gone and done! This solution was already a failure as it was, but it was at least sellable! Now I don't have any idea what it's become; I can't sell that! Give me 50 coins for your damned accident and take your mistake with you!\"")
                 if (self.coin < 50):
                     self.doMainText("\n\n\"What? You don't have that many?!\" He grumbles under his breath. \"Fine, give me all you've got and let that be a lesson to you...\"")
@@ -16426,8 +16444,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nNot wanting to make even more of a scene and, granted, it was your pill and your mistake that caused it, you give him the money. He shoves the vial into your hand in turn and doesn't pay you any more mind, still rather frustrated over his own misfortune and he huffs off down the street.")
                 self.displayMainText()
                 self.hrs = 2
-                self.loseManyItem(211, 1)
-                self.itemAdd(258)
+                self.loseManyItem(Item.DAIRE_PILL, 1)
+                self.itemAdd(Item.TAINTED_POT)
                 self.doEnd()
             else:
                 self.doMainText(" With you right next to him, his attention turns your way. \"Hey you, would you like to buy one of these? Since the people around here have a tendancy of changing into other things, I've been trying to come up with a brew that will help make humans more human rather than something else. But I keep coming up with this failure that is TOO human... Anyways, I just bring it down to some traveling salesman, but if you want one you can have one for 100 coins. It'll save me some effort from trying to haggle them all to that cutthroat...\"")
@@ -16438,7 +16456,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.buttonChoice == 6):
                         self.doMainText("\"Well, here you go.\" He hands you a vial as he takes your coins. \"Now I've got to get going to catch that rat bastard who's going to rip me off. Good luck to you!\"\n\nHe starts trudging down the street, but turns back for only a moment to shout, \"Oh! And don't forget to read the warning label!\" And with that he's gone.\n\nLooking down at the vial, you can't seem to find any kind of warning... Now that you think about it, wasn't there a label on the crate?", True)
                         self.doCoin(-100)
-                        self.itemAdd(257)
+                        self.itemAdd(Item.TOO_HUMAN)
                         self.hrs = 2
                     else:
                         self.doMainText("\"Ahh, that's fine. I just hope you have a better day than I've had...\" He trudges off down the street, grumbling over his continued failures.", True)
@@ -16469,7 +16487,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                             self.outputMainText("\"Th-Thank you?...\" He heaves for air.\n\nAs he comes to his senses, he notices the puddles and blotches of spunk that adorn the grass and canvas around him. Frightened at being caught with the mess, he jumps to his feet, his cock sliding back into his sheath.\n\n\"U-Umm, I really gotta go!\" He pulls his shorts up around his skirt, squirming to latch the button while his balls press at the crotch of the fabric, trying their best to fit down the legs with his thighs. \"...S-Sorry!\"\n\nHe pulls his shirt down over the tube top, wincing as he notices the gobs of cum soaking through. Then he runs off without another word, quickly escaping any more embarrassment.", True)
-                            self.itemAdd(205)
+                            self.itemAdd(Item.SM_POUCH2)
                             self.hrs = 2
                             self.doSexP(5)
                             self.jamieRep += 1
@@ -16481,7 +16499,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                             self.outputMainText("\"Th-Thank you?...\" He heaves for air.\n\nAs he comes to his senses, he notices the puddles and blotches of spunk that adorn the grass and canvas around him, your face and hands smattered with it and more drooling from your mouth. Frightened at being caught with the mess, he jumps to his feet, his cock sliding back into his sheath.\n\n\"U-Umm, I really gotta go!\" He pulls his shorts up around his skirt, squirming to latch the button while his balls press at the crotch of the fabric, trying their best to fit down the legs with his thighs. \"...S-Sorry!\"\n\nHe pulls his shirt down over the tube top, wincing as he notices the gobs of cum soaking through. Then he runs off without another word, quickly escaping any more embarrassment.", True)
-                            self.itemAdd(205)
+                            self.itemAdd(Item.SM_POUCH2)
                             self.hrs = 2
                             self.doSexP(5)
                             self.jamieRep += 1
@@ -16507,9 +16525,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.outputMainText("You start below the testicles, lifting them from the base with your palms and feeling how heavy they are. Easily at least five pounds each... They almost feel hot compared to the rest of his body, the warmth forming a bubble around them. And despite being so heavy and dense, they feel so soft, like you could squish them in you hands a bit. So you do, kneading them gently as you make your way up, causing a surprised yet pleasured snort to come out of the boy. Then you feel the scrotum below his sheath, a few inches of it stretched downward to hold the huge things, so thin comparatively yet still so thick. A bit ticklish as well, elliciting some more snorting as he shudders spontaneously.\n\nIt doesn't take long before you make it to the sheath, however. A head already poking its way through, despite the boy's best efforts to hold it back, an erection gradually grows out as you study it. Almost as warm as the balls below, the sheath gives off its own warmth, with a much more plush sensation as well. You can actually grab it and squeeze it, your fingers easily descending into the meaty flesh. It's also quite weighty as well, maybe not so much as the testicles but enough to quickly plop back down into your hands as you try to toss up the thick ring of flesh a little. It only grows heavier as the cock draws out from it.\n\nThe long rod of stiff sausage easily reaches over your shoulder from this distance, resting against your neck. The skin is sort of leathery by the way it stretches out and has a bit of shiny reflection to it, but rather thin and pliable in your hands. You can easily feel the skin move beneath your fingertips as you stroke across it, moving separately from the blood-engorged meat within. Most normal-sized people wouldn't be able to completely wrap their hands around something that large, and definitely not this boy...\n\nWith his balls and sheath in your grasp, and his schlong hung over your shoulder, you look up at him with a smile.", True)
                             self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0))
                             tempDict = {3: "Crossdress", 11: "Maybe Later"}
-                            if (self.bag.hasItem(533)):
+                            if (self.bag.hasItem(Item.REDUC_REDUC)):
                                 tempDict[1] = "Reduc Reduc"
-                            if (self.bag.hasItem(534)):
+                            if (self.bag.hasItem(Item.MALE_ENHANCE)):
                                 tempDict[5] = "Male Enhance"
                             self.doButtonChoices(tempDict)
 
@@ -16524,7 +16542,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                         self.jamieSize -= 1
                                         self.hrs = 3
                                         self.doSexP(20)
-                                        self.loseManyItem(533, 1)
+                                        self.loseManyItem(Item.REDUC_REDUC, 1)
                                         self.doEnd()
                                     self.doListen = doListen
                                 elif (self.buttonChoice == 3):
@@ -16553,7 +16571,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                         self.jamieSize += 1
                                         self.hrs = 3
                                         self.doSexP(20)
-                                        self.loseManyItem(534, 1)
+                                        self.loseManyItem(Item.MALE_ENHANCE, 1)
                                         self.doEnd()
                                     self.doListen = doListen
                                 elif (self.buttonChoice == 11):
@@ -16580,9 +16598,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.outputMainText("You look the boy over again, especially focusing on his profound package, and restate with more emphasis that, yeah, you can probably help him.\n\n\"R-Really? I mean, after last time, I don't really have much reason to not trust you. But... H-How do you think you can help me?\"", True)
                         self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0))
                         tempDict = {3: "Crossdress", 11: "Maybe Later"}
-                        if (self.bag.hasItem(533)):
+                        if (self.bag.hasItem(Item.REDUC_REDUC)):
                             tempDict[1] = "Reduc Reduc"
-                        if (self.bag.hasItem(534)):
+                        if (self.bag.hasItem(Item.MALE_ENHANCE)):
                             tempDict[5] = "Male Enhance"
                         self.doButtonChoices(tempDict)
 
@@ -16597,7 +16615,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.jamieSize -= 1
                                     self.hrs = 3
                                     self.doSexP(20)
-                                    self.loseManyItem(533, 1)
+                                    self.loseManyItem(Item.REDUC_REDUC, 1)
                                     self.doEnd()
                                 self.doListen = doListen
                             elif (self.buttonChoice == 3):
@@ -16626,7 +16644,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.jamieSize += 1
                                     self.hrs = 3
                                     self.doSexP(20)
-                                    self.loseManyItem(534, 1)
+                                    self.loseManyItem(Item.MALE_ENHANCE, 1)
                                     self.doEnd()
                                 self.doListen = doListen
                             elif (self.buttonChoice == 11):
@@ -16678,9 +16696,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.outputMainText("You look the boy over again, especially focusing on his profound package, and restate with more emphasis that, yeah, you can probably help him.\n\n\"You think you can now? I still have no idea what you were thinking of doing, but... H-How do you think you can help me?\"", True)
                         self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0))
                         tempDict = {3: "Crossdress", 11: "Maybe Later"}
-                        if (self.bag.hasItem(533)):
+                        if (self.bag.hasItem(Item.REDUC_REDUC)):
                             tempDict[1] = "Reduc Reduc"
-                        if (self.bag.hasItem(534)):
+                        if (self.bag.hasItem(Item.MALE_ENHANCE)):
                             tempDict[5] = "Male Enhance"
                         self.doButtonChoices(tempDict)
 
@@ -16695,7 +16713,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.jamieSize -= 1
                                     self.hrs = 3
                                     self.doSexP(20)
-                                    self.loseManyItem(533, 1)
+                                    self.loseManyItem(Item.REDUC_REDUC, 1)
                                     self.doEnd()
                                 self.doListen = doListen
                             elif (self.buttonChoice == 3):
@@ -16724,7 +16742,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.jamieSize += 1
                                     self.hrs = 3
                                     self.doSexP(20)
-                                    self.loseManyItem(534, 1)
+                                    self.loseManyItem(Item.MALE_ENHANCE, 1)
                                     self.doEnd()
                                 self.doListen = doListen
                             elif (self.buttonChoice == 11):
@@ -16741,9 +16759,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.outputMainText("You start below the testicles, lifting them from the base with your palms and feeling how heavy they are. Easily at least five pounds each... They almost feel hot compared to the rest of his body, the warmth forming a bubble around them. And despite being so heavy and dense, they feel so soft, like you could squish them in you hands a bit. So you do, kneading them gently as you make your way up, causing a surprised yet pleasured snort to come out of the boy. Then you feel the scrotum below his sheath, a few inches of it stretched downward to hold the huge things, so thin comparatively yet still so thick. A bit ticklish as well, elliciting some more snorting as he shudders spontaneously.\n\nIt doesn't take long before you make it to the sheath, however. A head already poking its way through, despite the boys best efforts to hold it back, an erection gradually grows out as you study it. Almost as warm as the balls below, the sheath gives off its own warmth, with a much more plush sensation as well. You can actually grab it and squeeze it, your fingers easily descending into the meaty flesh. It's also quite weighty as well, maybe not so much as the testicles but enough to quickly plop back down into your hands as you try to toss up the thick ring of flesh a little. It only grows heavier as the cock draws out from it.\n\nThe long rod of stiff sausage easily reaches over your shoulder from this distance, resting against your neck. The skin is sort of leathery by the way it stretches out and has a bit of shiny reflection to it, but rather thin and pliable in your hands. You can easily feel the skin move beneath your fingertips as you stroke across it, moving separately from the blood-engorged meat within. Most normal-sized people wouldn't be able to completely wrap their hands around something that large, and definitely not this boy...\n\nWith his balls and sheath in your grasp, and his schlong hung over your shoulder, you look up at him with a smile.", True)
                             self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0))
                             tempDict = {3: "Crossdress", 11: "Maybe Later"}
-                            if (self.bag.hasItem(533)):
+                            if (self.bag.hasItem(Item.REDUC_REDUC)):
                                 tempDict[1] = "Reduc Reduc"
-                            if (self.bag.hasItem(534)):
+                            if (self.bag.hasItem(Item.MALE_ENHANCE)):
                                 tempDict[5] = "Male Enhance"
                             self.doButtonChoices(tempDict)
 
@@ -16758,7 +16776,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                         self.jamieSize -= 1
                                         self.hrs = 3
                                         self.doSexP(20)
-                                        self.loseManyItem(533, 1)
+                                        self.loseManyItem(Item.REDUC_REDUC, 1)
                                         self.doEnd()
                                     self.doListen = doListen
                                 elif (self.buttonChoice == 3):
@@ -16787,7 +16805,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                         self.jamieSize += 1
                                         self.hrs = 3
                                         self.doSexP(20)
-                                        self.loseManyItem(534, 1)
+                                        self.loseManyItem(Item.MALE_ENHANCE, 1)
                                         self.doEnd()
                                     self.doListen = doListen
                                 elif (self.buttonChoice == 11):
@@ -16833,9 +16851,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.outputMainText("\"I was wondering if you would be interested in... 'helping' me again at all?\"")
                 self.showButtons(ButtonList(1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 1))
                 tempDict = {12: "Not Now"}
-                if (self.bag.hasItem(533)):
+                if (self.bag.hasItem(Item.REDUC_REDUC)):
                     tempDict[1] = "Reduc Reduc"
-                if (self.bag.hasItem(534)):
+                if (self.bag.hasItem(Item.MALE_ENHANCE)):
                     tempDict[3] = "Male Enhance"
                 if (self.vagLimit() >= (self.jamieSize + 1) * 4 and self.vagTotal > 0):
                     tempDict[6] = "Sex"
@@ -16879,7 +16897,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.jamieButt and self.jamieRep1 >= 3 and self.cockTotal > 0 and self.cockSize * self.cockSizeMod < self.eVagLimit(96)):
                     buttonlist[5] = 1
                     tempDict[5] = "Sexy Butt"
-                elif (self.jamieRep1 == 2 and self.bag.getCount(209) >= 4):
+                elif (self.jamieRep1 == 2 and self.bag.getCount(Item.GRAIN) >= 4):
                     buttonlist[5] = 1
                     tempDict[5] = "4x Grain"
                 else:
@@ -16887,7 +16905,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (self.jamieBreasts and self.jamieRep2 >= 3):
                     tempDict[6] = "Boob Fun"
                     buttonlist[6] = 1
-                elif (self.jamieRep2 == 2 and self.bag.getCount(212) >= 3):
+                elif (self.jamieRep2 == 2 and self.bag.getCount(Item.RED_MUSH) >= 3):
                     tempDict[6] = "3x Red Mush"
                     buttonlist[6] = 1
                 else:
@@ -16921,14 +16939,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doSexP(25)
                             self.hrs = 2
                             self.jamieButt = True
-                            self.loseManyItem(209, 4)
+                            self.loseManyItem(Item.GRAIN, 4)
                         else:
                             ...
                     elif (self.buttonChoice == 6):
                         if (self.jamieRep2 < 3):
                             self.outputMainText("You offer him a few of your red mushrooms, which makes him curious.\n\n\"What are these? I've never seen them before... Are they edible or something?\"\n\nYou nod your head and offer them for him to eat now.\n\n\"Umm... Sure, ok.\" He pops them one by one into his mouth. The go down the hatch fairly easily and don't seem to make him grimace, at least. \"They have an interesting taste, I suppose. Not exactly my kind of snack, but... Err, does it feel warm all of a sudden?\"\n\nThe boy's hand goes to his tube top to waft some air, but halts as soon as he touches his chest. He eyelashes flutter a bit as his fingers brush across a sensitive nipple that stands erect. Instead of grabbing the collar of the tube top, the hand spreads out across the breast as the flesh bulges out beneath. The other hand joins suit on the other breast, cupping and groping the meat as it fills his palms and pulls at the tube top. His tongue lolls out of his mouth as the flaring head beneath is engulfed by sensitive mounds. His nipples stick out further and further, poking out between his fingers and making him moan from their tenderness. The breasts fill the collar of the top, pulling it down and stretching it out with plush cleavage filling the gap and a surrounding the cock within.\n\nThe ample flesh soon slows to a halt, leaving the boy gasping and shuddering. His hands continue to rove about his chest, feeling himself up and dragging the mounds around the tip of his cock. His fingers pinch his nipples, making him twitch erotically. Staring down at his newly grown melons, he hops a little to watch them bounce, only to swoon in turn.\n\n\"I... I've got... Boobs!\" He shouts a little too excitedly, both in confusion and joy. He quickly quiets down as a few glances shoot his way. \"They're... They're beautiful... And they look so nice in the top.\" He squeezes them through the fabric again, making a gob of pre squeeze up and out into his cleavage, slickening them up. \"Umm... I think I really need to go and... figure these things out...\"\n\nA little too focused on his breasts, Jamie ignores you somewhat and wanders back off into the alleys between tents, his eyes never leaving his own cleavage and his hands never halting in their attention. But that's okay, you'll be able to see them again later.")
                             self.jamieBreasts = True
-                            self.loseManyItem(212, 3)
+                            self.loseManyItem(Item.RED_MUSH, 3)
                         else:
                             ...
                     elif not (self.buttonChoice == 7 and self.jamieRep3 < 3):
@@ -16957,7 +16975,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.stats(0, 0, -1, -1)
                         self.doHP(-5)
                         self.displayMainText()
-                        self.itemAdd(205)
+                        self.itemAdd(Item.SM_POUCH2)
                         self.hrs = 4
                         self.doEnd()
                     self.doListen = doListen
@@ -17023,7 +17041,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doLust(-Math.floor(self.sen / 3), 2, 1)
                         self.doLust(-Math.floor(self.sen / 3), 2, 1)
                         self.displayMainText()
-                        self.addManyItem(225, 2)
+                        self.addManyItem(Item.BODY_WASH, 2)
                         self.hrs = 5
                         self.exhaustion -= 3
                         self.doEnd()
@@ -17033,7 +17051,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doHP(-1)
                 self.displayMainText()
                 self.hrs = 3
-                self.itemAdd(223)
+                self.itemAdd(Item.EQ_SNACK)
                 self.doEnd()
 
         elif (chance == 3):
@@ -17091,7 +17109,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     for i in range(0, self.pregArray.length, 5):
                                         if (self.pregArray[i]):
                                             self.pregArray[i + 3] += 20
-                                self.itemAdd(248)
+                                self.itemAdd(Item.BREEDER_POT)
                                 self.hrs = 3
                                 self.doEnd()
                             self.doListen = doListen
@@ -17234,9 +17252,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         tempDict[6] = "Unbirth"
                 if (self.gender != Gender.ANDRO and (self.cockSize * self.cockSizeMod <= self.eVagLimit(8 + 5 * self.lilaVulva) and self.cockTotal > 0) or self.vagTotal > 0):
                     tempDict[7] = "Sex"
-                if (self.bag.hasItem(105)):
+                if (self.bag.hasItem(Item.CATS_MEOW)):
                     tempDict[9] = "Cat's Meow"
-                if (self.bag.hasItem(221)):
+                if (self.bag.hasItem(Item.PUSS_JUICE)):
                     tempDict[10] = "Puss Juice"
                 self.showButtons(buttonlist)
                 self.doButtonChoices(tempDict)
@@ -17264,11 +17282,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText(f"\n\nAs you take your time to release her, she quickly relaxes against your {self.boobDesc()} chest, closing her eyes and purring comfortably. Her hands slip between her legs. While you play with her breasts, milk flowing down into your combined laps, you can easily hear the sloshing of her fluids as her hands slip up and down through the cleft of her labia, rubbing her clitoris to heighten the pleasure. Just as you finish off her lowest pair, your hands so close to her loins, she whimpers and seizes as she quietly orgasms in your lap, the bed growing moist beneath you.\n\nIt takes a few moments for her breathing to calm down again and her eyes to open. A slimy hand comes up and touches your cheek, pushing your other cheek towards her mouth as she kisses you. \"Hehe, it felt good... Thank yew~\", she kisses you again.\n\nNow empty, she slides off your lap and onto the floor, strands of her feminine fluid stretching from her bottom to your lap, her tail catching and flicking them as it idly waves. As you stand, more of the stuff is stuck to your own {self.buttDesc()} rump, leaving your {self.clothesBottom()} thoroughly soaked. You help her put on her sundress, making sure it doesn't get stuck on a stray nipple or her tail, and she begins to head out.\n\n\"I'll always hope to see you again,\" she grins. Then she heads out, her friends waiting for her elsewhere in the city.")
                         if (self.lilaMilk > 12):
                             self.doMainText("\n\nAnd she was so milky that you were able to save enough milk for two whole bottles! Though it's likely not all milk, thanks to all the mess.")
-                            self.itemAdd(224)
-                            self.itemAdd(224)
+                            # TODO: Use addManyItem
+                            self.itemAdd(Item.LILAS_MILK)
+                            self.itemAdd(Item.LILAS_MILK)
                         elif (self.lilaMilk > 5):
                             self.doMainText("\n\nHowever, she was so milky that you managed to save a whole bottle of the stuff for yourself, at least, though much of it consists of her other fluids as well.")
-                            self.itemAdd(224)
+                            self.itemAdd(Item.LILAS_MILK)
                         self.hrs = 3
                         self.doLust(Math.floor(self.lib / 3), 0)
                         self.displayMainText()
@@ -17382,10 +17401,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                             def doListen():
                                 self.doMainText("After a few minutes of continuous orgasm, Lila spends several more simply panting and gasping for air. You crawl up between her legs and hug around her belly, easing her nerves and helping bring her back to this world. She eventually regains enough of her wits to hug you back, kissing your forehead.\n\n\"Thank yew... That was... That was...\" She can't really finish the statement, merely pressing her plush vulva up against you and kissing your waist in another sense.\n\nAt a loss for words, the two of you lay there for a while until the feeling returns to her legs. Lila stands, swaying slightly while she catches her balance, and lowers her soaked dress the best she can. \"I need to go home nao and take a nice long nap... I weally enjoyed this, though, and won't mind if it happens again...\" She blushes with embarassment over her naughty desire for more and is quick to escape the hut, her tail writhing about as she recounts what happened in her mind, her knees twitching as she nearly climaxes from the memory alone...\n\nTaking your time with wiping yourself down from the deluge, you also think about what happened. Overall, it's rather arousing and feels quite pleasant...", True)
-                                if (self.bag.hasItem(200)):
+                                if (self.bag.hasItem(Item.LILAS_GIFT)):
                                     self.doMainText("\n\nHowever, once you're dry, you notice a blotch still forming. You quickly open up your bag and take out the culprit. The gift Lila had given to you when you first met her now seems much... 'wetter'. The leaves and flowers of the little charm sweat with drops of 'dew', producing a small amount of familiar honey from nothing. There's also a general warmth to the object that wasn't there before and seems to be having an effect on yourself. It seems Lila's gift has become more imbued with the girl's nature with the rather intimate 'connection' you two shared...")
-                                    self.loseManyItem(200, 1)
-                                    self.itemAdd(237)
+                                    self.loseManyItem(Item.LILAS_GIFT, 1)
+                                    self.itemAdd(Item.DEWY_GIFT)
                                 self.hrs = 4
                                 self.aff(4, Math.floor(Utils.percent() / 10 + 4), -3)
                                 self.doHP(10)
@@ -17625,7 +17644,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doMainText(" Her breasts swell even more, making her feel really jiggly. As she tries to test the bounciness, she blushes heavily as her large nipples scrape along the inside of her sundress, milk squirting through it without her even trying. She moans as her hands come up to squeeze them as an immediate reflex to relieve their engorgement, gushes of milk spewing out. She seems rather surprised she can possibly make so much.")
                             self.doMainText("\n\nHer hands roam about her new found lactation, testing just how much milk she can now produce and making quite a mess. \"Eehee... Yew weally want to dwink a lot, huh?,\" she laughs happily. \"I'm gonna go show Mommy!\"\n\nShe then turns and heads home, leaving a path of spilled milk behind her as she goes.")
                             self.lilaMilk += 1
-                            self.loseManyItem(105, 1)
+                            self.loseManyItem(Item.CATS_MEOW, 1)
                         self.hrs = 1
                         self.displayMainText()
                         self.doEnd()
@@ -17649,7 +17668,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doMainText(" She bends down at her knees as the mass of sensitive genitalia fill the gap between her legs and feels so heavy. Her eyes flutter a little just trying to stand at first, the labia keeping her slightly bow-legged. Just trying to bend over to look at herself, her clit scrapes against the wooden walkway, already slick with her slime, and causes her to fall to her knees. She curls up slightly to reach her large clit, a whole hand wrapping around it, and her legs rub and push about her vulva while she jerks away, completely lost in the sensations. By the time she comes to climax, lubrication gurgling and splatting from her massive slit, all eyes with a clear view are staring at her.")
                             self.doMainText("\n\nShe pants a bit, becoming accustomed to her new size. She lets her dress fall back down to cover herself, though there's still quite a mess between her legs. \"It... feels much bettew...\"\n\nShe lazily turns around and walks away, intent on further familiarize herself with her bigger girly bits...")
                             self.lilaVulva += 1
-                            self.loseManyItem(221, 1)
+                            self.loseManyItem(Item.PUSS_JUICE, 1)
                         self.hrs = 1
                         self.displayMainText()
                         self.doEnd()
@@ -17693,7 +17712,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText(" \"But, her kittens are doing well. They spend most of the day napping or playing with each other in the bedroom, in a pen until they're big enough to not hurt themselves. Lila and I both take very good care of them, although it is odd seeing my daughter with children already... Thankfully the local alchemist gives us a good supply of anti-pregnancy potions so I don't have to worry about any more. Lila's just one of those cases of her first heat not going away, no matter how satisfied she gets. It happens every now and then for felins, but she'll grow out of it eventually, whether it be weeks or months or years. Though I guess her brothers and father will have to stay in our auxilliary hut next door. It's customary to keep the males outside when felin girls go into their first heat, to prevent any 'accidents'.\"")
                         self.outputMainText("\n\nLila steps into the kitchen with the two of you, still a little out of breath and with a kink in her step. \"Umm... So what have yew and Mommy been talking about?\"\n\nYou and her mother laugh, making up some excuse. The three of you continue to drink tea and chat about various things, but eventually Lila starts to get antsy again, thanks to your presence, and her mother suggests that it is probably a good place to stop. Lila hops up and gives you a great big hug, then proceeds to scamper off into the hut once more. Her mother giggles and hands you some tea mix, thanking you for the company and letting you know you're welcome any time, as long as you keep her daughter safe.")
                         self.hrs = 3
-                        self.itemAdd(226)
+                        self.itemAdd(Item.FELIN_TEA)
                         self.doEnd()
                 self.doListen = doListen
 
@@ -17804,14 +17823,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                                         self.doMainText(f" outside to dangle your {self.cockDesc()} thing over the rail of the wooden bridge and blowing your load on whatever ventures down below. You then rush away, just in case...")
                                                 else:
                                                     self.doMainText("\n\nSoon finishing up, leaving the two of you clean, Mommy gulps the last of the unexpected taste and smirks at you. \"Alright, that's good enough. Here, take some of this, you might like it some time. Now you should better get going before you make Lila dirty again.\" She sticks out her tongue and hands you some of the concoction.\n\nYou take her advice, clothe yourself, give the naked Lila a hug goodbye, and head off.")
-                                                    self.itemAdd(227)
+                                                    self.itemAdd(Item.ORAL_WASH)
                                             elif (self.vagTotal > 0):
                                                 self.doMainText(f" Her tongue slips in and out of your {self.vulvaDesc()} folds, thinking of it no differently than her mother. Which is an odd thought, considering how deftly her tongue lashes around your {self.clitDesc()} clit{self.plural(2)}. Between her efforts and the exreme tingling of the concoction, you soon find your {self.hipDesc()} hips bucking upon the plush carpet as you climax into the girl's mouth.\n\nLila's mother giggles at your reaction. \"Good, isn't she?\"\n\nNot inquiring about the statement, you wait a few moments and you're soon as fresh as a can be. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.")
-                                                self.itemAdd(227)
+                                                self.itemAdd(Item.ORAL_WASH)
                                                 self.doLust(-Math.floor(self.sen / 2), 2, 2)
                                             else:
                                                 self.doMainText(" Though there's no big difference, since you don't have anything down there. So, instead, you soon find yourself quite clean as they finish up quickly between their two tongues. You take your time getting up and getting clothed when Mommy mentions Lila needs to help her with her own bath, but you didn't need to stick around for that. She gives you some of the cleaning solution and nudges you out, allowing you to give the naked Lila a hug and say goodbye before you're on your way.")
-                                                self.itemAdd(227)
+                                                self.itemAdd(Item.ORAL_WASH)
                                             self.hrs = 3
                                             self.displayMainText()
                                             self.doEnd()
@@ -17825,7 +17844,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                                         def doListen():
                                             self.outputMainText("Smacking her lips, the girl's mother looks up to you. \"KO! You win!.\" She chuckles. \"Pretty good, I must say. I'm sure you must have bathed your fare share of kittens. But, anyways, once Miss Hair-Trigger here gathers herself, it'll be my turn for a bath. As great as I'm sure you must be, I'd like to have a little mother-daughter time, if that's alright. Though here, take some of this wash for yourself.\"\n\nShe hands you some of the concoction and lets you give the naked Lila a hug before seeing you off.", True)
-                                            self.itemAdd(227)
+                                            self.itemAdd(Item.ORAL_WASH)
                                             self.hrs = 3
                                             self.doEnd()
                                         self.doListen = doListen
@@ -17873,7 +17892,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.outputMainText("You come across Lila as you walk through the city. She grins and runs up to you, pouncing you with a great big hug around your waist. She thanks you again, although she shifts awkwardly as she lets go. 6 blotches form across her dress from chest to belly, with another, smaller one below...\n\n\"Uhh... Umm... I-I kinda have a diffewent problem now... The other kids don't know yet,\" she reaches under her dress, pulling out a large square of absorbant cloth that has been soaked through, \"and I'm afwaid of Mommy finding out. C-Can yew help me again?\" She blushes.\n\nNodding, you think it best to at least see what is going on. You take her hand and once again lead her up to your private hut. As you enter, you turn to shut the door-like curtain so nobody outside can see. Yet, as you turn back, you already find Lila pulling up her dress to show you her new issue. She get a bit stuck trying to pull it over her head, leaving the rest of her body completely naked. Thin streams of white liquid slowly drizzle down her half-dozen nipples, soaking into her fur. Not quite as bad as the slimy mess that has returned between her legs, but enough to leave her with a bashful blush as she finally frees herself and finds you staring at her dribbly nipples.\n\n\"I-I thought if I took a dwink like Mommy sometimes does, I would be older like her. But then the othew day my chest felt funny. I wubbed it and then milk stawted leaking. I keep wubbing it when I get milky, but it doesn't stop and I have to walk awound with a towel so nobody sees. What should I do?\"", True)
                 self.showButtons(ButtonList(1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0))
                 tempDict = {5: "Lick", 10: "Get Help"}
-                if (self.bag.hasItem(103)):
+                if (self.bag.hasItem(Item.DRY_SAND)):
                     tempDict[1] = "Dry Sand"
                 self.doButtonChoices(tempDict)
 
@@ -17885,7 +17904,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         def doListen():
                             self.outputMainText("Her body goes limp within your arms, a little exhausted from her sudden excitement. You opt to lift her up into your bed, letting her take a nap as you curl up to cuddle beside her.\n\nA few hours later, she rustles awake, well rested with a big content smile on her face. Her nipples don't seem to be leaking at all anymore and the other leak down below has been sated for now. She kisses you on the cheek for saving her once again, then picks up her sundress and drops it over her body rather lazily, neglecting her half-naked rump and groin as the fabric gets caught on her hip. She wistfully wanders back off into the city, pleasantly pleased.", True)
                             self.doSexP(15)
-                            self.loseManyItem(103, 1)
+                            self.loseManyItem(Item.DRY_SAND, 1)
                             self.hrs = 4
                             self.exhaustion -= 8
                             self.skipExhaustion = True
@@ -17948,7 +17967,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.outputMainText("You come across the small felin girl you had met before as you walk through the city. She walks up with a smile to say hello and thanks you again, though she shifts awkwardly as she stands, a small blotch forming on her dress at her groin as she recalls how you helped her...\n\nWith some slight embarrassment in her tone, she speaks \"Uhh... Umm... D-Do yew mind helping me like you did before? I-It seems to have come back...\"\n\nHer feet rub against each other as she looks up at you with an adorable expression. Obviously whatever you did before was only a temporary solution, for some reason. Not that it's a problem though, as she seems to enjoy your help.", True)
                 self.showButtons(ButtonList(1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0))
                 tempDict = {5: "Fondle Her", 10: "Get Help"}
-                if (self.bag.hasItem(103)):
+                if (self.bag.hasItem(Item.DRY_SAND)):
                     tempDict[1] = "Dry Sand"
                 self.doButtonChoices(tempDict)
 
@@ -17961,8 +17980,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.outputMainText("Whether it was because of the sand or the relaxation in her lust, she seems to be dripping no longer. She lunges forward and wraps her arms around your waist, hugging into your groin.\n\n\"Thank yew so much!\"\n\nShe lets go and fumbles with one of her pockets.\n\n\"Here, you can have my milk Mommy gave me. I alweady had enough today.\"\n\nWith a smile and another hug, she gives you a bottle of milk before running off to join her friends in some tease-less fun.", True)
                             self.stats(0, 1, 0, 0)
                             self.doSexP(15)
-                            self.loseManyItem(103, 1)
-                            self.itemAdd(500)
+                            self.loseManyItem(Item.DRY_SAND, 1)
+                            self.itemAdd(Item.MILK_BOTTLE)
                             self.hrs = 1
                             self.doEnd()
                         self.doListen = doListen
@@ -17973,7 +17992,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         def doListen():
                             self.outputMainText("A few minutes later, she sits upright, a bit woozy. As her wits return to her, she looks down at your hand and how it glistens with her moisture. \n\n\"I'm sowwy... B-But thank you, it was really nice!\" She jumps up from the bed, letting her dress fall. \"Here, Mommy gave this to me to help me grow up into a big girl.\"\n\nShe pulls a vial from her dress and hands it to you, then gives you a big hug before darting out of the hut, her dress still hiked up around her waist and stuck there from all the moisture, leaving her nethers free for all to see.", True)
                             self.doSexP(10)
-                            self.itemAdd(114)
+                            self.itemAdd(Item.SWEET_SAP)
                             self.hrs = 3
                             self.doEnd()
                         self.doListen = doListen
@@ -18012,9 +18031,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.outputMainText(" Could yew take cawe of it?\"")
                 self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1))
                 tempDict = {9: "Lick", 12: "Not Now"}
-                if (self.bag.hasItem(103)):
+                if (self.bag.hasItem(Item.DRY_SAND)):
                     tempDict[1] = "Dry Sand"
-                if (self.bag.hasItem(213)):
+                if (self.bag.hasItem(Item.WET_CLOTH)):
                     tempDict[3] = "Wet Cloth"
                 self.doButtonChoices(tempDict)
 
@@ -18063,7 +18082,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         else:
                             self.doMainText(" Though the sand didn't do much, she's still quite satisfied and her tail dances behind her happily.")
                         self.doMainText(" Then she feels safe to walk back outside, not as concerned about concealing the puffy padding beneath her sundress.")
-                        self.loseManyItem(103, 1)
+                        self.loseManyItem(Item.DRY_SAND, 1)
                         self.doLust(Math.floor(self.lib / 6), 0)
                         self.hrs = 3
                     elif (self.buttonChoice == 3):
@@ -18085,7 +18104,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.lilaWetness += 1
                         else:
                             self.doMainText(" This time, however, she doesn't stop or notice an increased moistness after using the cloth. Considering how much she's flowing, the cloth probably doesn't make a difference anymore.")
-                        self.loseManyItem(213, 1)
+                        self.loseManyItem(Item.WET_CLOTH, 1)
                         self.doLust(Math.floor(self.lib / 5), 0)
                         self.hrs = 3
                     elif (self.buttonChoice == 9):
@@ -18147,7 +18166,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.outputMainText("\n\n\nWhat do you do?")
                 self.showButtons(ButtonList(1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0))
                 tempDict = {3: "Diaper", 5: "Masturbate", 6: "Lick", 7: "Sex", 10: "Get Help"}
-                if (self.bag.hasItem(103)):
+                if (self.bag.hasItem(Item.DRY_SAND)):
                     tempDict[1] = "Dry Sand"
                 self.doButtonChoices(tempDict)
 
@@ -18161,8 +18180,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.stats(0, 1, 0, 0)
                             self.lilaRep = 2
                             self.doSexP(25)
-                            self.loseManyItem(103, 1)
-                            self.itemAdd(105)
+                            self.loseManyItem(Item.DRY_SAND, 1)
+                            self.itemAdd(Item.CATS_MEOW)
                             self.hrs = 1
                             self.doEnd()
                         self.doListen = doListen
@@ -18243,7 +18262,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                             self.hrs = 6
                                             self.stats(0, 4, 0, 2)
                                             self.lilaRep = 3
-                                            self.itemAdd(200)
+                                            self.itemAdd(Item.LILAS_GIFT)
                                             self.aff(4, Math.floor(Utils.percent() / 20 + 4), -1)
                                             self.doSexP(45)
                                             self.doEnd()
@@ -18257,7 +18276,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.outputMainText("A few minutes later, she sits upright, a bit woozy. As her wits return to her, she looks down at your hand and how it glistens with her moisture. Aghast, she hops off the bed.\n\n\"I'm so sowwy! Please, forgive me! Thanks for trying to help, please, take this!\"\n\nShe pulls a vial from her dress and hands it to you before darting out of the hut, her dress still hiked up around her waist and stuck there from all the moisture, leaving her nethers free for all to see.\n\n\nYou have obtained a Cat's Meow!", True)
                                     self.lilaRep = 2
                                     self.doSexP(30)
-                                    self.itemAdd(105)
+                                    self.itemAdd(Item.CATS_MEOW)
                                     self.hrs = 3
                                     self.doEnd()
                                 self.doListen = doListen
@@ -18291,7 +18310,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.stats(0, 0, 2, 2)
                                     self.doLust(Math.floor(self.lib / 4), 0)
                                     self.displayMainText()
-                                    self.itemAdd(200)
+                                    self.itemAdd(Item.LILAS_GIFT)
                                     self.lilaRep = 3
                                     self.aff(4, Math.floor(Utils.percent() / 20 + 8), -2)
                                     self.doSexP(45)
@@ -18314,7 +18333,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         def doListen():
                             self.outputMainText("Nodding, you wait outside the doorway as the felin woman takes her daughter's other hand and the two disappear into the hut.\n\nYou hear them talking within, though it's too faint to make out. But, several minutes later, it's hard to miss the high-pitched mewling, followed by loud moans that echo back out. A few minutes more, and some shuffling can be heard as the mother returns to the doorway.\n\n\"Thank you once more. Please, take these coins as a small repayment for being so gentle with her. Oh, and take this,\" she reaches into a pocket and pulls out a vial. \"Apparently she got this from a friend of the family, saying it was for me. It seems she thought it would help her seem like a grown up in front of her friends... Thankfully, we caught her before she could use it and you can have it in turn.\"\n\nShe hands you the vial of Cat's Meow as well 20 coins. She then blushes heavily as a strand of a clear slick fluid splashes down into her cleavage, having missed wiping it from the fur on her chin. She nods in thanks again before ducking inside, trying to hide the wet fur...", True)
                             self.doCoin(20)
-                            self.itemAdd(105)
+                            self.itemAdd(Item.CATS_MEOW)
                             self.lilaRep = 2
                             self.doSexP(15)
                             self.hrs = 3
@@ -18337,7 +18356,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText(f"Everything is a blur as you're carried off without any sense of direction. All you can hear the whole way is collective purring and the smacking of lips, though exactly which kind of lips is hard to tell. Eventually, your arms are tied behind your back and the bag slips off, revealing your new surroundings.\n\nIt seems to just be some strange felin's hut, nothing special. However, the three felins before you are much more notable. Three females, barely clothed in torn tops and loincloths, gasping and panting as they rub their thighs desparately and fluff their fur to try and cool off. The holes in their simple shirts match their own claws, having been scratched at in attempts to get cooler. None of them seem terribly concious of their actions, mewling and purring and mrowling at each other, so drowned in their own heat that they probably are running on instinct. Though how that instinct involves you...\n\nBecomes quite clear quite quickly. Two of the felins begin to paw at your chest, pulling {self.pullUD(1)} your {self.clothesTop()} to expose your {self.boobDesc()} mounds, their fingers twirling about your {self.nipDesc()} nipples to stiffen them up. The third felin picks up a handful of vials filled with white liquid, stuff that can easily be brought from the store. She saunters over to you, her tail waving perversely, like she was about to climax from just thinking about what she's going to do. Then, her free hand reaches up to your mouth and pries it open, leaning back your head to make sure you swallow.", True)
                     if (Utils.percent() < self.str - 40):
                         self.doMainText(" However, the restraints they used on you aren't exactly tough and you manage to pull yourself free.\n\nSo entranced by their own heat, the felins hardly put up much of a fight, falling to the ground with the slightest push. They were so worked up over their plans with you that the falls send them over the edge. Their hands immediately slip under their loincloths and begins to ellicit plenty of wet and lewd sounds as they masturbate, neglecting you completely.\n\nNot really having been harmed, you take the vials that they were going to feed to you as reparations for their assault and go on your way, leaving them to their orgasmic fits.")
-                        self.addManyItem(105, 3)
+                        self.addManyItem(Item.CATS_MEOW, 3)
                         self.hrs = 2
                     else:
                         self.doMainText(f" She pours the contents of all the vials down your gullet at once, rubbing your throat in a more-erotic-than-necessary fashion to ensure you swallow.\n\nWithin moment after gulping down the sweet fluid, you feel your {self.boobDesc()} breasts begin to grow warm and heavy. Pressure builds up behind your {self.nipDesc()} nipples until you let out a gasp - white drops pool around the tips and splash onto the awaiting tongues of the other two felins.")
@@ -18351,7 +18370,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText(f"\n\nTheir thirst isn't the only thing that needs satiating though. The more they drink, the more their hands dive into their loincloths, until their purrs become moans and are nearly drowned by the pervese wet schlicking sounds. But that isn't enough. With the milk soothing their stomach cravings, the pleasant tasty warmth is only making their lower cravings more severe.\n\nEventually, one pops off a nipple with one last big suck. The milk sprays freely, showering the front of the felin. The other two catch on, doing the same and letting the liquid splash over their many tits. They rub it in, mrowling in pleasure and digging deeper beneath their loincloths. Their legs soon give in, making them fall to the floor and lift their loincloths in your direction, exposing their swollen reddened pussies to you and your rain of milk. With each splash over their lower lips, the catty girls twitch and shudder, coming to small orgasms from the feeling and thought alone. Then as the white fluids beads into drops that runs down through their labia, slipping into their nooks and crevices and holes, their hands help the stuff along by rubbing it all over their cunts.\n\nThey climax again and again, delighting in the milky goodness, even after your squirting dies down to steady trickles. When that happens, the girls simply curl around each other, licking the milk from each others slits, jerking and rubbing and groping and coming more and more. The room grows so hot that even your bindings begin to sweat and... you slip free.\n\nHolding back the milk with an arm, you put back on your {self.clothesTop()}, where it then begins to blotch. With the felins still having an orgy on your floor, you grab one of the leftover vials and make your escape, though a little milkier than before...")
                         self.lactation += 50
                         self.doLust(10, 0)
-                        self.itemAdd(105)
+                        self.itemAdd(Item.CATS_MEOW)
                         self.hrs = 3
                     self.displayMainText()
                     self.doEnd()
@@ -18373,7 +18392,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.hrs = 2
                     elif (getMilk > 4000):
                         self.doMainText("\n\nTheir many thirsty mouths suck and suck, guzzling down your delicious milk. However, you produce so much that they simply can't seem to drain you. Yet that doesn't keep them from trying... The more and more they suck from you, the more lazy their efforts become. Even the tail on your head slows in pace, until it comes to a stop...\n\nStill pinned by the many bodies, you can hear them purr as they have fallen asleep. You take the opportunity to wiggle yourself free, nearly yanking down the girl's panties in the process. Once out, they merely curl up on the bridge, cuddling against each other. Another girl seems to have her skimpy shirt pulled up to her second pair of breasts, while a male has a prickly penis pulled from his pants. Whatever they were planning to do, it obviously didn't get too far.\n\nAs payment for their feast, you grab a couple of their small pouches. It's the least you could do to make up for their rude ambush.")
-                        self.addManyItem(204, 2)
+                        self.addManyItem(Item.SM_POUCH1, 2)
                         self.hrs = 3
                 else:
                     self.doMainText(" They ignore you for the mostpart, busy talking and laughing amongst themselves.")
@@ -18404,14 +18423,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText("Fidoris speaks out \"Mistress, I have brought the traveler once again!\"\n\nThe woman rolls over, her belly and massive vulva rolling with her. \"Good boy! I hope you have brought along something nice for me?\" Her eyes light up.", True)
                         tempDict = {11: "Nothing"}
                         buttonlist = ButtonList(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0)
-                        if (self.bag.hasItem(210)):
+                        if (self.bag.hasItem(Item.PUSS_FRUIT)):
                             tempDict[1] = "Puss Fruit"
                         if (self.mistressRep > 10):
                             self.doMainText(" Then her hands grope across her belly, squishing the aroused passage within. \"Mmm... You've been so good to me, though, so I'll let you in on another deal. If you can bring me three of the fruits at a time, I'll have Fidoris cook up my special concoction. Just between you and I, of course, for all the fun we've had~,\" she gives you a naughty wink. \"I'll also let you in on the recipe, but without dear Fidoris I'm afraid it might be less efficient for you.\"")
                             buttonlist[3] = 1
                             if (not self.knowPussJuice):
                                 self.knowPussJuice = True
-                        if (self.bag.getCount(210) >= 3 and self.mistressRep > 10):
+                        if (self.bag.getCount(Item.PUSS_FRUIT) >= 3 and self.mistressRep > 10):
                             tempDict[3] = "3x"
                         self.displayMainText()
                         self.showButtons(buttonlist)
@@ -18419,7 +18438,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                             if (self.buttonChoice == 1):
-                                self.loseManyItem(210, 1)
+                                self.loseManyItem(Item.PUSS_FRUIT, 1)
                                 self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0))
                                 tempDict = {1: "Fidoris"}
                                 if (self.tallness / 12 < self.mistressRep + 4):
@@ -18496,7 +18515,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                                 self.skipExhaustion = True
                                                 self.doHP(50)
                                                 self.aff(4, Math.floor(Utils.percent() / 10), -1)
-                                                self.itemAdd(221)
+                                                self.itemAdd(Item.PUSS_JUICE)
                                                 self.doSexP(15)
                                                 self.mistressRep += 1
                                                 self.displayMainText()
@@ -18545,7 +18564,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                             self.doCoin(45)
                                             self.doLust(-Math.floor(self.sen / 2), 2, 1)
                                             self.hrs = 4
-                                            self.itemAdd(221)
+                                            self.itemAdd(Item.PUSS_JUICE)
                                             self.doSexP(13)
                                             self.mistressRep += 1
                                             self.displayMainText()
@@ -18560,8 +18579,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.doMainText("Several times you wind up alternating between the two tasks. The only time you get a break is when she asks for some water, in which case it takes her nearly five minutes to down several liters. With all the fluid she loses otherwise, it's not terribly surprising. She manages to come again and again, whereas you're only teased constantly... Just as you're about to masturbate within her folds and out of her sight, Fidoris manages to return.\n\n\"The process is finished. Here is the batch you requested.\"\n\nYou move out from the mistress' slit, futily attempting to hide your arousal. Fidoris blushes as he spots your condition as well and how drenched you are in his mistress' honey. He thrusts a vial into your hand, trying to avert his eyes.\n\n\"U-Umm... Th-Thank you for doing my job with mistress while I was busy. I'm s-sure she's warmed up for a nice nap now.\"\n\nHe quickly nudges you towards the exit, as if in a hurry. It makes you begin to wonder what a 'nap' might actually entail? Either way, you've got what you asked for and then some...", True)
                                     self.doLust(Math.floor(self.lib / 6), 0)
                                     self.displayMainText()
-                                    self.loseManyItem(210, 3)
-                                    self.itemAdd(221)
+                                    self.loseManyItem(Item.PUSS_FRUIT, 3)
+                                    self.itemAdd(Item.PUSS_JUICE)
                                     self.hrs = 3
                                     self.doEnd()
                                 self.doListen = doListen
@@ -18760,13 +18779,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         elif (self.ment <= 80):
                             self.doMainText("You nod and kneel down beside her, picking up the bowl and drizzling the oil down her spine. She shivers a little from the sensation and croons as your hands come down to press it into her scales, gently pushing it around and kneading her muscles carefully. She squirms a little as you hit her tense areas, obviously enjoying the massage you're giving her. Even her tail whips around a bit as you coat it, exposing her supple genitals for a moment as she accidentally flashes you.\n\nSoon, she's quite coated and relaxed from your efforts. She thanks you for the pleasant experience and insists you take a vial of the oil with you, at least as compensation.", True)
                             self.doLust(6, 0)
-                            self.itemAdd(228)
+                            self.itemAdd(Item.BODY_OIL)
                             self.hrs = 3
                         else:
                             self.doMainText(f"You nod with a smile and straddle her rump as you kneel down, making sure to stay slightly aloft so as to not put any weight on her. You pick up the bowl and drizzle the oil down her spine, then press into it with your hands and spread it out across her body. Using your weight for more pressure, you deeply massage all of her muscles as you knead into her soft scales, making her moan softly from the tender treatment. You can feel her tail beging to flick beneath your {self.buttDesc()} rump as you make your way down to the small of her back, until you trap it as you shuffle back to sit over her knees.\n\nHer tight tush tenses a bit as you gently brush the oil over it, but quickly relaxes as you grab and gently squeeze it. You softly grind into it, making her tail spasm beneath you until it eventually pulls out from under you as you begin to work at its base. You can see the blush in her face as she realizes she has unconsciously flashed you, her supple lips squished between her thighs below her tail. You can see a few sparkles from the dew that's collecting on them, your efforts being a little too pleasant. However, she doesn't seem to try to cover herself and after a moment of your working at her tail, massaging from the tip to the base, she spreads her legs beneath you until you have to adjust your stance to kneel between them.\n\nHer sex quite exposed and drooling honey into the sand below, your hands move in to oil up between her thighs. You slowly work your way up her legs, teasing her until the drooling becomes much more prominent, a large drop pushing out as you press into the outer labia. Her tail nearly slaps you in anticipation, it flicking around so much, and practically urges you to move in. Taking the blatent hints, you gently tug and squeeze at the tender lips, pressing your fingertips into her sex and slipping around to massage the wholly erect button at the front. Your hands deftly fly through again and again, making her gasp and her whole body squirm, shimmering from the oil you had supply her with. As her moaning increases, her panting coming to a climax, you watch as her lips spread. As she groans into the sand in orgasm, trying to muffle herself from everyone around her, your hands are filled with a good-sized egg, covered in sensual slime.\n\nHer tail collapses onto your shoulder, resting there as you finish wiping her up and bringing her down, until you finally complete your task. Still breathing heavily, her body looking quite tired, she merely turns up towards you.\n\n\"Please, take some oil with you. Hands like those must be taken advantage of~,\" she sighs pleasantly. \"And you can keep the egg as thanks.\" She sticks out her tongue teasingly, but quickly lays back down to take a nice soothing nap to reminisce the recent events, leaving you to go off on your own.", True)
-                            self.itemAdd(228)
+                            self.itemAdd(Item.BODY_OIL)
                             self.doLust(10, 0)
-                            self.itemAdd(219)
+                            self.itemAdd(Item.FRESH_EGG)
                             self.hrs = 4
                     else:
                         if (self.ment <= 10):
@@ -18779,7 +18798,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.stats(0, 1, 0, 0)
                         else:
                             self.doMainText("You kindly decline her gracious offer, mentioning how beautiful she looks already and how you might have had \"trouble\" giving her a massage like that, considering her nice features. She gives you a blushing smirk and giggles a little, offering you to take a vial of her massage oils for yourself, as thanks for the sweet compliments.", True)
-                            self.itemAdd(228)
+                            self.itemAdd(Item.BODY_OIL)
                         self.hrs = 1
                     self.displayMainText()
                     self.doEnd()
@@ -18812,7 +18831,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doMainText("large testicles and ")
                             self.doMainText("dual cocks for a moment as he accidentally flashes you.\n\nSoon, he's quite coated and relaxed from your efforts. He thanks you for the unexpectedly pleasant experience and insists you take a vial of the oil with you, at least as compensation.")
                             self.doLust(6, 0)
-                            self.itemAdd(228)
+                            self.itemAdd(Item.BODY_OIL)
                             self.hrs = 3
                         else:
                             self.doMainText(f"You nod with a smile and straddle his bum as you kneel down, making sure to stay slightly aloft so as to not put any weight on him. You pick up the bowl and drizzle the oil down his spine, then press into it with your hands and spread it out across his body. Using your weight for more pressure, you deeply massage all of his muscles as you knead into his soft scales, making him groan a little from the tender treatment. You can feel his tail beging to flick beneath your {self.buttDesc()} rump as you make your way down to the small of his back, until you trap it as you shuffle back to sit over his knees.\n\nHis tight butt tenses a bit as you genetly brush the oil over it, but quickly relaxes as you grab and gently squeeze it. You softly grind into it, making his tail spasm beneath you until it eventually pulls out from under you as you begin to work at its base. You can see him wince with embarrassment as he realizes he's giving you a good view of his nethers, ", True)
@@ -18841,8 +18860,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.doMainText(", the balls working hard to keep up with the relief")
                             self.doMainText(" until you're kneeling in a puddle of the stuff.\n\nHis tail collapses onto your shoulder, resting there as you finish wiping him up and bringing him down from the orgasm, until you finally complete your task. Still breathing heavily, his body looking quite tired, he merely turns up towards you.\n\n\"Please, take some oil with you. You seem to be better at using it than me. And here,\" he reaches into his pile of clothes and pulls out a large berry, \"take this with you, I've had enough for a while, if you couldn't tell.\" He sticks out his tongue in jest, but quickly lays back down to take a nice soothing nap to reminisce the recent events, leaving you to go off on your own.")
                             self.doLust(10, 0)
-                            self.itemAdd(228)
-                            self.itemAdd(208)
+                            self.itemAdd(Item.BODY_OIL)
+                            self.itemAdd(Item.BLO_BERRY)
                             self.hrs = 4
 
                     else:
@@ -18856,7 +18875,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.stats(0, 1, 0, 0)
                         else:
                             self.doMainText("You kindly decline his gracious offer, mentioning how handsome he looks already and how you might have had \"trouble\" giving him a massage like that, considering his nice features. He laughs heartily at the thought, offering you to take a vial of his massage oils for yourself, as thanks for the complimentary humor.", True)
-                            self.itemAdd(228)
+                            self.itemAdd(Item.BODY_OIL)
                         self.hrs = 1
                     self.displayMainText()
                     self.doEnd()
@@ -18934,7 +18953,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     tempDict = {6: "Help Lay"}
                     if (self.ment >= 30):
                         tempDict[1] = "Plug"
-                    if (self.bag.hasItem(230)):
+                    if (self.bag.hasItem(Item.EGGCELERATOR)):
                         tempDict[11] = "Eggcelerator"
                     self.doMainText("You slowly push through the cattails and approach the troubled female.", True)
                     tempInt = Math.ceil(Utils.percent() / 33)
@@ -18961,12 +18980,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             elif tempInt == 2:
                                 self.doMainText("Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the makeshift plug into her pussy. Pulling away, she pauses as she feels an egg settle onto the soft fluff but is unable to push further, effectively halting her laying for now. Slipping her bikini back over her exposed nethers, she slowly stands, getting used to the sensation.\n\nThough her belly looks a bit bloated and gradually growing with the buildup, she seems grateful. \"Umm... thanks for that.\" She squirms slightly as her stiff clit presses visibly against the bikini's crotch, becoming more aroused from the swelling sensation. Absent-mindendly, she leans down and gives you a quick kiss, dropping one of her pre-laid eggs into your lap as a gift, before blushing ferociously and running off to find her fiancee.")
                                 self.stats(0, 0, 1, 0)
-                                self.itemAdd(219)
+                                self.itemAdd(Item.FRESH_EGG)
                                 self.hrs = 2
                             elif tempInt == 3:
                                 self.doMainText("Asking the attractive mother to present her passage, she eyes you suspiciously for a moment. Then she shrugs, removing the hand blocking your access and even leans back further to give you greater access to her sex. You gently press your fingers against her outer labia as you push the makeshift plug in between. Her breathing quickens in pace for a few seconds as you soft touch pleases her sensitive loin. As the next egg slowly comes to a stop upon the soft fluff within, she grins at how effective the treatment was.\n\n\"Wow, that is quite a neat trick! You really deserve some compensation for helping me like that.\" She slowly stands, a hand on her belly as she feels it swell slightly from the buildup before turning away towards her shed suit. Bending down before you, her tail flipping up to balance herself and giving you a generous view of her plump rear, she grabs some coins and an egg from the pile before turning to hand them to you. \"Thanks again!\" She smiles and winks. She then squeezes into her bathing suit, letting her curves fill it in dramatically, and picks up the rest of the eggs to get started on that cake.")
                                 self.doCoin(30 + Math.ceil(Utils.percent() / 3))
-                                self.itemAdd(219)
+                                self.itemAdd(Item.FRESH_EGG)
                                 self.hrs = 2
                             self.displayMainText()
                             self.doEnd()
@@ -18974,7 +18993,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText("Hoping to help out, you decide to try to assist with the laying, if at least to make the process more comfortable. ", True)
                             if tempInt == 1:
                                 self.doMainText("Scooching up behind the shy girl so as to not look directly at her, you slowly move her hand towards her loins to allow her plenty of time to object if she wanted to. However, she seems to instead prepare herself for your touch, leaning back into you and holding her breath as your hand approaches her exposed genitals. Your fingers slide over her own as you spread her supple lips wider, making her gasp lightly as she feels the next eggs slip through the stretched gap. The palm of your hand over her mons, you notice a churning sensation within as another eggs is already being produced and on its way. To allow her to relax more for ease of laying, your hand begins to gently rub about her sensitive slit, using the warm water and subtle lubrication from her hole to caress her stiffening little clitoris. She gasps and moans exuberantly, relying on your body for support as she completely lays back into you, the next egg soon passing through with a greater moan escaping her lips.\n\nAt least half an hour of this pleasurable oviposition passes in your arms. A large pile of eggs has accumulated beneath the two of you and the girl is quite the quivering mess from the many orgasms. Her nipples stand stiffly against her one-piece bathing suit and the crotch is more soaked with her slime than the oasis waters. However, it seems her egg cycle has slowed closer to a normal pace as no more try to escape her womb. It takes several more minutes before she can thoroughly gather herself, looking back to you and blushing tremendously.\n\n\"Th-Thank you. Th-That was...\" Too embarrassed, she can't muster up the rest of her words. Instead, she slowly stands, her legs shaking and threatening to give out as she turns to face you, her petite slit still exposed. She leans down to hug you, giving you a soft peck on the cheek. And then she subtly slips her hand down for one last pet before pulling her suit back into position, stepping away silently in an ecstatic daze while her tail twitches awkwardly behind her.\n\nThough the kiss itself was quite generous from such a shy girl, it also seems she has left you quite the horde of eggs.")
-                                self.addManyItem(219, 6 + Math.ceil(Utils.percent() / 20))
+                                self.addManyItem(Item.FRESH_EGG, 6 + Math.ceil(Utils.percent() / 20))
                                 self.doLust(Math.floor(self.lib / 2), 0)
                                 self.stats(0, 1, 1, 0)
                                 self.displayMainText()
@@ -18986,7 +19005,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                                 def doListen():
                                     self.doMainText("You wake up some time later having been dragged onto the shore amidst the brush. Your waist aches and there's no sign of the engaged girl. Upon your chest you find a note, hinting as to where she may have gone.\n\n\"So, so sorry for making you pass out! I had to... With my fiancee and... Here, at least have an egg for forgiveness!\"\n\nRight beside you, you find the lone egg she had laid earlier, still slightly slimy and warm from her womb. Considering it's not wet from the oasis waters, it might just be the egg she laid when you were crushed...", True)
-                                    self.itemAdd(219)
+                                    self.itemAdd(Item.FRESH_EGG)
                                     self.hrs = 4
                                     self.stats(-1, 0, 0, 0)
                                     self.doHP(-15)
@@ -19004,15 +19023,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.hrs = 3
                                 self.doEnd()
                         elif self.buttonChoice == 11:
-                            self.loseManyItem(230, 1)
+                            self.loseManyItem(Item.EGGCELERATOR, 1)
                             self.doMainText("Thinking another dose might somehow help, you pull out an eggcelerator from your bag. ", True)
                             if tempInt == 1:
                                 self.doMainText("Scooching up behind the shy girl so as to not look directly at her, you console her as you bring the dose of eggcelerator down to her loins. Since you are unable to get a good view, she has to guide your hand to her slit, which causes her whole body to warm before you from blushing so hard. With her experience with the previous doses of eggcelerator, she manages to guide you correctly and lets out a squeak as she feels the suppository slip up into her passage.\n\nThe girl begins to quiver slightly as she feels her womb go into overdrive. A gasp escapes her lips as an egg immediately pushes through her folds, past your combined fingers. Suddenly, she seizes back into you, her back arching, as more eggs spill out of her womb. Her pussy lifts out of the water and into the air as her feet drag and kick through the sand below, tossing the pile about. Her exposed cunt spreads wide as another egg plops out into the water with another one right behind firing further out. She moans and whines as her body thrashes about, staring down at herself with fear as she's practically spreading her legs to anybody else in the lake and spreading her private area wide for them all to see as the eggs fly out of her. Jumping away from you with a sob, she stands up with a couple more eggs dropping between her thighs with thick strands of lubricant trailing. The girl hastily covers the exposed genitals with her one-piece suit, a tear shedding as she sees the crotch bulge with the next egg pushing through. Wholly embarrassed, she runs off into the brush, the eggs already slipping back into the rear of the suit as more collect before she disappears.\n\nLeft alone and feeling a little ashamed of how things progressed, you manage to fish out some eggs that survived and head off.")
-                                self.addManyItem(219, 3)
+                                self.addManyItem(Item.FRESH_EGG, 3)
                                 self.stats(0, 0, 0, -1)
                             elif tempInt == 2:
                                 self.doMainText("Asking the pretty young woman to spread her legs for access, she blushes harder and nods hesitantly. You gently pull her folds apart, making her buck slightly from her sensitivity, and slip the eggcelerator into her pussy, letting it slide up into her womb.\n\nShe gasps for a moment as she feels the tingling in her belly while the suppository dissolves, then her eyes grow wide as an egg immediately pushes out through her folds. Moans start to emit from her lips as more eggs cram their way about her pussy, her legs opening and shutting sporadically as she tries to rub herself while they fall into the pile below. However, the squatting position requires too much strength and she collapses forward onto her hands and knees, her rump pointing at the bushes. You can hear more eggs splash into the water behind her as she groans, her eyes clenching shut and her mouth wide with ecstasy.\n\nThe engaged girl's tail whips about behind her while her hips twitch and twist. She tries to reach down to fondle herself, but without the support she merely crashes into the water. In a wavering voice, she begs of you, \"Please... H-Help me!\"\n\nNot wanting to torture her, you move behind to see what you can do. In her shifting, it seems her bikini bottom had drooped back over her slit, only to be destroyed by the next egg on its forceful way out, the fabric torn away with only the outlining bands left intact. Essentially, her pussy is on blatant display as the bands slip behind her outer labia, leaving a gaping cunt that stretches even wider with each ovoid object it expels.\n\nUnsure what to do, you spot a large button that quivers with arousal. Sticking out from her lips and looking closer to a small penis, her clitoris is extremely engorged from the stimulation of her passage. So, you wrap your fingers around it and quickly proceed to jerk it with the plentiful lubrication that dribbles down from above. The girl cries out across the waters, turning some heads in the distance, as she instantly comes to her first orgasm, her whole body quaking. Again and again, with your efforts on her clit and the procession of eggs, the girl trembles and climaxes, her tail curling in the oddest of shapes in the air.\n\nAfter over half an hour of the extreme masturbation, the last egg pops out and the girl collapses onto the pile, crushing them all. She exhales under the water, bubbles floating to the surface before popping up for air. She continues to huff, letting the refreshing water regain some of her consciousness and eventually turns back to you.\n\n\"Wow... I-I didn't know one more eggcelerator could make me do that...\" She gasps again, completely oblivious to the fact that you're still staring into her gaping lewd genitals that she had attempted to hide earlier. \"H-Here, take these. I'm gonna go buy a buttload more and find my fiancee. I just hope he can last a few days...\"\n\nShe reaches into another pile of her belongings she had left amongst the cattails and hands you a couple more doses of eggcelerator, as well as some coins for more compensation. Then she stands. Then she falls back into the water with a splash as her legs give out. Then she stands again and begins to awkwardly walk out of the water and straight to the bazaar. She also seems completely unaware of the missing fabric in bikini bottom, especially as her little 'erection' points the way...")
-                                self.addManyItem(230, 2)
+                                self.addManyItem(Item.EGGCELERATOR, 2)
                                 self.doCoin(15 + Math.ceil(Utils.percent() / 10))
                                 self.doLust(Math.floor(self.lib / 2), 0)
                             elif tempInt == 3:
@@ -19183,7 +19202,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                         self.doLust(-Math.floor(self.breastSize * self.sen / 20), 0, 3)
                                         self.displayMainText()
                                         self.milkAmount(1)
-                                        self.itemAdd(201)
+                                        self.itemAdd(Item.MILK_C_POIS)
                                         self.hrs = 2
                                         self.doEnd()
                                     self.doListen = doListen
@@ -19340,7 +19359,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                         self.nipplePlay += 7
                                         self.doLust(-Math.floor(self.breastSize * self.sen / 20), 0, 3)
                                         self.milkAmount(1)
-                                        self.itemAdd(201)
+                                        self.itemAdd(Item.MILK_C_POIS)
                                         self.hrs = 2
                                         self.displayMainText()
                                         self.doEnd()
@@ -19406,13 +19425,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         elif chance == 5:
             self.outputMainText("Within the jungle, you come across a rather tender looking tree. Fruits of a rather... vulgar shape hang from its branches. You pluck one and take it back with you.", True)
-            self.itemAdd(210)
+            self.itemAdd(Item.PUSS_FRUIT)
             self.hrs = 2
             self.doEnd()
 
         elif chance == 6:
             self.outputMainText("Making your way through the foliage the best you can, you stop as something glimmers as you kick it aside. Picking it up, it's actually a rather shiny rock that seems to naturally attract your attention. You pick it up and slip it into your bag in case you want to stare at it more later.", True)
-            self.itemAdd(239)
+            self.itemAdd(Item.SHINY_ROCK)
             self.hrs = 2
             self.doEnd()
 
@@ -19455,11 +19474,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if (Utils.percent() < self.ment and not (mainobject.gameTweaksMisc and self.snuggleBall)):
                     self.outputMainText(f"Whether you wanted to or not, you seem to be leaning down to pick it up. Some urge to snuggle has overcome you, forcing you to attempt to pick the squishy thing up.\n\nLiquidy tendrils lash out from the ball, sticking to your face and arms, belly and {self.legDesc(2)}. You don't have time to resist as it wraps around your body, seeping past your {self.currentClothes()} and coating your {self.skinDesc()}.\n\nOver within moments, you stand there and gradually try to move. A plush and soft layer, slightly shiny and malleable just like the ball, covers all your {self.skinDesc()}. It doesn't impede your movement or actions, almost like it was an extra layer of skin, and doesn't do much but make you... snuggly.", True)
                     self.snuggleBall = True
-                    self.itemAdd(244)
+                    self.itemAdd(Item.SNUGGLE_BALL)
                     self.hrs = 2
                 elif (self.buttonChoice == 6):
                     self.outputMainText("You kneel down and pick up the squishy ball, feeling quite pleasant in your hand. Kinda warm and almost as soft as liquid, it feels like something pleasant to snuggle with. For now, you put it in your bag.", True)
-                    self.itemAdd(244)
+                    self.itemAdd(Item.SNUGGLE_BALL)
                     self.hrs = 2
                 else:
                     self.outputMainText("Wary of cute and cuddly balls in the middle of nowhere, you decide to leave it in case it's somebody's toy or something that they might come back for.", True)
@@ -19489,7 +19508,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         elif chance == 4:
             self.outputMainText("You wander about the open fields and find nothing but a handful of grain. At least the carbs will give you energy!", True)
-            self.itemAdd(209)
+            self.itemAdd(Item.GRAIN)
             self.hrs = 1
             self.doEnd()
 
@@ -19553,7 +19572,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         elif chance == 4:
             self.outputMainText("In the heat of the savanna, you come across a secluded pond. Well, not quite pond, considering most of the water has evaporated and there's only a giant mudhole, but the mud itself looks rather clean. In fact, it's the perfect kind of mud for a facial!\n\nBeing the entrepreneur that you are, you take out a bottle and shove some of the mud inside, saving it for some nice facial cleansing in the future.", True)
-            self.itemAdd(245)
+            self.itemAdd(Item.FACIAL_MUD)
             self.hrs = 2
             self.doEnd()
 
@@ -19890,7 +19909,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                             def doListen():
                                 self.doMainText(f"\"Whew... Thanks a lot, dearie. Sorry to umm...\" She looks at your {self.clothesBottom()} and how drenched it is with her husband's seed. \"come on you like that... Don't worry though, it'll wash right out. And he takes a drug to keep it sterile for our little outtings. Wouldn't want to have all these eggs be alive now, would we?\" She chuckles. \"But here, take one for yourself. They're good for you, when they don't have babies in them!\"\n\nShe giggles and kisses you on the cheek, thanking you once again before you head off. She dozes back off, her tail idly swishing in the pool of semen, her thighs drenched in the stuff, and looking all the happier for it.", True)
-                                self.itemAdd(219)
+                                self.itemAdd(Item.FRESH_EGG)
                                 if (Utils.percent() < 35):
                                     self.doMainText("\n\nAs you begin to leave, however, you spot something move towards you. Another reptillian, this one seems quite male as two cocks hang from his groin and knock against his knees. He seems a bit sheepish at first, blush filling the scales of his face due to his rather immodest lack of an outfit, but realizes the damage is already done and waves you over.\n\n\"Umm... I suppose you helped out my wife then?\" He spots the egg in your hand and the lack of belly on his wife. \"Well, thank you for that. Sometimes I just can't get back in time. Here, take one of these at least, I think I've got plenty.\"\n\nHe hands you a berry but ")
                                     if mainobject.lizanDontShowBalls:
@@ -19898,14 +19917,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     else:
                                         self.doMainText("actually refers to his scrotum. It hangs past his wangs and seems stuffed with testicles, though you can't easily count how many. They're each at least the size of a small melon and can easily explain how his wife was so bloated.")
                                     self.doMainText("\n\nNevertheless, he thanks you again and lets you head off, wanting some more time with his wife.")
-                                    self.itemAdd(218)
+                                    self.itemAdd(Item.BUL_BERRY)
                                 self.displayMainText()
                                 self.hrs = 4
                                 self.doEnd()
                             self.doListen = doListen
                         else:
                             self.outputMainText("You shake your head no, not wanting to interrupt their time together.\n\n\"Ahh, thank you dearie, I appreciate the sentiment. Here, at least take one of these. My husband uses them on occasion, but he prefers a different kind. Not that it matters to me, either way he makes me happy~\" She twitches as her head leans back with a strong sigh, another spurt spewing over the sand.\n\nShe then picks something from her pack beside her and tosses it over to you, letting you head back to Siz'Calit.", True)
-                            self.itemAdd(208)
+                            self.itemAdd(Item.BLO_BERRY)
                             self.hrs = 2
                             self.doEnd()
                     self.doListen = doListen
@@ -19918,13 +19937,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         elif chance == 3:
             self.outputMainText("Walking along the beach, you spot something shiny in the sand.", True)
-            self.itemAdd(206)
+            self.itemAdd(Item.TRINKET)
             self.hrs = 2
             self.doEnd()
 
         elif chance == 4:
             self.outputMainText("Combing the beach, you find something odd buried in the sand.", True)
-            self.itemAdd(207)
+            self.itemAdd(Item.COCK_CARV)
             self.hrs = 2
             self.doEnd()
 
@@ -19949,19 +19968,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if chance == 1:
             self.outputMainText("At the edge of the lake, knocking against the bank with the subtle waves, you spot a piece of cloth. Pulling it out, you let out an \"ew\" as long strands of clear slime drip from it. Nevertheless, you think it's a fantastic idea to hold onto it.\n\n(You should really get your kleptomania checked)", True)
-            self.itemAdd(213)
+            self.itemAdd(Item.WET_CLOTH)
             self.hrs = 2
             self.doEnd()
 
         elif chance == 2:
-            if (self.bag.getCount(219) >= 5):
+            if (self.bag.getCount(Item.FRESH_EGG) >= 5):
                 self.outputMainText("Walking along the bank of the lake, you spot an old lupan male getting some fishing gear ready beside his boat. To avoid passing by awkwardly, you approach and greet him.\n\n\"Why hello there!,\" he responds with a kind smile. \"Was hoping to catch some nice dinner, but I'm a little low on my bait so I'm just going on luck. It's been a while since I've been able to get me those things from the people down south...\"\n\nHis hand scratches at his rump, pulling your attention with it as you realize something quite odd. Instead of a normal fluffy wolf-like tail, a long, thick, scaly tail drags along the ground behind him, much like a lizard's. This man has obviously traveled a bit...\n\n\"If I could get maybe 5 of those eggs they kept plopping out, I'm sure one of them would be just what I need to really haul in some nice catch!\"\n\nAt this you realize that you actually have 5 such eggs on you right now. Would you like to offer them?", True)
                 self.buttonConfirm()
 
                 def doListen():
                     if (self.buttonChoice == 6):
                         self.outputMainText(f"Pausing his rambling for a moment, you mention how you have 5 such eggs on you and offer them to him. His eyes light up and he graciously takes them from you. Ducking into his boat, he pulls out an odd machine and begins to slip them into an insertion point that is perfectly fitted for such eggs. The machine churns a little and dings before popping out a slightly different egg. He does this {Math.ceil(Utils.percent() / 25) + 1} times, whereafter he lets out a happy yip as an egg decorated with pretty red hearts pops out.\n\n\"Well lookie at that, a superb specimen! Just what I needed to make my special bait that can catch all sorts of fish! Thank you so much, stranger, we'll be eating well for some time to come thanks to this.\" He pauses for a moment, trying to think how he could repay you. \"Umm... I don't have much to give, but I'll tell you what. I can give you the recipe to my secret bait. Since you seem to have access to these kinds of eggs, I'm sure you could do quite well with this recipe.\"\n\nHe proceeds to rattle off all the ingredients you need and how the process to mixing it goes. You try to keep up, but you only get some of what you think are the main points. However, you do kinda miss out on some of the 'diluting' instructions, so your concoction might be a tad strong...\n\nYou have gained: Strong Pheromone Recipe!\n\nYou thank each other again, but he seems to be quite eager to get out on the lake and use some of his fresh bait, wishing you farewell and good luck on your journey!", True)
-                        self.loseManyItem(219, 5)
+                        self.loseManyItem(Item.FRESH_EGG, 5)
                         self.knowPheromone = True
                         self.hrs = 3
                     else:
@@ -20025,7 +20044,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             else:
                 self.doMainText("\n\n\"Let's just say it's best to keep the pills to the cows.\"\n\nHe hands you a complimentary DairE Pill and nods you along.")
             self.displayMainText()
-            self.itemAdd(211)
+            self.itemAdd(Item.DAIRE_PILL)
             self.hrs = 2
             self.doEnd()
 
@@ -20355,7 +20374,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.teatSize += 5
                                 self.teatPump += 40
                                 self.udderPlay += 100
-                                self.addManyItem(501, 3)
+                                self.addManyItem(Item.MILK_JUG, 3)
                                 if (not self.dairyFarmBrand):
                                     self.dairyFarmBrand = True
                                 self.hrs += 13
@@ -20383,7 +20402,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     else:
                         self.doMainText("\"Alright, here you go friend!\" He rummages through one of his pockets in his overalls and pulls out a large pill, handing it to you. \"Come back later if you need any more!\"\n\nHe gives you a nod before heading back to his work, leaving you to head back to Softlik.", True)
                         self.doCoin(-30)
-                        self.itemAdd(211)
+                        self.itemAdd(Item.DAIRE_PILL)
                         self.hrs = 2
                 else:
                     self.doMainText("\"Well, come back again later if you change your mind. And have a nice day!\"\n\nHe gives you a nod before heading back to his work, leaving you to head back to Softlik.", True)
@@ -20437,7 +20456,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.outputMainText("\n\n\"Meanie. Why'd you go and scare me like that?\" She winks and sticks out her tongue at you.\n\nHer eyelids droop as her body shudders, the tail flicking wildly while the milk flow stutters with a strong burst. She lets out a low \"moo\" as she comes, at least partly enjoying some of her bovine endownments.\n\nShe takes a moment before she comes down from her high. \"Mmm... I'm just going to hang out here for a bit. Feel free to take the bottle from the machine. It's really fresh~\" She gives you a wink, rubbing her naked breasts as a bit more milk rushes through the tubes.")
                                     self.hrs = 2
                                     self.doSexP(2)
-                                    self.itemAdd(214)
+                                    self.itemAdd(Item.LON_MILK)
                                     self.doEnd()
                                 elif (self.malonRep == 2):
                                     self.outputMainText("\"O-Oh, umm...\" Her hands blindly wanders along the rail for her yellow shawl, picking it up and futily attempting to cover her large chest with it.\n\n\"I-I just got so full that I, umm...\" Her eyes glance from side to side. \"I-I know it's very much like a cow, but with all the work around here and how long it takes to do it manually...\" Sadness fills her face at having been caught, despite what you said before. \"D-Don't worry, I'll clean up now...\"\n\nHer ears drooping, her tail pushing against her dress trying to hide between her legs, she pulls the cups from her long nipples and lets the excess milk dribble off onto the floor. Turning away and trying to avoid any eyecontact, she wipes herself down with the yellow shawl and pulls up her shirt. She looks over her shoulder, her eyes to the ground, and says meekly, \"Sorry...\", before heading out the other end of the building, leaving you to head back to Softlik.")
@@ -20465,7 +20484,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                             elif (self.malonRep == 1):
                                                 self.doMainText("\"Hehe, thanks. Just a bit more to go...\" Her eyelids droop as her body shudders, the tail flicking wildly while the milk flow stutters with a strong burst. She lets out a low \"moo\" as she comes, at least partly enjoying some of her bovine endownments.\n\nShe takes a moment before she comes down from her high. \"Mmm... I'm just going to hang out here for a bit. Feel free to take the bottle from the machine. It's really fresh~\" She gives you a wink, rubbing her naked breasts as a bit more milk rushes through the tubes.", True)
                                                 self.doSexP(5)
-                                            self.itemAdd(214)
+                                            self.itemAdd(Item.LON_MILK)
                                             self.stats(0, 1, 0, 0)
                                         self.hrs = 2
                                         self.displayMainText()
@@ -20487,7 +20506,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                                     self.outputMainText(f"However, on your way out, you feel a tug on your {self.clothesTop()}.\n\nYou turn around to see the woman again, covering her chest with the yellow shawl she had left behind.\n\n\"Uhh... umm... Th-that was a bit rude of me. I'm sorry... You seem like you were genuinely trying to help.\" She fumbles a little as she tries to hold the shawl to her chest with a single arm, managing to let a nipple pop out with a blush before she gets it right. She holds out her free hand to shake yours. \"I'm Malon.\"\n\nYou take her hand and shake with the formal introduction.\n\n\"I'm... kinda ashamed for being such a... well, cow. Let's just say I liked them too much when I was younger and took some DairE Pills to act like them. And then I wound up being a little too much like them, resulting in some rather... bothersome attributes for a woman like me. Anyways, here. At least you should get something for your efforts.\"\n\nShe turns away and adjusts her shirt back into place so she doesn't have to worry about her shawl, though her naked breasts are still visible on either side of her body. Then she picks up the bucket you had used and pours it into one of the bottles meant for the milk of normal cows, handing it to you.\n\n\"I-It's not much, but that's all I can offer at the moment...\"\n\nAfter you take the milk, she says her goodbyes and tells you she'll be more welcoming from now on, leaving you to head back to Softlik.", True)
                                                     self.stats(1, 2, 1, 2)
                                                     self.doSexP(20)
-                                                    self.itemAdd(214)
+                                                    self.itemAdd(Item.LON_MILK)
                                                     self.hrs = 2
                                                     self.doEnd()
                                                 self.doListen = doListen
@@ -20500,7 +20519,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 elif (self.malonRep >= 1):
                                     self.outputMainText("Malon doesn't see you as you approach, her eyes closed as she hums pleasantly to herself. You pull up a bucket and a nearby stool, sliding it beneathe the tubes of the milking cups.\n\n\"Eep!\" She cries out as you interrupt her milking by pulling off the cups. She quickly settles down with a heavy blush on her face as she recognies you and your hands wrap around her 6-inch long nipples, wringing down their lengths with gentle tugs, oscillating one after the other. With a small smile, though still a slight blush, she allows you to take care of her milk for her.\n\nEvery few squirts from her tits, the fluid splashing against the metallic bucket, she lets out a gasp as her large rear twitches, her long bristly tipped tail jerking above. After a few minutes of gentle milking, the flow begins to increase, the milk spraying everywhere with each tug. She clenches her eyes shut as her face burns red. Her whole body shudders, causing her rump to jiggle and the heavy bags to jounce out of your hands. Her mouth yawns wide to let out a moan of ecstasy, but all that comes out is a long, low \"Moooooooo!\"\n\nShe takes a few moments to come down from her climax, heaving slightly, her breasts bobbing up and down. Then she leans over the rail, her tits squirting milk across your lap, as she kisses you on the forehead.\n\n\"Thanks for that\", she whispers. \"Feel free to take a bottle and fill it for your kind efforts.\"\n\nShe dozes off a little on the rail, her tail flicking back and forth contently as she reflects on her orgasm, her nipples dripping into the hay on the ground.\n\nNot wanting to disrupt her pleasant thoughts, you take a bottle of her milk and leave.", True)
                                     self.stats(1, 1, 1, 0)
-                                    self.itemAdd(214)
+                                    self.itemAdd(Item.LON_MILK)
                                     self.hrs = 2
                                     if (self.malonRep == 1):
                                         self.doNext()
@@ -20521,7 +20540,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                                     self.stats(0, 1, 0, 2)
                                                     self.doSexP(25)
                                                     self.malonRep = 3
-                                                    self.itemAdd(215)
+                                                    self.itemAdd(Item.LON_PENDANT)
                                                 self.doEnd()
                                             self.doListen = doListen
                                         self.doListen = doListen
@@ -20780,7 +20799,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                                         self.stats(0, 1, 0, 2)
                                                         self.doSexP(25)
                                                         self.malonRep = 3
-                                                        self.itemAdd(215)
+                                                        self.itemAdd(Item.LON_PENDANT)
                                                     self.doEnd()
                                                 self.doListen = doListen
                                             self.doListen = doListen
@@ -21218,10 +21237,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
                         def doListen():
                             self.doMainText("You both sigh as you try to stand up. The milk everywhere doesn't exactly help, flowing down from your bodies and making the ground even more slippery. Yet, you manage to lean against each other and eventually stand, giving each other one last kiss before parting.\n\n\"I'm surprised...\" Malon can't help but comment. \"You... You actually made a lot more milk than me... And it felt fantastic~\" She blushes at the thought, her long erect nipples pratically bare through the soaking wet white shirt. Then she looks around. \"Though... I guess we're worse than the cows... Not that I'm embarassed about that anymore but... We made quite a mess!\"\n\nWith a giggle, she steps over and grabs some empty milk jugs. She strategically places them on the floor, laying them down sideways. \"Howabout we just say some cows kicked over some 'filled' jugs,\" She says with a wink.\n\nYou aren't one to object and quickly depart in the opposite direction as Malon to ensure nobody notices what has transpired...", True)
-                            if (self.bag.hasItem(215)):
+                            if (self.bag.hasItem(Item.LON_PENDANT)):
                                 self.doMainText(" However, you notice a warmth from the pendant Malon had given you. Inspecting it, you notice it has been turned almost completely white, but somewhat pearlescant. A sort of milky complexion that looks like it's slowly flowing around the pendant, though nothing actually moves. Whatever the case may be, things seem lighter now, like you're able to, well, support your milky habits more easily...")
-                                self.loseManyItem(215, 1)
-                                self.itemAdd(252)
+                                self.loseManyItem(Item.LON_PENDANT, 1)
+                                self.itemAdd(Item.MILKY_PEND)
                             self.displayMainText()
                             self.hrs = 4
                             self.doSexP(20)
@@ -21230,13 +21249,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doListen = doListen
                     else:
                         self.outputMainText("Nah. Instead you pocket the stray bottle before you get caught and head back to Softlik.", True)
-                        self.itemAdd(500)
+                        self.itemAdd(Item.MILK_BOTTLE)
                         self.hrs = 2
                         self.doEnd()
                 self.doListen = doListen
             else:
                 self.outputMainText("Pocketing it before being caught, you head back to Softlik.")
-                self.itemAdd(500)
+                self.itemAdd(Item.MILK_BOTTLE)
                 self.hrs = 2
                 self.doEnd()
 
@@ -21245,7 +21264,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if chance == 1:
             self.outputMainText("Growing on the wall of the cave, you find a small, odd looking mushroom. It has a red cap speckled with a few large white dots. You pluck it.", True)
-            self.itemAdd(212)
+            self.itemAdd(Item.RED_MUSH)
             self.hrs = 2
             self.doEnd()
 
@@ -21422,7 +21441,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doListen = doListen
 
         elif chance == 3:
-            if (self.bag.hasItem(254)):
+            if (self.bag.hasItem(Item.LANTERN)):
                 self.outputMainText("Normally this cave is too dark to go inside. However, you have a lantern that can provide enough light to venture within. Would you like to go inside?", True)
                 self.buttonConfirm()
 
@@ -21453,7 +21472,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (chance == 1):
             self.outputMainText("You head to the den, but this time Silandrias isn't there to greet you at the entrance. Just checking to make sure she's not there, you head inside to see if you can find her.\n\nYou quickly discover this was a bad idea.\n\nThe maze of tunnels is so confusing that you wind up lost and wandering about. You have no idea where you are going, though you intended to meet her in a main room, and instead find yourself in some sort of storage room. It's obviously been a long time since it has really been used, there's hardly any items in it. However, you do spot a strange piece of leather. Holding it up and eyeing it, the leather strap is circular with a few large holes. Thinking more carefully, you realize this would fit perfectly around the base of Silandrias' tail, with room for the spikes, and tie tightly.\n\nWith a shrug, you take it with you as you may find some use for it eventually.", True)
             self.hrs = 4
-            self.itemAdd(229)
+            self.itemAdd(Item.LEATHER_STRAP)
             self.doEnd()
 
         elif (self.silRep == 6):
@@ -21469,7 +21488,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doNext()
 
             def doListen():
-                if (self.stash.hasItem(232) or self.stash.hasItem(233) or self.stash.hasItem(234) or self.stash.hasItem(235) or self.stash.hasItem(236)):
+                if (self.stash.hasItem(Item.FLYING_CARP) or self.stash.hasItem(Item.A_GRAV_ROCK) or self.stash.hasItem(Item.REIN_CHARM) or self.stash.hasItem(Item.FELL_ROD) or self.stash.hasItem(Item.RECEPT_BELL)):
                     self.outputMainText("While you may potentially want another one of Silandrias' magical goodies, you recall you left the current one you are borrowing back in your stash. You wouldn't want to take advantage of a waiting mother (you wouldn't, RIGHT?!), so you decline and thank her kindly before heading out.", True)
                     self.doEnd()
                     return
@@ -21477,19 +21496,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.showButtons(ButtonList(0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1))
                 tempDict = {12: "No Thanks"}
                 self.doMainText("\"Anything you might be interested in?\"", True)
-                if (not self.bag.hasItem(232)):
+                if (not self.bag.hasItem(Item.FLYING_CARP)):
                     tempDict[2] = "Flying Carp"
                     self.doMainText("\n\nFlying Carpet - A flying carpet just like Naeru and Daeru used to help Silandrias, it can help you get from town to town.")
-                if (not self.bag.hasItem(233)):
+                if (not self.bag.hasItem(Item.A_GRAV_ROCK)):
                     tempDict[5] = "A-Grav Rock"
                     self.doMainText("\n\nAnti-Gravity Rock - A small rock that floats in the air and can make you feel a little floaty as well if you hold it.")
-                if (not self.bag.hasItem(234)):
+                if (not self.bag.hasItem(Item.REIN_CHARM)):
                     tempDict[6] = "Rein Charm"
                     self.doMainText("\n\nReindeer Charm - A large sapphire gem carved in the shape of a reindeers head with large antlers, it can fill you with the essence of the reindeer mother.")
-                if (not self.bag.hasItem(235)):
+                if (not self.bag.hasItem(Item.FELL_ROD)):
                     tempDict[7] = "Fell Rod"
                     self.doMainText("\n\nFellatio Rod - A lewd-looking rod, it is not a sexual toy but rather a weapon that can drain the life-force from an opponent.")
-                if (not self.bag.hasItem(236)):
+                if (not self.bag.hasItem(Item.RECEPT_BELL)):
                     tempDict[10] = "Recept Bell"
                     self.doMainText("\n\nReception Bell - A small cowbell on a collar, wearing it makes you more receptive to learning and outside influences.")
                 self.displayMainText()
@@ -21502,40 +21521,40 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         return
 
                     self.doMainText("You are, in fact, interested in something. ", True)
-                    if (self.bag.hasItem(232) or self.bag.hasItem(233) or self.bag.hasItem(234) or self.bag.hasItem(235) or self.bag.hasItem(236)):
+                    if (self.bag.hasItem(Item.FLYING_CARP) or self.bag.hasItem(Item.A_GRAV_ROCK) or self.bag.hasItem(Item.REIN_CHARM) or self.bag.hasItem(Item.FELL_ROD) or self.bag.hasItem(Item.RECEPT_BELL)):
                         self.doMainText("Handing back the ", True)
-                        if (self.bag.hasItem(232)):
+                        if (self.bag.hasItem(Item.FLYING_CARP)):
                             self.doMainText("Flying Carpet")
-                            self.loseManyItem(232, 1)
-                        if (self.bag.hasItem(233)):
+                            self.loseManyItem(Item.FLYING_CARP, 1)
+                        if (self.bag.hasItem(Item.A_GRAV_ROCK)):
                             self.doMainText("Anti-Gravity Rock")
-                            self.loseManyItem(233, 1)
-                        if (self.bag.hasItem(234)):
+                            self.loseManyItem(Item.A_GRAV_ROCK, 1)
+                        if (self.bag.hasItem(Item.REIN_CHARM)):
                             self.doMainText("Reindeer Charm")
-                            self.loseManyItem(234, 1)
-                        if (self.bag.hasItem(235)):
+                            self.loseManyItem(Item.REIN_CHARM, 1)
+                        if (self.bag.hasItem(Item.FELL_ROD)):
                             self.doMainText("Fellatio Rod")
-                            self.loseManyItem(235, 1)
-                        if (self.bag.hasItem(236)):
+                            self.loseManyItem(Item.FELL_ROD, 1)
+                        if (self.bag.hasItem(Item.RECEPT_BELL)):
                             self.doMainText("Reception Bell")
-                            self.loseManyItem(236, 1)
+                            self.loseManyItem(Item.RECEPT_BELL, 1)
                         self.doMainText(" you borrowed before, you thank her graciously again for letting you try it out. ")
                     self.doMainText("Deciding you would like to test the ")
                     if self.buttonChoice == 2:
                         self.doMainText("Flying Carpet")
-                        self.itemAdd(232)
+                        self.itemAdd(Item.FLYING_CARP)
                     elif self.buttonChoice == 5:
                         self.doMainText("Anti-Gravity Rock")
-                        self.itemAdd(233)
+                        self.itemAdd(Item.A_GRAV_ROCK)
                     elif self.buttonChoice == 6:
                         self.doMainText("Reindeer Charm")
-                        self.itemAdd(234)
+                        self.itemAdd(Item.REIN_CHARM)
                     elif self.buttonChoice == 7:
                         self.doMainText("Fellatio Rod")
-                        self.itemAdd(235)
+                        self.itemAdd(Item.FELL_ROD)
                     elif self.buttonChoice == 10:
                         self.doMainText("Reception Bell")
-                        self.itemAdd(236)
+                        self.itemAdd(Item.RECEPT_BELL)
                     self.outputMainText(", Silandrias hands it to you with a smile.\n\n\"Hope you enjoy it~\" She gives you a hug as you thank her for giving access to her magical treasures that she has been hoarding. \"It's quite alright dear, I want to share everything with you~\"\n\nYou soon finish saying your goodbyes to both her and the pups and make your way out.")
                     self.doEnd()
                 self.doListen = doListen
@@ -21650,11 +21669,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempDict[1] = "Fuck"
             if (self.vagTotal > 0 and self.vagLimit() > 22 + self.silPreg / 24):
                 tempDict[3] = "Be Fucked"
-            if (self.bag.hasItem(229) and not self.silTied):
+            if (self.bag.hasItem(Item.LEATHER_STRAP) and not self.silTied):
                 tempDict[5] = "Tie Tail"
             if (self.silTied):
                 tempDict[5] = "Untie"
-            if (self.bag.hasItem(230) and self.silPreg > 30):
+            if (self.bag.hasItem(Item.EGGCELERATOR) and self.silPreg > 30):
                 tempDict[7] = "Eggcelerator"
             self.doButtonChoices(tempDict)
 
@@ -21731,14 +21750,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doMainText("you take a flying carpet up to her nethers, thanks to her giant belly putting them a tad out of your reach, and ")
                         self.doMainText("your fingers play with the latch until you can pull it lose and slip it off of her tail. Once removed, you see the base of her tail swell slightly as the eggs inside settle against the passageway. However, none seem to get any further, not exiting her tail at all like her previous pregnancies. You inspect her rump to make sure nothing is wrong, your poking and prodding only making her giggle at the other end, but she seems to be perfectly fine.\n\nAssuming it's natural, you leave her backside and come around to her front to spend some time with her, chit-chatting and petting Naeru and Daeru before you eventually head back out.")
                         self.silTied = False
-                        self.itemAdd(229)
+                        self.itemAdd(Item.LEATHER_STRAP)
                     else:
                         self.doMainText("Even though she doesn't seem to be constantly laying from her tail now, or at all for that matter, you thinkg it's a good idea to attach the leather strap anyways. Silandrias nods and trusts you, lifting up her tail ", True)
                         if (self.silPreg / 100 > self.tallness / 12):
                             self.doMainText("as you take a flying carpet up to her nethers, thanks to her giant belly putting them a tad out of your reach, ")
                         self.doMainText("and gives you a nice view of her engorged bits in the process. The leather strap easily slips up the length of her tail and tightens comfortably around the base made perfectly for such a task.\n\nYou take a few minutes to check the straps to ensure no blood is being cut off and that even if she were dropping eggs through that passage, they wouldn't be able to push through. Leaving her backside like that, you come around to her face and spend some time with her chit-chatting and petting Naeru and Daeru before you eventually head back out.")
                         self.silTied = True
-                        self.loseManyItem(229, 1)
+                        self.loseManyItem(Item.LEATHER_STRAP, 1)
                     self.hrs = 3
                     self.displayMainText()
                     self.doEnd()
@@ -21757,7 +21776,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText(" Gaping and stretched from her enormous belly, you nearly lose your whole arm within as you insert the eggcelerator, making it more difficult to pull out than administering the dose.")
                     self.outputMainText("\n\nYou can hear the stuff rumble in her belly as it dissolves, almost immediately noting an increase in production. However, nothing presses back out, leaving her to grow even larger. Spending a couple of hours to make sure she's alright and provide her and your children some company, everything seems well and you can be on your way.")
                     self.silRate += 1
-                    self.loseManyItem(230, 1)
+                    self.loseManyItem(Item.EGGCELERATOR, 1)
                     self.hrs = 3
                     self.doEnd()
                 elif self.buttonChoice == 9:
@@ -22039,11 +22058,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 tempDict[1] = "Fuck"
             if (self.vagTotal > 0 and self.vagLimit() > 22 + self.silPreg / 24):
                 tempDict[3] = "Be Fucked"
-            if (self.bag.hasItem(229) and not self.silTied):
+            if (self.bag.hasItem(Item.LEATHER_STRAP) and not self.silTied):
                 tempDict[5] = "Tie Tail"
             if (self.silTied):
                 tempDict[5] = "Untie"
-            if (self.bag.hasItem(230) and self.silPreg > 30):
+            if (self.bag.hasItem(Item.EGGCELERATOR) and self.silPreg > 30):
                 tempDict[7] = "Eggcelerator"
             self.doButtonChoices(tempDict)
 
@@ -22211,11 +22230,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.silTied):
                         self.doMainText("You decide to let the eggs flow freely once more. She leans against the wall again to give you easy access, allowing you to quickly untie the leather strap and slip it off. Immediately after you loosen it up, the bulge at the base of her tail shifts, making her gasp and her tail whip to the side as the egg within moves and starts its way out. Silandrias lets out a relaxed sigh as the egg is deposited upon the tunnel floor, her belly already looks a little smaller.\n\nYet, despite how much she has built up, no more eggs attempt to exit right away. Staying with her a bit longer, she does eventually lay more, though at her normal cycle from before rather than trying to catch up, leaving her womb swollen in the meantime. Otherwise, she is doing very well, allowing you to head back out.", True)
                         self.silTied = False
-                        self.itemAdd(229)
+                        self.itemAdd(Item.LEATHER_STRAP)
                     else:
                         self.doMainText("You think it's a good idea to halt the frequent laying process from her tail as you take out the leather strap that you had found within the labyrinth of tunnels of her home. She doesn't seem to recognize it either, since she says she still has no idea what a lot of the things in her den are for, oddly. Nevertheless, she bends toward a wall and leans against it, lifting up her tail and giving you a nice view of her firm rump as the loin cloth rests against the curves. The leather strap easily slips up the length of her tail and tightens comfortably around the base. It seems to be perfectly made for such a situation.\n\nYou take a few minutes to check the straps to ensure no blood is being cut off and notice she's starting to breath slightly quicker against the wall. She appears to be preparing for an oncoming egg as her tail reflexively whips about to lay it. However, as she pushes her rump back further, trying to press the egg through her tail's vaginal passage, the bulging egg stops right at the strap. Unable to go any further, it sits there, making the base of her tail look swollen.\n\nAfter a few moments pass, Silandrias collects herself and slowly stands. She jerks a bit at the odd sensation of the egg stuck inside of her, but she seems to manage just fine. With a few awkward steps, she gets used to the backed up passage inside of her, her belly already looking a bit bigger from the lack of expulsion.\n\nTying her tail seems to have successfully halted her laying process without any issues. Sticking around a while longer to confirm she is fine, you're soon on your way.", True)
                         self.silTied = True
-                        self.loseManyItem(229, 1)
+                        self.loseManyItem(Item.LEATHER_STRAP, 1)
                     self.hrs = 3
                     self.displayMainText()
                     self.doEnd()
@@ -22240,7 +22259,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doMainText("\n\nThough the chemical may work differently on her, it seems to do its duty. She smiles at you, feeling her fertility blossoming more rapidly. \"I'm sure this will make the process move along faster...\"\n\nYou stay with her another couple of hours to make sure she's alright and to spend some time together, then you head back out to continue on.")
                     self.silRate += 1
                     self.doLust(Math.floor(self.lib / 5), 0)
-                    self.loseManyItem(230, 1)
+                    self.loseManyItem(Item.EGGCELERATOR, 1)
                     self.displayMainText()
                     self.hrs = 3
                     self.doEnd()
@@ -22286,9 +22305,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if self.buttonChoice == 1:
                     self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
                     tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-                    if (self.bag.hasItem(207)):
+                    if (self.bag.hasItem(Item.COCK_CARV)):
                         tempDict[9] = "Cock Carv"
-                    if (self.bag.hasItem(500) or self.bag.hasItem(501)):
+                    if (self.bag.hasItem(Item.MILK_BOTTLE) or self.bag.hasItem(Item.MILK_JUG)):
                         tempDict[11] = "Milk Bottle"
                     self.outputMainText("What would you like to do with the statue's open mouth?", True)
                     self.doButtonChoices(tempDict)
@@ -22332,19 +22351,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         elif self.buttonChoice == 9:
                             self.doMainText("You stick the cock carving into the statue's open mouth. It seems to be a perfect fit and a rather lewd activity. Not exactly pleasurable for the statue, but a nice sex-act nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
                             self.doSexP(15)
-                            self.loseManyItem(207, 1)
+                            self.loseManyItem(Item.COCK_CARV, 1)
                             self.hrs = 2
                         elif self.buttonChoice == 11:
                             self.doMainText("You pour the milk into the statue's open mouth. The sweet fluids flow down inside of her and she seems pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
-                            if (self.bag.hasItem(254) or self.stash.hasItem(254)):
+                            if (self.bag.hasItem(Item.LANTERN) or self.stash.hasItem(Item.LANTERN)):
                                 self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
                             else:
                                 self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and you're left having to head back to town.")
-                                self.itemAdd(254)
-                            if (self.bag.hasItem(500)):
-                                self.loseManyItem(500, 1)
+                                self.itemAdd(Item.LANTERN)
+                            if (self.bag.hasItem(Item.MILK_BOTTLE)):
+                                self.loseManyItem(Item.MILK_BOTTLE, 1)
                             else:
-                                self.loseManyItem(501, 1)
+                                self.loseManyItem(Item.MILK_JUG, 1)
                             self.hrs = 3
                         self.displayMainText()
                         self.doEnd()
@@ -22352,9 +22371,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif self.buttonChoice == 3:
                     self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
                     tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-                    if (self.bag.hasItem(207)):
+                    if (self.bag.hasItem(Item.COCK_CARV)):
                         tempDict[9] = "Cock Carv"
-                    if (self.bag.hasItem(500) or self.bag.hasItem(501)):
+                    if (self.bag.hasItem(Item.MILK_BOTTLE) or self.bag.hasItem(Item.MILK_JUG)):
                         tempDict[11] = "Milk Bottle"
                     self.outputMainText("What would you like to do with the statue's ear?", True)
                     self.doButtonChoices(tempDict)
@@ -22362,11 +22381,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     def doListen():
                         if self.buttonChoice == 1:
                             self.doMainText("You lick the statue's ear. The subtle and sensual act nearly makes the statue shiver in delight and she seems rather pleased...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
-                            if (self.bag.hasItem(254) or self.stash.hasItem(254)):
+                            if (self.bag.hasItem(Item.LANTERN) or self.stash.hasItem(Item.LANTERN)):
                                 self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
                             else:
                                 self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.")
-                                self.itemAdd(254)
+                                self.itemAdd(Item.LANTERN)
                             self.hrs = 3
                         elif self.buttonChoice == 3:
                             self.doMainText(f"You attempt to poke the statue's ear. Why would you do such a thing? Would you like someone poking your ear? The statue sure doesn't seem to like it.\n\nYou hear a whir and move back, the statue's face looking somewhat cross. A green-ish glowing mist exudes from the statue and quickly wraps around you, sinking into your {self.skinDesc()}.", True)
@@ -22399,7 +22418,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             if (self.ment > 60):
                                 self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
                             self.fertilityStatueCurse = 48
-                            self.loseManyItem(207, 1)
+                            self.loseManyItem(Item.COCK_CARV, 1)
                             self.minLust += 10
                             self.doLust(0, 0)
                             self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
@@ -22416,10 +22435,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             if (self.ment > 60):
                                 self.doMainText(" You have a feeling that the statue is trying to teach you how to really pleasure a woman...")
                             self.fertilityStatueCurse = 48
-                            if (self.bag.hasItem(500)):
-                                self.loseManyItem(500, 1)
+                            if (self.bag.hasItem(Item.MILK_BOTTLE)):
+                                self.loseManyItem(Item.MILK_BOTTLE, 1)
                             else:
-                                self.loseManyItem(501, 1)
+                                self.loseManyItem(Item.MILK_JUG, 1)
                             self.minLust += 10
                             self.doLust(0, 0)
                             self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
@@ -22430,9 +22449,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif self.buttonChoice == 6:
                     self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
                     tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-                    if (self.bag.hasItem(207)):
+                    if (self.bag.hasItem(Item.COCK_CARV)):
                         tempDict[9] = "Cock Carv"
-                    if (self.bag.hasItem(500) or self.bag.hasItem(501)):
+                    if (self.bag.hasItem(Item.MILK_BOTTLE) or self.bag.hasItem(Item.MILK_JUG)):
                         tempDict[11] = "Milk Bottle"
                     self.outputMainText("What would you like to do with the statue's four breasts?", True)
                     self.doButtonChoices(tempDict)
@@ -22464,7 +22483,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         elif self.buttonChoice == 9:
                             self.doMainText("You wedge a cock carving in between the statue's two sets of breast. It fits relatively well and seems like a rather lewd act. Not exactly pleasurable for the statue, but quite kinky nonetheless. You feel as though you're slightly more experienced with this practice and the statue's face seems happy with it as well.\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.", True)
                             self.doSexP(15)
-                            self.loseManyItem(207, 1)
+                            self.loseManyItem(Item.COCK_CARV, 1)
                             self.hrs = 2
                         elif self.buttonChoice == 11:
                             self.doMainText("You pour the milk out over the breasts until they're completely covered in the silky white fluid and the nipples drip with the stuff as though they are lactating. The statue seems very pleased with this idea and you hear gears turning within.\n\nAt the base of the statue, a hidden compartment pops out.", True)
@@ -22475,19 +22494,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                 self.knowBazoomba = True
                             self.doMainText("\n\nThen, a glint of light obscures your view for just a moment and when it's gone you find yourself outside of the valley. The statue must have teleported you, preventing you from trying anything else. For now, you head back to town.")
                             self.hrs = 2
-                            if (self.bag.hasItem(500)):
-                                self.loseManyItem(500, 1)
+                            if (self.bag.hasItem(Item.MILK_BOTTLE)):
+                                self.loseManyItem(Item.MILK_BOTTLE, 1)
                             else:
-                                self.loseManyItem(501, 1)
+                                self.loseManyItem(Item.MILK_JUG, 1)
                         self.displayMainText()
                         self.doEnd()
                     self.doListen = doListen
                 elif self.buttonChoice == 10:
                     self.showButtons(ButtonList(1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0))
                     tempDict = {1: "Lick", 3: "Poke", 8: "Leave"}
-                    if (self.bag.hasItem(207)):
+                    if (self.bag.hasItem(Item.COCK_CARV)):
                         tempDict[9] = "Cock Carv"
-                    if (self.bag.hasItem(500) or self.bag.hasItem(501)):
+                    if (self.bag.hasItem(Item.MILK_BOTTLE) or self.bag.hasItem(Item.MILK_JUG)):
                         tempDict[11] = "Milk Bottle"
                     self.outputMainText("What would you like to do with the statue's gaping pussy?", True)
                     self.doButtonChoices(tempDict)
@@ -22506,20 +22525,20 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.hrs = 1
                         elif self.buttonChoice == 9:
                             self.doMainText("You slide a cock carving up into the statue's open pussy. The penis-like object seems to be a perfect fit and you hear a click as the thing unlocks something within. The statue seems rather pleased with the pleasurable gesture...\n\nA loud rumbling echoes from behind the statue. The ground itself shakes, the vegetation before you parting with the soil beneath. You hear trees crack and crunch against each other as they're pushed aside. Birds fly up and away to escape the tremors. And soon enough, you're staring down into an elaborate entryway buried beneath the ground. Stone pillars and fantastic carvings line the walls, leading up to a large sturdy door.\n\nOnce the process settles, you move in to inspect it. You can't read anything that adorns the walls or any suggestion as to how to open the large door. All you can see is a large opening that might one day be a keyhole, but is currently full of static and not yet loaded into the game.", True)
-                            if (self.bag.hasItem(254) or self.stash.hasItem(254)):
+                            if (self.bag.hasItem(Item.LANTERN) or self.stash.hasItem(Item.LANTERN)):
                                 self.doMainText("\n\nYou have already taken the lantern from here, so there's not much else you can do. For now you leave the statue and this hidden entrance and head back to town.")
                             else:
                                 self.doMainText("\n\nThe only other thing of note is the lantern that hangs beside the door. It sheds a decent amount of light and may be useful in accessing some darker areas, so you take it, just in case. Otherwise, you can't seem to find anything else to do with this hidden entrance and your left having to head back to town.")
-                                self.itemAdd(254)
-                            self.loseManyItem(207, 1)
+                                self.itemAdd(Item.LANTERN)
+                            self.loseManyItem(Item.COCK_CARV, 1)
                             self.hrs = 3
                         elif self.buttonChoice == 11:
                             self.doMainText("You push the bottle of milk up against the statue's pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you're looking rather pregnant!\n\nThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...", True)
                             self.pregArray.push(True, 504, 208, 200, 0)
-                            if (self.bag.hasItem(500)):
-                                self.loseManyItem(500, 1)
+                            if (self.bag.hasItem(Item.MILK_BOTTLE)):
+                                self.loseManyItem(Item.MILK_BOTTLE, 1)
                             else:
-                                self.loseManyItem(501, 1)
+                                self.loseManyItem(Item.MILK_JUG, 1)
                             self.hrs = 2
                         self.displayMainText()
                         self.doEnd()
@@ -22532,19 +22551,19 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         elif chance == 2:
             self.outputMainText("With all the flowers in this vibrant valley, one in particular seems to lure you in. The scent caught your nose from quite the distance, so delightfully fragrant, and yet its petals are merely black with white stripes, not nearly as colorful as the rest.\n\nHowever, the smell alone is worth holding on to, so you pick the flower and slip it into your bag.", True)
-            self.itemAdd(255)
+            self.itemAdd(Item.FRAG_FLOWER)
             self.hrs = 2
             self.doEnd()
 
         elif chance == 3:
             self.outputMainText("Strolling through the pleasant valley, a bush catches your eye. Its fruit are large and round, looking quite delicious. You find a ripe one and pluck it, storing it for later when you're hungry.", True)
-            self.itemAdd(251)
+            self.itemAdd(Item.PLUMP_QUAT)
             self.hrs = 2
             self.doEnd()
 
         elif chance == 4:
             self.outputMainText(f"While exploring the valley, you step on something rather hard. Quickly lifting your {self.legDesc(9)}, you find a small item sticking up out of the ground. With a tear-drop shape, it seems to be completely made of wood and rather old. Its surface is engraved with depictions of tree-like people losing their limbs and growing up towards the sun at the tip of the tear-drop.\n\nThis might be of some use, so you pocket it.", True)
-            self.itemAdd(249)
+            self.itemAdd(Item.TREANTS_TEAR)
             self.hrs = 2
             self.doEnd()
 
@@ -23038,27 +23057,27 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             dmg = Math.floor(Math.random() * 10) + 1 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
             self.outputMainText(f"You punch the {self.enemy.name} with your fists, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
-        elif self.weapon == 116:
+        elif self.weapon == Item.DAGGER:
             dmg = Math.floor(Math.random() * 8) + 5 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
             self.outputMainText(f"You lunge at the {self.enemy.name} and stab it with your dagger, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
-        elif self.weapon == 117:
+        elif self.weapon == Item.HAMMER:
             dmg = Math.floor(Math.random() * 19) + 2 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
             self.outputMainText(f"You swing your hammer at the {self.enemy.name}, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
-        elif self.weapon == 118:
+        elif self.weapon == Item.SABER:
             dmg = Math.floor(Math.random() * 16) + 10 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
             self.outputMainText(f"You slash at the {self.enemy.name} with your saber, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
-        elif self.weapon == 119:
+        elif self.weapon == Item.WHIP:
             dmg = Math.floor(Math.random() * 7) + 12 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
             self.outputMainText(f"You lash at the {self.enemy.name} with your whip, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
-        elif self.weapon == 127:
+        elif self.weapon == Item.TAIL_SPIKE:
             dmg = Math.floor(Math.random() * 11) + 10 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
             self.outputMainText(f"You whip around your tail and smack the {self.enemy.name} with the spike at the end, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
-        elif self.weapon == 235:
+        elif self.weapon == Item.FELL_ROD:
             dmg = Math.floor(Math.random() * 5) + 1 + Math.ceil(self.ment / 10)
             if (self.ment < 30):
                 self.outputMainText(f"You awkwardly stuff the wide-rimmed head of the rod into your mouth, sucking as hard as you can even though you only manage drain {dmg} HP from the {self.enemy.name}.", True)
@@ -24620,10 +24639,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     if self.eggType == 0:
                         self.doMainText(f"\n\nYou pause for a moment as you feel something drop within your womb. Groaning a bit, you {self.legVerb(1)} your {self.legDesc(2)} in preparation, a hand pushing your {self.clothesBottom()} aside and helping spread {self.vulvaDesc()} nether-lips. You hold your breath and with a quick push, you feel {self.oneYour(2)} cunt{self.plural(2)} stretch wide. Your fingers feel the hard shell beginning to crown and with a grunt it slips out into your palm.\n\nYou take a moment to gather yourself, slipping the smooth, round egg through your slit, still wet from your inner-slime, before you finally pull it out from your {self.clothesBottom()}. Drying it off, you have something to snack on later.")
-                        self.itemAdd(219)
+                        self.itemAdd(Item.FRESH_EGG)
                     elif self.eggType == 1:
                         self.doMainText(f"\n\nYou pause for a moment as you feel something drop within your womb. Groaning a bit, you {self.legVerb(1)} your {self.legDesc(2)} in preparation, a hand pushing your {self.clothesBottom()} aside and helping spread {self.vulvaDesc()} nether-lips. You hold your breath and with a quick push, you feel {self.oneYour(2)} cunt{self.plural(2)} stretch wide. Your fingers feel the soft shell beginning to crown and with a grunt it slips out into your palm.\n\nYou take a moment to gather yourself, slipping the squishy round egg through your slit, still wet from your inner-slime, before you finally pull it out from your {self.clothesBottom()}. Drying it off, you have something to snack on later.")
-                        self.itemAdd(253)
+                        self.itemAdd(Item.BUG_EGG)
             elif (eggAmount > 1):
                 if (Utils.percent() < self.ment / 2 + 20 - 4 * eggAmount):
                     if self.eggType == 0:
@@ -24633,10 +24652,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 else:
                     if self.eggType == 0:
                         self.doMainText(f"\n\nHaving been distracted and unable to lay for such a long time, you pause for a moment as you prepare for the objects that have built up within your womb. Groaning a bit, you {self.legVerb(1)} your {self.legDesc(2)} in preparation, a hand pushing your {self.clothesBottom()} aside and helping spread {self.vulvaDesc()} nether-lips. You hold your breath and with a quick push, you feel {self.oneYour(2)} cunt{self.plural(2)} stretch wide. Your fingers feel the hard shell beginning to crown and with a grunt it slips out into your palm. You place it down beside you and continue to lay until you are completely empty.\n\nYou take a moment to gather yourself, slipping the last smooth, round egg through your slit, still wet from your inner-slime, before you finally pull it out from your {self.clothesBottom()}. Drying them all off, you have some snacks for later.")
-                        self.addManyItem(219, eggAmount)
+                        self.addManyItem(Item.FRESH_EGG, eggAmount)
                     elif self.eggType == 1:
                         self.doMainText(f"\n\nHaving been distracted and unable to lay for such a long time, you pause for a moment as you prepare for the objects that have built up within your womb. Groaning a bit, you {self.legVerb(1)} your {self.legDesc(2)} in preparation, a hand pushing your {self.clothesBottom()} aside and helping spread {self.vulvaDesc()} nether-lips. You hold your breath and with a quick push, you feel {self.oneYour(2)} cunt{self.plural(2)} stretch wide. Your fingers feel the soft shell beginning to crown and with a grunt it slips out into your palm. You place it down beside you and continue to lay until you are completely empty.\n\nYou take a moment to gather yourself, slipping the last squishy round egg through your slit, still wet from your inner-slime, before you finally pull it out from your {self.clothesBottom()}. Drying them all off, you have some snacks for later.")
-                        self.addManyItem(253, eggAmount)
+                        self.addManyItem(Item.BUG_EGG, eggAmount)
 
         if (self.cockSnakePreg > 0):
             if (self.cockSnakePreg - time <= 0):
@@ -25809,7 +25828,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (self.dominant == Race.BUG and self.bugAffinity > secondTail + 10 and self.tail > 1 and self.tail != 12):
                 self.tail = 12
                 self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it bloats up, growing nearly as thick as your waist and nearly as stout. It's so big and weighty with flesh that you can hardly move it, merely resting against your {self.buttDesc()} butt. And at the tip where it's rather blunt, you can feel another hole. It's not terribly large, but it looks large enough to fit a small-ish egg, your finger able to easily poke up inside to feel the warm moist interior. If you were to venture a guess, it seems more like an ovipositor than an actual tail, though such a large change to your anatomy would be impossible, so what could it be for?")
-            if (self.weapon == 127 and self.tail != 4 and self.tail != 5 and self.tail != 6 and self.tail != 8):
+            if (self.weapon == Item.TAIL_SPIKE and self.tail != 4 and self.tail != 5 and self.tail != 6 and self.tail != 8):
                 self.weapon = 10
 
         # Wings change
@@ -26563,7 +26582,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.lactation = 20
                 if (self.udders):
                     self.udderLactation = 20
-            if ((self.lactation < 3000 or self.udderLactation < 3000 and self.udders) and self.bag.hasItem(252)):
+            if ((self.lactation < 3000 or self.udderLactation < 3000 and self.udders) and self.bag.hasItem(Item.MILKY_PEND)):
                 self.doMainText(" ...However a few minutes later you begin to squirt again, soaking your outfit. The milky pendant feels warmer than usual, suffusing its essence back into your body and preventing you from being less drippy...")
                 self.lactation = 3000
                 if (self.udders):
@@ -26611,6 +26630,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 extra += 1
                 i += 1
             for i in range(0, self.pregArray.length, 5):
+                # TODO: I'm pretty sure this is pregnancy time, move this elsewhere
                 if (not self.pregArray[i]):
                     if erace == 1:
                         self.pregArray[i + 2] = 140 + Math.floor(Utils.percent() / 5) + extra * 70
@@ -26784,14 +26804,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.calfChildren += birthNumber
         elif pregnancyType == 200:
             self.doMainText(f" It doesn't take much effort as you feel a round object roll out of {self.oneYour(2)} {self.vulvaDesc()} cunt{self.plural(2)} with a wet plop. You attempt to look around your body to see what it is, but you don't have much time before another squeezes through your cervix, demanding your attention to get back to pushing.\n\nThere's not much of a rest in between contractions to see what is coming out exactly, but all you can tell is that there are a lot. At least a dozen; although it's impossible to keep track amidst all the birthing. It's not until the very last one exits that you're given a long enough reprieve to actually look...\n\nYou seem to be just in time to spot the clear, jelly-like egg unravel around something pink in the center. The pink thing tumbles out from the egg, spreading apart into several small tentacles. Eight, to be exact. And in the center of them is a cute little girl. Not quite a baby, just a really small child, no taller than half a foot. You can hear her giggle a little as she kisses your thighs, thanking you a little before wiggling her way away from you.\n\nYour {self.legDesc(2)} are too weak at the moment to chase after her, but you can see a trail of slime that all of the others had used. They seem to be headed in the same direction: back to the beach where you had obtained them.")
-            self.itemAdd(217)
+            self.itemAdd(Item.EGG_JELLY)
         elif pregnancyType == 201:
             self.doMainText(f" However, it takes less effort than you thought possible as small hands manually spread you wider and then anchor themselves further and further out. Two tall, narrow ears pop out {self.legWhere(1)} your {self.legDesc(2)}, your slime forming a web between them. In another moment, an entire body rolls out of you, wet and almost covered in white fur, around two feet tall.\n\nHer well-developed chest wobbles about as she turns to look at you with am absolutely naughty grin. Then she dashes off, hopping away with her large feet and one hand still jerking furiously between her legs...\n\nSeems like you had obtained a horny stowaway during your time as a giant, though you're unsure if it was an accident on your part or intentional on hers... Shortly after, however, you realize she had left something behind, fishing it out after having been caught between your {self.vulvaDesc()} pussy-lips. ")
-            self.itemAdd(222)
+            self.itemAdd(Item.KINKY_CARR)
         elif pregnancyType == 202:
             self.doMainText(f" However, it takes less effort than you thought possible as small hands manually spread you wider and then anchor themselves further and further out. Two tall, narrow ears pop out {self.legWhere(1)} your {self.legDesc(2)}, your slime forming a web between them. In another moment, an entire body rolls out of you, wet and almost covered in white fur, around two feet tall.\n\nHis hand still on his pointy prick, a strand of cum drooling from its tip back to your pussy, he turns to look at you with am absolutely naughty grin. Then he dashes off, hopping away with his large feet and one hand still jerking furiously between his legs...\n\nSeems like you had obtained a horny stowaway during your time as a giant, though you're unsure if it was an accident on your part or intentional on his... Shortly after, however, you realize he had left something behind, fishing it out after having been caught between your {self.vulvaDesc()} pussy-lips. ")
             self.doImpregnate(7)
-            self.itemAdd(222)
+            self.itemAdd(Item.KINKY_CARR)
         elif pregnancyType == 307:
             birthNumber = 1 + extra
             self.doMainText(f" Slowly, a large body pushes out from {self.legWhere(1)} your {self.legDesc(2)}. You hear a snort as the long muzzle breaches {self.oneYour(2)} {self.vulvaDesc()} pair{self.plural(2)} of lips. Shortly after, you heave for fresh air as the rest of the body slides out. As the newborn cries out, you reach down and bring it up to your {self.boobDesc()} chest. With a bull-like muzzle, small horns, and rather huge human-like body, it looks like you've given birth to the Minotaur's child. With a sigh, you pull {self.pullUD(1)} your {self.clothesTop()}, letting it suckle from its mother.")
@@ -27759,13 +27779,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if part == 9:
             if (self.legType == 1):
                 return "paw"
-            if (self.legType in {2, 1001} or self.bag.hasItem(102)):
+            if (self.legType in {2, 1001} or self.bag.hasItem(Item.IMB_SHOES)):
                 return "hoof"
             return "foot"
         if part == 10:
             if (self.legType == 1):
                 return "paws"
-            if (self.legType in {2, 1001} or self.bag.hasItem(102)):
+            if (self.legType in {2, 1001} or self.bag.hasItem(Item.IMB_SHOES)):
                 return "hooves"
             return "feet"
         return f"LEG ERROR PART {part} TYPE {self.legType}"
