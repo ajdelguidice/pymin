@@ -3671,70 +3671,76 @@ class WikiPages:
     def Clothes(ID: int) -> str:
         if ID == -10:
             return "<h4><u>Clothes Name</u></h4>(Clothes ID #)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+
+        clothesItem = CLOTHES_STATS[ID]
+        contents = f'<h4><u>{clothesItem.name}</u></h4>(Clothes ID {ID})'
+        if clothesItem.description != ClothesStatsItem._DESCRIPTION_FALLBACK:
+            contents += f'\n\n<u>Description</u>\n{clothesItem.description}'
+
         if ID == Clothes.TATTERED_SHREDS:
-            return "<h4><u>Tattered Shreds</u></h4>(Clothes ID -1)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nWhen worn\n\t-4 strMod (strength modifier)\n\t-4 mentMod (mentality modifier)\n\n<u>How to obtain</u>\nThese clothes are obtained when your clothes get ripped up."
+            return contents + "\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\n-4 strMod (strength modifier)\n-4 mentMod (mentality modifier)\n\n<u>How to obtain</u>\nThese clothes are obtained when your clothes get ripped up."
         if ID == Clothes.INVISIBLE_UNDERWEAR:
-            return "<h4><u>Invisible Underwear</u></h4>(Clothes ID 0)\n\n<u>Description</u>\nThis clothing item is a test item and has no use to the player. Most of the stuff from this item seems to have been removed.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
+            return contents + "\n\n<u>Description</u>\nThis clothing item is a test item and has no use to the player. Most of the stuff from this item seems to have been removed.\n\n<u>Effects</u>\nHas no effects.\n\n<u>How to obtain</u>\nCan not be obtained in game."
         if ID == Clothes.SHIRT:
-            return "<h4><u>Shirt</u></h4>(Clothes ID 1)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
+            return contents + "\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
         if ID == Clothes.PANTS:
-            return "<h4><u>Pants</u></h4>(Clothes ID 2)\n\n<u>Description</u>\nOne of the clothing items you start with, it is pretty boring.\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
+            return contents + "\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nThis item can be bought at the <i>Tailor</i> shop in any town."
         if ID == Clothes.BIKINI_TOP:
-            return "<h4><u>Bikini Top</u></h4>(Clothes ID 3)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.BIKINI_BOTTOM:
-            return "<h4><u>Bikini Bottom</u></h4>(Clothes ID 4)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.ELEGANT_DRESS:
-            return "<h4><u>Elegant Dress</u></h4>(Clothes ID 5)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.LATEX_SUIT:
-            return "<h4><u>Latex Suit</u></h4>(Clothes ID 6)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.SKIRT:
-            return "<h4><u>Skirt</u></h4>(Clothes ID 7)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.SHORTS:
-            return "<h4><u>Shorts</u></h4>(Clothes ID 8)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.BLOUSE:
-            return "<h4><u>Blouse</u></h4>(Clothes ID 9)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.DIAPER:
-            return "<h4><u>Diaper</u></h4>(Clothes ID 10)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.POOFY_DIAPER:
-            return "<h4><u>Poofy Diaper</u></h4>(Clothes ID 11)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.SUNDRESS:
-            return "<h4><u>Sundress</u></h4>(Clothes ID 12)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.SKIMPY_DRESS:
-            return "<h4><u>Skimpy Dress</u></h4>(Clothes ID 13)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.SHORT_SKIRT:
-            return "<h4><u>Short Skirt</u></h4>(Clothes ID 14)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.SHORT_SHORTS:
-            return "<h4><u>Short Shorts</u></h4>(Clothes ID 15)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.LOIN_CLOTH:
-            return "<h4><u>Loin Cloth</u></h4>(Clothes ID 16)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.BATHING_SUIT:
-            return "<h4><u>Bathing Suite</u></h4>(Clothes ID 17)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.MUSCLE_SHIRT:
-            return "<h4><u>Muscle Shirt</u></h4>(Clothes ID 18)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.CORSET:
-            return "<h4><u>Corset</u></h4>(Clothes ID 19)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.SILK_PANTIES:
-            return "<h4><u>Silk Panties</u></h4>(Clothes ID 20)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.SLINGKINI:
-            return "<h4><u>Slingkini</u></h4>(Clothes ID 21)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.THONG:
-            return "<h4><u>Thong</u></h4>(Clothes ID 22)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.BLOOMERS:
-            return "<h4><u>Bloomers</u></h4>(Clothes ID 23)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.TIGHTS:
-            return "<h4><u>Tights</u></h4>(Clothes ID 24)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.GOTHIC_DRESS:
-            return "<h4><u>Gothic Dress</u></h4>(Clothes ID 25)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.TUBE_TOP:
-            return "<h4><u>Tube Top</u></h4>(Clothes ID 26)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.NIPPLE_PASTIES:
-            return "<h4><u>Nipple Pasties</u></h4>(Clothes ID 27)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.CAMISOLE:
-            return "<h4><u>Camisole</u></h4>(Clothes ID 28)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.TRAINING_SUIT:
-            return "<h4><u>Training Suit</u></h4>(Clothes ID 29)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Clothes.BOUNCY_BRA:
-            return "<h4><u>Bouncy Bra</u></h4>(Clothes ID 30)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
     def Enemy(ID: int) -> str:
         # TODO: Use enum here
