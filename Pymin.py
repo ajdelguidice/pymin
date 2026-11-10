@@ -316,7 +316,7 @@ class Item:
     EDU_EGG = 109
     REDUCTION = 110
     SKIN_BALM = 111
-    BOL_JOICE = 112
+    BOL_JUICE = 112
     TAINT_LEAF = 113
     SWEET_SAP = 114
     POULTICE = 115
@@ -553,7 +553,7 @@ ITEM_STATS = frozendict({
     Item.EDU_EGG: ItemStatsItem(name="Edu Egg", longName="Educated Eggdicator", value=125, stackMax=1, isUsable=True, description="With so many unfertilized eggs around the oasis, Lizan developed this to be able to tell a good egg from a bad egg. Even though an egg is just an egg beforehand, once put through this eggdicator its wave function collapses into a more determinable state.\n\nWarning: Using this item requires 1 Fresh Egg to operate."),
     Item.REDUCTION: ItemStatsItem(name="Reduction", longName="A Reduction of Reducer Agents", value=20, stackMax=5, isConsumable=True, description="This is a powerful - yet often necessary in Nimin - elixer that, when rubbed on a part of your body, will permanently shrink that part to half its original size. Be careful!\n\nWarning: This item is not useful against your enemies."),
     Item.SKIN_BALM: ItemStatsItem(name="Skin Balm", longName="Skin Balm", value=15, stackMax=5, isConsumable=True, description="Used and created by the Humans of Softlik, this balm helps increase their skin's supplesness and other human attributes, as well as decrease those of other races."),
-    Item.BOL_JOICE: ItemStatsItem(name="Bol Juice", longName="Bolstering Juice", value=15, stackMax=5, isConsumable=True, description="This white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."),
+    Item.BOL_JUICE: ItemStatsItem(name="Bol Juice", longName="Bolstering Juice", value=15, stackMax=5, isConsumable=True, description="This white 'juice' is often used and created by the Equans of Firmshaft. It helps strengthen their equan attributes and  decrease those of other races."),
     Item.TAINT_LEAF: ItemStatsItem(name="Taint Leaf", longName="Tainted Leaf", value=15, stackMax=5, isConsumable=True, description="This paw-shaped leaf is farmed and used by the Lupans of Tieden to fend off the attributes of other races, usually the more violent ones, and increase their lupan strengths."),
     Item.SWEET_SAP: ItemStatsItem(name="Sweet Sap", longName="Sweet Sap", value=15, foodValue=5, stackMax=5, isConsumable=True, description="Used and created by the Felins of Siz'Calit, this vial of clear liquid helps increase their felin sensitivities as well as ward off outside influences."),
     Item.POULTICE: ItemStatsItem(name="Poultice", longName="Poultice", value=5, stackMax=10, isConsumable=True, description="A generic swathe of cloth soaked in soothing balms, this poultice will heal 20 HP. It'll also make you a little aroused from rubbing it all over yourself..."),
@@ -823,6 +823,10 @@ class EnemyStatsItem(frozendict):
         return self.get('name', "ENEMY NAME ERROR")
 
     @property
+    def properName(self) -> str:
+        return self.get('properName', 'ENEMY PROPER NAME ERROR')
+
+    @property
     def baby(self) -> int:
         return self.get('baby', 0)
 
@@ -872,21 +876,21 @@ class EnemyStatsItem(frozendict):
 
 
 ENEMY_STATS = frozendict({
-    Enemy.NONE: EnemyStatsItem(name="none", HP=0, str=0, ment=0, sen=0, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=0, item=0),
-    Enemy.TEST_ENEMY: EnemyStatsItem(name="test enemy", HP=10, str=1, ment=1, sen=1, lib=1, lust=0, gender=Gender.MALE, pref=Preference.ANY, coin=1, SexP=1, item=1),
-    Enemy.COCK_SNAKE: EnemyStatsItem(name="cock-snake", HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=Item.CO_SNAK_VEN),
-    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsItem(name="desiccating dust devil", HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=Item.DESI_SAND),
-    Enemy.LONE_WOLF: EnemyStatsItem(name="lone male wolf", HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=Item.WOLF_FUR, baby=100),
-    Enemy.GAY_WOLF: EnemyStatsItem(name="gay wolf", HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=Item.WOLF_FUR),
-    Enemy.HORNY_FELIN: EnemyStatsItem(name="felin in heat", HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=Item.SM_POUCH1),
-    Enemy.DRUNKEN_EQUAN: EnemyStatsItem(name="drunken equan", HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=Item.SM_POUCH2, baby=2),
-    Enemy.OCTOPUS_GIRL: EnemyStatsItem(name="octopus girl", HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=Item.PINK_INK),
-    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsItem(name="little big bunny-man", HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=Item.KINKY_CARR, baby=7),
-    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsItem(name="little big bunny-girl", HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=Item.KINKY_CARR),
-    Enemy.FIERCE_NAGA: EnemyStatsItem(name="fierce naga", HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=Item.EGGCELERATOR),
-    Enemy.MINOTAUR: EnemyStatsItem(name="Minotaur", HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=Item.CUM_JUG, baby=307),
-    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsItem(name="freaky little girl", HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=Item.SWEET_AND_SOUR, baby=308),
-    Enemy.SUCCUBUS: EnemyStatsItem(name="succubus", HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=Item.SUCC_DRAFT)
+    Enemy.NONE: EnemyStatsItem(name="none", properName="None", HP=0, str=0, ment=0, sen=0, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=0, item=0),
+    Enemy.TEST_ENEMY: EnemyStatsItem(name="test enemy", properName="Test Enemy", HP=10, str=1, ment=1, sen=1, lib=1, lust=0, gender=Gender.MALE, pref=Preference.ANY, coin=1, SexP=1, item=1),
+    Enemy.COCK_SNAKE: EnemyStatsItem(name="cock-snake", properName="Cock-snake", HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=Item.CO_SNAK_VEN),
+    Enemy.DESICCATING_DUST_DEVIL: EnemyStatsItem(name="desiccating dust devil", properName="Desiccating Dust Devil", HP=25, str=0, ment=20, sen=0, lib=50, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=10, item=Item.DESI_SAND),
+    Enemy.LONE_WOLF: EnemyStatsItem(name="lone male wolf", properName="Lone Male Wolf", HP=45, str=22, ment=16, sen=13, lib=11, lust=30, gender=Gender.MALE, pref=Preference.FEMALE, coin=0, SexP=20, item=Item.WOLF_FUR, baby=100),
+    Enemy.GAY_WOLF: EnemyStatsItem(name="gay wolf", properName="Gay Wolf", HP=45, str=26, ment=16, sen=20, lib=11, lust=40, gender=Gender.MALE, pref=Preference.MALE, coin=0, SexP=20, item=Item.WOLF_FUR),
+    Enemy.HORNY_FELIN: EnemyStatsItem(name="felin in heat", properName="Felin in Heat", HP=50, str=12, ment=10, sen=24, lib=30, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=Item.SM_POUCH1),
+    Enemy.DRUNKEN_EQUAN: EnemyStatsItem(name="drunken equan", properName="Drunken Equan", HP=60, str=28, ment=9, sen=18, lib=14, lust=30, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=25, item=Item.SM_POUCH2, baby=2),
+    Enemy.OCTOPUS_GIRL: EnemyStatsItem(name="octopus girl", properName="Octopus Girl", HP=150, str=45, ment=30, sen=25, lib=35, lust=20, gender=Gender.FEMALE, pref=Preference.ANY, coin=0, SexP=50, item=Item.PINK_INK),
+    Enemy.LITTLE_BIG_BUNNY_MAN: EnemyStatsItem(name="little big bunny-man", properName="Little Big Bunny-man", HP=55, str=35, ment=30, sen=35, lib=45, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=Item.KINKY_CARR, baby=7),
+    Enemy.LITTLE_BIG_BUNNY_GIRL: EnemyStatsItem(name="little big bunny-girl", properName="Little Big Bunny-girl", HP=50, str=35, ment=30, sen=45, lib=35, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 10), SexP=30, item=Item.KINKY_CARR),
+    Enemy.FIERCE_NAGA: EnemyStatsItem(name="fierce naga", properName="Fierce Naga", HP=100, str=50, ment=20, sen=40, lib=2, lust=40, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 5), SexP=55, item=Item.EGGCELERATOR),
+    Enemy.MINOTAUR: EnemyStatsItem(name="Minotaur", properName="Minotaur", HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=Item.CUM_JUG, baby=307),
+    Enemy.FREAKY_LITTLE_GIRL: EnemyStatsItem(name="freaky little girl", properName="Freaky Little Girl", HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=Item.SWEET_AND_SOUR, baby=308),
+    Enemy.SUCCUBUS: EnemyStatsItem(name="succubus", properName="Succubus", HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=Item.SUCC_DRAFT)
 })
 
 
@@ -1781,7 +1785,7 @@ class Shop:
             if goodsSlot == 1:
                 return Item.IMB_SHOES
             if goodsSlot == 2:
-                return Item.BOL_JOICE
+                return Item.BOL_JUICE
             if goodsSlot == 3:
                 return Item.HAMMER
             if goodsSlot == 5:
@@ -2477,6 +2481,12 @@ class WikiPages:
     def __class_getitem__(cls, page: WikiPageObject):
         return getattr(cls, page.topic, lambda p: None)(page.num)
 
+    def getItemTag(ID: int) -> str:
+        return f'<a href="call_args://Item&{ID}">{ITEM_STATS[ID].longName}</a>'
+
+    def getRecipeTag(ID: int) -> str:
+        return f'<a href="call_args://Recipe&{ID}">{RECIPE_STATS[ID].longName}</a>'
+
     def Basic(Num: int) -> str:
         if Num == 0:
             tempStr = "<b><u>This wiki is not complete yet, most information is missing.</u></b>\n\nWelcome to the Pymin wiki\n\nDouble-click on the tabs in the menu bar or use keyboard navigation to get get started. For detailed keyboard hotkeys, navigate to <a href='call_args://Basic&4'>Basics-&gt;Hotkeys</a>."
@@ -2540,25 +2550,28 @@ class WikiPages:
             def legDesc(*args):
                 return "[Leg Description]"
 
+        stats = f"\n\n<u>Stats</u>\nValue: {ItemItem.value}\nstackMax: {ItemItem.stackMax}\nfoodValue: {ItemItem.foodValue}\nisUsable: {ItemItem.isUsable}\nisConsumable: {ItemItem.isConsumable}\nuseHidesPage: {ItemItem.useHidesPage}"
+
         # Dynamic Descriptions
         if ID == Item.SNUGGLE_BALL:
             contents += f"\n\n<u>Description</u>\n<b>When Not Equipped:</b>\n{ItemItem.description(FakeContext)}"
             FakeContext.snuggleBall = True
             contents += f"\n\n<b>When Equipped:</b>\n{ItemItem.description(FakeContext)}"
-            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + stats + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Item.SUPP_HARNESS:
             contents += f"\n\n<u>Description</u>\n<b>When Not Equipped:</b>\n{ItemItem.description(FakeContext)}"
             FakeContext.suppHarness = True
             contents += f"\n\n<b>When Equipped:</b>\n{ItemItem.description(FakeContext)}"
-            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + stats + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Item.BUG_EGG:
             contents += f"\n\n<u>Description</u>\n<b>When tail != 12:</b>\n{ItemItem.description(FakeContext)}"
             FakeContext.tail = 12
             contents += f"\n\n<b>When tail == 12:</b>\n{ItemItem.description(FakeContext)}"
-            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + stats + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
         # Static Descriptions
-        contents += f"\n\n<u>Description</u>\n{ItemItem.description(FakeContext)}"
+        contents += f"\n\n<u>Description</u>\n{ItemItem.description(FakeContext)}" + stats
+
         if ID == Item.TEST_ITEM:
             return contents + "\n\n<u>Effects</u>\nNone.\n\n<u>How to obtain</u>\nCan not be obtained."
         if ID == Item.DEBUG_STICK:
@@ -2570,11 +2583,11 @@ class WikiPages:
         if ID == Item.TEAPOT:
             return contents + "\n\n<u>Effects</u>\nThis item has no effects.\n\n<u>How to obtain</u>\nCan not be obtained through normal means."
         if ID == Item.ANC_CLAWS:
-            return contents + "\n\n<u>Effects and Stats</u>\nTurns player's hands into paws.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrapeMod +10\n\n<u>How to obtain</u>\nCan be bought from the shop in Tieden."
+            return contents + "\n\n<u>Effects</u>\nTurns player's hands into paws.\nrapeMod +10\n\n<u>How to obtain</u>\nCan be bought from the shop in Tieden."
         if ID == Item.IMB_SHOES:
-            return contents + "\n\n<u>Effects and Stats</u>\nTurns the player's feet into hooves.\n<b>ItemType:</b> Passive\n<b>StackMax:</b> 1\n<b>Value:</b> 50 coins\nrunMod +20\n\n<u>How to obtain</u>\nCan be bought from the shop in Firmshaft."
+            return contents + "\n\n<u>Effects</u>\nTurns the player's feet into hooves.\nrunMod +20\n\n<u>How to obtain</u>\nCan be bought from the shop in Firmshaft."
         if ID == Item.DRY_SAND:
-            return contents + "\n\n<u>Effects and Stats</u>\nMakes the part that the player applies it to less moist.\n<b>ItemType:</b> Consumable\n<b>StackMax:</b> 15\n<b>Value:</b> 20 coins\ncockMoist -4 (cock)\nvagMoist -4 (vagina)\nlactation -75 (boobs)\nudderLactation -75 (udders)\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nMakes the part that the player applies it to less moist.\ncockMoist -4 (cock)\nvagMoist -4 (vagina)\nlactation -75 (boobs)\nudderLactation -75 (udders)\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Item.MILKER:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Item.CATS_MEOW:
@@ -2589,7 +2602,7 @@ class WikiPages:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Item.SKIN_BALM:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
-        if ID == Item.BOL_JOICE:
+        if ID == Item.BOL_JUICE:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Item.TAINT_LEAF:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
@@ -2606,7 +2619,7 @@ class WikiPages:
         if ID == Item.WHIP:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Item.NEUTER:
-            return contents + "\n\nThe game says that using the neuterizer to make the player have less than 2 balls is 'too dangerous' but the real reason is because most things were coded to expect at the player to have at least two balls when they have a cock.\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain\n\n<u>Note</u>\nThe game says that using the neuterizer to make the player have less than 2 balls is 'too dangerous' but the real reason is because most things were coded to expect at the player to have at least two balls when they have a cock."
         if ID == Item.TS_SOFT:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         if ID == Item.TS_FIRM:
@@ -2833,7 +2846,7 @@ class WikiPages:
 
         contents += f"\n\n<b>Difficulty: </b>{recipeItem.difficultyName}"
 
-        return contents + f'\n<b>Creates: </b><a href="call_args://Item&{recipeItem.creates}">{ITEM_STATS[recipeItem.creates].longName}</a>'
+        return contents + f'\n<b>Creates: {WikiPages.getItemTag(recipeItem.creates)}'
 
     def Clothes(ID: int) -> str:
         if ID == -10:
@@ -2910,83 +2923,113 @@ class WikiPages:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
     def Enemy(ID: int) -> str:
-        # TODO: Generate these pages
         if ID == -10:
             return "<h4><u>Enemy Name</u></h4>(Enemy ID #)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nBaseStats\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
 
+        EnemyItem = ENEMY_STATS[ID]
+
+        contents = f"<h4><u>{EnemyItem.properName}</u></h4>(Enemy ID {ID})"
+
+        contents += "\n\n<u>Description</u>\n"
+
         if ID == Enemy.TEST_ENEMY:
-            return "<h4><u>Test Enemy</u></h4>(Enemy ID 1)\n\n<u>Enemy Description</u>\nThis enemy is a test enemy and is not encounterable by the player. Most of the stuff about this enemy is fragmented left overs.\n\n<u>Base Stats</u>\nThis enemy has no stats.\n\n<u>Attacks</u>\nThis enemy has no attacks.\n\n<u>Locations</u>\nThis enemy is not encounterable.\n\n<u>Encounter Conditions</u>\nThis enemy is not encounterable."
-        if ID == Enemy.COCK_SNAKE:
-            return "<h4><u>Cock-snake</u></h4>(Enemy ID 101)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:30\nStrength:16\nMentality:4\nSensitivity:8\nLibido:0\nLust:0\nGender:0\nPreference:4\nCoin:0\nSexp:15\nItem:202\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == Enemy.DESICCATING_DUST_DEVIL:
-            return "<h4><u>Desiccating Dust Devil</u></h4>(Enemy ID 102)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:25\nStrength:0\nMentality:20\nSensitivity:0\nLibido:50\nLust:0\nGender:0\nPreference:0\nCoin:0\nSexp:10\nItem:231\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == Enemy.LONE_WOLF:
-            return "<h4><u>Lone Male Wolf</u></h4>(Enemy ID 201)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:22\nMentality:16\nSensitivity:13\nLibido:11\nLust:30\nGender:1\nPreference:2\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == Enemy.GAY_WOLF:
-            return "<h4><u>Gay Wolf</u></h4>(Enemy ID 202)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:26\nMentality:16\nSensitivity:20\nLibido:11\nLust:40\nGender:1\nPreference:1\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+            return contents + "This enemy is a test enemy and is not encounterable by the player. Most of the stuff about this enemy is fragmented left overs."
+
+        contents += "Desc"  # TODO
+
+        contents += "\n\n<u>Base Stats</u>\n"
+
         if ID == Enemy.HORNY_FELIN:
-            return "<h4><u>Felin in Heat</u></h4>(Enemy ID 301)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:12\nMentality:10\nSensitivity:24\nLibido:30\nLust:40\nGender:2\nPreference:4\nCoin:0-10\nSexp:25\nItem:204\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+            coin = '0-10'
+        elif ID == Enemy.DRUNKEN_EQUAN:
+            coin = '0-10'
+        elif ID == Enemy.LITTLE_BIG_BUNNY_MAN:
+            coin = '0-10'
+        elif ID == Enemy.LITTLE_BIG_BUNNY_GIRL:
+            coin = '0-10'
+        elif ID == Enemy.FIERCE_NAGA:
+            coin = '0-20'
+        elif ID == Enemy.MINOTAUR:
+            coin = '5-30'
+        elif ID == Enemy.FREAKY_LITTLE_GIRL:
+            coin = '5-30'
+        elif ID == Enemy.SUCCUBUS:
+            coin = '5-30'
+        else:
+            coin = EnemyItem.get('coin', 0)
+        contents += f"HP: {EnemyItem.HP}\nStrength: {EnemyItem.str}\nMentality: {EnemyItem.ment}\nSensitivity: {EnemyItem.sen}\nLibido: {EnemyItem.lib}\nLust: {EnemyItem.lust}\nGender: {EnemyItem.gender}\nPreference: {EnemyItem.pref}\nCoin: {coin}\nSexp: {EnemyItem.SexP}\nItem: {WikiPages.getItemTag(EnemyItem.item)}"
+
+        if ID == Enemy.COCK_SNAKE:
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+        if ID == Enemy.DESICCATING_DUST_DEVIL:
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+        if ID == Enemy.LONE_WOLF:
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+        if ID == Enemy.GAY_WOLF:
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+        if ID == Enemy.HORNY_FELIN:
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
         if ID == Enemy.DRUNKEN_EQUAN:
-            return "<h4><u>Drunken Equan</u></h4>(Enemy ID 302)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:60\nStrength:28\nMentality:9\nSensitivity:18\nLibido:14\nLust:30\nGender:1\nPreference:4\nCoin:0-10\nSexp:25\nItem:205\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
         if ID == Enemy.OCTOPUS_GIRL:
-            return "<h4><u>Octopus Girl</u></h4>(Enemy ID 303)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:45\nMentality:30\nSensitivity:25\nLibido:35\nLust:20\nGender:2\nPreference:4\nCoin:0\nSexp:50\nItem:216\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
         if ID == Enemy.LITTLE_BIG_BUNNY_MAN:
-            return "<h4><u>Little Big Bunny-man</u></h4>(Enemy ID 304)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:55\nStrength:35\nMentality:30\nSensitivity:35\nLibido:45\nLust:10\nGender:1\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
         if ID == Enemy.LITTLE_BIG_BUNNY_GIRL:
-            return "<h4><u>Little Big Bunny-girl</u></h4>(Enemy ID 305)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:35\nMentality:30\nSensitivity:45\nLibido:35\nLust:10\nGender:2\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
         if ID == Enemy.FIERCE_NAGA:
-            return "<h4><u>Fierce Naga</u></h4>(Enemy ID 306)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:100\nStrength:50\nMentality:20\nSensitivity:40\nLibido:2\nLust:40\nGender:2\nPreference:4\nCoin:0-20\nSexp:55\nItem:230\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
         if ID == Enemy.MINOTAUR:
-            return "<h4><u>Minotaur</u></h4>(Enemy ID 307)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:250\nStrength:70\nMentality:20\nSensitivity:50\nLibido:20\nLust:10\nGender:1\nPreference:4\nCoin:5-30\nSexp:50\nItem:525\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nHave the Lantern item (ItemID 254)"
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nHave the Lantern item (ItemID 254)"
         if ID == Enemy.FREAKY_LITTLE_GIRL:
-            return "<h4><u>Freaky Little Girl</u></h4>(Enemy ID 308)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:175\nStrength:80\nMentality:40\nSensitivity:70\nLibido:60\nLust:10\nGender:2\nPreference:4\nCoin:5-30\nSexp:55\nItem:559\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nDefeat the Minotaur (defeatedMinotaur == True)"
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nDefeat the Minotaur (defeatedMinotaur == True)"
         if ID == Enemy.SUCCUBUS:
-            return "<h4><u>Succubus</u></h4>(Enemy ID 309)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:35\nMentality:80\nSensitivity:40\nLibido:40\nLust:0\nGender:2\nPreference:4\nCoin:5-30\nSexp:60\nItem:260\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n<i>Sanctuary</i> \u25CE\n\n<u>Encounter Conditions</u>\nDefeat the Freaky Little Girl (defeatedFreakyGirl == True)"
+            return contents + "\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n<i>Sanctuary</i> \u25CE\n\n<u>Encounter Conditions</u>\nDefeat the Freaky Little Girl (defeatedFreakyGirl == True)"
 
     def Race(ID: int) -> str:
-        # TODO: Add links to affinity item pages
-        if ID == -10:
-            return "<h4><u>Race Name</u></h4>(Race ID #)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\nItems"
         if ID == Race.HUMAN:
-            return "<h4><u>Human</u></h4>(Race ID 1)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Skin Balm</i> (Item ID 111)"
+            return f"<h4><u>Human</u></h4>(Race ID 1)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SKIN_BALM)}"
         if ID == Race.HORSE:
-            return "<h4><u>Equan</u></h4>(Race ID 2)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Bolstering Juice</i> (Item ID 112)"
+            return f"<h4><u>Equan</u></h4>(Race ID 2)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.BOL_JUICE)}"
         if ID == Race.WOLF:
-            return "<h4><u>Lupan</u></h4>(Race ID 3)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Tainted Leaf</i> (Item ID 113)"
+            return f"<h4><u>Lupan</u></h4>(Race ID 3)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.TAINT_LEAF)}"
         if ID == Race.CAT:
-            return "<h4><u>Felin</u></h4>(Race ID 4)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Sweet Sap</i> (Item ID 114)"
+            return f"<h4><u>Felin</u></h4>(Race ID 4)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SWEET_SAP)}"
         if ID == Race.COW:
-            return "<h4><u>Cow</u></h4>(Race ID 5)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>DairE Pill</i> (Item ID 211)\n<i>Malon's Milk</i> (Item ID 214)"
+            return f"<h4><u>Cow</u></h4>(Race ID 5)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.DAIRE_PILL)}\n{WikiPages.getItemTag(Item.LON_MILK)}"
         if ID == Race.LIZARD:
-            return "<h4><u>Lizan</u></h4>(Race ID 6)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Oasis Water</i> (Item ID 126)"
+            return f"<h4><u>Lizan</u></h4>(Race ID 6)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.OAS_WATER)}"
         if ID == Race.RABBIT:
-            return "<h4><u>Bunny</u></h4>(Race ID 7)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Kinky Carrot</i> (Item ID 222)"
+            return f"<h4><u>Bunny</u></h4>(Race ID 7)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.KINKY_CARR)}"
         if ID == Race.MOUSE:
-            return "<h4><u>Mouse</u></h4>(Race ID 8)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Squeaky Cheese</i> (Item ID 238)"
+            return f"<h4><u>Mouse</u></h4>(Race ID 8)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SQU_CHEESE)}"
         if ID == Race.BIRD:
-            return "<h4><u>Bird</u></h4>(Race ID 9)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Shiny Rock</i> (Item ID 239)"
+            return f"<h4><u>Bird</u></h4>(Race ID 9)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SHINY_ROCK)}"
         if ID == Race.PIG:
-            return "<h4><u>Pig</u></h4>(Race ID 10)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Facial Mud</i> (Item ID 245)"
+            return f"<h4><u>Pig</u></h4>(Race ID 10)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.FACIAL_MUD)}"
         if ID == Race.SKUNK:
-            return "<h4><u>Skunk</u></h4>(Race ID 11)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Fragrant Flower</i> (Item ID 255)"
+            return f"<h4><u>Skunk</u></h4>(Race ID 11)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.FRAG_FLOWER)}"
         if ID == Race.BUG:
-            return "<h4><u>Bug</u></h4>(Race ID 12)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Nectar Candy</i> (Item ID 256)"
+            return f"<h4><u>Bug</u></h4>(Race ID 12)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.NECTAR_CANDY)}"
 
     def Town(Num: int) -> str:
         if Num == -10:
             return "<h4><u>Town Name</u></h4>(Zone ID #)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
+
+        contents = f"<h4><u>{Zone.name(Num)}</u></h4>(Zone ID {Num})"
+
         if Num == Zone.SOFTLIK:
-            return "<h4><u>Softlik</u></h4>(Zone ID 1)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&1\"><i>Forest</i></a> \u2196\n<a href=\"call_args://Location&8\"><i>Dairy Farm</i></a> \u2192\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2199\n<a href=\"call_args://Location&3\"><i>Plains</i></a> \u2193"
+            return contents + "\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&1\"><i>Forest</i></a> \u2196\n<a href=\"call_args://Location&8\"><i>Dairy Farm</i></a> \u2192\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2199\n<a href=\"call_args://Location&3\"><i>Plains</i></a> \u2193"
         if Num == Zone.FIRMSHAFT:
-            return "<h4><u>Firmshaft</u></h4>(Zone ID 2)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2196\n<a href=\"call_args://Location&3\"><i>Plains</i></a> \u2197\n<a href=\"call_args://Location&4\"><i>Savanna</i></a> \u2190\n<a href=\"call_args://Location&5\"><i>Desert</i></a> \u2199\n<a href=\"call_args://Location&9\"><i>Old Cave</i></a> \u2198"
+            return contents + "\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2196\n<a href=\"call_args://Location&3\"><i>Plains</i></a> \u2197\n<a href=\"call_args://Location&4\"><i>Savanna</i></a> \u2190\n<a href=\"call_args://Location&5\"><i>Desert</i></a> \u2199\n<a href=\"call_args://Location&9\"><i>Old Cave</i></a> \u2198"
         if Num == Zone.TIEDEN:
-            return "<h4><u>Tieden</u></h4>(Zone ID 3)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&7\"><i>Lake</i></a> \u2190\n<a href=\"call_args://Location&1\"><i>Forest</i></a> \u2192\n<a href=\"call_args://Location&2\"><i>Jungle</i></a> \u2193\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2198"
+            return contents + "\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&7\"><i>Lake</i></a> \u2190\n<a href=\"call_args://Location&1\"><i>Forest</i></a> \u2192\n<a href=\"call_args://Location&2\"><i>Jungle</i></a> \u2193\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2198"
         if Num == Zone.SIZ_CALIT:
-            return "<h4><u>Siz'Calit</u></h4>(Zone ID 4)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&2\"><i>Jungle</i></a> \u2191\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2197\n<a href=\"call_args://Location&4\"><i>Savanna</i></a> \u2192\n<a href=\"call_args://Location&6\"><i>Beach</i></a> \u2199\n<a href=\"call_args://Location&5\"><i>Desert</i></a> \u2198"
+            return contents + "\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&2\"><i>Jungle</i></a> \u2191\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2197\n<a href=\"call_args://Location&4\"><i>Savanna</i></a> \u2192\n<a href=\"call_args://Location&6\"><i>Beach</i></a> \u2199\n<a href=\"call_args://Location&5\"><i>Desert</i></a> \u2198"
         if Num == Zone.OVIASIS:
-            return "<h4><u>Oviasis</u></h4>(Zone ID 6)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&5\"><i>Desert</i></a> \u2191\n<a href=\"call_args://Location&11\"><i>Den</i></a> \u2197 \u25CE"
+            return contents + "\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&5\"><i>Desert</i></a> \u2191\n<a href=\"call_args://Location&11\"><i>Den</i></a> \u2197 \u25CE"
         if Num == Zone.SANCTUARY:
-            return "<h4><u>Sanctuary</u></h4>(Zone ID 12)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nThis area has no encounters.\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&10\"><i>Old Cave Descent</i></a> \u2190"
+            return contents + "\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nThis area has no encounters.\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&10\"><i>Old Cave Descent</i></a> \u2190"
 
     def Location(Num: int) -> str:
         if Num == -10:
@@ -3019,8 +3062,6 @@ class WikiPages:
             return "<h4><u>Knothole</u></h4><u>Description</u>\nWhile technically a sub-location of Tieden, its senarios are defined in a seperate function internally so I thought it deserved its own page. Description\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&3\"><i>Tieden</i></a> (Zone ID 3) \u29BF"
 
     def Shop(Num: int) -> str:
-        if Num == -10:
-            return "<h4><u>Shop Name</u></h4><u>Description</u>\nDescription. The list of ____ that can be bought is bellow.\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
         if Num == 1:
             tempStr = "<h4><u>General Shop</u></h4><u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow."
             # TODO: Find a way to do this using the enum
@@ -3029,7 +3070,7 @@ class WikiPages:
                 for j in RANGE9_BUTTON_MAP:
                     ID = Shop.ID(i, j)
                     if ID != 0:
-                        tempStr += f'\n<a href="call_args://Item&{ID}">{ITEM_STATS[ID].longName}</a>'
+                        tempStr += f'\n{WikiPages.getItemTag(ID)}'
             return tempStr
         if Num == 2:
             return "<h4><u>Dye Shop</u></h4><u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
@@ -3062,9 +3103,9 @@ class WikiPages:
                     ID = Apothecary.ID(i, j, FakeKnowledge)
                     if ID != 0:
                         if ID >= 200:
-                            tempStr += f'\n<a href="call_args://Item&{ID}">{ITEM_STATS[ID].longName}</a>'
+                            tempStr += f'\n{WikiPages.getItemTag(ID)}'
                         else:
-                            tempStr += f'\n<a href="call_args://Recipe&{ID}">{RECIPE_STATS[ID].longName}</a>'
+                            tempStr += f'\n{WikiPages.getRecipeTag(ID)}'
             return tempStr
         if Num == 4:
             tempStr = "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow."
@@ -3136,7 +3177,7 @@ WIKI_MENUS = {
             'Edu Egg': ('Item', Item.EDU_EGG),
             'Reduction': ('Item', Item.REDUCTION),
             'Skin Balm': ('Item', Item.SKIN_BALM),
-            'Bol Juice': ('Item', Item.BOL_JOICE),
+            'Bol Juice': ('Item', Item.BOL_JUICE),
             'Taint Leaf': ('Item', Item.TAINT_LEAF),
             'Sweet Sap': ('Item', Item.SWEET_SAP),
             'Poultice': ('Item', Item.POULTICE),
@@ -3286,7 +3327,7 @@ WIKI_MENUS = {
         'Consumables': {
             'Affinity Items': {
                 'Skin Balm': ('Item', Item.SKIN_BALM),
-                'Bol Juice': ('Item', Item.BOL_JOICE),
+                'Bol Juice': ('Item', Item.BOL_JUICE),
                 'Taint Leaf': ('Item', Item.TAINT_LEAF),
                 'Sweet Sap': ('Item', Item.SWEET_SAP),
                 'Oas Water': ('Item', Item.OAS_WATER),
@@ -9662,7 +9703,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.stats(0, 1, 0, 1)
             self.aff(1, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
-        elif ID == Item.BOL_JOICE:
+        elif ID == Item.BOL_JUICE:
             self.outputMainText("Downing the 'juice', you realize it's a lot thicker and stickier than you expected, and quite heady. Your heart beats a bit stronger and you shudder a bit.", True)
             self.stats(1, 0, 1, 0)
             self.aff(2, Math.floor(Utils.percent() / 15 + 2), -2)
@@ -9873,7 +9914,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.outputMainText("You find some coins inside!", True)
                 self.doCoin(Math.floor(Utils.percent() / 5 + 5))
             elif (chance <= 65):
-                self.itemAdd(Item.BOL_JOICE)
+                self.itemAdd(Item.BOL_JUICE)
             elif (chance <= 85):
                 self.itemAdd(Item.POULTICE)
             else:
@@ -14077,7 +14118,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             return True
         if ID == Item.BALL_SWELLER and self.bag.hasItem(Item.BLO_BERRY):
             return True
-        if ID == Item.S_LUST_DRAFT and (self.bag.getCount(Item.GRAIN) >= 3 and (self.bag.getCount(Item.BOL_JOICE) >= 2 or self.bag.hasItem(Item.CUM_BOTTLE) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
+        if ID == Item.S_LUST_DRAFT and (self.bag.getCount(Item.GRAIN) >= 3 and (self.bag.getCount(Item.BOL_JUICE) >= 2 or self.bag.hasItem(Item.CUM_BOTTLE) or self.moistCalc(2) * 10 * self.lust > 6000 or self.moistCalc(1) * 10 * self.lust > 6000)):
             return True
         if ID == Item.S_REJUV_POT and (self.bag.hasItem(Item.LUST_DRAFT) and (self.bag.hasItem(Item.MILK_JUG) or self.bag.getCount(Item.MILK_BOTTLE) >= 3)):
             return True
@@ -14150,7 +14191,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             if (self.bag.hasItem(Item.CUM_BOTTLE)):
                                 self.loseManyItem(Item.CUM_BOTTLE, 1)
                             else:
-                                self.loseManyItem(Item.BOL_JOICE, 2)
+                                self.loseManyItem(Item.BOL_JUICE, 2)
                     elif ID == Item.S_REJUV_POT:
                         self.loseManyItem(Item.LUST_DRAFT, 1)
                         if (self.bag.getCount(Item.MILK_BOTTLE) >= 3):
@@ -14504,7 +14545,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             if (self.knowMaleEnhance):
                                 self.rndArray.push(Item.MILK_C_POIS, Item.BLO_BERRY, Item.BUL_BERRY)
                             if (self.knowSLustDraft):
-                                self.rndArray.push(Item.GRAIN, Item.BOL_JOICE, Item.CUM_BOTTLE)
+                                self.rndArray.push(Item.GRAIN, Item.BOL_JUICE, Item.CUM_BOTTLE)
                             if (self.knowSRejuvPot):
                                 self.rndArray.push(Item.LUST_DRAFT, Item.MILK_BOTTLE, Item.MILK_JUG)
                             if (self.knowSExpPreg):
