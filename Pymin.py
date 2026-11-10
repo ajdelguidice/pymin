@@ -3745,82 +3745,82 @@ class WikiPages:
             return contents + "\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
     def Enemy(ID: int) -> str:
-        # TODO: Use enum here
+        # TODO: Generate these pages
         if ID == -10:
             return "<h4><u>Enemy Name</u></h4>(Enemy ID #)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nBaseStats\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 1:
+
+        if ID == Enemy.TEST_ENEMY:
             return "<h4><u>Test Enemy</u></h4>(Enemy ID 1)\n\n<u>Enemy Description</u>\nThis enemy is a test enemy and is not encounterable by the player. Most of the stuff about this enemy is fragmented left overs.\n\n<u>Base Stats</u>\nThis enemy has no stats.\n\n<u>Attacks</u>\nThis enemy has no attacks.\n\n<u>Locations</u>\nThis enemy is not encounterable.\n\n<u>Encounter Conditions</u>\nThis enemy is not encounterable."
-        if ID == 101:
+        if ID == Enemy.COCK_SNAKE:
             return "<h4><u>Cock-snake</u></h4>(Enemy ID 101)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:30\nStrength:16\nMentality:4\nSensitivity:8\nLibido:0\nLust:0\nGender:0\nPreference:4\nCoin:0\nSexp:15\nItem:202\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 102:
+        if ID == Enemy.DESICCATING_DUST_DEVIL:
             return "<h4><u>Desiccating Dust Devil</u></h4>(Enemy ID 102)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:25\nStrength:0\nMentality:20\nSensitivity:0\nLibido:50\nLust:0\nGender:0\nPreference:0\nCoin:0\nSexp:10\nItem:231\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 201:
+        if ID == Enemy.LONE_WOLF:
             return "<h4><u>Lone Male Wolf</u></h4>(Enemy ID 201)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:22\nMentality:16\nSensitivity:13\nLibido:11\nLust:30\nGender:1\nPreference:2\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 202:
+        if ID == Enemy.GAY_WOLF:
             return "<h4><u>Gay Wolf</u></h4>(Enemy ID 202)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:45\nStrength:26\nMentality:16\nSensitivity:20\nLibido:11\nLust:40\nGender:1\nPreference:1\nCoin:0\nSexp:20\nItem:203\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 301:
+        if ID == Enemy.HORNY_FELIN:
             return "<h4><u>Felin in Heat</u></h4>(Enemy ID 301)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:12\nMentality:10\nSensitivity:24\nLibido:30\nLust:40\nGender:2\nPreference:4\nCoin:0-10\nSexp:25\nItem:204\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 302:
+        if ID == Enemy.DRUNKEN_EQUAN:
             return "<h4><u>Drunken Equan</u></h4>(Enemy ID 302)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:60\nStrength:28\nMentality:9\nSensitivity:18\nLibido:14\nLust:30\nGender:1\nPreference:4\nCoin:0-10\nSexp:25\nItem:205\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 303:
+        if ID == Enemy.OCTOPUS_GIRL:
             return "<h4><u>Octopus Girl</u></h4>(Enemy ID 303)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:45\nMentality:30\nSensitivity:25\nLibido:35\nLust:20\nGender:2\nPreference:4\nCoin:0\nSexp:50\nItem:216\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 304:
+        if ID == Enemy.LITTLE_BIG_BUNNY_MAN:
             return "<h4><u>Little Big Bunny-man</u></h4>(Enemy ID 304)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:55\nStrength:35\nMentality:30\nSensitivity:35\nLibido:45\nLust:10\nGender:1\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 305:
+        if ID == Enemy.LITTLE_BIG_BUNNY_GIRL:
             return "<h4><u>Little Big Bunny-girl</u></h4>(Enemy ID 305)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:50\nStrength:35\nMentality:30\nSensitivity:45\nLibido:35\nLust:10\nGender:2\nPreference:4\nCoin:0-10\nSexp:30\nItem:222\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 306:
+        if ID == Enemy.FIERCE_NAGA:
             return "<h4><u>Fierce Naga</u></h4>(Enemy ID 306)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:100\nStrength:50\nMentality:20\nSensitivity:40\nLibido:2\nLust:40\nGender:2\nPreference:4\nCoin:0-20\nSexp:55\nItem:230\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
-        if ID == 307:
+        if ID == Enemy.MINOTAUR:
             return "<h4><u>Minotaur</u></h4>(Enemy ID 307)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:250\nStrength:70\nMentality:20\nSensitivity:50\nLibido:20\nLust:10\nGender:1\nPreference:4\nCoin:5-30\nSexp:50\nItem:525\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nHave the Lantern item (ItemID 254)"
-        if ID == 308:
+        if ID == Enemy.FREAKY_LITTLE_GIRL:
             return "<h4><u>Freaky Little Girl</u></h4>(Enemy ID 308)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:175\nStrength:80\nMentality:40\nSensitivity:70\nLibido:60\nLust:10\nGender:2\nPreference:4\nCoin:5-30\nSexp:55\nItem:559\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n\n<u>Encounter Conditions</u>\nDefeat the Minotaur (defeatedMinotaur == True)"
-        if ID == 309:
+        if ID == Enemy.SUCCUBUS:
             return "<h4><u>Succubus</u></h4>(Enemy ID 309)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nHP:150\nStrength:35\nMentality:80\nSensitivity:40\nLibido:40\nLust:0\nGender:2\nPreference:4\nCoin:5-30\nSexp:60\nItem:260\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\n<i>Old Cave Descent</i>\n<i>Sanctuary</i> \u25CE\n\n<u>Encounter Conditions</u>\nDefeat the Freaky Little Girl (defeatedFreakyGirl == True)"
 
     def Race(ID: int) -> str:
-        # TODO: Use enum here
+        # TODO: Add links to affinity item pages
         if ID == -10:
             return "<h4><u>Race Name</u></h4>(Race ID #)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\nItems"
-        if ID == 1:
+        if ID == Race.HUMAN:
             return "<h4><u>Human</u></h4>(Race ID 1)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Skin Balm</i> (Item ID 111)"
-        if ID == 2:
+        if ID == Race.HORSE:
             return "<h4><u>Equan</u></h4>(Race ID 2)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Bolstering Juice</i> (Item ID 112)"
-        if ID == 3:
+        if ID == Race.WOLF:
             return "<h4><u>Lupan</u></h4>(Race ID 3)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Tainted Leaf</i> (Item ID 113)"
-        if ID == 4:
+        if ID == Race.CAT:
             return "<h4><u>Felin</u></h4>(Race ID 4)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Sweet Sap</i> (Item ID 114)"
-        if ID == 5:
+        if ID == Race.COW:
             return "<h4><u>Cow</u></h4>(Race ID 5)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>DairE Pill</i> (Item ID 211)\n<i>Malon's Milk</i> (Item ID 214)"
-        if ID == 6:
+        if ID == Race.LIZARD:
             return "<h4><u>Lizan</u></h4>(Race ID 6)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Oasis Water</i> (Item ID 126)"
-        if ID == 7:
+        if ID == Race.RABBIT:
             return "<h4><u>Bunny</u></h4>(Race ID 7)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Kinky Carrot</i> (Item ID 222)"
-        if ID == 8:
+        if ID == Race.MOUSE:
             return "<h4><u>Mouse</u></h4>(Race ID 8)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Squeaky Cheese</i> (Item ID 238)"
-        if ID == 9:
+        if ID == Race.BIRD:
             return "<h4><u>Bird</u></h4>(Race ID 9)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Shiny Rock</i> (Item ID 239)"
-        if ID == 10:
+        if ID == Race.PIG:
             return "<h4><u>Pig</u></h4>(Race ID 10)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Facial Mud</i> (Item ID 245)"
-        if ID == 11:
+        if ID == Race.SKUNK:
             return "<h4><u>Skunk</u></h4>(Race ID 11)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Fragrant Flower</i> (Item ID 255)"
-        if ID == 12:
+        if ID == Race.BUG:
             return "<h4><u>Bug</u></h4>(Race ID 12)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n<i>Nectar Candy</i> (Item ID 256)"
 
     def Town(Num: int) -> str:
-        # TODO: Use enum here
         if Num == -10:
             return "<h4><u>Town Name</u></h4>(Zone ID #)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
-        if Num == 1:
+        if Num == Zone.SOFTLIK:
             return "<h4><u>Softlik</u></h4>(Zone ID 1)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&1\"><i>Forest</i></a> \u2196\n<a href=\"call_args://Location&8\"><i>Dairy Farm</i></a> \u2192\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2199\n<a href=\"call_args://Location&3\"><i>Plains</i></a> \u2193"
-        if Num == 2:
+        if Num == Zone.FIRMSHAFT:
             return "<h4><u>Firmshaft</u></h4>(Zone ID 2)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2196\n<a href=\"call_args://Location&3\"><i>Plains</i></a> \u2197\n<a href=\"call_args://Location&4\"><i>Savanna</i></a> \u2190\n<a href=\"call_args://Location&5\"><i>Desert</i></a> \u2199\n<a href=\"call_args://Location&9\"><i>Old Cave</i></a> \u2198"
-        if Num == 3:
+        if Num == Zone.TIEDEN:
             return "<h4><u>Tieden</u></h4>(Zone ID 3)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&7\"><i>Lake</i></a> \u2190\n<a href=\"call_args://Location&1\"><i>Forest</i></a> \u2192\n<a href=\"call_args://Location&2\"><i>Jungle</i></a> \u2193\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2198"
-        if Num == 4:
+        if Num == Zone.SIZ_CALIT:
             return "<h4><u>Siz'Calit</u></h4>(Zone ID 4)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&2\"><i>Jungle</i></a> \u2191\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2197\n<a href=\"call_args://Location&4\"><i>Savanna</i></a> \u2192\n<a href=\"call_args://Location&6\"><i>Beach</i></a> \u2199\n<a href=\"call_args://Location&5\"><i>Desert</i></a> \u2198"
-        if Num == 6:
+        if Num == Zone.OVIASIS:
             return "<h4><u>Oviasis</u></h4>(Zone ID 6)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&5\"><i>Desert</i></a> \u2191\n<a href=\"call_args://Location&11\"><i>Den</i></a> \u2197 \u25CE"
-        if Num == 12:
+        if Num == Zone.SANCTUARY:
             return "<h4><u>Sanctuary</u></h4>(Zone ID 12)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nThis area has no encounters.\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&10\"><i>Old Cave Descent</i></a> \u2190"
 
     def Location(Num: int) -> str:
