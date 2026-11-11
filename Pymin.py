@@ -4644,11 +4644,7 @@ class OptionsWindow(PyminWindow):
         if THEME_DIR.is_dir():
             mainobject.useNiminTheme = self.window._children['NiminTheme'].getcb()
         mainobject.scrolledTextBorders = self.window._children['ScrolledTextBorders'].getcb()
-        tempng = mainobject.originalNewGameButtonSize
         mainobject.originalNewGameButtonSize = self.window._children['newgameoriginalsize'].getcb()
-        if tempng != mainobject.originalNewGameButtonSize and mainobject.game.shownewgame:
-            mainobject.game.hideNGButton()
-            mainobject.game.showNGButton()
         mainobject.staticdoLevelUPButtons = self.window._children['doLevelUPStaticButtons'].getcb()
         mainobject.useExpandedSaveDialog = self.window._children['UseExpandedSaveDialog'].getcb()
         mainobject.useNewStash = self.window._children['UseNewStash'].getcb()
@@ -4745,6 +4741,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def updateThemeButtonState(self):
         if self.isOpen:
             self.window._children['themebutton'].state = Utils.boolToState(not mainobject.customThemeColor)
+
+    def updateNewGameButtonSize(self):
+        if self.isOpen and self.shownewgame:
+            self.hideNGButton()
+            self.showNGButton()
 
     def __init__(self):
         super().__init__()
@@ -7770,8 +7771,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if self.newSLDialogVisible:
             self.window._children["savefileselect"].delete(0, "end")
             mainobject.newSaveLoadDialog_SortOrder += 1
-            if mainobject.newSaveLoadDialog_SortOrder >= 5:
-                mainobject.newSaveLoadDialog_SortOrder = 0
             self.nsldDisplay()
             mainobject.savePreferences()
 
@@ -27652,8 +27651,11 @@ class PyminMain:
 
     @newSaveLoadDialog_SortOrder.setter
     def newSaveLoadDialog_SortOrder(self, value: int):
+        if value > 4:
+            value = 0
+        if value < 0:
+            value = 4
         self._nsldSortOrder = value
-        ...  # TODO: Handle updating
 
     @property
     def saveLocation(self) -> PurePath:
@@ -27746,8 +27748,10 @@ class PyminMain:
 
     @originalNewGameButtonSize.setter
     def originalNewGameButtonSize(self, value: bool):
+        temp = self._oNewGameButton
         self._oNewGameButton = value
-        ...  # TODO: Handle updating
+        if temp != value:
+            self.game.updateNewGameButtonSize()
 
     @property
     def staticdoLevelUPButtons(self) -> bool:
@@ -27991,7 +27995,8 @@ class PyminMain:
 
         self.useNiminTheme = False
         self.scrolledTextBorders = False
-        self.originalNewGameButtonSize = False
+        self._oNewGameButton = False
+        #self.originalNewGameButtonSize = False
         self.staticdoLevelUPButtons = False
         self.useExpandedSaveDialog = False
         self.useNewStash = False
