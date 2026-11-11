@@ -786,7 +786,6 @@ class RecipeStatsItem(GenericStatsItem):
         return f'Alchemy difficulty: {self.difficultyName}'
 
 
-# TODO: Move the name that appears in the alchemy screen to here
 RECIPE_STATS = frozendict({
     0: RecipeStatsItem(),
     Recipe.LUST_DRAFT: RecipeStatsItem(name='R: LustDraft', longName="Recipe: Lust Draft", value=20, level=AlchemyLevel.SIMPLE, creates=Item.LUST_DRAFT, description="For those who need a boost in the bedroom."),
@@ -2489,9 +2488,9 @@ class WikiPages:
 
     def Basic(Num: int) -> str:
         if Num == 0:
-            tempStr = "<b><u>This wiki is not complete yet, most information is missing.</u></b>\n\nWelcome to the Pymin wiki\n\nDouble-click on the tabs in the menu bar or use keyboard navigation to get get started. For detailed keyboard hotkeys, navigate to <a href='call_args://Basic&4'>Basics-&gt;Hotkeys</a>."
+            tempStr = "<b><u>This wiki is a work in progress, some information is still missing.</u></b>\n\nWelcome to the Pymin wiki\n\nDouble-click on the tabs in the menu bar or use keyboard navigation to get get started. For detailed keyboard hotkeys, navigate to <a href='call_args://Basic&4'>Basics-&gt;Hotkeys</a>."
             if not HAS_CUSTOM_HTML_PARSER:
-                tempStr += "\n\n<b>Warning:</b>The custom html parser that I created for this wiki is detected as not present. Links in the wiki will not function correctly without it."
+                tempStr += "\n\n<b>Warning:</b>The custom html parser that I created for this wiki is not present. Links in the wiki will not function correctly without it."
             return tempStr
         if Num == 1:
             return "<h4><u>Stats</u></h4><u>Strength</u>\nAdds to damage, rape chance, carry capacity, and HP. Reduces SexP gain from sex and masturbation.\n\n<u>Mentality</u>\nFights hostile lust gain, improves helpful lust loss.\n\n<u>Libido</u>\nIncreases lust gain, can hinder mentality in events.\n\n<u>Sensitivity</u>\nIncreases damage taken and increases lust loss.\n\n<u>HP</u>\nYour Hit Points. Lose too much and you'll pass out.\n\n<u>Lust</u>\nCan overwhelm your actions, resulting in getting raped in battle, but large pleasant losses of lust grant SexP."
@@ -2507,6 +2506,7 @@ class WikiPages:
             return "<h4><u>Changes (Outdated)</u></h4>This page includes all of the changes made to the game that aren't completely obvious.\n\n<b><u>General Changes</u></b>\nChanged the save file format to .xml and added a save file converter to convert between save types.\nYou can now load any supported file type from anywhere. Originally, you could only use .sol files for the save buttons and .nim for custom locations.\nSave files are now in a subdirectory instead of in the same folder as the game.\nThere is now an in game debug mode. It can be activated by passing the arguement \"--debug\" when launching the game.\n\n<b><u>Bug Fixes</u></b>\nShops now always go back to themselves instead of another shop.\nEnemy 102 now changes the proper values.\nVarious senarios throughout the game now only need one button press instead of two to exit.\ndoJizzPants now doesn't trigger when exiting the bag.\nItem 517 and 522 now use the variable showBall correctly.\nThere were a bunch of spots where text wouldn't display correctly because of typos, those are fixed now.\nItem amounts no longer bug out when gainItem is called from inside the bag.\nBag page number now resets after loading a game.\nFixed many spelling and formatting mistakes.\n\n<b><u>Gameplay Changes</u></b>\nAdded a \"Do Nothing\" option to item 253.\nShops return to the shop selection menu if you hold shift while pressing the return button.\nBag now returns to the same page after selling an item.\nBag and Stash page numbers are now completely decoupled.\nThe return button in the day care has been moved to the 12th slot to be consistent with the rest of the actions.\n\n<b><u>Interface Changes</u></b>\nAdded a <a href='call_args://MenuBar&1'>preferences window</a> to change a couple of things in the game. Go to File->Options to access it.\nRecreated the up/down images so they can be scaled nicely and centered them.\nSave, Load, and New Game buttons are now the same size.\nThere is now a dedicated button in the bag to discard items so you don't have to close it to discard them.\n"
 
     def MenuBar(Num: int) -> str:
+        # TODO: Rework this section
         # File->Options
         if Num == 1:
             return "<h4><u>File->Options</u></h4>Opens up a separate window that holds the configuration options for the game. These options are organised in a ttk notebook widget to make it easier to display them. Their functions and containing tabs are described below:\n\n\n<b><u>Options Tab</u></b>\nThis tab contains basic configuration options.\n\n<u>Strict Save Compat</u>\n(Partially Implemented) Forces the use of save files compatible with the original game and disables any configuration options that interfere with that. Even without this active, the game can still save and load the original formats, the new format just takes priority.\n\n<u>Fixed Resolution</u>\nForces all windows to be at their default resolution.\n\n<u>Custom Theme Color</u>\nAllows you to set a custom theme color.\n\n<u>Custom Font Color</u>\nAllows you to set a custom font color.\n\n<u>Save Location</u>\nAllows you to set a custom default save file location. If the chosen location does not exist, it will be created for you.\n\n\n<b><u>Interface Tab</u></b>\nThis tab contains toggles that alter the game's interface.\n\n<u>Original Button Colours</u>\n(Partially Implemented) Makes the buttons in the game window have their original colours instead of the new ones. This currently does not add borders to the buttons because that causes visual artifacts when resizing.\n\n<u>Show ScrolledText Borders</u>\nToggles the borders on the scrollable text areas. They come with borders so I thought it would be nice to allow people to re-enable them if they wanted to.\n\n<u>Original Size For New Game</u>\nUses the original size and location of the new game button.\n\n<u>Static doLevelUP Buttons</u>\nForces the buttons in the level up screen to stay in the same place no matter what is being displayed.\n\n<u>Theme Type Selector</u>\nSelects the theme you want to go with. The 'Pymin' theme is the default and allows more customization. The 'Nimin' theme sticks more strictly to the original game's style where possible and limits your customization options.\n\n<u>Use Expanded Save Dialog</u>\nToggles the use of the new save/load dialog. This new dialog uses a scrollable listbox to allow the selection of any save file in the save folder. You can also enter the file name in the entry box if you wish.\n\n<u>Use New Stash</u>\nMakes the stash work like the bag instead of the limited mess that it was originally. When moving an item in either the bag or stash, the return button switches to a button which allows you to move between them with the item. Item discarding has been moved to its own button located to the right of the return button.\n\n<u>Help Opens Wiki</u>\nMakes the 'Help' button on the side bar open the wiki instead of displaying the help text.\n\n\n<b><u>Grammar Tab</u></b>\nThis tab contains the grammar related toggles. Some are based on personal preference, some are fixes.\n\n<u>Respect showBalls</u>\nMakes the game always respect the visibility status of your balls. There were a lot of places where this was not the case before.\n\n<u>Femme-boy -> Femboy</u>\nChanges 'Femme-boy' to 'Femboy'.\n\n<u>Shemale -> Futanari</u>\nChanges 'Shemale' to 'Futanari'.\n\n<u>Use n-grammar</u>\nMakes the game use 'an' instead of just 'a' where needed. I'm pretty sure this differs between different versions of english, so it may not be 'correct' in yours.\n\n<u>Femme Male Replacement</u>\n(No toggle yet)This replaces 'femmie male' with your choice of either 'feminine male' or 'femme-boy'/'femboy'.\n\n<u>femboyish -> girly</u>\nChanges 'femboyish' to 'girly'.\n\n<u>Snuggleball Tweak</u>\nRemoves the redundant description text for the snuggleball in the appearance text.\n\n<u>Grammar Fixes</u>\nThis toggle is for the other grammar fixes that don't get their own toggle.\n\nChanges cock plurality to be based on the type of cock if senarios are too\nMakes sheath size not able to display as 0\nFixes formatting in detailedTitles when you do not have titles any yet\nMakes the game check if the player has a womb before describing it\nChanges various places where the used words don't makes sense ex: 'urging get you' -> 'trying to get you', 'Eventually, you quickly' -> 'You quickly'\nMakes the game describe the player as flat if their breasts are small in some senarios\n\n\n<b><u>Game Tweaks Tab</u></b>\nThis tab contains any tweak that modifies gameplay and other elements of the game that aren't strictly visual.\n\n<u>Status Tweaks</u>\nCurrently does two things, 1) Changes the maximum strength stat to 200 just because I felt like it and 2) Makes the Femboy starting option slighly more feminine.\n\n<u>Succubus Leaves One</u>\nMakes the succubus leave one cock (or 2 if you are a Lizan and have at least two lizard cocks) instead of taking all of them.\n\n<u>Use isBottomOpen</u>\nReplaces the various parts of the game that check for open bottom clothes with my function isBottomOpen. This is only in here because some of the spots where this is checked didn't include all of the \"open\" bottom clothes (I'm assuming this was an oversight due to how the game was developed).\n\n<u>Lizan Don't Show Balls</u>\n(Partially Implemented) (Most) Lizards don't come with external nuts, why should Lizan. This option hides your balls if you only have lizardCocks and does the same for npcs.\n\n<u>Herm Can Has Both</u>\n(Not implemented) Makes herms able to experience both male and female senarios where it makes sense.\n\n<u>Internal Balls Effect Belly Size</u>\n(Partially Implemented) When showBalls is False, makes ballSize effect belly size in the calculation the game does for weight and size.\n\n<u>Direct Path to Sanctuary</u>\nAdds an explore option that appears once you defeat the final boss in Old Cave Descent which allows you to travel directly between Firmshaft and Sanctuary without having to go through the dungeon. The path must first be opened from Sanctuary before it can be used from Firmsaft.\n\n<u>Correct Feet for Some Races</u>\n(Partially Implemented) Gives some races (felin, lupan, equan, bovine) the correct feet based on the information present in the game. Felin and lupan get digipaws (I'm not entirely sure about this one), equan and bovine get hooves.\n\n\n<b><u>Debug Options Tab</u></b>\nThis tab only shows up when debug mode is active. The contained options are also only active when debug mode is active.\n\n<u>alwaysChooseSenario</u>\nAllows you to choose the senario you want when exploring. Requires user input in the terminal every time.\n\n<u>takeNoDamage</u>\nMakes enemies deal no damage. (currently only applies to eDmg)\n"
@@ -2534,10 +2534,10 @@ class WikiPages:
     def Item(ID: int) -> str:
         # TODO: Add links to recipes for things that can be created with alchemy
         if ID == -10:
-            return "<h4><u>Full Name (Short Name)</u></h4>(Item ID #)\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return "<u>Full Name (Short Name)</u>\nItem ID: #\n\n<u>Description</u>\nItemDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
         ItemItem = ITEM_STATS[ID]
 
-        contents = f"<h4><u>{ItemItem.longName} ({ItemItem.name})</u></h4>(Item ID {ID})"
+        contents = f"<u>{ItemItem.longName} ({ItemItem.name})</u>\nItem ID: {ID}"
 
         class FakeContext:
             snuggleBall = False
@@ -2838,9 +2838,9 @@ class WikiPages:
     def Recipe(ID: int) -> str:
         # TODO: Add ingredients
         recipeItem = RECIPE_STATS[ID]
-        contents = f"<h4><u>{recipeItem.longName} ({recipeItem.name})</u><h4>"
+        contents = f"<u>{recipeItem.longName} ({recipeItem.name})</u>"
         if recipeItem.description != '':
-            contents += f"<u>Description</u>\n{recipeItem.description}"
+            contents += f"\n\n<u>Description</u>\n{recipeItem.description}"
 
         contents += '\n\n<u>Required Ingredients:</u>\nPLACEHOLDER'
 
@@ -2850,10 +2850,10 @@ class WikiPages:
 
     def Clothes(ID: int) -> str:
         if ID == -10:
-            return "<h4><u>Clothes Name</u></h4>(Clothes ID #)\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
+            return "<u>Clothes Name</u>\nClothes ID: #\n\n<u>Description</u>\nClothesDescription\n\n<u>Effects</u>\nEffects\n\n<u>How to obtain</u>\nHowToObtain"
 
         clothesItem = CLOTHES_STATS[ID]
-        contents = f'<h4><u>{clothesItem.name}</u></h4>(Clothes ID {ID})'
+        contents = f'<u>{clothesItem.name}</u>\nClothes ID: {ID}'
         if clothesItem.description != ClothesStatsItem._DESCRIPTION_FALLBACK:
             contents += f'\n\n<u>Description</u>\n{clothesItem.description}'
 
@@ -2924,11 +2924,11 @@ class WikiPages:
 
     def Enemy(ID: int) -> str:
         if ID == -10:
-            return "<h4><u>Enemy Name</u></h4>(Enemy ID #)\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nBaseStats\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
+            return "<u>Enemy Name</u>\nEnemy ID: #\n\n<u>Enemy Description</u>\nDesc\n\n<u>Base Stats</u>\nBaseStats\n\n<u>Attacks</u>\nAttacks\n\n<u>Locations</u>\nLocations\n\n<u>Encounter Conditions</u>\nEncounterConditions"
 
         EnemyItem = ENEMY_STATS[ID]
 
-        contents = f"<h4><u>{EnemyItem.properName}</u></h4>(Enemy ID {ID})"
+        contents = f"<u>{EnemyItem.properName}</u>\nEnemy ID: {ID}"
 
         contents += "\n\n<u>Description</u>\n"
 
@@ -2988,35 +2988,35 @@ class WikiPages:
 
     def Race(ID: int) -> str:
         if ID == Race.HUMAN:
-            return f"<h4><u>Human</u></h4>(Race ID 1)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SKIN_BALM)}"
+            return f"<u>Human</u>\nRace ID: 1\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SKIN_BALM)}"
         if ID == Race.HORSE:
-            return f"<h4><u>Equan</u></h4>(Race ID 2)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.BOL_JUICE)}"
+            return f"<u>Equan</u>\nRace ID: 2\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.BOL_JUICE)}"
         if ID == Race.WOLF:
-            return f"<h4><u>Lupan</u></h4>(Race ID 3)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.TAINT_LEAF)}"
+            return f"<u>Lupan</u>\nRace ID: 3\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.TAINT_LEAF)}"
         if ID == Race.CAT:
-            return f"<h4><u>Felin</u></h4>(Race ID 4)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SWEET_SAP)}"
+            return f"<u>Felin</u>\nRace ID: 4\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SWEET_SAP)}"
         if ID == Race.COW:
-            return f"<h4><u>Cow</u></h4>(Race ID 5)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.DAIRE_PILL)}\n{WikiPages.getItemTag(Item.LON_MILK)}"
+            return f"<u>Cow</u>\nRace ID: 5\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.DAIRE_PILL)}\n{WikiPages.getItemTag(Item.LON_MILK)}"
         if ID == Race.LIZARD:
-            return f"<h4><u>Lizan</u></h4>(Race ID 6)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.OAS_WATER)}"
+            return f"<u>Lizan</u>\nRace ID: 6\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.OAS_WATER)}"
         if ID == Race.RABBIT:
-            return f"<h4><u>Bunny</u></h4>(Race ID 7)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.KINKY_CARR)}"
+            return f"<u>Bunny</u>\nRace ID: 7\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.KINKY_CARR)}"
         if ID == Race.MOUSE:
-            return f"<h4><u>Mouse</u></h4>(Race ID 8)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SQU_CHEESE)}"
+            return f"<u>Mouse</u>\nRace ID: 8\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SQU_CHEESE)}"
         if ID == Race.BIRD:
-            return f"<h4><u>Bird</u></h4>(Race ID 9)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SHINY_ROCK)}"
+            return f"<u>Bird</u>\nRace ID: 9\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.SHINY_ROCK)}"
         if ID == Race.PIG:
-            return f"<h4><u>Pig</u></h4>(Race ID 10)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.FACIAL_MUD)}"
+            return f"<u>Pig</u>\nRace ID: 10\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.FACIAL_MUD)}"
         if ID == Race.SKUNK:
-            return f"<h4><u>Skunk</u></h4>(Race ID 11)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.FRAG_FLOWER)}"
+            return f"<u>Skunk</u>\nRace ID: 11\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.FRAG_FLOWER)}"
         if ID == Race.BUG:
-            return f"<h4><u>Bug</u></h4>(Race ID 12)\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.NECTAR_CANDY)}"
+            return f"<u>Bug</u>\nRace ID: 12\n\n<u>Race Description</u>\nDesc\n\n<u>Features, Traits, and Attributes</u>\nFeatures\nTraits\nAttributes\n\n<u>Affinity Items</u>\n{WikiPages.getItemTag(Item.NECTAR_CANDY)}"
 
     def Town(Num: int) -> str:
         if Num == -10:
-            return "<h4><u>Town Name</u></h4>(Zone ID #)\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
+            return "<u>Town Name</u>\nZone ID: #\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
 
-        contents = f"<h4><u>{Zone.name(Num)}</u></h4>(Zone ID {Num})"
+        contents = f"<u>{Zone.name(Num)}</u>\nZone ID: {Num}"
 
         if Num == Zone.SOFTLIK:
             return contents + "\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&1\"><i>Forest</i></a> \u2196\n<a href=\"call_args://Location&8\"><i>Dairy Farm</i></a> \u2192\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2199\n<a href=\"call_args://Location&3\"><i>Plains</i></a> \u2193"
@@ -3033,37 +3033,37 @@ class WikiPages:
 
     def Location(Num: int) -> str:
         if Num == -10:
-            return "<h4><u>Location Name</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
+            return "<u>Location Name</u>\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
         if Num == 1:
-            return "<h4><u>Forest</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"call_args://Town&3\"><i>Tieden</i></a> (Zone ID 3)"
+            return "<u>Forest</u>\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"call_args://Town&3\"><i>Tieden</i></a> (Zone ID 3)"
         if Num == 2:
-            return "<h4><u>Jungle</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"call_args://Town&4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u25CE"
+            return "<u>Jungle</u>\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"call_args://Town&4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u25CE"
         if Num == 3:
-            return "<h4><u>Plains</u></h4>"
+            return "<u>Plains</u>\n\n"
         if Num == 4:
-            return "<h4><u>Savanna</u></h4>"
+            return "<u>Savanna</u>\n\n"
         if Num == 5:
-            return "<h4><u>Desert</u></h4>"
+            return "<u>Desert</u>\n\n"
         if Num == 6:
-            return "<h4><u>Beach</u></h4>"
+            return "<u>Beach</u>\n\n"
         if Num == 7:
-            return "<h4><u>Lake</u></h4>"
+            return "<u>Lake</u>\n\n"
         if Num == 8:
-            return "<h4><u>Dairy Farm</u></h4>"
+            return "<u>Dairy Farm</u>\n\n"
         if Num == 9:
-            return "<h4><u>Old Cave</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"call_args://Location&10\"><i>Old Cave Descent</i></a> \u29BF"
+            return "<u>Old Cave</u>\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"call_args://Location&10\"><i>Old Cave Descent</i></a> \u29BF"
         if Num == 10:
-            return "<h4><u>Old Cave Descent</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&9\"><i>Old Cave</i></a> \u29BF\n<a href=\"call_args://Town&12\"><i>Sanctuary</i></a> (Zone ID 12)"
+            return "<u>Old Cave Descent</u>\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&9\"><i>Old Cave</i></a> \u29BF\n<a href=\"call_args://Town&12\"><i>Sanctuary</i></a> (Zone ID 12)"
         if Num == 11:
-            return "<h4><u>Den</u></h4><u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&6\"><i>Oviasis</i></a> (Zone ID 6)"
+            return "<u>Den</u>\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&6\"><i>Oviasis</i></a> (Zone ID 6)"
         if Num == 12:
-            return "<h4><u>Valley</u></h4><u>Description</u>\nDescription\n\n<u>Discovery</u>\n\nYou have a small random chance of discovering the valley when going into the jungle from hours 10 to 15 (inclusive) as long as it isn't your first time exploring.\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"call_args://Town&2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"call_args://Town&3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"call_args://Town&4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"call_args://Location&2\"><i>Jungle</i></a> \u29BF"
+            return "<u>Valley</u>\n\n<u>Description</u>\nDescription\n\n<u>Discovery</u>\n\nYou have a small random chance of discovering the valley when going into the jungle from hours 10 to 15 (inclusive) as long as it isn't your first time exploring.\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&1\"><i>Softlik</i></a> (Zone ID 1)\n<a href=\"call_args://Town&2\"><i>Firmshaft</i></a> (Zone ID 2)\n<a href=\"call_args://Town&3\"><i>Tieden</i></a> (Zone ID 3)\n<a href=\"call_args://Town&4\"><i>Siz'Calit</i></a> (Zone ID 4)\n<a href=\"call_args://Location&2\"><i>Jungle</i></a> \u29BF"
         if Num == 13:
-            return "<h4><u>Knothole</u></h4><u>Description</u>\nWhile technically a sub-location of Tieden, its senarios are defined in a seperate function internally so I thought it deserved its own page. Description\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&3\"><i>Tieden</i></a> (Zone ID 3) \u29BF"
+            return "<u>Knothole</u>\n\n<u>Description</u>\nWhile technically a sub-location of Tieden, its senarios are defined in a seperate function internally so I thought it deserved its own page. Description\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Town&3\"><i>Tieden</i></a> (Zone ID 3) \u29BF"
 
     def Shop(Num: int) -> str:
         if Num == 1:
-            tempStr = "<h4><u>General Shop</u></h4><u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow."
+            tempStr = "<u>General Shop</u>\n\n<u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow."
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
                 tempStr += f'\n\n<u>{Zone.regionName(i)}</u>'
@@ -3073,9 +3073,9 @@ class WikiPages:
                         tempStr += f'\n{WikiPages.getItemTag(ID)}'
             return tempStr
         if Num == 2:
-            return "<h4><u>Dye Shop</u></h4><u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
+            return "<u>Dye Shop</u>\n\n<u>Description</u>\nThis is the dye shop where you can buy dyes. The list of dyes that can be bought is bellow.\n\n<u>All Locations</u>\n<i>Auburn Dye</i>\n<i>Brown Dye</i>\n<i>Grey Dye</i>\n<i>White Dye</i>"
         if Num == 3:
-            tempStr = "<h4><u>Apothecary</u></h4><u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them."
+            tempStr = "<u>Apothecary</u>\n\n<u>Description</u>\nThis is the apothecary where you can buy alchemy items and recipes. The list of items that can be bought is bellow. <b>Note</b>: Recipes are a one time buy. Once you have them, you will never need to buy them again. They will only show up if you do not already have them."
 
             class FakeKnowledge:
                 knowLustDraft = False
@@ -3108,7 +3108,7 @@ class WikiPages:
                             tempStr += f'\n{WikiPages.getRecipeTag(ID)}'
             return tempStr
         if Num == 4:
-            tempStr = "<h4><u>Salon</u></h4><u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow."
+            tempStr = "<u>Salon</u>\n\n<u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow."
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
                 tempStr += f'\n\n<u>{Zone.regionName(i)}</u>'
@@ -3118,7 +3118,7 @@ class WikiPages:
                         tempStr += f'\n{HAIRSTYLE_STATS[ID].name}'
             return tempStr
         if Num == 5:
-            tempStr = "<h4><u>Tailor</u></h4><u>Description</u>\nThis is the Tailor where you can buy clothes. The list of clothes that can be bought is bellow."
+            tempStr = "<u>Tailor</u>\n\n<u>Description</u>\nThis is the Tailor where you can buy clothes. The list of clothes that can be bought is bellow."
             # "\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
@@ -3131,17 +3131,17 @@ class WikiPages:
 
     def NPC(Num: int) -> str:
         if Num == -10:
-            return "<h4><u>Name</u></h4><u>Character Description</u>\nCharacterDescription\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
+            return "<u>Name</u>\n\n<u>Character Description</u>\nCharacterDescription\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
         if Num == 1:
-            return "<h4><u>Fidoris</u></h4><b><i>Fetish Content:</i></b> Size difference"
+            return "<u>Fidoris</u>\n\n<b><i>Fetish Content:</i></b> Size difference"
         if Num == 2:
-            return "<h4><u>Jamie</u></h4><b><i>Fetish Content:</i></b> Femboy, Large genitalia\n\n<u>Character Description</u>\nJamie is an equine male who has an extra large \"package\". He is introduced as a femboy however, in the parts of his encounter that wheren't implemented, it is implied that he is either a trans woman or a sissy (can't tell in this context because of the fetish aspect). If you dont believe me, here's the line that is written after you give him Red Mushrooms: '\"I... I\'ve got... Boobs!\" He shouts a little too excitedly, both in confusion and joy.'. This is only one of many examples of this type of thing.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
+            return "<u>Jamie</u>\n\n<b><i>Fetish Content:</i></b> Femboy, Large genitalia\n\n<u>Character Description</u>\nJamie is an equine male who has an extra large \"package\". He is introduced as a femboy however, in the parts of his encounter that wheren't implemented, it is implied that he is either a trans woman or a sissy (can't tell in this context because of the fetish aspect). If you dont believe me, here's the line that is written after you give him Red Mushrooms: '\"I... I\'ve got... Boobs!\" He shouts a little too excitedly, both in confusion and joy.'. This is only one of many examples of this type of thing.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
         if Num == 3:
-            return "<h4><u>Lila</u></h4><b><i>Fetish Content:</i></b> Unbirth, Cub (I think), Diapers"
+            return "<u>Lila</u>\n\n<b><i>Fetish Content:</i></b> Unbirth, Cub (I think), Diapers"
         if Num == 4:
-            return "<h4><u>Malon</u></h4><b><i>Fetish Content:</i></b> Cow, Udders, Milking\n\n<u>Character Description</u>\nMalon is the \"Cow girl on the farm\" (the space between cow and girl is intentional). She lives on the Softlik Dairy Farm and became a humanoid cow by eating too many DairE Pills.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
+            return "<u>Malon</u>\n\n<b><i>Fetish Content:</i></b> Cow, Udders, Milking\n\n<u>Character Description</u>\nMalon is the \"Cow girl on the farm\" (the space between cow and girl is intentional). She lives on the Softlik Dairy Farm and became a humanoid cow by eating too many DairE Pills.\n\n<u>Encounter Details and Senarios</u>\nGeneralInformation"
         if Num == 5:
-            return "<h4><u>Silandrias</u></h4><b><i>Fetish Content:</i></b> Egg laying\n\n<u>Character Description</u>\nSilandrias is a 7 foot tall hermaphrodite from a lost race of hybrids (and is presumably the only one left of her race considering the final title you get for being with her is \"The Progenitor of an Extinct Race\"). She lives in a location called 'Den' with her caretakers Naeru and Daeru. She frequently visits Oviasis to go shopping and look for magical items of which she absolutely loves.\n\n<u>Encounter Details and Senarios</u>\nSilandrias can be met in Oviasis from hour 15 to 19 if you have either a magic item or have the effect of pheromones applied, or in the Desert from hour 4 to 7. Both a magic item and the pheromones are needed to actually 'finish' the encounter and progress to the next. DO NOT reject her when she asks if you want to go home with her, it makes her feel bad and ruins your chances with her. After the first encounter with her in either Oviasis or the Desert, you must go to the Den to make more progress.\n\n<u>Characteristics of Her Race</u>\nFur covering most of the body, head and ears of a fennec fox, bird wings with 3 tallons instead of arms and hands, a long lizard-like tail, scale plates that go from the neck to the tip of the tail with a slightly enlongated neck and spikes down the back like a nordic dragon, a long tongue, foot paws"
+            return "<u>Silandrias</u>\n\n<b><i>Fetish Content:</i></b> Egg laying\n\n<u>Character Description</u>\nSilandrias is a 7 foot tall hermaphrodite from a lost race of hybrids (and is presumably the only one left of her race considering the final title you get for being with her is \"The Progenitor of an Extinct Race\"). She lives in a location called 'Den' with her caretakers Naeru and Daeru. She frequently visits Oviasis to go shopping and look for magical items of which she absolutely loves.\n\n<u>Encounter Details and Senarios</u>\nSilandrias can be met in Oviasis from hour 15 to 19 if you have either a magic item or have the effect of pheromones applied, or in the Desert from hour 4 to 7. Both a magic item and the pheromones are needed to actually 'finish' the encounter and progress to the next. DO NOT reject her when she asks if you want to go home with her, it makes her feel bad and ruins your chances with her. After the first encounter with her in either Oviasis or the Desert, you must go to the Den to make more progress.\n\n<u>Characteristics of Her Race</u>\nFur covering most of the body, head and ears of a fennec fox, bird wings with 3 tallons instead of arms and hands, a long lizard-like tail, scale plates that go from the neck to the tip of the tail with a slightly enlongated neck and spikes down the back like a nordic dragon, a long tongue, foot paws"
 
 
 WIKI_MENUS = {
