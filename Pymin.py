@@ -1194,6 +1194,22 @@ class Utils:
             return tempStr[0: tempInt + places + 1]
         return tempStr
 
+    def isValidHex(hexstr: str) -> bool:
+        '''
+        Checks if a given string is a valid (6 digit) hexadecimal colour code
+        '''
+        if len(hexstr) == 7 and hexstr[0] == '#':
+            for i in hexstr[1:]:
+                if i not in '0123456789ABCDEFabcdef':
+                    return False
+            return True
+        return False
+
+    def hexColorFromThemeNumber(theme) -> str:
+        return ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[theme]
+
+
+class Grammar:
     # not used
     def Gibberish() -> str:
         chance = Utils.percent()
@@ -1220,19 +1236,24 @@ class Utils:
             return "Pancakes"
         return "GIB BUTTON ERROR"
 
-    def isValidHex(hexstr: str) -> bool:
-        '''
-        Checks if a given string is a valid (6 digit) hexadecimal colour code
-        '''
-        if len(hexstr) == 7 and hexstr[0] == '#':
-            for i in hexstr[1:]:
-                if i not in '0123456789ABCDEFabcdef':
-                    return False
-            return True
-        return False
+    def ptweaks(topic: int, capital: bool = False) -> str:
+        # femme-boy/femboy
+        if topic == 1:
+            if capital:
+                return "Femboy" if mainobject.femmeboyToFemboy else "Femme-boy"
+            return "femboy" if mainobject.femmeboyToFemboy else "femme-boy"
 
-    def hexColorFromThemeNumber(theme) -> str:
-        return ('#FFFFFF', '#000000', '#EF7DB6', '#29705C', '#4248A6', '#721717')[theme]
+        # shemale/futanari
+        if topic == 2:
+            if capital:
+                return "Futanari" if mainobject.shemaleToFuta else "Shemale"
+            return "futanari" if mainobject.shemaleToFuta else "shemale"
+
+        # femme boy/femboy
+        if topic == 3:
+            if capital:
+                return "Femboy" if mainobject.femmeboyToFemboy else "Femme Boy"
+            return "femboy" if mainobject.femmeboyToFemboy else "femme boy"
 
 
 class DirUtils:
@@ -4430,7 +4451,7 @@ class OptionsWindow(PyminWindow):
         self.window.addCheckboxWithLabel('gs', 'ngrammar', x=10, y=76, width=180, height=20, font=labelFont, text='Use n-grammar', background=self.backgroundColor, foreground=self.textColor)
         ToolTip(self.window._children['ngrammar'].frame, text='There are places in the game where it uses "a" but should use "an". This really\nbugged me so I fixed it. (The use of "an" is different between all of the\nflavours of english so it might not look right for you)')
 
-        self.window.addCheckboxWithCombobox('gs', 'replacefemmiemale', x=10, y=98, width=180, height=20, font=labelFont, text='Replace "femmie male"', indent=70, values=('feminine male', mainobject.game.ptweaksGrammar(3)), exportselection=0, readonly=True, background=self.backgroundColor, foreground=self.textColor)
+        self.window.addCheckboxWithCombobox('gs', 'replacefemmiemale', x=10, y=98, width=180, height=20, font=labelFont, text='Replace "femmie male"', indent=70, values=('feminine male', Grammar.ptweaks(3)), exportselection=0, readonly=True, background=self.backgroundColor, foreground=self.textColor)
         ToolTip(self.window._children['replacefemmiemale'].frame, text='Replaces the term "femmie male" with either "feminine male" or "femboy"/"femme boy"')
 
         self.window.addCheckboxWithLabel('gs', 'femboyishtogirly', x=10, y=142, width=180, height=20, font=labelFont, text='femboyish -> girly', background=self.backgroundColor, foreground=self.textColor)
@@ -8465,7 +8486,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.statDisplay(False)
         if self.gender == Gender.MALE:
             self.showButtons(ButtonList(1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0))
-            tempDict = {1: "Bodybuilder", 3: "Average", 5: "Cunt Boy", 7: self.ptweaksGrammar(3, True), 10: "Childlike"}
+            tempDict = {1: "Bodybuilder", 3: "Average", 5: "Cunt Boy", 7: Grammar.ptweaks(3, True), 10: "Childlike"}
         elif self.gender == Gender.FEMALE:
             self.showButtons(ButtonList(0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0))
             tempDict = {2: "Bodybuilder", 5: "Average", 3: "Voluptuous", 10: "Childlike"}
@@ -13105,7 +13126,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 elif mainobject.femmieMaleReplacement == 1:
                     self.doMainText("feminine male")
                 elif mainobject.femmieMaleReplacement == 2:
-                    self.doMainText(self.ptweaksGrammar(1))
+                    self.doMainText(Grammar.ptweaks(1))
                 self.doMainText(f" lizan wearing a simple pair of shorts approaches you. His scales are mostly a dark shade the color of deep night, however he also possesses an array of dazzling white tiger stripes. These markings set off his brilliant copper eyes, while his dark scales hide his blush as his eyes drift to your crotch.\n\nHe stumbles over his words as his glittering copper eyes scan you up and down, noting your attributes with apparent satisfaction. As he draws closer you notice a massive bulge in his shorts. He's obviously quite horny, and your body appears to be making him even more so. Not caring the both of your are clearly visible in public, he drops his pants to reveal two massive cocks.\n\nTo your surpise, he doesn't proceed to bend you over and pound you senseless with his two foot long dicks. Instead, he bends over and spreads his cheeks for you, looking over his shoulder in a sultry and submissive manner. He shakes his cute little tush at you, begging for a good fucking. Seeing his winking asshole makes your {self.cockDesc()} cock{self.plural(1)} stand at full stiffness.\n\nHe shakes his ass again and you place your hands on his round cheeks, then press the head of {self.oneYour(1)} {self.cockDesc()} ")
                 if (self.catCocks > 0):
                     self.doMainText("barbed")
@@ -17591,7 +17612,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.mistressRep > 10):
                         self.outputMainText("Fidoris leads you to the usual place. The mistress awaits upon her bed, her belly massive with vaginal flesh and pushing her many breasts towards her sides. So large that her gown cannot cover her lowest pair of breasts and stretching it across the next. The curtain that hides her giant pussy from the bedroom entrance is rather useless as you can see the thick lips protrude past the edge, her large clit standing erect above them. All of the growth thanks to your efforts.", True)
                     else:
-                        self.outputMainText(f"The felin {self.ptweaksGrammar(1)} leads you to a rather large tree-borne hut. The closer he gets, the quicker his pace seems to be, as his tail begins to swish in anticipation.\n\nOpening the veil to the home, it seems the 'mistress' is rather well off. Lots of large, plush furniture, plenty of ornate, expensive trinkets and decorations, and overall elegant lifestyle. However, despite all of that, the {self.ptweaksGrammar(1)} leads you straight to the bedroom.\n\nHe stops just inside the doorway. Past him, you can see an extavagent bed, perpendicular from your perspective, sitting in the middle of the room. On top of it lays the mistress. She's a gorgeous felin lady, with a youthful face and silky-smooth fur that has a healthy shine. You can see her erotically knead the top two pairs of her six breasts through her gown while she lays on her back, oblivious to your presence. Past her second pair, however, her body is hidden behind a mostly opaque curtain. Although, you can still see the silhouette of what might be her form. Her belly seems to be much larger than her figure would suggest, as if she were somewhat pregnant. And her legs seems to be bent and drawn back, straddling a large, round object that is even larger than her belly, perhaps even her whole body.", True)
+                        self.outputMainText(f"The felin {Grammar.ptweaks(1)} leads you to a rather large tree-borne hut. The closer he gets, the quicker his pace seems to be, as his tail begins to swish in anticipation.\n\nOpening the veil to the home, it seems the 'mistress' is rather well off. Lots of large, plush furniture, plenty of ornate, expensive trinkets and decorations, and overall elegant lifestyle. However, despite all of that, the {Grammar.ptweaks(1)} leads you straight to the bedroom.\n\nHe stops just inside the doorway. Past him, you can see an extavagent bed, perpendicular from your perspective, sitting in the middle of the room. On top of it lays the mistress. She's a gorgeous felin lady, with a youthful face and silky-smooth fur that has a healthy shine. You can see her erotically knead the top two pairs of her six breasts through her gown while she lays on her back, oblivious to your presence. Past her second pair, however, her body is hidden behind a mostly opaque curtain. Although, you can still see the silhouette of what might be her form. Her belly seems to be much larger than her figure would suggest, as if she were somewhat pregnant. And her legs seems to be bent and drawn back, straddling a large, round object that is even larger than her belly, perhaps even her whole body.", True)
                     self.doNext()
 
                     def doListen():
@@ -17627,9 +17648,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     tempDict[11] = "Cock"
                                 self.doMainText("\"Great! Fidoris, bring our guest over here!\" She grins with excitement.", True)
                                 if (self.mistressRep == 0):
-                                    self.doMainText(f"\n\nThe {self.ptweaksGrammar(1)} takes you by the hands and leads you towards the bed. As he takes you around the curtain to get closer to his mistress, your eyes grow wide as you see what had been hidden. First of all, the woman obviously had no underwear; her spread legs giving you a great view beneath her gown. However, it doesn't seem like she could have done otherwise, as the gown simply wasn't long enough to reach around her enormous nether region. The large round object whose shadow you had seen from the other side was actually her vulva!\n\nHer legs are spread simply due to the fact that the fat labia wouldn't allow for otherwise. It's more than half as tall as she is, with the slit gaping before you like a giant maw. If she were to stand, it'd be dreadfully close to dragging upon the floor with each step. The large inner-lips dangle from the outer in thick folds and her giant clitoris is nearly as big as her head, protruding from its huge flap of a hood. Feminine slime drools and drips down through the crevice, pooling around onto the bed and draining off into a bucket. You can see into her deep pussy, the emanating heat reaching you from several feet away. And it's quite easy to tell that she's not pregnant, but rather her belly is huge from all the vaginal flesh within.")
+                                    self.doMainText(f"\n\nThe {Grammar.ptweaks(1)} takes you by the hands and leads you towards the bed. As he takes you around the curtain to get closer to his mistress, your eyes grow wide as you see what had been hidden. First of all, the woman obviously had no underwear; her spread legs giving you a great view beneath her gown. However, it doesn't seem like she could have done otherwise, as the gown simply wasn't long enough to reach around her enormous nether region. The large round object whose shadow you had seen from the other side was actually her vulva!\n\nHer legs are spread simply due to the fact that the fat labia wouldn't allow for otherwise. It's more than half as tall as she is, with the slit gaping before you like a giant maw. If she were to stand, it'd be dreadfully close to dragging upon the floor with each step. The large inner-lips dangle from the outer in thick folds and her giant clitoris is nearly as big as her head, protruding from its huge flap of a hood. Feminine slime drools and drips down through the crevice, pooling around onto the bed and draining off into a bucket. You can see into her deep pussy, the emanating heat reaching you from several feet away. And it's quite easy to tell that she's not pregnant, but rather her belly is huge from all the vaginal flesh within.")
                                 elif (self.mistressRep > 0):
-                                    self.doMainText(f"\n\nThe {self.ptweaksGrammar(1)} leads you back behind the curtain. Even though you've seen it before, the sight of her massive feminine genitalia is still awe-inspiring. Swelling and pulsing with her heartbeat, the heat warming the room. Fidoris is glad to be back in its presence, sighing in comfort. The slime continues to pool around the massive folds, perpetually keeping them well lubricated. And each time you come, she just seems even bigger and bigger than before...")
+                                    self.doMainText(f"\n\nThe {Grammar.ptweaks(1)} leads you back behind the curtain. Even though you've seen it before, the sight of her massive feminine genitalia is still awe-inspiring. Swelling and pulsing with her heartbeat, the heat warming the room. Fidoris is glad to be back in its presence, sighing in comfort. The slime continues to pool around the massive folds, perpetually keeping them well lubricated. And each time you come, she just seems even bigger and bigger than before...")
                                 self.doMainText("\n\n\"Come on, over here now!\" She eagerly waves for the fruit.\n\nHanding it to Fidoris, he quickly presents it to his mistress. Like a child, she giggles with giddyness. She begins by licking up through the lewd crack in the fruit, squeezing it gently until its juices start to seep out. Once her tongue touches the sweet nectar, her mouth opens wide and bites into it, letting the juices spill out onto her face with ecstasy. She proceeds to devour it rapidly, cherishing every bite thoroughly.\n\nShe heaves a few loud sighs once the fruit is gone. Her hands dig into her gown, pushing into her gravid belly as she feels the fruit's effects begin to settle in. With a shiver and a moan, you watch as her cunt begins to shudder. Before your eyes, it swells even larger, her belly becoming more prominent.")
                                 if (self.cockTotal > 0):
                                     if (self.cockSize * self.cockSizeMod >= self.eVagLimit(120 + self.mistressRep * 8)):
@@ -17714,7 +17735,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                             self.doNext()
 
                                             def doListen():
-                                                self.doMainText(f"You eventually wake back up, though you don't know how long you've been asleep. All that you know is that you had some of the most restful sleep you've ever had. And it seems that Fidoris' cock had eventually withdrawn back into its sheath, no longer penetrating you. As you begin to rustle around in the darkness, waking up the {self.ptweaksGrammar(1)} beside you, the soft walls shudder around you.\n\n\"Oh my, are you two finally awake in there?\" The mistress pats her belly from the outside with a giggle, the sound echoing around in a low beat. \"Mmm... That was a lot of fun. I hope you two slept well, I know I had a nice nap~ The thought of you two having sex within me... Mmm~\" The womb shudders once more. \"Well then, I suppose you'd like to be moving on. Just go out the way that feels most natural~!\"\n\nBefore you can respond, you can feel the walls press down around you. The suction that you felt before when entering now seems to be pulling the other way. Fidoris' body moves past you, leaving you alone in her belly for a moment before you begin to slide out as well, quickly finding your way through her enormous passage. The next thing you know, you're body is being gently squeezed all around you, the slickness propelling you out into the cold air.\n\nFidoris catches you as you slip out of her cunt, well prepared with a thick towel to wrap you up in just as he already is. Your teeth jitter at first, the coolness of the air against your wet skin chilling you to the bone. Drawn back towards the massive vulva, you hover nearby to bask in the heat while you dry yourself off and don your clothes.\n\n\"I hope you had fun.\" She winks. \"Though I wonder if I'll be getting pregnant from all that...\" She giggles at the thought. \"And here, here's your payment for the fruit, with a little something extra for the fun.\"\n\nShe hands you some coins and lets you sit on her bed next to her for a bit while you readjust to the warmth of the jungle. It takes a bit of getting used to, but once you finally leave, you feel quite rejuvenated!", True)
+                                                self.doMainText(f"You eventually wake back up, though you don't know how long you've been asleep. All that you know is that you had some of the most restful sleep you've ever had. And it seems that Fidoris' cock had eventually withdrawn back into its sheath, no longer penetrating you. As you begin to rustle around in the darkness, waking up the {Grammar.ptweaks(1)} beside you, the soft walls shudder around you.\n\n\"Oh my, are you two finally awake in there?\" The mistress pats her belly from the outside with a giggle, the sound echoing around in a low beat. \"Mmm... That was a lot of fun. I hope you two slept well, I know I had a nice nap~ The thought of you two having sex within me... Mmm~\" The womb shudders once more. \"Well then, I suppose you'd like to be moving on. Just go out the way that feels most natural~!\"\n\nBefore you can respond, you can feel the walls press down around you. The suction that you felt before when entering now seems to be pulling the other way. Fidoris' body moves past you, leaving you alone in her belly for a moment before you begin to slide out as well, quickly finding your way through her enormous passage. The next thing you know, you're body is being gently squeezed all around you, the slickness propelling you out into the cold air.\n\nFidoris catches you as you slip out of her cunt, well prepared with a thick towel to wrap you up in just as he already is. Your teeth jitter at first, the coolness of the air against your wet skin chilling you to the bone. Drawn back towards the massive vulva, you hover nearby to bask in the heat while you dry yourself off and don your clothes.\n\n\"I hope you had fun.\" She winks. \"Though I wonder if I'll be getting pregnant from all that...\" She giggles at the thought. \"And here, here's your payment for the fruit, with a little something extra for the fun.\"\n\nShe hands you some coins and lets you sit on her bed next to her for a bit while you readjust to the warmth of the jungle. It takes a bit of getting used to, but once you finally leave, you feel quite rejuvenated!", True)
                                                 self.doCoin(45)
                                                 self.doLust(-Math.floor(self.sen / 2), 2, 2, 5)
                                                 self.hrs = 2 + Math.floor(Utils.percent() / 20)
@@ -17767,7 +17788,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.doMainText("\"That is quite alright, you don't need any now, though it would have been nice. Here, take some coin as encouragement at least.\"", True)
                                 elif (self.mistressRep > 0):
                                     self.doMainText("\"Aww, that's a shame. Well, here, have some more coin as encouragement to pick some more for me.\"", True)
-                                self.outputMainText(f"\n\nShe nods to the {self.ptweaksGrammar(1)} who goes to a shelf and grabs some coins from a bag. He hands them to you and leads you out the front door, thanking you for obliging.")
+                                self.outputMainText(f"\n\nShe nods to the {Grammar.ptweaks(1)} who goes to a shelf and grabs some coins from a bag. He hands them to you and leads you out the front door, thanking you for obliging.")
                                 self.doCoin(5)
                                 self.hrs = 2
                                 self.doEnd()
@@ -26022,26 +26043,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif pregnancyType == 504:
             self.doMainText(f" White fluids explode from your fresh pussy, drenching your {self.legDesc(4)} and slightly flooding the area around you. It only takes a few moments for it to all escape, your belly quickly deflating. Dabbing your fresh new pussy and taking a taste, the white fluid was a bunch of milk...\n\nThe statue must have enjoyed it's practical joke on you.")
 
-    # TODO: Move out of game class
-    def ptweaksGrammar(self, topic: int, capital: bool = False) -> str:
-        # femme-boy/femboy
-        if topic == 1:
-            if capital:
-                return "Femboy" if mainobject.femmeboyToFemboy else "Femme-boy"
-            return "femboy" if mainobject.femmeboyToFemboy else "femme-boy"
-
-        # shemale/futanari
-        if topic == 2:
-            if capital:
-                return "Futanari" if mainobject.shemaleToFuta else "Shemale"
-            return "futanari" if mainobject.shemaleToFuta else "shemale"
-
-        # femme boy/femboy
-        if topic == 3:
-            if capital:
-                return "Femboy" if mainobject.femmeboyToFemboy else "Femme Boy"
-            return "femboy" if mainobject.femmeboyToFemboy else "femme boy"
-
     def plural(self, topic: int) -> str:
         if (topic == 1 and self.cockTotal > 1):
             return "s"
@@ -26118,9 +26119,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 return "childish"
             elif self.body <= 17:
                 if (self.hips > 3 and self.breastSize > 4):
-                    return self.ptweaksGrammar(2)
+                    return Grammar.ptweaks(2)
                 elif (self.hips > 2):
-                    return "girly" if mainobject.femboyishToGirly else f"{self.ptweaksGrammar(1)}ish"
+                    return "girly" if mainobject.femboyishToGirly else f"{Grammar.ptweaks(1)}ish"
                 return "boyish"
             elif self.body <= 25:
                 return "manly"
