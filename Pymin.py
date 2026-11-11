@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 import as3lib
 from as3lib import (Array, as3state, each, EnableDebug, Error, Number,
-                    RangeError, setHeaderInfo, TOML, trace, Vector)  # Math
+                    parseInt, RangeError, setHeaderInfo, TOML, trace, Vector)  # Math
 from as3lib.helpers import isValidDirectory, textObject
 from as3lib.flash.desktop import _ToolkitEvent, _TkMouse
 from as3lib.flash.net import SharedObject
 from as3lib.flash.text import Font
 from as3lib.flash.ui import Keyboard
 import as3lib.interface_tk as itk
+from copy import deepcopy
 from dataclasses import dataclass
 from functools import partial, cache
 from miniamf import sol
@@ -2503,10 +2504,10 @@ class WikiPages:
         if Num == 5:
             return "<h4><u>Wiki Key</u></h4>This page includes all of the symbols and notations that are used in this wiki and what they mean.\n\n<h6><u>General Notations</u></h6><b><u>Header 4 with underline</u></b>: page title\n<u>Header 6 with underline</u>: section title\n<u>Underline</u>: Subsection title\n\n<u>Location menus</u>\nArrows\u2196\u2191\u2197\u2190\u2192\u2199\u2193\u2198: the direction in which the area is located relative to the current one\nFilled in circle inside of another circle \u29BF: directly connected to currect area\nEmpty in circle inside of another circle \u25CE: current area leads to discovery of the area"
         if Num == 6:
+            # TODO: Convert this page into one that shows the changelog
             return "<h4><u>Changes (Outdated)</u></h4>This page includes all of the changes made to the game that aren't completely obvious.\n\n<b><u>General Changes</u></b>\nChanged the save file format to .xml and added a save file converter to convert between save types.\nYou can now load any supported file type from anywhere. Originally, you could only use .sol files for the save buttons and .nim for custom locations.\nSave files are now in a subdirectory instead of in the same folder as the game.\nThere is now an in game debug mode. It can be activated by passing the arguement \"--debug\" when launching the game.\n\n<b><u>Bug Fixes</u></b>\nShops now always go back to themselves instead of another shop.\nEnemy 102 now changes the proper values.\nVarious senarios throughout the game now only need one button press instead of two to exit.\ndoJizzPants now doesn't trigger when exiting the bag.\nItem 517 and 522 now use the variable showBall correctly.\nThere were a bunch of spots where text wouldn't display correctly because of typos, those are fixed now.\nItem amounts no longer bug out when gainItem is called from inside the bag.\nBag page number now resets after loading a game.\nFixed many spelling and formatting mistakes.\n\n<b><u>Gameplay Changes</u></b>\nAdded a \"Do Nothing\" option to item 253.\nShops return to the shop selection menu if you hold shift while pressing the return button.\nBag now returns to the same page after selling an item.\nBag and Stash page numbers are now completely decoupled.\nThe return button in the day care has been moved to the 12th slot to be consistent with the rest of the actions.\n\n<b><u>Interface Changes</u></b>\nAdded a <a href='call_args://MenuBar&1'>preferences window</a> to change a couple of things in the game. Go to File->Options to access it.\nRecreated the up/down images so they can be scaled nicely and centered them.\nSave, Load, and New Game buttons are now the same size.\nThere is now a dedicated button in the bag to discard items so you don't have to close it to discard them.\n"
 
     def MenuBar(Num: int) -> str:
-        # TODO: Rework this section
         # File->Options
         if Num == 1:
             return "<h4><u>File->Options</u></h4>Opens up a separate window that holds the configuration options for the game. These options are organised in a ttk notebook widget to make it easier to display them. Their functions and containing tabs are described below:\n\n\n<b><u>Options Tab</u></b>\nThis tab contains basic configuration options.\n\n<u>Strict Save Compat</u>\n(Partially Implemented) Forces the use of save files compatible with the original game and disables any configuration options that interfere with that. Even without this active, the game can still save and load the original formats, the new format just takes priority.\n\n<u>Fixed Resolution</u>\nForces all windows to be at their default resolution.\n\n<u>Custom Theme Color</u>\nAllows you to set a custom theme color.\n\n<u>Custom Font Color</u>\nAllows you to set a custom font color.\n\n<u>Save Location</u>\nAllows you to set a custom default save file location. If the chosen location does not exist, it will be created for you.\n\n\n<b><u>Interface Tab</u></b>\nThis tab contains toggles that alter the game's interface.\n\n<u>Original Button Colours</u>\n(Partially Implemented) Makes the buttons in the game window have their original colours instead of the new ones. This currently does not add borders to the buttons because that causes visual artifacts when resizing.\n\n<u>Show ScrolledText Borders</u>\nToggles the borders on the scrollable text areas. They come with borders so I thought it would be nice to allow people to re-enable them if they wanted to.\n\n<u>Original Size For New Game</u>\nUses the original size and location of the new game button.\n\n<u>Static doLevelUP Buttons</u>\nForces the buttons in the level up screen to stay in the same place no matter what is being displayed.\n\n<u>Theme Type Selector</u>\nSelects the theme you want to go with. The 'Pymin' theme is the default and allows more customization. The 'Nimin' theme sticks more strictly to the original game's style where possible and limits your customization options.\n\n<u>Use Expanded Save Dialog</u>\nToggles the use of the new save/load dialog. This new dialog uses a scrollable listbox to allow the selection of any save file in the save folder. You can also enter the file name in the entry box if you wish.\n\n<u>Use New Stash</u>\nMakes the stash work like the bag instead of the limited mess that it was originally. When moving an item in either the bag or stash, the return button switches to a button which allows you to move between them with the item. Item discarding has been moved to its own button located to the right of the return button.\n\n<u>Help Opens Wiki</u>\nMakes the 'Help' button on the side bar open the wiki instead of displaying the help text.\n\n\n<b><u>Grammar Tab</u></b>\nThis tab contains the grammar related toggles. Some are based on personal preference, some are fixes.\n\n<u>Respect showBalls</u>\nMakes the game always respect the visibility status of your balls. There were a lot of places where this was not the case before.\n\n<u>Femme-boy -> Femboy</u>\nChanges 'Femme-boy' to 'Femboy'.\n\n<u>Shemale -> Futanari</u>\nChanges 'Shemale' to 'Futanari'.\n\n<u>Use n-grammar</u>\nMakes the game use 'an' instead of just 'a' where needed. I'm pretty sure this differs between different versions of english, so it may not be 'correct' in yours.\n\n<u>Femme Male Replacement</u>\n(No toggle yet)This replaces 'femmie male' with your choice of either 'feminine male' or 'femme-boy'/'femboy'.\n\n<u>femboyish -> girly</u>\nChanges 'femboyish' to 'girly'.\n\n<u>Snuggleball Tweak</u>\nRemoves the redundant description text for the snuggleball in the appearance text.\n\n<u>Grammar Fixes</u>\nThis toggle is for the other grammar fixes that don't get their own toggle.\n\nChanges cock plurality to be based on the type of cock if senarios are too\nMakes sheath size not able to display as 0\nFixes formatting in detailedTitles when you do not have titles any yet\nMakes the game check if the player has a womb before describing it\nChanges various places where the used words don't makes sense ex: 'urging get you' -> 'trying to get you', 'Eventually, you quickly' -> 'You quickly'\nMakes the game describe the player as flat if their breasts are small in some senarios\n\n\n<b><u>Game Tweaks Tab</u></b>\nThis tab contains any tweak that modifies gameplay and other elements of the game that aren't strictly visual.\n\n<u>Status Tweaks</u>\nCurrently does two things, 1) Changes the maximum strength stat to 200 just because I felt like it and 2) Makes the Femboy starting option slighly more feminine.\n\n<u>Succubus Leaves One</u>\nMakes the succubus leave one cock (or 2 if you are a Lizan and have at least two lizard cocks) instead of taking all of them.\n\n<u>Use isBottomOpen</u>\nReplaces the various parts of the game that check for open bottom clothes with my function isBottomOpen. This is only in here because some of the spots where this is checked didn't include all of the \"open\" bottom clothes (I'm assuming this was an oversight due to how the game was developed).\n\n<u>Lizan Don't Show Balls</u>\n(Partially Implemented) (Most) Lizards don't come with external nuts, why should Lizan. This option hides your balls if you only have lizardCocks and does the same for npcs.\n\n<u>Herm Can Has Both</u>\n(Not implemented) Makes herms able to experience both male and female senarios where it makes sense.\n\n<u>Internal Balls Effect Belly Size</u>\n(Partially Implemented) When showBalls is False, makes ballSize effect belly size in the calculation the game does for weight and size.\n\n<u>Direct Path to Sanctuary</u>\nAdds an explore option that appears once you defeat the final boss in Old Cave Descent which allows you to travel directly between Firmshaft and Sanctuary without having to go through the dungeon. The path must first be opened from Sanctuary before it can be used from Firmsaft.\n\n<u>Correct Feet for Some Races</u>\n(Partially Implemented) Gives some races (felin, lupan, equan, bovine) the correct feet based on the information present in the game. Felin and lupan get digipaws (I'm not entirely sure about this one), equan and bovine get hooves.\n\n\n<b><u>Debug Options Tab</u></b>\nThis tab only shows up when debug mode is active. The contained options are also only active when debug mode is active.\n\n<u>alwaysChooseSenario</u>\nAllows you to choose the senario you want when exploring. Requires user input in the terminal every time.\n\n<u>takeNoDamage</u>\nMakes enemies deal no damage. (currently only applies to eDmg)\n"
@@ -2521,11 +2522,11 @@ class WikiPages:
 
         # Save Utils
         if Num == 4:
-            return "<h4><u>Save Utils</u></h4>This menu contains utilities for interacting with save files.\n\n\n<b><u>Converter</u></b>\nOpens a window containing a simple save file converter.\n\n<b><u>Editor</u></b> (Incomplete)\nOpens a window containing a simple graphical save file editor.\n"
+            return "<h4><u>Save Utils</u></h4>This menu contains utilities for interacting with save files.\n\n\n<b><u>Converter</u></b>\nOpens a window containing a simple save file converter.\n\n<b><u>Editor</u></b> (WIP)\nOpens a window containing a simple graphical save file editor.\n"
 
         # Debug Utils
         if Num == 5:
-            return "<h4><u>Debug Utils</u></h4>This menu contains utilities useful for debugging (some could be considered cheats). It will only shows up when debug mode is active.\n\n\n<b><u>Variable Display</u></b>\nOpens a popup window which displays all of the relavant variables in the game and their state.\n\n<b><u>Give Item</u></b>\nOpens a popup window with two input boxes for item information. Uses the games gainItem system to give the player an item of the specified ID and amount.\n\n<b><u>Use Item</u></b>\n(Not implemented yet) Opens a popup window to activate an item's useItem event without consuming the item or checking if the player has it.\n\n<b><u>Affinity</u></b>\nOpens a popup window that allows the player to modify their affinities. The IDs for affinities are listed below:\n1 - humanAffinity\n2 - horseAffinity\n3 - wolfAffinity\n4 - catAffinity\n5 - cowAffinity\n6 - lizardAffinity\n7 - rabbitAffinity\n8 - mouseAffinity\n9 - birdAffinity\n10 - pigAffinity11 - skunkAffinity\n12 - bugAffinity\nL1001 - cowTaurAffinity\nL1002 - humanTaurAffinity\nB2 - twoBoobAffinity\nB4 - fourBoobAffinity\nB6 - sixBoobAffinity\nB8 - eightBoobAffinity\nB10 - tenBoobAffinity\n"
+            return "<h4><u>Debug Utils</u></h4>This menu contains utilities useful for debugging (some could be considered cheats). It will only shows up when debug mode is active.\n\n\n<b><u>Variable Display</u></b>\nOpens a popup window which displays all of the relavant variables in the game and their state.\n\n<b><u>Give Item</u></b>\nOpens a popup window with two input boxes for item information. Uses the games gainItem system to give the player an item of the specified ID and amount.\n\n<b><u>Affinity</u></b>\nOpens a popup window that allows the player to modify their affinities. The IDs for affinities are listed below:\n1 - humanAffinity\n2 - horseAffinity\n3 - wolfAffinity\n4 - catAffinity\n5 - cowAffinity\n6 - lizardAffinity\n7 - rabbitAffinity\n8 - mouseAffinity\n9 - birdAffinity\n10 - pigAffinity11 - skunkAffinity\n12 - bugAffinity\nL1001 - cowTaurAffinity\nL1002 - humanTaurAffinity\nB2 - twoBoobAffinity\nB4 - fourBoobAffinity\nB6 - sixBoobAffinity\nB8 - eightBoobAffinity\nB10 - tenBoobAffinity\n"
 
         # Help
         if Num == 6:
@@ -2935,7 +2936,7 @@ class WikiPages:
         if ID == Enemy.TEST_ENEMY:
             return contents + "This enemy is a test enemy and is not encounterable by the player. Most of the stuff about this enemy is fragmented left overs."
 
-        contents += "Desc"  # TODO
+        contents += "PLACEHOLDER"  # TODO
 
         contents += "\n\n<u>Base Stats</u>\n"
 
@@ -3460,33 +3461,32 @@ WIKI_MENUS = {
             'Lantern': ('Item', Item.LANTERN)
         }
     },
-    # TODO: Use enum here
     'Recipes': {
-        'R: LustDraft': ('Recipe', 1),
-        'R: RejuvPot': ('Recipe', 2),
-        'R: ExpPreg': ('Recipe', 3),
-        'R: BallSwell': ('Recipe', 4),
-        'R: SLustDraft': ('Recipe', 5),
-        'R: SRejuvPot': ('Recipe', 6),
-        'R: SExpPreg': ('Recipe', 7),
-        'R: SBallSwell': ('Recipe', 8),
-        'R: GenSwap': ('Recipe', 9),
-        'R: MasoPot': ('Recipe', 10),
-        'R: BabyFree': ('Recipe', 11),
-        'R: PotPot': ('Recipe', 12),
-        'R: SGenSwap': ('Recipe', 13),
-        'R: SMasoPot': ('Recipe', 14),
-        'R: SBabyFree': ('Recipe', 15),
-        'R: SPotPot': ('Recipe', 16),
-        'R: MilkSuppress': ('Recipe', 17),
-        'R: BlondeDye': ('Recipe', 50),
-        'R: PussJuice': ('Recipe', 51),
-        'R: BlackDye': ('Recipe', 52),
-        'R: RedDye': ('Recipe', 53),
-        'R: Pheromone': ('Recipe', 54),
-        'R: ReducReduc': ('Recipe', 55),
-        'R: MaleEnhance': ('Recipe', 56),
-        'R: Bazoomba': ('Recipe', 57)
+        'R: LustDraft': ('Recipe', Recipe.LUST_DRAFT),
+        'R: RejuvPot': ('Recipe', Recipe.REJUV_POT),
+        'R: ExpPreg': ('Recipe', Recipe.EXP_PREG),
+        'R: BallSwell': ('Recipe', Recipe.BALL_SWELL),
+        'R: SLustDraft': ('Recipe', Recipe.S_LUST_DRAFT),
+        'R: SRejuvPot': ('Recipe', Recipe.S_REJUV_POT),
+        'R: SExpPreg': ('Recipe', Recipe.S_EXP_PREG),
+        'R: SBallSwell': ('Recipe', Recipe.S_BALL_SWELL),
+        'R: GenSwap': ('Recipe', Recipe.GEN_SWAP),
+        'R: MasoPot': ('Recipe', Recipe.MASO_POT),
+        'R: BabyFree': ('Recipe', Recipe.BABY_FREE),
+        'R: PotPot': ('Recipe', Recipe.POT_POT),
+        'R: SGenSwap': ('Recipe', Recipe.S_GEN_SWAP),
+        'R: SMasoPot': ('Recipe', Recipe.S_MASO_POT),
+        'R: SBabyFree': ('Recipe', Recipe.S_BABY_FREE),
+        'R: SPotPot': ('Recipe', Recipe.S_POT_POT),
+        'R: MilkSuppress': ('Recipe', Recipe.MILK_SUPPRESS),
+        'R: BlondeDye': ('Recipe', Recipe.BLONDIE),
+        'R: PussJuice': ('Recipe', Recipe.PUSS_JUICE),
+        'R: BlackDye': ('Recipe', Recipe.BLACK_DYE),
+        'R: RedDye': ('Recipe', Recipe.RED_DYE),
+        'R: Pheromone': ('Recipe', Recipe.PHEROMONE),
+        'R: ReducReduc': ('Recipe', Recipe.REDUC_REDUC),
+        'R: MaleEnhance': ('Recipe', Recipe.MALE_ENHANCE),
+        'R: Bazoomba': ('Recipe', Recipe.BAZOOMBA)
     },
     'Clothes': {
         'Tattered Shreds': ('Clothes', Clothes.TATTERED_SHREDS),
@@ -3939,35 +3939,29 @@ class SE_ChangedOnLoadWarning(tkinter.Toplevel):
 
 
 class SE_File:
-    # TODO: Get rid of _LoadFunction. Use SaveUtils.load_fixupData instead
-
     def __init__(self, file):
         self.file = os.path.realpath(file)
         self.ext = os.path.splitext(file)[1]
         self.rawData = None
         self.changed = False
         if self.ext == '.sol':
-            self._LoadFunction = SaveUtils.loadSOL
-            self._SaveFunction = SaveUtils.saveSOL
-            self._RawLoader = SaveUtils.loadSOL_Raw
+            self._Saver = SaveUtils.saveSOL
+            self._Loader = SaveUtils.loadSOL_Raw
         elif self.ext == '.nim':
-            self._LoadFunction = SaveUtils.loadNIM
-            self._SaveFunction = SaveUtils.saveNIM
-            self._RawLoader = SaveUtils.loadNIM_Raw
+            self._Saver = SaveUtils.saveNIM
+            self._Loader = SaveUtils.loadNIM_Raw
         elif self.ext == '.xml':
-            self._LoadFunction = SaveUtils.loadXML
-            self._SaveFunction = SaveUtils.saveXML
-            self._RawLoader = SaveUtils.loadXML_Raw
+            self._Saver = SaveUtils.saveXML
+            self._Loader = SaveUtils.loadXML_Raw
         elif self.ext == '.toml':
-            self._LoadFunction = SaveUtils.loadTOML
-            self._SaveFunction = SaveUtils.saveTOML
-            self._RawLoader = SaveUtils.loadTOML_Raw
+            self._Saver = SaveUtils.saveTOML
+            self._Loader = SaveUtils.loadTOML_Raw
         else:
             raise Error(f'[SE_File] Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got {self.ext}.')
 
     def load(self) -> dict:
-        data = self._LoadFunction(self.file)
-        self.rawData = self._RawLoader(self.file)
+        self.rawData = self._Loader(self.file)
+        data = SaveUtils.load_fixupData(deepcopy(self.rawData))
         if self.rawData != data:
             SE_ChangedOnLoadWarning()
         return data
@@ -3981,7 +3975,7 @@ class SE_File:
         return
         data = newData
         data['version']['port'] = __version__
-        self._SaveFunction(data, self.file)
+        self._Saver(data, self.file)
         # TODO: Update rawData
 
 
@@ -4058,7 +4052,7 @@ class SE_ValueWidget(SE_WidgetContainer):
             varType = tkinter.DoubleVar
         self.var = varType()
         self.var.set(value)
-        # TODO: Booleans show up as ints
+        # TODO: Booleans show up as ints. Use combobox instead of entry for booleans
         self.entry = tkinter.Entry(self, textvariable=self.var)
         self.entry.pack(side=tkinter.LEFT, fill=tkinter.BOTH, expand=True)
         SE_BindWidgetScroll(self.entry)
@@ -4271,6 +4265,8 @@ class DebugAffinityChange(PyminWindow):
 
 
 class DebugGiveItem(PyminWindow):
+    # TODO: Make this look and work better
+
     def _set_enforceSize(self, value: bool):
         if value:
             self.window.geometry('150x100')
@@ -4301,21 +4297,19 @@ class DebugGiveItem(PyminWindow):
             self.window._children['errlabel'].text = 'Error: Game not loaded'
             raise Error('[DebugGiveItem.giveItem] Game not loaded.')
         EN = self.window._children['combo'].getEntries()
-        # TODO: Use as3lib.parseInt for these to remove the try/except blocks
-        #       (as3lib.parseInt returns NaN on error instead of throwing)
-        try:
-            ID = int(EN[0], 10)
-        except:
+        ID = parseInt(EN[0], 10)
+        if math.isnan(ID):
             self.window._children['errlabel'].text = 'ID must be an integer'
             raise Error('[DebugGiveItem.giveItem] ID must be an integer.')
-        try:
-            QUAN = int(EN[1], 10)
-        except:
-            self.window._children['errlabel'].text = 'Quantity must be an integer'
-            raise Error('[DebugGiveItem.giveItem] Quantity must be an integer.')
+        ID = int(ID)
         if ID not in ITEM_STATS.keys():
             self.window._children['errlabel'].text = f'Invalid ItemID: {ID}'
             raise Error('[DebugGiveItem.giveItem] ID must be a valid ItemID.')
+        QUAN = parseInt(EN[1], 10)
+        if math.isnan(QUAN):
+            self.window._children['errlabel'].text = 'Quantity must be an integer'
+            raise Error('[DebugGiveItem.giveItem] Quantity must be an integer.')
+        QUAN = int(QUAN)
         if QUAN <= 0:
             self.window._children['errlabel'].text = f'Invalid Quantity: {QUAN}'
             raise Error('[DebugGiveItem.giveItem] Quantity must be greater than zero.')
@@ -7459,7 +7453,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         tempStr += "\n\tQWER\t789-"
         tempStr += "\n\tASDF\t456+"
         tempStr += "\n\tZXCV\t123Enter"
-        # TODO: Fix these. They look like shit because fixed width is used
+        # TODO: Fix these. They look like shit because fixed width isn't used
         tempStr += "\nPymin specific keys (both keyboard and NumPad in order):"
         tempStr += "\n\t~/` | /    - Open Wiki"
         tempStr += "\n\tg   | .    - Sort button (new save/load dialog)"
@@ -9741,8 +9735,8 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.weapon = Item.WHIP
             self.doEnd()
         elif ID == Item.NEUTER:
-            self.showButtons(ButtonList(0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1))
-            tempDict = {2: "None", 12: "Cancel"}
+            self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1))
+            tempDict = {12: "Cancel"}
             if (self.cockTotal > 0):
                 tempDict[5] = "Cock"
                 # TODO: Make this work with lizanDontShowBalls and nueterizerHideBalls
@@ -9754,21 +9748,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.doButtonChoices(tempDict)
 
             def doListen():
-                # TODO: See if 2 and 12 can be combined
-                if self.buttonChoice == 2:
-                    self.outputMainText("You decide you'd rather keep what you got, for the moment, and put the neuterizer back in your bag.", True)
-                    self.itemAdd(Item.NEUTER)
-                    self.doEnd()
-                elif self.buttonChoice == 5:
+                if self.buttonChoice == 5:
                     self.doMainText(f"You rub the neuterizer into {self.oneYour(1)} {self.cockDesc()} cock{self.plural(1)}...", True)
                     self.cockChange(0, -1)
                     self.displayMainText()
-                    self.doEnd()
                 elif self.buttonChoice == 7:
                     self.doMainText(f"You rub the neuterizer into {self.oneYour(2)} {self.vulvaDesc()} cunt{self.plural(1)}...", True)
                     self.vagChange(0, -1)
                     self.displayMainText()
-                    self.doEnd()
                 elif self.buttonChoice == 10:
                     # TODO: respect showballs
                     if (self.balls > 2):
@@ -9778,10 +9765,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.outputMainText("Unfortunately, the neuterizer cannot simply make your testicles disappear while you still have any cocks. It would be... too dangerous. But, rubbing it onto your scrotum, your balls disappear up into your body, hidden from view.", True)
                         self.neuterizerHideBalls = True
                         self.showBalls = False
-                    self.doEnd()
                 elif self.buttonChoice == 12:
+                    self.outputMainText("You decide you'd rather keep what you got, for the moment, and put the neuterizer back in your bag.", True)
                     self.itemAdd(Item.NEUTER)
-                    self.doProcess()
+                self.doEnd()
             self.doListen = doListen
         elif ID == Item.TS_SOFT:
             self.outputMainText("You read the scroll and soft, sparkling lights between to shine and fly around you, faster and faster until you can't see beyond them.\n\nWith a whoosh, they quickly disappear and you find yourself back in the human city of Softlik!", True)
@@ -11791,8 +11778,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.buy = self.buttonChoice
             elif (self.buttonChoice == 4 and self.buy != 0):
                 self.outputMainText(f"\n\nAre you sure you would like to buy {Apothecary.itemName(Apothecary.ID(self.currentZone, self.buy, self))}?")
-                # TODO: Use >= to match other uses
-                if (Apothecary.ID(self.currentZone, self.buy, self) > 200 and ITEM_STATS[Apothecary.ID(self.currentZone, self.buy, self)].stackMax > 1):
+                if (Apothecary.ID(self.currentZone, self.buy, self) >= 200 and ITEM_STATS[Apothecary.ID(self.currentZone, self.buy, self)].stackMax > 1):
                     buttonlist = ButtonList(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1)
                     tempDict = {1: "Buy 1", 2: "Buy 2", 3: "Buy 5", 12: "Nevermind"}
                     self.doMainText(f"\n\nThis item can be bought in the following quantities: 1 for {3 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins, 2 for {6 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins, 5 for {15 * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self))} coins")
@@ -11848,8 +11834,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.doListen = doListen
                         else:
                             self.doCoin(-3 * tempInt * Apothecary.itemValue(Apothecary.ID(self.currentZone, self.buy, self)))
-                            # TODO: Use >= to match other uses
-                            if (Apothecary.ID(self.currentZone, self.buy, self) > 200):
+                            if (Apothecary.ID(self.currentZone, self.buy, self) >= 200):
                                 self.addManyItem(Apothecary.ID(self.currentZone, self.buy, self), tempInt)
                             else:
                                 self.apothLearn(Apothecary.ID(self.currentZone, self.buy, self))
@@ -15223,11 +15208,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.bc()
         self.showButtons(ButtonList(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
         # TODO: Ask again if value is invalid, make sure that ctrl-c works to exit prompt
-        # TODO: Use as3lib.parseInt
-        try:
-            temp = int(input(f"Enter a senario between {numbers[0]} and {numbers[1]}: "))
-        except:
+        temp = parseInt(input(f"Enter a senario between {numbers[0]} and {numbers[1]}: "))
+        if math.isnan(temp):
             return None
+        temp = int(temp)
         if temp < numbers[0] or temp > numbers[1]:
             return None
         return temp
