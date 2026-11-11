@@ -1059,27 +1059,37 @@ class ThemeBindings:
 
 
 class PyminButton(itk.itkFrame):
-    # TODO: Make these not trigger if the mouse isn't on the button anymore after clicking
-
     def __init__(self, master, **kwargs):
         self._command = kwargs.pop('command', _noop)
+        self._isMouseInWidget = False
         text = kwargs.pop('text', '')
         super().__init__(master, highlightthickness=1, background='#FFFFFF', highlightbackground='#000000', **kwargs)
         self.label = tkinter.Label(self, anchor='center', background='#FFFFFF', foreground='#000000')
-        self.bind('<Enter>', ThemeBindings.borderSet)
-        self.bind('<Leave>', ThemeBindings.borderUnset)
-        self.bind(f'<Button-{_TkMouse.LeftButton}>', ThemeBindings.backgroundSet)
-        self.bind(f'<ButtonRelease-{_TkMouse.LeftButton}>', self.press)
+        self.bind('<Enter>', self.onEnter)
+        self.bind('<Leave>', self.onLeave)
+        self.bind(f'<Button-{_TkMouse.LeftButton}>', self.onPress)
+        self.bind(f'<ButtonRelease-{_TkMouse.LeftButton}>', self.onRelease)
         self.text = text
+
+    def onEnter(self, event):
+        self._isMouseInWidget = True
+        ThemeBindings.borderSet(event)
+
+    def onLeave(self, event):
+        self._isMouseInWidget = False
+        ThemeBindings.borderUnset(event)
+
+    def onPress(self, event):
+        ThemeBindings.backgroundSet(event)
+
+    def onRelease(self, event):
+        ThemeBindings.backgroundUnset(event)
+        if self._isMouseInWidget and self._state != 'disabled':
+            self._command()
 
     def bind(self, key, func):
         super().bind(key, func)
         self.label.bind(key, func)
-
-    def press(self, event):
-        ThemeBindings.backgroundUnset(event)
-        if self._state != 'disabled':
-            self._command()
 
     def update(self):
         nm = self._window.mult
