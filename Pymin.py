@@ -4089,26 +4089,31 @@ class SE_ValueWidget(SE_WidgetContainer):
         self.label = SE_Label(self, text=(' ' * self.currentIndent * 4) + str(name), width=SaveEditor.ENTRY_LABEL_WIDTH)
         self.label.pack(side=tkinter.LEFT, fill=tkinter.Y)
         SE_BindWidgetScroll(self.label)
+        self._varIsBoolean = False
         if isinstance(value, bool):
-            varType = tkinter.BooleanVar
+            self._varIsBoolean = True
         elif isinstance(value, int):
             varType = tkinter.IntVar
         elif isinstance(value, str):
             varType = tkinter.StringVar
         elif isinstance(value, float):
             varType = tkinter.DoubleVar
-        self.var = varType()
-        self.var.set(value)
-        # TODO: Booleans show up as ints. Use combobox instead of entry for booleans
-        self.entry = tkinter.Entry(self, textvariable=self.var)
+        if self._varIsBoolean:
+            # TODO: Unbind scrollwheel from value change
+            self.entry = ttk.Combobox(self, state='readonly')
+            self.entry['values'] = ('False', 'True')
+            self.entry.current(int(value))
+        else:
+            self.var = varType()
+            self.var.set(value)
+            self.entry = tkinter.Entry(self, textvariable=self.var)
         self.entry.pack(side=tkinter.LEFT, fill=tkinter.BOTH, expand=True)
         SE_BindWidgetScroll(self.entry)
 
     def getValue(self):
-        value = self.var.get()
-        if isinstance(self.var, tkinter.BooleanVar):
-            return bool(value)
-        return value
+        if self._varIsBoolean:
+            return True if self.entry.get() == 'True' else False
+        return self.var.get()
 
 
 class SE_ArrayWidget(SE_SectionWidget):
