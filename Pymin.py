@@ -2508,11 +2508,7 @@ class AboutWindow(PyminWindow):
         self.window.addnwhLabel('display', 'label', x=7, y=9, font=('TkTextFont', 9), anchor='nw', text=AboutWindow.TEXT, foreground=self.textColor, background=self.backgroundColor)
         self.window._children['label'].configure(anchor='w', justify='left')
 
-        # TODO
-        self.buttonFrame = tkinter.Frame(self.window, highlightthickness=1, background='#FFFFFF', highlightbackground='#000000')
-        self.buttonFrame.place(x=299, y=115, width=29, height=29, anchor='nw')
-        self.okButton = tkinter.Button(self.buttonFrame, text='OK', command=self.close, background='#FFFFFF', foreground='#000000', borderwidth=0)
-        self.okButton.pack(fill='both', expand=True)
+        self.window.addWidget(PyminButton, 'display', 'okButton', x=299, y=115, width=29, height=29, text='OK', command=self.close)
         self._isOpen = True
 
 
