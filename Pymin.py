@@ -7927,8 +7927,6 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Function called when the sort button is pressed in nsld
         '''
         if self.newSLDialogVisible:
-            # TODO: Remove this delete. It is done in nsldDisplay
-            self.window._children["savefileselect"].delete(0, "end")
             mainobject.newSaveLoadDialog_SortOrder += 1
             self.nsldDisplay()
             mainobject.savePreferences()
