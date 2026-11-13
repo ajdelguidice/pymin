@@ -3972,6 +3972,110 @@ class SaveConverter(PyminWindow):
         self.window.lift()
 
 
+class SE_Combobox(tkinter.Entry):
+    # TODO: dropDownIndicator arrow
+    # TODO: Close _dropDownWindow when clicking off of it
+
+    def __init__(self, master, *args, **kwargs):
+        self.var = tkinter.StringVar()
+        tkinter.Entry.__init__(self, master, *args, **kwargs, state='readonly', textvariable=self.var)
+        self._currentIndex = 0
+        self._values = []
+        self.dropDownIndicator = tkinter.Frame(self, bg='#FFFFFF', highlightthickness=1, highlightbackground='#000000')
+        self.dropDownIndicator.pack(side=tkinter.RIGHT, fill=tkinter.Y)
+        self.dropDownIndicator.bind('<Configure>', self._dropDownIndicator_onConfigure)
+
+        self._dropDownWindow = None
+        self._dropDownBox = None
+
+        self.bind(f'<Button-{_TkMouse.LeftButton}>', self.onPress)
+        self.dropDownIndicator.bind(f'<Button-{_TkMouse.LeftButton}>', self.onPress)
+
+        self.bind('<Destroy>', self.onDestroy)
+
+    def get(self):
+        return self.var.get()
+
+    def _dropDownIndicator_onConfigure(self, event):
+        self.dropDownIndicator['width'] = event.height
+
+    def _updateValues(self):
+        if self._dropDownWindow is not None:
+            self._dropDownBox.delete(0, 'end')
+            for i in self.values:
+                self._dropDownBox.insert('end', i)
+            self._dropDownWindow_setGeometry()
+
+    @property
+    def values(self):
+        return self._values
+
+    @values.setter
+    def values(self, value):
+        self._values = value
+        self._updateValues()
+        self.current(0)
+
+    def _changeIndex(self, value):
+        if self._dropDownWindow is not None:
+            self._dropDownBox.selection_clear(self._currentIndex)
+            self._dropDownBox.select_set(value)
+            self._dropDownBox.activate(value)
+            self._dropDownBox.see(value)
+        self._currentIndex = value
+
+    def current(self, value):
+        if value >= 0 and value < len(self.values):
+            self._changeIndex(value)
+            self.var.set(self.values[self._currentIndex])
+
+    def _dropDownBox_Hover(self, event):
+        index = self._dropDownBox.index(f"@{event.x},{event.y}")
+        if index != self._currentIndex:
+            self._changeIndex(index)
+
+    def _dropDownBox_SelectItem(self, *e):
+        entry = self._dropDownBox.curselection()
+        if entry == tuple():  # No listbox selection
+            self._changeIndex(0)
+            entry = (0,)
+        self.var.set(self.values[entry[0]])
+        self._hideDropDown()
+
+    def _dropDownWindow_setGeometry(self):
+        self._dropDownWindow['width'] = self.winfo_width()
+        self._dropDownWindow.geometry(f'+{self.winfo_rootx()}+{self.winfo_rooty() + self.winfo_height()}')
+
+    def _showDropDown(self):
+        if self._dropDownWindow is None:
+            self._dropDownWindow = tkinter.Toplevel()
+            self._dropDownWindow.wm_overrideredirect(1)
+            self._dropDownBox = tkinter.Listbox(self._dropDownWindow)
+            self._dropDownBox.config(height=0)
+            self._updateValues()
+            self._changeIndex(0)
+            self._dropDownBox.pack()
+
+            self._dropDownBox.bind('<Motion>', self._dropDownBox_Hover)
+            self._dropDownBox.bind(f'<Button-{_TkMouse.LeftButton}>', self._dropDownBox_SelectItem)
+
+    def _hideDropDown(self, *e):
+        if self._dropDownWindow is not None:
+            self._dropDownWindow.destroy()
+            self._dropDownWindow = None
+
+    def onPress(self, event):
+        # TODO: Remove _hideDropDown and window check once dropDown closes properly
+        if self._dropDownWindow is None:
+            self._showDropDown()
+        else:
+            self._hideDropDown()
+
+    def onDestroy(self, event):
+        if event.widget == self:
+            self._hideDropDown()
+
+
 class SE_ChangedOnLoadWarning(tkinter.Toplevel):
     def __init__(self):
         super().__init__()
@@ -4100,8 +4204,10 @@ class SE_ValueWidget(SE_WidgetContainer):
             varType = tkinter.DoubleVar
         if self._varIsBoolean:
             # TODO: Unbind scrollwheel from value change
-            self.entry = ttk.Combobox(self, state='readonly')
-            self.entry['values'] = ('False', 'True')
+            #self.entry = ttk.Combobox(self, state='readonly')
+            #self.entry['values'] = ('False', 'True')
+            self.entry = SE_Combobox(self)
+            self.entry.values = ('False', 'True')
             self.entry.current(int(value))
         else:
             self.var = varType()
@@ -7821,6 +7927,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Function called when the sort button is pressed in nsld
         '''
         if self.newSLDialogVisible:
+            # TODO: Remove this delete. It is done in nsldDisplay
             self.window._children["savefileselect"].delete(0, "end")
             mainobject.newSaveLoadDialog_SortOrder += 1
             self.nsldDisplay()
