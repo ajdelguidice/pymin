@@ -68,7 +68,7 @@ def create():
     if move:
         config['path'] = ''
         cfgloc = venv.getLocalPath('pymin.toml')
-        TOML.write(config, cfgloc)
+        TOML.write(cfgloc, config)
         (CURRENT_DIRECTORY / 'pymin.toml').unlink(missing_ok=True)
     else:
         config['path'] = str(venv.path)
@@ -474,6 +474,7 @@ class VenvRunner:
 
     def downloadAndInstallGameZip(self):
         # NOTE: Must be used after requirements are installed because html_parser is gotten from here
+        # TODO: Use tempfile instead of local file
         if '--version' in sys.argv:
             versiontag = sys.argv[sys.argv.index('--version') + 1]
         else:
@@ -490,6 +491,8 @@ class VenvRunner:
             version = version[1:]
 
         self.installFromZip(filepath, int(version))
+
+        filepath.unlink()
 
     def installFromZip(self, filepath, version=None):
         print('Extracting components from zip file...')
