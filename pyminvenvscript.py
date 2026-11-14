@@ -10,10 +10,11 @@ import ssl
 import subprocess
 import sys
 import tempfile
+import zipfile
 
 
 # TODO: Improve compatibility with non-uv setups
-# TODO: Use the release source archive instead of release files
+# TODO: Install nimin-ttk-theme
 
 
 CURRENT_DIRECTORY = Path(__file__).resolve().parent
@@ -77,8 +78,8 @@ def create():
     checkExistsMakeDir(venv.getLocalPath('Pymin'))
     print('Done')
 
-    venv.installGame()
     venv.installRequirements()
+    venv.downloadAndInstallGameZip()
 
 
 def set_as3libversion(rl):
@@ -472,6 +473,52 @@ class VenvRunner:
     def pipUninstall(self, *args):
         self.pip('uninstall', *args)
 
+    def downloadAndInstallGameZip(self):
+        # NOTE: Must be used after requirements are installed because html_parser is gotten from here
+        if '--version' in sys.argv:
+            versiontag = sys.argv[sys.argv.index('--version') + 1]
+        else:
+            versiontag = getRedirectURL('https://github.com/ajdelguidice/pymin/releases/latest').split('/')[-1]
+
+        print('Downloading game release archive...')
+        with urlopen(f'https://github.com/ajdelguidice/pymin/archive/refs/tags/{versiontag}.zip', context=self.sslContext) as urlfile:
+            filepath = self.getLocalPath('pymin.zip')
+            filepath.write_bytes(urlfile.read())
+        print('Done')
+
+        self.installFromZip(filepath)
+
+    def installFromZip(self, filepath):
+        print('Installing components from zip file...')
+        with zipfile.ZipFile(filepath) as file:
+            ziproot = file.namelist()[0].split('/')[0]
+            self.installFromZip_Game(file, f'{ziproot}/Pymin.py')
+            self.installFromZip_patchTkhtmlview(file, f'{ziproot}/pyminlib/html_parser.py')
+            #f'{ziproot}/nimin-ttk-theme'
+        print('Done')
+
+    def installFromZip_Game(self, zipFile, memberName):
+        if config['isDevEnv']:
+            print('Skipped game install.')
+            return
+
+        with zipFile.open(memberName) as f:
+            self.getLocalPath('Pymin/Pymin.py').write_bytes(f.read())
+
+        print('Installed game')
+
+    def installFromZip_patchTkhtmlview(self, zipFile, memberName):
+        # Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
+
+        if '--nohtmlparser' in sys.argv or not config['noCustomHTMLParser']:
+            print('Skipped patching tkhtmlview.html_parser')
+            return
+
+        temp = subprocess.check_output((self.python, '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').strip()
+        with zipFile.open(memberName) as f:
+            Path(temp).write_bytes(f.read())
+        print('Patched tkhtmlview.html_parser')
+
     def installRequirements(self):
         if config['uvLocal']:
             print('Installing UV...')
@@ -485,10 +532,8 @@ class VenvRunner:
         else:
             set_as3libversion(temp)
         self.pipInstall(*temp)
-        if not config['isDevEnv']:
-            # Install tkhtmlview this way because its dependencies are broken
-            self.pipUpdate('tkhtmlview', '--no-deps')
-            self.patchTkhtmlview()
+        # Install tkhtmlview this way because its dependencies are broken
+        self.pipInstall('tkhtmlview', '--no-deps')
         print('Done')
 
     def updateRequirements(self):
@@ -508,31 +553,8 @@ class VenvRunner:
         else:
             set_as3libversion(temp)
         self.pipUpdate(*temp)
-        if not config['isDevEnv']:
-            # Update tkhtmlview this way because its dependencies are broken
-            self.pipUpdate('tkhtmlview', '--no-deps')
-            self.patchTkhtmlview()
-        print('Done')
-
-    def patchTkhtmlview(self):
-        # Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
-        if '--nohtmlparser' not in sys.argv or config['noCustomHTMLParser']:
-            temp = subprocess.check_output((self.python, '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').strip()
-            with urlopen('https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/dev/pyminlib/html_parser.py', context=self.sslContext) as urlfile:
-                Path(temp).write_bytes(urlfile.read())
-            print('Patched tkhtmlview html_parser.py')
-
-    def installGame(self):
-        if config['isDevEnv']:
-            print('Skipped game download.')
-            return
-        print('Installing game...')
-        if '--version' in sys.argv:
-            versiontag = sys.argv[sys.argv.index('--version') + 1]
-        else:
-            versiontag = getRedirectURL('https://github.com/ajdelguidice/pymin/releases/latest').split('/')[-1]
-        with urlopen(f'https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py', context=self.sslContext) as urlfile:
-            self.getLocalPath('Pymin/Pymin.py').write_bytes(urlfile.read())
+        # Update tkhtmlview this way because its dependencies are broken
+        self.pipUpdate('tkhtmlview', '--no-deps')
         print('Done')
 
 
@@ -735,8 +757,8 @@ elif sys.argv[1] == 'update' and hasVenv:
     if doPythonUpdate:
         updatePythonVersion()
     else:
-        venv.installGame()
         venv.updateRequirements()
+        venv.downloadAndInstallGameZip()
 elif sys.argv[1] == 'run' and hasVenv:
     venv.runWithPython(venv.getLocalPath('Pymin/Pymin.py'), *sys.argv[2:])
 elif sys.argv[1] == 'conv' and hasVenv:
