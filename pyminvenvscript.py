@@ -14,7 +14,6 @@ import zipfile
 
 
 # TODO: Improve compatibility with non-uv setups
-# TODO: Install nimin-ttk-theme
 
 
 CURRENT_DIRECTORY = Path(__file__).resolve().parent
@@ -499,7 +498,11 @@ class VenvRunner:
             htmlParserName = f'{ziproot}/pyminlib/html_parser.py'
             if htmlParserName in filelist:
                 self.installFromZip_patchTkhtmlview(file, htmlParserName)
-            #f'{ziproot}/nimin-ttk-theme'
+
+            # Some releases didn't have this
+            ttkThemeName = f'{ziproot}/nimin-ttk-theme/'
+            if ttkThemeName in filelist:
+                self.installFromZip_TtkTheme(file, ttkThemeName)
         print('Done')
 
     def installFromZip_Game(self, zipFile, memberName):
@@ -523,6 +526,14 @@ class VenvRunner:
         with zipFile.open(memberName) as f:
             Path(temp).write_bytes(f.read())
         print('Patched tkhtmlview.html_parser')
+
+    def installFromZip_TtkTheme(self, zipFile, memberName):
+        # TODO: Delete existing one
+        for fileName in zipFile.namelist():
+            if fileName.startswith(memberName):
+                zipFile.extract(fileName, self.path)
+        (self.path / memberName).move(self.path / 'nimin-ttk-theme')
+        print('Installed ttk theme')
 
     def installRequirements(self):
         if config['uvLocal']:
