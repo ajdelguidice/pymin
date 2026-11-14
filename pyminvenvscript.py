@@ -488,7 +488,7 @@ class VenvRunner:
         self.installFromZip(filepath)
 
     def installFromZip(self, filepath):
-        print('Installing components from zip file...')
+        print('Extracting components from zip file...')
         with zipfile.ZipFile(filepath) as file:
             filelist = file.namelist()
             ziproot = filelist[0].split('/')[0]
@@ -503,6 +503,24 @@ class VenvRunner:
             ttkThemeName = f'{ziproot}/nimin-ttk-theme/'
             if ttkThemeName in filelist:
                 self.installFromZip_TtkTheme(file, ttkThemeName)
+
+            # Support for some older releases (requirements won't be installed unfortunately)
+            old_FunctionExtensionsName = f'{ziproot}/pyminlib/FunctionExtensions.py'
+            if old_FunctionExtensionsName in filelist:
+                print('Warning: pyminlib/FunctionExtensions.py detected in archive. This indicates you are trying to install an older release. Pip requirements aren\'t installed for this version and must be installed manually.')
+                with file.open(old_FunctionExtensionsName) as f:
+                    self.getLocalPath('Pymin/pyminlib').mkdir(exist_ok=True)
+                    self.getLocalPath('Pymin/pyminlib/FunctionExtensions.py').write_bytes(f.read())
+                print('Extracted pyminlib/FunctionExtensions.py')
+
+            old_as3toplevelName = f'{ziproot}/pyminlib/as3toplevel.py'
+            if old_as3toplevelName in filelist:
+                print('Warning: pyminlib/as3toplevel.py detected in archive. This indicates you are trying to install an older release. Pip requirements aren\'t installed for this version and must be installed manually.')
+                with file.open(old_as3toplevelName) as f:
+                    self.getLocalPath('Pymin/pyminlib').mkdir(exist_ok=True)
+                    self.getLocalPath('Pymin/pyminlib/as3toplevel.py').write_bytes(f.read())
+                print('Extracted pyminlib/as3toplevel.py')
+
         print('Done')
 
     def installFromZip_Game(self, zipFile, memberName):
@@ -513,7 +531,7 @@ class VenvRunner:
         with zipFile.open(memberName) as f:
             self.getLocalPath('Pymin/Pymin.py').write_bytes(f.read())
 
-        print('Installed game')
+        print('Extracted game')
 
     def installFromZip_patchTkhtmlview(self, zipFile, memberName):
         # Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
@@ -532,8 +550,9 @@ class VenvRunner:
         for fileName in zipFile.namelist():
             if fileName.startswith(memberName):
                 zipFile.extract(fileName, self.path)
+        # TODO: This leaves behind an empty directory, find a way to safely remove it
         (self.path / memberName).move(self.path / 'nimin-ttk-theme')
-        print('Installed ttk theme')
+        print('Extracted ttk theme')
 
     def installRequirements(self):
         if config['uvLocal']:
