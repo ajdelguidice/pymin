@@ -13,6 +13,7 @@ import tempfile
 
 
 # TODO: Improve compatibility with non-uv setups
+# TODO: Use the release source archive instead of release files
 
 
 CURRENT_DIRECTORY = Path(__file__).resolve().parent
@@ -76,8 +77,8 @@ def create():
     checkExistsMakeDir(venv.getLocalPath('Pymin'))
     print('Done')
 
-    downloadgame()
-    installmodules()
+    venv.installGame()
+    venv.installRequirements()
 
 
 def set_as3libversion(rl):
@@ -90,67 +91,6 @@ def set_as3libversion(rl):
     elif version != 'latest':
         rl.remove('as3lib')
         rl.append(f'as3lib={version}')
-
-
-def installmodules():
-    # Installs the required modules using pip inside the virtual environment
-    if config['uvLocal']:
-        print('Installing UV...')
-        venv.runWithPython('-m', 'pip', 'install', 'uv')
-        print('Done')
-    temp = VenvRunner.REQUIREMENTS.copy()
-    print('Installing dependencies...')
-    if config['isDevEnv']:
-        print('Skipping as3lib and tkhtmlview.')
-        temp.remove('as3lib')
-    else:
-        set_as3libversion(temp)
-    venv.pipInstall(*temp)
-    if not config['isDevEnv']:
-        # Install tkhtmlview this way because its dependencies are broken
-        venv.pipUpdate('tkhtmlview', '--no-deps')
-        patchTkhtmlviewParser()
-    print('Done')
-
-
-def downloadgame():
-    # Downloads the game
-    if config['isDevEnv']:
-        print('Skipped game download.')
-        return
-    print('Installing game...')
-    if '--version' in sys.argv:
-        versiontag = sys.argv[sys.argv.index('--version') + 1]
-    else:
-        versiontag = getRedirectURL('https://github.com/ajdelguidice/pymin/releases/latest').split('/')[-1]
-    with urlopen(f'https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py', context=venv.sslContext) as urlfile:
-        venv.getLocalPath('Pymin/Pymin.py').write_bytes(urlfile.read())
-    print('Done')
-
-
-def updatemodules():
-    # Updates the required modules using pip inside the virtual environment
-    if subprocess.check_output((venv.python, '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
-        print('Replacing Mini-AMF with as3lib-miniAMF...')
-        venv.pipUninstall('Mini-AMF')
-        print('Done')
-    if config['uvLocal']:
-        print('Updating UV...')
-        venv.pipUpdate('uv')
-        print('Done')
-    temp = VenvRunner.REQUIREMENTS.copy()
-    print('Updating dependencies...')
-    if config['isDevEnv']:
-        print('Skipping as3lib and tkhtmlview.')
-        temp.remove('as3lib')
-    else:
-        set_as3libversion(temp)
-    venv.pipUpdate(*temp)
-    if not config['isDevEnv']:
-        # Update tkhtmlview this way because its dependencies are broken
-        venv.pipUpdate('tkhtmlview', '--no-deps')
-        patchTkhtmlviewParser()
-    print('Done')
 
 
 def recreate_checkWithConfig(withconf):
@@ -202,15 +142,6 @@ def recreate(withconf, withsaves, withgameconf, source_tempdir: PurePath = None)
     else:
         if source_tempdir is None and tempdir is not None:
             rmtree(tempdir)
-
-
-def patchTkhtmlviewParser():
-    # Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
-    if '--nohtmlparser' not in sys.argv or config['noCustomHTMLParser']:
-        temp = subprocess.check_output((venv.python, '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').strip()
-        with urlopen('https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/dev/pyminlib/html_parser.py', context=venv.sslContext) as urlfile:
-            Path(temp).write_bytes(urlfile.read())
-        print('Patched tkhtmlview html_parser.py')
 
 
 def updatePythonVersion():
@@ -541,6 +472,69 @@ class VenvRunner:
     def pipUninstall(self, *args):
         self.pip('uninstall', *args)
 
+    def installRequirements(self):
+        if config['uvLocal']:
+            print('Installing UV...')
+            self.runWithPython('-m', 'pip', 'install', 'uv')
+            print('Done')
+        temp = VenvRunner.REQUIREMENTS.copy()
+        print('Installing dependencies...')
+        if config['isDevEnv']:
+            print('Skipping as3lib and tkhtmlview.')
+            temp.remove('as3lib')
+        else:
+            set_as3libversion(temp)
+        self.pipInstall(*temp)
+        if not config['isDevEnv']:
+            # Install tkhtmlview this way because its dependencies are broken
+            self.pipUpdate('tkhtmlview', '--no-deps')
+            self.patchTkhtmlview()
+        print('Done')
+
+    def updateRequirements(self):
+        if subprocess.check_output((self.python, '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
+            print('Replacing Mini-AMF with as3lib-miniAMF...')
+            self.pipUninstall('Mini-AMF')
+            print('Done')
+        if config['uvLocal']:
+            print('Updating UV...')
+            self.pipUpdate('uv')
+            print('Done')
+        temp = VenvRunner.REQUIREMENTS.copy()
+        print('Updating dependencies...')
+        if config['isDevEnv']:
+            print('Skipping as3lib and tkhtmlview.')
+            temp.remove('as3lib')
+        else:
+            set_as3libversion(temp)
+        self.pipUpdate(*temp)
+        if not config['isDevEnv']:
+            # Update tkhtmlview this way because its dependencies are broken
+            self.pipUpdate('tkhtmlview', '--no-deps')
+            self.patchTkhtmlview()
+        print('Done')
+
+    def patchTkhtmlview(self):
+        # Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
+        if '--nohtmlparser' not in sys.argv or config['noCustomHTMLParser']:
+            temp = subprocess.check_output((self.python, '-c', 'import importlib.util;print(importlib.util.find_spec("tkhtmlview").origin.replace("__init__.py","html_parser.py"))')).decode('utf-8').strip()
+            with urlopen('https://raw.githubusercontent.com/ajdelguidice/pymin/refs/heads/dev/pyminlib/html_parser.py', context=self.sslContext) as urlfile:
+                Path(temp).write_bytes(urlfile.read())
+            print('Patched tkhtmlview html_parser.py')
+
+    def installGame(self):
+        if config['isDevEnv']:
+            print('Skipped game download.')
+            return
+        print('Installing game...')
+        if '--version' in sys.argv:
+            versiontag = sys.argv[sys.argv.index('--version') + 1]
+        else:
+            versiontag = getRedirectURL('https://github.com/ajdelguidice/pymin/releases/latest').split('/')[-1]
+        with urlopen(f'https://github.com/ajdelguidice/pymin/releases/download/{versiontag}/Pymin.py', context=self.sslContext) as urlfile:
+            self.getLocalPath('Pymin/Pymin.py').write_bytes(urlfile.read())
+        print('Done')
+
 
 venv = VenvRunner()
 
@@ -741,8 +735,8 @@ elif sys.argv[1] == 'update' and hasVenv:
     if doPythonUpdate:
         updatePythonVersion()
     else:
-        downloadgame()
-        updatemodules()
+        venv.installGame()
+        venv.updateRequirements()
 elif sys.argv[1] == 'run' and hasVenv:
     venv.runWithPython(venv.getLocalPath('Pymin/Pymin.py'), *sys.argv[2:])
 elif sys.argv[1] == 'conv' and hasVenv:
