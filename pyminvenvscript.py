@@ -491,9 +491,14 @@ class VenvRunner:
     def installFromZip(self, filepath):
         print('Installing components from zip file...')
         with zipfile.ZipFile(filepath) as file:
-            ziproot = file.namelist()[0].split('/')[0]
+            filelist = file.namelist()
+            ziproot = filelist[0].split('/')[0]
             self.installFromZip_Game(file, f'{ziproot}/Pymin.py')
-            self.installFromZip_patchTkhtmlview(file, f'{ziproot}/pyminlib/html_parser.py')
+
+            # Some releases didn't include this file
+            htmlParserName = f'{ziproot}/pyminlib/html_parser.py'
+            if htmlParserName in filelist:
+                self.installFromZip_patchTkhtmlview(file, htmlParserName)
             #f'{ziproot}/nimin-ttk-theme'
         print('Done')
 
@@ -510,7 +515,7 @@ class VenvRunner:
     def installFromZip_patchTkhtmlview(self, zipFile, memberName):
         # Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
 
-        if '--nohtmlparser' in sys.argv or not config['noCustomHTMLParser']:
+        if '--nohtmlparser' in sys.argv or config['noCustomHTMLParser']:
             print('Skipped patching tkhtmlview.html_parser')
             return
 
