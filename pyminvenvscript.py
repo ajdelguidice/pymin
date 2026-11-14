@@ -485,9 +485,13 @@ class VenvRunner:
             filepath.write_bytes(urlfile.read())
         print('Done')
 
-        self.installFromZip(filepath)
+        version = versiontag.split('.')[-1]
+        if version.startswith('v'):
+            version = version[1:]
 
-    def installFromZip(self, filepath):
+        self.installFromZip(filepath, int(version))
+
+    def installFromZip(self, filepath, version=None):
         print('Extracting components from zip file...')
         with zipfile.ZipFile(filepath) as file:
             filelist = file.namelist()
@@ -507,7 +511,7 @@ class VenvRunner:
             # Support for some older releases (requirements won't be installed unfortunately)
             old_FunctionExtensionsName = f'{ziproot}/pyminlib/FunctionExtensions.py'
             if old_FunctionExtensionsName in filelist:
-                print('Warning: pyminlib/FunctionExtensions.py detected in archive. This indicates you are trying to install an older release. Pip requirements aren\'t installed for this version and must be installed manually.')
+                print('Warning: pyminlib/FunctionExtensions.py detected in archive. This indicates you are trying to install an older release which is not supported and might not install correctly.')
                 with file.open(old_FunctionExtensionsName) as f:
                     self.getLocalPath('Pymin/pyminlib').mkdir(exist_ok=True)
                     self.getLocalPath('Pymin/pyminlib/FunctionExtensions.py').write_bytes(f.read())
@@ -515,11 +519,20 @@ class VenvRunner:
 
             old_as3toplevelName = f'{ziproot}/pyminlib/as3toplevel.py'
             if old_as3toplevelName in filelist:
-                print('Warning: pyminlib/as3toplevel.py detected in archive. This indicates you are trying to install an older release. Pip requirements aren\'t installed for this version and must be installed manually.')
+                print('Warning: pyminlib/as3toplevel.py detected in archive. This indicates you are trying to install an older release which is not supported and might not install correctly.')
                 with file.open(old_as3toplevelName) as f:
                     self.getLocalPath('Pymin/pyminlib').mkdir(exist_ok=True)
                     self.getLocalPath('Pymin/pyminlib/as3toplevel.py').write_bytes(f.read())
                 print('Extracted pyminlib/as3toplevel.py')
+
+        oldVersion_pipList = []
+        if version <= 11:
+            oldVersion_pipList.append('as3lib-miniamf', 'setuptools', 'six')
+        if version <= 6:
+            oldVersion_pipList.append('numpy')
+        if len(oldVersion_pipList):
+            self.pipUpdate(*oldVersion_pipList)
+            print('Installed older version dependencies.')
 
         print('Done')
 
