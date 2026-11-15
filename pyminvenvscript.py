@@ -474,48 +474,45 @@ class VenvRunner:
 
     def downloadAndInstallGameZip(self):
         # NOTE: Must be used after requirements are installed because html_parser is gotten from here
-        # TODO: Use tempfile instead of a local file
         if '--version' in sys.argv:
             versiontag = sys.argv[sys.argv.index('--version') + 1]
         else:
             versiontag = getRedirectURL('https://github.com/ajdelguidice/pymin/releases/latest').split('/')[-1]
 
-        print('Downloading game release archive...')
-        filepath = self.getLocalPath('pymin.zip')
-        with urlopen(f'https://github.com/ajdelguidice/pymin/archive/refs/tags/{versiontag}.zip', context=self.sslContext) as urlfile:
-            filepath.write_bytes(urlfile.read())
-        print('Done')
+        with tempfile.TemporaryFile(mode='w+b') as file:
+            print('Downloading game release archive...')
+            with urlopen(f'https://github.com/ajdelguidice/pymin/archive/refs/tags/{versiontag}.zip', context=self.sslContext) as urlfile:
+                file.write(urlfile.read())
+            print('Done')
 
-        version = versiontag.split('.')[-1]
-        if version.startswith('v'):
-            version = version[1:]
+            version = versiontag.split('.')[-1]
+            if version.startswith('v'):
+                version = version[1:]
 
-        self.installFromZip(filepath, int(version))
+            self.installFromZip(file, int(version))
 
-        filepath.unlink()
-
-    def installFromZip(self, filepath, version=None):
+    def installFromZip(self, file, version=None):
         print('Extracting components from zip file...')
-        with zipfile.ZipFile(filepath) as file:
-            filelist = file.namelist()
+        with zipfile.ZipFile(file) as zipFile:
+            filelist = zipFile.namelist()
             ziproot = filelist[0].split('/')[0]
-            self.installFromZip_Game(file, f'{ziproot}/Pymin.py')
+            self.installFromZip_Game(zipFile, f'{ziproot}/Pymin.py')
 
             # Some releases didn't include this file
             htmlParserName = f'{ziproot}/pyminlib/html_parser.py'
             if htmlParserName in filelist:
-                self.installFromZip_patchTkhtmlview(file, htmlParserName)
+                self.installFromZip_patchTkhtmlview(zipFile, htmlParserName)
 
             # Some releases didn't have this
             ttkThemeName = f'{ziproot}/nimin-ttk-theme/'
             if ttkThemeName in filelist:
-                self.installFromZip_TtkTheme(file, ttkThemeName)
+                self.installFromZip_TtkTheme(zipFile, ttkThemeName)
 
             # Support for some older releases (requirements won't be installed unfortunately)
             old_FunctionExtensionsName = f'{ziproot}/pyminlib/FunctionExtensions.py'
             if old_FunctionExtensionsName in filelist:
                 print('Warning: pyminlib/FunctionExtensions.py detected in archive. This indicates you are trying to install an older release which is not supported and might not install correctly.')
-                with file.open(old_FunctionExtensionsName) as f:
+                with zipFile.open(old_FunctionExtensionsName) as f:
                     self.getLocalPath('Pymin/pyminlib').mkdir(exist_ok=True)
                     self.getLocalPath('Pymin/pyminlib/FunctionExtensions.py').write_bytes(f.read())
                 print('Extracted pyminlib/FunctionExtensions.py')
@@ -523,7 +520,7 @@ class VenvRunner:
             old_as3toplevelName = f'{ziproot}/pyminlib/as3toplevel.py'
             if old_as3toplevelName in filelist:
                 print('Warning: pyminlib/as3toplevel.py detected in archive. This indicates you are trying to install an older release which is not supported and might not install correctly.')
-                with file.open(old_as3toplevelName) as f:
+                with zipFile.open(old_as3toplevelName) as f:
                     self.getLocalPath('Pymin/pyminlib').mkdir(exist_ok=True)
                     self.getLocalPath('Pymin/pyminlib/as3toplevel.py').write_bytes(f.read())
                 print('Extracted pyminlib/as3toplevel.py')
