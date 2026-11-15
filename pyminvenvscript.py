@@ -396,7 +396,7 @@ else:
 
 class VenvRunner:
     INSECURE_SSL_CONTEXT = ssl._create_unverified_context()
-    REQUIREMENTS = ['numpy', 'Pillow', 'as3lib']
+    REQUIREMENTS = ['Pillow', 'as3lib']
     if require_tomli:
         REQUIREMENTS.append('tomli')
 
@@ -474,15 +474,15 @@ class VenvRunner:
 
     def downloadAndInstallGameZip(self):
         # NOTE: Must be used after requirements are installed because html_parser is gotten from here
-        # TODO: Use tempfile instead of local file
+        # TODO: Use tempfile instead of a local file
         if '--version' in sys.argv:
             versiontag = sys.argv[sys.argv.index('--version') + 1]
         else:
             versiontag = getRedirectURL('https://github.com/ajdelguidice/pymin/releases/latest').split('/')[-1]
 
         print('Downloading game release archive...')
+        filepath = self.getLocalPath('pymin.zip')
         with urlopen(f'https://github.com/ajdelguidice/pymin/archive/refs/tags/{versiontag}.zip', context=self.sslContext) as urlfile:
-            filepath = self.getLocalPath('pymin.zip')
             filepath.write_bytes(urlfile.read())
         print('Done')
 
@@ -584,7 +584,7 @@ class VenvRunner:
             set_as3libversion(temp)
         self.pipInstall(*temp)
         # Install tkhtmlview this way because its dependencies are broken
-        self.pipInstall('tkhtmlview', '--no-deps')
+        self.pipUpdate('tkhtmlview', '--no-deps')
         print('Done')
 
     def updateRequirements(self):
