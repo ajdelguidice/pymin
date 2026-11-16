@@ -1060,6 +1060,7 @@ class ThemeBindings:
 
 class PyminButton(itk.itkFrame):
     def __init__(self, master, **kwargs):
+        enabled = kwargs.pop('enabled', True)
         self._command = kwargs.pop('command', _noop)
         self._isMouseInWidget = False
         text = kwargs.pop('text', '')
@@ -1070,6 +1071,7 @@ class PyminButton(itk.itkFrame):
         self.bind(f'<Button-{_TkMouse.LeftButton}>', self.onPress)
         self.bind(f'<ButtonRelease-{_TkMouse.LeftButton}>', self.onRelease)
         self.text = text
+        self.enabled = enabled
 
     def onEnter(self, event):
         self._isMouseInWidget = True
@@ -1080,11 +1082,12 @@ class PyminButton(itk.itkFrame):
         ThemeBindings.borderUnset(self)
 
     def onPress(self, event):
-        ThemeBindings.backgroundSet(self.label)
+        if self.enabled:
+            ThemeBindings.backgroundSet(self.label)
 
     def onRelease(self, event):
         ThemeBindings.backgroundUnset(self.label)
-        if self._isMouseInWidget and self._state != 'disabled':
+        if self._isMouseInWidget and self.enabled:
             self._command()
 
     def bind(self, key, func):
@@ -1113,6 +1116,14 @@ class PyminButton(itk.itkFrame):
     def text(self, value: str):
         self._text = value
         self.label['text'] = value
+
+    @property
+    def enabled(self) -> bool:
+        return self.state == 'normal'
+
+    @enabled.setter
+    def enabled(self, value: bool):
+        self.state = 'normal' if value else 'disabled'
 
 
 class Math:
@@ -1169,12 +1180,6 @@ class ToolTip(object):
 
 
 class Utils:
-    def boolToState(boolean: bool) -> str:
-        '''
-        Converts a boolean to a tkinter state. True -> normal. False -> disabled
-        '''
-        return 'normal' if boolean else 'disabled'
-
     def percent() -> int:
         '''
         Returns a random number between 1 and 100.
@@ -4889,11 +4894,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def updateTextColorButtonState(self):
         if self.isOpen:
-            self.window._children['textcolorbutton'].state = Utils.boolToState(not mainobject.customFontColor)
+            self.window._children['textcolorbutton'].enabled = not mainobject.customFontColor
 
     def updateThemeButtonState(self):
         if self.isOpen:
-            self.window._children['themebutton'].state = Utils.boolToState(not mainobject.customThemeColor)
+            self.window._children['themebutton'].enabled = not mainobject.customThemeColor
 
     def updateNewGameButtonSize(self):
         if self.isOpen and self.shownewgame:
@@ -5366,13 +5371,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.sidepanelvisible = False
         self.appearancebuttonvisible = False
         self.window.addWidget(PyminButton, 'display', 'themebutton', x=823, y=595, width=60, height=30, font=self.font, text='Theme', command=self.option1Event)
-        self.window._children['themebutton'].state = Utils.boolToState(not mainobject.customThemeColor)
+        self.window._children['themebutton'].enabled = not mainobject.customThemeColor
         self.window.addWidget(PyminButton, 'display', 'textsizedownbutton', x=906, y=595, width=30, height=30, font=('Times New Roman', 10), text='A', command=self.option2Event)
         self.window.addWidget(PyminButton, 'display', 'textsizeresetbutton', x=941, y=595, width=30, height=30, font=('Times New Roman', 12), text='A', command=self.option3Event)
         self.window.addWidget(PyminButton, 'display', 'textsizeupbutton', x=976, y=595, width=30, height=30, font=('Times New Roman', 14), text='A', command=self.option4Event)
         self.window.addWidget(PyminButton, 'display', 'textboldbutton', x=1023, y=595, width=30, height=30, font=self.font, text='B', command=self.option5Event)
         self.window.addWidget(PyminButton, 'display', 'textcolorbutton', x=1067, y=595, width=30, height=30, font=self.font, text='C', command=self.option6Event)
-        self.window._children['textcolorbutton'].state = Utils.boolToState(not mainobject.customFontColor)
+        self.window._children['textcolorbutton'].enabled = not mainobject.customFontColor
         self.window.addWidget(PyminButton, 'display', 'themebutton7', x=1124, y=595, width=30, height=30, font=self.font, text='O', command=self.option7Event)
         self.option7Visible = True
         self.newSLDialogVisible = False
@@ -5564,7 +5569,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (keyCode == Keyboard.Q or keyCode == Keyboard.NUMPAD_7) and keyEnabled and self.buttonsVisible[1]:
             if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(1)
-            elif self.window._children['button1'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
+            elif self.window._children['button1'].enabled and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 1
                 self.hideUpDown()
                 self.doListen()
@@ -5575,7 +5580,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif keyEnabled and self.buttonsVisible[2]:
                 if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                     self.itemMove(2)
-                elif self.window._children['button2'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
+                elif self.window._children['button2'].enabled and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                     self.buttonChoice = 2
                     self.hideUpDown()
                     self.doListen()
@@ -5583,13 +5588,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (keyCode == Keyboard.E or keyCode == Keyboard.NUMPAD_9) and keyEnabled and self.buttonsVisible[3]:
             if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(3)
-            elif self.window._children['button3'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
+            elif self.window._children['button3'].enabled and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 3
                 self.hideUpDown()
                 self.doListen()
 
         elif (keyCode == Keyboard.R or keyCode == Keyboard.NUMPAD_SUBTRACT) and keyEnabled and self.buttonsVisible[4]:
-            if self.window._children['button4'].state == 'normal':
+            if self.window._children['button4'].enabled:
                 self.buttonChoice = 4
                 self.hideUpDown()
                 self.doListen()
@@ -5597,7 +5602,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (keyCode == Keyboard.A or keyCode == Keyboard.NUMPAD_4) and keyEnabled and self.buttonsVisible[5]:
             if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(5)
-            elif self.window._children['button5'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
+            elif self.window._children['button5'].enabled and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 5
                 self.hideUpDown()
                 self.doListen()
@@ -5608,7 +5613,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             elif keyEnabled and self.buttonsVisible[6]:
                 if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                     self.itemMove(6)
-                elif self.window._children['button6'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
+                elif self.window._children['button6'].enabled and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                     self.buttonChoice = 6
                     self.hideUpDown()
                     self.doListen()
@@ -5616,13 +5621,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (keyCode == Keyboard.D or keyCode == Keyboard.NUMPAD_6) and keyEnabled and self.buttonsVisible[7]:
             if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(7)
-            elif self.window._children['button7'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
+            elif self.window._children['button7'].enabled and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 7
                 self.hideUpDown()
                 self.doListen()
 
         elif (keyCode == Keyboard.F or keyCode == Keyboard.NUMPAD_ADD) and keyEnabled and self.buttonsVisible[8]:
-            if self.window._children['button8'].state == 'normal':
+            if self.window._children['button8'].enabled:
                 self.buttonChoice = 8
                 self.hideUpDown()
                 self.doListen()
@@ -5630,7 +5635,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (keyCode == Keyboard.Z or keyCode == Keyboard.NUMPAD_1) and keyEnabled and self.buttonsVisible[9]:
             if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(9)
-            elif self.window._children['button9'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
+            elif self.window._children['button9'].enabled and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 9
                 self.hideUpDown()
                 self.doListen()
@@ -5638,7 +5643,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (keyCode == Keyboard.X or keyCode == Keyboard.NUMPAD_2) and keyEnabled and self.buttonsVisible[10]:
             if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(10)
-            elif self.window._children['button10'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
+            elif self.window._children['button10'].enabled and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 10
                 self.hideUpDown()
                 self.doListen()
@@ -5646,13 +5651,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (keyCode == Keyboard.C or keyCode == Keyboard.NUMPAD_3) and keyEnabled and self.buttonsVisible[11]:
             if self.inBag and not self.mts and (KeyState.shiftHeld or self.moveItemID != 0):
                 self.itemMove(11)
-            elif self.window._children['button11'].state == 'normal' and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
+            elif self.window._children['button11'].enabled and (not self.inBag or self.inBag and not KeyState.shiftHeld or self.inStash or self.mts):
                 self.buttonChoice = 11
                 self.hideUpDown()
                 self.doListen()
 
         elif (keyCode == Keyboard.V or keyCode == Keyboard.NUMPAD_ENTER) and keyEnabled and self.buttonsVisible[12]:
-            if self.window._children['button12'].state == 'normal':
+            if self.window._children['button12'].enabled:
                 self.buttonChoice = 12
                 self.hideUpDown()
                 self.doListen()
@@ -5678,7 +5683,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif (keyCode == Keyboard.COMMA) and keyEnabled:
             mainobject.fontSizeReset()
 
-        elif (keyCode == Keyboard.PERIOD) and keyEnabled and self.option7Visible and self.window._children['themebutton7'].state == 'normal':
+        elif (keyCode == Keyboard.PERIOD) and keyEnabled and self.option7Visible and self.window._children['themebutton7'].enabled:
             self.toggleSide()
 
         elif (keyCode == Keyboard.SLASH) and keyEnabled:
@@ -5804,7 +5809,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         for i in range(1, 13):
             text = buttonDict.get(i, '')
             if self.buttonsVisible[i]:
-                self.window._children[f'button{i}'].state = 'normal'
+                self.window._children[f'button{i}'].enabled = True
                 self.window._children[f'button{i}'].text = text
             else:
                 tempcalc = Calc.showButtons(i)
@@ -5822,9 +5827,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if self.inShop:
             return
         if self.moveItemID == 0:
-            self.window._children["discardbutton"].state = "disabled"
+            self.window._children["discardbutton"].enabled = False
         else:
-            self.window._children["discardbutton"].state = "normal"
+            self.window._children["discardbutton"].enabled = True
             if mainobject.useNewStash and self.currentState == GameState.GENERAL:
                 self.buttonWrite(12, which)
 
@@ -27528,7 +27533,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.buttonsVisible[i] = False
             elif buttons[i]:
                 if self.buttonsVisible[i]:
-                    self.window._children[f'button{i}'].state = 'normal'
+                    self.window._children[f'button{i}'].enabled = True
                 else:
                     tempcalc = Calc.showButtons(i)
                     self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, command=getattr(self, f'buttonEvent{i}'))
@@ -27545,11 +27550,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def enableAllButtons(self):
         for i in range(1, 13):
             if (self.buttonsVisible[i]):
-                self.window._children[f'button{i}'].state = 'normal'
+                self.window._children[f'button{i}'].enabled = True
 
     def disableOneButton(self, buttonNum: int):
         if (self.buttonsVisible[buttonNum]):
-            self.window._children[f'button{buttonNum}'].state = 'disabled'
+            self.window._children[f'button{buttonNum}'].enabled = False
 
     def disableSelectedButtons(self, a: list):
         for i in a:
@@ -27593,14 +27598,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def showOption7(self):
         if (not self.option7Visible):
-            self.window._children['themebutton7'].state = 'normal'
+            self.window._children['themebutton7'].enabled = True
             self.option7Visible = True
             self.swapOption7()
 
     def hideOption7(self):
         if (self.option7Visible):
             self.window._children['themebutton7'].text = ''
-            self.window._children['themebutton7'].state = 'disabled'
+            self.window._children['themebutton7'].enabled = False
             self.option7Visible = False
 
     def swapOption7(self):
