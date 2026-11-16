@@ -497,6 +497,7 @@ class VenvRunner:
             filelist = zipFile.namelist()
             ziproot = filelist[0].split('/')[0]
             self.installFromZip_Game(zipFile, f'{ziproot}/Pymin.py')
+            self.installFromZip_Changelog(zipFile, f'{ziproot}/Changelog')
 
             # Some releases didn't include this file
             htmlParserName = f'{ziproot}/pyminlib/html_parser.py'
@@ -545,6 +546,12 @@ class VenvRunner:
             self.getLocalPath('Pymin/Pymin.py').write_bytes(f.read())
 
         print('Extracted game')
+
+    def installFromZip_Changelog(self, zipFile, memberName):
+        with zipFile.open(memberName) as f:
+            self.getLocalPath('Pymin/Changelog').write_bytes(f.read())
+
+        print('Extracted Changelog')
 
     def installFromZip_patchTkhtmlview(self, zipFile, memberName):
         # Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
