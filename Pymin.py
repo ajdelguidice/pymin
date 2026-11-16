@@ -1045,17 +1045,17 @@ def _noop(*args):
 
 
 class ThemeBindings:
-    def borderSet(event):
-        event.widget.configure(highlightcolor='#0074BE', highlightbackground='#0074BE')
+    def borderSet(widget):
+        widget.configure(highlightcolor='#0074BE', highlightbackground='#0074BE')
 
-    def borderUnset(event):
-        event.widget.configure(highlightcolor='#000000', highlightbackground='#000000')
+    def borderUnset(widget):
+        widget.configure(highlightcolor='#000000', highlightbackground='#000000')
 
-    def backgroundSet(event):
-        event.widget.configure(background='#A1D9FD', activebackground='#A1D9FD')
+    def backgroundSet(widget):
+        widget.configure(background='#A1D9FD', activebackground='#A1D9FD')
 
-    def backgroundUnset(event):
-        event.widget.configure(background='#FFFFFF', activebackground='#FFFFFF')
+    def backgroundUnset(widget):
+        widget.configure(background='#FFFFFF', activebackground='#FFFFFF')
 
 
 class PyminButton(itk.itkFrame):
@@ -1073,17 +1073,17 @@ class PyminButton(itk.itkFrame):
 
     def onEnter(self, event):
         self._isMouseInWidget = True
-        ThemeBindings.borderSet(event)
+        ThemeBindings.borderSet(self)
 
     def onLeave(self, event):
         self._isMouseInWidget = False
-        ThemeBindings.borderUnset(event)
+        ThemeBindings.borderUnset(self)
 
     def onPress(self, event):
-        ThemeBindings.backgroundSet(event)
+        ThemeBindings.backgroundSet(self.label)
 
     def onRelease(self, event):
-        ThemeBindings.backgroundUnset(event)
+        ThemeBindings.backgroundUnset(self.label)
         if self._isMouseInWidget and self._state != 'disabled':
             self._command()
 
