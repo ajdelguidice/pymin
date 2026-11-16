@@ -4417,12 +4417,11 @@ class DebugAffinityChange(PyminWindow):
         if aff not in validAff:
             self.window._children['errlabel'].text = f'Type {aff} is invalid.'
             raise Error(f'[DebugAffinityChange.changeAffinity] Type {aff} is invalid. Valid types are 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, L1001, L1002, B2, B4, B6, B8, B10.')
-        try:
-            amount = int(values[1], 10)
-        except:
+        amount = parseInt(values[1], 10)
+        if math.isnan(amount):
             self.window._children['errlabel'].text = 'Amount must be an integer'
             raise Error('[DebugAffinityChange.changeAffinity] Amount must be an integer.')
-        mainobject.game.debugChangeAffinity(aff, amount)
+        mainobject.game.debugChangeAffinity(aff, int(amount))
 
 
 class DebugGiveItem(PyminWindow):
@@ -4742,55 +4741,48 @@ class OptionsWindow(PyminWindow):
 
         # Custom Theme Colour
         if self.window._children['Theme'].getcb():
-            if self.window._children['Theme'].get() == '':
+            tempThemeValue = self.window._children['Theme'].get()
+            if tempThemeValue == '':
                 self.window._children['Theme']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomThemeColor is empty')
-            if not Utils.isValidHex(self.window._children['Theme'].get()):
+            if not Utils.isValidHex(tempThemeValue):
                 self.window._children['Theme']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomThemeColor is not a valid hexadecimal color code')
-            if not mainobject.customThemeColor:
-                mainobject.oBackgroundColor = mainobject.backgroundColor
             mainobject.customThemeColor = True
             if self.window._children['Theme']["background"] == '#FF3333':
                 self.window._children['Theme']["background"] = '#FFFFFF'
-            mainobject.backgroundColor = self.window._children['Theme'].get()
-            mainobject.game.window._children['themebutton'].state = 'disabled'
+            mainobject.backgroundColor = tempThemeValue
         else:
             mainobject.customThemeColor = False
-            mainobject.backgroundColor = mainobject.oBackgroundColor
-            mainobject.game.window._children['themebutton'].state = 'normal'
 
         # Custom Font Colour
         if self.window._children['FontColor'].getcb():
-            if self.window._children['FontColor'].get() == '':
+            tempFontValue = self.window._children['FontColor'].get()
+            if tempFontValue == '':
                 self.window._children['FontColor']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomFontColor is empty')
-            if not Utils.isValidHex(self.window._children['FontColor'].get()):
+            if not Utils.isValidHex(tempFontValue):
                 self.window._children['FontColor']['background'] = '#FF3333'
                 raise Error('[OptionsWindow.save] CustomFontColor is not a valid hexadecimal color code')
-            if not mainobject.customFontColor:
-                mainobject.oTextColor = mainobject.textColor
             mainobject.customFontColor = True
             if self.window._children['FontColor']['background'] == '#FF3333':
                 self.window._children['FontColor']['background'] = '#FFFFFF'
-            mainobject.textColor = self.window._children['FontColor'].get()
-            mainobject.game.window._children['textcolorbutton'].state = 'disabled'
+            mainobject.textColor = tempFontValue
         else:
             mainobject.customFontColor = False
-            mainobject.textColor = mainobject.oTextColor
-            mainobject.game.window._children['textcolorbutton'].state = 'normal'
 
         # Save Location
-        if self.window._children['SaveLocation'].get() == '':
+        tempSaveValue = self.window._children['SaveLocation'].get()
+        if tempSaveValue == '':
             self.window._children['SaveLocation']['background'] = '#FF3333'
             raise Error('[OptionsWindow.save] SaveLocation is empty')
         # TODO: Make this check platform agnostic
-        if not isValidDirectory(self.window._children['SaveLocation'].get(), as3state.separator):
+        if not isValidDirectory(tempSaveValue, as3state.separator):
             self.window._children['SaveLocation']['background'] = '#FF3333'
             raise Error('[OptionsWindow.save] SaveLocation is not a valid location on the current platform')
         if self.window._children['SaveLocation']['background'] == '#FF3333':
             self.window._children['SaveLocation']['background'] = '#FFFFFF'
-        mainobject.saveLocation = Path(self.window._children['SaveLocation'].get()).resolve()
+        mainobject.saveLocation = Path(tempSaveValue).resolve()
 
         mainobject.statusTweaks = self.window._children['StatusTweaks'].getcb()
         mainobject.succubusLeavesOne = self.window._children['SuccubusLeavesOne'].getcb()
@@ -27835,6 +27827,11 @@ class PyminMain:
 
     @customFontColor.setter
     def customFontColor(self, value: bool):
+        if self._customFontColor != value:
+            if self._customFontColor:
+                self.textColor = self.oTextColor
+            else:
+                self.oTextColor = self.textColor
         self._customFontColor = value
         self.game.updateTextColorButtonState()
 
@@ -27852,6 +27849,11 @@ class PyminMain:
 
     @customThemeColor.setter
     def customThemeColor(self, value: bool):
+        if self._customThemeColor != value:
+            if self._customThemeColor:
+                self.backgroundColor = self.oBackgroundColor
+            else:
+                self.oBackgroundColor = self.backgroundColor
         self._customThemeColor = value
         self.game.updateThemeButtonState()
 
@@ -28128,9 +28130,9 @@ class PyminMain:
         self.saveLocation = GAME_DIR / "nimin_saves"
         self.saveCompatMode = False
         self.enforceSize = False
-        self.customFontColor = False
+        self._customFontColor = False
         self.oTextColor = "#000000"
-        self.customThemeColor = False
+        self._customThemeColor = False
         self.oBackgroundColor = "#FFFFFF"
 
         self.useNiminTheme = False
