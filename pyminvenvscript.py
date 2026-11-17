@@ -326,8 +326,6 @@ class TOML:
             f.write(TOML.dictToTOML(valDict))
 
 
-hasVenv = True
-
 if sys.hexversion < 0x030b0000:
     import tomli
     TOML.readFile = tomli.load
@@ -371,7 +369,6 @@ class VenvRunner:
         return (self.python, '-m', 'pip')
 
     def __init__(self):
-        global hasVenv
         self._environ = os.environ.copy()
 
         if platform.system() == 'Darwin':
@@ -387,13 +384,6 @@ class VenvRunner:
             os.environ["no_proxy"] = "*").
             '''
             self.env['no_proxy'] = '*'
-
-        if config['path'] == '':
-            self.path = DEFAULT_VENV_PATH
-        else:
-            self.path = Path(config['path']).resolve()
-        if not self.path.exists():
-            hasVenv = False
 
     def getLocalPath(self, path):
         # return os.path.join(self.path, *path)
@@ -587,6 +577,9 @@ class ConfigUtils:
             (venvpath / '.DEFAULTRUN').unlink(missing_ok=True)
         return conf
 
+    _V2_STRING_KEYS = ('path', 'pyInstalledVersion')
+    _V2_BOOLEAN_KEYS = ('uvGlobal', 'uvLocal', 'defaultToRun', 'noSSLVerify', 'noCustomHTMLParser', 'isDevEnv')
+
     def getV2Values(cfgpath):
         conf = {}
         # Config v2
@@ -595,33 +588,19 @@ class ConfigUtils:
             c.optionxform = str
             with open(temploc, 'r') as f:
                 c.read_file(f)
-            if 'path' in c['Options']:
-                conf['path'] = c.get('Options', 'path', fallback=str(DEFAULT_VENV_PATH))
-            if 'pyInstalledVersion' in c['Options']:
-                conf['pyInstalledVersion'] = c['Options']['pyInstalledVersion']
-            for i in {'uvGlobal', 'uvLocal', 'defaultToRun', 'noSSLVerify', 'noCustomHTMLParser', 'isDevEnv'}:
-                if i in c['Options']:
-                    conf[i] = c.getboolean('Options', i, fallback=False)
+            conf.update({key: c['Options'][key] for key in ConfigUtils._V2_STRING_KEYS if key in c['Options']})
+            conf.update({key: c.getboolean('Options', key) for key in ConfigUtils._V2_BOOLEAN_KEYS if key in c['Options']})
             temploc.unlink(missing_ok=True)
             del c
         return conf
+
+    _V3_KEYS = ('cfgVersion', 'path', 'pyInstalledVersion', 'uvGlobal', 'uvLocal', 'defaultToRun', 'noSSLVerify', 'noCustomHTMLParser', 'isDevEnv')
 
     def getV3Values(cfgpath):
         if cfgpath.exists():
             with open(cfgloc, 'rb') as f:
                 raw_conf = TOML.readFile(f)
-            conf = {
-                'cfgVersion': raw_conf.get('cfgVersion', 1),
-                'path': raw_conf.get('path', str(DEFAULT_VENV_PATH)),
-                'pyInstalledVersion': raw_conf.get('pyInstalledVersion'),
-                'uvGlobal': raw_conf.get('uvGlobal', False),
-                'uvLocal': raw_conf.get('uvLocal', False),
-                'defaultToRun': raw_conf.get('defaultToRun', False),
-                'noSSLVerify': raw_conf.get('noSSLVerify', False),
-                'noCustomHTMLParser': raw_conf.get('noCustomHTMLParser', False),
-                'isDevEnv': raw_conf.get('isDevEnv', False)
-            }
-            return conf
+            return {key: raw_conf[key] for key in ConfigUtils._V3_KEYS if key in raw_conf}
         return {}
 
     def getOldConfigValues():
@@ -640,6 +619,7 @@ ORIGINAL_CONFIG = None
 # Default config values
 config = {
     'cfgVersion': 1,
+    'path': '',
     'pyInstalledVersion': None,
     'uvGlobal': False,
     'uvLocal': False,
@@ -685,14 +665,13 @@ elif DEFAULT_VENV_PATH.exists():
             c.read_string('[UNNAMED_SECTION]\n' + f.read())
         config['pyInstalledVersion'] = c[UNNAMED_SECTION]['version_info']
     config['path'] = str(DEFAULT_VENV_PATH)
+
     # Load config V1
-    if (DEFAULT_VENV_PATH / '.USEUV').exists() or (DEFAULT_VENV_PATH / '.USEUVI').exists() or (DEFAULT_VENV_PATH / '.DEFAULTRUN').exists():
-        config.update(ConfigUtils.getV1Values(DEFAULT_VENV_PATH))
+    config.update(ConfigUtils.getV1Values(DEFAULT_VENV_PATH))
 
 # no venv
 else:
     config['pyInstalledVersion'] = platform.python_version()
-    hasVenv = False
 
 
 DOCS_GENERAL_ARGS = 'General arguments:\n\t--unverified\tDisables ssl verification.\n\t--nohtmlparser\tSkips installing the custom html parser.\n\t--version\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]'
@@ -723,6 +702,11 @@ def getDocumentationPage(page: str = None):
 
 
 venv = VenvRunner()
+if config['path'] == '':
+    venv.path = DEFAULT_VENV_PATH
+else:
+    venv.path = Path(config['path']).resolve()
+hasVenv = venv.path.exists()
 
 # Arguement parsing logic
 if len(sys.argv) < 2:
