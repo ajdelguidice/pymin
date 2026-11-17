@@ -569,11 +569,13 @@ class VenvRunner:
 
         # Update tkhtmlview this way because its dependencies are broken
         self.pipUpdate('tkhtmlview', '--no-deps')
+        print('Reinstalled tkhtmlview because of broken dependencies.')
 
         if subprocess.check_output((self.python, '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
+            # Uninstall both just in case the installation was messed up.
             self.pipUninstall('Mini-AMF', 'as3lib-miniAMF')
             self.pipInstall('as3lib-miniAMF')
-            print('Replaced Mini-AMF with as3lib-miniAMF')
+            print('Replaced Mini-AMF with as3lib-miniAMF.')
         print('Done')
 
     def installFromZip_patchTkhtmlview(self, zipFile, memberName):
@@ -589,7 +591,7 @@ class VenvRunner:
         print('Patched tkhtmlview.html_parser')
 
     def installFromZip_TtkTheme(self, zipFile, memberName):
-        # TODO: Delete existing one
+        rmtree(self.path / 'nimin-ttk-theme')
         for fileName in zipFile.namelist():
             if fileName.startswith(memberName):
                 zipFile.extract(fileName, self.path)
