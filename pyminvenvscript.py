@@ -374,11 +374,9 @@ hasVenv = True
 if sys.hexversion < 0x030b0000:
     import tomli
     TOML.readFile = tomli.load
-    require_tomli = True
 else:
     import tomllib
     TOML.readFile = tomllib.load
-    require_tomli = False
 
 
 class VenvRunner:
@@ -696,6 +694,7 @@ DOCS_NO_ARGS = 'Takes no arguments'
 DOCS_PARSING_RULES = 'Custom argument parsing is used for this command. The rules are as follows:\n\t1) Do not use whitespace unless necessary.\n\t2) Escape all special characters recognised by your terminal\n\t   (ex: curly brackets in bash).\n\t3) Do not use brackets [ ] or curly brackets { } in keys, they are not parsed\n\t   correctly.\n\t4) Inline tables must be in the format {key:value,}.\n'
 # TODO: Format cfg page better
 # TODO: update, recreate commands steps
+# TODO: update install page after the release archive refactor
 DOCS_PAGES = {
     'install':        f'Usage: <venvscript> install [args]\n\nInstalls and sets up the virtual environment for Pymin.\n\nThis command will refuse to do anything if <venvpath> is detected to be the root\ndirectory or if it already exists.\n\nSteps followed by this command:\n\t1) Create the directory <venvpath> if it does not exist\n\t2) Run the "venv" command in <venvpath>\n\t3a) If the config exists, ask the user if they want to move it into the venv.\n\t    If not moving the config, set the "path" variable to <venvpath>.\n\t3b) If the config does not exist, create one inside the venv\n\t4) Create the game directory at "<venvpath>/Pymin"\n\t5) Download the game to "<venvpath>/Pymin/Pymin.py"\n\t6) Install the game\'s dependencies\n\n{DOCS_GENERAL_ARGS}\n\nSpecial arguement:\n\t--overwrite\tBypasses the overwrite check. This check is in place because this script manages\n\t\t\tthe entire virtual environment which can cause issues if it contains other data.\n\t\t\tUse at your own risk.',
     'update':         f'Usage: <venvscript> update [args]\n\nUpdates everything in the virtual environment.\n\nSteps followed by this command:\n\tPlaceholder\n\n{DOCS_GENERAL_ARGS}',
