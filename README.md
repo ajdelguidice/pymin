@@ -5,9 +5,7 @@
 
 <b>DISCLAIMER:</b> This project has nothing to do with the original authors. DO NOT contact them about issues with this port, they will have no idea what you are even talking about. I do not claim any part of the original game as my own, however anything I added to the game is mine.
 
-Please read the notes section of the <a href="https://github.com/ajdelguidice/python-as3lib/blob/Development/README.md">readme for as3lib</a> as well before using.
-
-This port was made mostly for personal use. This is mostly a bug fix and quality of life port (I have added some small content but I will not be doing anythin big). I plan on making the interface look more like the original but more on that later.
+This port was made mostly for personal use. This is mostly a bug fix and quality of life port (I have added some small content but I will not be doing anything big). I plan on making the interface look more like the original but more on that later.
 
 All save files made by the original game are compatible with this port, they just need to be moved into the nimin_saves directory (created on first launch). Most of the save files made by this port are compatible with the original game if saved in the correct format (.sol or .nim) with two major caviats:
 
@@ -24,14 +22,19 @@ Note: pyminlib/html_parser.py is a modified version of tkhtmlview's html_parser.
 This port runs best in a virtual environment, I even made a script to set it all up. If you choose to use my script, you should not have to do any manual setup. If python's minor verion (the X in 3.X.Y) changes, you must run the venvscript's update command as python creates version specific binaries for c modules. I am working on a way to automatically detect this and fix it if the user desires.
 
 The venv script has a few advanced features but here are the basics to get youself going:
+
+- Install and set up the game
 ```
-# Install and set up the game
 python pyminvenvscript.py install
+```
 
-# Update the game and its dependencies
+- Update the game and its dependencies
+```
 python pyminvenvscript.py update
+```
 
-# Run the game
+- Run the game
+```
 python pyminvenvscript.py run
 ```
 Everything else is explained in the help message.
@@ -41,14 +44,12 @@ Python>=3.10 (Pymin 1.0.7 - 1.0.11)
 <br>Python>=3.11 or 3.10 with <a href="https://pypi.org/project/tomli/">tomli</a> (Pymin 12+)
 
 ## Requirements
-<b>Game:</b> tkinter, <a href="https://pypi.org/project/as3lib/">as3lib</a>
-
-<b>Unix (including MacOS) requirements:</b>
-<br>&emsp;A C compiler recognised by setuptools (ex: gcc, clang)
+> tkinter
+> <br><a href="https://pypi.org/project/as3lib/">as3lib</a>
+> <br>A C compiler recognised by setuptools (ex: gcc, clang, MSVC)
 
 <b>Windows requirements:</b>
-<br>&emsp;PyLauncher
-<br>&emsp;A C compiler recognised by setuptools (Visual c++ build tools is the easiest to install. Only install the core, MSVC, and the Windows ## SDK, everything else is unnecessary).
+> PyLauncher
 
 ## Notable Changes
 This port tries to keep things as close to the original game as possible, however there are a few changes, some toggleable, some not. The most notable being:
