@@ -77,20 +77,7 @@ def create():
     checkExistsMakeDir(venv.getLocalPath('Pymin'))
     print('Done')
 
-    venv.installRequirements()
     venv.downloadAndInstallGameZip()
-
-
-def set_as3libversion(rl):
-    if '--as3libversion' in sys.argv:
-        version = sys.argv[sys.argv.index('--as3libversion') + 1]
-    else:
-        version = 'latest'
-    if version.lower() == 'none':
-        rl.remove('as3lib')
-    elif version != 'latest':
-        rl.remove('as3lib')
-        rl.append(f'as3lib={version}')
 
 
 def recreate_checkWithConfig(withconf):
@@ -396,9 +383,6 @@ else:
 
 class VenvRunner:
     INSECURE_SSL_CONTEXT = ssl._create_unverified_context()
-    REQUIREMENTS = ['Pillow', 'as3lib']
-    if require_tomli:
-        REQUIREMENTS.append('tomli')
 
     @property
     def env(self):
@@ -473,7 +457,6 @@ class VenvRunner:
         self.pip('uninstall', *args)
 
     def downloadAndInstallGameZip(self):
-        # NOTE: Must be used after requirements are installed because html_parser is gotten from here
         if '--version' in sys.argv:
             versiontag = sys.argv[sys.argv.index('--version') + 1]
         else:
@@ -485,19 +468,22 @@ class VenvRunner:
                 file.write(urlfile.read())
             print('Done')
 
-            version = versiontag.split('.')[-1]
-            if version.startswith('v'):
-                version = version[1:]
+            self.installFromZip(file, versiontag)
 
-            self.installFromZip(file, int(version))
-
-    def installFromZip(self, file, version=None):
+    def installFromZip(self, file, versionTag):
         print('Extracting components from zip file...')
         with zipfile.ZipFile(file) as zipFile:
             filelist = zipFile.namelist()
             ziproot = filelist[0].split('/')[0]
             self.installFromZip_Game(zipFile, f'{ziproot}/Pymin.py')
             self.installFromZip_Changelog(zipFile, f'{ziproot}/Changelog')
+
+            # Install/update requirements
+            requirementsName = f'{ziproot}/requirements.txt'
+            if requirementsName in filelist:
+                self.installFromZip_Requirements(zipFile, requirementsName)
+            else:
+                self.installFromZip_GetReleaseRequirements(versionTag)
 
             # Some releases didn't include this file
             htmlParserName = f'{ziproot}/pyminlib/html_parser.py'
@@ -526,15 +512,6 @@ class VenvRunner:
                     self.getLocalPath('Pymin/pyminlib/as3toplevel.py').write_bytes(f.read())
                 print('Extracted pyminlib/as3toplevel.py')
 
-        oldVersion_pipList = []
-        if version <= 11:
-            oldVersion_pipList.append('as3lib-miniamf', 'setuptools', 'six')
-        if version <= 6:
-            oldVersion_pipList.append('numpy')
-        if len(oldVersion_pipList):
-            self.pipUpdate(*oldVersion_pipList)
-            print('Installed older version dependencies.')
-
         print('Done')
 
     def installFromZip_Game(self, zipFile, memberName):
@@ -552,6 +529,52 @@ class VenvRunner:
             self.getLocalPath('Pymin/Changelog').write_bytes(f.read())
 
         print('Extracted Changelog')
+
+    def installFromZip_Requirements(self, zipFile, memberName):
+        pipList = []
+        with zipFile.open(memberName) as f:
+            while (package := f.readline()):
+                pipList.append(package)
+        self.installFromZip_installRequirements(pipList)
+
+    def installFromZip_GetReleaseRequirements(self, versionTag):
+        pipList = []
+        with tempfile.TemporaryFile(mode='w+b') as file:
+            with urlopen(f'https://github.com/ajdelguidice/pymin/releases/download/{versionTag}/requirements.txt', context=self.sslContext) as urlfile:
+                file.write(urlfile.read())
+
+            file.seek(0)
+
+            while (package := file.readline()):
+                pipList.append(package.decode('utf-8').strip('\n'))
+
+        self.installFromZip_installRequirements(pipList)
+
+    def installFromZip_installRequirements(self, pipList):
+        if config['uvLocal']:
+            print('Updating UV...')
+            self.runWithPython('-m', 'pip', 'install', '-U', 'uv')
+            print('Done')
+        print('Updating dependencies...')
+        temp = pipList.copy()
+        if config['isDevEnv']:
+            index = -1
+            for i in range(len(temp)):
+                if temp[i] == 'as3lib' or temp[i].startswith('as3lib=='):
+                    index = i
+                    break
+            temp.pop(index)
+            print('Skipped as3lib.')
+        self.pipUpdate(*temp)
+
+        # Update tkhtmlview this way because its dependencies are broken
+        self.pipUpdate('tkhtmlview', '--no-deps')
+
+        if subprocess.check_output((self.python, '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
+            self.pipUninstall('Mini-AMF', 'as3lib-miniAMF')
+            self.pipInstall('as3lib-miniAMF')
+            print('Replaced Mini-AMF with as3lib-miniAMF')
+        print('Done')
 
     def installFromZip_patchTkhtmlview(self, zipFile, memberName):
         # Replaces tkhtmlview.html_parser with a modified one that can run python commands from href tags. Only use this inside of this project's virtual environment.
@@ -573,44 +596,6 @@ class VenvRunner:
         # TODO: This leaves behind an empty directory, find a way to safely remove it
         (self.path / memberName).move(self.path / 'nimin-ttk-theme')
         print('Extracted ttk theme')
-
-    def installRequirements(self):
-        if config['uvLocal']:
-            print('Installing UV...')
-            self.runWithPython('-m', 'pip', 'install', 'uv')
-            print('Done')
-        temp = VenvRunner.REQUIREMENTS.copy()
-        print('Installing dependencies...')
-        if config['isDevEnv']:
-            print('Skipping as3lib and tkhtmlview.')
-            temp.remove('as3lib')
-        else:
-            set_as3libversion(temp)
-        self.pipInstall(*temp)
-        # Install tkhtmlview this way because its dependencies are broken
-        self.pipUpdate('tkhtmlview', '--no-deps')
-        print('Done')
-
-    def updateRequirements(self):
-        if subprocess.check_output((self.python, '-c', 'from importlib.util import find_spec;import os;print(os.path.exists(find_spec("tkhtmlview").origin.replace("tkhtmlview/__init__.py","Mini_AMF-0.9.1.dist-info")))')).decode('utf-8').strip() == 'True':
-            print('Replacing Mini-AMF with as3lib-miniAMF...')
-            self.pipUninstall('Mini-AMF')
-            print('Done')
-        if config['uvLocal']:
-            print('Updating UV...')
-            self.pipUpdate('uv')
-            print('Done')
-        temp = VenvRunner.REQUIREMENTS.copy()
-        print('Updating dependencies...')
-        if config['isDevEnv']:
-            print('Skipping as3lib and tkhtmlview.')
-            temp.remove('as3lib')
-        else:
-            set_as3libversion(temp)
-        self.pipUpdate(*temp)
-        # Update tkhtmlview this way because its dependencies are broken
-        self.pipUpdate('tkhtmlview', '--no-deps')
-        print('Done')
 
 
 venv = VenvRunner()
@@ -703,7 +688,7 @@ else:
         hasVenv = False
 
 
-DOCS_GENERAL_ARGS = 'General arguments:\n\t--unverified\tDisables ssl verification.\n\t--nohtmlparser\tSkips installing the custom html parser.\n\t--version\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]\n\t--as3libversion\tThe release tag of the as3lib version you want to install. ex: "--as3libversion <tag>" [default: latest]'
+DOCS_GENERAL_ARGS = 'General arguments:\n\t--unverified\tDisables ssl verification.\n\t--nohtmlparser\tSkips installing the custom html parser.\n\t--version\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]'
 DOCS_FORWARDS_ARGS = 'Forwards all arguments.'
 DOCS_NO_ARGS = 'Takes no arguments'
 DOCS_PARSING_RULES = 'Custom argument parsing is used for this command. The rules are as follows:\n\t1) Do not use whitespace unless necessary.\n\t2) Escape all special characters recognised by your terminal\n\t   (ex: curly brackets in bash).\n\t3) Do not use brackets [ ] or curly brackets { } in keys, they are not parsed\n\t   correctly.\n\t4) Inline tables must be in the format {key:value,}.\n'
@@ -733,7 +718,7 @@ def getDocumentationPage(page: str = None):
 if config['defaultToRun'] and len(sys.argv) < 2:
     sys.argv.append('run')
 if len(sys.argv) < 2 or sys.argv[1] in {'help', '-h', '--help'}:
-    print('Usage: <venvscript> [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message.\n\tdocs\t\t\tAdvanced help information. Put a command after this one to display its docs.\n\tinstall\t\t\tCreates and sets up the virtual environment for the game.\n\tupdate\t\t\tUpdates the game and all of it\'s dependencies.\n\tcfg\t\t\tDisplay and modify the config. Arguments should be in the form "key=value". If no arguments are given, displays config.\n\tcfg-game\t\tDisplay and modify the game\'s config. Same as cfg arguments are formatted as "section.key=value". Only for pymin 12+.\n\tmigrate-config\t\tExplicitly migrate old config versions. Done automatically this script is updated.\n\trun\t\t\tRuns the game. Forwards all arguments.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguments.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguments.\n\tpip\t\t\tExecutes pip inside of the environment. Forwards all arguments.\n\ncfg/cfg-game parsing rules:\n\tMake sure to escape any special characters recognised by your terminal (ex: curly brackets in bash).\n\tDo not use brackets [ ] or curly brackets { } in keys. They are not parsed correctly.\n\tTables use the python format {key:value,} even though they are used as TOML.\n\nArguements {install, update, recreate}:\n\t--unverified\t\tTemporarily disables ssl verification.\n\t--nohtmlparser\t\tSkips installing the custom html parser once.\n\t--version\t\tThe release tag for pymin to install. ex: "--version <tag>" [default: latest]\n\t--as3libversion\t\tThe release tag for as3lib to install. ex: "--as3libversion <tag>" [default: latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--with-config\t\tPreserves the config for this script (if stored in the venv)\n\t{recreate}\t--with-saves\t\tPreserves the nimin_saves directory.\n\t{recreate}\t--with-game-config\tPreserves the game\'s config.')
+    print('Usage: <venvscript> [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message.\n\tdocs\t\t\tAdvanced help information. Put a command after this one to display its docs.\n\tinstall\t\t\tCreates and sets up the virtual environment for the game.\n\tupdate\t\t\tUpdates the game and all of it\'s dependencies.\n\tcfg\t\t\tDisplay and modify the config. Arguments should be in the form "key=value". If no arguments are given, displays config.\n\tcfg-game\t\tDisplay and modify the game\'s config. Same as cfg arguments are formatted as "section.key=value". Only for pymin 12+.\n\tmigrate-config\t\tExplicitly migrate old config versions. Done automatically this script is updated.\n\trun\t\t\tRuns the game. Forwards all arguments.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguments.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguments.\n\tpip\t\t\tExecutes pip inside of the environment. Forwards all arguments.\n\ncfg/cfg-game parsing rules:\n\tMake sure to escape any special characters recognised by your terminal (ex: curly brackets in bash).\n\tDo not use brackets [ ] or curly brackets { } in keys. They are not parsed correctly.\n\tTables use the python format {key:value,} even though they are used as TOML.\n\nArguements {install, update, recreate}:\n\t--unverified\t\tTemporarily disables ssl verification.\n\t--nohtmlparser\t\tSkips installing the custom html parser once.\n\t--version\t\tThe release tag for pymin to install. ex: "--version <tag>" [default: latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--with-config\t\tPreserves the config for this script (if stored in the venv)\n\t{recreate}\t--with-saves\t\tPreserves the nimin_saves directory.\n\t{recreate}\t--with-game-config\tPreserves the game\'s config.')
 elif sys.argv[1] == 'docs':
     print(getDocumentationPage(None if len(sys.argv) == 2 else sys.argv[2]))
 elif sys.argv[1] == 'migrate-config':
@@ -812,7 +797,6 @@ elif sys.argv[1] == 'update' and hasVenv:
     if doPythonUpdate:
         updatePythonVersion()
     else:
-        venv.updateRequirements()
         venv.downloadAndInstallGameZip()
 elif sys.argv[1] == 'run' and hasVenv:
     venv.runWithPython(venv.getLocalPath('Pymin/Pymin.py'), *sys.argv[2:])
