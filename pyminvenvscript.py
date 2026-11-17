@@ -21,14 +21,7 @@ CURRENT_DIRECTORY = Path(__file__).resolve().parent
 if not CURRENT_DIRECTORY:
     raise Exception('Path is empty. Exiting to avoid problems.')
 
-
-def checkExistsMakeDir(dir_):
-    if dir_.is_dir():
-        return 1
-    if dir_.exists():
-        print('Path exists but is not a directory.')
-        return -1
-    dir_.mkdir(parents=True)
+DEFAULT_VENV_PATH = CURRENT_DIRECTORY / 'Pymin-venv'
 
 
 def getRedirectURL(url):
@@ -50,7 +43,7 @@ def create():
         raise Exception('Root directory can not be used for venvpath.')
     print('Creating the environment...')
 
-    checkExistsMakeDir(venv.path)  # Create directory
+    venv.createLocalDirectory()  # Create directory
 
     # Create virtual environment
     if config['uvGlobal']:
@@ -74,7 +67,7 @@ def create():
         config['path'] = str(venv.path)
 
     # Create game directory
-    checkExistsMakeDir(venv.getLocalPath('Pymin'))
+    venv.createLocalDirectory('Pymin')
     print('Done')
 
     venv.downloadAndInstallGameZip()
@@ -143,42 +136,6 @@ def updatePythonVersion():
         copytree(tempdir / 'Pymin', venv.getLocalPath('Pymin'))
         rmtree(tempdir)
         config['pyInstalledVersion'] = platform.python_version()
-
-
-def migrateConfig():
-    conf = {}
-    # Config v1
-    if venv.getLocalPath('.USEUV').exists():
-        conf['uvGlobal'] = True
-        venv.getLocalPath('.USEUV').unlink(missing_ok=True)
-    if venv.getLocalPath('.USEUVI').exists():
-        conf['uvLocal'] = True
-        venv.getLocalPath('.USEUVI').unlink(missing_ok=True)
-    if venv.getLocalPath('.DEFAULTRUN').exists():
-        conf['defaultToRun'] = True
-        venv.getLocalPath('.DEFAULTRUN').unlink(missing_ok=True)
-    # Config v2
-    if (CURRENT_DIRECTORY / 'pymin.cfg').exists() or venv.getLocalPath('pymin.cfg').exists():
-        if (CURRENT_DIRECTORY / 'pymin.cfg').exists():
-            temploc = CURRENT_DIRECTORY / 'pymin.cfg'
-        else:
-            temploc = venv.getLocalPath('pymin.cfg')
-        c = configparser.ConfigParser()
-        c.optionxform = str
-        with open(temploc, 'r') as f:
-            c.read_file(f)
-        if 'path' in c['Options']:
-            conf['path'] = c.get('Options', 'path', fallback=str(venv.path))
-        if 'pyInstalledVersion' in c['Options']:
-            conf['pyInstalledVersion'] = c['Options']['pyInstalledVersion']
-        for i in {'uvGlobal', 'uvLocal', 'defaultToRun', 'noSSLVerify', 'noCustomHTMLParser', 'isDevEnv'}:
-            if i in c['Options']:
-                conf[i] = c.getboolean('Options', i, fallback=False)
-        temploc.unlink(missing_ok=True)
-        del c
-    if not conf:
-        print('Nothing to do.')
-    return conf
 
 
 class TextObject:
@@ -414,6 +371,7 @@ class VenvRunner:
         return (self.python, '-m', 'pip')
 
     def __init__(self):
+        global hasVenv
         self._environ = os.environ.copy()
 
         if platform.system() == 'Darwin':
@@ -430,11 +388,28 @@ class VenvRunner:
             '''
             self.env['no_proxy'] = '*'
 
-        self.path = CURRENT_DIRECTORY / 'Pymin-venv'
+        if config['path'] == '':
+            self.path = DEFAULT_VENV_PATH
+        else:
+            self.path = Path(config['path']).resolve()
+        if not self.path.exists():
+            hasVenv = False
 
     def getLocalPath(self, path):
         # return os.path.join(self.path, *path)
         return self.path / path
+
+    def createLocalDirectory(directory: str | PurePath = None):
+        if directory is None:
+            path = self.path
+        else:
+            path = self.getLocalPath(directory)
+        if path.is_dir():
+            return 1
+        if path.exists():
+            print('Path exists but is not a directory.')
+            return -1
+        path.mkdir(parents=True)
 
     def runWithEnv(self, *args):
         subprocess.run(args, env=self.env)
@@ -598,94 +573,126 @@ class VenvRunner:
         print('Extracted ttk theme')
 
 
-venv = VenvRunner()
+class ConfigUtils:
+    def getV1Values(venvpath):
+        conf = {}
+        if (venvpath / '.USEUV').exists():
+            conf['uvGlobal'] = True
+            (venvpath / '.USEUV').unlink(missing_ok=True)
+        if (venvpath / '.USEUVI').exists():
+            conf['uvLocal'] = True
+            (venvpath / '.USEUVI').unlink(missing_ok=True)
+        if (venvpath / '.DEFAULTRUN').exists():
+            conf['defaultToRun'] = True
+            (venvpath / '.DEFAULTRUN').unlink(missing_ok=True)
+        return conf
+
+    def getV2Values(cfgpath):
+        conf = {}
+        # Config v2
+        if cfgpath.exists():
+            c = configparser.ConfigParser()
+            c.optionxform = str
+            with open(temploc, 'r') as f:
+                c.read_file(f)
+            if 'path' in c['Options']:
+                conf['path'] = c.get('Options', 'path', fallback=str(DEFAULT_VENV_PATH))
+            if 'pyInstalledVersion' in c['Options']:
+                conf['pyInstalledVersion'] = c['Options']['pyInstalledVersion']
+            for i in {'uvGlobal', 'uvLocal', 'defaultToRun', 'noSSLVerify', 'noCustomHTMLParser', 'isDevEnv'}:
+                if i in c['Options']:
+                    conf[i] = c.getboolean('Options', i, fallback=False)
+            temploc.unlink(missing_ok=True)
+            del c
+        return conf
+
+    def getV3Values(cfgpath):
+        if cfgpath.exists():
+            with open(cfgloc, 'rb') as f:
+                raw_conf = TOML.readFile(f)
+            conf = {
+                'cfgVersion': raw_conf.get('cfgVersion', 1),
+                'path': raw_conf.get('path', str(DEFAULT_VENV_PATH)),
+                'pyInstalledVersion': raw_conf.get('pyInstalledVersion'),
+                'uvGlobal': raw_conf.get('uvGlobal', False),
+                'uvLocal': raw_conf.get('uvLocal', False),
+                'defaultToRun': raw_conf.get('defaultToRun', False),
+                'noSSLVerify': raw_conf.get('noSSLVerify', False),
+                'noCustomHTMLParser': raw_conf.get('noCustomHTMLParser', False),
+                'isDevEnv': raw_conf.get('isDevEnv', False)
+            }
+            return conf
+        return {}
+
+    def getOldConfigValues():
+        conf = {}
+        conf.update(ConfigUtils.getV1Values(DEFAULT_VENV_PATH))
+        if (CURRENT_DIRECTORY / 'pymin.cfg').exists():
+            conf.update(ConfigUtils.getV2Values(CURRENT_DIRECTORY / 'pymin.cfg'))
+        elif (DEFAULT_VENV_PATH / 'pymin.cfg').exists():
+            conf.update(ConfigUtils.getV2Values(DEFAULT_VENV_PATH / 'pymin.cfg'))
+        return conf
+
 
 cfgloc = CURRENT_DIRECTORY / 'pymin.toml'
 ORIGINAL_CONFIG = None
-config = None
 
-# load config and set venvpath
+# Default config values
+config = {
+    'cfgVersion': 1,
+    'pyInstalledVersion': None,
+    'uvGlobal': False,
+    'uvLocal': False,
+    'defaultToRun': False,
+    'noSSLVerify': False,
+    'noCustomHTMLParser': False,
+    'isDevEnv': False
+}
+
+# Load config V3
 if (CURRENT_DIRECTORY / 'pymin.toml').exists():
     with open(cfgloc, 'rb') as f:
         ORIGINAL_CONFIG = TOML.readFile(f)
-    config = {
-        'cfgVersion': ORIGINAL_CONFIG.get('cfgVersion', 1),
-        'path': ORIGINAL_CONFIG.get('path', venv.path),
-        'pyInstalledVersion': ORIGINAL_CONFIG.get('pyInstalledVersion'),
-        'uvGlobal': ORIGINAL_CONFIG.get('uvGlobal', False),
-        'uvLocal': ORIGINAL_CONFIG.get('uvLocal', False),
-        'defaultToRun': ORIGINAL_CONFIG.get('defaultToRun', False),
-        'noSSLVerify': ORIGINAL_CONFIG.get('noSSLVerify', False),
-        'noCustomHTMLParser': ORIGINAL_CONFIG.get('noCustomHTMLParser', False),
-        'isDevEnv': ORIGINAL_CONFIG.get('isDevEnv', False)
-    }
-    if config['path'] == '':
-        raise Exception('Config is not in the default venv location and venvpath is empty.')
-    venv.path = Path(config['path']).resolve()
-    if not venv.path.exists():
-        hasVenv = False
-# load config
-elif venv.getLocalPath('pymin.toml').exists():
-    cfgloc = venv.getLocalPath('pymin.toml')
+    config.update(ConfigUtils.getV3Values(cfgloc))
+
+elif (DEFAULT_VENV_PATH / 'pymin.toml').exists():
+    cfgloc = (DEFAULT_VENV_PATH / 'pymin.toml')
     with open(cfgloc, 'rb') as f:
         ORIGINAL_CONFIG = TOML.readFile(f)
-    config = {
-        'cfgVersion': ORIGINAL_CONFIG.get('cfgVersion', 1),
-        'path': ORIGINAL_CONFIG.get('path', ''),
-        'pyInstalledVersion': ORIGINAL_CONFIG.get('pyInstalledVersion'),
-        'uvGlobal': ORIGINAL_CONFIG.get('uvGlobal', False),
-        'uvLocal': ORIGINAL_CONFIG.get('uvLocal', False),
-        'defaultToRun': ORIGINAL_CONFIG.get('defaultToRun', False),
-        'noSSLVerify': ORIGINAL_CONFIG.get('noSSLVerify', False),
-        'noCustomHTMLParser': ORIGINAL_CONFIG.get('noCustomHTMLParser', False),
-        'isDevEnv': ORIGINAL_CONFIG.get('isDevEnv', False)
-    }
-# Load older config
+    config.update(ConfigUtils.getV3Values(cfgloc))
+
+# Load config V2
+elif (CURRENT_DIRECTORY / 'pymin.cfg').exists():
+    config.update(ConfigUtils.getV2Values(CURRENT_DIRECTORY / 'pymin.cfg'))
+
+elif (DEFAULT_VENV_PATH / 'pymin.cfg').exists():
+    cfgloc = (DEFAULT_VENV_PATH / 'pymin.toml')
+    config.update(ConfigUtils.getV2Values(DEFAULT_VENV_PATH / 'pymin.cfg'))
+
+# Fallback
+elif DEFAULT_VENV_PATH.exists():
+    cfgloc = (DEFAULT_VENV_PATH / 'pymin.toml')
+    with open((DEFAULT_VENV_PATH / 'pyvenv.cfg'), 'r') as f:
+        if hasattr(configparser, 'UNNAMED_SECTION'):
+            UNNAMED_SECTION = configparser.UNNAMED_SECTION
+            c = configparser.ConfigParser(allow_unnamed_section=True)
+            c.optionxform = str
+            c.read_file(f)
+        else:  # Python < 3.13
+            UNNAMED_SECTION = 'UNNAMED_SECTION'
+            c = configparser.ConfigParser()
+            c.optionxform = str
+            c.read_string('[UNNAMED_SECTION]\n' + f.read())
+        config['pyInstalledVersion'] = c[UNNAMED_SECTION]['version_info']
+    config['path'] = str(DEFAULT_VENV_PATH)
+    # Load config V1
+    if (DEFAULT_VENV_PATH / '.USEUV').exists() or (DEFAULT_VENV_PATH / '.USEUVI').exists() or (DEFAULT_VENV_PATH / '.DEFAULTRUN').exists():
+        config.update(ConfigUtils.getV1Values(DEFAULT_VENV_PATH))
+
+# no venv
 else:
-    config = {
-        'cfgVersion': 1,
-        'pyInstalledVersion': None,
-        'uvGlobal': False,
-        'uvLocal': False,
-        'defaultToRun': False,
-        'noSSLVerify': False,
-        'noCustomHTMLParser': False,
-        'isDevEnv': False
-    }
-    # Load config v2
-    if (CURRENT_DIRECTORY / 'pymin.cfg').exists():
-        config.update(migrateConfig())
-        if config['path'] == '':
-            raise Exception('Config is not in the default venv location and "path" is empty.')
-        venv.path = Path(config['path']).resolve()
-        if not venv.path.exists():
-            hasVenv = False
-    elif venv.getLocalPath('pymin.cfg').exists():
-        cfgloc = venv.getLocalPath('pymin.toml')
-        config.update(migrateConfig())
-    # Fallback
-    elif venv.path.exists():
-        cfgloc = venv.getLocalPath('pymin.toml')
-        with open(venv.getLocalPath('pyvenv.cfg'), 'r') as f:
-            if hasattr(configparser, 'UNNAMED_SECTION'):
-                UNNAMED_SECTION = configparser.UNNAMED_SECTION
-                c = configparser.ConfigParser(allow_unnamed_section=True)
-                c.optionxform = str
-                c.read_file(f)
-            else:  # Python < 3.13
-                UNNAMED_SECTION = 'UNNAMED_SECTION'
-                c = configparser.ConfigParser()
-                c.optionxform = str
-                c.read_string('[UNNAMED_SECTION]\n' + f.read())
-            config['pyInstalledVersion'] = c[UNNAMED_SECTION]['version_info']
-        config['path'] = str(venv.path)
-        # Load config v1
-        if venv.getLocalPath('.USEUV').exists() or venv.getLocalPath('.USEUVI').exists() or venv.getLocalPath('.DEFAULTRUN').exists():
-            config.update(migrateConfig())
-    # no venv
-    else:
-        config['pyInstalledVersion'] = platform.python_version()
-        hasVenv = False
+    config['pyInstalledVersion'] = platform.python_version()
+    hasVenv = False
 
 
 DOCS_GENERAL_ARGS = 'General arguments:\n\t--unverified\tDisables ssl verification.\n\t--nohtmlparser\tSkips installing the custom html parser.\n\t--version\tThe release tag of the pymin version you want to install. ex: "--version <tag>" [default: latest]'
@@ -715,18 +722,28 @@ def getDocumentationPage(page: str = None):
     return DOCS_PAGES.get(page, f'Page "{page}" does not exist.')
 
 
+venv = VenvRunner()
+
 # Arguement parsing logic
-if config['defaultToRun'] and len(sys.argv) < 2:
-    sys.argv.append('run')
-if len(sys.argv) < 2 or sys.argv[1] in {'help', '-h', '--help'}:
+if len(sys.argv) < 2:
+    if config['defaultToRun']:
+        sys.argv.append('run')
+    else:
+        sys.argv.append('help')
+
+command = sys.argv[1]
+arguments = sys.argv[2:]
+if command in {'help', '-h', '--help'}:
     print('Usage: <venvscript> [command] [args]\nCommands:\n\thelp\t\t\tDisplays this message.\n\tdocs\t\t\tAdvanced help information. Put a command after this one to display its docs.\n\tinstall\t\t\tCreates and sets up the virtual environment for the game.\n\tupdate\t\t\tUpdates the game and all of it\'s dependencies.\n\tcfg\t\t\tDisplay and modify the config. Arguments should be in the form "key=value". If no arguments are given, displays config.\n\tcfg-game\t\tDisplay and modify the game\'s config. Same as cfg arguments are formatted as "section.key=value". Only for pymin 12+.\n\tmigrate-config\t\tExplicitly migrate old config versions. Done automatically this script is updated.\n\trun\t\t\tRuns the game. Forwards all arguments.\n\tconv\t\t\tRuns the savefile converter built into the game. Takes no arguments.\n\trecreate\t\tDeletes everything and starts again.\n\tuv\t\t\tExecutes uv inside of the environment. Forwards all arguments.\n\tpip\t\t\tExecutes pip inside of the environment. Forwards all arguments.\n\ncfg/cfg-game parsing rules:\n\tMake sure to escape any special characters recognised by your terminal (ex: curly brackets in bash).\n\tDo not use brackets [ ] or curly brackets { } in keys. They are not parsed correctly.\n\tTables use the python format {key:value,} even though they are used as TOML.\n\nArguements {install, update, recreate}:\n\t--unverified\t\tTemporarily disables ssl verification.\n\t--nohtmlparser\t\tSkips installing the custom html parser once.\n\t--version\t\tThe release tag for pymin to install. ex: "--version <tag>" [default: latest]\n\nOther Command Specific Arguements:\n\t{install}\t--overwrite\t\tBypasses the overwrite restriction. Use at your own risk.\n\t{recreate}\t--with-config\t\tPreserves the config for this script (if stored in the venv)\n\t{recreate}\t--with-saves\t\tPreserves the nimin_saves directory.\n\t{recreate}\t--with-game-config\tPreserves the game\'s config.')
-elif sys.argv[1] == 'docs':
-    print(getDocumentationPage(None if len(sys.argv) == 2 else sys.argv[2]))
-elif sys.argv[1] == 'migrate-config':
-    config.update(migrateConfig())
-elif sys.argv[1] == 'cfg':
-    args = sys.argv[2:]
-    if not len(args):
+elif command == 'docs':
+    print(getDocumentationPage(arguments[0] if len(arguments) else None))
+elif command == 'migrate-config':
+    tempConf = ConfigUtils.getOldConfigValues()
+    if not tempConf:
+        print('Nothing to do.')
+    config.update(tempConf)
+elif command == 'cfg':
+    if not len(arguments):
         with StringIO() as text:
             for k, v in config.items():
                 text.write(f'{k}: {v}\n')
@@ -743,7 +760,7 @@ elif sys.argv[1] == 'cfg':
         'noCustomHTMLParser': bool,
         'isDevEnv': bool
     }
-    for key, raw_value in (i.split('=') for i in args):
+    for key, raw_value in (i.split('=') for i in arguments):
         if key in {'cfgVersion', 'pyInstalledVersion'} and not config['isDevEnv']:
             print(f'Warning: {key} is restricted and should not be changed. Skipping.')
             continue
@@ -756,15 +773,14 @@ elif sys.argv[1] == 'cfg':
             print(f'Warning: Could not parse {key}. Skipping')
             continue
         config[key] = value
-elif sys.argv[1] == 'cfg-game' and hasVenv:
+elif command == 'cfg-game' and hasVenv:
     game_config_path = venv.getLocalPath('Pymin/Nimin_Prefs.toml')
     if not game_config_path.exists():
         raise Exception('Game config does not exist.')
     with open(game_config_path, 'rb') as f:
         gameconf = TOML.readFile(f)
-    args = sys.argv[2:]
-    if len(args):
-        for variable, raw_value in (i.split('=') for i in args):
+    if len(arguments):
+        for variable, raw_value in (i.split('=') for i in arguments):
             section, key = variable.split('.')
             if section not in gameconf or key not in gameconf[section]:
                 print(f'Warning: {section}.{key} does not exist.')
@@ -785,11 +801,11 @@ elif sys.argv[1] == 'cfg-game' and hasVenv:
                 text.write('\n')
             print(text.getvalue())
     exit()
-elif sys.argv[1] == 'install':
-    if hasVenv and '--overwrite' not in sys.argv:
+elif command == 'install':
+    if hasVenv and '--overwrite' not in arguments:
         raise Exception('"install" can not be used in an existing directory. Did you mean "update"?')
     create()
-elif sys.argv[1] == 'update' and hasVenv:
+elif command == 'update' and hasVenv:
     doPythonUpdate = False
     # TODO: Remove config['isDevEnv'] check once this is no longer experimental
     if config['isDevEnv'] and platform.python_version().split('.')[:2] != config['pyInstalledVersion'].split('.')[:2] and platform.system() != 'Windows':
@@ -799,28 +815,28 @@ elif sys.argv[1] == 'update' and hasVenv:
         updatePythonVersion()
     else:
         venv.downloadAndInstallGameZip()
-elif sys.argv[1] == 'run' and hasVenv:
-    venv.runWithPython(venv.getLocalPath('Pymin/Pymin.py'), *sys.argv[2:])
-elif sys.argv[1] == 'conv' and hasVenv:
+elif command == 'run' and hasVenv:
+    venv.runWithPython(venv.getLocalPath('Pymin/Pymin.py'), *arguments)
+elif command == 'conv' and hasVenv:
     venv.runWithPython(venv.getLocalPath('Pymin/Pymin.py'), '--converter')
-elif sys.argv[1] == 'recreate' and hasVenv:
-    recreate('--with-config' in sys.argv, '--with-saves' in sys.argv, '--with-game-config' in sys.argv)
-elif sys.argv[1] == 'uv' and hasVenv:
+elif command == 'recreate' and hasVenv:
+    recreate('--with-config' in arguments, '--with-saves' in arguments, '--with-game-config' in arguments)
+elif command == 'uv' and hasVenv:
     if not (config['uvGlobal'] or config['uvLocal']):
         raise Exception('uv is not enabled.')
-    if len(sys.argv) == 2:
+    if len(arguments):
+        venv.runWithEnv(*venv.pipCommand[:-1], *arguments)
+    else:
         venv.runWithEnv(*venv.pipCommand[:-1], 'help')
+elif command == 'pip' and hasVenv:
+    if len(arguments):
+        venv.pip(*arguments)
     else:
-        venv.runWithEnv(*venv.pipCommand[:-1], *sys.argv[2:])
-elif sys.argv[1] == 'pip' and hasVenv:
-    if len(sys.argv) == 2:
         venv.pip('--help')
-    else:
-        venv.pip(*sys.argv[2:])
-elif sys.argv[1] in {'cfg-game', 'update', 'run', 'conv', 'recreate', 'uv', 'pip'}:
-    raise Exception(f'"{sys.argv[1]}" requires a valid virtual environment.')
+elif command in {'cfg-game', 'update', 'run', 'conv', 'recreate', 'uv', 'pip'}:
+    raise Exception(f'"{command}" requires a valid virtual environment.')
 else:
-    raise Exception(f'Invalid command "{sys.argv[1]}"')
+    raise Exception(f'Invalid command "{command}"')
 
 # Check if config was modified
 if ORIGINAL_CONFIG != config or not cfgloc.exists():
