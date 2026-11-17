@@ -39,11 +39,9 @@ python pyminvenvscript.py run
 ```
 Everything else is explained in the help message.
 
-## Python Verion Requirements
-Python>=3.10 (Pymin 1.0.7 - 1.0.11)
-<br>Python>=3.11 or 3.10 with <a href="https://pypi.org/project/tomli/">tomli</a> (Pymin 12+)
-
 ## Requirements
+<b>Python >= 3.10</b> (Pymin 1.0.7+)
+
 > tkinter
 > <br><a href="https://pypi.org/project/as3lib/">as3lib</a>
 > <br>A C compiler recognised by setuptools (ex: gcc, clang, MSVC)
