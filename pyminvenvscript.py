@@ -13,9 +13,6 @@ import tempfile
 import zipfile
 
 
-# TODO: Improve compatibility with non-uv setups
-
-
 CURRENT_DIRECTORY = Path(__file__).resolve().parent
 
 if not CURRENT_DIRECTORY:
@@ -53,7 +50,7 @@ def create():
 
     # Create config
     move = False
-    if (CURRENT_DIRECTORY / 'pymin.toml').exists() and venv.path == CURRENT_DIRECTORY / 'Pymin-venv':
+    if (CURRENT_DIRECTORY / 'pymin.toml').exists() and venv.path == DEFAULT_VENV_PATH:
         inp = input('Would you like to move the existing config into the created venv? (y/N)').lower()
         if inp == 'y':
             move = True
@@ -158,6 +155,7 @@ class TextObject:
 
 class Args:
     # These were put into a class to work around an issue with global variables
+    # TODO: Ignore whitespace between table/array keys
     def ParseInner(value):
         # string
         if value.startswith(('"', "'")) and value.endswith(('"', "'")):
@@ -389,7 +387,7 @@ class VenvRunner:
         # return os.path.join(self.path, *path)
         return self.path / path
 
-    def createLocalDirectory(directory: str | PurePath = None):
+    def createLocalDirectory(self, directory: str | PurePath = None):
         if directory is None:
             path = self.path
         else:
@@ -420,6 +418,7 @@ class VenvRunner:
         self.pip('uninstall', *args)
 
     def downloadAndInstallGameZip(self):
+        # TODO: Don't upgrade game if the game version is the same as what is being installed
         if '--version' in sys.argv:
             versiontag = sys.argv[sys.argv.index('--version') + 1]
         else:
@@ -554,7 +553,8 @@ class VenvRunner:
         print('Patched tkhtmlview.html_parser')
 
     def installFromZip_TtkTheme(self, zipFile, memberName):
-        rmtree(self.path / 'nimin-ttk-theme')
+        if (self.path / 'nimin-ttk-theme').exists():
+            rmtree(self.path / 'nimin-ttk-theme')
         for fileName in zipFile.namelist():
             if fileName.startswith(memberName):
                 zipFile.extract(fileName, self.path)
@@ -663,7 +663,12 @@ elif DEFAULT_VENV_PATH.exists():
             c = configparser.ConfigParser()
             c.optionxform = str
             c.read_string('[UNNAMED_SECTION]\n' + f.read())
-        config['pyInstalledVersion'] = c[UNNAMED_SECTION]['version_info']
+        # uv venv
+        if 'version_info' in c[UNNAMED_SECTION]:
+            config['pyInstalledVersion'] = c[UNNAMED_SECTION]['version_info']
+        # non-uv venv
+        else:
+            config['pyInstalledVersion'] = c[UNNAMED_SECTION]['version']
     config['path'] = str(DEFAULT_VENV_PATH)
 
     # Load config V1
@@ -681,6 +686,7 @@ DOCS_PARSING_RULES = 'Custom argument parsing is used for this command. The rule
 # TODO: Format cfg page better
 # TODO: update, recreate commands steps
 # TODO: update install page after the release archive refactor
+# TODO: Warn user that uvGlobal can not be turned off once a venv is created with it because uv venv doesn't install pip
 DOCS_PAGES = {
     'install':        f'Usage: <venvscript> install [args]\n\nInstalls and sets up the virtual environment for Pymin.\n\nThis command will refuse to do anything if <venvpath> is detected to be the root\ndirectory or if it already exists.\n\nSteps followed by this command:\n\t1) Create the directory <venvpath> if it does not exist\n\t2) Run the "venv" command in <venvpath>\n\t3a) If the config exists, ask the user if they want to move it into the venv.\n\t    If not moving the config, set the "path" variable to <venvpath>.\n\t3b) If the config does not exist, create one inside the venv\n\t4) Create the game directory at "<venvpath>/Pymin"\n\t5) Download the game to "<venvpath>/Pymin/Pymin.py"\n\t6) Install the game\'s dependencies\n\n{DOCS_GENERAL_ARGS}\n\nSpecial arguement:\n\t--overwrite\tBypasses the overwrite check. This check is in place because this script manages\n\t\t\tthe entire virtual environment which can cause issues if it contains other data.\n\t\t\tUse at your own risk.',
     'update':         f'Usage: <venvscript> update [args]\n\nUpdates everything in the virtual environment.\n\nSteps followed by this command:\n\tPlaceholder\n\n{DOCS_GENERAL_ARGS}',
