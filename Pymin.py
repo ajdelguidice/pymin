@@ -3215,8 +3215,8 @@ class WikiPages:
             return "<u>Silandrias</u>\n\n<b><i>Fetish Content:</i></b> Egg laying\n\n<u>Character Description</u>\nSilandrias is a 7 foot tall hermaphrodite from a lost race of hybrids (and is presumably the only one left of her race considering the final title you get for being with her is \"The Progenitor of an Extinct Race\"). She lives in a location called 'Den' with her caretakers Naeru and Daeru. She frequently visits Oviasis to go shopping and look for magical items of which she absolutely loves.\n\n<u>Encounter Details and Senarios</u>\nSilandrias can be met in Oviasis from hour 15 to 19 if you have either a magic item or have the effect of pheromones applied, or in the Desert from hour 4 to 7. Both a magic item and the pheromones are needed to actually 'finish' the encounter and progress to the next. DO NOT reject her when she asks if you want to go home with her, it makes her feel bad and ruins your chances with her. After the first encounter with her in either Oviasis or the Desert, you must go to the Den to make more progress.\n\n<u>Characteristics of Her Race</u>\nFur covering most of the body, head and ears of a fennec fox, bird wings with 3 tallons instead of arms and hands, a long lizard-like tail, scale plates that go from the neck to the tip of the tail with a slightly enlongated neck and spikes down the back like a nordic dragon, a long tongue, foot paws"
 
 
-WIKI_MENUS = {
-    'Basics': {
+WIKI_MENUS = frozendict({
+    'Basics': frozendict({
         'Welcome Screen': ('Basic', 0),
         'Wiki Key': ('Basic', 5),
         'Stats': ('Basic', 1),
@@ -3224,20 +3224,22 @@ WIKI_MENUS = {
         'Tips': ('Basic', 3),
         'Hotkeys': ('Basic', 4),
         'Changelog': ('Basic', 6),
-        'Menu Bar': {
-            'File': {
+        'Menu Bar': frozendict({
+            'File': frozendict({
                 'Options': ('MenuBar', 1),
                 'Quit': ('MenuBar', 2)
-            },
+            }),
             'View': ('MenuBar', 3),
             'Save Utils': ('MenuBar', 4),
             'Debug Utils': ('MenuBar', 5),
             'Help': ('MenuBar', 6)
-        }
-    },
+        })
+    }),
     'Items': {
-        'All Items': {
-            'Test': ('Item', 1),
+        'All Items': frozendict({
+            'Test': ('Item', Item.TEST_ITEM),
+            'Debug Stick': ('Item', Item.DEBUG_STICK),
+            'TS Any': ('Item', Item.TS_ANY),
             'Anc Claws': ('Item', Item.ANC_CLAWS),
             'Imb Shoes': ('Item', Item.IMB_SHOES),
             'Dry Sand': ('Item', Item.DRY_SAND),
@@ -3326,6 +3328,8 @@ WIKI_MENUS = {
             'Tainted Pot': ('Item', Item.TAINTED_POT),
             'Sweet&Sour': ('Item', Item.SWEET_AND_SOUR),
             'Succ Draft': ('Item', Item.SUCC_DRAFT),
+            'Item Not Found': ('Item', Item.ITEM_NOT_FOUND),
+            'Teapot': ('Item', Item.TEAPOT),
             'Milk Bottle': ('Item', Item.MILK_BOTTLE),
             'Milk Jug': ('Item', Item.MILK_JUG),
             'Milk Barrel': ('Item', Item.MILK_BARREL),
@@ -3367,36 +3371,37 @@ WIKI_MENUS = {
             'Soldier Egg': ('Item', Item.SOLDIER_EGG),
             'Drone Egg': ('Item', Item.DRONE_EGG),
             'Worker Egg': ('Item', Item.WORKER_EGG)
-        },
-        'Debug Items': {
-            'Debug Stick': ('Item', 2),
+        }),
+        'Debug Items': frozendict({
+            'Test': ('Item', Item.TEST_ITEM),
+            'Debug Stick': ('Item', Item.DEBUG_STICK),
+            'TS Any': ('Item', Item.TS_ANY),
             'Item Not Found': ('Item', Item.ITEM_NOT_FOUND),
-            'Teapot': ('Item', Item.TEAPOT),
-            'Test': ('Item', 1)
-        },
-        'Equipable Items': {
-            'Weapons': {
+            'Teapot': ('Item', Item.TEAPOT)
+        }),
+        'Equipable Items': frozendict({
+            'Weapons': frozendict({
                 'Dagger': ('Item', Item.DAGGER),
                 'Hammer': ('Item', Item.HAMMER),
                 'Saber': ('Item', Item.SABER),
                 'Whip': ('Item', Item.WHIP),
                 'Tail Spike': ('Item', Item.TAIL_SPIKE)
-            },
-            'Other Equipables': {
+            }),
+            'Other Equipables': frozendict({
                 'Snuggle Ball': ('Item', Item.SNUGGLE_BALL),
                 'Supp Harness': ('Item', Item.SUPP_HARNESS)
-            }
-        },
-        'Passive Items': {
+            })
+        }),
+        'Passive Items': frozendict({
             'Anc Claws': ('Item', Item.ANC_CLAWS),
             'Imb Shoes': ('Item', Item.IMB_SHOES),
             'Lila\'s Gift': ('Item', Item.LILAS_GIFT),
             'Lon Pendant': ('Item', Item.LON_PENDANT),
             'Dewy Gift': ('Item', Item.DEWY_GIFT),
             'Milky Pend': ('Item', Item.MILKY_PEND)
-        },
-        'Consumables': {
-            'Affinity Items': {
+        }),
+        'Consumables': frozendict({
+            'Affinity Items': frozendict({
                 'Skin Balm': ('Item', Item.SKIN_BALM),
                 'Bol Juice': ('Item', Item.BOL_JUICE),
                 'Taint Leaf': ('Item', Item.TAINT_LEAF),
@@ -3412,8 +3417,8 @@ WIKI_MENUS = {
                 'Nectar Candy': ('Item', Item.NECTAR_CANDY),
                 'Too Human': ('Item', Item.TOO_HUMAN),
                 'Tainted Pot': ('Item', Item.TAINTED_POT)
-            },
-            'Alchemy Items': {
+            }),
+            'Alchemy Items': frozendict({
                 'Blondie': ('Item', Item.BLONDE_DYE),
                 'Puss Juice': ('Item', Item.PUSS_JUICE),
                 'Lust Draft': ('Item', Item.LUST_DRAFT),
@@ -3437,8 +3442,8 @@ WIKI_MENUS = {
                 'Male Enhance': ('Item', Item.MALE_ENHANCE),
                 'Milk Suppress': ('Item', Item.MILK_SUPPRESS),
                 'Bazoomba!': ('Item', Item.BAZOOMBA)
-            },
-            'Dyes': {
+            }),
+            'Dyes': frozendict({
                 'Pink Ink': ('Item', Item.PINK_INK),
                 'Blondie': ('Item', Item.BLONDE_DYE),
                 'Auburn Dye': ('Item', Item.AUBURN_DYE),
@@ -3447,16 +3452,16 @@ WIKI_MENUS = {
                 'White Dye': ('Item', Item.WHITE_DYE),
                 'Black Dye': ('Item', Item.BLACK_DYE),
                 'Red Dye': ('Item', Item.RED_DYE)
-            },
-            'Teleport Scrolls': {
+            }),
+            'Teleport Scrolls': frozendict({
                 'TS Soft': ('Item', Item.TS_SOFT),
                 'TS Firm': ('Item', Item.TS_FIRM),
                 'TS Tied': ('Item', Item.TS_TIED),
                 'TS Siz': ('Item', Item.TS_SIZ),
                 'TS Ovi': ('Item', Item.TS_OVI),
                 'TS Sanct': ('Item', Item.TS_SANC)
-            },
-            'Eggs': {
+            }),
+            'Eggs': frozendict({
                 'Fresh Egg': ('Item', Item.FRESH_EGG),
                 'Bug Egg': ('Item', Item.BUG_EGG),
                 'Good Egg': ('Item', Item.GOOD_EGG),
@@ -3468,8 +3473,8 @@ WIKI_MENUS = {
                 'Soldier Egg': ('Item', Item.SOLDIER_EGG),
                 'Drone Egg': ('Item', Item.DRONE_EGG),
                 'Worker Egg': ('Item', Item.WORKER_EGG)
-            },
-            'Other Consumables': {
+            }),
+            'Other Consumables': frozendict({
                 'Dry Sand': ('Item', Item.DRY_SAND),
                 'Cat\'s Meow': ('Item', Item.CATS_MEOW),
                 'Reduction': ('Item', Item.REDUCTION),
@@ -3512,26 +3517,26 @@ WIKI_MENUS = {
                 'Cum Bottle': ('Item', Item.CUM_BOTTLE),
                 'Cum Jug': ('Item', Item.CUM_JUG),
                 'Cum Barrel': ('Item', Item.CUM_BARREL)
-            }
-        },
-        'Silandrias\' Items': {
+            })
+        }),
+        'Silandrias\' Items': frozendict({
             'Leath Strap': ('Item', Item.LEATHER_STRAP),
             'Flying Carp': ('Item', Item.FLYING_CARP),
             'A-Grav Rock': ('Item', Item.A_GRAV_ROCK),
             'Rein Charm': ('Item', Item.REIN_CHARM),
             'Fell Rod': ('Item', Item.FELL_ROD),
             'Recept Bell': ('Item', Item.RECEPT_BELL)
-        },
-        'Special Items': {
+        }),
+        'Special Items': frozendict({
             'Milker': ('Item', Item.MILKER),
             'Penis Pump': ('Item', Item.PENIS_PUMP),
             'Blood Gge': ('Item', Item.BLOOD_GGE),
             'Edu Egg': ('Item', Item.EDU_EGG),
             'Trinket': ('Item', Item.TRINKET),
             'Lantern': ('Item', Item.LANTERN)
-        }
+        })
     },
-    'Recipes': {
+    'Recipes': frozendict({
         'R: LustDraft': ('Recipe', Recipe.LUST_DRAFT),
         'R: RejuvPot': ('Recipe', Recipe.REJUV_POT),
         'R: ExpPreg': ('Recipe', Recipe.EXP_PREG),
@@ -3557,8 +3562,8 @@ WIKI_MENUS = {
         'R: ReducReduc': ('Recipe', Recipe.REDUC_REDUC),
         'R: MaleEnhance': ('Recipe', Recipe.MALE_ENHANCE),
         'R: Bazoomba': ('Recipe', Recipe.BAZOOMBA)
-    },
-    'Clothes': {
+    }),
+    'Clothes': frozendict({
         'Tattered Shreds': ('Clothes', Clothes.TATTERED_SHREDS),
         'Invisible Underwear': ('Clothes', Clothes.INVISIBLE_UNDERWEAR),
         'Shirt': ('Clothes', Clothes.SHIRT),
@@ -3591,8 +3596,8 @@ WIKI_MENUS = {
         'Camisole': ('Clothes', Clothes.CAMISOLE),
         'Training Suit': ('Clothes', Clothes.TRAINING_SUIT),
         'Bouncy Bra': ('Clothes', Clothes.BOUNCY_BRA)
-    },
-    'Enemies': {
+    }),
+    'Enemies': frozendict({
         'Test Enemy': ('Enemy', Enemy.TEST_ENEMY),
         'Cock-snake': ('Enemy', Enemy.COCK_SNAKE),
         'Desiccating Dust Devil': ('Enemy', Enemy.DESICCATING_DUST_DEVIL),
@@ -3607,8 +3612,8 @@ WIKI_MENUS = {
         'Minotaur': ('Enemy', Enemy.MINOTAUR),
         'Freaky Little Girl': ('Enemy', Enemy.FREAKY_LITTLE_GIRL),
         'Succubus': ('Enemy', Enemy.SUCCUBUS)
-    },
-    'Races': {
+    }),
+    'Races': frozendict({
         'Human': ('Race', Race.HUMAN),
         'Equan': ('Race', Race.HORSE),
         'Lupan': ('Race', Race.WOLF),
@@ -3621,17 +3626,17 @@ WIKI_MENUS = {
         'Pig': ('Race', Race.PIG),
         'Skunk': ('Race', Race.SKUNK),
         'Bug': ('Race', Race.BUG)
-    },
-    'Locations': {
-        'Towns': {
+    }),
+    'Locations': frozendict({
+        'Towns': frozendict({
             'Softlik': ('Town', Zone.SOFTLIK),
             'Firmshaft': ('Town', Zone.FIRMSHAFT),
             'Tieden': ('Town', Zone.TIEDEN),
             'Siz\'Calit': ('Town', Zone.SIZ_CALIT),
             'Oviasis': ('Town', Zone.OVIASIS),
             'Sanctuary': ('Town', Zone.SANCTUARY)
-        },
-        'Other Locations': {
+        }),
+        'Other Locations': frozendict({
             'Forest': ('Location', 1),
             'Jungle': ('Location', 2),
             'Plains': ('Location', 3),
@@ -3645,23 +3650,23 @@ WIKI_MENUS = {
             'Den': ('Location', 11),
             'Valley': ('Location', 12),
             'Knothole': ('Location', 13)
-        }
-    },
-    'Shops': {
+        })
+    }),
+    'Shops': frozendict({
         'General Shop': ('Shop', 1),
         'Dye Shop': ('Shop', 2),
         'Apothecary': ('Shop', 3),
         'Salon': ('Shop', 4),
         'Tailor': ('Shop', 5)
-    },
-    'Named Characters': {
+    }),
+    'Named Characters': frozendict({
         'Fidoris': ('NPC', 1),
         'Jamie': ('NPC', 2),
         'Lila': ('NPC', 3),
         'Malon': ('NPC', 4),
         'Silandrias': ('NPC', 5)
-    }
-}
+    })
+})
 
 
 class PyminWiki(PyminWindow):
@@ -3795,7 +3800,7 @@ class PyminWiki(PyminWindow):
         # Add indication for submenus
         temp = []
         for k, v in self.currentMenu.items():
-            if isinstance(v, dict):
+            if isinstance(v, frozendict):
                 temp.append(k + ' >')
             else:
                 temp.append(k)
@@ -3815,7 +3820,7 @@ class PyminWiki(PyminWindow):
         # Fix for horizontal scroll sometimes not being all the way to the left
         self.window._children['menu'].xview_moveto(0)
 
-    def retrieveMenu(self) -> dict:
+    def retrieveMenu(self) -> frozendict:
         tempMenu = WIKI_MENUS
         if len(self.menuHistory):
             for i in self.menuHistory:
@@ -3838,7 +3843,7 @@ class PyminWiki(PyminWindow):
                 self.displayMenu()
         elif selection == 'Close':
             self.close()
-        elif isinstance(item, dict):
+        elif isinstance(item, frozendict):
             self.menuHistory.append(selection)
             self.currentMenu = item
             self.displayMenu()
