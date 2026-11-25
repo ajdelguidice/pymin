@@ -98,39 +98,6 @@ class Zone:
     OVIASIS = 6
     SANCTUARY = 12
 
-    def name(region: int) -> str:
-        if region == Zone.SOFTLIK:
-            return 'Softlik'
-        if region == Zone.FIRMSHAFT:
-            return 'Firmshaft'
-        if region == Zone.TIEDEN:
-            return 'Tieden'
-        if region == Zone.SIZ_CALIT:
-            return 'Siz\'Calit'
-        if region == Zone.OVIASIS:
-            return 'Oviasis'
-        if region == Zone.SANCTUARY:
-            return 'Sanctuary'
-        return f'REGION ERROR {region}'
-
-    def regionName(region: int) -> str:
-        if region == Zone.SOFTLIK:
-            return 'Softlik'
-        if region == Zone.FIRMSHAFT:
-            return 'Firmshaft'
-        if region == Zone.TIEDEN:
-            return 'Tieden'
-        if region == Zone.SIZ_CALIT:
-            return 'Siz\'Calit'
-        if region == Zone.OVIASIS:
-            return 'Oviasis'
-        if region == Zone.SANCTUARY:
-            return 'Sanctuary'
-        if (region > 1000 and region < 1010):
-            return 'Cave Descent'
-
-        return None
-
 
 class Dungeon:
     MINOTAUR_ENTER = 1001
@@ -174,46 +141,6 @@ class Race:
     PIG = 10
     SKUNK = 11
     BUG = 12
-
-    def name(ID: int) -> str:
-        if ID == Race.HUMAN:
-            return "human"
-        if ID == Race.HORSE:
-            return "horse"
-        if ID == Race.WOLF:
-            return "wolf"
-        if ID == Race.CAT:
-            return "cat"
-        if ID == Race.COW:
-            return "cow"
-        if ID == Race.LIZARD:
-            return "lizard"
-        if ID == Race.RABBIT:
-            return "bunny"
-        if ID == Race.MOUSE:
-            return "mouse"
-        if ID == Race.BIRD:
-            return "bird"
-        if ID == Race.PIG:
-            return "pig"
-        if ID == Race.SKUNK:
-            return "skunk"
-        if ID == Race.BUG:
-            return "bug"
-        return f"RACE NAME ERROR {ID}"
-
-    def prettyName(ID: int) -> str:
-        if ID == 1:
-            return "Human"
-        if ID == 2:
-            return "Equan"
-        if ID == 3:
-            return "Lupan"
-        if ID == 4:
-            return "Felin"
-        if ID == 6:
-            return "Lizan"
-        return f"RACE PRETTY NAME ERROR {ID}"
 
 
 class Enemy:
@@ -539,6 +466,7 @@ class ItemStatsItem(GenericStatsItem):
         return self.get('useHidesPage', True)
 
 
+# TODO: See if isUsable and isConsumable are mutually exclusive. If so, see they can be combined into one property
 ITEM_STATS = frozendict({
     Item.NONE: ItemStatsItem(name=' '),
     Item.TEST_ITEM: ItemStatsItem(name="Test", longName="Test Item", value=13, stackMax=1, description="Does nothing."),
@@ -1304,6 +1232,79 @@ class Grammar:
             if capital:
                 return 'Them' if mainobject.useTheyForLivingCreatures else 'It'
             return 'them' if mainobject.useTheyForLivingCreatures else 'it'
+
+    def raceName(ID: int) -> str:
+        if ID == Race.HUMAN:
+            return "human"
+        if ID == Race.HORSE:
+            return "horse"
+        if ID == Race.WOLF:
+            return "wolf"
+        if ID == Race.CAT:
+            return "cat"
+        if ID == Race.COW:
+            return "cow"
+        if ID == Race.LIZARD:
+            return "lizard"
+        if ID == Race.RABBIT:
+            return "bunny"
+        if ID == Race.MOUSE:
+            return "mouse"
+        if ID == Race.BIRD:
+            return "bird"
+        if ID == Race.PIG:
+            return "pig"
+        if ID == Race.SKUNK:
+            return "skunk"
+        if ID == Race.BUG:
+            return "bug"
+        return f"RACE NAME ERROR {ID}"
+
+    def racePrettyName(ID: int) -> str:
+        if ID == 1:
+            return "Human"
+        if ID == 2:
+            return "Equan"
+        if ID == 3:
+            return "Lupan"
+        if ID == 4:
+            return "Felin"
+        if ID == 6:
+            return "Lizan"
+        return f"RACE PRETTY NAME ERROR {ID}"
+
+    def zoneName(region: int) -> str:
+        if region == Zone.SOFTLIK:
+            return 'Softlik'
+        if region == Zone.FIRMSHAFT:
+            return 'Firmshaft'
+        if region == Zone.TIEDEN:
+            return 'Tieden'
+        if region == Zone.SIZ_CALIT:
+            return 'Siz\'Calit'
+        if region == Zone.OVIASIS:
+            return 'Oviasis'
+        if region == Zone.SANCTUARY:
+            return 'Sanctuary'
+        return f'REGION ERROR {region}'
+
+    def regionName(region: int) -> str:
+        if region == Zone.SOFTLIK:
+            return 'Softlik'
+        if region == Zone.FIRMSHAFT:
+            return 'Firmshaft'
+        if region == Zone.TIEDEN:
+            return 'Tieden'
+        if region == Zone.SIZ_CALIT:
+            return 'Siz\'Calit'
+        if region == Zone.OVIASIS:
+            return 'Oviasis'
+        if region == Zone.SANCTUARY:
+            return 'Sanctuary'
+        if (region > 1000 and region < 1010):
+            return 'Cave Descent'
+
+        return None
 
 
 class DirUtils:
@@ -3087,7 +3088,7 @@ class WikiPages:
         if Num == -10:
             return "<u>Town Name</u>\nZone ID: #\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\nConnectedLocations"
 
-        contents = f"<u>{Zone.name(Num)}</u>\nZone ID: {Num}"
+        contents = f"<u>{Grammar.zoneName(Num)}</u>\nZone ID: {Num}"
 
         if Num == Zone.SOFTLIK:
             return contents + "\n\n<u>Description</u>\nDescription\n\n<u>Encounters</u>\nEncounters\n\n<u>Connected Locations</u>\n<a href=\"call_args://Location&1\"><i>Forest</i></a> \u2196\n<a href=\"call_args://Location&8\"><i>Dairy Farm</i></a> \u2192\n<a href=\"call_args://Location&12\"><i>Valley</i></a> \u2199\n<a href=\"call_args://Location&3\"><i>Plains</i></a> \u2193"
@@ -3137,7 +3138,7 @@ class WikiPages:
             tempStr = "<u>General Shop</u>\n\n<u>Description</u>\nThis is the general shop where you can buy and sell items. The list of items that can be bought is bellow."
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
-                tempStr += f'\n\n<u>{Zone.regionName(i)}</u>'
+                tempStr += f'\n\n<u>{Grammar.regionName(i)}</u>'
                 for j in RANGE9_BUTTON_MAP:
                     ID = Shop.ID(i, j)
                     if ID != 0:
@@ -3169,7 +3170,7 @@ class WikiPages:
 
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
-                tempStr += f'\n\n<u>{Zone.regionName(i)}</u>'
+                tempStr += f'\n\n<u>{Grammar.regionName(i)}</u>'
                 for j in RANGE9_BUTTON_MAP:
                     ID = Apothecary.ID(i, j, FakeKnowledge)
                     if ID != 0:
@@ -3182,7 +3183,7 @@ class WikiPages:
             tempStr = "<u>Salon</u>\n\n<u>Description</u>\nThis is the Salon where you can buy hair cuts. The list of hair styles that can be bought is bellow."
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
-                tempStr += f'\n\n<u>{Zone.regionName(i)}</u>'
+                tempStr += f'\n\n<u>{Grammar.regionName(i)}</u>'
                 for j in RANGE9_BUTTON_MAP:
                     ID = Salon.ID(i, j)
                     if ID != 0:
@@ -3193,7 +3194,7 @@ class WikiPages:
             # "\n\n<u>Softlik</u>\nItems\n\n<u>Firmshaft</u>\nItems\n\n<u>Tieden</u>\nItems\n\n<u>Siz'Calit</u>\nItems\n\n<u>Oviasis</u>\nItems\n\n<u>Sanctuary</u>\nItems"
             # TODO: Find a way to do this using the enum
             for i in (1, 2, 3, 4, 6, 12):
-                tempStr += f'\n\n<u>{Zone.regionName(i)}</u>'
+                tempStr += f'\n\n<u>{Grammar.regionName(i)}</u>'
                 for j in RANGE9_BUTTON_MAP:
                     ID = Tailor.ID(i, j)
                     if ID != 0:
@@ -6370,7 +6371,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.currentDungeon = changes
         else:
             self.currentZone = changes
-        newRegion = Zone.regionName(changes)
+        newRegion = Grammar.regionName(changes)
         if newRegion is not None:
             self.window._children['currentregionlabel'].text = newRegion
 
@@ -7349,7 +7350,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             tempStr.clear()
         else:
             tempStr += "\n\n"
-        tempStr += f"Within {Zone.name(self.currentZone)} specifically, you are considered to be:\n"
+        tempStr += f"Within {Grammar.zoneName(self.currentZone)} specifically, you are considered to be:\n"
         if (self.dominant == self.currentZone):
             tempStr += "\nA Fellow Native"
         else:
@@ -8876,7 +8877,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.bc()
         self.currentState = GameState.GENERAL
         buttonlist = ButtonList(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1)
-        self.doMainText(f"You are currently in {Zone.name(self.currentZone)}. What would you like to do?", True)
+        self.doMainText(f"You are currently in {Grammar.zoneName(self.currentZone)}. What would you like to do?", True)
         tempDict = {1: "Bag", 2: "Stash", 3: "Shops", 4: "Day-Care", 5: "Masturbate", 6: "Sleep", 7: "Alchemy", 8: "Level Up", 9: "Wait", 10: "Prostitute", 12: "Explore"}
         if (self.doWeight()):
             tempDict.pop(12)
@@ -8953,29 +8954,29 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doMainText(f"\n\nYour {self.ballDesc()} balls feel so absolutely swollen and sensitive, that you can't stop thinking about it. They just feel like they've gotta... gotta... gotta...", True)
         self.hrs += 1
         if (getCum <= 300):
-            self.doMainText(f"\n\nYou let out a gasp as you feel your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to twitch within your {self.clothesBottom()} while standing in the middle of {Zone.name(self.currentZone)}. You feel wads of cum seep out, climaxing without anything to assist it.\n\nYet, it's so little that you quickly regain your composure without hardly any blotching on your {self.clothesBottom()}. A bit flushed with embarassment, you feel lucky that nobody else noticed. You quickly head back to your place to clean up and try to pretend like nothing happened...")
+            self.doMainText(f"\n\nYou let out a gasp as you feel your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to twitch within your {self.clothesBottom()} while standing in the middle of {Grammar.zoneName(self.currentZone)}. You feel wads of cum seep out, climaxing without anything to assist it.\n\nYet, it's so little that you quickly regain your composure without hardly any blotching on your {self.clothesBottom()}. A bit flushed with embarassment, you feel lucky that nobody else noticed. You quickly head back to your place to clean up and try to pretend like nothing happened...")
         elif (getCum <= 800):
-            self.doMainText(f"\n\nYou gasp and begin to pant as you feel your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to jerk within your {self.clothesBottom()} while standing in the middle of {Zone.name(self.currentZone)}. Spurts of cum launch from your cock, orgasming out of sheer need for release, pooling slightly within your {self.clothesBottom()}.\n\nIt takes several moments for you to regain your composure, only to notice the moist blotch spreading across your {self.clothesBottom()} as the spunk seeps through. You blush as you catch someone glancing at what you've done, but you're quick to escape before you get anymore attention. You head back home and strip down so you can clean yourself and your {self.clothesBottom()} off before heading back out...")
+            self.doMainText(f"\n\nYou gasp and begin to pant as you feel your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to jerk within your {self.clothesBottom()} while standing in the middle of {Grammar.zoneName(self.currentZone)}. Spurts of cum launch from your cock, orgasming out of sheer need for release, pooling slightly within your {self.clothesBottom()}.\n\nIt takes several moments for you to regain your composure, only to notice the moist blotch spreading across your {self.clothesBottom()} as the spunk seeps through. You blush as you catch someone glancing at what you've done, but you're quick to escape before you get anymore attention. You head back home and strip down so you can clean yourself and your {self.clothesBottom()} off before heading back out...")
             self.hrs += 1
         elif (getCum <= 1000):
-            self.doMainText(f"\n\nYou clench your mouth shut as you instinctively begin to moan. Your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to buck within your {self.clothesBottom()} as you stand in the middle of {Zone.name(self.currentZone)}, spurts of cum launching down through your {self.clothesBottom()}. Streams of the white slimy stuff dribble down your {self.legDesc(2)}, severely blotching your {self.clothesBottom()}, and making a few bystanders turn to wonder what you are doing. Without a good view, they are more likely to guess you have just pissed yourself with the amount of fluids running down.\n\nThey are almost about to inquire to your aid, but you quickly back off, stumbling to your home while more stuff oozes out and down to the ground. It takes you a while to clean up the mess you've made and another hour of building up the courage to head back out after that 'incident'...")
+            self.doMainText(f"\n\nYou clench your mouth shut as you instinctively begin to moan. Your {self.cockDesc()} cock{self.plural(1)} begin{self.plural(3)} to buck within your {self.clothesBottom()} as you stand in the middle of {Grammar.zoneName(self.currentZone)}, spurts of cum launching down through your {self.clothesBottom()}. Streams of the white slimy stuff dribble down your {self.legDesc(2)}, severely blotching your {self.clothesBottom()}, and making a few bystanders turn to wonder what you are doing. Without a good view, they are more likely to guess you have just pissed yourself with the amount of fluids running down.\n\nThey are almost about to inquire to your aid, but you quickly back off, stumbling to your home while more stuff oozes out and down to the ground. It takes you a while to clean up the mess you've made and another hour of building up the courage to head back out after that 'incident'...")
             self.hrs += 3
             self.stats(0, -1, 0, 0)
         elif (getCum <= 3000):
-            self.doMainText(f"\n\nYou let out a moan that catches the attention of several bystanders in the middle of {Zone.name(self.currentZone)}. A thick stream of hot spunk pours down through your {self.clothesBottom()} to the ground below, making a light splattering sound as it begins to form a puddle below. Your {self.cockDesc()} cock{self.plural(1)} bounce{self.plural(3)} within your {self.clothesBottom()} until your hands instinctively press down on {self.plural(9)}, grabbing and rubbing {self.plural(9)} through the fabric. The puddle grows larger and larger until it envelops your {self.legDesc(10)}, at which point you begin to realize what you are doing.\n\nStrangers around you stare and wonder what the heck just happened, frozen in place and too afraid to actually inquire. Cum still dribbling down your {self.legDesc(2)}, you step away and rush back home. You have to strip and completely wash your {self.clothesBottom()} to take care of it all, and you take a couple hours to gather your wits and courage to go back outside after such a display...")
+            self.doMainText(f"\n\nYou let out a moan that catches the attention of several bystanders in the middle of {Grammar.zoneName(self.currentZone)}. A thick stream of hot spunk pours down through your {self.clothesBottom()} to the ground below, making a light splattering sound as it begins to form a puddle below. Your {self.cockDesc()} cock{self.plural(1)} bounce{self.plural(3)} within your {self.clothesBottom()} until your hands instinctively press down on {self.plural(9)}, grabbing and rubbing {self.plural(9)} through the fabric. The puddle grows larger and larger until it envelops your {self.legDesc(10)}, at which point you begin to realize what you are doing.\n\nStrangers around you stare and wonder what the heck just happened, frozen in place and too afraid to actually inquire. Cum still dribbling down your {self.legDesc(2)}, you step away and rush back home. You have to strip and completely wash your {self.clothesBottom()} to take care of it all, and you take a couple hours to gather your wits and courage to go back outside after such a display...")
             self.hrs += 4
             self.stats(0, -3, 0, 0)
         elif (getCum <= 8000):
-            self.doMainText(f"\n\nYour hands leap to your {self.cockDesc()} cock{self.plural(1)} and grab {self.plural(9)} through your {self.clothesBottom()} just as thick spurts of hot spunk spew within, pouring out over your hands and down your {self.legDesc(2)} as you moan again and again. All in the middle of {Zone.name(self.currentZone)}, catching the attention of many strangers. They stare with mouths agape, watching as you pleasure yourself in public, a waterfall of spunk pouring down from you with each jump of your thrusting cock{self.plural(1)}.\n\nThe puddle below you grows much to large to be considered an actual puddle... Some of the strangers have to step back to escape the encroaching flow. The distraught reaction from those around you bring you to your senses, blushing furiously at your lack of self-control and sudden major premature ejaculation. As best as you can while the spooge continues to ooze out in large gobs, you splash your way out of the center of attention and rush back home. It'll take hours to clean up both yourself and your clothes, and a bit longer still to face the public once more...")
+            self.doMainText(f"\n\nYour hands leap to your {self.cockDesc()} cock{self.plural(1)} and grab {self.plural(9)} through your {self.clothesBottom()} just as thick spurts of hot spunk spew within, pouring out over your hands and down your {self.legDesc(2)} as you moan again and again. All in the middle of {Grammar.zoneName(self.currentZone)}, catching the attention of many strangers. They stare with mouths agape, watching as you pleasure yourself in public, a waterfall of spunk pouring down from you with each jump of your thrusting cock{self.plural(1)}.\n\nThe puddle below you grows much to large to be considered an actual puddle... Some of the strangers have to step back to escape the encroaching flow. The distraught reaction from those around you bring you to your senses, blushing furiously at your lack of self-control and sudden major premature ejaculation. As best as you can while the spooge continues to ooze out in large gobs, you splash your way out of the center of attention and rush back home. It'll take hours to clean up both yourself and your clothes, and a bit longer still to face the public once more...")
             self.hrs += 7
             self.stats(0, -5, 0, 0)
         elif (getCum <= 25000):
-            self.doMainText(f"\n\nYour hands leap to your {self.cockDesc()} cock{self.plural(1)} and grab {self.plural(9)} through your {self.clothesBottom()} just as small waves of hot thick spunk gurgle out of your crotch in the middle of {Zone.name(self.currentZone)}. Your orgasmic moaning grabs the attention of the surrounding bystanders and your thrashing erection{self.plural(1)} spewing more spunk out through your {self.clothesBottom()} attracts even more strangers to the spectacle. You collapse over yourself and crumble to the ground, your hands rubbing and pressing down into your crotch, trying to both hold it back and yet pleasure it at the same time. The spunk around you flows over the ground, splashing up against feet as the people cannot step back far enough. You just come so hard and so long...\n\nThe gasping and commotion from the onlookers eventually bring you back. Your {self.currentClothes()} completely soaked and all the mess around you, there's not much you can do except slump off in embarassment, dripping with your own spooge, and hoping nobody makes anymore fuss about it...\n\nIt takes hours to clean up and afterwards you're just so tired that you might as well sleep...")
+            self.doMainText(f"\n\nYour hands leap to your {self.cockDesc()} cock{self.plural(1)} and grab {self.plural(9)} through your {self.clothesBottom()} just as small waves of hot thick spunk gurgle out of your crotch in the middle of {Grammar.zoneName(self.currentZone)}. Your orgasmic moaning grabs the attention of the surrounding bystanders and your thrashing erection{self.plural(1)} spewing more spunk out through your {self.clothesBottom()} attracts even more strangers to the spectacle. You collapse over yourself and crumble to the ground, your hands rubbing and pressing down into your crotch, trying to both hold it back and yet pleasure it at the same time. The spunk around you flows over the ground, splashing up against feet as the people cannot step back far enough. You just come so hard and so long...\n\nThe gasping and commotion from the onlookers eventually bring you back. Your {self.currentClothes()} completely soaked and all the mess around you, there's not much you can do except slump off in embarassment, dripping with your own spooge, and hoping nobody makes anymore fuss about it...\n\nIt takes hours to clean up and afterwards you're just so tired that you might as well sleep...")
             self.hrs += 9
             self.stats(0, -5, 0, 0)
             self.exhaustion += 15
         else:
-            self.doMainText(f"\n\nThe sound of your {self.clothesBottom()} being shredded fills the air in {Zone.name(self.currentZone)} as a massive amount of hot thick slimy sticky cum erupts from your {self.cockDesc()} cock{self.plural(1)} and tears a path through your {self.clothesBottom()}. You fall onto your back from the force, your fingers scratching at the ground below you to anchor your writhing as your body is completely wracked by the sudden orgasm. Your {self.hipDesc()} hips thrash about as the {self.cockDesc()} erection{self.plural(1)} swing{self.plural(3)} around from the force of the gushing seed. Thick ropes of the white stuff tosses about, painting houses and drenching innocent bystanders. Some run for cover while others brace themselves against the onslaught. Some stay and begin to masturbate themselves while they get showered in your cum. You completely lose track of the time as your mind goes numb and you're completely bathed in your own spunk.\n\nSome minutes later, your severe pre-mature ejaculation calms down, your senses returning. You blink and look around, seeing strangers cower in fear or masturbate furiously. The thought that 'now might be a good time to leave' pops into your head and you can only agree. You don't want to witness the fallout after this.\n\nYour {self.legDesc(2)} weak, you begin to crawl yourself through the shallow lake of semen you've created, making your way back to your home where you can hide and clean yourself up... It'll take several hours to clean and your mind just wants to shut down. You should really learn to masturbate more often.")
+            self.doMainText(f"\n\nThe sound of your {self.clothesBottom()} being shredded fills the air in {Grammar.zoneName(self.currentZone)} as a massive amount of hot thick slimy sticky cum erupts from your {self.cockDesc()} cock{self.plural(1)} and tears a path through your {self.clothesBottom()}. You fall onto your back from the force, your fingers scratching at the ground below you to anchor your writhing as your body is completely wracked by the sudden orgasm. Your {self.hipDesc()} hips thrash about as the {self.cockDesc()} erection{self.plural(1)} swing{self.plural(3)} around from the force of the gushing seed. Thick ropes of the white stuff tosses about, painting houses and drenching innocent bystanders. Some run for cover while others brace themselves against the onslaught. Some stay and begin to masturbate themselves while they get showered in your cum. You completely lose track of the time as your mind goes numb and you're completely bathed in your own spunk.\n\nSome minutes later, your severe pre-mature ejaculation calms down, your senses returning. You blink and look around, seeing strangers cower in fear or masturbate furiously. The thought that 'now might be a good time to leave' pops into your head and you can only agree. You don't want to witness the fallout after this.\n\nYour {self.legDesc(2)} weak, you begin to crawl yourself through the shallow lake of semen you've created, making your way back to your home where you can hide and clean yourself up... It'll take several hours to clean and your mind just wants to shut down. You should really learn to masturbate more often.")
             self.changeBot(Clothes.TATTERED_SHREDS)
             self.hrs += 10
             self.stats(0, -5, 2, 0)
@@ -10508,7 +10509,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if self.buttonChoice == 6:
                         self.doProcess()
                     else:
-                        self.outputMainText(f"You step onto the carpet and with a gentle woosh, it lifts into the air and darts off in the direction of your desired location. Within just a couple of hours, you land in {Zone.name(self.currentZone)}, just like you wanted.", True)
+                        self.outputMainText(f"You step onto the carpet and with a gentle woosh, it lifts into the air and darts off in the direction of your desired location. Within just a couple of hours, you land in {Grammar.zoneName(self.currentZone)}, just like you wanted.", True)
                         self.hrs = 2
                         self.doEnd()
                 self.doListen = doListen
@@ -11690,7 +11691,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def doShops(self):
         self.showButtons(ButtonList(1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1))
-        self.outputMainText(f"General Store - Come here to see what kinds of goods {Zone.name(self.currentZone)} has for sale. You can also sell your own goods here as well.\n\nDye Shop - If you want to feel unique and look special, stop by for some new colors.\n\nApothecary - Need some ingredients for your alchemy brewing? Or maybe need to learn a new recipe or two? Come check out what's available in {Zone.name(self.currentZone)} to see what you might like.\n\nSalon - Want a different haircut? Stop by here to see what styles are popular in {Zone.name(self.currentZone)}.\n\nTailor - If you're looking to get a new outfit, the {Zone.name(self.currentZone)} tailor might be able to custom-fit something for you from their available designs.", True)
+        self.outputMainText(f"General Store - Come here to see what kinds of goods {Grammar.zoneName(self.currentZone)} has for sale. You can also sell your own goods here as well.\n\nDye Shop - If you want to feel unique and look special, stop by for some new colors.\n\nApothecary - Need some ingredients for your alchemy brewing? Or maybe need to learn a new recipe or two? Come check out what's available in {Grammar.zoneName(self.currentZone)} to see what you might like.\n\nSalon - Want a different haircut? Stop by here to see what styles are popular in {Grammar.zoneName(self.currentZone)}.\n\nTailor - If you're looking to get a new outfit, the {Grammar.zoneName(self.currentZone)} tailor might be able to custom-fit something for you from their available designs.", True)
         self.doButtonChoices({1: "General", 2: "Dyes", 3: "Apothecary", 6: "Salon", 7: "Tailor", 12: "Return"})
 
         def doListen():
@@ -12700,7 +12701,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd(leave=True)
         else:
-            self.doMainText(f"\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in {Zone.name(self.currentDayCare)}.\n\nIf you would like to send a party of well-experienced travelers to {Zone.name(self.currentDayCare)} to safely bring your children here, it will cost 500 coins.")
+            self.doMainText(f"\n\nHowever, it seems as though this isn't your registered Day-Care. Your Day-Care is currently in {Grammar.zoneName(self.currentDayCare)}.\n\nIf you would like to send a party of well-experienced travelers to {Grammar.zoneName(self.currentDayCare)} to safely bring your children here, it will cost 500 coins.")
             tempDict = {12: "Leave"}
             if (self.coin < 500):
                 self.doMainText(" Which you don't have enough of anyways.")
@@ -12724,7 +12725,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def doProstitute(self):
         # TODO: Spellcheck
         if (Utils.percent() < 33 - self.enticeMod):
-            self.outputMainText(f"You wait around {Zone.name(self.currentZone)}, shaking your assets and hoping to catch the eye of someone looking for a bit of sensual company. Unfortunately, despite some lustful gazes, nobody steps forward to take you up on your offer. Either you just weren't attractive enough or they just weren't in the mood at the moment.", True)
+            self.outputMainText(f"You wait around {Grammar.zoneName(self.currentZone)}, shaking your assets and hoping to catch the eye of someone looking for a bit of sensual company. Unfortunately, despite some lustful gazes, nobody steps forward to take you up on your offer. Either you just weren't attractive enough or they just weren't in the mood at the moment.", True)
             self.hrs = 2
             self.doEnd()
             return
@@ -13525,13 +13526,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if (chance == 1):
             if (self.ment >= self.lib - 10):
-                self.doMainText(f"You sneak off to the private place where you sleep in {Zone.name(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, your {self.cockDesc()} erection{self.plural(1)} bobbing out.\n\nYou wrap your ", True)
+                self.doMainText(f"You sneak off to the private place where you sleep in {Grammar.zoneName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, your {self.cockDesc()} erection{self.plural(1)} bobbing out.\n\nYou wrap your ", True)
             elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Zone.name(self.currentZone)} can easily see your {self.cockDesc()} bulge growing in your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, your cock{self.plural(1)} flopping out.\n\nYou're not too sure if anybody saw it before you disappeared into solitude, but that doesn't matter as you wrap your ", True)
+                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Grammar.zoneName(self.currentZone)} can easily see your {self.cockDesc()} bulge growing in your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, your cock{self.plural(1)} flopping out.\n\nYou're not too sure if anybody saw it before you disappeared into solitude, but that doesn't matter as you wrap your ", True)
             elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                self.doMainText(f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without blowing your load, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {Zone.name(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} cock{self.plural(1)} spring out. You hear somebody pass nearby, but you don't care as you wrap your ", True)
+                self.doMainText(f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without blowing your load, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {Grammar.zoneName(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()} and let your {self.cockDesc()} cock{self.plural(1)} spring out. You hear somebody pass nearby, but you don't care as you wrap your ", True)
             elif (self.ment < self.lib - 50):
-                self.doMainText(f"Without a second thought, right in the middle of {Zone.name(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()} and whip out your {self.cockDesc()} wang{self.plural(1)}.\n\nPeople gasp and stare as you wrap your ", True)
+                self.doMainText(f"Without a second thought, right in the middle of {Grammar.zoneName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()} and whip out your {self.cockDesc()} wang{self.plural(1)}.\n\nPeople gasp and stare as you wrap your ", True)
             if (self.cockSize * self.cockSizeMod <= self.tallness / 3.75):
                 self.doMainText(f"hand around your {whichCock} and slowly pump it, building stronger and stronger.")
             elif (self.cockSize * self.cockSizeMod > self.tallness / 3.75 and self.cockSize * self.cockSizeMod <= self.tallness * 1.2):
@@ -13681,13 +13682,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if chance == 1:
             if (self.ment >= self.lib - 10):
-                self.doMainText(f"You sneak off to the private place where you sleep in {Zone.name(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, and gently squeeze your {self.vulvaDesc()} nether-lips.\n\nYou lay down on your back and slide your fingers through the front of the cleft{self.plural(2)} at your crotch, you tease your {self.clitDesc()} button{self.plural(2)}. Stiff and erect, you rub ", True)
+                self.doMainText(f"You sneak off to the private place where you sleep in {Grammar.zoneName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(2)} your {self.clothesBottom()}, and gently squeeze your {self.vulvaDesc()} nether-lips.\n\nYou lay down on your back and slide your fingers through the front of the cleft{self.plural(2)} at your crotch, you tease your {self.clitDesc()} button{self.plural(2)}. Stiff and erect, you rub ", True)
             elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Zone.name(self.currentZone)} can easily see you rub your {self.vulvaDesc()} groin through your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, accidentally flashing someone your {self.buttDesc()} bum.\n\nNevertheless, you squeeze your nether-lips, rubbing your hands down through your {self.vulvaDesc()} crotch, grinding your {self.clitDesc()} button{self.plural(2)} and kneading ", True)
+                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Grammar.zoneName(self.currentZone)} can easily see you rub your {self.vulvaDesc()} groin through your {self.clothesBottom()}. Before you even reach your destination, you're already pulling the {self.clothesBottom()} {self.pullUD(2)}, accidentally flashing someone your {self.buttDesc()} bum.\n\nNevertheless, you squeeze your nether-lips, rubbing your hands down through your {self.vulvaDesc()} crotch, grinding your {self.clitDesc()} button{self.plural(2)} and kneading ", True)
             elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                self.doMainText(f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without crouching and {self.legVerb(2)} your {self.legDesc(2)} erotically, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {Zone.name(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()}, squeezing your {self.vulvaDesc()} nether-lips with anticipation and tug at your {self.clitDesc()} clit{self.plural(2)} grinding ", True)
+                self.doMainText(f"Your chest heaving with your heavy breathing, you don't think you can reach the private place where you sleep without crouching and {self.legVerb(2)} your {self.legDesc(2)} erotically, the thought of coming hanging so heavily on your mind.\n\nInstead, you duck into one of the more hidden corners of {Grammar.zoneName(self.currentZone)} as you pull {self.pullUD(2)} your {self.clothesBottom()}, squeezing your {self.vulvaDesc()} nether-lips with anticipation and tug at your {self.clitDesc()} clit{self.plural(2)} grinding ", True)
             elif (self.ment < self.lib - 50):
-                self.doMainText(f"Without a second thought, right in the middle of {Zone.name(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()}, rubbing a hand across your {self.vulvaDesc()} cunt and pinching your {self.clitDesc()} clit{self.plural(2)}.\n\nPeople gasp as you continue to grind ", True)
+                self.doMainText(f"Without a second thought, right in the middle of {Grammar.zoneName(self.currentZone)} you pull {self.pullUD(2)} your {self.clothesBottom()}, rubbing a hand across your {self.vulvaDesc()} cunt and pinching your {self.clitDesc()} clit{self.plural(2)}.\n\nPeople gasp as you continue to grind ", True)
             self.doMainText(f"{self.plural(10)} vigorously, making {self.plural(10)} stiff. Faster and faster you go, until your {self.vulvaDesc()} vulva swells with blood.")
             if (self.moistCalc(2) > 11):
                 self.doMainText(f" Fem-cum floods your crotch, loudly slurping as your hands, all the way up to your elbows, become slick with the stuff. Your {self.buttDesc()} ass is practically sopping with it and more flings across your {self.legDesc(2)} and down below you as you go.")
@@ -13740,7 +13741,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             ...
 
         elif chance == 6:
-            self.doMainText(f"With the cooler air easily breezing underneath your {self.clothesBottom()} and over your moistened nethers, the thought of masturbating just makes your {self.legDesc(2)} weak and buckle. Even if your place was only ten feet away, it would be an eternity to get there in this state. You don't think you could ever make it... So you manage to convince yourself you have no other choice.\n\nYou manuever your bag to your front, feigning an attempt to look through it for something. Adjusting it slightly, it very easily manages to cover the high edge of your {self.clothesBottom()}. While one hand holds up the bag, the other slinks behind, sneaking underneath your scant outfit. Right out in the middle of {Zone.name(self.currentZone)}, with people walking by just a few feet away, your fingers touch your intimate region.\n\n", True)
+            self.doMainText(f"With the cooler air easily breezing underneath your {self.clothesBottom()} and over your moistened nethers, the thought of masturbating just makes your {self.legDesc(2)} weak and buckle. Even if your place was only ten feet away, it would be an eternity to get there in this state. You don't think you could ever make it... So you manage to convince yourself you have no other choice.\n\nYou manuever your bag to your front, feigning an attempt to look through it for something. Adjusting it slightly, it very easily manages to cover the high edge of your {self.clothesBottom()}. While one hand holds up the bag, the other slinks behind, sneaking underneath your scant outfit. Right out in the middle of {Grammar.zoneName(self.currentZone)}, with people walking by just a few feet away, your fingers touch your intimate region.\n\n", True)
             if (self.vulvaSize < 30):
                 self.doMainText(f"Swiftly slipping through your fingers through the tender folds, your {self.hipDesc()} hips start to rock gently as you stand there. Soft slurps slip out from your thighs as you cautiously masturbate in public, with the rustling of the bag in front of you thankfully drowning it out.")
             else:
@@ -13793,13 +13794,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if (chance == 1):
             if (self.ment >= self.lib - 10):
-                self.doMainText(f"You sneak off to the private place where you sleep in {Zone.name(self.currentZone)}. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.boobDesc()} breasts.\n\nHunching over at the side of the bed, you massage your {self.nipDesc()}nipples, tugging and squeezing them each with", True)
+                self.doMainText(f"You sneak off to the private place where you sleep in {Grammar.zoneName(self.currentZone)}. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.boobDesc()} breasts.\n\nHunching over at the side of the bed, you massage your {self.nipDesc()}nipples, tugging and squeezing them each with", True)
             elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Zone.name(self.currentZone)} can easily see you rub your {self.boobDesc()} chest through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching under your {self.clothesTop()} to play with your {self.nipDesc()}nipples, giving someone a good view of your under-boob.\n\nBy the time you're hidden inside, both hands are fondling your chest, kneading and massaging your nipples with", True)
+                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Grammar.zoneName(self.currentZone)} can easily see you rub your {self.boobDesc()} chest through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching under your {self.clothesTop()} to play with your {self.nipDesc()}nipples, giving someone a good view of your under-boob.\n\nBy the time you're hidden inside, both hands are fondling your chest, kneading and massaging your nipples with", True)
             elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                self.doMainText(f"Your {self.boobDesc()} breasts heave with your heavy breathing as you think about playing with them. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging them roughly.\n\nInstead, you duck into one of the more hidden corners of {Zone.name(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your chest through the fabric before reaching underneath, kneading and massaging your {self.nipDesc()}nipples with", True)
+                self.doMainText(f"Your {self.boobDesc()} breasts heave with your heavy breathing as you think about playing with them. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging them roughly.\n\nInstead, you duck into one of the more hidden corners of {Grammar.zoneName(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your chest through the fabric before reaching underneath, kneading and massaging your {self.nipDesc()}nipples with", True)
             elif (self.ment < self.lib - 50):
-                self.doMainText(f"Without a second thought, right in the middle of {Zone.name(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.boobDesc()} breasts and making them jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.nipDesc()}nipples with", True)
+                self.doMainText(f"Without a second thought, right in the middle of {Grammar.zoneName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.boobDesc()} breasts and making them jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.nipDesc()}nipples with", True)
             if (self.nippleSize <= 25):
                 self.doMainText(" your fingers")
             elif (self.nippleSize <= 60):
@@ -13937,13 +13938,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         if (chance == 1):
             if (self.ment >= self.lib - 10):
-                self.doMainText(f"You sneak off to the private place where you sleep in {Zone.name(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.udderDesc()} udder.\n\nHunching over at the side of the bed, you massage your {self.teatDesc()} teats, tugging and squeezing them each with", True)
+                self.doMainText(f"You sneak off to the private place where you sleep in {Grammar.zoneName(self.currentZone)} with a bunch of towels in hand. Carefully, so as to not let anybody hear, you pull {self.pullUD(1)} your {self.clothesTop()} and gently knead your {self.udderDesc()} udder.\n\nHunching over at the side of the bed, you massage your {self.teatDesc()} teats, tugging and squeezing them each with", True)
             elif (self.ment < self.lib - 10 and self.ment >= self.lib - 25):
-                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Zone.name(self.currentZone)} can easily see you rub your {self.udderDesc()} bulge through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching {self.pullUD(1)} under your {self.clothesTop()} to play with your {self.teatDesc()} teats, giving someone a good view of your fleshy bag.\n\nBy the time you're hidden inside, both hands are fondling your udder, kneading and massaging your teats with", True)
+                self.doMainText(f"You quickly head off to the private place where you sleep with your intentions clear as those around {Grammar.zoneName(self.currentZone)} can easily see you rub your {self.udderDesc()} bulge through your {self.clothesTop()}. Before you even reach your destination, your hands are already reaching {self.pullUD(1)} under your {self.clothesTop()} to play with your {self.teatDesc()} teats, giving someone a good view of your fleshy bag.\n\nBy the time you're hidden inside, both hands are fondling your udder, kneading and massaging your teats with", True)
             elif (self.ment < self.lib - 25 and self.ment >= self.lib - 50):
-                self.doMainText(f"Your {self.udderDesc()} udder heaves with your heavy breathing as you think about playing with it. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging it roughly.\n\nInstead, you duck into one of the more hidden corners of {Zone.name(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your udder through the fabric before your reaching underneath, kneading and massaging your {self.teatDesc()} teats with", True)
+                self.doMainText(f"Your {self.udderDesc()} udder heaves with your heavy breathing as you think about playing with it. You don't think you can reach the private place where you sleep without your hands diving underneath your {self.clothesTop()} and massaging it roughly.\n\nInstead, you duck into one of the more hidden corners of {Grammar.zoneName(self.currentZone)} and without even taking off your {self.clothesTop()}, you grope your udder through the fabric before your reaching underneath, kneading and massaging your {self.teatDesc()} teats with", True)
             elif (self.ment < self.lib - 50):
-                self.doMainText(f"Without a second thought, right in the middle of {Zone.name(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.udderDesc()} udder and making it jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.teatDesc()} teats with", True)
+                self.doMainText(f"Without a second thought, right in the middle of {Grammar.zoneName(self.currentZone)} you pull {self.pullUD(1)} your {self.clothesTop()}, rubbing a hand across your {self.udderDesc()} udder and making it jiggle obscenely.\n\nPeople gasp and stare as you knead and massage your {self.teatDesc()} teats with", True)
             if (self.teatSize <= 25):
                 self.doMainText(" your fingers")
             elif (self.teatSize <= 60):
@@ -22301,7 +22302,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     if (self.inDungeon):
                         self.regionChange(self.currentZone)
                         self.inDungeon = False
-                        self.doMainText(f"\n\nTo escape, you run all the way back to {Zone.name(self.currentZone)}.")
+                        self.doMainText(f"\n\nTo escape, you run all the way back to {Grammar.zoneName(self.currentZone)}.")
                     self.displayMainText()
                     self.currentState = GameState.GENERAL
                     self.hrs = 1
@@ -27155,10 +27156,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return f"LEG PLURAL ERROR TYPE {self.legType}"
 
     def raceName(self) -> str:
-        return Race.prettyName(self.race)
+        return Grammar.racePrettyName(self.race)
 
     def domName(self) -> str:
-        return Race.name(self.dominant)
+        return Grammar.raceName(self.dominant)
 
     # TODO: Move out of game class
     def isBottomOpen(self, ID: int) -> bool:
