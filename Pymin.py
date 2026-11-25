@@ -1290,6 +1290,21 @@ class Grammar:
                 return "Femboy" if mainobject.femmeboyToFemboy else "Femme Boy"
             return "femboy" if mainobject.femmeboyToFemboy else "femme boy"
 
+    def creatureNeutralGender(topic: int, capital: bool = False) -> str:
+        # Replaces "it" with "they" for living creatures
+        if topic == 1:
+            if capital:
+                return 'They' if mainobject.useTheyForLivingCreatures else 'It'
+            return 'they' if mainobject.useTheyForLivingCreatures else 'it'
+        if topic == 2:
+            if capital:
+                return 'Their' if mainobject.useTheyForLivingCreatures else 'Its'
+            return 'their' if mainobject.useTheyForLivingCreatures else 'its'
+        if topic == 3:
+            if capital:
+                return 'Them' if mainobject.useTheyForLivingCreatures else 'It'
+            return 'them' if mainobject.useTheyForLivingCreatures else 'it'
+
 
 class DirUtils:
     def makeDir(path: PurePath, silent: bool = False) -> int:
@@ -4100,23 +4115,23 @@ class SE_ChangedOnLoadWarning(tkinter.Toplevel):
 class SE_File:
     def __init__(self, file):
         self.file = os.path.realpath(file)
-        self.ext = os.path.splitext(file)[1]
+        ext = os.path.splitext(file)[1]
         self.rawData = None
         self.changed = False
-        if self.ext == '.sol':
+        if ext == '.sol':
             self._Saver = SaveUtils.saveSOL
             self._Loader = SaveUtils.loadSOL_Raw
-        elif self.ext == '.nim':
+        elif ext == '.nim':
             self._Saver = SaveUtils.saveNIM
             self._Loader = SaveUtils.loadNIM_Raw
-        elif self.ext == '.xml':
+        elif ext == '.xml':
             self._Saver = SaveUtils.saveXML
             self._Loader = SaveUtils.loadXML_Raw
-        elif self.ext == '.toml':
+        elif ext == '.toml':
             self._Saver = SaveUtils.saveTOML
             self._Loader = SaveUtils.loadTOML_Raw
         else:
-            raise Error(f'[SE_File] Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got {self.ext}.')
+            raise Error(f'[SE_File] Incorrect save file format. Expected (.sol,.nim,.xml,.toml) got {ext}.')
 
     def load(self) -> dict:
         self.rawData = self._Loader(self.file)
@@ -28006,6 +28021,18 @@ class PyminMain:
         self._snuggleBallTweak = value
 
     @property
+    def useTheyForLivingCreatures(self) -> bool:
+        return self._useTheyForLivingCreatures
+
+    @useTheyForLivingCreatures.setter
+    def useTheyForLivingCreatures(self, value: bool):
+        # TODO: Make use of this
+        # TODO: Add a toggle for this
+        # TODO: Save this to preferences file
+        self._useTheyForLivingCreatures = value
+        ...
+
+    @property
     def grammarFixes(self) -> bool:
         return self._grammarFixes
 
@@ -28158,6 +28185,7 @@ class PyminMain:
         self.femmieMaleReplacement = 0
         self.femboyishToGirly = False
         self.snuggleBallTweak = False
+        self.useTheyForLivingCreatures = False
         self.grammarFixes = False
 
         self.statusTweaks = False
