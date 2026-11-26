@@ -406,7 +406,27 @@ class AlchemyLevel:
     ADVANCED = 3
 
 
-# TODO: Better error messages
+class IDErrorObject:
+    def __init__(self, name, ID):
+        self.name = name
+        self.ID = ID
+
+    def __getattr__(self, attr):
+        return f'{self.name} ID ERROR {self.ID}'
+
+
+class GameStatsContainer(frozendict):
+    def __init__(self, name, *args, **kwargs):
+        self.name = name
+        super().__init__(*args, **kwargs)
+
+    def __getitem__(self, ID):
+        item = frozendict.get(self, ID)
+        if item is None:
+            return IDErrorObject(name, ID)
+        return item
+
+
 class GenericStatsItem(frozendict):
     _NAME_FALLBACK = ''
     _VALUE_FALLBACK = 0
@@ -468,7 +488,7 @@ class ItemStatsItem(GenericStatsItem):
 
 
 # TODO: See if isUsable and isConsumable are mutually exclusive. If so, see they can be combined into one property
-ITEM_STATS = frozendict({
+ITEM_STATS = GameStatsContainer('ITEM', {
     Item.NONE: ItemStatsItem(name=' '),
     Item.TEST_ITEM: ItemStatsItem(name="Test", longName="Test Item", value=13, stackMax=1, description="Does nothing."),
     Item.DEBUG_STICK: ItemStatsItem(name="Debug Stick", longName="Debug Stick", stackMax=1, isUsable=True, description="Debug Weapon. Kills any foe with ease to aid in debugging.\n\nBase damage: 999"),
@@ -620,7 +640,7 @@ class HairstyleStatsItem(GenericStatsItem):
         return self['hasLengthOptions']
 
 
-HAIRSTYLE_STATS = frozendict({
+HAIRSTYLE_STATS = GameStatsContainer('HAIRSTYLE', {
     Hairstyle.NONE: HairstyleStatsItem(name='None', hasLengthOptions=False, description="No hairstyle whatsoever. Choosing this option removes any mention of hair from your appearance description."),
     Hairstyle.WAVY: HairstyleStatsItem(name='Wavy', value=5, hasLengthOptions=True, shortDescription="wavy hair", description="Wavy hair has subtle curves that make it seem more flowing.\n\nThis hairstyle has additional length options available after purchasing."),
     Hairstyle.PIGTAIL: HairstyleStatsItem(name='Pigtail', value=8, hasLengthOptions=True, shortDescription="hair pulled to the sides of your head in pigtails", description="Pigtails are straight/wavy/curvy hair pulled away from the face and gathered towards the sides of your head, where it is bundled and tied at the base, allowing it to hang freely over your shoulders.\n\nThis hairstyle has additional length options available after purchasing."),
@@ -648,7 +668,7 @@ class ClothesStatsItem(GenericStatsItem):
         return self['slot']
 
 
-CLOTHES_STATS = frozendict({
+CLOTHES_STATS = GameStatsContainer('CLOTHES', {
     Clothes.TATTERED_SHREDS: ClothesStatsItem(name="Tattered Shreds", slot=ClothesSlot.BOTH),
     Clothes.INVISIBLE_UNDERWEAR: ClothesStatsItem(name="Invisible Underwear", slot=ClothesSlot.BOTH),
     Clothes.SHIRT: ClothesStatsItem(name="Shirt", value=5, slot=ClothesSlot.TOP, description="A generic shirt with no special attributes.\n\nTakes top clothes slot."),
@@ -716,7 +736,7 @@ class RecipeStatsItem(GenericStatsItem):
         return f'Alchemy difficulty: {self.difficultyName}'
 
 
-RECIPE_STATS = frozendict({
+RECIPE_STATS = GameStatsContainer('RECIPE', {
     0: RecipeStatsItem(),
     Recipe.LUST_DRAFT: RecipeStatsItem(name='R: LustDraft', longName="Recipe: Lust Draft", value=20, level=AlchemyLevel.SIMPLE, creates=Item.LUST_DRAFT, description="For those who need a boost in the bedroom."),
     Recipe.REJUV_POT: RecipeStatsItem(name='R: RejuvPot', longName="Recipe: Rejuvenation Potion", value=25, level=AlchemyLevel.SIMPLE, creates=Item.REJUV_POT, description="Useful for soothing what ailes you."),
@@ -804,7 +824,7 @@ class EnemyStatsItem(frozendict):
         return self['item']
 
 
-ENEMY_STATS = frozendict({
+ENEMY_STATS = GameStatsContainer('ENEMY', {
     Enemy.NONE: EnemyStatsItem(name="none", properName="None", HP=0, str=0, ment=0, sen=0, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANDRO, coin=0, SexP=0, item=0),
     Enemy.TEST_ENEMY: EnemyStatsItem(name="test enemy", properName="Test Enemy", HP=10, str=1, ment=1, sen=1, lib=1, lust=0, gender=Gender.MALE, pref=Preference.ANY, coin=1, SexP=1, item=1),
     Enemy.COCK_SNAKE: EnemyStatsItem(name="cock-snake", properName="Cock-snake", HP=30, str=16, ment=4, sen=8, lib=0, lust=0, gender=Gender.ANDRO, pref=Preference.ANY, coin=0, SexP=15, item=Item.CO_SNAK_VEN),
