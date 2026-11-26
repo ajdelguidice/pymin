@@ -265,14 +265,16 @@ class StartType:
     SAVE_CONVERTER = 1
 
 
+# This is separate because it doesn't currently have stats
+ITEM_UNARMED_WEAPON = 10
+
+
 class Item:
     NONE = 0
 
     TEST_ITEM = 1
     DEBUG_STICK = 2
     TS_ANY = 3
-
-    # UNARMED_WEAPON = 10
 
     ANC_CLAWS = 101
     IMB_SHOES = 102
@@ -5218,7 +5220,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # Weapon and attire
         # self.attireTop = Clothes.SHIRT
         # self.attireBot = Clothes.PANTS
-        # self.weapon = 10
+        # self.weapon = ITEM_UNARMED_WEAPON
 
         # Item effects
         # self.masoPot = 0
@@ -6770,7 +6772,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.nipType = 0
                 self.attireTop = Clothes.SHIRT
                 self.attireBot = Clothes.PANTS
-                self.weapon = 10
+                self.weapon = ITEM_UNARMED_WEAPON
                 self.pregArray = Array()
                 self.pregStatus = 0
                 self.pregnancyTime = 0
@@ -7072,7 +7074,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.snuggleBall):
             tempStr += " the thick and soft layer of plushy snuggliness which coats"
         tempStr += f" your {self.skinDesc(True)} "
-        if (self.weapon == 10):
+        if (self.weapon == ITEM_UNARMED_WEAPON):
             tempStr += "while you defend yourself unarmed."
         else:
             tempStr += f"while you defend yourself with a {ITEM_STATS[self.weapon].name} as your weapon."
@@ -9381,7 +9383,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         Removes the passive effect for item ID
         '''
         if (ID == self.weapon):
-            self.weapon = 10
+            self.weapon = ITEM_UNARMED_WEAPON
         elif ID == Item.ANC_CLAWS:
             self.rapeMod -= 10
         elif ID == Item.IMB_SHOES:
@@ -22462,11 +22464,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.doListen = doListen
 
     def weaponAttack(self):
-        if self.weapon == 2:
+        if self.weapon == Item.DEBUG_STICK:
             dmg = 99999
             self.outputMainText(f"You hit the {self.enemy.name} with your debug stick, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
-        elif self.weapon == 10:
+        elif self.weapon == ITEM_UNARMED_WEAPON:
             dmg = Math.floor(Math.random() * 10) + 1 + Math.floor(self.str / 2 - (100 - self.enemy.sensitivity) / 20)
             self.outputMainText(f"You punch the {self.enemy.name} with your fists, dealing {dmg} damage!", True)
             self.doeHP(-dmg)
@@ -25243,7 +25245,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.tail = 12
                 self.doMainText(f"\n\nYour tail begins to tingle. As you turn around, you watch as it bloats up, growing nearly as thick as your waist and nearly as stout. It's so big and weighty with flesh that you can hardly move it, merely resting against your {self.buttDesc()} butt. And at the tip where it's rather blunt, you can feel another hole. It's not terribly large, but it looks large enough to fit a small-ish egg, your finger able to easily poke up inside to feel the warm moist interior. If you were to venture a guess, it seems more like an ovipositor than an actual tail, though such a large change to your anatomy would be impossible, so what could it be for?")
             if (self.weapon == Item.TAIL_SPIKE and self.tail != 4 and self.tail != 5 and self.tail != 6 and self.tail != 8):
-                self.weapon = 10
+                self.weapon = ITEM_UNARMED_WEAPON
 
         # Wings change
         maxNonWings = Math.max(self.humanAffinity, self.horseAffinity, self.wolfAffinity, self.catAffinity, self.cowAffinity, self.lizardAffinity, self.rabbitAffinity, self.mouseAffinity, self.pigAffinity)
