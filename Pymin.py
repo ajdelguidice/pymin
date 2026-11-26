@@ -4021,7 +4021,8 @@ class SaveConverter(PyminWindow):
 
 
 class SE_Combobox(tkinter.Entry):
-    # TODO: dropDownIndicator arrow
+    # TODO: Centre indicator. It is drawn offset for some reason
+    # TODO: Colour indicator on hover and click
     # TODO: Close _dropDownWindow when clicking off of it
 
     def __init__(self, master, *args, **kwargs):
@@ -4029,7 +4030,9 @@ class SE_Combobox(tkinter.Entry):
         tkinter.Entry.__init__(self, master, *args, **kwargs, state='readonly', textvariable=self.var)
         self._currentIndex = 0
         self._values = []
-        self.dropDownIndicator = tkinter.Frame(self, bg='#FFFFFF', highlightthickness=1, highlightbackground='#000000')
+        self.dropDownIndicator = tkinter.Canvas(self, width=15, height=14, background='#FFFFFF')
+        self.dropDownIndicator.create_rectangle(0, 0, 15, 14, outline='#000000')
+        self.dropDownIndicator.create_polygon(2, 3, 12, 3, 7, 9, fill='#000000')
         self.dropDownIndicator.pack(side=tkinter.RIGHT, fill=tkinter.Y)
         self.dropDownIndicator.bind('<Configure>', self._dropDownIndicator_onConfigure)
 
@@ -4251,9 +4254,6 @@ class SE_ValueWidget(SE_WidgetContainer):
         elif isinstance(value, float):
             varType = tkinter.DoubleVar
         if self._varIsBoolean:
-            # TODO: Unbind scrollwheel from value change
-            #self.entry = ttk.Combobox(self, state='readonly')
-            #self.entry['values'] = ('False', 'True')
             self.entry = SE_Combobox(self)
             self.entry.values = ('False', 'True')
             self.entry.current(int(value))
@@ -4296,24 +4296,33 @@ class SaveEditor(PyminWindow):
         self._window = tkinter.Toplevel()
         self.window.title('Pymin: Save Editor (WIP)')
         self.window.geometry('500x400')
-        self.window.resizable(False, False)
+        #self.window.resizable(False, False)
         self.window.transient(mainobject.main.window)
         self.window.bind('<Destroy>', self._close)
         self.window.bind('<KeyPress>', self.keyPress)
         self.window.bind('<KeyRelease>', self.keyRelease)
 
-        self.loadbutton = tkinter.Button(self.window, text='Load', font=('TkTextFont', 9), command=self.loadFile)
-        self.loadbutton.place(x=5, y=5, width=50, height=20, anchor='nw')
-        self.savebutton = tkinter.Button(self.window, text='Save', font=('TkTextFont', 9), command=self.saveFile)
-        self.savebutton.place(x=55, y=5, width=50, height=20, anchor='nw')
-        self.savebutton['state'] = 'disabled'
-        self.filelabelframe = tkinter.Frame(self.window)
-        self.filelabelframe.place(x=110, y=5, width=385, height=20)
-        self.filelabel = tkinter.Label(self.filelabelframe, font=('TkTextFont', 9))
-        self.filelabel.place(x=385, y=0, anchor='ne')
+        # Header
+        self.headerFrame = tkinter.Frame(self.window)
+        self.headerFrame.grid(row=0, column=0, padx=5, pady=5, sticky=tkinter.W+tkinter.E)
 
+        self.loadButton = tkinter.Button(self.headerFrame, text='Load', font=('TkTextFont', 9), command=self.loadFile)
+        self.loadButton.grid(row=0, column=0, padx=(0, 2))
+
+        self.savebutton = tkinter.Button(self.headerFrame, text='Save', font=('TkTextFont', 9), command=self.saveFile)
+        self.savebutton.grid(row=0, column=1, padx=(0, 2))
+        self.savebutton['state'] = 'disabled'
+
+        # TODO: See if this frame can be removed now that grid is used
+        self.filelabelframe = tkinter.Frame(self.headerFrame)
+        self.filelabelframe.grid(row=0, column=2, sticky=tkinter.W+tkinter.E)
+
+        self.filelabel = tkinter.Label(self.filelabelframe, font=('TkTextFont', 9))
+        self.filelabel.pack(fill=tkinter.BOTH, expand=True)
+
+        # File contents
         self.container = tkinter.Frame(self.window, highlightthickness=1, highlightbackground='#000000')
-        self.container.place(x=5, y=25, width=490, height=370, anchor='nw')
+        self.container.grid(row=1, column=0, columnspan=3, padx=5, pady=(0, 5), sticky=tkinter.E+tkinter.W+tkinter.N+tkinter.S)
 
         self.editorCanvas = tkinter.Canvas(self.container, width=470, height=370)
         self.editorCanvas.pack(side=tkinter.LEFT, fill=tkinter.BOTH, expand=True)
@@ -4323,6 +4332,9 @@ class SaveEditor(PyminWindow):
 
         self.editorCanvas.configure(yscrollcommand=self.scrollbar.set)
         SE_BindWidgetScroll(self.editorCanvas)
+
+        self.window.rowconfigure(1, weight=1)
+        self.window.columnconfigure(0, weight=1)
 
         self.activeFile = None
         self.editorBox = None
