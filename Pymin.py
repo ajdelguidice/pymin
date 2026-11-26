@@ -41,11 +41,7 @@ if sys.hexversion < 0x030F0000:
 These variables will need to be checked once as3lib.Array works properly.
 They might break.
 
-bagArray
-bagStackArray
 itemGainArray
-stashArray
-stashStackArray
 choiceListArray
 choiceListResult
 rndArray
@@ -1342,23 +1338,18 @@ class DirUtils:
         path.mkdir(parents=True)
         return 0
 
-    def listFiles(directory: PurePath, ext: tuple = None, sort=None) -> list:
+    def listFiles(directory: PurePath, ext: tuple) -> list:
         '''
-        Lists all files with extension "ext" in directory "directory" with the sorting of "sort"
-        If ext is None, all files are shown
-        If sort is None, no sorting will be done. sort must be a valid sorted() key
+        Lists all files with extension "ext" in directory "directory"
         '''
         files = [f.name for f in directory.iterdir() if f.is_file()]
-        # if extension is specified, remove extension that aren't included
-        if ext is not None:
-            files = [i for i in files if ('.' not in i and '' in ext) or i.endswith(ext)]
-        # if sort order is specified, use it
-        if sort is None:
-            return files
-        return sorted(files, key=sort)
+        return [i for i in files if ('.' not in i and '' in ext) or i.endswith(ext)]
 
-    # listFiles but sorted alphabetically
-    listFiles_SortAlpha = partial(listFiles, sort=str.lower)
+    def listFiles_SortAlpha(directory: PurePath, extensions: tuple) -> list:
+        '''
+        listFiles but sorted alphabetically
+        '''
+        return sorted(DirUtils.listFiles(directory, extensions), key=str.lower)
 
     def listFiles_SortCustomExt(directory: PurePath, extensions: tuple, reverse: bool = False) -> list:
         '''
@@ -1368,7 +1359,7 @@ class DirUtils:
         temp2 = []
         exts = reversed(extensions) if reverse else extensions
         for ext in exts:
-            for num in (1, 2, 3, 5, 6, 7, 9, 10, 11):
+            for num in RANGE9_BUTTON_MAP:
                 name = f'Nimin_Save{num}{ext}'
                 if name in temp:
                     temp2.append(name)
@@ -1381,7 +1372,7 @@ class DirUtils:
         '''
         temp = DirUtils.listFiles_SortAlpha(directory, extensions)
         temp2 = []
-        for num in (1, 2, 3, 5, 6, 7, 9, 10, 11):
+        for num in RANGE9_BUTTON_MAP:
             for ext in extensions:
                 name = f'Nimin_Save{num}{ext}'
                 if name in temp:
