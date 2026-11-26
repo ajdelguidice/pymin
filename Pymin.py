@@ -28207,6 +28207,7 @@ class PyminMain:
         self.startType = startType
         self.style = None
         self.finshedLoading = False
+        self._previousPreferences = None
 
         self.game = PyminGame()
         self.aboutwindow = AboutWindow()
@@ -28219,53 +28220,13 @@ class PyminMain:
         self.debuggiveitemwindow = DebugGiveItem()
 
         self.backgroundColor = "#FFFFFF"
-        self.fontSize = 11
-        self.fontBold = False
         self.textColor = "#000000"
-        self.showSide = True
-        self.newSaveLoadDialog_SortOrder = 0
 
         self.saveLocation = GAME_DIR / "nimin_saves"
-        self.saveCompatMode = False
-        self.enforceSize = False
         self._customFontColor = False
-        self.oTextColor = "#000000"
         self._customThemeColor = False
-        self.oBackgroundColor = "#FFFFFF"
 
-        self.useNiminTheme = False
-        self.scrolledTextBorders = False
         self._oNewGameButton = False
-        #self.originalNewGameButtonSize = False
-        self.staticdoLevelUPButtons = False
-        self.useExpandedSaveDialog = False
-        self.useNewStash = False
-        self.helpToWiki = False
-        self.doShopsReturn = False
-        self.originalFrame1Message = False
-
-        self.respectShowBalls = False
-        self.femmeboyToFemboy = False
-        self.shemaleToFuta = False
-        self.ngrammar = False
-        self.femmieMaleReplacement = 0
-        self.femboyishToGirly = False
-        self.snuggleBallTweak = False
-        self.useTheyForLivingCreatures = False
-        self.grammarFixes = False
-
-        self.statusTweaks = False
-        self.succubusLeavesOne = False
-        self.useIsBottomOpen = False
-        self.lizanDontShowBalls = False
-        self.hermGetsBoth = False
-        self.internalBallsEffectBelly = False
-        self.directPathToSanctuary = False
-        self.correctBeastRaceFeet = False
-        self.gameTweaksMisc = False
-
-        self.debugChooseSenario = False
-        self.debugNoDamage = False
 
         self.loadPreferences()
         self.finshedLoading = True
@@ -28536,7 +28497,7 @@ class PyminMain:
         self.useNewStash = interface['useNewStash']
         self.helpToWiki = interface['helpToWiki']
         self.doShopsReturn = interface['doShopsReturn']
-        # self.originalFrame1Message = False
+        self.originalFrame1Message = False  # TODO
 
         grammar = prefs['grammar']
         self.respectShowBalls = grammar['respectShowBalls']
@@ -28546,7 +28507,7 @@ class PyminMain:
         self.femmieMaleReplacement = grammar['femmieMaleReplacement']
         self.femboyishToGirly = grammar['femboyishToGirly']
         self.snuggleBallTweak = grammar['snuggleBallTweak']
-        # self.useTheyForLivingCreatures = False
+        self.useTheyForLivingCreatures = False  # TODO
         self.grammarFixes = grammar['grammarFixes']
 
         gameTweaks = prefs['gameTweaks']
@@ -28565,7 +28526,6 @@ class PyminMain:
         self.debugNoDamage = debugTweaks['noDamage']
 
     def loadPreferences(self):
-        # TODO: Don't save preferences here
         prefs = {
             'game': {
                 'theme': "#FFFFFF",
@@ -28621,25 +28581,19 @@ class PyminMain:
             }
         }
 
-        sp = False
         if (GAME_DIR / 'Nimin_Prefs.toml').is_file():
-            prefs.update(self.getPrefs_TOML(GAME_DIR / 'Nimin_Prefs.toml'))
+            self._previousPreferences = self.getPrefs_TOML(GAME_DIR / 'Nimin_Prefs.toml')
         elif (GAME_DIR / 'Nimin_Prefs.xml').is_file():
-            prefs.update(self.getPrefs_XML(GAME_DIR / 'Nimin_Prefs.xml'))
-            sp = True
+            self._previousPreferences = self.getPrefs_XML(GAME_DIR / 'Nimin_Prefs.xml')
         elif (GAME_DIR / 'Nimin_Prefs.sol').is_file():
-            prefs.update(self.getPrefs_SOL(GAME_DIR / 'Nimin_Prefs.sol'))
-            sp = True
-        else:
-            sp = True
+            self._previousPreferences = self.getPrefs_SOL(GAME_DIR / 'Nimin_Prefs.sol')
+        prefs.update(self._previousPreferences)
+
         self._loadPrefs(prefs)
 
         DirUtils.makeDir(self.saveLocation, True)
-        if sp:
-            self.savePreferences()
 
     def savePreferences(self):
-        # TODO: Make this not do anything if the values haven't changed
         temp = {
             'game': {
                 'theme': self.backgroundColor,
@@ -28694,7 +28648,9 @@ class PyminMain:
                 'noDamage': self.debugNoDamage
             }
         }
-        TOML.write(GAME_DIR / 'Nimin_Prefs.toml', temp)
+        if temp != self._previousPreferences:
+            TOML.write(GAME_DIR / 'Nimin_Prefs.toml', temp)
+            self._previousPreferences = temp
 
 
 def Pymin():
