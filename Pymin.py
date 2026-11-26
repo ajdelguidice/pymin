@@ -1429,7 +1429,7 @@ class SaveUtils:
         with open(file, 'rb') as f:
             return ByteArray(f).readObject()['data']['track'][2:4]
 
-    def dictSAVE(dictionary: dict) -> dict:
+    def save_fixupData(dictionary: dict) -> dict:
         d = {
             'mod': ('cumMod', 'cockSizeMod', 'vagSizeMod', 'vagElastic', 'changeMod', 'SexPMod'),
             'status': ('pregRate',),
@@ -3993,7 +3993,7 @@ class SaveConverter(PyminWindow):
         if data is None:
             self.message = 'Error'
             raise Error('[SaveConverter.convertSave] Input save data is null. Try again')
-        data = SaveUtils.dictSAVE(data)
+        data = SaveUtils.save_fixupData(data)
         if outputfiletype == 'xml':
             SaveUtils.saveXML(data, outputfile)
         elif outputfiletype == 'sol':
@@ -8070,7 +8070,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 savefilename = mainobject.saveLocation / f"Nimin_Save{slot}.sol"
             else:
                 savefilename = mainobject.saveLocation / f"Nimin_Save{slot}.xml"
-        data = SaveUtils.dictSAVE({
+        data = SaveUtils.save_fixupData({
             "track": {"currentState": self.currentState, "currentZone": self.currentZone, "day": self.day, "hour": self.hour, "currentDayCare": self.currentDayCare, "inDungeon": self.inDungeon, "currentDungeon": self.currentDungeon, "v7": 0.75, "firstExplore": self.firstExplore},
             "version": {"original": NIMIN_VERSION, "port": __version__},
             "stats": {"strength": self.strength, "mentality": self.mentality, "libido": self.libido, "sensitivity": self.sensitivity, "HP": self.HP, "lust": self.lust, "coin": self.coin, "strMod": self.strMod, "mentMod": self.mentMod, "libMod": self.libMod, "senMod": self.senMod, "hunger": self.hunger},
