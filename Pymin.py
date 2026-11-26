@@ -2372,14 +2372,8 @@ class PlayerItemContainer:
 
 
 class PlayerPregnancyContainer:
-    #self.pregArray[i] is whether this slot is actually pregnant
-    #self.pregArray[i + 1] is the prenancy type
-    #self.pregArray[i + 2] is the time this pregnancy takes
-    #self.pregArray[i + 3] is the time elapsed for this pregnancy
-    #self.pregArray[i + 4] is the extra birthCount as assigned by doImpregnate
-
     @property
-    def hasPregnancy(self) -> bool:  # self.pregArray[i]
+    def hasPregnancy(self) -> bool:
         return self._isPreg
 
     @hasPregnancy.setter
@@ -2387,7 +2381,7 @@ class PlayerPregnancyContainer:
         self._isPreg = bool(value)
 
     @property
-    def type(self) -> int:  # self.pregArray[i + 1]
+    def type(self) -> int:
         return self._type
 
     @type.setter
@@ -2395,7 +2389,7 @@ class PlayerPregnancyContainer:
         self._type = int(value)
 
     @property
-    def totalTime(self) -> int:  # self.pregArray[i + 2]
+    def totalTime(self) -> int:
         return self._totalTime
 
     @totalTime.setter
@@ -2403,7 +2397,7 @@ class PlayerPregnancyContainer:
         self._totalTime = int(value)
 
     @property
-    def timeElapsed(self) -> int:  # self.pregArray[i + 3]
+    def timeElapsed(self) -> int:
         return self._currentTime
 
     @timeElapsed.setter
@@ -2411,7 +2405,7 @@ class PlayerPregnancyContainer:
         self._currentTime = int(value)
 
     @property
-    def extraBirthCount(self) -> int:  # self.pregArray[i + 4]
+    def extraBirthCount(self) -> int:
         return self._extraCount
 
     @extraBirthCount.setter
@@ -2427,10 +2421,6 @@ class PlayerPregnancyContainer:
         self.timeElapsed = currentTime
         self.extraBirthCount = extraCount
 
-    def __bool__(self):
-        # TODO: Remove once everything is ported away from this way of doing things
-        return self._isPreg
-
     def __str__(self):
         return f'[{self.hasPregnancy}, {self.type}, {self.totalTime}, {self.timeElapsed}, {self.extraBirthCount}]'
 
@@ -2438,7 +2428,6 @@ class PlayerPregnancyContainer:
 
 
 class EnemyContainer:
-    # TODO: Lust needs a setter (doEntice cocksnake)
     @property
     def ID(self) -> int:
         return self._ID
@@ -2450,6 +2439,8 @@ class EnemyContainer:
         self._ID = value
         self._s = ENEMY_STATS[value]
         self._HP = self._s.HP
+        self._ment = self._s.ment
+        self._lust = self._s.lust
 
     @property
     def HP(self) -> int:
@@ -2469,7 +2460,11 @@ class EnemyContainer:
 
     @property
     def mentality(self) -> int:
-        return self._s.ment
+        return self._ment
+
+    @mentality.setter
+    def mentality(self, value: int):
+        self._ment = int(value)
 
     @property
     def sensitivity(self) -> int:
@@ -2481,7 +2476,11 @@ class EnemyContainer:
 
     @property
     def lust(self) -> int:
-        return self._s.lust
+        return self._lust
+
+    @lust.setter
+    def lust(self, value: int):
+        self._lust = int(value)
 
     @property
     def gender(self) -> int:
@@ -2493,6 +2492,8 @@ class EnemyContainer:
 
     @property
     def coin(self) -> int:
+        if callable(self._s.coin):
+            return self._s.coin()
         return self._s.coin
 
     @property
@@ -2515,6 +2516,8 @@ class EnemyContainer:
         self._ID = Enemy.NONE
         self._s = ENEMY_STATS[Enemy.NONE]
         self._HP = 0
+        self._ment = 0
+        self._lust = 0
 
 
 # Windows
