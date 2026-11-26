@@ -402,6 +402,10 @@ class AlchemyLevel:
     ADVANCED = 3
 
 
+class SpecialAbility:
+    SKUNK_SPRAY = 1
+
+
 class IDErrorObject:
     def __init__(self, name, ID):
         self.name = name
@@ -836,6 +840,21 @@ ENEMY_STATS = GameStatsContainer('ENEMY', {
     Enemy.MINOTAUR: EnemyStatsItem(name="Minotaur", properName="Minotaur", HP=250, str=70, ment=20, sen=50, lib=20, lust=10, gender=Gender.MALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=50, item=Item.CUM_JUG, baby=307),
     Enemy.FREAKY_LITTLE_GIRL: EnemyStatsItem(name="freaky little girl", properName="Freaky Little Girl", HP=175, str=80, ment=40, sen=70, lib=60, lust=10, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=55, item=Item.SWEET_AND_SOUR, baby=308),
     Enemy.SUCCUBUS: EnemyStatsItem(name="succubus", properName="Succubus", HP=150, str=35, ment=80, sen=40, lib=40, lust=0, gender=Gender.FEMALE, pref=Preference.ANY, coin=lambda: Math.floor(Utils.percent() / 4 + 5), SexP=60, item=Item.SUCC_DRAFT)
+})
+
+
+class SpecialAbilityStatsItem(frozendict):
+    @property
+    def name(self):
+        return self.get('name', 'SPECIAL ABILITY NAME ERROR')
+
+    @property
+    def description(self):
+        return self.get('description', 'SPECIAL ABILITY DESC ERROR')
+
+
+SPECIAL_ABILITY_STATS = GameStatsContainer('SPECIAL ABILITY', {
+    SpecialAbility.SKUNK_SPRAY: SpecialAbilityStatsItem(name="Skunk Spray", description="\n\nSkunk Spray - Using your scent glands in your rump, you can unleash this terrible stench upon your enemy, causing damage and potentially making them miss their next turn.")
 })
 
 
@@ -1830,18 +1849,6 @@ class Items:
             return 'Oviasis'
 
         return f'TELEPORT SCROLL ANY ERROR BUTTON {buttonChoice}'
-
-
-class SpecialAbilities:
-    def name(ID: int) -> str:
-        if ID == 1:
-            return "Skunk Spray"
-        return f"SPECIAL ABILITY NAME ERROR {ID}"
-
-    def description(ID: int) -> str:
-        if ID == 1:
-            return "\n\nSkunk Spray - Using your scent glands in your rump, you can unleash this terrible stench upon your enemy, causing damage and potentially making them miss their next turn."
-        return f"SPECIAL ABILITY DESC ERROR {ID}"
 
 
 class Shop:
@@ -22466,47 +22473,48 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if (self.skunkAffinity >= 40):
             self.specialAbilityArray.push(1)
         if (self.specialAbilityArray.length):
-            self.outputMainText("Which special ability would you like to use?", True)
+            self.doMainText("Which special ability would you like to use?", True)
         else:
-            self.outputMainText("Your do not currently have any special abilities that you can use.", True)
+            self.doMainText("Your do not currently have any special abilities that you can use.", True)
         if (self.specialAbilityArray.length > 9):
             tempDict.update({4: "<<", 8: ">>"})
         if (self.specialAbilityArray[0 + (more * 9 - 9)]):
             buttonlist[1] = 1
-            tempDict[1] = SpecialAbilities.name(self.specialAbilityArray[0 + (more * 9 - 9)])
-            SpecialAbilities.description(self.specialAbilityArray[0 + (more * 9 - 9)])
+            tempDict[1] = SPECIAL_ABILITY_STATS[self.specialAbilityArray[0 + (more * 9 - 9)]].name
+            self.doMainText(SPECIAL_ABILITY_STATS[self.specialAbilityArray[0 + (more * 9 - 9)]].description)
         if (self.specialAbilityArray[1 + (more * 9 - 9)]):
             buttonlist[2] = 1
-            tempDict[2] = SpecialAbilities.name(self.specialAbilityArray[1 + (more * 9 - 9)])
-            SpecialAbilities.description(self.specialAbilityArray[1 + (more * 9 - 9)])
+            tempDict[2] = SPECIAL_ABILITY_STATS[self.specialAbilityArray[1 + (more * 9 - 9)]].name
+            self.doMainText(SPECIAL_ABILITY_STATS[self.specialAbilityArray[1 + (more * 9 - 9)]].description)
         if (self.specialAbilityArray[2 + (more * 9 - 9)]):
             buttonlist[3] = 1
-            tempDict[3] = SpecialAbilities.name(self.specialAbilityArray[2 + (more * 9 - 9)])
-            SpecialAbilities.description(self.specialAbilityArray[2 + (more * 9 - 9)])
+            tempDict[3] = SPECIAL_ABILITY_STATS[self.specialAbilityArray[2 + (more * 9 - 9)]].name
+            self.doMainText(SPECIAL_ABILITY_STATS[self.specialAbilityArray[2 + (more * 9 - 9)]].description)
         if (self.specialAbilityArray[3 + (more * 9 - 9)]):
             buttonlist[5] = 1
-            tempDict[5] = SpecialAbilities.name(self.specialAbilityArray[3 + (more * 9 - 9)])
-            SpecialAbilities.description(self.specialAbilityArray[3 + (more * 9 - 9)])
+            tempDict[5] = SPECIAL_ABILITY_STATS[self.specialAbilityArray[3 + (more * 9 - 9)]].name
+            self.doMainText(SPECIAL_ABILITY_STATS[self.specialAbilityArray[3 + (more * 9 - 9)]].description)
         if (self.specialAbilityArray[4 + (more * 9 - 9)]):
             buttonlist[6] = 1
-            tempDict[6] = SpecialAbilities.name(self.specialAbilityArray[4 + (more * 9 - 9)])
-            SpecialAbilities.description(self.specialAbilityArray[4 + (more * 9 - 9)])
+            tempDict[6] = SPECIAL_ABILITY_STATS[self.specialAbilityArray[4 + (more * 9 - 9)]].name
+            self.doMainText(SPECIAL_ABILITY_STATS[self.specialAbilityArray[4 + (more * 9 - 9)]].description)
         if (self.specialAbilityArray[5 + (more * 9 - 9)]):
             buttonlist[7] = 1
-            tempDict[7] = SpecialAbilities.name(self.specialAbilityArray[5 + (more * 9 - 9)])
-            SpecialAbilities.description(self.specialAbilityArray[5 + (more * 9 - 9)])
+            tempDict[7] = SPECIAL_ABILITY_STATS[self.specialAbilityArray[5 + (more * 9 - 9)]].name
+            self.doMainText(SPECIAL_ABILITY_STATS[self.specialAbilityArray[5 + (more * 9 - 9)]].description)
         if (self.specialAbilityArray[6 + (more * 9 - 9)]):
             buttonlist[9] = 1
-            tempDict[9] = SpecialAbilities.name(self.specialAbilityArray[6 + (more * 9 - 9)])
-            SpecialAbilities.description(self.specialAbilityArray[6 + (more * 9 - 9)])
+            tempDict[9] = SPECIAL_ABILITY_STATS[self.specialAbilityArray[6 + (more * 9 - 9)]].name
+            self.doMainText(SPECIAL_ABILITY_STATS[self.specialAbilityArray[6 + (more * 9 - 9)]].description)
         if (self.specialAbilityArray[7 + (more * 9 - 9)]):
             buttonlist[10] = 1
-            tempDict[10] = SpecialAbilities.name(self.specialAbilityArray[7 + (more * 9 - 9)])
-            SpecialAbilities.description(self.specialAbilityArray[7 + (more * 9 - 9)])
+            tempDict[10] = SPECIAL_ABILITY_STATS[self.specialAbilityArray[7 + (more * 9 - 9)]].name
+            self.doMainText(SPECIAL_ABILITY_STATS[self.specialAbilityArray[7 + (more * 9 - 9)]].description)
         if (self.specialAbilityArray[8 + (more * 9 - 9)]):
             buttonlist[11] = 1
-            tempDict[11] = SpecialAbilities.name(self.specialAbilityArray[8 + (more * 9 - 9)])
-            SpecialAbilities.description(self.specialAbilityArray[8 + (more * 9 - 9)])
+            tempDict[11] = SPECIAL_ABILITY_STATS[self.specialAbilityArray[8 + (more * 9 - 9)]].name
+            self.doMainText(SPECIAL_ABILITY_STATS[self.specialAbilityArray[8 + (more * 9 - 9)]].description)
+        self.displayMainText()
         self.showButtons(buttonlist)
         self.doButtonChoices(tempDict)
 
