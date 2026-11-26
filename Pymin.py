@@ -1571,13 +1571,13 @@ class SaveUtils:
         # Modified from the original game's save system. I assume these are to
         # load save files from older game versions.
         if data.get('boss') is None:
-            data['boss'] = [False] * 3
+            data['boss'] = {'defeatedMinotaur': False, 'defeatedFreakyGirl': False, 'defeatedSuccubus': False}
         if data.get('knowSimpleAlchemy') is None:
-            data['knowSimpleAlchemy'] = [False] * 5
+            data['knowSimpleAlchemy'] ={'knowLustDraft': False, 'knowRejuvPot': False, 'knowExpPreg': False, 'knowBallSwell': False, 'knowMaleEnhance': False}
         if data.get('knowAdvancedAlchemy') is None:
-            data['knowAdvancedAlchemy'] = [False] * 9
+            data['knowAdvancedAlchemy'] = {'knowSLustDraft': False, 'knowSRejuvPot': False, 'knowSExpPreg': False, 'knowSBallSwell': False, 'knowGenSwap': False, 'knowMasoPot': False, 'knowBabyFree': False, 'knowPotPot': False, 'knowMilkSuppress': False}
         if data.get('knowComplexAlchemy') is None:
-            data['knowComplexAlchemy'] = [False] * 7
+            data['knowComplexAlchemy'] = {'knowSGenSwap': False, 'knowSMasoPot': False, 'knowSBabyFree': False, 'knowSPotPot': False, 'knowPussJuice': False, 'knowPheromone': False, 'knowBazoomba': False}
         if data.get('bag') is None:
             sbag = [0] * 27
             sbagStack = [0] * 27
