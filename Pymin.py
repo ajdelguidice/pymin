@@ -8215,7 +8215,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         })
         temp = []
         for item in each(self.pregArray):
-            temp.extend(item.hasPregnancy, item.type, item.totalTime, item.timeElapsed, item.extraBirthCount)
+            temp.extend((item.hasPregnancy, item.type, item.totalTime, item.timeElapsed, item.extraBirthCount))
         data['preg'] = temp
 
         sfext = savefilename.suffix.lower()
@@ -24673,29 +24673,29 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.tenBoobAffinity += Math.ceil(otherChange * self.changeMod)
         self.cowTaurAffinity += Math.ceil(otherChange * self.changeMod)
         self.humanTaurAffinity += Math.ceil(otherChange * self.changeMod)
-        if tempRace == 1:
+        if tempRace == Race.HUMAN:
             self.human += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 2:
+        elif tempRace == Race.HORSE:
             self.horse += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 3:
+        elif tempRace == Race.WOLF:
             self.wolf += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 4:
+        elif tempRace == Race.CAT:
             self.cat += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 5:
+        elif tempRace == Race.COW:
             self.cow += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 6:
+        elif tempRace == Race.LIZARD:
             self.lizard += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 7:
+        elif tempRace == Race.RABBIT:
             self.rabbit += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 8:
+        elif tempRace == Race.MOUSE:
             self.mouse += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 9:
+        elif tempRace == Race.BIRD:
             self.bird += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 10:
+        elif tempRace == Race.PIG:
             self.pig += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 11:
+        elif tempRace == Race.SKUNK:
             self.skunk += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
-        elif tempRace == 12:
+        elif tempRace == Race.BUG:
             self.bug += Math.ceil(tempChange * self.changeMod) - Math.ceil(otherChange * self.changeMod)
 
     def affinityChange(self):
