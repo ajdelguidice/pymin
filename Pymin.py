@@ -452,6 +452,11 @@ class SpecialAbility:
     SKUNK_SPRAY = 1
 
 
+class PregnancyStatus:
+    # TODO: Add pregnancy status constants here
+    ...  # 0, 1, 2, or 3
+
+
 class IDErrorObject:
     def __init__(self, name, ID):
         self.name = name
@@ -2366,7 +2371,74 @@ class PlayerItemContainer:
         return -1
 
 
+class PlayerPregnancyContainer:
+    #self.pregArray[i] is whether this slot is actually pregnant
+    #self.pregArray[i + 1] is the prenancy type
+    #self.pregArray[i + 2] is the time this pregnancy takes
+    #self.pregArray[i + 3] is the time elapsed for this pregnancy
+    #self.pregArray[i + 4] is the extra birthCount as assigned by doImpregnate
+
+    @property
+    def hasPregnancy(self) -> bool:  # self.pregArray[i]
+        return self._isPreg
+
+    @hasPregnancy.setter
+    def hasPregnancy(self, value: bool):
+        self._isPreg = bool(value)
+
+    @property
+    def type(self) -> int:  # self.pregArray[i + 1]
+        return self._type
+
+    @type.setter
+    def type(self, value: int):
+        self._type = int(value)
+
+    @property
+    def totalTime(self) -> int:  # self.pregArray[i + 2]
+        return self._totalTime
+
+    @totalTime.setter
+    def totalTime(self, value: int):
+        self._totalTime = int(value)
+
+    @property
+    def timeElapsed(self) -> int:  # self.pregArray[i + 3]
+        return self._currentTime
+
+    @timeElapsed.setter
+    def timeElapsed(self, value: int):
+        self._currentTime = int(value)
+
+    @property
+    def extraBirthCount(self) -> int:  # self.pregArray[i + 4]
+        return self._extraCount
+
+    @extraBirthCount.setter
+    def extraBirthCount(self, value: int):
+        self._extraCount = int(value)
+
+    def __init__(self, isPreg: bool = False, type: int = 0,
+                 totalTime: int = 0, currentTime: int = 0,
+                 extraCount: int = 0):
+        self.hasPregnancy = isPreg
+        self.type = type
+        self.totalTime = totalTime
+        self.timeElapsed = currentTime
+        self.extraBirthCount = extraCount
+
+    def __bool__(self):
+        # TODO: Remove once everything is ported away from this way of doing things
+        return self._isPreg
+
+    def __str__(self):
+        return f'[{self.hasPregnancy}, {self.type}, {self.totalTime}, {self.timeElapsed}, {self.extraBirthCount}]'
+
+    __repr__ = __str__
+
+
 class EnemyContainer:
+    # TODO: Lust needs a setter (doEntice cocksnake)
     @property
     def ID(self) -> int:
         return self._ID
@@ -6096,9 +6168,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.buttMod = 1
         if (self.bellyMod < 0):
             self.bellyMod = 0
-        if (self.pregArray.length < self.vagTotal * 5):
-            while (self.pregArray.length < self.vagTotal * 5):
-                self.pregArray.push(False, 0, 0, 0, 0)
+        if (self.pregArray.length < self.vagTotal):
+            while (self.pregArray.length < self.vagTotal):
+                self.pregArray.push(PlayerPregnancyContainer(False, 0, 0, 0, 0))
 
     def checkDecimal(self):
         self.cumMod = Math.round(self.cumMod * 10) / 10
@@ -8136,9 +8208,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             "bag": list(each(self.bag.items)),
             "bagStack": list(each(self.bag.stack)),
             "stash": list(each(self.stash.items)),
-            "stashStack": list(each(self.stash.stack)),
-            "preg": list(each(self.pregArray))
+            "stashStack": list(each(self.stash.stack))
         })
+        temp = []
+        for item in each(self.pregArray):
+            temp.extend(item.hasPregnancy, item.type, item.totalTime, item.timeElapsed, item.extraBirthCount)
+        data['preg'] = temp
+
         sfext = savefilename.suffix.lower()
         if sfext == ".sol":
             SaveUtils.saveSOL(data, savefilename)
@@ -8497,7 +8573,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         # trav = data['trav']
         self.bag = PlayerItemContainer(data['bag'], data['bagStack'])
         self.stash = PlayerItemContainer(data['stash'], data['stashStack'])
-        self.pregArray = Array(*data['preg'])
+        # TODO: Optimise this
+        temp = Array()
+        for i in range(0, len(data['preg']), 5):
+            temp.push(PlayerPregnancyContainer(data['preg'][i], data['preg'][i + 1], data['preg'][i + 2], data['preg'][i + 3], data['preg'][i + 4]))
+        self.pregArray = temp
 
         self.outputMainText("Your file has been successfully loaded.", True)
         self.hideNewSaveLoadDialog()
@@ -8663,7 +8743,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.gender = Gender.FEMALE
                 self.vagSize = 12
                 self.vulvaSize = 5
-                self.pregArray = Array(False, 0, 0, 0, 0)
+                self.pregArray = Array(PlayerPregnancyContainer(False, 0, 0, 0, 0))
                 self.vagTotal = 1
                 self.vagMoist = 1
                 self.clitSize = 2
@@ -8675,7 +8755,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.balls = 2
                 self.cockTotal = 1
                 self.cockMoist = 1
-                self.pregArray = Array(False, 0, 0, 0, 0)
+                self.pregArray = Array(PlayerPregnancyContainer(False, 0, 0, 0, 0))
                 self.vagTotal = 1
                 self.vagMoist = 1
                 self.vagSize = 8
@@ -8744,7 +8824,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.lizardCocks = 0
                     self.vagSize = 8
                     self.vulvaSize = 3
-                    self.pregArray = Array(False, 0, 0, 0, 0)
+                    self.pregArray = Array(PlayerPregnancyContainer(False, 0, 0, 0, 0))
                     self.gender = 2
                     self.vagTotal = 1
                     self.vagMoist = 1
@@ -10838,9 +10918,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif ID == Item.EXP_PREG:
             if (self.pregCheck(0)):
                 self.doMainText(f"Drinking this potion, you can feel your {self.bellyDesc()} belly quiver, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You can almost hear the {self.skinDesc()} creak, growing taut!", True)
-                for i in range(0, self.pregArray.length, 5):
-                    if (self.pregArray[i]):
-                        self.pregArray[i + 3] += 50
+                for item in each(self.pregArray):
+                    if (item.hasPregnancy):
+                        item.timeElapsed += 50
                 self.doMainText(f"\n\nA few moments pass before you gather yourself, standing upright once more. You are slightly more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though it'll take a bit to get used to the sudden increase in size.")
             else:
                 self.doMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely feel like you have to go to the bathroom all of a sudden...", True)
@@ -10883,9 +10963,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         elif ID == Item.S_EXP_PREG:
             if (self.pregCheck(0)):
                 self.doMainText(f"Drinking this potion, you can feel your {self.bellyDesc()} belly shake, the offspring inside moving about. With a groan, you double over for a moment, your belly stretching beneath your hands. You're pretty sure you can hear the {self.skinDesc()} creak, growing taut, to the point where you fear it will tear!", True)
-                for i in range(0, self.pregArray.length, 5):
-                    if (self.pregArray[i]):
-                        self.pregArray[i + 3] += 120
+                for item in each(self.pregArray):
+                    if (item.hasPregnancy):
+                        item.timeElapsed += 120
                 self.doMainText(f"\n\nA few moments pass before you gather yourself, standing upright once more, having a bit of difficulty doing so. You are much more swollen now, wielding a {self.bellyDesc()} gut instead. Fortunately, both you and your offspring are uninjured, though you're unsure if you'll be able to get used to this sudden increase in size...")
             else:
                 self.doMainText("For some reason, you thought it necessary to drink this potion. It... doesn't seem to have any effect. Though you do strangely wish there was a bathroom here all of a sudden...", True)
@@ -10926,7 +11006,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.bugCocks = 0
                 self.vagBellyChange(1, 1)
                 self.vagTotal = 1
-                self.pregArray = Array(False, 0, 0, 0, 0)
+                self.pregArray = Array(PlayerPregnancyContainer(False, 0, 0, 0, 0))
                 self.vagSize = 1
                 self.vulvaSize = 1
                 self.clitSize = 1
@@ -10942,10 +11022,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.vagTotal = 0
                 i = 0
                 while (i < self.pregArray.length):
-                    if (self.pregArray[i]):
-                        i += 5
+                    if (self.pregArray[i].hasPregnancy):
+                        i += 1
                     else:
-                        self.pregArray.splice(i, 5)
+                        self.pregArray.removeAt(i)
                 self.vulvaSize = 0
                 self.clitSize = 0
                 self.gender = Gender.MALE
@@ -11007,10 +11087,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.vagBellyChange(self.cockSize, self.cockTotal)
                 self.vagTotal = self.cockTotal
                 for i in range(self.vagTotal):
-                    if (self.pregArray.length / 5 < 1):
-                        self.pregArray = Array(False, 0, 0, 0, 0)
-                    elif (self.pregArray.length / 5 < self.vagTotal):
-                        self.pregArray.push(False, 0, 0, 0, 0)
+                    # TODO: I'm pretty sure this "< 1" case can be removed
+                    if (self.pregArray.length < 1):
+                        self.pregArray = Array(PlayerPregnancyContainer(False, 0, 0, 0, 0))
+                    elif (self.pregArray.length < self.vagTotal):
+                        self.pregArray.push(PlayerPregnancyContainer(False, 0, 0, 0, 0))
                 self.vagSize = self.cockSize
                 self.vulvaSize = self.ballSize
                 self.clitSize = self.ballSize
@@ -11036,10 +11117,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.vagTotal = 0
                 i = 0
                 while (i < self.pregArray.length):
-                    if (self.pregArray[i]):
-                        i += 5
+                    if (self.pregArray[i].hasPregnancy):
+                        i += 1
                     else:
-                        self.pregArray.splice(i, 5)
+                        self.pregArray.removeAt(i)
                 self.vulvaSize = 0
                 self.clitSize = 0
                 self.gender = Gender.MALE
@@ -16521,9 +16602,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             def doListen():
                                 self.outputMainText("The strange woman lies in bed with you for another hour, cuddling up and resting your bellies side-to-side. But eventually she realizes how much time she has spent indulging herself at your 'expense'. \"I'm sorry to have taken so long to get that out of my system, but... it was very enjoyable indeed. Here, sweetie, a gift from my business. I'm actually a breeder of pets for people and this helps with the process. I do love the big swollen bellies so~ You could probably sell it for a nice chunk of change, or maybe you can find some use for it too.\" She gives you a wink as she slips a potion into your hand.\n\nThen she cradles her belly as she slinks off the bed and stands, her nipples blotching her shirt as she dons it. When she reaches for her shorts, however, she realizes they're a bit... unwearable now. Her fluffy tail curls down between her legs, snugging up against the underside of her belly on the other side like a pair of panties. She gives you another wink. \"Don't worry, I'll be alright. Wouldn't be the first time~\" and she skips out the door, so absolutely giddy from her time with you.", True)
                                 if (self.pregCheck(0)):
-                                    for i in range(0, self.pregArray.length, 5):
-                                        if (self.pregArray[i]):
-                                            self.pregArray[i + 3] += 20
+                                    for item in each(self.pregArray):
+                                        if (item.hasPregnancy):
+                                            item.timeElapsed += 20
                                 self.itemAdd(Item.BREEDER_POT)
                                 self.hrs = 3
                                 self.doEnd()
@@ -19518,12 +19599,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                                 self.doMainText(", while your cum-inflated womb sloshes with each step")
                                             self.doMainText("...")
                                             if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1)):
-                                                for i in range(0, self.pregArray.length, 5):
-                                                    if (not self.pregArray[i]):
-                                                        self.pregArray[i] = True
-                                                        self.pregArray[i + 1] = 501
-                                                        self.pregArray[i + 2] = 230
-                                                        self.pregArray[i + 3] = 220
+                                                for item in each(self.pregArray):
+                                                    if (not item.hasPregnancy):
+                                                        item.hasPregnancy = True
+                                                        item.type = 501
+                                                        item.totalTime = 230
+                                                        item.timeElapsed = 220
                                                         break
                                             elif (self.vagTotal > 0):
                                                 self.doMultiImpregnate(101, 12)
@@ -19568,12 +19649,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                             self.doMainText("The stuff feels rather familiar, actually. Well, as far as you can tell. Then after a few seconds it dawns on you. The machine is pumping your semen back into you! It fills your hole, attempting to make you pregnant with your own cum.")
                                             if (self.vagLimit() > 72 and self.vagTotal > 0 and self.pregCheck(1) and getCum > 5000):
                                                 self.doMainText(" With your hole so deep, the cum flows down into your womb, away from the inseminator. The stuff pools inside, your belly swelling and distending as it fills with the stuff. Without the injector detecting a full vagina, it just keeps dumping your own semen into you, making you look like you're pregnant just from the abundant amount of seed within. It sloshes as you climax, finally splashing some back out against the object, triggering it to finish.\n\nHaving spent so much spunk in the one hole, the injector doesn't seem to bother anymore, overloaded by the extended injection period.")
-                                                for i in range(0, self.pregArray.length, 5):
-                                                    if (not self.pregArray[i]):
-                                                        self.pregArray[i] = True
-                                                        self.pregArray[i + 1] = 502
-                                                        self.pregArray[i + 2] = 230
-                                                        self.pregArray[i + 3] = 220
+                                                for item in each(self.pregArray):
+                                                    if (not item.hasPregnancy):
+                                                        item.hasPregnancy = True
+                                                        item.type = 502
+                                                        item.totalTime = 230
+                                                        item.timeElapsed = 220
                                                         break
                                             else:
                                                 if (self.vagTotal > 1):
@@ -20759,15 +20840,15 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                                     self.doMainText(" Yet, you don't have much time to enjoy your quivering state before you find yourself beginning to shrink, sliding down one side of the hill as you're caught off balance. You become slick with your own lubrication as you roll through the messy grass and splash down in your own puddle. Picking yourself up, the slime sticking to your body in webs and strands, you take a moment to flick off some of the goop before heading back to the cave.")
                                     if (self.pregCheck(1) and Utils.percent() <= 60 and self.vagSize * self.vagSizeMod > 56):
                                         self.doMainText(" And you're quite surprised to find you're sporting a much larger belly. You have no idea how it could have possibly happened, but your mind was rather far-off while you were up there. Placing your hand on it, you can feel a body writhe about, squirming inside of you, and in no rush to come out it seems. It seems like you got pregnant quite rapidly?")
-                                        for i in range(0, self.pregArray.length, 5):
-                                            if (not self.pregArray[i]):
-                                                self.pregArray[i] = True
+                                        for item in each(self.pregArray):
+                                            if (not item.hasPregnancy):
+                                                item.hasPregnancy = True
                                                 if (Utils.percent() <= 50):
-                                                    self.pregArray[i + 1] = 201
+                                                    item.type = 201
                                                 else:
-                                                    self.pregArray[i + 1] = 202
-                                                self.pregArray[i + 2] = 230
-                                                self.pregArray[i + 3] = 220
+                                                    item.type = 202
+                                                item.totalTime = 230
+                                                item.timeElapsed = 220
                                                 break
                                         self.doLust(-Math.floor(self.sen / 2), 2, 1, 2)
                                     else:
@@ -21949,7 +22030,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                             self.hrs = 3
                         elif self.buttonChoice == 11:
                             self.doMainText("You push the bottle of milk up against the statue's pussy, shaking it to try and get some milk inside. A strange act, but you seem to get a response as white wispy fumes come flowing back out from the hole and begin to swirl around yourself. You gasp as your belly begins to swell, filling with something warm and liquid, sloshing about within. You continue to swell more and more, until you're looking rather pregnant!\n\nThen, just before a glint of light obscures your vision, you could almost swear that the statue gave you a joking wink, and then you find yourself teleported outside of the valley. Left with a much larger gut, you cradle it the best you can as you try to heft it back to town...", True)
-                            self.pregArray.push(True, 504, 208, 200, 0)
+                            self.pregArray.push(PlayerPregnancyContainer(True, 504, 208, 200, 0))
                             if (self.bag.hasItem(Item.MILK_BOTTLE)):
                                 self.loseManyItem(Item.MILK_BOTTLE, 1)
                             else:
@@ -23104,12 +23185,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText(f"Feeling the warmth emanating from beneath your {self.clothesBottom()}, the cock-snake slithers in {self.legWhere(1)} your {self.legDesc(2)}. The phallic head nuzzles up against your {self.vulvaDesc()} lips, smearing around some of your lubricant. Its nose bumps against your {self.clitDesc()} clit{self.plural(2)}, testing your arousal until you quiver beneath.", True)
                 if (self.pregCheck(1)):
                     self.doMainText(f"\n\nSatisfied with what it sees, the wide-rimmed head pushes its way into your folds. You can feel it stretch your walls and move around inside of you, exploring your warm and soft inner-depths. The rest of its tail wraps around your {self.legDesc(1)}, holding tightly and anchoring itself. Then, its muscles begin to flex and coil, yanking the head back through your passage. The head barely emerges for a second to make sure everything is fine, before thrusting itself back in. Again and again, pushing and pulling itself through your tunnel. The snake is fucking you!\n\nAnd it's quite good at its job as well. The strong muscular body flexes and pulses within, matching your warmth and testing the limits of your pussy. In your state, you can't help but gasp and moan, quickly coming to climax. You shout in ecstasy as the sensations flow through you, orgasm wracking your body.\n\nIn that moment of peak pleasure, the snake lets go of your {self.legDesc(1)} and slips through your cervix as the doorway opens with your high, completely disappearing into your womb.\n\nIn the few moments of bliss, your hands press down onto your bloated belly, feeling the phallic lube-covered snake squirm around and make itself comfortable inside of you...")
-                    for i in range(0, self.pregArray.length, 5):
-                        if (not self.pregArray[i]):
-                            self.pregArray[i] = True
-                            self.pregArray[i + 1] = 503
-                            self.pregArray[i + 2] = 240
-                            self.pregArray[i + 3] = 150
+                    for item in each(self.pregArray):
+                        if (not item.hasPregnancy):
+                            item.hasPregnancy = True
+                            item.type = 503
+                            item.totalTime = 240
+                            item.timeElapsed = 150
                             break
                     self.cockSnakePreg += 50
                     self.doLust(-Math.floor(self.sen / 2), 2, 2)
@@ -23227,12 +23308,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText(f" The object is so big that it stretches your poor cunt{self.plural(2)} even larger, making sure there's enough room.")
                         self.vagSize += 2
                     self.doMainText(f"\n\nAnd that was just the first...\n\nAgain and again, you can feel something slip into your womb. Yet, as her tentacles work at your {self.clitDesc()} clit{self.plural(2)}, you can do nothing but cry out in pleasure with each pass. Soon, you find yourself groping your own belly as it swells beneath your hands, while hers deflates, emptying its contents into you. Eventually, you look as pregnant as she did, the things inside shivering slightly at the warmth of their new home...\n\nHappy with her spawning season, the octopus girl gathers her own wits, relinquishing you from her tentacles and kissing your enormous belly. Then, she turns towards the ocean and dives back into it, disappearing until the next time she needs a surrogate...")
-                    for i in range(0, self.pregArray.length, 5):
-                        if (not self.pregArray[i]):
-                            self.pregArray[i] = True
-                            self.pregArray[i + 1] = 200
-                            self.pregArray[i + 2] = 216
-                            self.pregArray[i + 3] = 180
+                    for item in each(self.pregArray):
+                        if (not item.hasPregnancy):
+                            item.hasPregnancy = True
+                            item.type = 200
+                            item.totalTime = 216
+                            item.timeElapsed = 180
                             break
                 else:
                     self.doMainText("\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals...")
@@ -23253,12 +23334,12 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.doMainText(f" The object is so big that it stretches your poor cunt{self.plural(2)} even larger, making sure there's enough room.")
                         self.vagSize += 3
                     self.doMainText(f"\n\nAnd that was just the first...\n\nAgain and again, you can feel something slip into your womb. Yet, as her tentacles work at your {self.clitDesc()} clit{self.plural(2)}, you can nothing but cry out in pleasure with each pass. Soon, you find yourself groping your own belly as it swells beneath your hands, while hers deflates, emptying its contents into you. Eventually, you look as pregnant as she did, even the extra bit she gained from after you filled her with your cum, the things inside shivering slightly at the warmth of their new home...\n\nEspecially happy with how well her spawning season went this week, the octopus girl gathers her own wits, relinquishing you from her tentacles and kissing your enormous belly. Then, she turns towards the ocean and dives back into it, disappearing until the next time she needs a surrogate...")
-                    for i in range(0, self.pregArray.length, 5):
-                        if (not self.pregArray[i]):
-                            self.pregArray[i] = True
-                            self.pregArray[i + 1] = 200
-                            self.pregArray[i + 2] = 252
-                            self.pregArray[i + 3] = 216
+                    for item in each(self.pregArray):
+                        if (not item.hasPregnancy):
+                            item.hasPregnancy = True
+                            item.type = 200
+                            item.totalTime = 252
+                            item.timeElapsed = 216
                             break
                 else:
                     self.doMainText("\n\nHowever, she seems to quickly notice that you already have something growing inside of you without room for more. With a smile, she removes her tentacles and draws up your body. She leans in yet again for another kiss, this time on your forehead, her breasts surrounding your face. Then she turns and leaps back into the water with a splash, leaving you wracked with ecstasy and larger genitals...")
@@ -23849,9 +23930,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                         self.hrs += 1
                 elif (self.pregCheck(0)):
                     self.doMainText("\n\nYour womb feels warmer and more active as your belly rapidly swells a bit. The gestation of the offspring inside leaps forward, a sudden increase in maturation thanks to the dust.")
-                    for i in range(0, self.pregArray.length, 5):
-                        if (self.pregArray[i]):
-                            self.pregArray[i + 3] += 10
+                    for item in each(self.pregArray):
+                        if (item.hasPregnancy):
+                            item.timeElapsed += 10
                 elif (self.gender != Gender.ANDRO):
                     self.doMainText("\n\nYour loins feel suddenly more fertile. If you can consider the desire to fuck as being more 'fertile'...")
                     self.doLust(20, 1)
@@ -23995,17 +24076,17 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         self.pregnancyTime = 0
         birthCount = 0
 
-        for i in range(0, self.pregArray.length, 5):
-            if (self.pregArray[i]):
-                if (self.pregArray[i + 3] + Math.ceil(time * self.pregRate) > self.pregArray[i + 2] + self.pregTimeMod):
-                    self.pregArray[i] = False
-                    self.pregArray[i + 3] = 0
-                    self.doBirth(self.pregArray[i + 1], self.pregArray[i + 4], birthCount)
+        for item in each(self.pregArray):
+            if (item.hasPregnancy):
+                if (item.timeElapsed + Math.ceil(time * self.pregRate) > item.totalTime + self.pregTimeMod):
+                    item.hasPregnancy = False
+                    item.timeElapsed = 0
+                    self.doBirth(item.type, item.extraBirthCount, birthCount)
                     birthCount += 1
                 else:
-                    if (self.pregArray[i + 1] != 503):
-                        self.pregArray[i + 3] += Math.ceil(time * self.pregRate)
-                    self.pregnancyTime += self.pregArray[i + 3]
+                    if (item.type != 503):
+                        item.timeElapsed += Math.ceil(time * self.pregRate)
+                    self.pregnancyTime += item.timeElapsed
 
         if (self.pregnancyTime >= 80 and self.pregnancyTime < 140 and self.pregStatus < 1):
             self.pregStatus = 1
@@ -24078,10 +24159,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 birthCount = 0
                 self.doMainText(f"\n\nYou feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your {self.clothesBottom()} becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your {self.vulvaDesc()} lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your {self.legDesc(1)}. You gasp and regain yourself, the snake slithering away. It must have been too hungry too survive inside you any longer...")
                 self.cockSnakePreg = 0
-                for i in range(0, self.pregArray.length, 5):
-                    if (self.pregArray[i + 1] == 503):
-                        self.pregArray[i] = False
-                        self.pregArray[i + 3] = 0
+                for item in each(self.pregArray):
+                    if (item.type == 503):
+                        item.hasPregnancy = False
+                        item.timeElapsed = 0
                         if (birthCount == 2):
                             self.doMainText(f"\n\nAnd it's not the first; you shudder again as another snake in another womb escapes out from your {self.clothesBottom()} and down your {self.legDesc(1)}, giving up on you like the first.")
                         if (birthCount == 3):
@@ -25727,10 +25808,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             if (sizeChange < 0 or totalChange < 0):
                 self.doMainText(f"\n\nWith the changing size of your passageway, you feel a sudden squirming within your womb. You brace yourself as you feel the cock-snake within slither its way through your passage. Your {self.clothesBottom()} becomes drenched by your feminine lubricant as a bunch of it splashes out, the phallic head of the snake breaching your {self.vulvaDesc()} lips. Its body constantly drags over your sensitive flesh as it flees what is about to come, making you shudder in mild orgasm as the creature descends down your {self.legDesc(1)}. You gasp and regain yourself, the snake slithering away. It must have been frightened by the shrinking of its home and fleed...")
                 self.cockSnakePreg = 0
-                for i in range(0, self.pregArray.length, 5):
-                    if (self.pregArray[i + 1] == 503):
-                        self.pregArray[i] = False
-                        self.pregArray[i + 3] = 0
+                for item in each(self.pregArray):
+                    if (item.type == 503):
+                        item.hasPregnancy = False
+                        item.timeElapsed = 0
                         if (birthCount == 2):
                             self.doMainText(f"\n\nAnd it's not the first; you shudder again as another snake in another womb escapes out from your {self.clothesBottom()} and down your {self.legDesc(1)}, fleeing like the first.")
                         if (birthCount == 3):
@@ -25758,10 +25839,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.clitSize = 0
             i = 0
             while (i < self.pregArray.length):
-                if (self.pregArray[i]):
-                    i += 5
+                if (self.pregArray[i].hasPregnancy):
+                    i += 1
                 else:
-                    self.pregArray.splice(i, 5)
+                    self.pregArray.removeAt(i)
 
         # Gain vag when have none
         elif (self.vagTotal + totalChange > 0 and self.vagTotal < 1):
@@ -25782,9 +25863,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.doMainText("\n\nYou have now graduated from androgynous to female, congratulations!")
                 self.gender = Gender.FEMALE
             for i in range(totalChange):
-                if (self.pregArray.length / 5 >= self.vagTotal):
+                if (self.pregArray.length >= self.vagTotal):
                     break
-                self.pregArray.push(False, 0, 0, 0, 0)
+                self.pregArray.push(PlayerPregnancyContainer(False, 0, 0, 0, 0))
 
         # Gain vag
         elif (totalChange > 0 and self.vagTotal > 0):
@@ -25796,9 +25877,9 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.vagTotal += totalChange
             self.vagSize += sizeChange
             for i in range(totalChange):
-                if (self.pregArray.length / 5 >= self.vagTotal):
+                if (self.pregArray.length >= self.vagTotal):
                     break
-                self.pregArray.push(False, 0, 0, 0, 0)
+                self.pregArray.push(PlayerPregnancyContainer(False, 0, 0, 0, 0))
 
         # Loose vag
         elif (totalChange < 0 and self.vagTotal + totalChange > 0):
@@ -25809,9 +25890,10 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.vagSize += sizeChange
             while (totalChange < 0):
                 if (self.pregCheck(1)):
-                    for i in range(0, self.pregArray.length, 5):
-                        if (not self.pregArray[i]):
-                            self.pregArray.splice(i, 5)
+                    # TODO: Change to while loop
+                    for i in range(self.pregArray.length):
+                        if (not self.pregArray[i].hasPregnancy):
+                            self.pregArray.removeAt(i)
                             totalChange += 1
                             break
                 else:
@@ -26010,16 +26092,16 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def pregCheck(self, amount: int) -> bool:
         if (amount == 0):
-            for i in range(0, self.pregArray.length, 5):
-                if (self.pregArray[i]):
+            for item in each(self.pregArray):
+                if (item.hasPregnancy):
                     return True
         elif (amount == 1):
-            for i in range(0, self.pregArray.length, 5):
-                if (not self.pregArray[i]):
+            for item in each(self.pregArray):
+                if (not item.hasPregnancy):
                     return True
         elif (amount > 1):
-            for i in range(0, self.pregArray.length, 5):
-                if (self.pregArray[i + 1] == amount):
+            for item in each(self.pregArray):
+                if (item.type == amount):
                     return True
         return False
 
@@ -26045,63 +26127,62 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             while (Utils.percent() < self.extraPregChance + 10 - 4 * (i + 1) * i):
                 extra += 1
                 i += 1
-            for i in range(0, self.pregArray.length, 5):
-                # TODO: I'm pretty sure this is pregnancy time, move this elsewhere
-                if (not self.pregArray[i]):
+            for item in each(self.pregArray):
+                if (not item.hasPregnancy):
                     if erace == 1:
-                        self.pregArray[i + 2] = 140 + Math.floor(Utils.percent() / 5) + extra * 70
-                        self.pregArray[i + 4] = extra
+                        item.totalTime = 140 + Math.floor(Utils.percent() / 5) + extra * 70
+                        item.extraBirthCount = extra
                     elif erace == 2:
-                        self.pregArray[i + 2] = 210 + Math.floor(Utils.percent() / 5) + extra * 100
-                        self.pregArray[i + 4] = extra
+                        item.totalTime = 210 + Math.floor(Utils.percent() / 5) + extra * 100
+                        item.extraBirthCount = extra
                     elif erace == 3:
-                        self.pregArray[i + 2] = 110 + Math.floor(Utils.percent() / 5) + extra * 40
-                        self.pregArray[i + 4] = extra * 2
+                        item.totalTime = 110 + Math.floor(Utils.percent() / 5) + extra * 40
+                        item.extraBirthCount = extra * 2
                     elif erace == 4:
-                        self.pregArray[i + 2] = 90 + Math.floor(Utils.percent() / 5) + extra * 35
-                        self.pregArray[i + 4] = extra * 2
+                        item.totalTime = 90 + Math.floor(Utils.percent() / 5) + extra * 35
+                        item.extraBirthCount = extra * 2
                     elif erace == 5:
-                        self.pregArray[i + 2] = 240 + Math.floor(Utils.percent() / 5) + extra * 120
-                        self.pregArray[i + 4] = extra
+                        item.totalTime = 240 + Math.floor(Utils.percent() / 5) + extra * 120
+                        item.extraBirthCount = extra
                     elif erace == 6:
-                        self.pregArray[i + 2] = 80 + Math.floor(Utils.percent() / 10) + extra * 60
-                        self.pregArray[i + 4] = extra * 3
+                        item.totalTime = 80 + Math.floor(Utils.percent() / 10) + extra * 60
+                        item.extraBirthCount = extra * 3
                     elif erace == 7:
-                        self.pregArray[i + 2] = 50 + Math.floor(Utils.percent() / 10) + extra * 40
-                        self.pregArray[i + 4] = extra * 3
+                        item.totalTime = 50 + Math.floor(Utils.percent() / 10) + extra * 40
+                        item.extraBirthCount = extra * 3
                     elif erace == 8:
-                        self.pregArray[i + 2] = 40 + Math.floor(Utils.percent() / 10) + extra * 60
-                        self.pregArray[i + 4] = extra * 5
+                        item.totalTime = 40 + Math.floor(Utils.percent() / 10) + extra * 60
+                        item.extraBirthCount = extra * 5
                     elif erace == 9:
-                        self.pregArray[i + 2] = 90 + Math.floor(Utils.percent() / 10) + extra * 40
-                        self.pregArray[i + 4] = extra
+                        item.totalTime = 90 + Math.floor(Utils.percent() / 10) + extra * 40
+                        item.extraBirthCount = extra
                     elif erace == 10:
-                        self.pregArray[i + 2] = 180 + Math.floor(Utils.percent() / 10) + extra * 70
-                        self.pregArray[i + 4] = extra * 2
+                        item.totalTime = 180 + Math.floor(Utils.percent() / 10) + extra * 70
+                        item.extraBirthCount = extra * 2
                     elif erace == 11:
-                        self.pregArray[i + 2] = 120 + Math.floor(Utils.percent() / 10) + extra * 50
-                        self.pregArray[i + 4] = extra * 2
+                        item.totalTime = 120 + Math.floor(Utils.percent() / 10) + extra * 50
+                        item.extraBirthCount = extra * 2
                     elif erace == 12:
-                        self.pregArray[i + 2] = 50 + Math.floor(Utils.percent() / 10) + extra * 40
-                        self.pregArray[i + 4] = extra * 4
+                        item.totalTime = 50 + Math.floor(Utils.percent() / 10) + extra * 40
+                        item.extraBirthCount = extra * 4
                     elif erace == 100:
-                        self.pregArray[i + 2] = 80 + Math.floor(Utils.percent() / 10) + extra * 30
-                        self.pregArray[i + 4] = extra * 2
+                        item.totalTime = 80 + Math.floor(Utils.percent() / 10) + extra * 30
+                        item.extraBirthCount = extra * 2
                     elif erace == 101:
-                        self.pregArray[i + 2] = 220 + Math.floor(Utils.percent() / 5) + extra * 110
-                        self.pregArray[i + 4] = extra
+                        item.totalTime = 220 + Math.floor(Utils.percent() / 5) + extra * 110
+                        item.extraBirthCount = extra
                     elif erace == 307:
-                        self.pregArray[i + 2] = 280 + Math.floor(Utils.percent() / 5) + extra * 140
-                        self.pregArray[i + 4] = extra
+                        item.totalTime = 280 + Math.floor(Utils.percent() / 5) + extra * 140
+                        item.extraBirthCount = extra
                     elif erace == 308:
-                        self.pregArray[i + 2] = 80 + Math.floor(Utils.percent() / 5) + extra * 30
-                        self.pregArray[i + 4] = extra * 2
-                    self.pregArray[i + 1] = erace
-                    self.pregArray[i] = True
+                        item.totalTime = 80 + Math.floor(Utils.percent() / 5) + extra * 30
+                        item.extraBirthCount = extra * 2
+                    item.type = erace
+                    item.hasPregnancy = True
                     break
 
     def doBirth(self, pregnancyType: int, extra: int, birthCount: int):
-        if (self.pregArray.length > self.vagTotal * 5):
+        if (self.pregArray.length > self.vagTotal):
             self.vagChange(0, 1)
         self.hrs += 1
         if (birthCount == 0):
@@ -28649,6 +28730,7 @@ class PyminMain:
             }
         }
         if temp != self._previousPreferences:
+            # TODO: This does a save the first time savePreferences is called even if nothing has changed
             TOML.write(GAME_DIR / 'Nimin_Prefs.toml', temp)
             self._previousPreferences = temp
 
