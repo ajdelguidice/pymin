@@ -10,7 +10,7 @@ from as3lib.flash.ui import Keyboard
 import as3lib.interface_tk as itk
 from copy import deepcopy
 from dataclasses import dataclass
-from functools import partial, cache
+from functools import partial
 from miniamf import sol
 from miniamf.amf3 import ByteArray
 from pathlib import Path, PurePath
@@ -73,8 +73,52 @@ VALID_SAVE_FORMATS = ('.xml', '.toml', '.sol', '.nim')
 
 
 RANGE9_BUTTON_MAP = (1, 2, 3, 5, 6, 7, 9, 10, 11)
+
+# Maps choicePage, buttonNum to a bag slot
+BAG_BUTTON_MAP = frozendict({
+    1: frozendict({
+        1: 0,
+        2: 1,
+        3: 2,
+        5: 3,
+        6: 4,
+        7: 5,
+        9: 6,
+        10: 7,
+        11: 8
+    }),
+    2: frozendict({
+        1: 9,
+        2: 10,
+        3: 11,
+        5: 12,
+        6: 13,
+        7: 14,
+        9: 15,
+        10: 16,
+        11: 17
+    }),
+    3: frozendict({
+        1: 18,
+        2: 19,
+        3: 20,
+        5: 21,
+        6: 22,
+        7: 23,
+        9: 24,
+        10: 25,
+        11: 26
+    })
+})
+
+
+SIDE_PANEL_BUTTON_POSITIONS = ((823, 210), (906, 210), (989, 210), (1072, 210), (823, 242), (906, 242), (989, 242), (1072, 242))
 SIDE_PANEL_BUTTON_NAMES = ('looksbutton', 'statsbutton', 'effectsbutton', 'helpbutton', 'levelsbutton', 'gearbutton', 'titlesbutton', 'creditsbutton')
 SIDE_PANEL_BUTTON_TEXT = ('Look', 'Stats', 'Effects', 'Help', 'Levels', 'Gear', 'Titles', 'Credits')
+
+
+BUTTON_POSITIONS = frozendict({1: (200, 30), 2: (360, 30), 3: (520, 30), 4: (680, 30), 5: (200, 96), 6: (360, 96), 7: (520, 96), 8: (680, 96), 9: (200, 162), 10: (360, 162), 11: (520, 162), 12: (680, 162)})
+AMOUNT_POSITIONS = frozendict({1: (310, 63), 2: (470, 63), 3: (630, 63), 4: (790, 63), 5: (310, 129), 6: (470, 129), 7: (630, 129), 8: (790, 129), 9: (310, 195), 10: (470, 195), 11: (630, 195), 12: (790, 195)})
 
 
 # NOTE: These can not be enums because of the save system
@@ -1796,24 +1840,6 @@ class SaveUtils:
 
     def loadXML(filename: str | PurePath) -> dict:
         return SaveUtils.load_fixupData(SaveUtils.loadXML_Raw(filename))
-
-
-class Calc:
-    @cache
-    def showButtons(buttonNum: int) -> tuple:
-        return (200 + (160 * ((buttonNum - 1) % 4)), 30 + (66 * Math.floor((buttonNum - 1) / 4)))
-
-    @cache
-    def showButtonsBag(buttonNum: int, choicePage: int) -> int:
-        return (buttonNum - (Math.floor(buttonNum / 4) + 1)) + (choicePage * 9 - 9)
-
-    @cache
-    def showAmount(buttonNum: int) -> tuple:
-        return (310 + (160 * ((buttonNum - 1) % 4)), 63 + (66 * Math.floor((buttonNum - 1) / 4)))
-
-    @cache
-    def showSidePanel(buttonNum: int) -> tuple:
-        return (823 + (83 * (buttonNum % 4)), 210 + (32 * Math.floor(buttonNum / 4)))
 
 
 class Items:
@@ -5864,11 +5890,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 self.window._children[f'button{i}'].enabled = True
                 self.window._children[f'button{i}'].text = text
             else:
-                tempcalc = Calc.showButtons(i)
+                tempcalc = BUTTON_POSITIONS[i]
                 self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, text=text, command=getattr(self, f'buttonEvent{i}'))
                 self.buttonsVisible[i] = True
             if i not in {4, 8, 12}:
-                tempI = Calc.showButtonsBag(i, self.choicePage)
+                tempI = BAG_BUTTON_MAP[self.choicePage][i]
                 if (text and storage.stack[tempI] > 1):
                     self.showAmount(i)
                     self.writeAmount(i, f'{storage.stack[tempI]}')
@@ -27588,7 +27614,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                 if self.buttonsVisible[i]:
                     self.window._children[f'button{i}'].enabled = True
                 else:
-                    tempcalc = Calc.showButtons(i)
+                    tempcalc = BUTTON_POSITIONS[i]
                     self.window.addWidget(PyminButton, 'display', f'button{i}', x=tempcalc[0], y=tempcalc[1], width=140, height=46, font=self.font, command=getattr(self, f'buttonEvent{i}'))
                     self.buttonsVisible[i] = True
 
@@ -27618,7 +27644,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     def showAmount(self, buttonNum: int):
         if not self.amountLabelsVisible[buttonNum]:
-            tempcalc = Calc.showAmount(buttonNum)
+            tempcalc = AMOUNT_POSITIONS[buttonNum]
             self.window.addWidget(PyminLabel, 'display', f'amountlabel{buttonNum}', x=tempcalc[0], y=tempcalc[1], width=30, height=15, font=self.font, text='000')
             self.amountLabelsVisible[buttonNum] = True
 
@@ -27634,7 +27660,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
     def showSidePanel(self):
         if not self.sidepanelvisible:
             for i in range(8):
-                tempcalc = Calc.showSidePanel(i)
+                tempcalc = SIDE_PANEL_BUTTON_POSITIONS[i]
                 self.window.addWidget(PyminButton, 'display', SIDE_PANEL_BUTTON_NAMES[i], x=tempcalc[0], y=tempcalc[1], width=80, height=30, font=self.font, text=SIDE_PANEL_BUTTON_TEXT[i], command=getattr(self, f'side{i + 1}Event'))
             self.window.addHTMLScrolledText('display', 'textside', x=823, y=275, width=330, height=315, font=self.font, border=self.scrolledTextBorders, text='Test', cursor='arrow', wrap='word', background=self.backgroundColor, foreground=self.textColor)
             self.displaySideText()
