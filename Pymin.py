@@ -27226,7 +27226,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         if self.skinColor == 3:
             return "red "
         if self.skinColor == 4:
-            return "brown "
+            return "blue "
         if self.skinColor == 5:
             return "coral pink "
         if self.skinColor == 6:
