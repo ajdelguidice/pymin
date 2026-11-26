@@ -28358,166 +28358,288 @@ class PyminMain:
         self.oTextColor = self.textColor
         self.savePreferences()
 
+    def getPrefs_TOML(self, file: str | PurePath) -> dict:
+        prefs = {'game': {}, 'options': {}, 'interface': {}, 'grammar': {}, 'gameTweaks': {}, 'debugTweaks': {}}
+
+        with file.open('rb') as f:
+            temp = TOML.readFile(f)
+        game = temp.get('game', {})
+        prefs['game']['fontSize'] = int(game.get('fontSize', 11))
+        prefs['game']['fontBold'] = bool(game.get('fontBold', False))
+        prefs['game']['theme'] = str(game.get('theme', '#FFFFFF'))
+        prefs['game']['fontColor'] = str(game.get('fontColor', '#000000'))
+        prefs['game']['showSide'] = bool(game.get('showSide', True))
+        prefs['game']['nsldSortOrder'] = int(game.get('nsldSortOrder', 0))
+
+        options = temp.get('options', {})
+        prefs['options']['saveLocation'] = options.get('saveLocation', self.saveLocation)
+        prefs['options']['solMode'] = bool(options.get('solMode', False))
+        prefs['options']['fixedResMode'] = bool(options.get('fixedResMode', False))
+        prefs['options']['customFontColor'] = bool(options.get('customFontColor', False))
+        prefs['options']['oFontColor'] = str(options.get('oFontColor', '#FFFFFF'))
+        prefs['options']['customThemeColor'] = bool(options.get('customThemeColor', False))
+        prefs['options']['oThemeColor'] = str(options.get('oThemeColor', '#000000'))
+
+        interface = temp.get('interface', {})
+        prefs['interface']['useNiminTheme'] = bool(interface.get('useNiminTheme', False))
+        prefs['interface']['scrolledTextBorders'] = bool(interface.get('scrolledTextBorders', False))
+        prefs['interface']['originalNewGameButtonSize'] = bool(interface.get('originalNewGameButtonSize', False))
+        prefs['interface']['staticDoLevelUPButtons'] = bool(interface.get('staticDoLevelUPButtons', False))
+        prefs['interface']['useExpandedSaveDialog'] = bool(interface.get('useExpandedSaveDialog', False))
+        prefs['interface']['useNewStash'] = bool(interface.get('useNewStash', False))
+        prefs['interface']['helpToWiki'] = bool(interface.get('helpToWiki', False))
+        prefs['interface']['doShopsReturn'] = bool(interface.get('doShopsReturn', False))
+
+        grammar = temp.get('grammar', {})
+        prefs['grammar']['respectShowBalls'] = bool(grammar.get('respectShowBalls', False))
+        prefs['grammar']['femmeboyToFemboy'] = bool(grammar.get('femmeboyToFemboy', False))
+        prefs['grammar']['shemaleToFuta'] = bool(grammar.get('shemaleToFuta', False))
+        prefs['grammar']['ngrammar'] = bool(grammar.get('ngrammar', False))
+        prefs['grammar']['femmieMaleReplacement'] = int(grammar.get('femmieMaleReplacement', 0))
+        prefs['grammar']['femboyishToGirly'] = bool(grammar.get('femboyishToGirly', False))
+        prefs['grammar']['snuggleBallTweak'] = bool(grammar.get('snuggleBallTweak', False))
+        prefs['grammar']['grammarFixes'] = bool(grammar.get('grammarFixes', False))
+
+        gt = temp.get('gameTweaks', {})
+        prefs['gameTweaks']['statusTweaks'] = bool(gt.get('statusTweaks', False))
+        prefs['gameTweaks']['succubusLeavesOne'] = bool(gt.get('succubusLeavesOne', False))
+        prefs['gameTweaks']['useIsBottomOpen'] = bool(gt.get('useIsBottomOpen', False))
+        prefs['gameTweaks']['lizanDontShowBalls'] = bool(gt.get('lizanDontShowBalls', False))
+        prefs['gameTweaks']['hermGetsBoth'] = bool(gt.get('hermGetsBoth', False))
+        prefs['gameTweaks']['intBallsEffectBelly'] = bool(gt.get('intBallsEffectBelly', False))
+        prefs['gameTweaks']['directPathToSanc'] = bool(gt.get('directPathToSanc', False))
+        prefs['gameTweaks']['correctBeastRaceFeet'] = bool(gt.get('correctBeastRaceFeet', False))
+        prefs['gameTweaks']['miscChanges'] = bool(gt.get('miscChanges', False))
+
+        dt = temp.get('debugTweaks', {})
+        prefs['debugTweaks']['chooseSenario'] = bool(dt.get('chooseSenario', False))
+        prefs['debugTweaks']['noDamage'] = bool(dt.get('noDamage', False))
+
+        return prefs
+
+    def getPrefs_XML(self, file: str | PurePath) -> dict:
+        def strtolistbools(a: str):
+            if a.startswith(('[', '(')):
+                a = a[1:-1]
+            b = a.split(', ')
+            if len(b) == 1 and b[0] == '':
+                return []
+            return [Utils.strtobool(i) for i in b]
+
+        prefs = {'game': {}, 'options': {}, 'interface': {}, 'grammar': {}, 'gameTweaks': {}, 'debugTweaks': {}}
+
+        prefsXML = xmletree.parse(file.resolve()).getroot()
+        prefs['game']['fontSize'] = int(prefsXML.find('fontSize').text)
+        prefs['game']['fontBold'] = Utils.strtobool(prefsXML.find('fontBold').text)
+        temptheme = prefsXML.find('theme').text
+        if (temptheme.isdecimal() and len(temptheme) == 1):
+            prefs['game']['theme'] = int(temptheme)
+        else:
+            prefs['game']['theme'] = temptheme
+        prefs['game']['fontColor'] = prefsXML.find('fontColor').text
+        prefs['game']['showSide'] = Utils.strtobool(prefsXML.find('showSide').text)
+        if prefsXML.find('saveLocation') is not None:
+            prefs['options']['saveLocation'] = prefsXML.find('saveLocation').text
+        if prefsXML.find('solMode') is not None:
+            prefs['options']['solMode'] = Utils.strtobool(prefsXML.find('solMode').text)
+        if prefsXML.find('gameTweaks') is not None:
+            tempgametweaks = strtolistbools(prefsXML.find('gameTweaks').text)
+            if len(tempgametweaks) < 12:
+                tempgametweaks.extend([False] * (12 - len(tempgametweaks)))
+            prefs['grammar']['grammarFixes'] = tempgametweaks[0]
+            prefs['gameTweaks']['statusTweaks'] = tempgametweaks[1]
+            prefs['gameTweaks']['succubusLeavesOne'] = tempgametweaks[2]
+            prefs['gameTweaks']['useIsBottomOpen'] = tempgametweaks[3]
+            prefs['gameTweaks']['lizanDontShowBalls'] = tempgametweaks[4]
+            prefs['interface']['useExpandedSaveDialog'] = tempgametweaks[5]
+            prefs['gameTweaks']['hermGetsBoth'] = tempgametweaks[6]
+            prefs['gameTweaks']['intBallsEffectBelly'] = tempgametweaks[7]
+            prefs['gameTweaks']['directPathToSanc'] = tempgametweaks[8]
+            prefs['gameTweaks']['correctBeastRaceFeet'] = tempgametweaks[9]
+            prefs['interface']['useNewStash'] = tempgametweaks[10]
+            prefs['gameTweaks']['miscChanges'] = tempgametweaks[11]
+        if prefsXML.find('fixedResMode') is not None:
+            prefs['options']['fixedResMode'] = Utils.strtobool(prefsXML.find('fixedResMode').text)
+        if prefsXML.find('customFontColor') is not None and prefsXML.find('oFontColor') is not None:
+            prefs['options']['customFontColor'] = Utils.strtobool(prefsXML.find('customFontColor').text)
+            prefs['options']['oFontColor'] = prefsXML.find('oFontColor').text
+        if prefsXML.find('customThemeColor') is not None and prefsXML.find('oThemeColor') is not None:
+            prefs['options']['customThemeColor'] = Utils.strtobool(prefsXML.find('customThemeColor').text)
+            prefs['options']['oThemeColor'] = prefsXML.find('oThemeColor').text
+        if prefsXML.find('debugTweaks') is not None:
+            tempdebugtweaks = strtolistbools(prefsXML.find('debugTweaks').text)
+            if len(tempdebugtweaks) < 2:
+                tempdebugtweaks.extend([False] * (2 - len(tempdebugtweaks)))
+            prefs['debugTweaks']['chooseSenario'] = tempdebugtweaks[0]
+            prefs['debugTweaks']['noDamage'] = tempdebugtweaks[1]
+        if prefsXML.find('nsldSortOrder') is not None:
+            prefs['game']['nsldSortOrder'] = int(prefsXML.find('nsldSortOrder').text)
+        if prefsXML.find('themeType') is not None:
+            if int(prefsXML.find('themeType').text) in {0, 1}:
+                prefs['interface']['useNiminTheme'] = bool(prefsXML.find('themeType').text)
+        if prefsXML.find('interfaceToggles') is not None:
+            tempitoggle = strtolistbools(prefsXML.find('interfaceToggles').text)
+            if len(tempitoggle) < 4:
+                tempitoggle.extend([False] * (4 - len(tempitoggle)))
+            prefs['interface']['scrolledTextBorders'] = tempitoggle[1]
+            prefs['interface']['originalNewGameButtonSize'] = tempitoggle[2]
+            prefs['interface']['staticDoLevelUPButtons'] = tempitoggle[3]
+
+        return prefs
+
+    def getPrefs_SOL(self, file: str | PurePath) -> dict:
+        so = sol.load(str(file))
+        prefLoad = so['prefs']
+        return {
+            'game': {
+                'theme': prefLoad[0],
+                'fontSize': prefLoad[1],
+                'fontBold': prefLoad[2],
+                'fontColor': prefLoad[3],
+                'showSide': prefLoad[4]
+            }
+        }
+
+    def _loadPrefs(self, prefs):
+        game = prefs['game']
+        if isinstance(game['theme'], int):
+            self.backgroundColor = Utils.hexColorFromThemeNumber(game['theme'])
+        elif Utils.isValidHex(game['theme']):
+            self.backgroundColor = game['theme']
+        self.fontSize = game['fontSize']
+        self.fontBold = game['fontBold']
+        if Utils.isValidHex(game['fontColor']):
+            self.textColor = game['fontColor']
+        self.showSide = game['showSide']
+        self.newSaveLoadDialog_SortOrder = game['nsldSortOrder']
+
+        options = prefs['options']
+        tempdir = Path(options['saveLocation']).resolve()
+        if isValidDirectory(tempdir):
+            self.saveLocation = tempdir
+        else:
+            # TODO: Phrase this warning better
+            trace('Warning: [PyminGame.loadPreferences] saveLocation is not a valid path. Value will not be changed.')
+        self.saveCompatMode = options['solMode']
+        self.enforceSize = options['fixedResMode']
+        self.customFontColor = options['customFontColor']
+        self.oTextColor = options['oFontColor']
+        self.customThemeColor = options['customThemeColor']
+        self.oBackgroundColor = options['oThemeColor']
+
+        interface = prefs['interface']
+        self.useNiminTheme = interface['useNiminTheme']
+        self.scrolledTextBorders = interface['scrolledTextBorders']
+        self.originalNewGameButtonSize = interface['originalNewGameButtonSize']
+        self.staticdoLevelUPButtons = interface['staticDoLevelUPButtons']
+        self.useExpandedSaveDialog = interface['useExpandedSaveDialog']
+        self.useNewStash = interface['useNewStash']
+        self.helpToWiki = interface['helpToWiki']
+        self.doShopsReturn = interface['doShopsReturn']
+        # self.originalFrame1Message = False
+
+        grammar = prefs['grammar']
+        self.respectShowBalls = grammar['respectShowBalls']
+        self.femmeboyToFemboy = grammar['femmeboyToFemboy']
+        self.shemaleToFuta = grammar['shemaleToFuta']
+        self.ngrammar = grammar['ngrammar']
+        self.femmieMaleReplacement = grammar['femmieMaleReplacement']
+        self.femboyishToGirly = grammar['femboyishToGirly']
+        self.snuggleBallTweak = grammar['snuggleBallTweak']
+        # self.useTheyForLivingCreatures = False
+        self.grammarFixes = grammar['grammarFixes']
+
+        gameTweaks = prefs['gameTweaks']
+        self.statusTweaks = gameTweaks['statusTweaks']
+        self.succubusLeavesOne = gameTweaks['succubusLeavesOne']
+        self.useIsBottomOpen = gameTweaks['useIsBottomOpen']
+        self.lizanDontShowBalls = gameTweaks['lizanDontShowBalls']
+        self.hermGetsBoth = gameTweaks['hermGetsBoth']
+        self.internalBallsEffectBelly = gameTweaks['intBallsEffectBelly']
+        self.directPathToSanctuary = gameTweaks['directPathToSanc']
+        self.correctBeastRaceFeet = gameTweaks['correctBeastRaceFeet']
+        self.gameTweaksMisc = gameTweaks['miscChanges']
+
+        debugTweaks = prefs['debugTweaks']
+        self.debugChooseSenario = debugTweaks['chooseSenario']
+        self.debugNoDamage = debugTweaks['noDamage']
+
     def loadPreferences(self):
-        # TODO
+        # TODO: Don't save preferences here
+        prefs = {
+            'game': {
+                'theme': "#FFFFFF",
+                'fontSize': 11,
+                'fontBold': False,
+                'fontColor': "#000000",
+                'showSide': True,
+                'nsldSortOrder': 0
+            },
+            'options': {
+                'saveLocation': GAME_DIR / "nimin_saves",
+                'solMode': False,
+                'fixedResMode': False,
+                'customFontColor': False,
+                'oFontColor': "#000000",
+                'customThemeColor': False,
+                'oThemeColor': "#FFFFFF"
+            },
+            'interface': {
+                'useNiminTheme': False,
+                'scrolledTextBorders': False,
+                'originalNewGameButtonSize': False,
+                'staticDoLevelUPButtons': False,
+                'useExpandedSaveDialog': False,
+                'useNewStash': False,
+                'helpToWiki': False,
+                'doShopsReturn': False
+            },
+            'grammar': {
+                'respectShowBalls': False,
+                'femmeboyToFemboy': False,
+                'shemaleToFuta': False,
+                'ngrammar': False,
+                'femmieMaleReplacement': 0,
+                'femboyishToGirly': False,
+                'snuggleBallTweak': False,
+                'grammarFixes': False
+            },
+            'gameTweaks': {
+                'statusTweaks': False,
+                'succubusLeavesOne': False,
+                'useIsBottomOpen': False,
+                'lizanDontShowBalls': False,
+                'hermGetsBoth': False,
+                'intBallsEffectBelly': False,
+                'directPathToSanc': False,
+                'correctBeastRaceFeet': False,
+                'miscChanges': False
+            },
+            'debugTweaks': {
+                'chooseSenario': False,
+                'noDamage': False
+            }
+        }
+
         sp = False
         if (GAME_DIR / 'Nimin_Prefs.toml').is_file():
-            with (GAME_DIR / 'Nimin_Prefs.toml').open('rb') as f:
-                temp = TOML.readFile(f)
-            game = temp.get('game', {})
-            self.fontSize = int(game.get('fontSize', 11))
-            self.fontBold = bool(game.get('fontBold', False))
-            tempTheme = str(game.get('theme', '#FFFFFF'))
-            tempFontColor = str(game.get('fontColor', '#000000'))
-            if Utils.isValidHex(tempTheme) and Utils.isValidHex(tempFontColor):
-                self.backgroundColor = tempTheme
-                self.textColor = tempFontColor
-            else:
-                sp = True
-            self.showSide = bool(game.get('showSide', True))
-            self.newSaveLoadDialog_SortOrder = int(game.get('nsldSortOrder', 0))
-
-            options = temp.get('options', {})
-            tempdir = Path(options.get('saveLocation', self.saveLocation)).resolve()
-            if isValidDirectory(tempdir):
-                self.saveLocation = tempdir
-            else:
-                # TODO: Phrase this warning better
-                trace('Warning: [PyminGame.loadPreferences] saveLocation is not a valid path. Value will not be changed.')
-                sp = True
-            self.saveCompatMode = bool(options.get('solMode', False))
-            self.enforceSize = bool(options.get('fixedResMode', False))
-            self.customFontColor = bool(options.get('customFontColor', False))
-            self.oTextColor = str(options.get('oFontColor', '#FFFFFF'))
-            self.customThemeColor = bool(options.get('customThemeColor', False))
-            self.oBackgroundColor = str(options.get('oThemeColor', '#000000'))
-
-            interface = temp.get('interface', {})
-            self.useNiminTheme = bool(interface.get('useNiminTheme', False))
-            self.scrolledTextBorders = bool(interface.get('scrolledTextBorders', False))
-            self.originalNewGameButtonSize = bool(interface.get('originalNewGameButtonSize', False))
-            self.staticdoLevelUPButtons = bool(interface.get('staticDoLevelUPButtons', False))
-            self.useExpandedSaveDialog = bool(interface.get('useExpandedSaveDialog', False))
-            self.useNewStash = bool(interface.get('useNewStash', False))
-            self.helpToWiki = bool(interface.get('helpToWiki', False))
-            self.doShopsReturn = bool(interface.get('doShopsReturn', False))
-
-            grammar = temp.get('grammar', {})
-            self.respectShowBalls = bool(grammar.get('respectShowBalls', False))
-            self.femmeboyToFemboy = bool(grammar.get('femmeboyToFemboy', False))
-            self.shemaleToFuta = bool(grammar.get('shemaleToFuta', False))
-            self.ngrammar = bool(grammar.get('ngrammar', False))
-            self.femmieMaleReplacement = int(grammar.get('femmieMaleReplacement', 0))
-            self.femboyishToGirly = bool(grammar.get('femboyishToGirly', False))
-            self.snuggleBallTweak = bool(grammar.get('snuggleBallTweak', False))
-            self.grammarFixes = bool(grammar.get('grammarFixes', False))
-
-            gt = temp.get('gameTweaks', {})
-            self.statusTweaks = bool(gt.get('statusTweaks', False))
-            self.succubusLeavesOne = bool(gt.get('succubusLeavesOne', False))
-            self.useIsBottomOpen = bool(gt.get('useIsBottomOpen', False))
-            self.lizanDontShowBalls = bool(gt.get('lizanDontShowBalls', False))
-            self.hermGetsBoth = bool(gt.get('hermGetsBoth', False))
-            self.internalBallsEffectBelly = bool(gt.get('intBallsEffectBelly', False))
-            self.directPathToSanctuary = bool(gt.get('directPathToSanc', False))
-            self.correctBeastRaceFeet = bool(gt.get('correctBeastRaceFeet', False))
-            self.gameTweaksMisc = bool(gt.get('miscChanges', False))
-
-            dt = temp.get('debugTweaks', {})
-            self.debugChooseSenario = bool(dt.get('chooseSenario', False))
-            self.debugNoDamage = bool(dt.get('noDamage', False))
-        elif (GAME_DIR / "Nimin_Prefs.xml").is_file():
-            def strtolistbools(a: str):
-                if a.startswith(('[', '(')):
-                    a = a[1:-1]
-                b = a.split(', ')
-                if len(b) == 1 and b[0] == '':
-                    return []
-                return [Utils.strtobool(i) for i in b]
-            prefs = xmletree.parse((GAME_DIR / 'Nimin_Prefs.xml').resolve()).getroot()
-            self.fontSize = int(prefs.find('fontSize').text)
-            self.fontBold = Utils.strtobool(prefs.find('fontBold').text)
-            temptheme = prefs.find('theme').text
-            tempfontColor = prefs.find('fontColor').text
-            if (Utils.isValidHex(temptheme) or temptheme.isdecimal() and len(temptheme) == 1 and int(temptheme) >= 0 and int(temptheme) < 6) and Utils.isValidHex(tempfontColor):
-                if (temptheme.isdecimal() and len(temptheme) == 1):
-                    self.backgroundColor = Utils.hexColorFromThemeNumber(int(temptheme))
-                else:
-                    self.backgroundColor = temptheme
-                self.textColor = tempfontColor
-            else:
-                self.backgroundColor = '#FFFFFF'
-                self.textColor = '#000000'
-            self.showSide = Utils.strtobool(prefs.find('showSide').text)
-            if prefs.find('saveLocation') is not None:
-                tempdir = Path(prefs.find('saveLocation').text).resolve()
-                if isValidDirectory(tempdir):
-                    self.saveLocation = tempdir
-                else:
-                    # TODO: Phrase this warning better
-                    trace('Warning: [PyminGame.loadPreferences] saveLocation is not a valid path. Value will not be changed.')
-            self.saveCompatMode = False if prefs.find('solMode') is None else Utils.strtobool(prefs.find('solMode').text)
-            if prefs.find('gameTweaks') is not None:
-                tempgametweaks = strtolistbools(prefs.find('gameTweaks').text)
-                if len(tempgametweaks) < 12:
-                    tempgametweaks.extend([False] * (12 - len(tempgametweaks)))
-                self.grammarFixes = tempgametweaks[0]
-                self.statusTweaks = tempgametweaks[1]
-                self.succubusLeavesOne = tempgametweaks[2]
-                self.useIsBottomOpen = tempgametweaks[3]
-                self.lizanDontShowBalls = tempgametweaks[4]
-                self.useExpandedSaveDialog = tempgametweaks[5]
-                self.hermGetsBoth = tempgametweaks[6]
-                self.internalBallsEffectBelly = tempgametweaks[7]
-                self.directPathToSanctuary = tempgametweaks[8]
-                self.correctBeastRaceFeet = tempgametweaks[9]
-                self.useNewStash = tempgametweaks[10]
-                self.gameTweaksMisc = tempgametweaks[11]
-            self.enforceSize = False if prefs.find('fixedResMode') is None else Utils.strtobool(prefs.find('fixedResMode').text)
-            if prefs.find('customFontColor') is not None and prefs.find('oFontColor') is not None:
-                self.customFontColor = Utils.strtobool(prefs.find('customFontColor').text)
-                self.oTextColor = prefs.find('oFontColor').text
-            if prefs.find('customThemeColor') is not None and prefs.find('oThemeColor') is not None:
-                self.customThemeColor = Utils.strtobool(prefs.find('customThemeColor').text)
-                self.oBackgroundColor = prefs.find('oThemeColor').text
-            if prefs.find('debugTweaks') is not None:
-                tempdebugtweaks = strtolistbools(prefs.find('debugTweaks').text)
-                if len(tempdebugtweaks) < 2:
-                    tempdebugtweaks.extend([False] * (2 - len(tempdebugtweaks)))
-                self.debugChooseSenario = tempdebugtweaks[0]
-                self.debugNoDamage = tempdebugtweaks[1]
-            if prefs.find('nsldSortOrder') is not None:
-                self.newSaveLoadDialog_SortOrder = int(prefs.find('nsldSortOrder').text)
-            if prefs.find('themeType') is not None:
-                if int(prefs.find('themeType').text) in {0, 1}:
-                    self.useNiminTheme = bool(prefs.find('themeType').text)
-                else:
-                    self.useNiminTheme = False
-            if prefs.find('interfaceToggles') is not None:
-                tempitoggle = strtolistbools(prefs.find('interfaceToggles').text)
-                if len(tempitoggle) < 4:
-                    tempitoggle.extend([False] * (4 - len(tempitoggle)))
-                self.scrolledTextBorders = tempitoggle[1]
-                self.originalNewGameButtonSize = tempitoggle[2]
-                self.staticdoLevelUPButtons = tempitoggle[3]
+            prefs.update(self.getPrefs_TOML(GAME_DIR / 'Nimin_Prefs.toml'))
+        elif (GAME_DIR / 'Nimin_Prefs.xml').is_file():
+            prefs.update(self.getPrefs_XML(GAME_DIR / 'Nimin_Prefs.xml'))
             sp = True
         elif (GAME_DIR / 'Nimin_Prefs.sol').is_file():
-            so = sol.load(str(GAME_DIR / 'Nimin_Prefs.sol'))
-            prefLoad = so['prefs']
-            self.backgroundColor = Utils.hexColorFromThemeNumber(prefLoad[0])
-            self.fontSize = prefLoad[1]
-            self.fontBold = prefLoad[2]
-            self.textColor = prefLoad[3]
-            self.showSide = prefLoad[4]
+            prefs.update(self.getPrefs_SOL(GAME_DIR / 'Nimin_Prefs.sol'))
             sp = True
         else:
             sp = True
+        self._loadPrefs(prefs)
+
         DirUtils.makeDir(self.saveLocation, True)
         if sp:
             self.savePreferences()
 
     def savePreferences(self):
-        # TODO
+        # TODO: Make this not do anything if the values haven't changed
         temp = {
             'game': {
                 'theme': self.backgroundColor,
