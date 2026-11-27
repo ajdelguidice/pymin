@@ -457,6 +457,19 @@ class PregnancyStatus:
     ...  # 0, 1, 2, or 3
 
 
+class DyeColor:
+    NONE = 0
+    BLACK = 1
+    BLONDE = 2
+    RED = 3
+    BLUE = 4
+    CORAL_PINK = 5
+    AUBURN = 6
+    BROWN = 7
+    GREY = 8
+    WHITE = 9
+
+
 class IDErrorObject:
     def __init__(self, name, ID):
         self.name = name
@@ -538,6 +551,12 @@ class ItemStatsItem(GenericStatsItem):
         return self.get('useHidesPage', True)
 
 
+class DyeItemStatsItem(ItemStatsItem):
+    @property
+    def dyeColor(self):
+        return self.get('dyeColor', 'ITEM DYE COLOR ERROR')
+
+
 # TODO: See if isUsable and isConsumable are mutually exclusive. If so, see they can be combined into one property
 ITEM_STATS = GameStatsContainer('ITEM', {
     Item.NONE: ItemStatsItem(name=' '),
@@ -587,11 +606,11 @@ ITEM_STATS = GameStatsContainer('ITEM', {
     Item.WET_CLOTH: ItemStatsItem(name="Wet Cloth", longName="Wet, Slimy Cloth", value=5, stackMax=10, isConsumable=True, description="This piece of white cloth seems to be perpetually wet and slimy, no matter how long you keep it in your bag. You have no idea what it can do, however."),
     Item.LON_MILK: ItemStatsItem(name="Lon Milk", longName="Malon's Milk", value=5, foodValue=30, stackMax=10, isConsumable=True, description="Unlike the other bottles of milk that come from the Dairy Farm, this wasn't from a cow. From Malon's own supply, you're unsure exactly how it's different from the rest, though it does taste better."),
     Item.LON_PENDANT: ItemStatsItem(name="Lon Pendant", longName="Malon's Pendant", stackMax=1, useHidesPage=False, description="Given to you by Malon from the Dairy Farm, this gift of admiration seems to have been a keepsake of hers since she was a child and has imbued by her long-time love of animals and rather bovine qualities. As long as you hold onto it, everything is a bit more consensual towards being 'raped', be a bit more lenient to you running away, and all milk products heal you slightly more than usual.\n\nWarning: You cannot regain this item should you lose it."),
-    Item.PINK_INK: ItemStatsItem(name="Pink Ink", longName="Pink Ink", value=150, stackMax=5, isConsumable=True, description="Octopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."),
+    Item.PINK_INK: DyeItemStatsItem(name="Pink Ink", longName="Pink Ink", value=150, stackMax=5, isConsumable=True, dyeColor=5, description="Octopus ink gained from a rather pink octopus girl, this ink serves as a very rare and valuable hair dye. Should you use it, your hair will turn a coral pink color, if you have hair."),
     Item.EGG_JELLY: ItemStatsItem(name="Egg Jelly", longName="Octopus Egg Jelly", value=40, stackMax=5, isConsumable=True, description="The jelly from the eggs of the octopus girls you gave birth to, it seems like it'd make you very aroused if you rubbed it on your genitals. Although, you're not quite sure what it would do beyond that..."),
     Item.BUL_BERRY: ItemStatsItem(name="Bul Berry", longName="Bulging Berry", value=20, foodValue=10, stackMax=10, isConsumable=True, description="A cousin of the bloated berry, this fruit splits into multiple spheres from the same stem, somewhat like cherries but can often have three or four from the same stem. It is quite edible, though it is highly suggested to not eat many."),
     Item.FRESH_EGG: ItemStatsItem(name="Fresh Egg", longName="Fresh Egg", value=5, foodValue=15, stackMax=5, isConsumable=True, description="An unfertilized egg from a lizan female (or herm), eggs like this are common in the lizan diet. High in protein, they're good for your health."),
-    Item.BLONDE_DYE: ItemStatsItem(name="Blondie", longName="Blonde Dye", value=50, stackMax=5, isConsumable=True, description="A dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."),
+    Item.BLONDE_DYE: DyeItemStatsItem(name="Blondie", longName="Blonde Dye", value=50, stackMax=5, isConsumable=True, dyeColor=2, description="A dye made from mashed grain, this will turn your hair blonde in color when used, if you have hair, or it can be sold for a decent sum."),
     Item.PUSS_JUICE: ItemStatsItem(name="Puss Juice", longName="Concentrated Pussy Fruit Juice", value=30, foodValue=15, stackMax=10, isConsumable=True, description="Created by a notable mistress in Siz'calit, this vial contains some rather concentrated juice from the Pussy Fruit. It is likely to have a notable effect on a woman's loins, more potent than its source."),
     Item.KINKY_CARR: ItemStatsItem(name="Kinky Carr", longName="Kinky Carrot", value=15, foodValue=10, stackMax=5, isConsumable=True, description="Used in lewd fashions by a small rabbit-like people, you're sure to clean this off as soon as you got it. Although you're not entirely certain what would happen if you ate it, besides being in better health for keeping veggies in your diet."),
     Item.EQ_SNACK: ItemStatsItem(name="Eq Snack", longName="Equan Snack", value=15, foodValue=25, stackMax=10, isConsumable=True, description="A common snack amongst the equan people, this sweet little thing has the kind of carbs that will help you get through the day, no matter what life may put on your shoulders. And it seems to be the cause of some bellies of some equan women..."),
@@ -611,10 +630,10 @@ ITEM_STATS = GameStatsContainer('ITEM', {
     Item.DEWY_GIFT: ItemStatsItem(name="Dewy Gift", longName="Lila's Dewy Gift", stackMax=1, useHidesPage=False, description="Originally given to you by Lila, dew drops have started forming on and falling from the leaves and flowers constantly, ever since it became more 'infused' with your relationship with Lila. As long as you hold it, you're sexual lubrication flows much more and makes you quite sensitive. It even feels warm to the touch, a warmth that sometimes may spread to you...\n\nWarning: You cannot regain this item should you lose it."),
     Item.SQU_CHEESE: ItemStatsItem(name="Squ Cheese", longName="Squeaky Cheese", value=10, foodValue=20, stackMax=15, isConsumable=True, description="Some cheese found in an alley that kinda squeaks when you rub it, it smells quite delicious and would help restore your energy if you're hurt. Other than that, though, well... you did find it in an alley, after all."),
     Item.SHINY_ROCK: ItemStatsItem(name="Shiny Rock", longName="Shiny Rock", value=3, stackMax=15, isConsumable=True, description="A rather shiny rock you found, you're almost intent at staring at it. If anything, it at least improves your focus."),
-    Item.AUBURN_DYE: ItemStatsItem(name="Auburn Dye", longName="Auburn Dye", value=75, stackMax=5, isConsumable=True, description="A dark reddish color, this dye will turn your hair auburn when used, if you have hair"),
-    Item.BROWN_DYE: ItemStatsItem(name="Brown Dye", longName="Brown Dye", value=30, stackMax=5, isConsumable=True, description="A simple brownish, this dye will turn your hair brown when used, if you have hair"),
-    Item.GREY_DYE: ItemStatsItem(name="Grey Dye", longName="Grey Dye", value=45, stackMax=5, isConsumable=True, description="A shade, this dye will turn your hair grey when used, if you have hair"),
-    Item.WHITE_DYE: ItemStatsItem(name="White Dye", longName="White Dye", value=100, stackMax=5, isConsumable=True, description="Lacking any color, this dye will turn your hair pure white when used, if you have hair"),
+    Item.AUBURN_DYE: DyeItemStatsItem(name="Auburn Dye", longName="Auburn Dye", value=75, stackMax=5, isConsumable=True, dyeColor=6, description="A dark reddish color, this dye will turn your hair auburn when used, if you have hair"),
+    Item.BROWN_DYE: DyeItemStatsItem(name="Brown Dye", longName="Brown Dye", value=30, stackMax=5, isConsumable=True, dyeColor=7, description="A simple brownish, this dye will turn your hair brown when used, if you have hair"),
+    Item.GREY_DYE: DyeItemStatsItem(name="Grey Dye", longName="Grey Dye", value=45, stackMax=5, isConsumable=True, dyeColor=8, description="A shade, this dye will turn your hair grey when used, if you have hair"),
+    Item.WHITE_DYE: DyeItemStatsItem(name="White Dye", longName="White Dye", value=100, stackMax=5, isConsumable=True, dyeColor=9, description="Lacking any color, this dye will turn your hair pure white when used, if you have hair"),
     Item.SNUGGLE_BALL: ItemStatsItem(name="Snuggle Ball", longName="Snuggle Ball", value=35, stackMax=1, isUsable=True, description=lambda player: "Not really a 'ball' at the moment, this squishy thing is currently coating your body with a thick plush layer of shiny snuggliness. You can attempt to take it off, though it does make you look kinda cute, like a cuddly toy." if (player.snuggleBall) else "Squishy and plush, this odd ball is made out of seemingly unnatural materials. Almost like a living liquid, it wobbles around in your hand and is slightly pliable. It feels so pleasant, you kinda want to snuggle with it."),
     Item.FACIAL_MUD: ItemStatsItem(name="Facial Mud", longName="Facial Mud", value=15, stackMax=15, isConsumable=True, description="Some mud you found at a secluded mudhole in the savanna, this particular mud is quite clean and rich in minerals and would really help your complexion."),
     Item.FERTILE_GEL: ItemStatsItem(name="Fertile Gel", longName="Fertile Gel", value=20, stackMax=10, isConsumable=True, description="A soft gel that gives off a pleasant warmth, it helps increase the fertility of women who want to be mothers or want a nice big swollen belly.\n\nExtra doses extend the duration of the gel."),
@@ -649,12 +668,12 @@ ITEM_STATS = GameStatsContainer('ITEM', {
     Item.S_BALL_SWELLER: ItemStatsItem(name="S Ball Sweller", longName="Superior Ball Sweller", value=25, foodValue=10, stackMax=10, isConsumable=True, description="Imbibing this will make your balls feel as though you hadn't ejaculated in 70 hours."),
     Item.GEN_SWAP: ItemStatsItem(name="Gen Swap", longName="Gender Swap Potion", value=20, foodValue=4, stackMax=5, isConsumable=True, description="If you want to try out the opposite sex, this potion will revert your genitals back to infancy, allowing them to reform as their opposite counterparts. If a hermaphrodite takes this, it reverts all genitals to their smallest value. If a genderless person takes this, the resulting gender is random."),
     Item.MASO_POT: ItemStatsItem(name="Maso Pot", longName="Masochism Potion", value=20, foodValue=4, stackMax=5, isConsumable=True, description="After this potion is imbibed, your nervous system confuses half of all damage as pleasure for a whole day."),
-    Item.BLACK_DYE: ItemStatsItem(name="Black Dye", longName="Black Dye", value=20, stackMax=5, isConsumable=True, description="This will turn your hair black in color when used, if you have hair."),
+    Item.BLACK_DYE: DyeItemStatsItem(name="Black Dye", longName="Black Dye", value=20, stackMax=5, isConsumable=True, dyeColor=1, description="This will turn your hair black in color when used, if you have hair."),
     Item.BABY_FREE: ItemStatsItem(name="Baby Free", longName="Baby Free Potion", value=20, foodValue=15, stackMax=5, isConsumable=True, description="Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 3 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."),
     Item.POT_POT: ItemStatsItem(name="Pot Pot", longName="Potency Potion", value=20, foodValue=15, stackMax=5, isConsumable=True, description="Kicking your balls into gear, they will permanently produce 20% more cum, despite their size."),
     Item.S_GEN_SWAP: ItemStatsItem(name="S Gen Swap", longName="Superior Gender Swap Potion", value=50, foodValue=8, stackMax=5, isConsumable=True, description="If you want to try out the opposite sex, this potion will transform your genitals into their opposite counterparts, retaining the relative size. If a hermaphrodite takes this, the genitals swap sizes. If a genderless person takes this, the resulting gender is random, along with the sizes of their genitals (up to a certain amount)."),
     Item.S_MASO_POT: ItemStatsItem(name="S Maso Pot", longName="Superior Masochism Potion", value=50, foodValue=8, stackMax=5, isConsumable=True, description="After this potion is imbibed, your nervous system confuses all damage as pleasure for a whole day."),
-    Item.RED_DYE: ItemStatsItem(name="Red Dye", longName="Red Dye", value=150, stackMax=5, isConsumable=True, description="This will turn your hair red in color when used, if you have hair."),
+    Item.RED_DYE: DyeItemStatsItem(name="Red Dye", longName="Red Dye", value=150, stackMax=5, isConsumable=True, dyeColor=3, description="This will turn your hair red in color when used, if you have hair."),
     Item.S_BABY_FREE: ItemStatsItem(name="S Baby Free", longName="Superior Baby Free Potion", value=50, foodValue=20, stackMax=5, isConsumable=True, description="Sipping this potion will reduce your chance of becoming pregnancy by 50% for the next 9 days. This contraceptive is not gauranteed to prevent pregnancy, especially if you're especially fertile. It will work whether you have the appropriate plumbing or not. Multiple instances of Superior Baby Free Potion will only extend the time of its duration, not increase the reduction in chance."),
     Item.S_POT_POT: ItemStatsItem(name="S Pot Pot", longName="Superior Potency Potion", value=50, foodValue=20, stackMax=5, isConsumable=True, description="Drop-kicking your balls into gear, they will permanently produce 50% more cum, despite their size."),
     Item.CUM_VIAL: ItemStatsItem(name="Cum Vial", longName="Vial of Cum", value=2, foodValue=10, stackMax=15, isConsumable=True, description="Still kinda warm, this vial of goop will arouse you slightly when imbibed, plus heal a bit."),
@@ -675,6 +694,20 @@ ITEM_STATS = GameStatsContainer('ITEM', {
     Item.SOLDIER_EGG: ItemStatsItem(name="Soldier Egg", longName="Soldier Egg", value=20, foodValue=20, stackMax=10, isConsumable=True, description="Not the egg of a soldier, but rather an unfertilized egg suitable for a soldier. This powerful egg will make you taller, stronger, and more physically fit just by eating it!"),
     Item.DRONE_EGG: ItemStatsItem(name="Drone Egg", longName="Drone Egg", value=10, foodValue=15, stackMax=10, isConsumable=True, description="Not the egg of a drone, but rather an unfertilized egg better fed to the sex-craving drones, those mindless males that are only useful for impregnating a queen. This will make them even better at that singular duty."),
     Item.WORKER_EGG: ItemStatsItem(name="Worker Egg", longName="Worker Egg", value=5, foodValue=10, stackMax=15, isConsumable=True, description="Not the egg of a worker, but rather an unfertilized egg that would help any worker. Munching down this little thing will help anybody feel less exhausted and thus allow them to work even more!")
+})
+
+
+DYE_COLOR_NAMES = frozendict({
+    DyeColor.NONE: "",
+    DyeColor.BLACK: "black ",
+    DyeColor.BLONDE: "blonde ",
+    DyeColor.RED: "red ",
+    DyeColor.BLUE: "blue ",
+    DyeColor.CORAL_PINK: "coral pink ",
+    DyeColor.AUBURN: "aubrun ",
+    DyeColor.BROWN: "brown ",
+    DyeColor.GREY: "grey ",
+    DyeColor.WHITE: "white "
 })
 
 
@@ -2745,6 +2778,8 @@ class WikiPages:
                 return "[Leg Description]"
 
         stats = f"\n\n<u>Stats</u>\nValue: {ItemItem.value}\nstackMax: {ItemItem.stackMax}\nfoodValue: {ItemItem.foodValue}\nisUsable: {ItemItem.isUsable}\nisConsumable: {ItemItem.isConsumable}\nuseHidesPage: {ItemItem.useHidesPage}"
+        if isinstance(ItemItem, DyeItemStatsItem):
+            stats += f'\ndyeColor: {DYE_COLOR_NAMES[ItemItem.dyeColor]}({ItemItem.dyeColor})'
 
         # Dynamic Descriptions
         if ID == Item.SNUGGLE_BALL:
@@ -10362,7 +10397,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.exhaustion -= 3
             self.doEnd()
         elif ID == Item.PINK_INK:
-            self.dyeThing(ID, 5)
+            self.dyeThing(ID)
         elif ID == Item.EGG_JELLY:
             self.doMainText("You smear the jelly around your genitals. It's so slick and hot, you can't help but feel immensely aroused.", True)
             if (self.vagTotal > 0):
@@ -10395,7 +10430,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.displayMainText()
             self.doEnd()
         elif ID == Item.BLONDE_DYE:
-            self.dyeThing(ID, 2)
+            self.dyeThing(ID)
         elif ID == Item.PUSS_JUICE:
             self.doMainText("You down the vial. It's so sweet that your face puckers a bit, the concentrated syrup slowly dripping down your throat.", True)
             if (self.vagTotal > 0):
@@ -10670,13 +10705,13 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.aff(9, Math.floor(Utils.percent() / 15 + 2), -2)
             self.doEnd()
         elif ID == Item.AUBURN_DYE:
-            self.dyeThing(ID, 6)
+            self.dyeThing(ID)
         elif ID == Item.BROWN_DYE:
-            self.dyeThing(ID, 7)
+            self.dyeThing(ID)
         elif ID == Item.GREY_DYE:
-            self.dyeThing(ID, 8)
+            self.dyeThing(ID)
         elif ID == Item.WHITE_DYE:
-            self.dyeThing(ID, 9)
+            self.dyeThing(ID)
         elif ID == Item.SNUGGLE_BALL:
             if (self.snuggleBall):
                 self.outputMainText(f"Would you like to try and remove the plush shiny layer of cuddliness that covers your {self.skinDesc()}?", True)
@@ -11061,7 +11096,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.masoPot += 24
             self.doEnd()
         elif ID == Item.BLACK_DYE:
-            self.dyeThing(ID, 1)
+            self.dyeThing(ID)
         elif ID == Item.BABY_FREE:
             self.outputMainText("Taking the potion, you sudden feel less... fertile than before. You might still be a little fertile, but you suspect you can go out 'clubbing' for the next few days and not have to worry so much about a little extra weight in a few more. If you knew what any of that even meant.", True)
             self.babyFree += 72
@@ -11166,7 +11201,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
             self.sMasoPot += 24
             self.doEnd()
         elif ID == Item.RED_DYE:
-            self.dyeThing(ID, 3)
+            self.dyeThing(ID)
         elif ID == Item.S_BABY_FREE:
             self.outputMainText("Taking the potion, you sudden feel less... fertile than before. You might still be a little fertile, but you suspect you can go out 'clubbing' for the next several days and not have to worry so much about a little extra weight afterwards. If you knew what any of that even meant.", True)
             self.babyFree += 216
@@ -12057,9 +12092,14 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
                     self.doReturn()
         self.doListen = doListen
 
-    def dyeThing(self, ID: int, color: int):
+    def dyeThing(self, ID: int):
+        item = ITEM_STATS[ID]
+        if not isinstance(item, DyeItemStatsItem):
+            self.itemAdd(ID)
+            return  # TODO: Do something more here
+
         self.showButtons(ButtonList(0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0))
-        self.outputMainText(f"What would you like to apply the {ITEM_STATS[ID].name} to?", True)
+        self.outputMainText(f"What would you like to apply the {item.name} to?", True)
         tempDict = {7: "Body", 10: "Nevermind"}
         if (self.hair != Hairstyle.NONE):
             tempDict[5] = "Hair"
@@ -12067,11 +12107,11 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
         def doListen():
             if self.buttonChoice == 5:
-                self.hairColor = color
-                self.doMainText(f"You smear the {ITEM_STATS[ID].name} around in your {HAIRSTYLE_STATS[self.hair].shortDescription}, turning it {self.hairC()} in color.", True)
+                self.hairColor = item.dyeColor
+                self.doMainText(f"You smear the {item.name} around in your {HAIRSTYLE_STATS[self.hair].shortDescription}, turning it {self.hairC()} in color.", True)
             elif self.buttonChoice == 7:
-                self.skinColor = color
-                self.doMainText(f"You rub the {ITEM_STATS[ID].name} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.", True)
+                self.skinColor = item.dyeColor
+                self.doMainText(f"You rub the {item.name} well into your {self.skinDesc()}, making sure it seeps in deep and turns your body a {self.skinC()} color.", True)
             elif self.buttonChoice == 10:
                 self.doMainText("Apparently you derped and didn't mean to use it, so you put the dye back in your bag.", True)
                 self.itemAdd(ID)
@@ -12268,27 +12308,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
 
     # TODO: Move out of game class
     def hairC(self) -> str:
-        if self.hairColor == 0:
-            return ""
-        if self.hairColor == 1:
-            return "black "
-        if self.hairColor == 2:
-            return "blonde "
-        if self.hairColor == 3:
-            return "red "
-        if self.hairColor == 4:
-            return "blue "
-        if self.hairColor == 5:
-            return "coral pink "
-        if self.hairColor == 6:
-            return "auburn "
-        if self.hairColor == 7:
-            return "brown "
-        if self.hairColor == 8:
-            return "grey "
-        if self.hairColor == 9:
-            return "white "
-        return f"HAIR COLOR ERROR {self.hairColor}"
+        return DYE_COLOR_NAMES.get(self.hairColor, f"HAIR COLOR ERROR {self.hairColor}")
 
     # TODO: Move out of game class
     def hairL(self) -> str:
@@ -27217,27 +27237,7 @@ class PyminGame(PyminWindow):  # NiminFetishFantasyv0975o_fla
         return f"SKIN ERROR {self.skinType}"
 
     def skinC(self) -> str:
-        if self.skinColor == 0:
-            return ""
-        if self.skinColor == 1:
-            return "black "
-        if self.skinColor == 2:
-            return "blonde "
-        if self.skinColor == 3:
-            return "red "
-        if self.skinColor == 4:
-            return "blue "
-        if self.skinColor == 5:
-            return "coral pink "
-        if self.skinColor == 6:
-            return "auburn "
-        if self.skinColor == 7:
-            return "brown "
-        if self.skinColor == 8:
-            return "grey "
-        if self.skinColor == 9:
-            return "white "
-        return f"SKIN COLOR ERROR {self.skinColor}"
+        return DYE_COLOR_NAMES.get(self.skinColor, f"SKIN COLOR ERROR {self.skinColor}")
 
     def legDesc(self, part: int) -> str:
         if part == 1:
